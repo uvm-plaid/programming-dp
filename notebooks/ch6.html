@@ -222,6 +222,18 @@
                 
   <div class="section" id="approximate-differential-privacy">
 <h1>Approximate Differential Privacy<a class="headerlink" href="#approximate-differential-privacy" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p>Define approximate differential privacy</p></li>
+<li><p>Explain the differences between approximate and pure differential privacy</p></li>
+<li><p>Describe the advantages and disadvantages of approximate differential privacy</p></li>
+<li><p>Describe and calculate L1 and L2 sensitivity of vector-valued queries</p></li>
+<li><p>Define and apply the Gaussian mechanism</p></li>
+<li><p>Apply advanced composition</p></li>
+</ul>
+</div>
 <p>Approximate differential privacy, also called <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy, has the following definition:</p>
 <p>\begin{align}
 \mathsf{Pr}[F(x) = S] \leq e^\epsilon \mathsf{Pr}[F(x’) = s] + \delta
@@ -242,7 +254,7 @@ F(x) = f(x) + \mathcal{N}(\sigma^2)\
 \end{align}</p>
 <p>where <span class="math notranslate nohighlight">\(s\)</span> is the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{N}(\sigma^2)\)</span> denotes sampling from the Gaussian (normal) distribution with center 0 and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>. Note that here (and elsewhere in these notes), <span class="math notranslate nohighlight">\(\log\)</span> denotes the natural logarithm.</p>
 <p>For real-valued functions <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>, we can use the Gaussian mechanism in exactly the same way as we do the Laplace mechanism, and it’s easy to compare what happens under both mechanisms for a given value of <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">vals_laplace</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span class="p">)]</span>
@@ -336,7 +348,7 @@ F(q, x) =;&amp; \text{Sample a number <span class="math notranslate nohighlight"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>10.00639618152227
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9.977754116120634
 </pre></div>
 </div>
 </div>
@@ -359,7 +371,7 @@ F(q, x) =;&amp; \text{Sample a number <span class="math notranslate nohighlight"
 <p>So advanced composition derives a much lower bound on <span class="math notranslate nohighlight">\(\epsilon'\)</span> than sequential composition, <em>for the same mechanism</em>.  What does this mean? It means that the bounds given by sequential composition are <em>loose</em> - they don’t tightly bound the <em>actual</em> privacy cost of the computation. In fact, advanced composition also gives loose bounds - they’re just slightly <em>less</em> loose than the ones given by sequential composition.</p>
 <p>It’s important to note that the two bounds are technically incomparable, since advanced composition introduces a <span class="math notranslate nohighlight">\(\delta\)</span>. When <span class="math notranslate nohighlight">\(\delta\)</span> is small, however, we will often compare the <span class="math notranslate nohighlight">\(\epsilon\)</span>s given by both methods.</p>
 <p>So, should we <em>always</em> use advanced composition? It turns out that we should <em>not</em>. Let’s try the experiment above for different values of <span class="math notranslate nohighlight">\(k\)</span>, and graph the <em>total privacy cost</em> under both sequential compsosition and advanced composition.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">delta</span> <span class="o">=</span> <span class="mf">10e-5</span>
@@ -381,7 +393,7 @@ F(q, x) =;&amp; \text{Sample a number <span class="math notranslate nohighlight"
 </div>
 </div>
 <p>Standard sequential composition, it turns out, beats advanced composition for <span class="math notranslate nohighlight">\(k\)</span> smaller than about 70. Thus, advanced composition is only really useful when <span class="math notranslate nohighlight">\(k\)</span> is large (e.g. more than 100). When <span class="math notranslate nohighlight">\(k\)</span> is very large, though, advanced composition can make a <em>big</em> difference.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">seq_comp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sequential Composition&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">adv_comp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Advanced Composition&#39;</span><span class="p">)</span>

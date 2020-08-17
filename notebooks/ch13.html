@@ -200,6 +200,15 @@
                 
   <div class="section" id="local-differential-privacy">
 <h1>Local Differential Privacy<a class="headerlink" href="#local-differential-privacy" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p>Define the local model of differential privacy and contrast it with the central model</p></li>
+<li><p>Define and implement the randomized response and unary encoding mechanisms</p></li>
+<li><p>Describe the accuracy implications of these mechanisms and the challenges of the local model</p></li>
+</ul>
+</div>
 <p>So far, we have only considered the <em>central model</em> of differential privacy, in which the sensitive data is collected centrally in a single dataset. In this setting, we assume that the <em>analyst</em> is malicious, but that there is a <em>trusted data curator</em> who holds the dataset and correctly executes the differentially private mechanisms the analyst specifies.</p>
 <p>This setting is often not realistic. In many cases, the data curator and the analyst are <em>the same</em>, and no trusted third party actually exists to hold the data and execute mechanisms. In fact, the organizations which collect the most sensitive data tend to be exactly the ones we <em>don’t</em> trust; such organizations certainly can’t function as trusted data curators.</p>
 <p>An alternative to the central model of differential privacy is the <em>local model of differential privacy</em>, in which data is made differentially private before it leaves the control of the data subject. For example, you might add noise to your data <em>on your device</em> before sending it to the data curator. In the local model, the data curator does not need to be trusted, since the data they collect <em>already</em> satisfies differential privacy.</p>
@@ -243,8 +252,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True     150
-False     50
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True     151
+False     49
 dtype: int64
 </pre></div>
 </div>
@@ -266,8 +275,8 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>False    22648
-True      9913
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>False    22496
+True     10065
 dtype: int64
 </pre></div>
 </div>
@@ -323,7 +332,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3583.5
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3457.5
 </pre></div>
 </div>
 </div>
@@ -349,7 +358,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.821917808219178
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5.273972602739726
 </pre></div>
 </div>
 </div>
@@ -363,7 +372,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.0014415712933080376
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.04420299590635781
 </pre></div>
 </div>
 </div>
@@ -450,7 +459,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0]
 </pre></div>
 </div>
 </div>
@@ -510,20 +519,20 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 10064),
- (&#39;Exec-managerial&#39;, 10137),
- (&#39;Handlers-cleaners&#39;, 8810),
- (&#39;Prof-specialty&#39;, 10233),
- (&#39;Other-service&#39;, 9797),
- (&#39;Sales&#39;, 9935),
- (&#39;Craft-repair&#39;, 10265),
- (&#39;Transport-moving&#39;, 8893),
- (&#39;Farming-fishing&#39;, 8687),
- (&#39;Machine-op-inspct&#39;, 9135),
- (&#39;Tech-support&#39;, 8546),
- (&#39;Protective-serv&#39;, 8568),
- (&#39;Armed-Forces&#39;, 8085),
- (&#39;Priv-house-serv&#39;, 8192)]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 9986),
+ (&#39;Exec-managerial&#39;, 10063),
+ (&#39;Handlers-cleaners&#39;, 8907),
+ (&#39;Prof-specialty&#39;, 10089),
+ (&#39;Other-service&#39;, 9794),
+ (&#39;Sales&#39;, 10004),
+ (&#39;Craft-repair&#39;, 10161),
+ (&#39;Transport-moving&#39;, 8909),
+ (&#39;Farming-fishing&#39;, 8675),
+ (&#39;Machine-op-inspct&#39;, 9063),
+ (&#39;Tech-support&#39;, 8543),
+ (&#39;Protective-serv&#39;, 8483),
+ (&#39;Armed-Forces&#39;, 8166),
+ (&#39;Priv-house-serv&#39;, 8248)]
 </pre></div>
 </div>
 </div>
@@ -555,20 +564,20 @@ A[i] = \frac{\sum_j B’_j[i] - n q}{p - q}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3973.5),
- (&#39;Exec-managerial&#39;, 4365.5),
- (&#39;Handlers-cleaners&#39;, 1469.5),
- (&#39;Prof-specialty&#39;, 3933.5),
- (&#39;Other-service&#39;, 3311.5),
- (&#39;Sales&#39;, 4087.5),
- (&#39;Craft-repair&#39;, 4083.5),
- (&#39;Transport-moving&#39;, 1807.5),
- (&#39;Farming-fishing&#39;, 913.5),
- (&#39;Machine-op-inspct&#39;, 1913.5),
- (&#39;Tech-support&#39;, 889.5),
- (&#39;Protective-serv&#39;, 397.5),
- (&#39;Armed-Forces&#39;, -164.5),
- (&#39;Priv-house-serv&#39;, 13.5)]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 4059.5),
+ (&#39;Exec-managerial&#39;, 4377.5),
+ (&#39;Handlers-cleaners&#39;, 1413.5),
+ (&#39;Prof-specialty&#39;, 3927.5),
+ (&#39;Other-service&#39;, 3123.5),
+ (&#39;Sales&#39;, 3823.5),
+ (&#39;Craft-repair&#39;, 4063.5),
+ (&#39;Transport-moving&#39;, 1743.5),
+ (&#39;Farming-fishing&#39;, 807.5),
+ (&#39;Machine-op-inspct&#39;, 2297.5),
+ (&#39;Tech-support&#39;, 915.5),
+ (&#39;Protective-serv&#39;, 983.5),
+ (&#39;Armed-Forces&#39;, -34.5),
+ (&#39;Priv-house-serv&#39;, 111.5)]
 </pre></div>
 </div>
 </div>

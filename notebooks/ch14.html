@@ -211,6 +211,17 @@
                 
   <div class="section" id="differentially-private-synthetic-data">
 <h1>Differentially Private Synthetic Data<a class="headerlink" href="#differentially-private-synthetic-data" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p>Describe the idea of differentially private synthetic data and explain why it is useful</p></li>
+<li><p>Define simple synthetic representations used in generating synthetic data</p></li>
+<li><p>Define <em>marginals</em> and implement code to calculate them</p></li>
+<li><p>Implement simple differentially private algorithms to generate low-dimensional synthetic data</p></li>
+<li><p>Describe the challenges of generating high-dimensional synthetic data</p></li>
+</ul>
+</div>
 <p>In this section, we’ll examine the problem of generating <em>synthetic data</em> using differentially private algorithms. Strictly speaking, the input of such an algorithm is an <em>original dataset</em>, and its output is a <em>synthetic dataset</em> with the same shape (i.e. same set of columns and same number of rows); in addition, we would like the <em>values</em> in the synthetic dataset to have the same properties as the corresponding values in the original dataset. For example, if we take our US Census dataset to be the original data, then we’d like our synthetic data to have a similar distribution of ages for the participants as the original data, and to preserve correlations between columns (e.g. a link between age and occupation).</p>
 <p>Most algorithms for generating such synthetic data rely on a <em>synthetic representation</em> of the original dataset, which does <em>not</em> have the same shape as the original data, but which <em>does</em> allow answering queries about the original data. For example, if we <em>only</em> care about range queries over ages, then we could generate an age histogram - a count of how many participants in the original data had each possible age - and use the histogram to answer the queries. This histogram is a <em>synthetic representation</em> which is suitable for answering some queries, but it does not have the same shape as the original data, so it’s not <em>synthetic data</em>.</p>
 <p>Some algorithms simply use the synthetic representation to answer queries. Others use the synthetic representation to generate synthetic data. We’ll look at one kind of synthetic representation - a histogram - and several methods of generating synthetic data from it.</p>
@@ -238,6 +249,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bins</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bins</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Occurrences&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">counts</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -291,13 +304,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9875.11737088018
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9875.156797705455
 </pre></div>
 </div>
 </div>
 </div>
 <p>How accurate are the results? For small ranges, the results we get from our synthetic representation have very similar accuracy to the results we could get by applying the Laplace mechanism directly to the result of the range query we want to answer. For example:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">true_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Synthetic representation error: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="n">range_query_synth</span><span class="p">(</span><span class="n">dp_syn_rep</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">))))</span>
@@ -306,14 +319,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.10443818532860655
-Laplace mechanism error: 0.025479515176149815
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.048415110323906795
+Laplace mechanism error: 0.007687017705116088
 </pre></div>
 </div>
 </div>
 </div>
 <p>As the range gets bigger, the count gets larger, so we would expect error to improve. We have seen this over and over again - larger groups means a stronger signal, which leads to lower relative error. With the Laplace mechanism, we see exactly this behavior. With our synthetic representation, however, we’re adding together noisy results from many <em>smaller</em> groups - so as the signal grows, so does the noise! As a result, we see roughly the same magnitude of relative error when using the synthetic representation, <em>regardless of the size of the range</em> - precisely the opposite of the Laplace mechanism!</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">true_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">71</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Synthetic representation error: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="n">range_query_synth</span><span class="p">(</span><span class="n">dp_syn_rep</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">71</span><span class="p">))))</span>
@@ -322,8 +335,8 @@ Laplace mechanism error: 0.025479515176149815
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.07164590301093088
-Laplace mechanism error: 0.001968360944306909
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.013756521083940538
+Laplace mechanism error: 0.006240208138964854
 </pre></div>
 </div>
 </div>
@@ -343,15 +356,17 @@ Laplace mechanism error: 0.001968360944306909
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.9999999999999999
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
 </pre></div>
 </div>
 </div>
 </div>
 <p>Notice that if we plot the normalized counts - which we can now treat as probabilities for each corresponding histogram bin, since they sum to 1 - we see a shape that looks very much like the original histogram (which, in turn, looks a lot like the shape of the original data). This is all to be expected - except for their scale, these probabilities <em>are</em> simply the counts.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">syn_normalized</span><span class="p">);</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">syn_normalized</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -395,32 +410,34 @@ Laplace mechanism error: 0.001968360944306909
   <tbody>
     <tr>
       <th>0</th>
-      <td>70</td>
+      <td>21</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>43</td>
+      <td>23</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>22</td>
+      <td>56</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>32</td>
+      <td>23</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>37</td>
+      <td>42</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
 <p>The samples we generate this way will be roughly distributed - we hope - according to the same underlying distribution as the original data. That means we can use the generated synthetic data to answer the same queries we could answer using the original data. In particular, if we plot the histogram of ages in a large synthetic data set, we’ll see the same shape as we did in the original data.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">syn_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gen_samples</span><span class="p">(</span><span class="mi">10000</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Occurrences&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">syn_data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -430,7 +447,7 @@ Laplace mechanism error: 0.001968360944306909
 </div>
 </div>
 <p>We can also answer other queries we’ve seen in the past, like averages and range queries:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean age, synthetic: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">syn_data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean age, true answer: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])))</span>
@@ -439,14 +456,14 @@ Laplace mechanism error: 0.001968360944306909
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 38.7514
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 38.5426
 Mean age, true answer: 38.58164675532078
-Percent error: 0.4380570629169884
+Percent error: 0.10130804699419012
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean age, synthetic: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">syn_data</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean age, true answer: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">)))</span>
@@ -456,9 +473,9 @@ Percent error: 0.4380570629169884
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 9107
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 9122
 Mean age, true answer: 29568
-Percent error: 69.19981060606061
+Percent error: 69.14908008658008
 </pre></div>
 </div>
 <div class="stderr docutils container">
@@ -469,7 +486,7 @@ Percent error: 69.19981060606061
 </div>
 </div>
 <p>Our mean query has fairly low error (though still much larger than we would achieve by applying the Laplace mechanism directly). Our range query, however, has very large error! This is simply because we haven’t quite matched the shape of the original data - we only generated 10,000 samples, and the original data set has more than 30,000 rows. We can perform an additional differentially private query to determine the number of rows in the original data, and then generate a new synthetic data set with the same number of rows, and this will improve our range query results.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adult</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="n">syn_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gen_samples</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])</span>
@@ -496,7 +513,7 @@ Percent error: 0.0946969696969697
 <p>So far we’ve generated synthetic data that matches the number of rows of the original data set, and is useful for answering queries about the original data, but it has only a single column! How do we generate more columns?</p>
 <p>There are two basic approaches. We could repeat the process we followed above for each of <span class="math notranslate nohighlight">\(k\)</span> columns (generating <span class="math notranslate nohighlight">\(k\)</span> 1-way marginals), and arrive at <span class="math notranslate nohighlight">\(k\)</span> separate synthetic data sets, each with a single column. Then, we could smash these data sets together to construct a single data set with <span class="math notranslate nohighlight">\(k\)</span> columns. This approach is straightforward, but since we consider each column in isolation, we’ll lose correlations <em>between</em> columns that existed in the original data. For example, it might be the case that age and occupation are correlated in the data (e.g. managers are more likely to be old than they are to be young); if we consider each column in isolation, we’ll get the <em>number</em> of 18-year-olds and the <em>number</em> of managers correct, but we may be very wrong about the number of 18-year-old managers.</p>
 <p>The other approach is to consider multiple columns together. For example, we can consider both age and occupation at the same time, and count how many 18-year-old managers there are, how many 19-year-old managers there are, and so on. The result of this modified process is a 2-way marginal distribution. We’ll end up considering all possible combinations of age and occupation - which is exactly what we did when we built contingency tables earlier! For example:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">],</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">])</span>
 <span class="n">ct</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -658,7 +675,7 @@ Percent error: 0.0946969696969697
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.000720282430358256)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.0007916445819977793)
 </pre></div>
 </div>
 </div>
@@ -702,37 +719,39 @@ Percent error: 0.0946969696969697
   <tbody>
     <tr>
       <th>0</th>
-      <td>28</td>
-      <td>Adm-clerical</td>
+      <td>42</td>
+      <td>Exec-managerial</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>57</td>
-      <td>Adm-clerical</td>
+      <td>41</td>
+      <td>Other-service</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>40</td>
-      <td>Other-service</td>
+      <td>52</td>
+      <td>Adm-clerical</td>
     </tr>
     <tr>
       <th>3</th>
       <td>28</td>
-      <td>Armed-Forces</td>
+      <td>Prof-specialty</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>72</td>
-      <td>Other-service</td>
+      <td>17</td>
+      <td>Prof-specialty</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
 <p>The downside of considering two columns at once is that our accuracy will be lower. As we add more columns to the set we’re considering (i.e., build an <span class="math notranslate nohighlight">\(n\)</span>-way marginal, with increasing values of <span class="math notranslate nohighlight">\(n\)</span>), we see the same effect we did with contingency tables - each count gets smaller, so the signal gets smaller relative to the noise, and our results are not as accurate. We can see this effect by plotting the histogram of ages in our new synthetic data set; notice that it has approximately the right shape, but it’s less smooth than either the original data or the differentially private counts we used for the age column by itself.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">syn_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">);</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Occurrences&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">syn_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -741,16 +760,16 @@ Percent error: 0.0946969696969697
 </div>
 </div>
 <p>We see the same loss in accuracy when we try specific queries on just the age column:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">real_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
 <span class="n">syn_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">syn_df</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-<span class="n">pct_error</span><span class="p">(</span><span class="n">real_answer</span><span class="p">,</span> <span class="n">syn_answer</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Percent error using synthetic data:&#39;</span><span class="p">,</span> <span class="n">pct_error</span><span class="p">(</span><span class="n">real_answer</span><span class="p">,</span> <span class="n">syn_answer</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>15.259498385895206
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Percent error using synthetic data: 15.470573628010925
 </pre></div>
 </div>
 </div>

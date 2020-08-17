@@ -204,6 +204,15 @@
                 
   <div class="section" id="the-exponential-mechanism">
 <h1>The Exponential Mechanism<a class="headerlink" href="#the-exponential-mechanism" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p>Define, implement, and apply the Exponential and Report Noisy Max mechanisms</p></li>
+<li><p>Describe the challenges of applying the Exponential mechanism in practice</p></li>
+<li><p>Describe the advantages of these mechanisms</p></li>
+</ul>
+</div>
 <p>The fundamental mechanisms we have seen so far (Laplace and Gaussian) are focused on numerical answers, and add noise directly to the answer itself. What if we want to return a precise answer (i.e. no added noise), but still preserve differential privacy? One solution is the exponential mechanism, which allows selecting the “best” element from a set while preserving differential privacy. The analyst defines which element is the “best” by specifying a <em>scoring function</em> that outputs a score for each element in the set, and also defines the set of things to pick from. The mechanism provides differential privacy by <em>approximately</em> maximizing the score of the element it returns - in other words, to satisfy differential privacy, the exponential mechanism sometimes returns an element from the set which does <em>not</em> have the highest score.</p>
 <p>The exponential mechanism satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
 <ol class="simple">
@@ -225,12 +234,12 @@
 <h2>The Exponential Mechanism for Finite Sets<a class="headerlink" href="#the-exponential-mechanism-for-finite-sets" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Martial Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">option</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="n">option</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span>
 
-<span class="n">score</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Martial Status&#39;</span><span class="p">],</span> <span class="s1">&#39;Never-married&#39;</span><span class="p">)</span>
+<span class="n">score</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">],</span> <span class="s1">&#39;Never-married&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -255,7 +264,7 @@
     <span class="c1"># Choose an element from R based on the probabilities</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">probabilities</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="n">exponential</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Martial Status&#39;</span><span class="p">],</span> <span class="n">options</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">exponential</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">],</span> <span class="n">options</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -267,15 +276,17 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">exponential</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Martial Status&#39;</span><span class="p">],</span> <span class="n">options</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">exponential</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">],</span> <span class="n">options</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)]</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    177
-Never-married          21
-Divorced                2
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse       177
+Never-married             19
+Divorced                   2
+Widowed                    1
+Married-spouse-absent      1
 dtype: int64
 </pre></div>
 </div>
@@ -310,7 +321,7 @@ dtype: int64
     <span class="c1"># Return the element corresponding to that index</span>
     <span class="k">return</span> <span class="n">R</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]</span>
 
-<span class="n">report_noisy_max</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Martial Status&#39;</span><span class="p">],</span> <span class="n">options</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">report_noisy_max</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">],</span> <span class="n">options</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -322,14 +333,14 @@ dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">report_noisy_max</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Martial Status&#39;</span><span class="p">],</span> <span class="n">options</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">report_noisy_max</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">],</span> <span class="n">options</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)]</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    195
-Never-married           5
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    193
+Never-married           7
 dtype: int64
 </pre></div>
 </div>

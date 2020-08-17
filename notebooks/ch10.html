@@ -208,6 +208,15 @@
                 
   <div class="section" id="the-sparse-vector-technique">
 <h1>The Sparse Vector Technique<a class="headerlink" href="#the-sparse-vector-technique" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p>Describe the Sparse Vector Technique and the reasons to use it</p></li>
+<li><p>Define and implement Above Threshold</p></li>
+<li><p>Apply the Sparse Vector Technique in iterative algorithms</p></li>
+</ul>
+</div>
 <p>We’ve already seen one example of a mechanism - the exponential mechanism - which achieves a lower-than-expected privacy cost by withholding some information. Are there others?</p>
 <p>There are, and one that turns out to be extremely useful in practical algorithms is the <em>sparse vector technique</em> (SVT). The sparse vector technique operates on a stream of sensitivity-1 queries over a dataset; it releases the <em>identity</em> of the first query in the stream which passes a test, and nothing else. The advantage of SVT is that it incurs a fixed total privacy cost, no matter <em>how many queries it considers</em>.</p>
 <div class="section" id="above-threshold">
@@ -293,17 +302,19 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>71
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>81
 </pre></div>
 </div>
 </div>
 </div>
 <p>Can we use SVT here? We only care about one thing: the value of <code class="docutils literal notranslate"><span class="pre">b</span></code> where the value of <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code> stops increasing. However, the sensitivity of <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code> is <code class="docutils literal notranslate"><span class="pre">b</span></code>, because adding or removing a row in <code class="docutils literal notranslate"><span class="pre">df</span></code> could change the sum by at most <code class="docutils literal notranslate"><span class="pre">b</span></code>; to use SVT, we need to build a stream of 1-sensitive queries.</p>
 <p>The value we actually care about, though, is whether or not the query’s answer is <em>changing</em> at a specific value of <span class="math notranslate nohighlight">\(b\)</span> (i.e. <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span> <span class="pre">-</span> <span class="pre">age_sum_query(df,</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">1)</span></code>). Consider what happens when we add a row to <code class="docutils literal notranslate"><span class="pre">df</span></code>: the answer to the first query goes up by <span class="math notranslate nohighlight">\(b\)</span>, but the answer to the second query <em>also</em> goes up - by <span class="math notranslate nohighlight">\(b + 1\)</span>. The sensitivity is therefore <span class="math notranslate nohighlight">\(\vert b - (b + 1) \vert = 1\)</span> - so each query will be 1-sensitive, as desired! As the value of <span class="math notranslate nohighlight">\(b\)</span> approaches the optimal one, the value of the difference we defined above will approach 0:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">query_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">age_sum_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">age_sum_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bs</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Value of &quot;b&quot;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Change in Query Output&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">query_results</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -327,15 +338,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>86
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>91
 </pre></div>
 </div>
 </div>
 </div>
 <p>Note that it <em>doesn’t matter</em> how long the list <code class="docutils literal notranslate"><span class="pre">bs</span></code> is - we’ll get accurate results (and pay the same privacy cost) no matter its length. The really powerful effect of SVT is to eliminate the dependence of privacy cost on the number of queries we perform. Try changing the range for <code class="docutils literal notranslate"><span class="pre">bs</span></code> above and re-running the plot below. You’ll see that the output doesn’t depend on the number of values for <code class="docutils literal notranslate"><span class="pre">b</span></code> we try - even if the list has <em>thousands</em> of elements!</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">bs</span><span class="p">[</span><span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">adult</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]);</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Chosen Value of &quot;b&quot;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Occurrences&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">bs</span><span class="p">[</span><span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">adult</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]);</span>
 </pre></div>
 </div>
 </div>
@@ -372,7 +385,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>38.566508439091095
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>38.58468840827293
 </pre></div>
 </div>
 </div>
@@ -385,7 +398,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1090.6333207711948
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1097.2918445307218
 </pre></div>
 </div>
 </div>
@@ -438,7 +451,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[18, 22, 23]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[20, 22, 25]
 </pre></div>
 </div>
 </div>
@@ -468,7 +481,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[3762, 20244, 5865, 11118, 14350, 7595, 0, 2554, 6983, 724]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[1458, 3674, 11474, 10508, 10740, 7554, 0, 808, 2179, 6551]
 </pre></div>
 </div>
 </div>
@@ -497,7 +510,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[20253.912162142085, 11113.524189381851, 14344.988568978464]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[11541.275755577704, 10517.160711140186, 10739.64976472683]
 </pre></div>
 </div>
 </div>

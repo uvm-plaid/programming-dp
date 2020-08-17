@@ -232,6 +232,16 @@
                 
   <div class="section" id="machine-learning-with-differential-privacy">
 <h1>Machine Learning with Differential Privacy<a class="headerlink" href="#machine-learning-with-differential-privacy" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p>Describe and implement the basic algorithm for gradient descent</p></li>
+<li><p>Use the Gaussian mechanism to implement differentially private gradient descent</p></li>
+<li><p>Clip gradients to enforce differential privacy for arbitrary loss functions</p></li>
+<li><p>Describe the effect of noise on the training process</p></li>
+</ul>
+</div>
 <p>In this chapter, we’re going to explore building differentially private machine learning classifiers. We’ll focus on a kind of <em>supervised learning</em> problem: given a set of <em>labeled training examples</em> <span class="math notranslate nohighlight">\(\{(x_1, y_1), \dots, (x_n, y_n)\}\)</span>, in which <span class="math notranslate nohighlight">\(x_i\)</span> is called the <em>feature vector</em> and <span class="math notranslate nohighlight">\(y_i\)</span> is called the <em>label</em>, train a <em>model</em> <span class="math notranslate nohighlight">\(\theta\)</span> which can <em>predict</em> the label for a new feature vector which was not present in the training set. Each <span class="math notranslate nohighlight">\(x_i\)</span> is typically a vector of real numbers which describe the features of a training example, and the <span class="math notranslate nohighlight">\(y_i\)</span>s are drawn from a predefined set of <em>classes</em> (usually expressed as integers) that examples can be drawn from. A <em>binary</em> classifier has two classes (usually either 1 and 0, or 1 and -1).</p>
 <div class="section" id="logistic-regression-with-scikit-learn">
 <h2>Logistic Regression with Scikit-Learn<a class="headerlink" href="#logistic-regression-with-scikit-learn" title="Permalink to this headline">¶</a></h2>
@@ -242,7 +252,7 @@ the model to classify each one, and then comparing the predicted class
 against the actual label from our dataset. We’ll split our data into a
 training set containing 80% of the examples, and a testing set containing
 20% of the examples.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">training_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
 
@@ -595,22 +605,9 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 <p>After 10 iterations, our model reaches nearly 78% accuracy - not bad! Our gradient descent algorithm looks simple (and it is!) but don’t let its simplicity fool you - this basic approach is behind many of the recent successes in large-scale deep learning, and our algorithm is <em>very</em> close in its design to the ones implemented in popular frameworks for machine learning like Tensorflow.</p>
 <p>Notice that we didn’t quite make it to the 84% accuracy of the sklearn model we trained earlier. Don’t worry - our algorithm is definitely capable of this! We just need more iterations, to get closer to the minimum of the loss.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.8228659885006634
-</pre></div>
-</div>
-</div>
-</div>
 <p>With 100 iterations, we get closer - 82% accuracy. However, the algorithm takes a long time to run when we ask for so many iterations. Even worse, the closer we get to minimizing the loss, the more difficult it is to improve - so we might get to 82% accuracy after 100 iterations, but it might take 1000 iterations to get to 84%. This points to a fundamental tension in machine learning - generally speaking, more iterations of training can improve accuracy, but more iterations requires more computation time. Most of the “tricks” used to make large-scale deep learning practical are actually aimed at speeding up each iteration of gradient descent, so that more iterations can be performed in the same amount of time.</p>
-<p>One more thing that’s interesting to note: the value of the loss function does indeed go down with each iteration of gradient descent we perform - so as we perform more iterations, we slowly get closer to minimizing the loss. Also note that the training and testing loss are very close to one another, suggesting that our model is not <em>overfitting</em> to the training data. We can see this by printing out the loss at each iteration:</p>
-<div class="cell docutils container">
+<p>One more thing that’s interesting to note: the value of the loss function does indeed go down with each iteration of gradient descent we perform - so as we perform more iterations, we slowly get closer to minimizing the loss. Also note that the training and testing loss are very close to one another, suggesting that our model is not <em>overfitting</em> to the training data.</p>
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent_log</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -756,7 +753,7 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7793011941618753
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7786377708978328
 </pre></div>
 </div>
 </div>
@@ -813,7 +810,7 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7793011941618753
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7809597523219814
 </pre></div>
 </div>
 </div>
@@ -834,25 +831,27 @@ Testing loss: 0.4723742456095848
 <p>So far, we’ve seen that the number of iterations has a big effect on the accuracy of the model we get, since more iterations can get you closer to the minimum of the loss. Since our differentially private algorithm adds noise to the gradient, this can also affect accuracy - the noise can cause our algorithm to move in <em>the wrong direction</em> during training, and actually make the model <em>worse</em>.</p>
 <p>It’s reasonable to expect that smaller values of <span class="math notranslate nohighlight">\(\epsilon\)</span> will result in less accurate models (since this has been the trend in every differentially private algorithm we have seen so far). This is true, but there’s also a slightly more subtle tradeoff which occurs because of the composition we need to consider when we perform many iterations of the algorithm: more iterations means a larger privacy cost. In the standard gradient descent algorithm, more iterations generally result in a better model. In our differentially private version, more iterations can make the model <em>worse</em>, since we have to use a smaller <span class="math notranslate nohighlight">\(\epsilon\)</span> for each iteration, and so the scale of the noise goes up. In differentially private machine learning, it’s important (and sometimes, very challenging) to strike the right balance between the number of iterations used and the scale of the noise added.</p>
 <p>Let’s do a small experiment to see how the setting of <span class="math notranslate nohighlight">\(\epsilon\)</span> effects the accuracy of our model. We’ll train a model for several values of <span class="math notranslate nohighlight">\(\epsilon\)</span>, using 20 iterations each time, and graph the accuracy of each model against the <span class="math notranslate nohighlight">\(\epsilon\)</span> value used in training it.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>
 
 <span class="n">epsilons</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.008</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
-<span class="n">thetas</span>   <span class="o">=</span> <span class="p">[</span><span class="n">noisy_gradient_descent</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> <span class="k">for</span> <span class="n">epsilon</span> <span class="ow">in</span> <span class="n">epsilons</span><span class="p">]</span>
+<span class="n">thetas</span>   <span class="o">=</span> <span class="p">[</span><span class="n">noisy_gradient_descent</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> <span class="k">for</span> <span class="n">epsilon</span> <span class="ow">in</span> <span class="n">epsilons</span><span class="p">]</span>
 <span class="n">accs</span>     <span class="o">=</span> <span class="p">[</span><span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">thetas</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epsilons</span><span class="p">,</span> <span class="n">accs</span><span class="p">);</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epsilon&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epsilons</span><span class="p">,</span> <span class="n">accs</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ch12_61_0.png" src="../_images/ch12_61_0.png" />
+<img alt="../_images/ch12_60_0.png" src="../_images/ch12_60_0.png" />
 </div>
 </div>
 <p>The plot shows that very small values of <span class="math notranslate nohighlight">\(\epsilon\)</span> result in far less accurate models. Keep in mind that the <span class="math notranslate nohighlight">\(\epsilon\)</span> we specify in the plot is a <em>per-iteration</em> <span class="math notranslate nohighlight">\(\epsilon\)</span>, so the privacy cost is much higher after composition.</p>
