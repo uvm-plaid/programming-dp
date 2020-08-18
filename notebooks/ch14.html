@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Differentially Private Synthetic Data &#8212; Programming Differential Privacy</title>
+    <title>Synthetic Data &#8212; Programming Differential Privacy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -65,10 +65,10 @@
   
   <ul class="nav sidenav_l1">
   <li class="">
-    <a href="../intro.html">Programming Differential Privacy</a>
+    <a href="../intro.html">Introduction</a>
   </li>
   <li class="">
-    <a href="ch1.html">De-identification & Re-Identification</a>
+    <a href="ch1.html">De-identification</a>
   </li>
   <li class="">
     <a href="ch2.html">k-Anonymity</a>
@@ -101,13 +101,13 @@
     <a href="ch11.html">Exercises in Algorithm Design</a>
   </li>
   <li class="">
-    <a href="ch12.html">Machine Learning with Differential Privacy</a>
+    <a href="ch12.html">Machine Learning</a>
   </li>
   <li class="">
     <a href="ch13.html">Local Differential Privacy</a>
   </li>
   <li class="active">
-    <a href="">Differentially Private Synthetic Data</a>
+    <a href="">Synthetic Data</a>
   </li>
 </ul>
 </nav>
@@ -209,8 +209,8 @@
         
               <div>
                 
-  <div class="section" id="differentially-private-synthetic-data">
-<h1>Differentially Private Synthetic Data<a class="headerlink" href="#differentially-private-synthetic-data" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="synthetic-data">
+<h1>Synthetic Data<a class="headerlink" href="#synthetic-data" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <p>After reading this chapter, you will be able to:</p>
@@ -304,7 +304,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9875.156797705455
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9877.739849107804
 </pre></div>
 </div>
 </div>
@@ -319,8 +319,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.048415110323906795
-Laplace mechanism error: 0.007687017705116088
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.01027785526387135
+Laplace mechanism error: 0.0507964450968327
 </pre></div>
 </div>
 </div>
@@ -335,8 +335,8 @@ Laplace mechanism error: 0.007687017705116088
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.013756521083940538
-Laplace mechanism error: 0.006240208138964854
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.01988039732567239
+Laplace mechanism error: 0.002634544220671299
 </pre></div>
 </div>
 </div>
@@ -410,19 +410,19 @@ Laplace mechanism error: 0.006240208138964854
   <tbody>
     <tr>
       <th>0</th>
-      <td>21</td>
+      <td>39</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>23</td>
+      <td>53</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>56</td>
+      <td>81</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>23</td>
+      <td>62</td>
     </tr>
     <tr>
       <th>4</th>
@@ -456,9 +456,9 @@ Laplace mechanism error: 0.006240208138964854
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 38.5426
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 38.5118
 Mean age, true answer: 38.58164675532078
-Percent error: 0.10130804699419012
+Percent error: 0.18136455663142725
 </pre></div>
 </div>
 </div>
@@ -473,9 +473,9 @@ Percent error: 0.10130804699419012
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 9122
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 9127
 Mean age, true answer: 29568
-Percent error: 69.14908008658008
+Percent error: 69.13216991341992
 </pre></div>
 </div>
 <div class="stderr docutils container">
@@ -499,10 +499,15 @@ Percent error: 69.14908008658008
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 29596
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 29646
 Mean age, true answer: 29568
-Percent error: 0.0946969696969697
+Percent error: 0.2637987012987013
 </pre></div>
+</div>
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/home/jnear/anaconda3/envs/book/lib/python3.6/site-packages/ipykernel_launcher.py:2: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
+  
+</pre>
 </div>
 </div>
 </div>
@@ -675,7 +680,7 @@ Percent error: 0.0946969696969697
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.0007916445819977793)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.000762608412852402)
 </pre></div>
 </div>
 </div>
@@ -719,13 +724,13 @@ Percent error: 0.0946969696969697
   <tbody>
     <tr>
       <th>0</th>
-      <td>42</td>
-      <td>Exec-managerial</td>
+      <td>49</td>
+      <td>Prof-specialty</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>41</td>
-      <td>Other-service</td>
+      <td>53</td>
+      <td>Exec-managerial</td>
     </tr>
     <tr>
       <th>2</th>
@@ -734,13 +739,13 @@ Percent error: 0.0946969696969697
     </tr>
     <tr>
       <th>3</th>
-      <td>28</td>
-      <td>Prof-specialty</td>
+      <td>42</td>
+      <td>Exec-managerial</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>17</td>
-      <td>Prof-specialty</td>
+      <td>53</td>
+      <td>Adm-clerical</td>
     </tr>
   </tbody>
 </table>
@@ -769,8 +774,13 @@ Percent error: 0.0946969696969697
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Percent error using synthetic data: 15.470573628010925
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Percent error using synthetic data: 15.060839334492176
 </pre></div>
+</div>
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/home/jnear/anaconda3/envs/book/lib/python3.6/site-packages/ipykernel_launcher.py:2: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
+  
+</pre>
 </div>
 </div>
 </div>

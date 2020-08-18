@@ -31,8 +31,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Differentially Private Synthetic Data" href="ch14.html" />
-    <link rel="prev" title="Machine Learning with Differential Privacy" href="ch12.html" />
+    <link rel="next" title="Synthetic Data" href="ch14.html" />
+    <link rel="prev" title="Machine Learning" href="ch12.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -66,10 +66,10 @@
   
   <ul class="nav sidenav_l1">
   <li class="">
-    <a href="../intro.html">Programming Differential Privacy</a>
+    <a href="../intro.html">Introduction</a>
   </li>
   <li class="">
-    <a href="ch1.html">De-identification & Re-Identification</a>
+    <a href="ch1.html">De-identification</a>
   </li>
   <li class="">
     <a href="ch2.html">k-Anonymity</a>
@@ -102,13 +102,13 @@
     <a href="ch11.html">Exercises in Algorithm Design</a>
   </li>
   <li class="">
-    <a href="ch12.html">Machine Learning with Differential Privacy</a>
+    <a href="ch12.html">Machine Learning</a>
   </li>
   <li class="active">
     <a href="">Local Differential Privacy</a>
   </li>
   <li class="">
-    <a href="ch14.html">Differentially Private Synthetic Data</a>
+    <a href="ch14.html">Synthetic Data</a>
   </li>
 </ul>
 </nav>
@@ -252,8 +252,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True     151
-False     49
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True     146
+False     54
 dtype: int64
 </pre></div>
 </div>
@@ -275,8 +275,8 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>False    22496
-True     10065
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>False    22625
+True      9936
 dtype: int64
 </pre></div>
 </div>
@@ -332,7 +332,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3457.5
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3621.5
 </pre></div>
 </div>
 </div>
@@ -358,7 +358,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5.273972602739726
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7808219178082192
 </pre></div>
 </div>
 </div>
@@ -372,7 +372,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.04420299590635781
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.028742442024226936
 </pre></div>
 </div>
 </div>
@@ -459,7 +459,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 </pre></div>
 </div>
 </div>
@@ -519,20 +519,20 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 9986),
- (&#39;Exec-managerial&#39;, 10063),
- (&#39;Handlers-cleaners&#39;, 8907),
- (&#39;Prof-specialty&#39;, 10089),
- (&#39;Other-service&#39;, 9794),
- (&#39;Sales&#39;, 10004),
- (&#39;Craft-repair&#39;, 10161),
- (&#39;Transport-moving&#39;, 8909),
- (&#39;Farming-fishing&#39;, 8675),
- (&#39;Machine-op-inspct&#39;, 9063),
- (&#39;Tech-support&#39;, 8543),
- (&#39;Protective-serv&#39;, 8483),
- (&#39;Armed-Forces&#39;, 8166),
- (&#39;Priv-house-serv&#39;, 8248)]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 10083),
+ (&#39;Exec-managerial&#39;, 10253),
+ (&#39;Handlers-cleaners&#39;, 8807),
+ (&#39;Prof-specialty&#39;, 10185),
+ (&#39;Other-service&#39;, 9741),
+ (&#39;Sales&#39;, 9943),
+ (&#39;Craft-repair&#39;, 10062),
+ (&#39;Transport-moving&#39;, 9096),
+ (&#39;Farming-fishing&#39;, 8621),
+ (&#39;Machine-op-inspct&#39;, 9155),
+ (&#39;Tech-support&#39;, 8582),
+ (&#39;Protective-serv&#39;, 8329),
+ (&#39;Armed-Forces&#39;, 8227),
+ (&#39;Priv-house-serv&#39;, 8169)]
 </pre></div>
 </div>
 </div>
@@ -564,20 +564,20 @@ A[i] = \frac{\sum_j B’_j[i] - n q}{p - q}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 4059.5),
- (&#39;Exec-managerial&#39;, 4377.5),
- (&#39;Handlers-cleaners&#39;, 1413.5),
- (&#39;Prof-specialty&#39;, 3927.5),
- (&#39;Other-service&#39;, 3123.5),
- (&#39;Sales&#39;, 3823.5),
- (&#39;Craft-repair&#39;, 4063.5),
- (&#39;Transport-moving&#39;, 1743.5),
- (&#39;Farming-fishing&#39;, 807.5),
- (&#39;Machine-op-inspct&#39;, 2297.5),
- (&#39;Tech-support&#39;, 915.5),
- (&#39;Protective-serv&#39;, 983.5),
- (&#39;Armed-Forces&#39;, -34.5),
- (&#39;Priv-house-serv&#39;, 111.5)]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3923.5),
+ (&#39;Exec-managerial&#39;, 4105.5),
+ (&#39;Handlers-cleaners&#39;, 1681.5),
+ (&#39;Prof-specialty&#39;, 4067.5),
+ (&#39;Other-service&#39;, 3491.5),
+ (&#39;Sales&#39;, 3945.5),
+ (&#39;Craft-repair&#39;, 4171.5),
+ (&#39;Transport-moving&#39;, 1337.5),
+ (&#39;Farming-fishing&#39;, 799.5),
+ (&#39;Machine-op-inspct&#39;, 1925.5),
+ (&#39;Tech-support&#39;, 709.5),
+ (&#39;Protective-serv&#39;, 757.5),
+ (&#39;Armed-Forces&#39;, -16.5),
+ (&#39;Priv-house-serv&#39;, 457.5)]
 </pre></div>
 </div>
 </div>
@@ -596,8 +596,8 @@ A[i] = \frac{\sum_j B’_j[i] - n q}{p - q}
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="ch12.html" title="previous page">Machine Learning with Differential Privacy</a>
-    <a class='right-next' id="next-link" href="ch14.html" title="next page">Differentially Private Synthetic Data</a>
+    <a class='left-prev' id="prev-link" href="ch12.html" title="previous page">Machine Learning</a>
+    <a class='right-next' id="next-link" href="ch14.html" title="next page">Synthetic Data</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
