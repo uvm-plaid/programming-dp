@@ -1,5 +1,4 @@
-Introduction
-============================
+# Introduction
 
 This is a book about differential privacy, for programmers. It is intended to give you an introduction to the challenges of data privacy, introduce you to the techniques that have been developed for addressing those challenges, and help you understand how to implement some of those techniques. 
 
