@@ -318,9 +318,7 @@ D_\alpha(F(x) \Vert F(x’)) \leq \bar{\epsilon}
 <p>A key property of Rényi differential privacy is that a mechanism which satisfies RDP also satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy. Specifically, if <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP, then for <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span>, <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy for <span class="math notranslate nohighlight">\(\epsilon = \bar{\epsilon} + \frac{\log(1/\delta)}{\alpha - 1}\)</span>. The analyst is free to pick any value of <span class="math notranslate nohighlight">\(\delta\)</span>; a meaningful value (e.g. <span class="math notranslate nohighlight">\(\delta \leq \frac{1}{n^2}\)</span>) should be picked in practice.</p>
 <p>The basic mechanism for achieving Rényi differential privacy is the Gaussian mechanism. Specifically, for a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}^k\)</span> with <span class="math notranslate nohighlight">\(L2\)</span> sensitivity <span class="math notranslate nohighlight">\(\Delta f\)</span>, the following mechanism satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP:</p>
 <p>\begin{align}
-F(x) =&amp;;f(x) + (Y_1, \dots, Y_k)\
-&amp; \text{where the <span class="math notranslate nohighlight">\(Y_i\)</span>s are drawn iid from } \mathcal{N}(\sigma^2)\
-&amp; \text{and } \sigma^2 = \frac{\Delta f^2 \alpha}{2\epsilon}\
+F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2 \alpha}{2\epsilon}
 \end{align}</p>
 <p>We can implement the Gaussian mechanism for Rényi differential privacy as follows:</p>
 <div class="cell docutils container">
@@ -351,9 +349,7 @@ D_\alpha (F(x) \Vert F(x’)) \leq \rho\alpha
 <p>This is a stronger requirement than RDP, because it restricts the Rényi divergence of many orders; however, the bound becomes more relaxed as <span class="math notranslate nohighlight">\(\alpha\)</span> grows. Like RDP, zCDP can be converted to <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy: if <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP, then for <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span>, <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy for <span class="math notranslate nohighlight">\(\epsilon = \rho + 2\sqrt{\rho \log(1/\delta)}\)</span>.</p>
 <p>zCDP is also similar to RDP in that the Gaussian mechanism can be used as a basic mechanism. Specifically, for a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}^k\)</span> with <span class="math notranslate nohighlight">\(L2\)</span> sensitivity <span class="math notranslate nohighlight">\(\Delta f\)</span>, the following mechanism satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP:</p>
 <p>\begin{align}
-F(x) =&amp;;f(x) + (Y_1, \dots, Y_k)\
-&amp; \text{where the <span class="math notranslate nohighlight">\(Y_i\)</span>s are drawn iid from } \mathcal{N}(\sigma^2)\
-&amp; \text{and } \sigma^2 = \frac{\Delta f^2}{2\rho}\
+F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2}{2\rho}
 \end{align}</p>
 <p>As with RDP, this mechanism is easy to implement:</p>
 <div class="cell docutils container">

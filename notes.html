@@ -187,6 +187,18 @@
                 
   <div class="section" id="notes">
 <h1>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h1>
+<p>To build the book:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">build</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>To publish the html:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ghp</span><span class="o">-</span><span class="kn">import</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="n">p</span> <span class="o">-</span><span class="n">f</span> <span class="n">_build</span><span class="o">/</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>To generate latex:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">build</span> <span class="o">.</span> <span class="o">--</span><span class="n">builder</span> <span class="n">latex</span>
+</pre></div>
+</div>
 <p>To get decent latex output, add this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">usepackage</span><span class="p">[</span><span class="n">svgnames</span><span class="p">]{</span><span class="n">xcolor</span><span class="p">}</span>
 \<span class="n">usepackage</span><span class="p">[,</span><span class="n">numfigreset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">mathnumfig</span><span class="p">]{</span><span class="n">sphinx</span><span class="p">}</span>
