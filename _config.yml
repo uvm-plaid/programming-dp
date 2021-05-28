@@ -13,3 +13,6 @@ parse:
     # including those that are enabled by default!
     - amsmath
     - dollarmath
+
+bibtex_bibfiles:
+    - references.bib
