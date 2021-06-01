@@ -2,3 +2,100 @@
 , title={Simple Demographics Often Identify People Uniquely}
 , url={https://dataprivacylab.org/projects/identifiability/}
 , journal={Identifiability}}
+
+
+@article{sweeney2002,
+author = {SWEENEY, LATANYA},
+title = {k-ANONYMITY: A MODEL FOR PROTECTING PRIVACY},
+journal = {International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems},
+volume = {10},
+number = {05},
+pages = {557-570},
+year = {2002},
+doi = {10.1142/S0218488502001648},
+URL = {
+        https://doi.org/10.1142/S0218488502001648
+},
+eprint = {
+        https://doi.org/10.1142/S0218488502001648
+}}
+
+@inproceedings{mcsherry2009,
+author = {McSherry, Frank D.},
+title = {Privacy Integrated Queries: An Extensible Platform for Privacy-Preserving Data Analysis},
+year = {2009},
+isbn = {9781605585512},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1559845.1559850},
+doi = {10.1145/1559845.1559850},
+abstract = {We report on the design and implementation of the Privacy Integrated Queries (PINQ) platform for privacy-preserving data analysis. PINQ provides analysts with a programming interface to unscrubbed data through a SQL-like language. At the same time, the design of PINQ's analysis language and its careful implementation provide formal guarantees of differential privacy for any and all uses of the platform. PINQ's unconditional structural guarantees require no trust placed in the expertise or diligence of the analysts, substantially broadening the scope for design and deployment of privacy-preserving data analysis, especially by non-experts.},
+booktitle = {Proceedings of the 2009 ACM SIGMOD International Conference on Management of Data},
+pages = {19–30},
+numpages = {12},
+keywords = {differential privacy, linq, confidentiality, anonymization},
+location = {Providence, Rhode Island, USA},
+series = {SIGMOD '09}
+}
+
+@InProceedings{dwork2006,
+author="Dwork, Cynthia
+and Kenthapadi, Krishnaram
+and McSherry, Frank
+and Mironov, Ilya
+and Naor, Moni",
+editor="Vaudenay, Serge",
+title="Our Data, Ourselves: Privacy Via Distributed Noise Generation",
+booktitle="Advances in Cryptology - EUROCRYPT 2006",
+year="2006",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="486--503"
+}
+
+@inproceedings{nissim2007,
+author = {Nissim, Kobbi and Raskhodnikova, Sofya and Smith, Adam},
+title = {Smooth Sensitivity and Sampling in Private Data Analysis},
+year = {2007},
+isbn = {9781595936318},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1250790.1250803},
+doi = {10.1145/1250790.1250803},
+abstract = {We introduce a new, generic framework for private data analysis.The goal of private data analysis is to release aggregate information about a data set while protecting the privacy of the individuals whose information the data set contains.Our framework allows one to release functions f of the data withinstance-based additive noise. That is, the noise magnitude is determined not only by the function we want to release, but also bythe database itself. One of the challenges is to ensure that the noise magnitude does not leak information about the database. To address that, we calibrate the noise magnitude to the smoothsensitivity of f on the database x --- a measure of variabilityof f in the neighborhood of the instance x. The new frameworkgreatly expands the applicability of output perturbation, a technique for protecting individuals' privacy by adding a smallamount of random noise to the released statistics. To our knowledge, this is the first formal analysis of the effect of instance-basednoise in the context of data privacy.Our framework raises many interesting algorithmic questions. Namely,to apply the framework one must compute or approximate the smoothsensitivity of f on x. We show how to do this efficiently for several different functions, including the median and the cost ofthe minimum spanning tree. We also give a generic procedure based on sampling that allows one to release f(x) accurately on manydatabases x. This procedure is applicable even when no efficient algorithm for approximating smooth sensitivity of f is known orwhen f is given as a black box. We illustrate the procedure by applying it to k-SED (k-means) clustering and learning mixtures of Gaussians.},
+booktitle = {Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing},
+pages = {75–84},
+numpages = {10},
+keywords = {private data analysis, output perturbation, clustering, sensitivity, privacy preserving data mining},
+location = {San Diego, California, USA},
+series = {STOC '07}
+}
+
+@inproceedings{dwork2009,
+author = {Dwork, Cynthia and Lei, Jing},
+title = {Differential Privacy and Robust Statistics},
+year = {2009},
+isbn = {9781605585062},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1536414.1536466},
+doi = {10.1145/1536414.1536466},
+abstract = {We show by means of several examples that robust statistical estimators present an excellent starting point for differentially private estimators. Our algorithms use a new paradigm for differentially private mechanisms, which we call Propose-Test-Release (PTR), and for which we give a formal definition and general composition theorems.},
+booktitle = {Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing},
+pages = {371–380},
+numpages = {10},
+keywords = {propose-test-release paradigm, local sensitivity, differential privacy, robust statistics},
+location = {Bethesda, MD, USA},
+series = {STOC '09}
+}
+
+@article{dwork2014,
+  title={The algorithmic foundations of differential privacy},
+  author={Dwork, Cynthia and Roth, Aaron and others},
+  journal={Foundations and Trends{\textregistered} in Theoretical Computer Science},
+  volume={9},
+  number={3--4},
+  pages={211--407},
+  year={2014},
+  publisher={Now Publishers, Inc.}
+}
