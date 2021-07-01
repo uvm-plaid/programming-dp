@@ -170,6 +170,11 @@
    Synthetic Data
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   Bibliography
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -315,14 +320,14 @@
 </ul>
 </div>
 <p>As we mentioned when we dicussed the Laplace mechanism, the amount of noise necessary to ensure differential privacy for a given query depends on the <em>sensitivity</em> of the query. Roughly speaking, the sensitivity of a function reflects the amount the function’s output will change when its input changes. Recall that the Laplace mechanism defines a mechanism <span class="math notranslate nohighlight">\(F(x)\)</span> as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2e34cac9-e01a-41b2-a82e-e7a477fad65f">
-<span class="eqno">(3)<a class="headerlink" href="#equation-2e34cac9-e01a-41b2-a82e-e7a477fad65f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8185b83c-48bf-41c9-a60b-f8e52afe502a">
+<span class="eqno">(3)<a class="headerlink" href="#equation-8185b83c-48bf-41c9-a60b-f8e52afe502a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 F(x) = f(x) + \textsf{Lap}(\frac{s}{\epsilon})
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(x)\)</span> is a deterministic function (the query), <span class="math notranslate nohighlight">\(\epsilon\)</span> is the privacy parameter, and <span class="math notranslate nohighlight">\(s\)</span> is the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <p>For a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span> mapping datasets (<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>) to real numbers, the <em>global sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span> is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bbbf5684-0d65-4606-a94d-828516ea77f5">
-<span class="eqno">(4)<a class="headerlink" href="#equation-bbbf5684-0d65-4606-a94d-828516ea77f5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5d779a62-acc4-479d-99b3-68f3c9159e96">
+<span class="eqno">(4)<a class="headerlink" href="#equation-5d779a62-acc4-479d-99b3-68f3c9159e96" title="Permalink to this equation">¶</a></span>\[\begin{align}
 GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 \end{align}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(d(x, x')\)</span> represents the <em>distance</em> between two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and we say that two datasets are <em>neighbors</em> if their distance is 1 or less. How this distance is defined has a huge effect on the definition of privacy we obtain, and we’ll discuss the distance metric on datasets in detail later on.</p>
@@ -331,8 +336,8 @@ GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 <h2>Distance<a class="headerlink" href="#distance" title="Permalink to this headline">¶</a></h2>
 <p>The distance metric <span class="math notranslate nohighlight">\(d(x,x')\)</span> described earlier can be defined in many different ways. Intuitively, the distance between two datasets should be equal to 1 (i.e. the datasets are neighbors) if they differ in the data of exactly one individual. This idea is easy to formalize in some contexts (e.g. in the US Census, each individual submits a single response containing their data) but extremely challenging in others (e.g. location trajectories, social networks, and time-series data).</p>
 <p>A common formal definition for datasets containing rows is to consider the number of rows which differ between the two. When each individual’s data is contained in a single row, this definition often makes sense. Formally, this definition of distance is encoded as a <em>symmetric difference</em> between the two datasets:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-04308164-b54f-43bb-8198-5ac458190a52">
-<span class="eqno">(5)<a class="headerlink" href="#equation-04308164-b54f-43bb-8198-5ac458190a52" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-20026343-5e92-4485-96e8-6ce18bca7dbf">
+<span class="eqno">(5)<a class="headerlink" href="#equation-20026343-5e92-4485-96e8-6ce18bca7dbf" title="Permalink to this equation">¶</a></span>\[\begin{align}
 d(x, x') = | x - x' \cup x' - x |
 \end{align}\]</div>
 <p>This particular definition has several interesting and important implications:</p>
@@ -574,7 +579,7 @@ d(x, x') = | x - x' \cup x' - x |
     <div class="container">
       <p>
         
-          By Joseph P. Near and Chike Abuah<br/>
+          By Joseph P. Near and Chiké Abuah<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

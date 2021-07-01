@@ -170,6 +170,11 @@
    Synthetic Data
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   Bibliography
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -385,7 +390,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>101
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>71
 </pre></div>
 </div>
 </div>
@@ -421,7 +426,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>96
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>116
 </pre></div>
 </div>
 </div>
@@ -468,7 +473,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.58227147810722
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.570545706925095
 </pre></div>
 </div>
 </div>
@@ -507,40 +512,68 @@
 <span class="g g-Whitespace">      </span><span class="mi">4</span> 
 <span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="c1"># Construct the stream of queries</span>
 
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">stat_func</span><span class="nt">(self, axis, skipna, level, numeric_only, min_count, **kwargs)</span>
-<span class="g g-Whitespace">  </span><span class="mi">11420</span>                 <span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="n">min_count</span>
-<span class="g g-Whitespace">  </span><span class="mi">11421</span>             <span class="p">)</span>
-<span class="ne">&gt; </span><span class="mi">11422</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reduce</span><span class="p">(</span>
-<span class="g g-Whitespace">  </span><span class="mi">11423</span>             <span class="n">func</span><span class="p">,</span>
-<span class="g g-Whitespace">  </span><span class="mi">11424</span>             <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">clip</span><span class="nt">(self, lower, upper, axis, inplace, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7350</span>             <span class="n">upper</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="n">is_scalar</span><span class="p">(</span><span class="n">upper</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_number</span><span class="p">(</span><span class="n">upper</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">7351</span>         <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">7352</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clip_with_scalar</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7353</span> 
+<span class="g g-Whitespace">   </span><span class="mi">7354</span>         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span>
 
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/series.py</span> in <span class="ni">_reduce</span><span class="nt">(self, op, name, axis, skipna, numeric_only, filter_type, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4246</span>                 <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4247</span>             <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">4248</span>                 <span class="k">return</span> <span class="n">op</span><span class="p">(</span><span class="n">delegate</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4249</span> 
-<span class="g g-Whitespace">   </span><span class="mi">4250</span>     <span class="k">def</span> <span class="nf">_reindex_indexer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">copy</span><span class="p">):</span>
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">_clip_with_scalar</span><span class="nt">(self, lower, upper, inplace)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7204</span>             <span class="k">if</span> <span class="n">upper</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7205</span>                 <span class="n">subset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">upper</span>
+<span class="ne">-&gt; </span><span class="mi">7206</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7207</span>             <span class="k">if</span> <span class="n">lower</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7208</span>                 <span class="n">subset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">lower</span>
 
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/nanops.py</span> in <span class="ni">_f</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>             <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>                 <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">invalid</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">71</span>                     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span>             <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>                 <span class="c1"># we want to transform an object array</span>
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">where</span><span class="nt">(self, cond, other, inplace, axis, level, errors, try_cast)</span>
+<span class="g g-Whitespace">   </span><span class="mi">9002</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">9003</span><span class="s2">         other = com.apply_if_callable(other, self)</span>
+<span class="ne">-&gt; </span><span class="mi">9004</span><span class="s2">         return self._where(</span>
+<span class="g g-Whitespace">   </span><span class="mi">9005</span><span class="s2">             cond, other, inplace, axis, level, errors=errors, try_cast=try_cast</span>
+<span class="g g-Whitespace">   </span><span class="mi">9006</span><span class="s2">         )</span>
 
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/nanops.py</span> in <span class="ni">nansum</span><span class="nt">(values, axis, skipna, min_count, mask)</span>
-<span class="g g-Whitespace">    </span><span class="mi">507</span>     <span class="k">elif</span> <span class="n">is_timedelta64_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">508</span>         <span class="n">dtype_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span>
-<span class="ne">--&gt; </span><span class="mi">509</span>     <span class="n">the_sum</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype_sum</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">510</span>     <span class="n">the_sum</span> <span class="o">=</span> <span class="n">_maybe_null_out</span><span class="p">(</span><span class="n">the_sum</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="n">min_count</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">511</span> 
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">_where</span><span class="nt">(self, cond, other, inplace, axis, level, errors, try_cast)</span>
+<span class="g g-Whitespace">   </span><span class="mi">8859</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">8860</span><span class="s2">         else:</span>
+<span class="ne">-&gt; </span><span class="mi">8861</span><span class="s2">             new_data = self._mgr.where(</span>
+<span class="g g-Whitespace">   </span><span class="mi">8862</span><span class="s2">                 other=other,</span>
+<span class="g g-Whitespace">   </span><span class="mi">8863</span><span class="s2">                 cond=cond,</span>
 
-<span class="nn">/usr/local/lib/python3.9/site-packages/numpy/core/_methods.py</span> in <span class="ni">_sum</span><span class="nt">(a, axis, dtype, out, keepdims, initial, where)</span>
-<span class="g g-Whitespace">     </span><span class="mi">45</span> <span class="k">def</span> <span class="nf">_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">46</span>          <span class="n">initial</span><span class="o">=</span><span class="n">_NoValue</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">47</span>     <span class="k">return</span> <span class="n">umr_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">where</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span> 
-<span class="g g-Whitespace">     </span><span class="mi">49</span> <span class="k">def</span> <span class="nf">_prod</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/internals/managers.py</span> in <span class="ni">where</span><span class="nt">(self, other, cond, align, errors, try_cast, axis)</span>
+<span class="g g-Whitespace">    </span><span class="mi">521</span><span class="s2">             other = extract_array(other, extract_numpy=True)</span>
+<span class="g g-Whitespace">    </span><span class="mi">522</span><span class="s2"> </span>
+<span class="ne">--&gt; </span><span class="mi">523</span><span class="s2">         return self.apply(</span>
+<span class="g g-Whitespace">    </span><span class="mi">524</span><span class="s2">             &quot;where&quot;,</span>
+<span class="g g-Whitespace">    </span><span class="mi">525</span><span class="s2">             align_keys=align_keys,</span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/internals/managers.py</span> in <span class="ni">apply</span><span class="nt">(self, f, align_keys, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span><span class="s2">                 applied = b.apply(f, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span><span class="s2">             else:</span>
+<span class="ne">--&gt; </span><span class="mi">406</span><span class="s2">                 applied = getattr(b, f)(**kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span><span class="s2">             result_blocks = _extend_blocks(applied, result_blocks)</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span><span class="s2"> </span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/internals/blocks.py</span> in <span class="ni">where</span><span class="nt">(self, other, cond, errors, try_cast, axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1351</span><span class="s2">             # or if we are a single block (ndim == 1)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1352</span><span class="s2">             try:</span>
+<span class="ne">-&gt; </span><span class="mi">1353</span><span class="s2">                 result = where_func(cond, values, other)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1354</span><span class="s2">             except TypeError:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1355</span><span class="s2"> </span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/internals/blocks.py</span> in <span class="ni">where_func</span><span class="nt">(cond, values, other)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1334</span><span class="s2">             ):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1335</span><span class="s2">                 # np.where will cast integer array to floats in this case</span>
+<span class="ne">-&gt; </span><span class="mi">1336</span><span class="s2">                 if not self._can_hold_element(other):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1337</span><span class="s2">                     raise TypeError</span>
+<span class="g g-Whitespace">   </span><span class="mi">1338</span><span class="s2">                 if lib.is_scalar(other) and isinstance(values, np.ndarray):</span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/internals/blocks.py</span> in <span class="ni">_can_hold_element</span><span class="nt">(self, element)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1991</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1992</span><span class="s2">     def _can_hold_element(self, element: Any) -&gt; bool:</span>
+<span class="ne">-&gt; </span><span class="mi">1993</span><span class="s2">         tipo = maybe_infer_dtype_type(element)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1994</span><span class="s2">         if tipo is not None:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1995</span><span class="s2">             return (</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -699,7 +732,7 @@
     <div class="container">
       <p>
         
-          By Joseph P. Near and Chike Abuah<br/>
+          By Joseph P. Near and Chiké Abuah<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

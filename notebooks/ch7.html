@@ -170,6 +170,11 @@
    Synthetic Data
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   Bibliography
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -309,8 +314,8 @@
 </div>
 <p>So far, we have seen only one measure of sensitivity: global sensitivity. Our definition for global sensitivity considers <em>any</em> two neighboring datasets. This seems pessimistic, since we’re going to run our differentially private mechanisms on an <em>actual</em> dataset - shouldn’t we consider neighbors of <em>that</em> dataset?</p>
 <p>This is the intuition behind <em>local sensitivity</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id8"><span>8</span></a>]</span>: fix one of the two datasets to be the <em>actual</em> dataset being queried, and consider all of its neighbors. Formally, the local sensitivity of a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span> at <span class="math notranslate nohighlight">\(x : \mathcal{D}\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a3e1d697-4a31-472d-b350-2a7d63d3252d">
-<span class="eqno">(14)<a class="headerlink" href="#equation-a3e1d697-4a31-472d-b350-2a7d63d3252d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-38bc0d39-1323-4092-bad7-b757969321e6">
+<span class="eqno">(14)<a class="headerlink" href="#equation-38bc0d39-1323-4092-bad7-b757969321e6" title="Permalink to this equation">¶</a></span>\[\begin{align}
 LS(f, x) = \max_{x': d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>Notice that local sensitivity is a function of both the query (<span class="math notranslate nohighlight">\(f\)</span>) and the <em>actual</em> dataset (<span class="math notranslate nohighlight">\(x\)</span>). Unlike in the case of global sensitivity, we can’t talk about the local sensitivity of a function without also considering the dataset <em>at which</em> that local sensitivity occurs.</p>
@@ -319,13 +324,13 @@ LS(f, x) = \max_{x': d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 <p>Local sensitivity allows us to place finite bounds on the sensitivity of some functions whose global sensitivity is difficult to bound. The mean function is one example. So far, we’ve calculated differentially private means by splitting the query into two queries: a differentially private sum (the numerator) and a differentially private count (the denominator). By sequential composition and post-processing, the quotient of these two results satisfies differential privacy.</p>
 <p>Why do we do it this way? Because the amount the output of a mean query might change when a row is added to or removed from the dataset <em>depends on the size of the dataset</em>. If we want to bound the global sensitivity of a mean query, we have to assume the worst: a dataset of size 1. In this case, if the data attribute values lie between upper and lower bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, the global sensitivity of the mean is just <span class="math notranslate nohighlight">\(\lvert u - l \lvert\)</span>. For large datasets, this is <em>extremely</em> pessimistic, and the “noisy sum over noisy count” approach is much better.</p>
 <p>The situation is different for local sensitivity. In the worst case, we can add a new row to the dataset which contains the maximum value (<span class="math notranslate nohighlight">\(u\)</span>). Let <span class="math notranslate nohighlight">\(n = \lvert x \rvert\)</span> (i.e. the size of the dataset). We start with the value of the mean:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-74cffc39-83ba-4816-a3c5-5e076f8096d5">
-<span class="eqno">(15)<a class="headerlink" href="#equation-74cffc39-83ba-4816-a3c5-5e076f8096d5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ceda51a1-aa4e-4501-8921-96f8f05aca20">
+<span class="eqno">(15)<a class="headerlink" href="#equation-ceda51a1-aa4e-4501-8921-96f8f05aca20" title="Permalink to this equation">¶</a></span>\[\begin{align}
 f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 \end{align}\]</div>
 <p>Now we consider what happens when we add a row:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-05b61d18-ad49-4dcf-88e2-d6e3a3b3ca99">
-<span class="eqno">(16)<a class="headerlink" href="#equation-05b61d18-ad49-4dcf-88e2-d6e3a3b3ca99" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fe53999f-c27f-4a1b-b868-da6744ee5134">
+<span class="eqno">(16)<a class="headerlink" href="#equation-fe53999f-c27f-4a1b-b868-da6744ee5134" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \lvert f(x') - f(x) \rvert = &amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n} \bigg\rvert \\
 \leq&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n+1} \bigg\rvert \\
 =&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u - \sum_{i=1}^{n} x_i}{n+1}\bigg\rvert \\
@@ -336,13 +341,13 @@ f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 <div class="section" id="achieving-differential-privacy-via-local-sensitivity">
 <h2>Achieving Differential Privacy via Local Sensitivity?<a class="headerlink" href="#achieving-differential-privacy-via-local-sensitivity" title="Permalink to this headline">¶</a></h2>
 <p>We have defined an alternative measure of sensitivity - but how do we use it? Can we just use the Laplace mechanism, in the same way as we did with global sensitivity? Does the following definition of <span class="math notranslate nohighlight">\(F\)</span> satisfy <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy?</p>
-<div class="amsmath math notranslate nohighlight" id="equation-45867602-868c-4ea9-9caa-712d26d054bf">
-<span class="eqno">(17)<a class="headerlink" href="#equation-45867602-868c-4ea9-9caa-712d26d054bf" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0a45a340-41e0-4d24-8a25-1fa55551c95d">
+<span class="eqno">(17)<a class="headerlink" href="#equation-0a45a340-41e0-4d24-8a25-1fa55551c95d" title="Permalink to this equation">¶</a></span>\[\begin{align}
 F(x) = f(x) + \mathsf{Lap}(\frac{LS(f,x)}{\epsilon})
 \end{align}\]</div>
 <p>No! Unfortunately not, since <span class="math notranslate nohighlight">\(LS(f, x)\)</span> itself depends on the dataset. If the analyst knows the local sensitivity of a query <em>at a particular dataset</em>, then the analyst may be able to infer some information about the dataset. It’s therefore <em>not possible</em> to use local sensitivity directly to achieve differential privacy. For example, consider the bound on local sensitivity for the mean, defined above. If we know the local sensitivity at a particular <span class="math notranslate nohighlight">\(x\)</span>, we can infer the exact size of <span class="math notranslate nohighlight">\(x\)</span> with <em>no noise</em>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5c81b5ea-09dc-4dda-80ef-ce486c7b5aaa">
-<span class="eqno">(18)<a class="headerlink" href="#equation-5c81b5ea-09dc-4dda-80ef-ce486c7b5aaa" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1b2f1fd9-00d6-4412-8340-e9dc3238a03f">
+<span class="eqno">(18)<a class="headerlink" href="#equation-1b2f1fd9-00d6-4412-8340-e9dc3238a03f" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \lvert x \rvert = \frac{b}{LS(f, x)} - 1
 \end{align}\]</div>
 <p>Moreover, keeping the local sensitivity secret from the analyst <em>doesn’t help either</em>. It’s possible to determine the scale of the noise from just a few query answers, and the analyst can use this value to infer the local sensitivity. Differential privacy is designed to protect the output of <span class="math notranslate nohighlight">\(f(x)\)</span> - <em>not</em> of the sensitivity measure used in its definition.</p>
@@ -354,13 +359,13 @@ F(x) = f(x) + \mathsf{Lap}(\frac{LS(f,x)}{\epsilon})
 <p>The primary problem with local sensitivity is that the sensitivity itself reveals something about the data. What if we make the <em>sensitivity itself</em> differentially private? This is challenging to do directly, as there’s often no finite bound on the global sensitivity of a function’s local sensitivity. However, we can ask a differentially private question that gets at this value indirectly.</p>
 <p>The <em>propose-test-release</em> framework <span id="id2">[<a class="reference internal" href="bibliography.html#id9"><span>9</span></a>]</span> takes this approach. The framework first asks the analyst to <em>propose</em> an upper bound on the local sensitivity of the function being applied. Then, the framework runs a differentially private <em>test</em> to check that the dataset being queried is “far from” a dataset where local sensitivity is higher than the proposed bound. If the test passes, the framework <em>releases</em> a noisy result, with the noise calibrated to the proposed bound.</p>
 <p>In order to answer the question of whether a dataset is “far from” one with high local sensitivity, we define the notion of <em>local sensitivity at distance <span class="math notranslate nohighlight">\(k\)</span></em>. We write <span class="math notranslate nohighlight">\(A(f, x, k)\)</span> to denote the maximum local sensitivity achievable for <span class="math notranslate nohighlight">\(f\)</span> by taking <span class="math notranslate nohighlight">\(k\)</span> steps away from the dataset <span class="math notranslate nohighlight">\(x\)</span>. Formally:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e2a38b6-dd3d-4b60-9bae-3b356f141343">
-<span class="eqno">(19)<a class="headerlink" href="#equation-7e2a38b6-dd3d-4b60-9bae-3b356f141343" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-08d90b93-d481-49fd-b286-289eca558309">
+<span class="eqno">(19)<a class="headerlink" href="#equation-08d90b93-d481-49fd-b286-289eca558309" title="Permalink to this equation">¶</a></span>\[\begin{align}
 A(f,x,k) = \max_{y: d(x,y) \leq k} LS(f, y)
 \end{align}\]</div>
 <p>Now we’re ready to define a query to answer the question: “how many steps are needed to achieve a local sensitivity greater than a given upper bound <span class="math notranslate nohighlight">\(b\)</span>?”</p>
-<div class="amsmath math notranslate nohighlight" id="equation-840d944f-93e4-452a-90d8-2d180084fe6b">
-<span class="eqno">(20)<a class="headerlink" href="#equation-840d944f-93e4-452a-90d8-2d180084fe6b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-564d4278-21d5-4494-ae46-697e5527e4e4">
+<span class="eqno">(20)<a class="headerlink" href="#equation-564d4278-21d5-4494-ae46-697e5527e4e4" title="Permalink to this equation">¶</a></span>\[\begin{align}
 D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 \end{align}\]</div>
 <p>Finally, we define the propose-test-release framework (see <a class="reference external" href="https://arxiv.org/abs/1407.2988">Barthe et al.</a>, Figure 10), which satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy:</p>
@@ -423,10 +428,10 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Noisy distance is 12561.939877961693 and threshold is 10.73744412245554
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Noisy distance is 12561.852832409366 and threshold is 10.73744412245554
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.579401217197486
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.57601443812047
 </pre></div>
 </div>
 </div>
@@ -452,7 +457,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.58668134421101
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.56980581147739
 </pre></div>
 </div>
 </div>
@@ -566,7 +571,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chunk size: 55
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.59904485068752
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.660142537290305
 </pre></div>
 </div>
 </div>
@@ -674,67 +679,18 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <span class="g g-Whitespace">  </span><span class="mi">11470</span>         <span class="p">)</span>
 
 <span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/series.py</span> in <span class="ni">_reduce</span><span class="nt">(self, op, name, axis, skipna, numeric_only, filter_type, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4246</span>                 <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4247</span>             <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">4248</span>                 <span class="k">return</span> <span class="n">op</span><span class="p">(</span><span class="n">delegate</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4249</span> 
-<span class="g g-Whitespace">   </span><span class="mi">4250</span>     <span class="k">def</span> <span class="nf">_reindex_indexer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">copy</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4230</span>         <span class="n">otherwise</span> <span class="n">delegate</span> <span class="n">to</span> <span class="n">the</span> <span class="nb">object</span><span class="o">.</span>
+<span class="g g-Whitespace">   </span><span class="mi">4231</span>         <span class="sd">&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">4232</span><span class="sd">         delegate = self._values</span>
+<span class="g g-Whitespace">   </span><span class="mi">4233</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">4234</span><span class="sd">         if axis is not None:</span>
 
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/nanops.py</span> in <span class="ni">_f</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>             <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>                 <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">invalid</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">71</span>                     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span>             <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>                 <span class="c1"># we want to transform an object array</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/nanops.py</span> in <span class="ni">f</span><span class="nt">(values, axis, skipna, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">127</span>                     <span class="n">result</span> <span class="o">=</span> <span class="n">alt</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">128</span>             <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">129</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">alt</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">130</span> 
-<span class="g g-Whitespace">    </span><span class="mi">131</span>             <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/nanops.py</span> in <span class="ni">nanmean</span><span class="nt">(values, axis, skipna, mask)</span>
-<span class="g g-Whitespace">    </span><span class="mi">545</span>     <span class="mf">1.5</span>
-<span class="g g-Whitespace">    </span><span class="mi">546</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">547</span><span class="sd">     values, mask, dtype, dtype_max, _ = _get_values(</span>
-<span class="g g-Whitespace">    </span><span class="mi">548</span><span class="sd">         values, skipna, fill_value=0, mask=mask</span>
-<span class="g g-Whitespace">    </span><span class="mi">549</span><span class="sd">     )</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/nanops.py</span> in <span class="ni">_get_values</span><span class="nt">(values, skipna, fill_value, fill_value_typ, mask)</span>
-<span class="g g-Whitespace">    </span><span class="mi">293</span><span class="sd">         values = np.asarray(values.view(&quot;i8&quot;))</span>
-<span class="g g-Whitespace">    </span><span class="mi">294</span><span class="sd"> </span>
-<span class="ne">--&gt; </span><span class="mi">295</span><span class="sd">     dtype_ok = _na_ok_dtype(dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">296</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">297</span><span class="sd">     # get our fill value (in case we need to provide an alternative</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/nanops.py</span> in <span class="ni">_na_ok_dtype</span><span class="nt">(dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span><span class="sd"> def _na_ok_dtype(dtype: DtypeObj) -&gt; bool:</span>
-<span class="ne">--&gt; </span><span class="mi">323</span><span class="sd">     if needs_i8_conversion(dtype):</span>
-<span class="g g-Whitespace">    </span><span class="mi">324</span><span class="sd">         return False</span>
-<span class="g g-Whitespace">    </span><span class="mi">325</span><span class="sd">     return not issubclass(dtype.type, np.integer)</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/dtypes/common.py</span> in <span class="ni">needs_i8_conversion</span><span class="nt">(arr_or_dtype)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1217</span><span class="sd">         is_datetime_or_timedelta_dtype(arr_or_dtype)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1218</span><span class="sd">         or is_datetime64tz_dtype(arr_or_dtype)</span>
-<span class="ne">-&gt; </span><span class="mi">1219</span><span class="sd">         or is_period_dtype(arr_or_dtype)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1220</span><span class="sd">     )</span>
-<span class="g g-Whitespace">   </span><span class="mi">1221</span><span class="sd"> </span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/dtypes/common.py</span> in <span class="ni">is_period_dtype</span><span class="nt">(arr_or_dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">487</span><span class="sd">     if arr_or_dtype is None:</span>
-<span class="g g-Whitespace">    </span><span class="mi">488</span><span class="sd">         return False</span>
-<span class="ne">--&gt; </span><span class="mi">489</span><span class="sd">     return PeriodDtype.is_dtype(arr_or_dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">490</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">491</span><span class="sd"> </span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/dtypes/dtypes.py</span> in <span class="ni">is_dtype</span><span class="nt">(cls, dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">910</span><span class="sd">         can match (via string or type)</span>
-<span class="g g-Whitespace">    </span><span class="mi">911</span><span class="sd">         &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">912</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">913</span>             <span class="c1"># PeriodDtype can be instantiated from freq string like &quot;U&quot;,</span>
-<span class="g g-Whitespace">    </span><span class="mi">914</span>             <span class="c1"># but doesn&#39;t regard freq str like &quot;U&quot; as dtype.</span>
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/series.py</span> in <span class="ni">_values</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span><span class="sd">         &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">572</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">internal_values</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span> 
+<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="nd">@Appender</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">IndexOpsMixin</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -781,7 +737,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
     <div class="container">
       <p>
         
-          By Joseph P. Near and Chike Abuah<br/>
+          By Joseph P. Near and Chiké Abuah<br/>
         
             &copy; Copyright 2021.<br/>
       </p>
