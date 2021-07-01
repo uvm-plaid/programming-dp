@@ -7,4 +7,8 @@ generating random numbers is an important task in various forms of security and 
 
 ## generating random numbers
 
+## what happens if randomness is bad
+
+## what is randomness? what properties does it need to have? wrt distributions?
+
 ...
