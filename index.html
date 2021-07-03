@@ -66,13 +66,14 @@ hr {
 h1 {
   font-family: Optima,Segoe,Segoe UI,Candara,Calibri,Arial,sans-serif;
   color:#333333;
-  font-size:3.7em;
+  font-size:2.7em;
   letter-spacing:-2px;
 }
 h2 {
   font-family: Optima,Segoe,Segoe UI,Candara,Calibri,Arial,sans-serif;
   color:#333333;
-  padding: 0.5em;
+  font-size:1.7em;
+  padding-bottom: 0.5em;
 }
 
 h3 {
@@ -96,7 +97,7 @@ a {
   padding: .2em;
 }
 
-html { font-size: 22px !important }
+html { font-size: 18px !important }
 
 @media (pointer: coarse) {
    a {
@@ -135,6 +136,8 @@ p.small {
   border: black;
   border-width: thin;
   border-style: solid;
+  max-width: 70%;
+  height: auto;
 }
 
 #citation{
@@ -142,7 +145,7 @@ p.small {
   background: lightgray;
   padding: 10px;
   font-family: monospace;
-	margin-top: 10%
+  width: 80%;
 }
 
 </style>
@@ -162,11 +165,55 @@ p.small {
 	</a>
 </div>
 
-<div style="float: left; width: 50%">
-	<a href="https://uvm-plaid.github.io/programming-dp/notebooks/cover.html">html version</a>
-	<a href="book.pdf">pdf version</a>
+<div style="float: left; width: 50%; padding-bottom: 2em;" align=left>
+  <h1>Programming Differential Privacy</h1>
+  <h2>A book about differential privacy, for programmers</h2>
+
+  <h2>By <a href="http://uvm.edu/~jnear">Joseph P. Near</a>
+  and <a href="http://uvm.edu/~cabuah">Chiké Abuah</a></h2>
+
+  <p><b><i>Programming Differential Privacy</i> uses examples and
+  Python code to explain the ideas behind differential privacy!</b>
+  The book is suitable for undergraduate students in computer science,
+  and no theory background is expected.</p>
+
+  <p><b><i>Programming Differential Privacy</i> is executable!</b>
+    Each chapter is actually generated from Python code. If you view the
+    HTML version of the book, you can click on the "Launch Binder" icon
+    at the top of each page to start an interactive version of that
+    chapter.</p>
+
+  <p>
+    <ul>
+      <li><b><a href="https://uvm-plaid.github.io/programming-dp/notebooks/cover.html">Click
+      here to read the HTML version</a></b>
+      <li><b><a href="book.pdf">Click here to download the PDF version</a></b>
+    </ul>
+  </p>
+
+  <p>This book was originally developed at the University of Vermont
+    as part
+    of <a href="https://jnear.github.io/cs211-data-privacy/">CS211:
+    Data Privacy</a>. The material has since been used at the
+    University of Chicago, Penn State, and Rice University. If you're
+    using the book in your course, please let us know!</p>
+
+  <p><b><i>Programming Differential Privacy</i> is a living,
+  open-source book.</b> We welcome comments, suggestions, and
+  contributions via issues and pull requests
+  on <a href="https://github.com/uvm-plaid/programming-dp">the GitHub
+  repository</a>.
+
+  <p>Please use the following to cite the book:</p>
+
 	<div id="citation">
-	@book{near_abuah_2021, volume={1}, url={https://uvm-plaid.github.io/programming-dp/}, title={Programming Differential Privacy}, author={Near, Joseph P and Abuah, Chiké}, year={2021}}
+	  @book{near_abuah_2021,<br>
+          &nbsp;&nbsp; title={Programming Differential Privacy},<br>
+          &nbsp;&nbsp; author={Near, Joseph P. and Abuah, Chiké},<br>
+          &nbsp;&nbsp; volume={1},<br>
+          &nbsp;&nbsp; url={https://uvm-plaid.github.io/programming-dp/}, <br>
+          &nbsp;&nbsp; year={2021}<br>
+          }<br>
 	</div>
 </div>
 

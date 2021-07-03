@@ -4,5 +4,4 @@
 
 **A book about differential privacy, for programmers**
 
-**By Joseph P. Near and Chike Abuah**
-
+**By Joseph P. Near and Chiké Abuah**
