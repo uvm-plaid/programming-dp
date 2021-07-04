@@ -124,6 +124,20 @@ a:active {
 p.small {
     font-variant: small-caps;
 }
+
+.box {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-flow: row nowrap;
+  margin: 10%;
+}
+
+@media screen and (max-width:600px) {
+  .box {
+    flex-flow: column nowrap;
+  }
+}
 </style>
 
 
@@ -154,18 +168,16 @@ p.small {
 
 <body>
 
-<center>
-
-<div style="margin: 10%">
+<div class="box">
 
 
-<div style="float: left; width: 50%">
+  <div style="flex: 0 0 50%; margin-bottom: 10px;">
 	<a href="https://uvm-plaid.github.io/programming-dp/notebooks/cover.html">
 		<img id="book-logo"  src="book-logo.png" alt="Book Logo" >
 	</a>
 </div>
 
-<div style="float: left; width: 50%; padding-bottom: 2em;" align=left>
+<div style="flex: 0 0 50%; padding-bottom: 2em; text-align: left;">
   <h1>Programming Differential Privacy</h1>
   <h2>A book about differential privacy, for programmers</h2>
 
@@ -220,6 +232,5 @@ p.small {
 
 </div>
 
-</center>
 </body>
 </html>
