@@ -17,3 +17,7 @@ parse:
 
 bibtex_bibfiles:
     - references.bib
+
+repository:
+  url: https://github.com/uvm-plaid/programming-dp
+  branch: master
