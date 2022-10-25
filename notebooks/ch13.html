@@ -338,15 +338,15 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     149
-False     51
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     139
+False     61
 dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
 <p>What we see is that we get both “yesses” and “nos” - but that the “yesses” outweigh the “nos.” This output demonstrates both features of the differentially private algorithms we’ve already seen - it includes uncertainty, which creates privacy, but also displays enough signal to allow us to infer something about the population.</p>
-<p>Let’s try the same thing on some actual data. We’ll take all of the occupations in the US Census data set we’ve been using, and encode responses for the question “is your occupation ‘Sales’?” for each one. In an actual deployed system, we wouldn’t collect this data set centrally at all - instead, each respondant would run <code class="docutils literal notranslate"><span class="pre">rand_resp_sales</span></code> locally, and submit their randomized response to the data curator. For our experiment, we’ll run <code class="docutils literal notranslate"><span class="pre">rand_resp_sales</span></code> on the existing data set.</p>
+<p>Let’s try the same thing on some actual data. We’ll take all of the occupations in the US Census dataset we’ve been using, and encode responses for the question “is your occupation ‘Sales’?” for each one. In an actual deployed system, we wouldn’t collect this dataset centrally at all - instead, each respondant would run <code class="docutils literal notranslate"><span class="pre">rand_resp_sales</span></code> locally, and submit their randomized response to the data curator. For our experiment, we’ll run <code class="docutils literal notranslate"><span class="pre">rand_resp_sales</span></code> on the existing dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="n">rand_resp_sales</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]]</span>
@@ -361,15 +361,15 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22560
-True     10001
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22705
+True      9856
 dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
-<p>This time, we get many more “nos” than “yesses.” This makes a lot of sense, with a little thought, because the majority of the participants in the data set are <em>not</em> in sales.</p>
-<p>The key question now is: how do we estimate the <em>acutal</em> number of salespeople in the data set, based on these responses? The number of “yesses” is not a good estimate for the number of salespeople:</p>
+<p>This time, we get many more “nos” than “yesses.” This makes a lot of sense, with a little thought, because the majority of the participants in the dataset are <em>not</em> in sales.</p>
+<p>The key question now is: how do we estimate the <em>acutal</em> number of salespeople in the dataset, based on these responses? The number of “yesses” is not a good estimate for the number of salespeople:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Sales&#39;</span><span class="p">])</span>
@@ -418,7 +418,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3747.5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3527.5
 </pre></div>
 </div>
 </div>
@@ -444,7 +444,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.671232876712329
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.356164383561644
 </pre></div>
 </div>
 </div>
@@ -458,7 +458,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.04546817021646223
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.002786279626104248
 </pre></div>
 </div>
 </div>
@@ -545,14 +545,14 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0]
 </pre></div>
 </div>
 </div>
 </div>
 <p>Based on the values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, we can calculate the value of the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>. For <span class="math notranslate nohighlight">\(p=.75\)</span> and <span class="math notranslate nohighlight">\(q=.25\)</span>, we will see an <span class="math notranslate nohighlight">\(\epsilon\)</span> of slightly more than 2.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-933250ac-92f9-46b2-8160-8341144051c5">
-<span class="eqno">(38)<a class="headerlink" href="#equation-933250ac-92f9-46b2-8160-8341144051c5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4add4db5-39e7-4276-af64-c64dcbc0ee67">
+<span class="eqno">(38)<a class="headerlink" href="#equation-4add4db5-39e7-4276-af64-c64dcbc0ee67" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \epsilon = \log{\left(\frac{p (1-q)}{(1-p) q}\right)}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -606,27 +606,27 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 9975),
- (&#39;Exec-managerial&#39;, 10145),
- (&#39;Handlers-cleaners&#39;, 8672),
- (&#39;Prof-specialty&#39;, 10191),
- (&#39;Other-service&#39;, 9776),
- (&#39;Sales&#39;, 10070),
- (&#39;Craft-repair&#39;, 10250),
- (&#39;Transport-moving&#39;, 8792),
- (&#39;Farming-fishing&#39;, 8518),
- (&#39;Machine-op-inspct&#39;, 9131),
- (&#39;Tech-support&#39;, 8522),
- (&#39;Protective-serv&#39;, 8374),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 9877),
+ (&#39;Exec-managerial&#39;, 10068),
+ (&#39;Handlers-cleaners&#39;, 8779),
+ (&#39;Prof-specialty&#39;, 10284),
+ (&#39;Other-service&#39;, 9825),
+ (&#39;Sales&#39;, 9886),
+ (&#39;Craft-repair&#39;, 10183),
+ (&#39;Transport-moving&#39;, 8941),
+ (&#39;Farming-fishing&#39;, 8584),
+ (&#39;Machine-op-inspct&#39;, 9220),
+ (&#39;Tech-support&#39;, 8592),
+ (&#39;Protective-serv&#39;, 8588),
  (&#39;Armed-Forces&#39;, 8145),
- (&#39;Priv-house-serv&#39;, 8303)]
+ (&#39;Priv-house-serv&#39;, 8383)]
 </pre></div>
 </div>
 </div>
 </div>
 <p>The aggregate step of the unary encoding algorithm takes into account the number of “fake” responses in each category, which is a function of both <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, and the number of responses <span class="math notranslate nohighlight">\(n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-03919e2f-181c-4675-95e1-5d9d65911f65">
-<span class="eqno">(39)<a class="headerlink" href="#equation-03919e2f-181c-4675-95e1-5d9d65911f65" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f89ce1d9-40ae-4903-b7f2-1bb6b7e2435c">
+<span class="eqno">(39)<a class="headerlink" href="#equation-f89ce1d9-40ae-4903-b7f2-1bb6b7e2435c" title="Permalink to this equation">¶</a></span>\[\begin{align}
 A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -652,20 +652,20 @@ A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3665.5),
- (&#39;Exec-managerial&#39;, 3967.5),
- (&#39;Handlers-cleaners&#39;, 1239.5),
- (&#39;Prof-specialty&#39;, 4011.5),
- (&#39;Other-service&#39;, 3157.5),
- (&#39;Sales&#39;, 3735.5),
- (&#39;Craft-repair&#39;, 4101.5),
- (&#39;Transport-moving&#39;, 1681.5),
- (&#39;Farming-fishing&#39;, 1081.5),
- (&#39;Machine-op-inspct&#39;, 1849.5),
- (&#39;Tech-support&#39;, 1065.5),
- (&#39;Protective-serv&#39;, 789.5),
- (&#39;Armed-Forces&#39;, 95.5),
- (&#39;Priv-house-serv&#39;, 341.5)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3737.5),
+ (&#39;Exec-managerial&#39;, 4023.5),
+ (&#39;Handlers-cleaners&#39;, 1429.5),
+ (&#39;Prof-specialty&#39;, 4029.5),
+ (&#39;Other-service&#39;, 3191.5),
+ (&#39;Sales&#39;, 3645.5),
+ (&#39;Craft-repair&#39;, 4029.5),
+ (&#39;Transport-moving&#39;, 1489.5),
+ (&#39;Farming-fishing&#39;, 847.5),
+ (&#39;Machine-op-inspct&#39;, 1901.5),
+ (&#39;Tech-support&#39;, 707.5),
+ (&#39;Protective-serv&#39;, 551.5),
+ (&#39;Armed-Forces&#39;, 101.5),
+ (&#39;Priv-house-serv&#39;, 31.5)]
 </pre></div>
 </div>
 </div>

@@ -418,7 +418,7 @@
 <p>The workload may be infinite.</p>
 <p><strong>Ideas</strong>:</p>
 <p>Just run each query with sequential composition.</p>
-<p>For part 1, combine them so we can use L2 sensitivity. When <span class="math notranslate nohighlight">\(k\)</span> is large, this will work well with Gaussian noise.</p>
+<p>For part 1, combine them so we can use <span class="math notranslate nohighlight">\(L2\)</span> sensitivity. When <span class="math notranslate nohighlight">\(k\)</span> is large, this will work well with Gaussian noise.</p>
 <p>Or, build synthetic data:</p>
 <ul class="simple">
 <li><p>For each range <span class="math notranslate nohighlight">\((i, i+1)\)</span>, find a count (parallel composition). This is a synthetic data representation! We can answer infinitely many queries by adding up the counts of all the segments in this histogram which are contained in the desired interval.</p></li>
