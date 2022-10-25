@@ -260,8 +260,8 @@
 </pre></div>
 </div>
 <p>To get decent latex output, add this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">usepackage</span><span class="p">[</span><span class="n">svgnames</span><span class="p">]{</span><span class="n">xcolor</span><span class="p">}</span>
-\<span class="n">usepackage</span><span class="p">[,</span><span class="n">numfigreset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">mathnumfig</span><span class="p">]{</span><span class="n">sphinx</span><span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">PassOptionsToPackage</span><span class="p">{</span><span class="n">svgnames</span><span class="p">}{</span><span class="n">xcolor</span><span class="p">}</span>
+<span class="o">...</span>
 \<span class="n">sphinxsetup</span><span class="p">{</span><span class="o">%</span>
   <span class="n">verbatimwithframe</span><span class="o">=</span><span class="n">false</span><span class="p">,</span>
   <span class="n">VerbatimColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">OldLace</span><span class="p">},</span>
@@ -275,6 +275,67 @@
   <span class="n">cautionborder</span><span class="o">=</span><span class="mi">3</span><span class="n">pt</span><span class="p">,</span>
   <span class="n">cautionBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Cyan</span><span class="p">},</span>
   <span class="n">cautionBgColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">LightCyan</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>Or:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">PassOptionsToPackage</span><span class="p">{</span><span class="n">svgnames</span><span class="p">}{</span><span class="n">xcolor</span><span class="p">}</span>
+<span class="o">...</span>
+\<span class="n">sphinxsetup</span><span class="p">{</span><span class="o">%</span>
+<span class="o">%</span>  <span class="n">verbatimwithframe</span><span class="o">=</span><span class="n">false</span><span class="p">,</span>
+  <span class="n">VerbatimColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Ivory</span><span class="p">},</span>
+  <span class="n">TitleColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">DarkGoldenrod</span><span class="p">},</span>
+  <span class="n">hintBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">LightCoral</span><span class="p">},</span>
+  <span class="n">attentionborder</span><span class="o">=</span><span class="mi">3</span><span class="n">pt</span><span class="p">,</span>
+  <span class="n">attentionBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Crimson</span><span class="p">},</span>
+  <span class="n">attentionBgColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">FloralWhite</span><span class="p">},</span>
+  <span class="n">noteborder</span><span class="o">=</span><span class="mi">2</span><span class="n">pt</span><span class="p">,</span>
+  <span class="n">noteBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Olive</span><span class="p">},</span>
+  <span class="n">cautionborder</span><span class="o">=</span><span class="mi">3</span><span class="n">pt</span><span class="p">,</span>
+  <span class="n">cautionBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Cyan</span><span class="p">},</span>
+  <span class="n">cautionBgColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">LightCyan</span><span class="p">}}</span>
+\<span class="n">setkeys</span><span class="p">{</span><span class="n">Gin</span><span class="p">}{</span><span class="n">width</span><span class="o">=.</span><span class="mi">60</span>\<span class="n">csname</span> <span class="n">Gin</span><span class="nd">@nat@width</span>\<span class="n">endcsname</span><span class="p">,</span><span class="n">keepaspectratio</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>And also:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    \makeatletter
+    \usepackage{ifthen}
+    \usepackage{tcolorbox}
+    \tcbuselibrary{skins}
+    \renewenvironment{sphinxadmonition}[2]
+    {
+       %Green colored box for Conditions
+       \ifthenelse{\equal{#2}{Conditions}}{
+                         \medskip
+                         \begin{tcolorbox}[before={}, enhanced, colback=green!10, 
+                                           colframe=green!65!black,fonttitle=\bfseries,
+                                           title=\sphinxstrong{#2}, arc=0mm, drop fuzzy shadow=blue!50!black!50!white]}{
+
+           %Blue colored box for Notes
+           \ifthenelse{\equal{#2}{Note:}}{
+                             \medskip
+                             \begin{tcolorbox}[before={}, enhanced, colback=blue!5!white, 
+                                               colframe=blue!75!black,fonttitle=\bfseries,
+                                               title=\sphinxstrong{#2}, arc=0mm, drop fuzzy shadow=blue!50!black!50!white]}{
+               %Orange colored box for Warnings 
+               \ifthenelse{\equal{#2}{Warning:}}{
+                             \medskip
+                             \begin{tcolorbox}[before={}, enhanced, colback=orange!5!white, 
+                                               colframe=orange!75!black,fonttitle=\bfseries,
+                                               title=\sphinxstrong{#2}, arc=0mm, drop fuzzy shadow=blue!50!black!50!white]}{
+
+                   %Red colored box for everthing else
+                   \medskip
+                   \begin{tcolorbox}[before={}, enhanced, colback=red!5!white, 
+                                 colframe=red!75!black, fonttitle=\bfseries,
+                                 title=\sphinxstrong{#2}, arc=0mm, drop fuzzy shadow=blue!50!black!50!white]}
+           }
+       }
+    }
+    {
+       \end{tcolorbox}\par\bigskip
+    } 
+
+    \makeatother
 </pre></div>
 </div>
 </div>

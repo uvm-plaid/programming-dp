@@ -241,7 +241,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/notebooks/ch13.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/ch13.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -303,7 +303,7 @@
 <p>In this section, we’ll see two mechanisms for local differential privacy. The first is called <em>randomized response</em>, and the second is called <em>unary encoding</em>.</p>
 <div class="section" id="randomized-response">
 <h2>Randomized Response<a class="headerlink" href="#randomized-response" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Randomized_response">Randomized response</a> <span id="id1">[<a class="reference internal" href="bibliography.html#id18"><span>17</span></a>]</span> is a mechanism for local differential privacy which was first proposed in a 1965 <a class="reference external" href="https://www.jstor.org/stable/2283137?seq=1#metadata_info_tab_contents">paper by S. L. Warner</a>. At the time, the technique was intended to improve bias in survey responses about sensitive issues, and it was not originally proposed as a mechanism for differential privacy (which wouldn’t be invented for another 40 years). After differential privacy was developed, statisticians realized that this existing technique <em>already</em> satisfied the definition.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Randomized_response">Randomized response</a> <span id="id1">[<a class="reference internal" href="bibliography.html#id18"><span>16</span></a>]</span> is a mechanism for local differential privacy which was first proposed in a 1965 <a class="reference external" href="https://www.jstor.org/stable/2283137?seq=1#metadata_info_tab_contents">paper by S. L. Warner</a>. At the time, the technique was intended to improve bias in survey responses about sensitive issues, and it was not originally proposed as a mechanism for differential privacy (which wouldn’t be invented for another 40 years). After differential privacy was developed, statisticians realized that this existing technique <em>already</em> satisfied the definition.</p>
 <p>Dwork and Roth present a variant of randomized response, in which the data subject answers a “yes” or “no” question as follows:</p>
 <ol class="simple">
 <li><p>Flip a coin</p></li>
@@ -338,8 +338,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     150
-False     50
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     149
+False     51
 dtype: int64
 </pre></div>
 </div>
@@ -361,8 +361,8 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22516
-True     10045
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22560
+True     10001
 dtype: int64
 </pre></div>
 </div>
@@ -418,7 +418,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3821.5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3747.5
 </pre></div>
 </div>
 </div>
@@ -444,7 +444,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.698630136986302
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.671232876712329
 </pre></div>
 </div>
 </div>
@@ -458,7 +458,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0022015628790242074
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.04546817021646223
 </pre></div>
 </div>
 </div>
@@ -469,7 +469,7 @@ dtype: int64
 <div class="section" id="unary-encoding">
 <h2>Unary Encoding<a class="headerlink" href="#unary-encoding" title="Permalink to this headline">¶</a></h2>
 <p>Randomized response allows us to ask a yes/no question with local differential privacy. What if we want to build a histogram?</p>
-<p>A number of different algorithms for solving this problem in the local model of differential privacy have been proposed. A <a class="reference external" href="https://arxiv.org/abs/1705.04421">2017 paper by Wang et al.</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id19"><span>18</span></a>]</span> provides a good summary of some optimal approaches. Here, we’ll examine the simplest of these, called <em>unary encoding</em>. This approach is the basis for <a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42852.pdf">Google’s RAPPOR system</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id17"><span>16</span></a>]</span> (with a number of modifications to make it work better for large domains and multiple responses over time).</p>
+<p>A number of different algorithms for solving this problem in the local model of differential privacy have been proposed. A <a class="reference external" href="https://arxiv.org/abs/1705.04421">2017 paper by Wang et al.</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id19"><span>17</span></a>]</span> provides a good summary of some optimal approaches. Here, we’ll examine the simplest of these, called <em>unary encoding</em>. This approach is the basis for <a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42852.pdf">Google’s RAPPOR system</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id17"><span>15</span></a>]</span> (with a number of modifications to make it work better for large domains and multiple responses over time).</p>
 <p>The first step is to define the domain for responses - the labels of the histogram bins we care about. For our example, we want to know how many participants are associated with each occupation, so our domain is the set of occupations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -545,15 +545,15 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0]
 </pre></div>
 </div>
 </div>
 </div>
 <p>Based on the values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, we can calculate the value of the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>. For <span class="math notranslate nohighlight">\(p=.75\)</span> and <span class="math notranslate nohighlight">\(q=.25\)</span>, we will see an <span class="math notranslate nohighlight">\(\epsilon\)</span> of slightly more than 2.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0fbae34a-5f46-47e0-ae1d-07daea710042">
-<span class="eqno">(37)<a class="headerlink" href="#equation-0fbae34a-5f46-47e0-ae1d-07daea710042" title="Permalink to this equation">¶</a></span>\[\begin{align}
-\epsilon = \log{\Big(\frac{p (1-q)}{(1-p) q}\Big)}
+<div class="amsmath math notranslate nohighlight" id="equation-933250ac-92f9-46b2-8160-8341144051c5">
+<span class="eqno">(38)<a class="headerlink" href="#equation-933250ac-92f9-46b2-8160-8341144051c5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\epsilon = \log{\left(\frac{p (1-q)}{(1-p) q}\right)}
 \end{align}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -606,27 +606,27 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 10099),
- (&#39;Exec-managerial&#39;, 10031),
- (&#39;Handlers-cleaners&#39;, 8691),
- (&#39;Prof-specialty&#39;, 10319),
- (&#39;Other-service&#39;, 9770),
- (&#39;Sales&#39;, 10091),
- (&#39;Craft-repair&#39;, 10341),
- (&#39;Transport-moving&#39;, 8930),
- (&#39;Farming-fishing&#39;, 8621),
- (&#39;Machine-op-inspct&#39;, 9185),
- (&#39;Tech-support&#39;, 8562),
- (&#39;Protective-serv&#39;, 8458),
- (&#39;Armed-Forces&#39;, 8120),
- (&#39;Priv-house-serv&#39;, 8107)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 9975),
+ (&#39;Exec-managerial&#39;, 10145),
+ (&#39;Handlers-cleaners&#39;, 8672),
+ (&#39;Prof-specialty&#39;, 10191),
+ (&#39;Other-service&#39;, 9776),
+ (&#39;Sales&#39;, 10070),
+ (&#39;Craft-repair&#39;, 10250),
+ (&#39;Transport-moving&#39;, 8792),
+ (&#39;Farming-fishing&#39;, 8518),
+ (&#39;Machine-op-inspct&#39;, 9131),
+ (&#39;Tech-support&#39;, 8522),
+ (&#39;Protective-serv&#39;, 8374),
+ (&#39;Armed-Forces&#39;, 8145),
+ (&#39;Priv-house-serv&#39;, 8303)]
 </pre></div>
 </div>
 </div>
 </div>
 <p>The aggregate step of the unary encoding algorithm takes into account the number of “fake” responses in each category, which is a function of both <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, and the number of responses <span class="math notranslate nohighlight">\(n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b23b0026-ed8c-4bf1-b628-f053abe97d45">
-<span class="eqno">(38)<a class="headerlink" href="#equation-b23b0026-ed8c-4bf1-b628-f053abe97d45" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-03919e2f-181c-4675-95e1-5d9d65911f65">
+<span class="eqno">(39)<a class="headerlink" href="#equation-03919e2f-181c-4675-95e1-5d9d65911f65" title="Permalink to this equation">¶</a></span>\[\begin{align}
 A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -652,20 +652,20 @@ A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3705.5),
- (&#39;Exec-managerial&#39;, 4125.5),
- (&#39;Handlers-cleaners&#39;, 1615.5),
- (&#39;Prof-specialty&#39;, 4421.5),
- (&#39;Other-service&#39;, 2991.5),
- (&#39;Sales&#39;, 3795.5),
- (&#39;Craft-repair&#39;, 3967.5),
- (&#39;Transport-moving&#39;, 1595.5),
- (&#39;Farming-fishing&#39;, 883.5),
- (&#39;Machine-op-inspct&#39;, 2183.5),
- (&#39;Tech-support&#39;, 1203.5),
- (&#39;Protective-serv&#39;, 479.5),
- (&#39;Armed-Forces&#39;, -240.5),
- (&#39;Priv-house-serv&#39;, -284.5)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3665.5),
+ (&#39;Exec-managerial&#39;, 3967.5),
+ (&#39;Handlers-cleaners&#39;, 1239.5),
+ (&#39;Prof-specialty&#39;, 4011.5),
+ (&#39;Other-service&#39;, 3157.5),
+ (&#39;Sales&#39;, 3735.5),
+ (&#39;Craft-repair&#39;, 4101.5),
+ (&#39;Transport-moving&#39;, 1681.5),
+ (&#39;Farming-fishing&#39;, 1081.5),
+ (&#39;Machine-op-inspct&#39;, 1849.5),
+ (&#39;Tech-support&#39;, 1065.5),
+ (&#39;Protective-serv&#39;, 789.5),
+ (&#39;Armed-Forces&#39;, 95.5),
+ (&#39;Priv-house-serv&#39;, 341.5)]
 </pre></div>
 </div>
 </div>

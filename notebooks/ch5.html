@@ -241,7 +241,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/notebooks/ch5.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/ch5.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -319,15 +319,15 @@
 <li><p>Use clipping to bound the sensitivity of summation queries</p></li>
 </ul>
 </div>
-<p>As we mentioned when we dicussed the Laplace mechanism, the amount of noise necessary to ensure differential privacy for a given query depends on the <em>sensitivity</em> of the query. Roughly speaking, the sensitivity of a function reflects the amount the function’s output will change when its input changes. Recall that the Laplace mechanism defines a mechanism <span class="math notranslate nohighlight">\(F(x)\)</span> as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8185b83c-48bf-41c9-a60b-f8e52afe502a">
-<span class="eqno">(3)<a class="headerlink" href="#equation-8185b83c-48bf-41c9-a60b-f8e52afe502a" title="Permalink to this equation">¶</a></span>\[\begin{align}
-F(x) = f(x) + \textsf{Lap}(\frac{s}{\epsilon})
+<p>As we mentioned when we discussed the Laplace mechanism, the amount of noise necessary to ensure differential privacy for a given query depends on the <em>sensitivity</em> of the query. Roughly speaking, the sensitivity of a function reflects the amount the function’s output will change when its input changes. Recall that the Laplace mechanism defines a mechanism <span class="math notranslate nohighlight">\(F(x)\)</span> as follows:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4e89a268-065a-4c29-af99-39cf1993aeac">
+<span class="eqno">(3)<a class="headerlink" href="#equation-4e89a268-065a-4c29-af99-39cf1993aeac" title="Permalink to this equation">¶</a></span>\[\begin{align}
+F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(x)\)</span> is a deterministic function (the query), <span class="math notranslate nohighlight">\(\epsilon\)</span> is the privacy parameter, and <span class="math notranslate nohighlight">\(s\)</span> is the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <p>For a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span> mapping datasets (<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>) to real numbers, the <em>global sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span> is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5d779a62-acc4-479d-99b3-68f3c9159e96">
-<span class="eqno">(4)<a class="headerlink" href="#equation-5d779a62-acc4-479d-99b3-68f3c9159e96" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6305e96c-9f39-4940-af52-1609d7184048">
+<span class="eqno">(4)<a class="headerlink" href="#equation-6305e96c-9f39-4940-af52-1609d7184048" title="Permalink to this equation">¶</a></span>\[\begin{align}
 GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 \end{align}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(d(x, x')\)</span> represents the <em>distance</em> between two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and we say that two datasets are <em>neighbors</em> if their distance is 1 or less. How this distance is defined has a huge effect on the definition of privacy we obtain, and we’ll discuss the distance metric on datasets in detail later on.</p>
@@ -336,8 +336,8 @@ GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 <h2>Distance<a class="headerlink" href="#distance" title="Permalink to this headline">¶</a></h2>
 <p>The distance metric <span class="math notranslate nohighlight">\(d(x,x')\)</span> described earlier can be defined in many different ways. Intuitively, the distance between two datasets should be equal to 1 (i.e. the datasets are neighbors) if they differ in the data of exactly one individual. This idea is easy to formalize in some contexts (e.g. in the US Census, each individual submits a single response containing their data) but extremely challenging in others (e.g. location trajectories, social networks, and time-series data).</p>
 <p>A common formal definition for datasets containing rows is to consider the number of rows which differ between the two. When each individual’s data is contained in a single row, this definition often makes sense. Formally, this definition of distance is encoded as a <em>symmetric difference</em> between the two datasets:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-20026343-5e92-4485-96e8-6ce18bca7dbf">
-<span class="eqno">(5)<a class="headerlink" href="#equation-20026343-5e92-4485-96e8-6ce18bca7dbf" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-44cf62ca-fa7f-4f14-9c5d-c535ee61d5d9">
+<span class="eqno">(5)<a class="headerlink" href="#equation-44cf62ca-fa7f-4f14-9c5d-c535ee61d5d9" title="Permalink to this equation">¶</a></span>\[\begin{align}
 d(x, x') = | x - x' \cup x' - x |
 \end{align}\]</div>
 <p>This particular definition has several interesting and important implications:</p>
@@ -363,7 +363,7 @@ d(x, x') = | x - x' \cup x' - x |
 <div class="section" id="counting-queries">
 <h3>Counting Queries<a class="headerlink" href="#counting-queries" title="Permalink to this headline">¶</a></h3>
 <p>Counting queries (<code class="docutils literal notranslate"><span class="pre">COUNT</span></code> in SQL) count the number of rows in the dataset which satisfy a specific property. As a rule of thumb, <strong>counting queries always have a sensitivity of 1</strong>. This is because adding a row to the dataset can increase the output of the query by at most 1: either the new row has the desired property, and the count increases by 1, or it does not, and the count stays the same (the count may correspondingly decrease when a row is removed).</p>
-<p><strong>Example: “How many people are in the dataset?”</strong> (sensitivity: 1 - counting rows with a property)</p>
+<p><strong>Example: “How many people are in the dataset?”</strong> (sensitivity: 1 - counting rows without any property)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>

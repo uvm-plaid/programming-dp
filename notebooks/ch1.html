@@ -239,7 +239,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/notebooks/ch1.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/ch1.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -262,8 +262,8 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#linking-attacks">
-   Linking Attacks
+  <a class="reference internal nav-link" href="#linkage-attacks">
+   Linkage Attacks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -328,12 +328,12 @@
 <li><p>De-identification</p></li>
 <li><p>Re-identification</p></li>
 <li><p>Identifying information / personally identifying information</p></li>
-<li><p>Linking attacks</p></li>
+<li><p>Linkage attacks</p></li>
 <li><p>Aggregation and aggregate statistics</p></li>
 <li><p>Differencing attacks</p></li>
 </ul>
 </li>
-<li><p>Perform a linking attack</p></li>
+<li><p>Perform a linkage attack</p></li>
 <li><p>Perform a differencing attack</p></li>
 <li><p>Explain the limitations of de-identification techniques</p></li>
 <li><p>Explain the limitations of aggregate statistics</p></li>
@@ -413,10 +413,10 @@
 </div></div></div>
 </div>
 <p>We’ll save some of the identifying information for later, when we’ll use it as <em>auxiliary data</em> to perform a <em>re-identification</em> attack.</p>
-<div class="section" id="linking-attacks">
-<h2>Linking Attacks<a class="headerlink" href="#linking-attacks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="linkage-attacks">
+<h2>Linkage Attacks<a class="headerlink" href="#linkage-attacks" title="Permalink to this headline">¶</a></h2>
 <p>Imagine we want to determine the income of a friend from our de-identified data. Names have been removed, but we happen to know some auxiliary information about our friend. Our friend’s name is Karrie Trusslove, and we know Karrie’s date of birth and zip code.</p>
-<p>To perform a simple <em>linking attack</em>, we look at the overlapping columns between the dataset we’re trying to attack, and the auxiliary data we know. In this case, both datasets have dates of birth and zip codes. We look for rows in the dataset we’re attacking with dates of birth and zip codes that match Karrie’s date of birth and zip code. If there is only one such row, we’ve found Karrie’s row in the dataset we’re attacking. In databases, this is called a <em>join</em> of two tables, and we can do it in Pandas using <code class="docutils literal notranslate"><span class="pre">merge</span></code>.</p>
+<p>To perform a simple <em>linkage attack</em>, we look at the overlapping columns between the dataset we’re trying to attack, and the auxiliary data we know. In this case, both datasets have dates of birth and zip codes. We look for rows in the dataset we’re attacking with dates of birth and zip codes that match Karrie’s date of birth and zip code. In databases, this is called a <em>join</em> of two tables, and we can do it in Pandas using <code class="docutils literal notranslate"><span class="pre">merge</span></code>. If there is only one such row, we’ve found Karrie’s row in the dataset we’re attacking.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">karries_row</span> <span class="o">=</span> <span class="n">adult_pii</span><span class="p">[</span><span class="n">adult_pii</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Karrie Trusslove&#39;</span><span class="p">]</span>
@@ -494,7 +494,7 @@
 <p>Indeed, there is only one row that matches. We have used auxiliary data to re-identify an individual in a de-identified dataset, and we’re able to infer that Karrie’s income is less than $50k.</p>
 <div class="section" id="how-hard-is-it-to-re-identify-karrie">
 <h3>How Hard is it to Re-Identify Karrie?<a class="headerlink" href="#how-hard-is-it-to-re-identify-karrie" title="Permalink to this headline">¶</a></h3>
-<p>This scenario is made up, but linking attacks are surprisingly easy to perform in practice. How easy? It turns out that in many cases, just one data point is sufficient to pinpoint a row!</p>
+<p>This scenario is made up, but linkage attacks are surprisingly easy to perform in practice. How easy? It turns out that in many cases, just one data point is sufficient to pinpoint a row!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">])</span>
@@ -700,7 +700,7 @@
 </div>
 <div class="section" id="is-karrie-special">
 <h3>Is Karrie Special?<a class="headerlink" href="#is-karrie-special" title="Permalink to this headline">¶</a></h3>
-<p>How hard is it to re-identify others in the dataset? Is Karrie especially easy or especially difficult to re-identify? A good way to guage the effectiveness of this type of attack is to look at how “selective” certain pieces of data are - how good they are at narrowing down the set of potential rows which may belong to the target individual. For example, is it common for birthdates to occur more than once?</p>
+<p>How hard is it to re-identify others in the dataset? Is Karrie especially easy or especially difficult to re-identify? A good way to gauge the effectiveness of this type of attack is to look at how “selective” certain pieces of data are - how good they are at narrowing down the set of potential rows which may belong to the target individual. For example, is it common for birthdates to occur more than once?</p>
 <p>We’d like to get an idea of how many dates of birth are likely to be useful in performing an attack, which we can do by looking at how common “unique” dates of birth are in the dataset. The histogram below shows that <em>the vast majority</em> of dates of birth occur 1, 2, or 3 times in the dataset, and <em>no date of birth</em> occurs more than 8 times. This means that date of birth is fairly <em>selective</em> - it’s effective in narrowing down the possible records for an individual.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -763,11 +763,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Antonin Chittem       2
-Barnabe Haime         2
-Rudolfo Burgyn        1
-Starlene Pettyfar     1
-Orson Valentinuzzi    1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Antonin Chittem    2
+Barnabe Haime      2
+Donia Sanderson    1
+Aaron Guitel       1
+Frank McKune       1
 Name: Name, dtype: int64
 </pre></div>
 </div>
@@ -778,7 +778,7 @@ Name: Name, dtype: int64
 </div>
 <div class="section" id="aggregation">
 <h2>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h2>
-<p>Another way to prevent the release of private information is to release only <em>aggregate</em> date.</p>
+<p>Another way to prevent the release of private information is to release only <em>aggregate</em> data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -954,8 +954,8 @@ Name: Name, dtype: int64
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>A <em>linking attack</em> involves combining <em>auxiliary data</em> with <em>de-identified data</em> to <em>re-identify</em> individuals.</p></li>
-<li><p>In the simplest case, a linking attack can be performed via a <em>join</em> of two tables containing these datasets.</p></li>
+<li><p>A <em>linkage attack</em> involves combining <em>auxiliary data</em> with <em>de-identified data</em> to <em>re-identify</em> individuals.</p></li>
+<li><p>In the simplest case, a linkage attack can be performed via a <em>join</em> of two tables containing these datasets.</p></li>
 <li><p>Simple linking attacks are surprisingly effective:</p>
 <ul>
 <li><p>Just a single data point is sufficient to narrow things down to a few records</p></li>
