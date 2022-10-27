@@ -1,0 +1,611 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>敏感度 &#8212; 动手学差分隐私</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="近似差分隐私" href="ch6.html" />
+    <link rel="prev" title="差分隐私的性质" href="ch4.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   引言
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch1.html">
+   去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch2.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch3.html">
+   差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch4.html">
+   差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch6.html">
+   近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch7.html">
+   局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch8.html">
+   差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch9.html">
+   指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch10.html">
+   稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch11.html">
+   算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch12.html">
+   机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch13.html">
+   本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch14.html">
+   合成数据
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   参考文献
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/ch5.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/ch5.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   距离
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   计算敏感度
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     计数问询
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     求和问询
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     均值问询
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   裁剪
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>敏感度<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="admonition- admonition">
+<p class="admonition-title">学习目标</p>
+<p>阅读本章后，您将能够：</p>
+<ul class="simple">
+<li><p>定义敏感度</p></li>
+<li><p>找到计数问询的敏感度</p></li>
+<li><p>找到求和问询的敏感度</p></li>
+<li><p>将均值问询分解为计数问询和求和问询</p></li>
+<li><p>使用裁剪技术限制求和问询的敏感度上界</p></li>
+</ul>
+</div>
+<p>我们在讲解拉普拉斯机制时曾提到，使问询满足差分隐私所需的噪声量取决于问询的<em>敏感度</em>。简单来说，函数的敏感度反应了函数输入发生变化时对应输出的变化程度。回想一下，拉普拉斯机制定义了下述机制<span class="math notranslate nohighlight">\(F(x)\)</span>：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-322596ae-b3c0-4550-b881-832ae9237ea9">
+<span class="eqno">(3)<a class="headerlink" href="#equation-322596ae-b3c0-4550-b881-832ae9237ea9" title="公式的永久链接">¶</a></span>\[\begin{align}
+F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
+\end{align}\]</div>
+<p>其中<span class="math notranslate nohighlight">\(f(x)\)</span>（即问询函数）是确定性函数，<span class="math notranslate nohighlight">\(\epsilon\)</span>是隐私参数，而<span class="math notranslate nohighlight">\(s\)</span>就是<span class="math notranslate nohighlight">\(f\)</span>的敏感度。</p>
+<p>给定一个将数据集（<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>）映射为实数的函数<span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span>，<span class="math notranslate nohighlight">\(f\)</span>的<em>全局敏感度</em>（Global Sensitivity）定义如下：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c69936ad-8f78-42da-86c9-6cf962a6ea95">
+<span class="eqno">(4)<a class="headerlink" href="#equation-c69936ad-8f78-42da-86c9-6cf962a6ea95" title="公式的永久链接">¶</a></span>\[\begin{align}
+GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
+\end{align}\]</div>
+<p>其中<span class="math notranslate nohighlight">\(d(x, x')\)</span>表示两个数据集<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>之间的<em>距离</em>（Distance）。如果两个数据集之间的距离小于等于1，我们称这两个数据集是<em>临近集</em>（Neighbor）。数据集的距离定义会对隐私定义带来很大的影响。我们稍后将讨论如何度量数据集之间的距离。</p>
+<p>全局敏感度的定义告诉我们，对于<em>任意两个</em>临近数据集<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>，函数<span class="math notranslate nohighlight">\(f(x)\)</span>和<span class="math notranslate nohighlight">\(f(x')\)</span>的输出最多相差<span class="math notranslate nohighlight">\(GS(f)\)</span>。此敏感度的定义与具体问询的数据集无关（对于<em>任意</em>两个临近集<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>都成立），因此我们把这一敏感度度量方法称为”全局”敏感度。另一种敏感度度量方法将其中一个数据集固定为被问询的数据集，对应的敏感度称为<em>局部敏感度</em>（Local Sensitivity）。我们将在稍后的章节中具体讨论局部敏感度。现在，当提到”敏感度”时，我们均指全局敏感度。</p>
+<div class="section" id="id2">
+<h2>距离<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>可以用很多不同的方法来度量前面提到的距离<span class="math notranslate nohighlight">\(d(x,x')\)</span>。直观来看，如果两个数据集中只有一个个体的数据不一样，则这两个数据集之间的距离应该等于1（即这两个数据集是临近集）。很容易在某些场景下用数学语言定义距离度量方法（例如，在美国人口普查场景中，每个个体都只贡献一条自己的数据）。但在另一些场景下（如位置轨迹、社交网络、时序数据等场景），用数学语言定义距离度量方法颇具挑战。</p>
+<p>对于按行存储的数据集，通常会把距离定义为有多少行数据值不相同。当每一行仅包含单一个体的数据时，此种距离度量方法一般都是合理的。如果用数学语言描述，此距离度量方法可以由两个数据集的<em>对称差</em>（Symmetric Difference）所定义：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6a95c743-98f3-4a01-a523-32448f4e177e">
+<span class="eqno">(5)<a class="headerlink" href="#equation-6a95c743-98f3-4a01-a523-32448f4e177e" title="公式的永久链接">¶</a></span>\[\begin{align}
+d(x, x') = | x - x' \cup x' - x |
+\end{align}\]</div>
+<p>这个特殊定义有几个有趣且重要的含义：</p>
+<ul class="simple">
+<li><p>如果<span class="math notranslate nohighlight">\(x'\)</span>是通过向<span class="math notranslate nohighlight">\(x\)</span><em>添加一行</em>来构造的，则<span class="math notranslate nohighlight">\(d(x,x') = 1\)</span></p></li>
+<li><p>如果<span class="math notranslate nohighlight">\(x'\)</span>是通过从<span class="math notranslate nohighlight">\(x\)</span><em>删除一行</em>来构造的，则<span class="math notranslate nohighlight">\(d(x,x') = 1\)</span></p></li>
+<li><p>如果<span class="math notranslate nohighlight">\(x'\)</span>是通过在<span class="math notranslate nohighlight">\(x\)</span><em>修改一行</em>来构造的，则<span class="math notranslate nohighlight">\(d(x,x') = 2\)</span></p></li>
+</ul>
+<p>换句话说，添加或删除一行数据可以生成相邻数据集；<em>修改</em>一行数据则生成距离为<em>2</em>的数据集。</p>
+<p>这种对距离的特殊定义通常称为<em>无界差分隐私（Unbounded Differential Privacy）</em>。也有一些其他的距离定义。例如，<em>有界差分隐私（Bounded Differential Privacy）<em>认为修改数据集中的单行数据</em>即可</em>构成临近数据集。</p>
+<p>现在，我们主要采用对称差临近数据集的数学定义。我们将在稍后的章节中讨论替代定义。</p>
+</div>
+<div class="section" id="id3">
+<h2>计算敏感度<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>我们如何确定特定函数的敏感度呢？对于实数域上的一些简单函数，答案是显而易见的。</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(x) = x\)</span>的全局敏感度是1，因为<span class="math notranslate nohighlight">\(x\)</span>变化1，<span class="math notranslate nohighlight">\(f(x)\)</span>变化为1</p></li>
+<li><p><span class="math notranslate nohighlight">\(f(x) = x+x\)</span>的全局敏感度是2，因为<span class="math notranslate nohighlight">\(x\)</span>变化1，<span class="math notranslate nohighlight">\(f(x)\)</span>变化为2</p></li>
+<li><p><span class="math notranslate nohighlight">\(f(x) = 5*x\)</span>的全局敏感度是5，因为<span class="math notranslate nohighlight">\(x\)</span>变化1，<span class="math notranslate nohighlight">\(f(x)\)</span>变化为5</p></li>
+<li><p><span class="math notranslate nohighlight">\(f(x) = x*x\)</span>的全局敏感度是无界的，因为<span class="math notranslate nohighlight">\(f(x)\)</span>的变化取决于<span class="math notranslate nohighlight">\(x\)</span>的值</p></li>
+</ul>
+<p>对于将数据集映射到实数的函数，我们都采用类似的分析方法。我们下面将考虑3个常见的数据库聚合问询函数:计数问询、求和问询、均值问询。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">mplfonts.bin.cli</span> <span class="kn">import</span> <span class="n">init</span>
+<span class="n">init</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">mplfonts</span> <span class="kn">import</span> <span class="n">use_font</span>
+<span class="n">use_font</span><span class="p">(</span><span class="s1">&#39;SimHei&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># plt.style.use(&#39;seaborn-whitegrid&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+
+<span class="n">adult</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;adult_with_pii.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>计数问询<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>计数问询（数据库SQL中的<code class="docutils literal notranslate"><span class="pre">COUNT</span></code>算子）计算数据集中满足特定属性的行数。一般来说，<strong>计数问询的敏感度总等于1</strong>。这是因为向数据集中添加一行数据最多会使问询的输出结果增加1，即当新增行满足特定属性时，计数结果加1。反之，当新增行不满足特定属性时，计数结果不变（删除行可能使计数结果减1）。</p>
+<p><strong>例子：”数据集中有多少人？”</strong>（敏感度：1，计算总行数）</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32561
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>例子：”受教育年数超过10年的有多少人”</strong>（敏感度：1，根据属性计算行数）</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Education-Num&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10516
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>例子：”受教育年数小于或等于10年的有多少人？”</strong>（敏感度：1，根据属性计算行数）</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Education-Num&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22045
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>例子：”名字叫Joe Near的有多少人？”</strong>（敏感度：1，根据属性计算行数）</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Joe Near&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>求和问询<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<p>求和问询（数据库SQL中的<code class="docutils literal notranslate"><span class="pre">SUM</span></code>算子）计算数据集行中的<em>属性值（Attribute Values）</em> 总和。</p>
+<p><strong>例子：”受教育年数超过10年的人，其年龄总和是多少？”</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Education-Num&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">][</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>422876
+</pre></div>
+</div>
+</div>
+</div>
+<p>计算求和问询的敏感度不像计数问询那么简单。向数据集添加一行新数据会使样例问询增加<em>一个新个体的年龄</em>。这意味着问询的敏感度取决于我们添加的<em>具体数据</em>是什么。</p>
+<p>我们想要用一个确定的数来表示求和问询的敏感度。不幸的是，这样的数并不存在。例如，我们可以把敏感度直接设置为125。但这意味着数据集新增行的年龄不能超过125岁，否则我们设置的敏感度就不满足敏感度的定义了。无论我们把敏感度设置为多少，新增行都可能和我们的敏感度设置冲突。</p>
+<p>你可能对此结论持怀疑态度（可能是对的）。假设我们把敏感度设置为1000。我们几乎不可能找到一个年龄为1000岁的人来违背此敏感度。对于年龄这个特殊的属性来说，我们可以认为人的年龄有合理的上界。有史以来最长寿的人活到了<a class="reference external" href="https://en.wikipedia.org/wiki/List_of_the_verified_oldest_people">122岁</a>，因此把敏感度设置为122岁这个上界看起来是合理的。</p>
+<p>但这不能证明没有人能活到126岁。对于（收入等）其他属性，就很难找到一个合理的上界。</p>
+<p>一般来说，当待求和的属性值不存在上界和下界时，我们称求和问询具有<strong>无界敏感度</strong>。当存在上下界时，求和问询的敏感度等于<strong>上下界的差</strong>。在下一节，我们将介绍<em>裁剪</em>（Clipping）技术。此技术用于在边界不存在时强制划定边界，以便将无界敏感度的求和问询转化为有界敏感度的问询。</p>
+</div>
+<div class="section" id="id6">
+<h3>均值问询<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>均值问询（数据库SQL中的<code class="docutils literal notranslate"><span class="pre">AVG</span></code>算子）计算指定列属性值的平均值。</p>
+<p><strong>例子：”受教育年数超过10年的人，其平均年龄是多少？”</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Education-Num&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">][</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40.21262837580829
+</pre></div>
+</div>
+</div>
+</div>
+<p>应用差分隐私回复均值问询的最简单方法是，将均值问询拆分为两个问询：求和问询除以计数问询。对上述例子，我们有：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Education-Num&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">][</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Education-Num&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">][</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40.21262837580829
+</pre></div>
+</div>
+</div>
+</div>
+<p>求和问询和计数问询的敏感度都可以根据前面提到的方法计算得到。因此，我们可以分别计算两个问询的噪声回复（如使用拉普拉斯机制）。对两个噪声回复做除法，即可得到差分隐私均值。我们可以应用串行组合性计算两个问询的总隐私消耗量。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>裁剪<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>差分隐私的拉普拉斯机制的无法直接应用于无界敏感度问询。幸运的是，我们通常可以利用<em>裁剪</em>（Clip）技术将此类问询转换为等价的<em>有界</em>敏感度问询。</p>
+<p>裁剪技术的基本思想是，<em>强制</em>设置属性值的上界和下界。例如，125岁以上的年龄可以被”裁剪”到恰好125岁。经过裁剪后，所有年龄都肯定不超过125岁。因此，对裁剪数据执行求和问询的敏感度等于上下界的差：<span class="math notranslate nohighlight">\(上界 - 下界\)</span>。例如，以下问询的敏感度为125：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">125</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1256257
+</pre></div>
+</div>
+</div>
+</div>
+<p>使用裁剪技术的主要挑战是确定属性值的上界和下界。很容易确定年龄的上下界：没有人的年龄会低于0，年龄很大概率也不会高于125岁。如前所述，确定其他属性值的上下界要困难得多。</p>
+<p>此外，还需在裁剪造成的信息量损失和满足差分隐私所需的噪声间进行权衡。裁剪边界的上界和下界越接近，敏感度越低，差分隐私所需的噪声就越小。然而，过分裁剪经常会从数据中移除很多信息。这些信息的移除可能给准确度带来<em>损失</em>，超过更小敏感度改善噪声带来的准确度提升效果。</p>
+<p>一般来说，<strong>要将裁剪边界设置为（尽可能）100%的保留数据集的所有信息</strong>。但必须承认，某些领域（例如后续将学习的图问询）很难做到这一点。</p>
+<p>很容易想到通过查看数据来确定裁剪边界。例如，我们可以查看数据集的年龄直方图，从而确定一个适当的敏感度上界：</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;年龄&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;数据量&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ch5_28_0.png" src="../_images/ch5_28_0.png" />
+</div>
+</div>
+<p>从直方图可以清晰地看出，这个特定数据集中没有人的年龄超过90岁，因此90的上界就足够了。</p>
+<p>但请重点注意，<strong>此方法并不满足差分隐私</strong>。如果我们通过查看数据来选择裁剪边界，那么边界本身也可能会泄露数据的一些相关信息。</p>
+<p>一般可以根据数据集先天满足的一些属性来确定裁剪边界。特别要注意，应该无需查看数据本身即可获得此属性（例如数据集包含年龄列，年龄取值范围很可能在0到125之间）。也可以应用差分隐私问询估计选择的边界是否恰当。</p>
+<p>当使用第二种方法确定裁剪边界时，我们一般先将敏感度下界设置为0，随后逐渐增加上界，直至问询输出不再变化（也就是说，即使进一步提高上界，问询的数据也不会再因裁剪而发生任何变化）。例如，让我们尝试计算裁剪边界从0到100的年龄总和，并对每次问询使用拉普拉斯机制，保证此过程满足差分隐私：</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">laplace_mech</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">v</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sensitivity</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
+
+<span class="n">epsilon_i</span> <span class="o">=</span> <span class="o">.</span><span class="mi">01</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">laplace_mech</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">i</span><span class="p">,</span> <span class="n">epsilon_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;年龄的裁剪边界&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;总求和值&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ch5_30_0.png" src="../_images/ch5_30_0.png" />
+</div>
+</div>
+<p>我们进行了100次<span class="math notranslate nohighlight">\(\epsilon_i = 0.01\)</span>的问询。因此，根据串行组合性，构建上图的总隐私消耗量为<span class="math notranslate nohighlight">\(\epsilon = 1\)</span>。显然，问询结果在<code class="docutils literal notranslate"><span class="pre">upper</span> <span class="pre">=</span> <span class="pre">80</span></code>附近趋于平稳，把80作为裁剪边界是个不错的选择。</p>
+<p>我们可以用相同的方法估计任意数值型属性列的边界，但估计前我们最好能提前知道数据的大致取值范围。例如，如果将年收入的边界值裁剪为0到100，裁剪边界的估计效果就不是很好，我们甚至无法找到合理的上界。</p>
+<p>当数据的取值范围未知时，一种很好的改进方法就是根据依对数取值范围估计上界。</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">)]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="p">[</span><span class="n">laplace_mech</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">i</span><span class="p">,</span> <span class="n">epsilon_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;年龄的裁剪边界&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;总求和值&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ch5_32_0.png" src="../_images/ch5_32_0.png" />
+</div>
+</div>
+<p>这样一来，我们通过少量问询就可以测试大量可能的裁剪边界取值，但代价是很难准确地找到完美的裁剪边界。当上界的取值变得非常大时，噪声就会开始淹没信号了。在裁剪取值达到最大时，图中年龄求和结果波动得非常剧烈！关键是要在图中找到一个相对平滑（意味着噪声小）且求和结果不再增加（意味着裁剪边界足够大）的裁剪边界取值区域。在这个例子中，上界大约为<span class="math notranslate nohighlight">\(2^8 = 256\)</span>。这个结果相对比较合理，与我们前面推导出的年龄上界已经比较接近了。</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="ch4.html" title="previous page">差分隐私的性质</a>
+    <a class='right-next' id="next-link" href="ch6.html" title="next page">近似差分隐私</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
