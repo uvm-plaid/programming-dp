@@ -1,0 +1,727 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Differential Privacy &#8212; Programming Differential Privacy</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Synthetic Data" href="ch14.html" />
+    <link rel="prev" title="Machine Learning" href="ch12.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cover.html">
+   Programming Differential Privacy
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch1.html">
+   De-identification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch2.html">
+   k-Anonymity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch3.html">
+   Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch4.html">
+   Properties of Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch5.html">
+   Sensitivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch6.html">
+   Approximate Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch7.html">
+   Local Sensitivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch8.html">
+   Variants of Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch9.html">
+   The Exponential Mechanism
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch10.html">
+   The Sparse Vector Technique
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch11.html">
+   Exercises in Algorithm Design
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch12.html">
+   Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Local Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch14.html">
+   Synthetic Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ch13.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/ch13.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#randomized-response">
+   Randomized Response
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unary-encoding">
+   Unary Encoding
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="local-differential-privacy">
+<h1>Local Differential Privacy<a class="headerlink" href="#local-differential-privacy" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p>Define the local model of differential privacy and contrast it with the central model</p></li>
+<li><p>Define and implement the randomized response and unary encoding mechanisms</p></li>
+<li><p>Describe the accuracy implications of these mechanisms and the challenges of the local model</p></li>
+</ul>
+</div>
+<p>So far, we have only considered the <em>central model</em> of differential privacy, in which the sensitive data is collected centrally in a single dataset. In this setting, we assume that the <em>analyst</em> is malicious, but that there is a <em>trusted data curator</em> who holds the dataset and correctly executes the differentially private mechanisms the analyst specifies.</p>
+<p>This setting is often not realistic. In many cases, the data curator and the analyst are <em>the same</em>, and no trusted third party actually exists to hold the data and execute mechanisms. In fact, the organizations which collect the most sensitive data tend to be exactly the ones we <em>don’t</em> trust; such organizations certainly can’t function as trusted data curators.</p>
+<p>An alternative to the central model of differential privacy is the <em>local model of differential privacy</em>, in which data is made differentially private before it leaves the control of the data subject. For example, you might add noise to your data <em>on your device</em> before sending it to the data curator. In the local model, the data curator does not need to be trusted, since the data they collect <em>already</em> satisfies differential privacy.</p>
+<p>The local model thus has one huge advantage over the central model: data subjects don’t need to trust anyone else but themselves. This advantage has made it popular in real-world deployments, including the ones by <a class="reference external" href="https://github.com/google/rappor">Google</a> and <a class="reference external" href="https://www.apple.com/privacy/docs/Differential_Privacy_Overview.pdf">Apple</a>.</p>
+<p>Unfortunately, the local model also has a significant drawback: the accuracy of query results in the local model is typically <em>orders of magnitude lower</em> for the same privacy cost as the same query under central differential privacy. This huge loss in accuracy means that only a small handful of query types are suitable for local differential privacy, and even for these, a large number of participants is required.</p>
+<p>In this section, we’ll see two mechanisms for local differential privacy. The first is called <em>randomized response</em>, and the second is called <em>unary encoding</em>.</p>
+<div class="section" id="randomized-response">
+<h2>Randomized Response<a class="headerlink" href="#randomized-response" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Randomized_response">Randomized response</a> <span id="id1">[<a class="reference internal" href="bibliography.html#id18"><span>16</span></a>]</span> is a mechanism for local differential privacy which was first proposed in a 1965 <a class="reference external" href="https://www.jstor.org/stable/2283137?seq=1#metadata_info_tab_contents">paper by S. L. Warner</a>. At the time, the technique was intended to improve bias in survey responses about sensitive issues, and it was not originally proposed as a mechanism for differential privacy (which wouldn’t be invented for another 40 years). After differential privacy was developed, statisticians realized that this existing technique <em>already</em> satisfied the definition.</p>
+<p>Dwork and Roth present a variant of randomized response, in which the data subject answers a “yes” or “no” question as follows:</p>
+<ol class="simple">
+<li><p>Flip a coin</p></li>
+<li><p>If the coin is heads, answer the question truthfully</p></li>
+<li><p>If the coin is tails, flip another coin</p></li>
+<li><p>If the second coin is heads, answer “yes”; if it is tails, answer “no”</p></li>
+</ol>
+<p>The randomization in this algorithm comes from the two coin flips. As in all other differentially private algorithms, this randomization creates uncertainty about the true answer, which is the source of privacy.</p>
+<p>As it turns out, this randomized response algorithm satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy for <span class="math notranslate nohighlight">\(\epsilon = \log(3) = 1.09\)</span>.</p>
+<p>Let’s implement the algorithm for a simple “yes” or “no” question: “is your occupation ‘Sales’?” We can flip a coin in Python using <code class="docutils literal notranslate"><span class="pre">np.random.randint(0,</span> <span class="pre">2)</span></code>; the result is either a 0 or a 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rand_resp_sales</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+    <span class="n">truthful_response</span> <span class="o">=</span> <span class="n">response</span> <span class="o">==</span> <span class="s1">&#39;Sales&#39;</span>
+    
+    <span class="c1"># first coin flip</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># answer truthfully</span>
+        <span class="k">return</span> <span class="n">truthful_response</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># answer randomly (second coin flip)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s ask 200 people who <em>do</em> work in sales to respond using randomized response, and look at the results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">rand_resp_sales</span><span class="p">(</span><span class="s1">&#39;Sales&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)])</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     140
+False     60
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>What we see is that we get both “yesses” and “nos” - but that the “yesses” outweigh the “nos.” This output demonstrates both features of the differentially private algorithms we’ve already seen - it includes uncertainty, which creates privacy, but also displays enough signal to allow us to infer something about the population.</p>
+<p>Let’s try the same thing on some actual data. We’ll take all of the occupations in the US Census dataset we’ve been using, and encode responses for the question “is your occupation ‘Sales’?” for each one. In an actual deployed system, we wouldn’t collect this dataset centrally at all - instead, each respondant would run <code class="docutils literal notranslate"><span class="pre">rand_resp_sales</span></code> locally, and submit their randomized response to the data curator. For our experiment, we’ll run <code class="docutils literal notranslate"><span class="pre">rand_resp_sales</span></code> on the existing dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="n">rand_resp_sales</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22488
+True     10073
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>This time, we get many more “nos” than “yesses.” This makes a lot of sense, with a little thought, because the majority of the participants in the dataset are <em>not</em> in sales.</p>
+<p>The key question now is: how do we estimate the <em>acutal</em> number of salespeople in the dataset, based on these responses? The number of “yesses” is not a good estimate for the number of salespeople:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Sales&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3650
+</pre></div>
+</div>
+</div>
+</div>
+<p>And this is not a surprise, since many of the “yesses” come from the random coin flips of the algorithm.</p>
+<p>In order to get an estimate of the true number of salespeople, we need to analyze the randomness in the randomized response algorithm and estimate how many of the “yes” responses are from actual salespeople, and how many are “fake” yesses which resulted from random coin flips. We know that:</p>
+<ul class="simple">
+<li><p>With probability <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>, each respondant responds randomly</p></li>
+<li><p>With probability <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>, each random response is a “yes”</p></li>
+</ul>
+<p>So, the probability that a respondant responds “yes” by random chance (rather than because they’re a salesperson) is <span class="math notranslate nohighlight">\(\frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}\)</span>. This means we can expect one-quarter of our <em>total</em> responses to be “fake yesses.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="n">rand_resp_sales</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]]</span>
+
+<span class="c1"># we expect 1/4 of the responses to be &quot;yes&quot; based entirely on the coin flip</span>
+<span class="c1"># these are &quot;fake&quot; yesses</span>
+<span class="n">fake_yesses</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span>
+
+<span class="c1"># the total number of yesses recorded</span>
+<span class="n">num_yesses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="mi">1</span> <span class="k">if</span> <span class="n">r</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">])</span>
+
+<span class="c1"># the number of &quot;real&quot; yesses is the total number of yesses minus the fake yesses</span>
+<span class="n">true_yesses</span> <span class="o">=</span> <span class="n">num_yesses</span> <span class="o">-</span> <span class="n">fake_yesses</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The other factor we need to consider is that half of the respondants answer randomly, but <em>some of the random respondants might actually be salespeople</em>. How many of them are salespeople? We have no data on that, since they answered randomly!</p>
+<p>But, since we split the respondants into “truth” and “random” groups randomly (by the first coin flip), we can hope that there are roughly the same number of salespeople in both groups. Therefore, if we can estimate the number of salespeople in the “truth” group, we can double this number to get the number of salespeople in total.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># true_yesses estimates the total number of yesses in the &quot;truth&quot; group</span>
+<span class="c1"># we estimate the total number of yesses for both groups by doubling</span>
+<span class="n">rr_result</span> <span class="o">=</span> <span class="n">true_yesses</span><span class="o">*</span><span class="mi">2</span>
+<span class="n">rr_result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3493.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>How close is that to the true number of salespeople? Let’s compare!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Sales&#39;</span><span class="p">)</span>
+<span class="n">true_result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3650
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_result</span><span class="p">,</span> <span class="n">rr_result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.287671232876712
+</pre></div>
+</div>
+</div>
+</div>
+<p>With this approach, and fairly large counts (e.g. more than 3000, in this case), we generally get “acceptable” error - something below 5%. If your goal is to determine the most popular occupation, this approach is likely to work. However, when counts are smaller, the error will quickly get larger.</p>
+<p>Furthermore, randomized response is <em>orders of magnitude</em> worse than the Laplace mechanism in the central model. Let’s compare the two for this example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_result</span><span class="p">,</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">true_result</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.025243097271812398
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, we get an error of about 0.01%, even though our <span class="math notranslate nohighlight">\(\epsilon\)</span> value for the central model is slightly lower than the <span class="math notranslate nohighlight">\(\epsilon\)</span> we used for randomized response.</p>
+<p>There <em>are</em> better algorithms for the local model, but the inherent limitations of having to add noise before submitting your data mean that local model algorithms will <em>always</em> have worse accuracy than the best central model algorithms.</p>
+</div>
+<div class="section" id="unary-encoding">
+<h2>Unary Encoding<a class="headerlink" href="#unary-encoding" title="Permalink to this headline">¶</a></h2>
+<p>Randomized response allows us to ask a yes/no question with local differential privacy. What if we want to build a histogram?</p>
+<p>A number of different algorithms for solving this problem in the local model of differential privacy have been proposed. A <a class="reference external" href="https://arxiv.org/abs/1705.04421">2017 paper by Wang et al.</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id19"><span>17</span></a>]</span> provides a good summary of some optimal approaches. Here, we’ll examine the simplest of these, called <em>unary encoding</em>. This approach is the basis for <a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42852.pdf">Google’s RAPPOR system</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id17"><span>15</span></a>]</span> (with a number of modifications to make it work better for large domains and multiple responses over time).</p>
+<p>The first step is to define the domain for responses - the labels of the histogram bins we care about. For our example, we want to know how many participants are associated with each occupation, so our domain is the set of occupations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">domain</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">domain</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Adm-clerical&#39;, &#39;Exec-managerial&#39;, &#39;Handlers-cleaners&#39;,
+       &#39;Prof-specialty&#39;, &#39;Other-service&#39;, &#39;Sales&#39;, &#39;Craft-repair&#39;,
+       &#39;Transport-moving&#39;, &#39;Farming-fishing&#39;, &#39;Machine-op-inspct&#39;,
+       &#39;Tech-support&#39;, &#39;Protective-serv&#39;, &#39;Armed-Forces&#39;,
+       &#39;Priv-house-serv&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’re going to define three functions, which together implement the unary encoding mechanism:</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">encode</span></code>, which encodes the response</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">perturb</span></code>, which perturbs the encoded response</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">aggregate</span></code>, which reconstructs final results from the perturbed responses</p></li>
+</ol>
+<p>The name of this technique comes from the encoding method used: for a domain of size <span class="math notranslate nohighlight">\(k\)</span>, each responses is encoded as a length-<span class="math notranslate nohighlight">\(k\)</span> vector of bits, with all positions 0 except the one corresponding to the occupation of the respondant. In machine learning, this representation is called a “one-hot encoding.”</p>
+<p>For example, ‘Sales’ is the 6th element of the domain, so the ‘Sales’ occupation is encoded with a vector whose 6th element is a 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="n">response</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">]</span>
+
+<span class="n">encode</span><span class="p">(</span><span class="s1">&#39;Sales&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next step is <code class="docutils literal notranslate"><span class="pre">perturb</span></code>, which flips bits in the response vector to ensure differential privacy. The probability that a bit gets flipped is based on two parameters <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, which together determine the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> (based on a formula we will see in a moment).</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \mathsf{Pr}[B'[i] = 1] =   \left\{
+\begin{array}{ll}
+      p\;\;\;\text{if}\;B[i] = 1 \\
+      q\;\;\;\text{if}\;B[i] = 0\\
+\end{array} 
+\right.  \end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">perturb</span><span class="p">(</span><span class="n">encoded_response</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">perturb_bit</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">encoded_response</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">perturb_bit</span><span class="p">(</span><span class="n">bit</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="o">.</span><span class="mi">75</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="o">.</span><span class="mi">25</span>
+
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">bit</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sample</span> <span class="o">&lt;=</span> <span class="n">p</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">bit</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sample</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span> 
+            <span class="k">return</span> <span class="mi">0</span>
+
+<span class="n">perturb</span><span class="p">(</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;Sales&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Based on the values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, we can calculate the value of the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>. For <span class="math notranslate nohighlight">\(p=.75\)</span> and <span class="math notranslate nohighlight">\(q=.25\)</span>, we will see an <span class="math notranslate nohighlight">\(\epsilon\)</span> of slightly more than 2.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2940cc8b-1943-4f12-906a-1db91820101a">
+<span class="eqno">(38)<a class="headerlink" href="#equation-2940cc8b-1943-4f12-906a-1db91820101a" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\epsilon = \log{\left(\frac{p (1-q)}{(1-p) q}\right)}
+\end{align}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unary_epsilon</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">p</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">q</span><span class="p">))</span> <span class="o">/</span> <span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">q</span><span class="p">))</span>
+
+<span class="n">unary_epsilon</span><span class="p">(</span><span class="o">.</span><span class="mi">75</span><span class="p">,</span> <span class="o">.</span><span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.1972245773362196
+</pre></div>
+</div>
+</div>
+</div>
+<p>The final piece is aggregation. If we hadn’t done any perturbation, then we could simply take the set of response vectors and add them element-wise to get counts for each element in the domain:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">encode</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">counts</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3770),
+ (&#39;Exec-managerial&#39;, 4066),
+ (&#39;Handlers-cleaners&#39;, 1370),
+ (&#39;Prof-specialty&#39;, 4140),
+ (&#39;Other-service&#39;, 3295),
+ (&#39;Sales&#39;, 3650),
+ (&#39;Craft-repair&#39;, 4099),
+ (&#39;Transport-moving&#39;, 1597),
+ (&#39;Farming-fishing&#39;, 994),
+ (&#39;Machine-op-inspct&#39;, 2002),
+ (&#39;Tech-support&#39;, 928),
+ (&#39;Protective-serv&#39;, 649),
+ (&#39;Armed-Forces&#39;, 9),
+ (&#39;Priv-house-serv&#39;, 149)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>But as we saw with randomized response, the “fake” responses caused by flipped bits cause the results to be difficult to interpret. If we perform the same procedure with the perturbed responses, the counts are all wrong:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">perturb</span><span class="p">(</span><span class="n">encode</span><span class="p">(</span><span class="n">r</span><span class="p">))</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">counts</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 9904),
+ (&#39;Exec-managerial&#39;, 10252),
+ (&#39;Handlers-cleaners&#39;, 8940),
+ (&#39;Prof-specialty&#39;, 10196),
+ (&#39;Other-service&#39;, 9850),
+ (&#39;Sales&#39;, 9961),
+ (&#39;Craft-repair&#39;, 10183),
+ (&#39;Transport-moving&#39;, 8899),
+ (&#39;Farming-fishing&#39;, 8576),
+ (&#39;Machine-op-inspct&#39;, 9187),
+ (&#39;Tech-support&#39;, 8519),
+ (&#39;Protective-serv&#39;, 8476),
+ (&#39;Armed-Forces&#39;, 7976),
+ (&#39;Priv-house-serv&#39;, 8146)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The aggregate step of the unary encoding algorithm takes into account the number of “fake” responses in each category, which is a function of both <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, and the number of responses <span class="math notranslate nohighlight">\(n\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-720f2e2d-4e31-432d-819f-dfb88a06e48a">
+<span class="eqno">(39)<a class="headerlink" href="#equation-720f2e2d-4e31-432d-819f-dfb88a06e48a" title="Permalink to this equation">¶</a></span>\[\begin{align}
+A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
+\end{align}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">responses</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="o">.</span><span class="mi">75</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="o">.</span><span class="mi">25</span>
+    
+    <span class="n">sums</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">[(</span><span class="n">v</span> <span class="o">-</span> <span class="n">n</span><span class="o">*</span><span class="n">q</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="n">q</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sums</span><span class="p">]</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="n">perturb</span><span class="p">(</span><span class="n">encode</span><span class="p">(</span><span class="n">r</span><span class="p">))</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]]</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">aggregate</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">counts</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3793.5),
+ (&#39;Exec-managerial&#39;, 4019.5),
+ (&#39;Handlers-cleaners&#39;, 1299.5),
+ (&#39;Prof-specialty&#39;, 4169.5),
+ (&#39;Other-service&#39;, 3179.5),
+ (&#39;Sales&#39;, 3747.5),
+ (&#39;Craft-repair&#39;, 4375.5),
+ (&#39;Transport-moving&#39;, 1689.5),
+ (&#39;Farming-fishing&#39;, 955.5),
+ (&#39;Machine-op-inspct&#39;, 1885.5),
+ (&#39;Tech-support&#39;, 1271.5),
+ (&#39;Protective-serv&#39;, 739.5),
+ (&#39;Armed-Forces&#39;, -22.5),
+ (&#39;Priv-house-serv&#39;, 149.5)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we saw with randomized response, these results are accurate enough to obtain a rough ordering of the domain elements (at least the most popular ones), but orders of magnitude less accurate than we could obtain with the Laplace mechanism in the central model of differential privacy.</p>
+<p>Other methods have been proposed for performing histogram queries in the local model, including some detailed in the <a class="reference external" href="https://arxiv.org/abs/1705.04421">paper</a> linked earlier. These can improve accuracy somewhat, but the fundamental limitations of having to ensure differential privacy for <em>each sample individually</em> in the local model mean that even the most complex technique can’t match the accuracy of the mechanisms we’ve seen in the central model.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="ch12.html" title="previous page">Machine Learning</a>
+    <a class='right-next' id="next-link" href="ch14.html" title="next page">Synthetic Data</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Joseph P. Near and Chiké Abuah<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

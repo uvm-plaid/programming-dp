@@ -1,0 +1,992 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Machine Learning &#8212; Programming Differential Privacy</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Local Differential Privacy" href="ch13.html" />
+    <link rel="prev" title="Exercises in Algorithm Design" href="ch11.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cover.html">
+   Programming Differential Privacy
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch1.html">
+   De-identification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch2.html">
+   k-Anonymity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch3.html">
+   Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch4.html">
+   Properties of Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch5.html">
+   Sensitivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch6.html">
+   Approximate Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch7.html">
+   Local Sensitivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch8.html">
+   Variants of Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch9.html">
+   The Exponential Mechanism
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch10.html">
+   The Sparse Vector Technique
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch11.html">
+   Exercises in Algorithm Design
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch13.html">
+   Local Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch14.html">
+   Synthetic Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ch12.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/ch12.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logistic-regression-with-scikit-learn">
+   Logistic Regression with Scikit-Learn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-a-model">
+   What is a Model?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-a-model-with-gradient-descent">
+   Training a Model with Gradient Descent
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-single-step-of-gradient-descent">
+     A Single Step of Gradient Descent
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-gradient-descent-algorithm">
+     A Gradient Descent Algorithm
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradient-descent-with-differential-privacy">
+   Gradient Descent with Differential Privacy
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gradient-clipping">
+     Gradient Clipping
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sensitivity-of-the-gradient">
+     Sensitivity of the Gradient
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#effect-of-noise-on-training">
+   Effect of Noise on Training
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="machine-learning">
+<h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p>Describe and implement the basic algorithm for gradient descent</p></li>
+<li><p>Use the Gaussian mechanism to implement differentially private gradient descent</p></li>
+<li><p>Clip gradients to enforce differential privacy for arbitrary loss functions</p></li>
+<li><p>Describe the effect of noise on the training process</p></li>
+</ul>
+</div>
+<p>In this chapter, we’re going to explore building differentially private machine learning classifiers. We’ll focus on a kind of <em>supervised learning</em> problem: given a set of <em>labeled training examples</em> <span class="math notranslate nohighlight">\(\{(x_1, y_1), \dots, (x_n, y_n)\}\)</span>, in which <span class="math notranslate nohighlight">\(x_i\)</span> is called the <em>feature vector</em> and <span class="math notranslate nohighlight">\(y_i\)</span> is called the <em>label</em>, train a <em>model</em> <span class="math notranslate nohighlight">\(\theta\)</span> which can <em>predict</em> the label for a new feature vector which was not present in the training set. Each <span class="math notranslate nohighlight">\(x_i\)</span> is typically a vector of real numbers which describe the features of a training example, and the <span class="math notranslate nohighlight">\(y_i\)</span>s are drawn from a predefined set of <em>classes</em> (usually expressed as integers) that examples can be drawn from. A <em>binary</em> classifier has two classes (usually either 1 and 0, or 1 and -1).</p>
+<div class="section" id="logistic-regression-with-scikit-learn">
+<h2>Logistic Regression with Scikit-Learn<a class="headerlink" href="#logistic-regression-with-scikit-learn" title="Permalink to this headline">¶</a></h2>
+<p>To train a model, we will use some of the data we have available to build a set of <em>training examples</em> (as described earlier), but we’ll also set aside some of the data as <em>test examples</em>. Once we have trained the model, we want to know how well it works on examples that are <em>not</em> present in the training set. A model which works well on new examples it hasn’t seen before is said to <em>generalize</em> well. One which does <em>not</em> generalize well is said to have <em>overfitted</em> the training data.</p>
+<p>To test generalization, we’ll use the test examples - we have labels for
+them, so we can test the generalization accuracy of the model by asking
+the model to classify each one, and then comparing the predicted class
+against the actual label from our dataset. We’ll split our data into a
+training set containing 80% of the examples, and a testing set containing
+20% of the examples.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">training_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">training_size</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">training_size</span><span class="p">:]</span>
+
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">training_size</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">training_size</span><span class="p">:]</span>
+
+<span class="n">y_test</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9044,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>A simple way to build a binary classifier is with <em>logistic regression</em>. The scikit-learn library has a built-in module for performing logistic regression, called <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>, and it’s easy to use to build a model using our data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span><span class="n">y_train</span><span class="p">[:</span><span class="mi">1000</span><span class="p">])</span>
+<span class="n">model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogisticRegression()
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we can use the model’s <code class="docutils literal notranslate"><span class="pre">predict</span></code> method to predict labels for the test set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1., -1., -1., ..., -1., -1., -1.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, how many test examples does our model get correct? We can compare the
+predicted labels against the actual labels from the dataset; if we divide
+the number of correctly predicted labels by the total number of test
+examples, we can measure the percent of the examples which are correctly
+classified.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8243034055727554
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our model predicts the correct label for 82% of the examples in our test
+set. For this dataset, that’s a pretty decent result.</p>
+</div>
+<div class="section" id="what-is-a-model">
+<h2>What is a Model?<a class="headerlink" href="#what-is-a-model" title="Permalink to this headline">¶</a></h2>
+<p>What exactly <em>is</em> a model? How does it encode the information it uses to make predictions?</p>
+<p>There are many different kinds of models, but the ones we’ll explore here are <em>linear models</em>. For an unlabeled example with a <span class="math notranslate nohighlight">\(k\)</span>-dimensional feature vector <span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>, a linear model predicts a label by first calculating the quantity:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c3eb79e8-71bc-493f-bc94-a7c129e4912c">
+<span class="eqno">(33)<a class="headerlink" href="#equation-c3eb79e8-71bc-493f-bc94-a7c129e4912c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+w_1 x_1 + \dots + w_k x_k + bias
+\end{align}\]</div>
+<p>and then taking the sign of it (i.e. if the quantity above is negative, we predict the label -1; if it’s positive, we predict 1).</p>
+<p>The model itself, then, can be represented by a vector containing the values <span class="math notranslate nohighlight">\(w_1, \dots, w_k\)</span> and the value for <span class="math notranslate nohighlight">\(bias\)</span>. The model is said to be linear because the quantity we calculate in predicting a label is a polynomial of degree 1 (i.e. linear). The values <span class="math notranslate nohighlight">\(w_1, \dots, w_k\)</span> are often called the <em>weights</em> or <em>coefficients</em> of the model, and <span class="math notranslate nohighlight">\(bias\)</span> is often called the <em>bias term</em> or <em>intercept</em>.</p>
+<p>This is actually how scikit-learn represents its logistic regression model, too! We can check out the weights of our trained model using the <code class="docutils literal notranslate"><span class="pre">coef_</span></code> attribute of the model:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-5.346167750306461,
+ array([ 3.76035057e-01, -2.55358856e-01, -3.21341426e-02,  3.74545737e-01,
+        -6.85885223e-01,  3.91875239e-01, -1.69476241e-01, -7.41793527e-02,
+        -5.76496538e-01,  3.94976503e-01, -3.41457312e-01, -6.24912317e-01,
+        -6.05605602e-01, -4.56928100e-01, -5.19167009e-01, -1.05743009e-01,
+         8.19586633e-01,  9.96762702e-01, -3.09342985e-01,  6.57277160e-01,
+        -1.06436104e-01,  7.71287796e-01,  7.99791034e-02,  1.43803702e-01,
+        -1.01006564e-01,  1.59416785e+00, -5.06233997e-02, -5.78477239e-01,
+        -3.72601413e-01, -6.35661364e-01, -1.02810175e-01,  0.00000000e+00,
+        -1.35478173e-01,  4.36864993e-01, -3.42554362e-01, -1.32819675e-01,
+        -2.00200285e-01, -1.53919241e+00,  6.44831702e-02,  7.17836796e-01,
+         3.80039408e-01,  4.25898498e-02,  8.81653483e-01, -7.08110462e-02,
+         6.10385977e-02,  8.94590966e-02,  6.93679716e-01, -1.30382712e+00,
+        -6.55878656e-01,  1.11512993e+00,  3.78012650e-01, -4.28231712e-02,
+        -3.72812689e-01,  2.41180415e-01, -2.03955636e-01, -3.07042908e-01,
+         3.06644477e-01,  4.31360344e-01,  5.31199745e-01, -6.89615763e-02,
+         4.66366585e-01, -5.81829004e-01, -2.21952424e-01, -2.39529124e-01,
+        -1.40562769e-03,  7.26045748e-01,  2.46167426e-01, -6.08617054e-01,
+         0.00000000e+00, -9.02427102e-02, -3.54430134e-03,  0.00000000e+00,
+         0.00000000e+00, -1.29034794e-01,  5.90856998e-01, -5.15912614e-01,
+         0.00000000e+00, -5.42096249e-03,  7.28556009e-01, -5.15261422e-02,
+         2.30704112e-01, -1.61821068e-01, -6.60183260e-01, -1.01170807e-01,
+        -2.52337853e-01, -5.77230791e-02, -1.45064565e-01, -3.09985224e-01,
+         0.00000000e+00, -3.31415590e-02,  0.00000000e+00, -1.38495395e-01,
+         0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  4.26243747e-01,
+         0.00000000e+00,  0.00000000e+00,  1.72867533e+00,  7.37281346e-02,
+         1.83154145e+00,  2.40009511e+00,  1.46921214e+00,  1.96856497e+00]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that we’ll always have exactly the same number of weights <span class="math notranslate nohighlight">\(w_i\)</span> as we have features <span class="math notranslate nohighlight">\(x_i\)</span>, since we have to multiply each feature by its corresponding weight. That means our model has exactly the same dimensionality as our feature vectors.</p>
+<p>Now that we have a way to get the weights and bias term, we can implement our own function to perform prediction:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prediction: take a model (theta) and a single example (xi) and return its predicted label</span>
+<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">xi</span> <span class="o">@</span> <span class="n">theta</span> <span class="o">+</span> <span class="n">bias</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">label</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8243034055727554
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ve made the bias term optional here, because in many cases it’s possible to do just as well without it. To make things simpler, we won’t bother to train a bias term in our own algorithm.</p>
+</div>
+<div class="section" id="training-a-model-with-gradient-descent">
+<h2>Training a Model with Gradient Descent<a class="headerlink" href="#training-a-model-with-gradient-descent" title="Permalink to this headline">¶</a></h2>
+<p>How does the training process actually work? The scikit-learn library has some pretty sophisticated algorithms, but we can do just about as well by implementing a simple one called <em>gradient descent</em>.</p>
+<p>Most training algorithms for machine learning are defined in terms of a <em>loss function</em>, which specifies a way to measure how “bad” a model is at prediction. The goal of the training algorithm is to minimize the output of the loss function - a model with low loss will be <em>good</em> at prediction.</p>
+<p>The machine learning community has developed many different commonly-used loss functions. A simple loss function might return 0 for each correctly predicted example, and 1 for each incorrectly predicted example; when the loss becomes 0, that means we’ve predicted each example’s label correctly. A more commonly used loss function for binary classification is called the <em>logistic loss</em>; the logistic loss gives us a measure of “how far” we are from predicting the correct label (which is more informative than the simple 0 vs 1 approach).</p>
+<p>The logistic loss is implemented by the following Python function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The loss function measures how good our model is. The training goal is to minimize the loss.</span>
+<span class="c1"># This is the logistic loss function.</span>
+<span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">):</span>
+    <span class="n">exponent</span> <span class="o">=</span> <span class="o">-</span> <span class="n">yi</span> <span class="o">*</span> <span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">exponent</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use the loss function to measure how good a particular model is. Let’s try it out with a model whose weights are all zeros. This model isn’t likely to work very well, but it’s a starting point from which we can train a better one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6931471805599453
+</pre></div>
+</div>
+</div>
+</div>
+<p>We typically measure how good our model is over our entire training set by simply averaging the loss over all of the examples in the training data. In this case, we get <em>every</em> example wrong, so the average loss on the whole training set is exactly equal to the loss we calculated above for just one example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6931471805599453
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our goal in <em>training</em> the model is to <em>minimize</em> the loss. So the key question is: how do we modify the model to make the loss smaller?</p>
+<p>Gradient descent is an approach that makes the loss smaller by updating the model according to the <a class="reference external" href="https://en.wikipedia.org/wiki/Gradient"><em>gradient</em></a> of the loss. The gradient is like a multi-dimensional derivative: for a function with multi-dimensional inputs (like our loss function above), the gradient tells you how fast the function’s output is changing with respect to <em>each</em> dimension of the input. If the gradient is positive in a particular dimension, that means the function’s value will <em>increase</em> if we increase the model’s weight for that dimension; we want the loss to <em>decrease</em>, so we should modify our model by <em>negating</em> the gradient - i.e. do the <em>opposite</em> of what the gradient says. Since we move the model in the opposite direction of the gradient, this is called <em>descending</em> the gradient.</p>
+<p>When we iteratively perform many steps of this descent process, we slowly get closer and closer to the model which minimizes the loss. This algorithm is called <em>gradient descent</em>. Let’s see how this looks in Python; first, we’ll define the gradient function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the gradient of the logistic loss</span>
+<span class="c1"># The gradient is a vector that indicates the rate of change of the loss in each direction</span>
+<span class="k">def</span> <span class="nf">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">):</span>
+    <span class="n">exponent</span> <span class="o">=</span> <span class="n">yi</span> <span class="o">*</span> <span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span> <span class="p">(</span><span class="n">yi</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">exponent</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="a-single-step-of-gradient-descent">
+<h3>A Single Step of Gradient Descent<a class="headerlink" href="#a-single-step-of-gradient-descent" title="Permalink to this headline">¶</a></h3>
+<p>Next, let’s perform a single step of gradient descent. We can apply the <code class="docutils literal notranslate"><span class="pre">gradient</span></code> function to a single example from our training data, which should give us enough information to improve the model for that example. We “descend” the gradient by subtracting it from our current model <code class="docutils literal notranslate"><span class="pre">theta</span></code>.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If we take a step in the *opposite* direction from the gradient (by negating it), we should </span>
+<span class="c1"># move theta in a direction that makes the loss *lower*</span>
+<span class="c1"># This is one step of gradient descent - in each step, we&#39;re trying to &quot;descend&quot; the gradient</span>
+<span class="c1"># In this example, we&#39;re taking the gradient on just a single training example (the first one)</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">theta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.        ,  0.        ,  0.        ,  0.        , -0.5       ,
+        0.        ,  0.        ,  0.        , -0.5       ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+       -0.5       ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        , -0.5       ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        , -0.5       ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        , -0.5       ,
+        0.        , -0.5       ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+       -0.5       ,  0.        ,  0.        , -0.25      , -0.0606146 ,
+       -0.21875   ,  0.        ,  0.        , -0.17676768])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, if we call <code class="docutils literal notranslate"><span class="pre">predict</span></code> on the same example from the training data, its label is predicted correctly! That means our update did indeed improve the model, since it’s now capable of classifying this example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">predict</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.0, -1.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll be measuring the accuracy of our model many times, so let’s define a helper function for measuring accuracy. It works in the same way as the accuracy measurement for the sklearn model above. We can use it on the <code class="docutils literal notranslate"><span class="pre">theta</span></code> we’ve built by descending the gradient for one example, to see how good our model is on the test set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7585139318885449
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our improved model now predicts 75% of the labels for the test set correctly! That’s good progress - we’ve improved the model considerably.</p>
+</div>
+<div class="section" id="a-gradient-descent-algorithm">
+<h3>A Gradient Descent Algorithm<a class="headerlink" href="#a-gradient-descent-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>We need to make two changes to arrive at a basic gradient descent algorithm. First, our single step above used only a single example from the training data; we want to consider the <em>whole</em> training set when updating the model, so that we improve the model for <em>all</em> examples. Second, we need to perform multiple iterations, to get as close as possible to minimizing the loss.</p>
+<p>We can solve the first problem by calculating the <em>average gradient</em> over all of the training examples, and using it for the descent step in place of the single-example gradient we used before. Our <code class="docutils literal notranslate"><span class="pre">avg_grad</span></code> function calculates the average gradient over a whole array of training examples and the corresponding labels.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">grads</span> <span class="o">=</span> <span class="p">[</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-8.03202480e-03, -1.09365062e-02, -5.86649848e-02, -1.70297784e-02,
+       -1.85949049e-02, -5.32762100e-03,  3.15432083e-05,  2.24692568e-03,
+        1.80942171e-03,  1.10891317e-03,  7.17940863e-04,  1.22012681e-03,
+        1.09385854e-03,  1.42352970e-03, -4.29266203e-03, -5.73114012e-03,
+       -4.96409990e-02, -7.90844879e-03, -1.08970068e-02, -2.50609905e-02,
+        3.27410319e-04, -1.20102580e-02, -1.29608985e-02,  1.15182321e-02,
+       -2.26895536e-04, -1.83255483e-01,  1.34642262e-03,  4.47703452e-02,
+        4.31895523e-03,  2.97414610e-03,  6.16295082e-03, -4.88903955e-05,
+       -2.13933205e-02, -4.86969833e-02, -8.62802483e-04,  3.11463168e-03,
+        1.23013848e-03,  1.54486498e-02,  1.21336873e-03, -4.38864985e-02,
+       -4.34689131e-03, -1.64743409e-02, -4.53583200e-03, -5.47845717e-03,
+       -1.67472715e-01,  1.93015718e-02,  4.73608091e-03,  2.44149704e-02,
+        1.61917788e-02, -1.57259641e-02,  6.59058497e-04, -1.58429762e-03,
+        9.21938268e-03,  8.76978910e-04, -1.27725399e-01,  3.39811988e-02,
+       -1.52535476e-01, -1.11859092e-04, -7.43481028e-04, -2.46346175e-04,
+        2.71911076e-04, -2.55366711e-04,  4.50825450e-04,  1.10378277e-04,
+        3.56606530e-04, -6.45268003e-04, -2.29994332e-04, -3.86436617e-04,
+       -3.08625397e-04,  2.96102401e-04,  1.88227302e-04,  8.58078928e-06,
+        7.20867325e-05, -4.19942412e-05, -8.78083803e-05, -8.39666492e-04,
+       -3.06575834e-04, -8.40712924e-05, -5.70563641e-04,  4.00302057e-04,
+       -2.64158094e-04,  6.99057157e-05,  2.42709304e-03,  1.82470777e-04,
+        8.76079931e-05,  1.54645694e-04, -2.72063515e-04, -6.37207436e-05,
+        1.24980547e-05,  4.45197135e-04,  4.61621071e-05,  1.15265174e-04,
+       -2.77439358e-04,  5.96595409e-05,  1.20539191e-04, -1.18965672e-01,
+        3.44932395e-04, -7.41634269e-05, -6.91870325e-02, -1.45516103e-02,
+       -9.95735544e-02, -8.85669054e-03, -9.10018120e-03, -6.35462985e-02])
+</pre></div>
+</div>
+</div>
+</div>
+<p>To solve the second problem, we’ll define an iterative algorithm that descends the gradient multiple times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+    <span class="c1"># Start by &quot;guessing&quot; what the model should be (all zeros)</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># Perform `iterations` steps of gradient descent using training data</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">theta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7787483414418399
+</pre></div>
+</div>
+</div>
+</div>
+<p>After 10 iterations, our model reaches nearly 78% accuracy - not bad! Our gradient descent algorithm looks simple (and it is!) but don’t let its simplicity fool you - this basic approach is behind many of the recent successes in large-scale deep learning, and our algorithm is <em>very</em> close in its design to the ones implemented in popular frameworks for machine learning like TensorFlow.</p>
+<p>Notice that we didn’t quite make it to the 84% accuracy of the sklearn model we trained earlier. Don’t worry - our algorithm is definitely capable of this! We just need more iterations, to get closer to the minimum of the loss.</p>
+<p>With 100 iterations, we get closer - 82% accuracy. However, the algorithm takes a long time to run when we ask for so many iterations. Even worse, the closer we get to minimizing the loss, the more difficult it is to improve - so we might get to 82% accuracy after 100 iterations, but it might take 1000 iterations to get to 84%. This points to a fundamental tension in machine learning - generally speaking, more iterations of training can improve accuracy, but more iterations requires more computation time. Most of the “tricks” used to make large-scale deep learning practical are actually aimed at speeding up each iteration of gradient descent, so that more iterations can be performed in the same amount of time.</p>
+<p>One more thing that’s interesting to note: the value of the loss function does indeed go down with each iteration of gradient descent we perform - so as we perform more iterations, we slowly get closer to minimizing the loss. Also note that the training and testing loss are very close to one another, suggesting that our model is not <em>overfitting</em> to the training data.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent_log</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Training loss: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Testing loss: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">theta</span>
+
+<span class="n">gradient_descent_log</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training loss: 0.549109439168421
+Testing loss: 0.5415350837580458
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training loss: 0.5224689105514977
+Testing loss: 0.5162665121068426
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training loss: 0.5028090736020403
+Testing loss: 0.49753785424732383
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training loss: 0.4878874803989895
+Testing loss: 0.48335633696635527
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training loss: 0.47628573924997925
+Testing loss: 0.4723742456095848
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="gradient-descent-with-differential-privacy">
+<h2>Gradient Descent with Differential Privacy<a class="headerlink" href="#gradient-descent-with-differential-privacy" title="Permalink to this headline">¶</a></h2>
+<p>How can we make the above algorithm differentially private? We’d like to design an algorithm that ensures differential privacy for the training data, so that the final model doesn’t reveal anything about individual training examples.</p>
+<p>The only part of the algorithm which uses the training data is the gradient calculation. One way to make the algorithm differentially private is to add noise to the gradient itself at each iteration before updating the model. This approach is usually called <em>noisy gradient descent</em>, since we add noise directly to the gradient.</p>
+<p>Our gradient function is a vector-valued function, so we can use <code class="docutils literal notranslate"><span class="pre">gaussian_mech_vec</span></code> to add noise to its output:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">noisy_gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">sensitivity</span> <span class="o">=</span> <span class="s1">&#39;???&#39;</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">grad</span> <span class="o">=</span> <span class="n">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">noisy_grad</span> <span class="o">=</span> <span class="n">gaussian_mech_vec</span><span class="p">(</span><span class="n">grad</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">noisy_grad</span>
+
+    <span class="k">return</span> <span class="n">theta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There’s just one piece of the puzzle missing - <strong>what is the sensitivity of the gradient function</strong>? Answering this question is the central difficulty in making the algorithm work.</p>
+<p>There are two major challenges here. First, the gradient is the result of an <em>average query</em> - it’s the mean of many per-example gradients. As we’ve seen previously, it’s best to split queries like this up into a sum query and a count query. This isn’t difficult to do - we can compute the noisy sum of the per-example gradients, rather than their average, and divide by a noisy count later. Second, we need to bound the sensitivity of each per-example gradient. There are two basic approaches for this: we can either analyze the gradient function itself (as we have done with previous queries) to determine its worst-case global sensitivity, or we can <em>enforce</em> a sensitivity by clipping the output of the gradient function (as we did in sample and aggregate).</p>
+<p>We’ll start with the second approach - often called <em>gradient clipping</em> - because it’s simpler conceptually and more general in its applications.</p>
+<div class="section" id="gradient-clipping">
+<h3>Gradient Clipping<a class="headerlink" href="#gradient-clipping" title="Permalink to this headline">¶</a></h3>
+<p>Recall that when we implemented sample and aggregate, we enforced a desired sensitivity on a function <span class="math notranslate nohighlight">\(f\)</span> with unknown sensitivity by clipping its output. The sensitivity of <span class="math notranslate nohighlight">\(f\)</span> was:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e41c2e1f-1efc-49f2-8256-56ec62d73cec">
+<span class="eqno">(34)<a class="headerlink" href="#equation-e41c2e1f-1efc-49f2-8256-56ec62d73cec" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\lvert f(x) - f(x') \rvert
+\end{align}\]</div>
+<p>After clipping with parameter <span class="math notranslate nohighlight">\(b\)</span>, this becomes:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2ba2f303-9dff-4793-ad23-f94153824c7d">
+<span class="eqno">(35)<a class="headerlink" href="#equation-2ba2f303-9dff-4793-ad23-f94153824c7d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\lvert \mathsf{clip}(f(x), b) - \mathsf{clip}(f(x'),b) \rvert
+\end{align}\]</div>
+<p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x), b) = b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x'),b) = 0\)</span>, so the sensitivity of the clipped result is exactly <span class="math notranslate nohighlight">\(b\)</span> (the value of the clipping parameter).</p>
+<p>We can use the same trick to bound the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of our gradient function. We’ll need to define a function which “clips” a vector so that it has <span class="math notranslate nohighlight">\(L2\)</span> norm within a desired range. We can accomplish this by <em>scaling</em> the vector: if we divide the vector elementwise by its <span class="math notranslate nohighlight">\(L2\)</span> norm, then the resulting vector will have an <span class="math notranslate nohighlight">\(L2\)</span> norm of 1. If we want to target a particular clipping parameter <span class="math notranslate nohighlight">\(b\)</span>, we can multiply the scaled vector by <span class="math notranslate nohighlight">\(b\)</span> to scale it back up to have <span class="math notranslate nohighlight">\(L2\)</span> norm <span class="math notranslate nohighlight">\(b\)</span>. We want to avoid modifying vectors that already have <span class="math notranslate nohighlight">\(L2\)</span> norm below <span class="math notranslate nohighlight">\(b\)</span>; in that case, we just return the original vector. We can use <code class="docutils literal notranslate"><span class="pre">np.linalg.norm</span></code> with the parameter <code class="docutils literal notranslate"><span class="pre">ord=2</span></code> to calculate the <span class="math notranslate nohighlight">\(L2\)</span> norm of a vector.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">L2_clip</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">norm</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">b</span> <span class="o">*</span> <span class="p">(</span><span class="n">v</span> <span class="o">/</span> <span class="n">norm</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">v</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we’re ready to analyze the sensitivity of the clipped gradient. We denote the gradient as <span class="math notranslate nohighlight">\(\nabla(\theta; X, y)\)</span> (corresponding to <code class="docutils literal notranslate"><span class="pre">gradient</span></code> in our Python code):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ca85bf86-d8db-4ebd-8426-eca2ce19e45f">
+<span class="eqno">(36)<a class="headerlink" href="#equation-ca85bf86-d8db-4ebd-8426-eca2ce19e45f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\lVert \mathsf{L2\_clip}( \nabla (\theta; X, y), b) - \mathsf{L2\_clip}( \nabla (\theta; X', y), 0) \rVert_2
+\end{align}\]</div>
+<p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X, y), b)\)</span> has <span class="math notranslate nohighlight">\(L2\)</span> norm of <span class="math notranslate nohighlight">\(b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X', y))\)</span> is all zeros - so that the <span class="math notranslate nohighlight">\(L2\)</span> norm of the difference is equal to <span class="math notranslate nohighlight">\(b\)</span>. Thus, the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the clipped gradient is bounded by the clipping parameter <span class="math notranslate nohighlight">\(b\)</span>!</p>
+<p>Now we can proceed to compute the sum of clipped gradients, and add noise based on the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity <span class="math notranslate nohighlight">\(b\)</span> that we’ve enforced by clipping.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="n">L2_clip</span><span class="p">(</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
+        
+    <span class="c1"># sum query</span>
+    <span class="c1"># L2 sensitivity is b (by clipping performed above)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we’re ready to complete our noisy gradient descent algorithm. To compute the noisy average gradient, we need to:</p>
+<ol class="simple">
+<li><p>Add noise to the sum of the gradients based on its sensitivity <span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p>Compute a noisy count of the number of training examples (sensitivity 1)</p></li>
+<li><p>Divide the noisy sum from (1) by the noisy count from (2)</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">noisy_gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">sensitivity</span> <span class="o">=</span> <span class="mf">5.0</span>
+    
+    <span class="n">noisy_count</span> <span class="o">=</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">grad_sum</span>        <span class="o">=</span> <span class="n">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">)</span>
+        <span class="n">noisy_grad_sum</span>  <span class="o">=</span> <span class="n">gaussian_mech_vec</span><span class="p">(</span><span class="n">grad_sum</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+        <span class="n">noisy_avg_grad</span>  <span class="o">=</span> <span class="n">noisy_grad_sum</span> <span class="o">/</span> <span class="n">noisy_count</span>
+        <span class="n">theta</span>           <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">noisy_avg_grad</span>
+
+    <span class="k">return</span> <span class="n">theta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">noisy_gradient_descent</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">)</span>
+<span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7779743476337904
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each iteration of this algorithm satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy, and we perform one additional query to determine the noisy count which satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. If we perform <span class="math notranslate nohighlight">\(k\)</span> iterations, then by sequential composition, the algorithm satisfies <span class="math notranslate nohighlight">\((k\epsilon + \epsilon, k\delta)\)</span>-differential privacy. We can also use advanced composition to analyze the total privacy cost; even better, we could convert the algorithm to Rényi differential privacy or zero-concentrated differential privacy, and obtain tight bounds on composition.</p>
+</div>
+<div class="section" id="sensitivity-of-the-gradient">
+<h3>Sensitivity of the Gradient<a class="headerlink" href="#sensitivity-of-the-gradient" title="Permalink to this headline">¶</a></h3>
+<p>Our previous approach is very general, since it makes no assumptions about the behavior of the gradient. Sometimes, however, we <em>do</em> know something about the behavior of the gradient. In particular, a large class of useful gradient functions (including the gradient of the logistic loss, which we’re using here) are <em>Lipschitz continuous</em> - meaning they have bounded global sensitivity. Formally, it is possible to show that:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c986dcd1-c0df-4726-93d0-b2be7adcffa0">
+<span class="eqno">(37)<a class="headerlink" href="#equation-c986dcd1-c0df-4726-93d0-b2be7adcffa0" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\text{If}\; \lVert x_i \rVert_2 \leq b\; \text{then}\; \lVert \nabla(\theta; x_i, y_i) \rVert_2 \leq b
+\end{align}\]</div>
+<p>This fact allows us to clip the values of the <em>training examples</em> (i.e. the <em>inputs</em> to the gradient function), instead of the <em>output</em> of the gradient function, and obtain a bound on the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the gradient.</p>
+<p>Clipping the training examples instead of the gradients has two advantages. First, it’s often easier to estimate the scale of the training data (and thus to pick a good clipping parameter) than it is to estimate the scale of the gradients you’ll compute during training. Second, it’s computationally more efficient: we can clip the training examples <em>once</em>, and re-use the clipped training data every time we train a model; with gradient clipping, we need to clip each gradient during training. Furthermore, we’re no longer forced to compute per-example gradients so that we can clip them; instead, we can compute all of the gradients at once, which can be done very efficiently (this is a commonly used trick in machine learning, but we won’t discuss it here).</p>
+<p>Note, however, that many useful loss functions - in particular, those derived from neural networks in deep learning - do <em>not</em> have bounded global sensitivity. For these loss functions, we’re forced to use gradient clipping.</p>
+<p>We can clip the training examples instead of the gradients with a couple of simple modifications to our algorithm. First, we clip the training examples using <code class="docutils literal notranslate"><span class="pre">L2_clip</span></code> before we start training. Second, we simply delete the code for clipping the gradients.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
+        
+    <span class="c1"># sum query</span>
+    <span class="c1"># L2 sensitivity is b (by sensitivity of the gradient)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">noisy_gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">sensitivity</span> <span class="o">=</span> <span class="mf">5.0</span>
+    
+    <span class="n">noisy_count</span> <span class="o">=</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
+    <span class="n">clipped_X</span> <span class="o">=</span> <span class="p">[</span><span class="n">L2_clip</span><span class="p">(</span><span class="n">x_i</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span> <span class="ow">in</span> <span class="n">X_train</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">grad_sum</span>        <span class="o">=</span> <span class="n">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">clipped_X</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">)</span>
+        <span class="n">noisy_grad_sum</span>  <span class="o">=</span> <span class="n">gaussian_mech_vec</span><span class="p">(</span><span class="n">grad_sum</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+        <span class="n">noisy_avg_grad</span>  <span class="o">=</span> <span class="n">noisy_grad_sum</span> <span class="o">/</span> <span class="n">noisy_count</span>
+        <span class="n">theta</span>           <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">noisy_avg_grad</span>
+
+    <span class="k">return</span> <span class="n">theta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">noisy_gradient_descent</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">)</span>
+<span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7801857585139319
+</pre></div>
+</div>
+</div>
+</div>
+<p>Many improvements to this algorithm are possible, which can improve privacy cost and accuracy. Many are drawn from the machine learning literature. Some examples include:</p>
+<ul class="simple">
+<li><p>Bounding the <em>total</em> privacy cost by <span class="math notranslate nohighlight">\(\epsilon\)</span> by calculating a per-iteration <span class="math notranslate nohighlight">\(\epsilon_i\)</span> as part of the algorithm.</p></li>
+<li><p>Better composition for large numbers of iterations via advanced composition, RDP, or zCDP.</p></li>
+<li><p>Minibatching: calculating the gradient for each iteration using a small chunk of the training data, rather than the whole training set (this reduces the computation needed to calculate the gradient).</p></li>
+<li><p>Parallel composition in conjunction with minibatching.</p></li>
+<li><p>Random sampling of batches in conjunction with minibatching.</p></li>
+<li><p>Other hyperparameters, like a learning rate <span class="math notranslate nohighlight">\(\eta\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="effect-of-noise-on-training">
+<h2>Effect of Noise on Training<a class="headerlink" href="#effect-of-noise-on-training" title="Permalink to this headline">¶</a></h2>
+<p>So far, we’ve seen that the number of iterations has a big effect on the accuracy of the model we get, since more iterations can get you closer to the minimum of the loss. Since our differentially private algorithm adds noise to the gradient, this can also affect accuracy - the noise can cause our algorithm to move in <em>the wrong direction</em> during training, and actually make the model <em>worse</em>.</p>
+<p>It’s reasonable to expect that smaller values of <span class="math notranslate nohighlight">\(\epsilon\)</span> will result in less accurate models (since this has been the trend in every differentially private algorithm we have seen so far). This is true, but there’s also a slightly more subtle tradeoff which occurs because of the composition we need to consider when we perform many iterations of the algorithm: more iterations means a larger privacy cost. In the standard gradient descent algorithm, more iterations generally result in a better model. In our differentially private version, more iterations can make the model <em>worse</em>, since we have to use a smaller <span class="math notranslate nohighlight">\(\epsilon\)</span> for each iteration, and so the scale of the noise goes up. In differentially private machine learning, it’s important (and sometimes, very challenging) to strike the right balance between the number of iterations used and the scale of the noise added.</p>
+<p>Let’s do a small experiment to see how the setting of <span class="math notranslate nohighlight">\(\epsilon\)</span> effects the accuracy of our model. We’ll train a model for several values of <span class="math notranslate nohighlight">\(\epsilon\)</span>, using 20 iterations each time, and graph the accuracy of each model against the <span class="math notranslate nohighlight">\(\epsilon\)</span> value used in training it.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>
+
+<span class="n">epsilons</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.008</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="n">thetas</span>   <span class="o">=</span> <span class="p">[</span><span class="n">noisy_gradient_descent</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> <span class="k">for</span> <span class="n">epsilon</span> <span class="ow">in</span> <span class="n">epsilons</span><span class="p">]</span>
+<span class="n">accs</span>     <span class="o">=</span> <span class="p">[</span><span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">thetas</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epsilon&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epsilons</span><span class="p">,</span> <span class="n">accs</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch12_60_0.png" src="_images/ch12_60_0.png" />
+</div>
+</div>
+<p>The plot shows that very small values of <span class="math notranslate nohighlight">\(\epsilon\)</span> result in far less accurate models. Keep in mind that the <span class="math notranslate nohighlight">\(\epsilon\)</span> we specify in the plot is a <em>per-iteration</em> <span class="math notranslate nohighlight">\(\epsilon\)</span>, so the privacy cost is much higher after composition.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="ch11.html" title="previous page">Exercises in Algorithm Design</a>
+    <a class='right-next' id="next-link" href="ch13.html" title="next page">Local Differential Privacy</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Joseph P. Near and Chiké Abuah<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
