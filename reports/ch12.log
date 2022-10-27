@@ -1,4 +1,15 @@
 Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 622, in _async_poll_for_reply
+    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
+  File "/usr/local/lib/python3.9/site-packages/nbclient/util.py", line 85, in ensure_async
+    result = await obj
+  File "/usr/local/lib/python3.9/site-packages/jupyter_client/asynchronous/channels.py", line 48, in get_msg
+    raise Empty
+_queue.Empty
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
   File "/usr/local/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
     executenb(
   File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 1112, in execute
@@ -11,29 +22,20 @@ Traceback (most recent call last):
     return future.result()
   File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 553, in async_execute
     await self.async_execute_cell(
-  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 857, in async_execute_cell
-    self._check_raise_for_error(cell, exec_reply)
-  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
-    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
-nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
-------------------
-X = np.load('adult_processed_x.npy')
-y = np.load('adult_processed_y.npy')
-------------------
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 841, in async_execute_cell
+    exec_reply = await self.task_poll_for_reply
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 646, in _async_poll_for_reply
+    await self._async_handle_timeout(timeout, cell)
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 696, in _async_handle_timeout
+    raise CellTimeoutError.error_from_timeout_and_cell(
+nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
+The message was: Cell execution timed out.
+Here is a preview of the cell contents:
+-------------------
+delta = 1e-5
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-[0;32m<ipython-input-2-f9d5b3f542db>[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0mX[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mload[0m[0;34m([0m[0;34m'adult_processed_x.npy'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0my[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mload[0m[0;34m([0m[0;34m'adult_processed_y.npy'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/usr/local/lib/python3.9/site-packages/numpy/lib/npyio.py[0m in [0;36mload[0;34m(file, mmap_mode, allow_pickle, fix_imports, encoding)[0m
-[1;32m    414[0m             [0mown_fid[0m [0;34m=[0m [0;32mFalse[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    415[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 416[0;31m             [0mfid[0m [0;34m=[0m [0mstack[0m[0;34m.[0m[0menter_context[0m[0;34m([0m[0mopen[0m[0;34m([0m[0mos_fspath[0m[0;34m([0m[0mfile[0m[0;34m)[0m[0;34m,[0m [0;34m"rb"[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    417[0m             [0mown_fid[0m [0;34m=[0m [0;32mTrue[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    418[0m [0;34m[0m[0m
-
-[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'adult_processed_x.npy'
-FileNotFoundError: [Errno 2] No such file or directory: 'adult_processed_x.npy'
+epsilons = [0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05, 0.08, 0.1]
+thetas   = [noisy_gradient_descent(10, epsilon, delta) for epsilon in epsilons]
+accs     = [accuracy(theta) for theta in thetas]
+-------------------
 
