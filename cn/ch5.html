@@ -128,10 +128,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch2.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -匿名性
+   k-匿名性
   </a>
  </li>
  <li class="toctree-l1">
@@ -467,14 +464,14 @@ title="Print to PDF"
 </ul>
 </div>
 <p>我们在讲解拉普拉斯机制时曾提到，使问询满足差分隐私所需的噪声量取决于问询的<em>敏感度</em>。简单来说，函数的敏感度反应了函数输入发生变化时对应输出的变化程度。回想一下，拉普拉斯机制定义了下述机制<span class="math notranslate nohighlight">\(F(x)\)</span>：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8e48ab7e-3b00-431c-a540-3ba9d8f61ed3">
-<span class="eqno">(3)<a class="headerlink" href="#equation-8e48ab7e-3b00-431c-a540-3ba9d8f61ed3" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-99e8eb38-cd42-4ac6-9d25-8697dd0eeb9d">
+<span class="eqno">(3)<a class="headerlink" href="#equation-99e8eb38-cd42-4ac6-9d25-8697dd0eeb9d" title="公式的永久链接">#</a></span>\[\begin{align}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{align}\]</div>
 <p>其中<span class="math notranslate nohighlight">\(f(x)\)</span>（即问询函数）是确定性函数，<span class="math notranslate nohighlight">\(\epsilon\)</span>是隐私参数，而<span class="math notranslate nohighlight">\(s\)</span>就是<span class="math notranslate nohighlight">\(f\)</span>的敏感度。</p>
 <p>给定一个将数据集（<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>）映射为实数的函数<span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span>，<span class="math notranslate nohighlight">\(f\)</span>的<em>全局敏感度</em>（Global Sensitivity）定义如下：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a988bba4-d430-43b7-9803-bb8981290284">
-<span class="eqno">(4)<a class="headerlink" href="#equation-a988bba4-d430-43b7-9803-bb8981290284" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-47b40cd3-f1d3-411c-9e14-9ac0506d6a55">
+<span class="eqno">(4)<a class="headerlink" href="#equation-47b40cd3-f1d3-411c-9e14-9ac0506d6a55" title="公式的永久链接">#</a></span>\[\begin{align}
 GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 \end{align}\]</div>
 <p>其中<span class="math notranslate nohighlight">\(d(x, x')\)</span>表示两个数据集<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>之间的<em>距离</em>（Distance）。如果两个数据集之间的距离小于等于1，我们称这两个数据集是<em>临近集</em>（Neighbor）。数据集的距离定义会对隐私定义带来很大的影响。我们稍后将讨论如何度量数据集之间的距离。</p>
@@ -483,8 +480,8 @@ GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 <h2>距离<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
 <p>可以用很多不同的方法来度量前面提到的距离<span class="math notranslate nohighlight">\(d(x,x')\)</span>。直观来看，如果两个数据集中只有一个个体的数据不一样，则这两个数据集之间的距离应该等于1（即这两个数据集是临近集）。很容易在某些场景下用数学语言定义距离度量方法（例如，在美国人口普查场景中，每个个体都只贡献一条自己的数据）。但在另一些场景下（如位置轨迹、社交网络、时序数据等场景），用数学语言定义距离度量方法颇具挑战。</p>
 <p>对于按行存储的数据集，通常会把距离定义为有多少行数据值不相同。当每一行仅包含单一个体的数据时，此种距离度量方法一般都是合理的。如果用数学语言描述，此距离度量方法可以由两个数据集的<em>对称差</em>（Symmetric Difference）所定义：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7bd136d9-721e-4b60-a673-45d0ff87deb8">
-<span class="eqno">(5)<a class="headerlink" href="#equation-7bd136d9-721e-4b60-a673-45d0ff87deb8" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9e4fec12-9d9a-4bcb-b1bb-9da9091f62cf">
+<span class="eqno">(5)<a class="headerlink" href="#equation-9e4fec12-9d9a-4bcb-b1bb-9da9091f62cf" title="公式的永久链接">#</a></span>\[\begin{align}
 d(x, x') = | x - x' \cup x' - x |
 \end{align}\]</div>
 <p>这个特殊定义有几个有趣且重要的含义：</p>

@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
     <link rel="next" title="差分隐私的性质" href="ch4.html" />
-    <link rel="prev" title="\(k\)-匿名性" href="ch2.html" />
+    <link rel="prev" title="k-匿名性" href="ch2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="zh_CN">
     
@@ -128,10 +128,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch2.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -匿名性
+   k-匿名性
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -424,8 +421,8 @@ title="Print to PDF"
 <div class="admonition- admonition">
 <p class="admonition-title">定义</p>
 <p>一般将满足差分隐私的函数称为一个<em>机制</em>（Mechanism）。如果对于所有<em>临近数据集</em>（Neighboring Dataset）<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>和所有可能的输出<span class="math notranslate nohighlight">\(S\)</span>，机制<span class="math notranslate nohighlight">\(F\)</span>均满足</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dc2004bc-61fc-4c90-ba64-aa88e0e692d6">
-<span class="eqno">(1)<a class="headerlink" href="#equation-dc2004bc-61fc-4c90-ba64-aa88e0e692d6" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-74be656d-55f7-4e1a-84f6-af5e7bbf9644">
+<span class="eqno">(1)<a class="headerlink" href="#equation-74be656d-55f7-4e1a-84f6-af5e7bbf9644" title="公式的永久链接">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
 \end{equation}\]</div>
 <p>则称机制<span class="math notranslate nohighlight">\(F\)</span>满足差分隐私。</p>
@@ -454,8 +451,8 @@ title="Print to PDF"
 <div class="admonition- admonition">
 <p class="admonition-title">定义</p>
 <p>根据拉普拉斯机制，对于可以输出一个数值型结果的函数<span class="math notranslate nohighlight">\(f(x)\)</span>，按下述方法定义的<span class="math notranslate nohighlight">\(F(x)\)</span>满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c773bd37-40b0-492c-a13f-cd310f22af55">
-<span class="eqno">(2)<a class="headerlink" href="#equation-c773bd37-40b0-492c-a13f-cd310f22af55" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0e697dee-a2a5-413b-8967-979ab992e5fa">
+<span class="eqno">(2)<a class="headerlink" href="#equation-0e697dee-a2a5-413b-8967-979ab992e5fa" title="公式的永久链接">#</a></span>\[\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{equation}\]</div>
 <p>其中<span class="math notranslate nohighlight">\(s\)</span>是<span class="math notranslate nohighlight">\(f\)</span>的<em>敏感度</em>（Sensitivity），<span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span>表示以均值为0、放缩系数为<span class="math notranslate nohighlight">\(S\)</span>的拉普拉斯分布采样。</p>
@@ -472,7 +469,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14226.40869929272
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14246.155609649675
 </pre></div>
 </div>
 </div>
@@ -508,7 +505,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.856059279660852
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.33727457200366306
 </pre></div>
 </div>
 </div>
@@ -548,7 +545,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">上一页</p>
-            <p class="prev-next-title"><span class="math notranslate nohighlight">\(k\)</span>-匿名性</p>
+            <p class="prev-next-title">k-匿名性</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="ch4.html" title="下一页 页">

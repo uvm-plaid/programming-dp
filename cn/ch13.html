@@ -128,10 +128,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch2.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -匿名性
+   k-匿名性
   </a>
  </li>
  <li class="toctree-l1">
@@ -463,8 +460,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     159
-False     41
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     141
+False     59
 dtype: int64
 </pre></div>
 </div>
@@ -486,8 +483,8 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22553
-True     10008
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22503
+True     10058
 dtype: int64
 </pre></div>
 </div>
@@ -543,7 +540,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3659.5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3763.5
 </pre></div>
 </div>
 </div>
@@ -569,7 +566,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2602739726027397
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1095890410958904
 </pre></div>
 </div>
 </div>
@@ -583,7 +580,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01610448332721966
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.030695069437096618
 </pre></div>
 </div>
 </div>
@@ -670,14 +667,14 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0]
 </pre></div>
 </div>
 </div>
 </div>
 <p>我们可以根据<span class="math notranslate nohighlight">\(p\)</span>和<span class="math notranslate nohighlight">\(q\)</span>计算出隐私参数<span class="math notranslate nohighlight">\(\epsilon\)</span>。如果<span class="math notranslate nohighlight">\(p=.75\)</span>，<span class="math notranslate nohighlight">\(q=.25\)</span>，则计算得到的<span class="math notranslate nohighlight">\(\epsilon\)</span>略高于2。</p>
-<div class="amsmath math notranslate nohighlight" id="equation-76dec07d-38a6-4dbf-a66b-9faa39cf9c3e">
-<span class="eqno">(38)<a class="headerlink" href="#equation-76dec07d-38a6-4dbf-a66b-9faa39cf9c3e" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-820898a5-90cb-42fd-bd14-06708efa2677">
+<span class="eqno">(38)<a class="headerlink" href="#equation-820898a5-90cb-42fd-bd14-06708efa2677" title="公式的永久链接">#</a></span>\[\begin{align}
 \epsilon = \log{\left(\frac{p (1-q)}{(1-p) q}\right)}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -731,27 +728,27 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 10028),
- (&#39;Exec-managerial&#39;, 10238),
- (&#39;Handlers-cleaners&#39;, 8811),
- (&#39;Prof-specialty&#39;, 10187),
- (&#39;Other-service&#39;, 9817),
- (&#39;Sales&#39;, 10004),
- (&#39;Craft-repair&#39;, 10174),
- (&#39;Transport-moving&#39;, 8925),
- (&#39;Farming-fishing&#39;, 8690),
- (&#39;Machine-op-inspct&#39;, 9065),
- (&#39;Tech-support&#39;, 8610),
- (&#39;Protective-serv&#39;, 8440),
- (&#39;Armed-Forces&#39;, 8086),
- (&#39;Priv-house-serv&#39;, 8297)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 9982),
+ (&#39;Exec-managerial&#39;, 10061),
+ (&#39;Handlers-cleaners&#39;, 8793),
+ (&#39;Prof-specialty&#39;, 10231),
+ (&#39;Other-service&#39;, 9804),
+ (&#39;Sales&#39;, 10001),
+ (&#39;Craft-repair&#39;, 10267),
+ (&#39;Transport-moving&#39;, 8822),
+ (&#39;Farming-fishing&#39;, 8535),
+ (&#39;Machine-op-inspct&#39;, 9182),
+ (&#39;Tech-support&#39;, 8414),
+ (&#39;Protective-serv&#39;, 8336),
+ (&#39;Armed-Forces&#39;, 8095),
+ (&#39;Priv-house-serv&#39;, 8237)]
 </pre></div>
 </div>
 </div>
 </div>
 <p>一元编码算法的聚合步骤需要考虑每个标签的”假”应答数量。此步骤以<span class="math notranslate nohighlight">\(p\)</span>、<span class="math notranslate nohighlight">\(q\)</span>，以及应答数量<span class="math notranslate nohighlight">\(n\)</span>为输入，得到聚合结果：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-701e534e-fa9a-49ae-ad4d-77bccca9ed4b">
-<span class="eqno">(39)<a class="headerlink" href="#equation-701e534e-fa9a-49ae-ad4d-77bccca9ed4b" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1a99a3e0-ec97-4b5b-8da8-8411b4af7745">
+<span class="eqno">(39)<a class="headerlink" href="#equation-1a99a3e0-ec97-4b5b-8da8-8411b4af7745" title="公式的永久链接">#</a></span>\[\begin{align}
 A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -777,20 +774,20 @@ A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 4053.5),
- (&#39;Exec-managerial&#39;, 4161.5),
- (&#39;Handlers-cleaners&#39;, 1301.5),
- (&#39;Prof-specialty&#39;, 4171.5),
- (&#39;Other-service&#39;, 3175.5),
- (&#39;Sales&#39;, 3485.5),
- (&#39;Craft-repair&#39;, 4265.5),
- (&#39;Transport-moving&#39;, 1919.5),
- (&#39;Farming-fishing&#39;, 801.5),
- (&#39;Machine-op-inspct&#39;, 1847.5),
- (&#39;Tech-support&#39;, 1077.5),
- (&#39;Protective-serv&#39;, 849.5),
- (&#39;Armed-Forces&#39;, 317.5),
- (&#39;Priv-house-serv&#39;, 113.5)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3817.5),
+ (&#39;Exec-managerial&#39;, 3941.5),
+ (&#39;Handlers-cleaners&#39;, 1521.5),
+ (&#39;Prof-specialty&#39;, 4167.5),
+ (&#39;Other-service&#39;, 3439.5),
+ (&#39;Sales&#39;, 3645.5),
+ (&#39;Craft-repair&#39;, 4057.5),
+ (&#39;Transport-moving&#39;, 1793.5),
+ (&#39;Farming-fishing&#39;, 1025.5),
+ (&#39;Machine-op-inspct&#39;, 1557.5),
+ (&#39;Tech-support&#39;, 945.5),
+ (&#39;Protective-serv&#39;, 571.5),
+ (&#39;Armed-Forces&#39;, -148.5),
+ (&#39;Priv-house-serv&#39;, 307.5)]
 </pre></div>
 </div>
 </div>

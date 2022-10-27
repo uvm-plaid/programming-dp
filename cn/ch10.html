@@ -128,10 +128,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch2.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -匿名性
+   k-匿名性
   </a>
  </li>
  <li class="toctree-l1">
@@ -525,7 +522,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>91
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>81
 </pre></div>
 </div>
 </div>
@@ -561,7 +558,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>86
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>91
 </pre></div>
 </div>
 </div>
@@ -608,7 +605,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.571506070147834
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.563062582400185
 </pre></div>
 </div>
 </div>
@@ -655,53 +652,32 @@ title="Print to PDF"
 <span class="g g-Whitespace">   </span><span class="mi">7354</span>         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span>
 
 <span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">_clip_with_scalar</span><span class="nt">(self, lower, upper, inplace)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7204</span>             <span class="k">if</span> <span class="n">upper</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">7205</span>                 <span class="n">subset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">upper</span>
-<span class="ne">-&gt; </span><span class="mi">7206</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">7207</span>             <span class="k">if</span> <span class="n">lower</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">7208</span>                 <span class="n">subset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">lower</span>
+<span class="ne">-&gt; </span><span class="mi">7209</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7210</span> 
+<span class="g g-Whitespace">   </span><span class="mi">7211</span>         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">mask</span><span class="p">):</span>
 
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">where</span><span class="nt">(self, cond, other, inplace, axis, level, errors, try_cast)</span>
-<span class="g g-Whitespace">   </span><span class="mi">9002</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">9003</span><span class="s2">         other = com.apply_if_callable(other, self)</span>
-<span class="ne">-&gt; </span><span class="mi">9004</span><span class="s2">         return self._where(</span>
-<span class="g g-Whitespace">   </span><span class="mi">9005</span><span class="s2">             cond, other, inplace, axis, level, errors=errors, try_cast=try_cast</span>
-<span class="g g-Whitespace">   </span><span class="mi">9006</span><span class="s2">         )</span>
+<span class="nn">/usr/local/lib/python3.9/site-packages/numpy/core/_ufunc_config.py</span> in <span class="ni">__exit__</span><span class="nt">(self, *exc_info)</span>
+<span class="g g-Whitespace">    </span><span class="mi">437</span> 
+<span class="g g-Whitespace">    </span><span class="mi">438</span>     <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exc_info</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">439</span>         <span class="n">seterr</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">oldstate</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">440</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">call</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_Unspecified</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span>             <span class="n">seterrcall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">oldcall</span><span class="p">)</span>
 
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">_where</span><span class="nt">(self, cond, other, inplace, axis, level, errors, try_cast)</span>
-<span class="g g-Whitespace">   </span><span class="mi">8752</span><span class="s2">         # make sure we are boolean</span>
-<span class="g g-Whitespace">   </span><span class="mi">8753</span><span class="s2">         fill_value = bool(inplace)</span>
-<span class="ne">-&gt; </span><span class="mi">8754</span><span class="s2">         cond = cond.fillna(fill_value)</span>
-<span class="g g-Whitespace">   </span><span class="mi">8755</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">8756</span><span class="s2">         msg = &quot;Boolean array expected for the condition, not </span><span class="si">{dtype}</span><span class="s2">&quot;</span>
+<span class="nn">/usr/local/lib/python3.9/site-packages/numpy/core/_ufunc_config.py</span> in <span class="ni">seterr</span><span class="nt">(all, divide, over, under, invalid)</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span> 
+<span class="g g-Whitespace">    </span><span class="mi">110</span>     <span class="n">pyvals</span> <span class="o">=</span> <span class="n">umath</span><span class="o">.</span><span class="n">geterrobj</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">111</span>     <span class="n">old</span> <span class="o">=</span> <span class="n">geterr</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span> 
+<span class="g g-Whitespace">    </span><span class="mi">113</span>     <span class="k">if</span> <span class="n">divide</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/series.py</span> in <span class="ni">fillna</span><span class="nt">(self, value, method, axis, inplace, limit, downcast)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4527</span><span class="s2">         downcast=None,</span>
-<span class="g g-Whitespace">   </span><span class="mi">4528</span><span class="s2">     ) -&gt; Optional[&quot;Series&quot;]:</span>
-<span class="ne">-&gt; </span><span class="mi">4529</span><span class="s2">         return super().fillna(</span>
-<span class="g g-Whitespace">   </span><span class="mi">4530</span><span class="s2">             value=value,</span>
-<span class="g g-Whitespace">   </span><span class="mi">4531</span><span class="s2">             method=method,</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">fillna</span><span class="nt">(self, value, method, axis, inplace, limit, downcast)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6088</span><span class="s2">             return self._update_inplace(result)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6089</span><span class="s2">         else:</span>
-<span class="ne">-&gt; </span><span class="mi">6090</span><span class="s2">             return result.__finalize__(self, method=&quot;fillna&quot;)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6091</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">6092</span><span class="s2">     def ffill(</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">__finalize__</span><span class="nt">(self, other, method, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5118</span><span class="s2">             for name in self._metadata:</span>
-<span class="g g-Whitespace">   </span><span class="mi">5119</span><span class="s2">                 assert isinstance(name, str)</span>
-<span class="ne">-&gt; </span><span class="mi">5120</span><span class="s2">                 object.__setattr__(self, name, getattr(other, name, None))</span>
-<span class="g g-Whitespace">   </span><span class="mi">5121</span><span class="s2">         return self</span>
-<span class="g g-Whitespace">   </span><span class="mi">5122</span><span class="s2"> </span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/series.py</span> in <span class="ni">name</span><span class="nt">(self, value)</span>
-<span class="g g-Whitespace">    </span><span class="mi">494</span><span class="s2">         if not is_hashable(value):</span>
-<span class="g g-Whitespace">    </span><span class="mi">495</span><span class="s2">             raise TypeError(&quot;Series.name must be a hashable type&quot;)</span>
-<span class="ne">--&gt; </span><span class="mi">496</span><span class="s2">         object.__setattr__(self, &quot;_name&quot;, value)</span>
-<span class="g g-Whitespace">    </span><span class="mi">497</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">498</span><span class="s2">     @property</span>
+<span class="nn">/usr/local/lib/python3.9/site-packages/numpy/core/_ufunc_config.py</span> in <span class="ni">geterr</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span> 
+<span class="g g-Whitespace">    </span><span class="mi">168</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">169</span><span class="s2">     maskvalue = umath.geterrobj()[1]</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span><span class="s2">     mask = 7</span>
+<span class="g g-Whitespace">    </span><span class="mi">171</span><span class="s2">     res = </span><span class="si">{}</span><span class="s2"></span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

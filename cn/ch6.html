@@ -128,10 +128,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch2.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -匿名性
+   k-匿名性
   </a>
  </li>
  <li class="toctree-l1">
@@ -498,8 +495,8 @@ title="Print to PDF"
 </ul>
 </div>
 <p>近似差分隐私（Approximate Differential Privacy）<span id="id2">[<a class="reference internal" href="bibliography.html#id6" title="Cynthia Dwork, Krishnaram Kenthapadi, Frank McSherry, Ilya Mironov, and Moni Naor. Our data, ourselves: privacy via distributed noise generation. In Serge Vaudenay, editor, Advances in Cryptology - EUROCRYPT 2006, 486–503. Berlin, Heidelberg, 2006. Springer Berlin Heidelberg.">5</a>]</span>，也称<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私，其定义如下所述：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-329ee32b-7ae0-42f9-ae6c-ebd44e1fdd77">
-<span class="eqno">(6)<a class="headerlink" href="#equation-329ee32b-7ae0-42f9-ae6c-ebd44e1fdd77" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2f0f6328-b818-40c0-b758-befca03368c4">
+<span class="eqno">(6)<a class="headerlink" href="#equation-2f0f6328-b818-40c0-b758-befca03368c4" title="公式的永久链接">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = S] \leq e^\epsilon \mathsf{Pr}[F(x') = s] + \delta
 \end{align}\]</div>
 <p>新出现的隐私参数<span class="math notranslate nohighlight">\(\delta\)</span>表示不满足此近似差分隐私定义的”失败概率”。我们有<span class="math notranslate nohighlight">\(1-\delta\)</span>的概率获得等价于纯粹差分隐私的隐私保护程度。同时，我们有<span class="math notranslate nohighlight">\(\delta\)</span>的概率不满足隐私参数为<span class="math notranslate nohighlight">\(\epsilon\)</span>的纯粹差分隐私。换句话说：</p>
@@ -522,8 +519,8 @@ title="Print to PDF"
 <div class="section" id="id4">
 <h2>高斯机制<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
 <p>可以用高斯机制替代拉普拉斯机制。高斯机制增加的不是拉普拉斯噪声，而是高斯噪声。高斯机制<em>无法</em>满足纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私，但可以满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私。对于一个返回数值的函数<span class="math notranslate nohighlight">\(f(x)\)</span>，应用下述定义的高斯机制，可以得到满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私的<span class="math notranslate nohighlight">\(F(x)\)</span>：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-829836ab-dc04-4a56-add0-64c5c546e402">
-<span class="eqno">(7)<a class="headerlink" href="#equation-829836ab-dc04-4a56-add0-64c5c546e402" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e87b87b1-3dc3-4a05-b69c-54b54f0af8b3">
+<span class="eqno">(7)<a class="headerlink" href="#equation-e87b87b1-3dc3-4a05-b69c-54b54f0af8b3" title="公式的永久链接">#</a></span>\[\begin{align}
 F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 \text{where } \sigma^2 = \frac{2s^2 \log(1.25/\delta)}{\epsilon^2}
 \end{align}\]</div>
@@ -556,8 +553,8 @@ F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 <h2>向量值函数及其敏感度<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h2>
 <p>截至目前，我们考虑的都是实值函数（即输出总为单一实数的函数）。此类函数的形式为：<span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>。拉普拉斯机制和高斯机制都可以扩展到形式为：<span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}^k\)</span>的<em>向量值</em>函数，即输出为实数向量的函数。我们可以将直方图看作向量值函数，其返回的向量表示直方图各个分箱的计数值。</p>
 <p>我们在前面提到，函数的<em>敏感度</em>定义为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9f72f86d-2669-4626-96e4-485b0754c527">
-<span class="eqno">(8)<a class="headerlink" href="#equation-9f72f86d-2669-4626-96e4-485b0754c527" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-703fd7b3-23a9-4792-a5e5-5e11b7841d99">
+<span class="eqno">(8)<a class="headerlink" href="#equation-703fd7b3-23a9-4792-a5e5-5e11b7841d99" title="公式的永久链接">#</a></span>\[\begin{align}
 GS(f) = \max_{d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>我们如何定义向量值函数的敏感度呢？</p>
@@ -571,14 +568,14 @@ GS(f) = \max_{d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 <div class="section" id="id6">
 <h3>L1和L2敏感度<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h3>
 <p>向量值函数<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L1\)</span>敏感度为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2f570a01-b686-4a7d-94bc-c4f36104a59c">
-<span class="eqno">(9)<a class="headerlink" href="#equation-2f570a01-b686-4a7d-94bc-c4f36104a59c" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2c9f5eae-7a4c-41ec-b07f-f2e2b08670de">
+<span class="eqno">(9)<a class="headerlink" href="#equation-2c9f5eae-7a4c-41ec-b07f-f2e2b08670de" title="公式的永久链接">#</a></span>\[\begin{align}
 GS(f) = \max_{d(x,x') \leq 1} \lVert f(x) - f(x') \rVert_1
 \end{align}\]</div>
 <p>此敏感度等于向量各个元素敏感度的和。举例来说，如果我们定义了一个向量值函数<span class="math notranslate nohighlight">\(f\)</span>，其返回一个长度为<span class="math notranslate nohighlight">\(k\)</span>的向量，且向量中各个元素的敏感度均为1，则<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L1\)</span>敏感度为<span class="math notranslate nohighlight">\(k\)</span>。</p>
 <p>类似地，向量值函数<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L2\)</span>敏感度为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-78ecb220-7367-4ee2-9861-32da44d6d431">
-<span class="eqno">(10)<a class="headerlink" href="#equation-78ecb220-7367-4ee2-9861-32da44d6d431" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c6f412f1-a5e7-4829-bfbe-ca0b6a200224">
+<span class="eqno">(10)<a class="headerlink" href="#equation-c6f412f1-a5e7-4829-bfbe-ca0b6a200224" title="公式的永久链接">#</a></span>\[\begin{align}
 GS_2(f) = \max_{d(x,x') \leq 1} \lVert f(x) - f(x') \rVert_2
 \end{align}\]</div>
 <p>同样是上述的例子，向量值函数<span class="math notranslate nohighlight">\(f\)</span>返回一个长度为<span class="math notranslate nohighlight">\(k\)</span>的向量，且向量中各个元素的敏感度均为1，则<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L2\)</span>敏感度为<span class="math notranslate nohighlight">\(\sqrt{k}\)</span>。对于长向量，<span class="math notranslate nohighlight">\(L2\)</span>敏感度显然比<span class="math notranslate nohighlight">\(L1\)</span>敏感度低得多！在机器学习算法（返回的向量有时包含成千上万个元素）等应用中，<span class="math notranslate nohighlight">\(L2\)</span>敏感度<em>显著</em>低于<span class="math notranslate nohighlight">\(L1\)</span>敏感度。</p>
@@ -596,8 +593,8 @@ GS_2(f) = \max_{d(x,x') \leq 1} \lVert f(x) - f(x') \rVert_2
 <h2>灾难机制<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h2>
 <p><span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私定义称，满足此差分隐私定义的机制必须以<span class="math notranslate nohighlight">\(1-\delta\)</span>的概率”表现良好”。但这也意味着此机制可以有<span class="math notranslate nohighlight">\(\delta\)</span>的概率执行任何操作。”失败概率”的存在令人无比担忧，因为满足宽松定义的差分隐私机制总可能（即使发生的概率很低）给出糟糕的输出结果。</p>
 <p>考虑如下机制，我们称之为<em>灾难机制</em>（Catastrophe Mechanism）：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1468da13-8ee9-4f7b-8276-aee94ebdbf97">
-<span class="eqno">(11)<a class="headerlink" href="#equation-1468da13-8ee9-4f7b-8276-aee94ebdbf97" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-27aab52b-7fd6-45ce-89e6-b1a74b4a97b0">
+<span class="eqno">(11)<a class="headerlink" href="#equation-27aab52b-7fd6-45ce-89e6-b1a74b4a97b0" title="公式的永久链接">#</a></span>\[\begin{align}
 F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
 &amp;\text{如果 } r &lt; \delta, \text{返回 } x\\
 &amp;\text{否则，返回 } q(x) + \text{Lap}(s/\epsilon), \text{其中$s$是$q$的敏感度}\\
@@ -627,7 +624,7 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.060770331200287
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.91991485674546
 </pre></div>
 </div>
 </div>
@@ -639,13 +636,13 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
 <li><p>如果<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合<span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span>中的每一个机制<span class="math notranslate nohighlight">\(m_i\)</span>都满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私</p></li>
 <li><p>则对于任意<span class="math notranslate nohighlight">\(\delta \geq 0\)</span>，整个<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合满足<span class="math notranslate nohighlight">\((\epsilon', \delta')\)</span>-差分隐私，其中：</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-7888af32-0288-4bb0-a0d5-d14083be63a1">
-<span class="eqno">(12)<a class="headerlink" href="#equation-7888af32-0288-4bb0-a0d5-d14083be63a1" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-30045cac-1a8f-4c44-8223-c2173e96a45e">
+<span class="eqno">(12)<a class="headerlink" href="#equation-30045cac-1a8f-4c44-8223-c2173e96a45e" title="公式的永久链接">#</a></span>\[\begin{align}
 \epsilon' = 2\epsilon \sqrt{2k \log(1/\delta')}
 \end{align}\]</div>
 <p>根据前面的例子，将<span class="math notranslate nohighlight">\(\epsilon = 1\)</span>代入到表达式中，并设置<span class="math notranslate nohighlight">\(\delta' = 10^{-5}\)</span>，我们有：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6278d427-8d3b-46a1-8e75-592b6d4de089">
-<span class="eqno">(13)<a class="headerlink" href="#equation-6278d427-8d3b-46a1-8e75-592b6d4de089" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9f9482fd-d181-4d56-8303-5352a2c6a666">
+<span class="eqno">(13)<a class="headerlink" href="#equation-9f9482fd-d181-4d56-8303-5352a2c6a666" title="公式的永久链接">#</a></span>\[\begin{align}
 \epsilon' =&amp; 2 \sqrt{1000 \log(100000)}\\
 \approx&amp; 214.59
 \end{align}\]</div>
@@ -694,8 +691,8 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
 <li><p>如果<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合<span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span>中的每个机制<span class="math notranslate nohighlight">\(m_i\)</span>都满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私</p></li>
 <li><p>则对于任意<span class="math notranslate nohighlight">\(\delta' \geq 0\)</span>，整个<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合都满足<span class="math notranslate nohighlight">\((\epsilon', k\delta + \delta')\)</span>-差分隐私，其中：</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-48f7dfa6-d7d6-4704-9cbe-1330975224c6">
-<span class="eqno">(14)<a class="headerlink" href="#equation-48f7dfa6-d7d6-4704-9cbe-1330975224c6" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-867188f0-3033-44f2-af08-1587476e9634">
+<span class="eqno">(14)<a class="headerlink" href="#equation-867188f0-3033-44f2-af08-1587476e9634" title="公式的永久链接">#</a></span>\[\begin{align}
 \epsilon' = 2\epsilon \sqrt{2k \log(1/\delta')}
 \end{align}\]</div>
 <p>与前面的描述相比，唯一的区别是组合机制的失败参数<span class="math notranslate nohighlight">\(\delta\)</span>，即这里的失败参数包含额外的<span class="math notranslate nohighlight">\(k\delta\)</span>项。当待组合的机制满足纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私时，我们有<span class="math notranslate nohighlight">\(\delta = k\delta = 0\)</span>。两种描述在纯粹差分隐私下得到的结果一致。</p>
