@@ -2,7 +2,7 @@
 
 This is the source repository for the book "Programming Differential Privacy." You can find the book online [here](https://uvm-plaid.github.io/programming-dp).
 
-这是教材《动手学深度学习（Programming Differential Privacy）》的源代码仓库。你可以[在此](https://uvm-plaid.github.io/programming-dp)在线阅读本教材。
+这是教材《动手学差分隐私（Programming Differential Privacy）》的源代码仓库。你可以[在此](https://uvm-plaid.github.io/programming-dp)在线阅读本教材。
 
 ## 声明（Declaration）
 
