@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes &#8212; Programming Differential Privacy</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/cover.html">
+   Programming Differential Privacy
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch1.html">
+   De-identification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch2.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Anonymity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch3.html">
+   Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch4.html">
+   Properties of Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch5.html">
+   Sensitivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch6.html">
+   Approximate Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch7.html">
+   Local Sensitivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch8.html">
+   Variants of Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch9.html">
+   The Exponential Mechanism
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch10.html">
+   The Sparse Vector Technique
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch11.html">
+   Exercises in Algorithm Design
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch12.html">
+   Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch13.html">
+   Local Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch14.html">
+   Synthetic Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/notes.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="notes">
+<h1>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h1>
+<p>To build the book:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">build</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>To publish the html:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ghp</span><span class="o">-</span><span class="kn">import</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="n">p</span> <span class="o">-</span><span class="n">f</span> <span class="n">_build</span><span class="o">/</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>To generate latex:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">build</span> <span class="o">.</span> <span class="o">--</span><span class="n">builder</span> <span class="n">latex</span>
+</pre></div>
+</div>
+<p>To get decent latex output, add this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">PassOptionsToPackage</span><span class="p">{</span><span class="n">svgnames</span><span class="p">}{</span><span class="n">xcolor</span><span class="p">}</span>
+<span class="o">...</span>
+\<span class="n">sphinxsetup</span><span class="p">{</span><span class="o">%</span>
+  <span class="n">verbatimwithframe</span><span class="o">=</span><span class="n">false</span><span class="p">,</span>
+  <span class="n">VerbatimColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">OldLace</span><span class="p">},</span>
+  <span class="n">TitleColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">DarkGoldenrod</span><span class="p">},</span>
+  <span class="n">hintBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">LightCoral</span><span class="p">},</span>
+  <span class="n">attentionborder</span><span class="o">=</span><span class="mi">3</span><span class="n">pt</span><span class="p">,</span>
+  <span class="n">attentionBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Crimson</span><span class="p">},</span>
+  <span class="n">attentionBgColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">FloralWhite</span><span class="p">},</span>
+  <span class="n">noteborder</span><span class="o">=</span><span class="mi">2</span><span class="n">pt</span><span class="p">,</span>
+  <span class="n">noteBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Olive</span><span class="p">},</span>
+  <span class="n">cautionborder</span><span class="o">=</span><span class="mi">3</span><span class="n">pt</span><span class="p">,</span>
+  <span class="n">cautionBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Cyan</span><span class="p">},</span>
+  <span class="n">cautionBgColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">LightCyan</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>Or:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">PassOptionsToPackage</span><span class="p">{</span><span class="n">svgnames</span><span class="p">}{</span><span class="n">xcolor</span><span class="p">}</span>
+<span class="o">...</span>
+\<span class="n">sphinxsetup</span><span class="p">{</span><span class="o">%</span>
+<span class="o">%</span>  <span class="n">verbatimwithframe</span><span class="o">=</span><span class="n">false</span><span class="p">,</span>
+  <span class="n">VerbatimColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Ivory</span><span class="p">},</span>
+  <span class="n">TitleColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">DarkGoldenrod</span><span class="p">},</span>
+  <span class="n">hintBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">LightCoral</span><span class="p">},</span>
+  <span class="n">attentionborder</span><span class="o">=</span><span class="mi">3</span><span class="n">pt</span><span class="p">,</span>
+  <span class="n">attentionBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Crimson</span><span class="p">},</span>
+  <span class="n">attentionBgColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">FloralWhite</span><span class="p">},</span>
+  <span class="n">noteborder</span><span class="o">=</span><span class="mi">2</span><span class="n">pt</span><span class="p">,</span>
+  <span class="n">noteBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Olive</span><span class="p">},</span>
+  <span class="n">cautionborder</span><span class="o">=</span><span class="mi">3</span><span class="n">pt</span><span class="p">,</span>
+  <span class="n">cautionBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Cyan</span><span class="p">},</span>
+  <span class="n">cautionBgColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">LightCyan</span><span class="p">}}</span>
+\<span class="n">setkeys</span><span class="p">{</span><span class="n">Gin</span><span class="p">}{</span><span class="n">width</span><span class="o">=.</span><span class="mi">60</span>\<span class="n">csname</span> <span class="n">Gin</span><span class="nd">@nat@width</span>\<span class="n">endcsname</span><span class="p">,</span><span class="n">keepaspectratio</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>And also:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    \makeatletter
+    \usepackage{ifthen}
+    \usepackage{tcolorbox}
+    \tcbuselibrary{skins}
+    \renewenvironment{sphinxadmonition}[2]
+    {
+       %Green colored box for Conditions
+       \ifthenelse{\equal{#2}{Conditions}}{
+                         \medskip
+                         \begin{tcolorbox}[before={}, enhanced, colback=green!10, 
+                                           colframe=green!65!black,fonttitle=\bfseries,
+                                           title=\sphinxstrong{#2}, arc=0mm, drop fuzzy shadow=blue!50!black!50!white]}{
+
+           %Blue colored box for Notes
+           \ifthenelse{\equal{#2}{Note:}}{
+                             \medskip
+                             \begin{tcolorbox}[before={}, enhanced, colback=blue!5!white, 
+                                               colframe=blue!75!black,fonttitle=\bfseries,
+                                               title=\sphinxstrong{#2}, arc=0mm, drop fuzzy shadow=blue!50!black!50!white]}{
+               %Orange colored box for Warnings 
+               \ifthenelse{\equal{#2}{Warning:}}{
+                             \medskip
+                             \begin{tcolorbox}[before={}, enhanced, colback=orange!5!white, 
+                                               colframe=orange!75!black,fonttitle=\bfseries,
+                                               title=\sphinxstrong{#2}, arc=0mm, drop fuzzy shadow=blue!50!black!50!white]}{
+
+                   %Red colored box for everthing else
+                   \medskip
+                   \begin{tcolorbox}[before={}, enhanced, colback=red!5!white, 
+                                 colframe=red!75!black, fonttitle=\bfseries,
+                                 title=\sphinxstrong{#2}, arc=0mm, drop fuzzy shadow=blue!50!black!50!white]}
+           }
+       }
+    }
+    {
+       \end{tcolorbox}\par\bigskip
+    } 
+
+    \makeatother
+</pre></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Joseph P. Near and Chiké Abuah<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

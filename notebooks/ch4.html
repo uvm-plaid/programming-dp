@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html lang="zh_CN">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>差分隐私的性质 &#8212; 动手学差分隐私</title>
+    <title>Properties of Differential Privacy &#8212; Programming Differential Privacy</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -40,7 +40,6 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/translations.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -50,12 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="敏感度" href="ch5.html" />
-    <link rel="prev" title="差分隐私" href="ch3.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sensitivity" href="ch5.html" />
+    <link rel="prev" title="Differential Privacy" href="ch3.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -74,10 +73,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -87,15 +86,20 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   引言
+  <a class="reference internal" href="cover.html">
+   Programming Differential Privacy
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="ch1.html">
-   去标识
+   De-identification
   </a>
  </li>
  <li class="toctree-l1">
@@ -103,72 +107,72 @@
    <span class="math notranslate nohighlight">
     \(k\)
    </span>
-   -匿名性
+   -Anonymity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch3.html">
-   差分隐私
+   Differential Privacy
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   差分隐私的性质
+   Properties of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch5.html">
-   敏感度
+   Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch6.html">
-   近似差分隐私
+   Approximate Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch7.html">
-   局部敏感度
+   Local Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch8.html">
-   差分隐私变体
+   Variants of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch9.html">
-   指数机制
+   The Exponential Mechanism
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch10.html">
-   稀疏向量技术
+   The Sparse Vector Technique
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch11.html">
-   算法设计练习
+   Exercises in Algorithm Design
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch12.html">
-   机器学习
+   Machine Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch13.html">
-   本地差分隐私
+   Local Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch14.html">
-   合成数据
+   Synthetic Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   参考文献
+   Bibliography
   </a>
  </li>
 </ul>
@@ -260,30 +264,30 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   串行组合性
+  <a class="reference internal nav-link" href="#sequential-composition">
+   Sequential Composition
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   并行组合性
+  <a class="reference internal nav-link" href="#parallel-composition">
+   Parallel Composition
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     直方图
+    <a class="reference internal nav-link" href="#histograms">
+     Histograms
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     列联表
+    <a class="reference internal nav-link" href="#contingency-tables">
+     Contingency Tables
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id8">
-   后处理性
+  <a class="reference internal nav-link" href="#post-processing">
+   Post-processing
   </a>
  </li>
 </ul>
@@ -297,65 +301,66 @@
         
               <div>
                 
-  <div class="section" id="id1">
-<h1>差分隐私的性质<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<div class="admonition- admonition">
-<p class="admonition-title">学习目标</p>
-<p>阅读本章后，您将能够：</p>
+  <div class="section" id="properties-of-differential-privacy">
+<h1>Properties of Differential Privacy<a class="headerlink" href="#properties-of-differential-privacy" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
 <ul class="simple">
-<li><p>解释串行组合性、并行组合性和后处理性的概念</p></li>
-<li><p>计算应用多种差分隐私机制后的累计隐私消耗量</p></li>
-<li><p>确定何种情况下可以使用并行组合性</p></li>
+<li><p>Explain the concepts of sequential composition, parallel composition, and post processing</p></li>
+<li><p>Calculate the cumulative privacy cost of multiple applications of a differential privacy mechanism</p></li>
+<li><p>Determine when the use of parallel composition is allowed</p></li>
 </ul>
 </div>
-<p>本章描述了由差分隐私定义引出的三个重要的差分隐私性质。这些性质将帮助我们设计出满足差分隐私的可用算法，并确保这些算法可以输出相对准确的结果。这三个性质是：</p>
+<p>This chapter describes three important properties of differentially private mechanisms that arise from the definition of differential privacy. These properties will help us to design useful algorithms that satisfy differential privacy, and ensure that those algorithms provide accurate answers. The three properties are:</p>
 <ul class="simple">
-<li><p>串行组合性</p></li>
-<li><p>并行组合性</p></li>
-<li><p>后处理性</p></li>
+<li><p>Sequential composition</p></li>
+<li><p>Parallel composition</p></li>
+<li><p>Post processing</p></li>
 </ul>
-<div class="section" id="id2">
-<h2>串行组合性<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
-<p>差分隐私的第一个重要性质是<em>串行组合性</em>（Sequential Composition） <span id="id3">[<a class="reference internal" href="bibliography.html#id8"><span>4</span></a>,<a class="reference internal" href="bibliography.html#id6"><span>5</span></a>]</span>。在相同的输入数据上发布多次差分隐私机制保护下的结果时，串行组合性给出了总隐私消耗量。用数学语言描述，差分隐私串行组合性定理称：</p>
+<div class="section" id="sequential-composition">
+<h2>Sequential Composition<a class="headerlink" href="#sequential-composition" title="Permalink to this headline">¶</a></h2>
+<p>The first major property of differential privacy is <em>sequential composition</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id7"><span>4</span></a>,<a class="reference internal" href="bibliography.html#id5"><span>5</span></a>]</span>, which bounds the total privacy cost of releasing multiple results of differentially private mechanisms on the same input data. Formally, the sequential composition theorem for differential privacy says that:</p>
 <ul class="simple">
-<li><p>如果<span class="math notranslate nohighlight">\(F_1(x)\)</span>满足<span class="math notranslate nohighlight">\(\epsilon_1\)</span>-差分隐私</p></li>
-<li><p>且<span class="math notranslate nohighlight">\(F_2(x)\)</span>满足<span class="math notranslate nohighlight">\(\epsilon_1\)</span>-差分隐私</p></li>
-<li><p>则同时发布两个结果的机制<span class="math notranslate nohighlight">\(G(x) = (F_1(x), F_2(x))\)</span>满足<span class="math notranslate nohighlight">\(\epsilon_1+\epsilon_2\)</span>-差分隐私。</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(F_1(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon_1\)</span>-differential privacy</p></li>
+<li><p>And <span class="math notranslate nohighlight">\(F_2(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon_2\)</span>-differential privacy</p></li>
+<li><p>Then the mechanism <span class="math notranslate nohighlight">\(G(x) = (F_1(x), F_2(x))\)</span> which releases both results satisfies <span class="math notranslate nohighlight">\(\epsilon_1+\epsilon_2\)</span>-differential privacy</p></li>
 </ul>
-<p>串行组合性是差分隐私的一个重要特性。我们可以基于串行组合性出设计支持多次问询的差分隐私算法。当在单个数据集上独立执行多次数据分析时，串行组合性同样能起到重要的作用。每个个体可以利用此特性度量出参与所有这些数据分析任务时所产生的<em>总</em>隐私消耗量。由串行组合性得到的隐私消耗量是一个<em>上界</em>。给定两个满足差分隐私的数据发布过程，其实际隐私消耗量可能比串行组合性给出的隐私消耗量小，但不可能大于此隐私消耗量。</p>
-<p>给定差分隐私保护下的两次输出，当我们考虑两次输出平均值的分布时，我们就能发现把<span class="math notranslate nohighlight">\(\epsilon\)</span>的值”加起来”的原则是有理有据的。我们来看一些例子。</p>
+<p>Sequential composition is a vital property of differential privacy because it enables the design of algorithms that consult the data more than once. Sequential composition is also important when multiple separate analyses are performed on a single dataset, since it allows individuals to bound the <em>total</em> privacy cost they incur by participating in all of these analyses.
+The bound on privacy cost given by sequential composition is an <em>upper</em> bound - the actual privacy cost of two particular differentially private releases may be smaller than this, but never larger.</p>
+<p>The principle that the <span class="math notranslate nohighlight">\(\epsilon\)</span>s “add up” makes sense if we examine the distribution of outputs from a mechanism which averages two differentially private results together. Let’s look at some examples.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon1</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">epsilon2</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">epsilon_total</span> <span class="o">=</span> <span class="mi">2</span>
 
-<span class="c1"># 满足1-差分隐私</span>
+<span class="c1"># satisfies 1-differential privacy</span>
 <span class="k">def</span> <span class="nf">F1</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon1</span><span class="p">)</span>
 
-<span class="c1"># 满足1-差分隐私</span>
+<span class="c1"># satisfies 1-differential privacy</span>
 <span class="k">def</span> <span class="nf">F2</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon2</span><span class="p">)</span>
 
-<span class="c1"># 满足2-差分隐私</span>
+<span class="c1"># satisfies 2-differential privacy</span>
 <span class="k">def</span> <span class="nf">F3</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon_total</span><span class="p">)</span>
 
-<span class="c1"># 根据串行组合性，满足2-差分隐私</span>
+<span class="c1"># satisfies 2-differential privacy, by sequential composition</span>
 <span class="k">def</span> <span class="nf">F_combined</span><span class="p">():</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">F1</span><span class="p">()</span> <span class="o">+</span> <span class="n">F2</span><span class="p">())</span> <span class="o">/</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>我们绘制出<code class="docutils literal notranslate"><span class="pre">F1</span></code>和<code class="docutils literal notranslate"><span class="pre">F2</span></code>的输出概率分布图。可以看出，这两个输出概率分布看起来非常相似。</p>
+<p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F2</span></code>, we see that the distributions of their outputs look pretty similar.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 绘制F1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot F1</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">F1</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;F1&#39;</span><span class="p">);</span>
 
-<span class="c1"># 绘制F2（看起来应该与F1相同）</span>
+<span class="c1"># plot F2 (should look the same)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">F2</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;F2&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
@@ -365,13 +370,13 @@
 <img alt="../_images/ch4_6_0.png" src="../_images/ch4_6_0.png" />
 </div>
 </div>
-<p>我们绘制出<code class="docutils literal notranslate"><span class="pre">F1</span></code>和<code class="docutils literal notranslate"><span class="pre">F3</span></code>的输出概率分布图。可以看出，<code class="docutils literal notranslate"><span class="pre">F3</span></code>的输出概率分布看起来比<code class="docutils literal notranslate"><span class="pre">F1</span></code>的更”尖”，这是因为<span class="math notranslate nohighlight">\(\epsilon\)</span>取值越大意味着隐私保护程度越低，因此输出结果远离真实结果的可能性也就越小。</p>
+<p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F3</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier” than that of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, because its higher <span class="math notranslate nohighlight">\(\epsilon\)</span> implies less privacy, and therefore a smaller liklihood of getting results far from the true answer.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 绘制F1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot F1</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">F1</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;F1&#39;</span><span class="p">);</span>
 
-<span class="c1"># 绘制F3（看起来应该比F1更&quot;尖&quot;）</span>
+<span class="c1"># plot F3 (should look &quot;pointier&quot;)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">F3</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;F3&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
@@ -381,13 +386,13 @@
 <img alt="../_images/ch4_8_0.png" src="../_images/ch4_8_0.png" />
 </div>
 </div>
-<p>我们再绘制出<code class="docutils literal notranslate"><span class="pre">F</span></code>和<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出概率分布图。可以看出，<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出概率分布图更尖。这意味着<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出结果比<code class="docutils literal notranslate"><span class="pre">F1</span></code>的输出结果更准确，对应的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值一定更大（即<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的隐私保护程度比<code class="docutils literal notranslate"><span class="pre">F1</span></code>更低）。</p>
+<p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F_combined</span></code> is pointier. This means its answers are more accurate than those of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, so it makes sense that its <span class="math notranslate nohighlight">\(\epsilon\)</span> must be higher (i.e. it yields less privacy than <code class="docutils literal notranslate"><span class="pre">F1</span></code>).</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 绘制F1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot F1</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">F1</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;F1&#39;</span><span class="p">);</span>
 
-<span class="c1"># 绘制F_combined（看起来应该比F1更&quot;尖&quot;）</span>
+<span class="c1"># plot F_combined (should look &quot;pointier&quot;)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">F_combined</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;F_combined&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
@@ -397,13 +402,13 @@
 <img alt="../_images/ch4_10_0.png" src="../_images/ch4_10_0.png" />
 </div>
 </div>
-<p>那<code class="docutils literal notranslate"><span class="pre">F3</span></code>和<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>呢？回想一下，这两种机制的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值相等，<span class="math notranslate nohighlight">\(\epsilon\)</span>都等于2。他们的输出概率分布看起来应该也相同才对。</p>
+<p>What about <code class="docutils literal notranslate"><span class="pre">F3</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>? Recall that the <span class="math notranslate nohighlight">\(\epsilon\)</span> values for these two mechanisms are the same - both have an <span class="math notranslate nohighlight">\(\epsilon\)</span> of 2. Their output distributions should look the same.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 绘制F3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot F1</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">F3</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;F3&#39;</span><span class="p">);</span>
 
-<span class="c1"># 绘制F_combined（看起来应该与F3相同）</span>
+<span class="c1"># plot F_combined (should look &quot;pointier&quot;)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">F_combined</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;F_combined&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
@@ -413,21 +418,21 @@
 <img alt="../_images/ch4_12_0.png" src="../_images/ch4_12_0.png" />
 </div>
 </div>
-<p>实际上，<code class="docutils literal notranslate"><span class="pre">F3</span></code>看起来更”尖”！为什么会这样呢？请记住，串行组合性给出了多次发布后总<span class="math notranslate nohighlight">\(\epsilon\)</span>的<em>上界</em>，实际发布的累积隐私消耗量可能会更低一些。这也是<code class="docutils literal notranslate"><span class="pre">F_3</span></code>看起来更”尖”，而<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>看起来更”平”的原因：实际隐私消耗量似乎比串行组合性给出的<span class="math notranslate nohighlight">\(\epsilon\)</span>上界要低一些。当控制总隐私消耗量时，串行组合性是一个极为有用的方法。我们后面将会通过各种不同的方式应用串行组合性。但请特别注意，串行组合性给出的隐私消耗量不一定是严格准确的，而是一个上界。</p>
+<p>In fact, <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier”! Why does this happen? Remember that sequential composition yields an <em>upper</em> bound on the total <span class="math notranslate nohighlight">\(\epsilon\)</span> of several releases, the actual cumulative impact on privacy might be lower. That’s the case here - the actual privacy loss in this case appears to be somewhat lower than the upper bound <span class="math notranslate nohighlight">\(\epsilon\)</span> determined by sequential composition. Sequential composition is an extremely useful way to control total privacy cost, and we will see it used in many different ways, but keep in mind that it is not necessarily an exact bound.</p>
 </div>
-<div class="section" id="id4">
-<h2>并行组合性<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
-<p>差分隐私的第二个重要性质为<em>并行组合性</em>（Parallel Composition） <span id="id5">[<a class="reference internal" href="bibliography.html#id5"><span>6</span></a>]</span>。并行组合性是计算多次数据发布总隐私消耗量的第二种方法，可以看成是串行组合性的替代方法。并行组合性的基本思想是：将数据集拆分为互不相交的子数据块，在子数据块上分别应用相应的差分隐私机制。由于子数据块互不相交，每个个体的数据”仅可能”出现在一个子数据块中。因此，即使把数据集划分为<span class="math notranslate nohighlight">\(k\)</span>个子数据块，并在<span class="math notranslate nohighlight">\(k\)</span>个子数据块上分别应用相同的差分隐私机制（这意味着我们在数据集上应用了<span class="math notranslate nohighlight">\(k\)</span>次差分隐私机制），我们再每个<em>个体</em>数据上仅使用了一次差分隐私机制。数学语言描述如下：</p>
+<div class="section" id="parallel-composition">
+<h2>Parallel Composition<a class="headerlink" href="#parallel-composition" title="Permalink to this headline">¶</a></h2>
+<p>The second important property of differential privacy is called <em>parallel composition</em> <span id="id2">[<a class="reference internal" href="bibliography.html#id4"><span>6</span></a>]</span>. Parallel composition can be seen as an alternative to sequential composition - a second way to calculate a bound on the total privacy cost of multiple data releases. Parallel composition is based on the idea of splitting your dataset into disjoint chunks and running a differentially private mechanism on each chunk separately. Since the chunks are disjoint, each individual’s data appears in <em>exactly</em> one chunk - so even if there are <span class="math notranslate nohighlight">\(k\)</span> chunks in total (and therefore <span class="math notranslate nohighlight">\(k\)</span> runs of the mechanism), the mechanism runs exactly once on the data of each <em>individual</em>. Formally,</p>
 <ul class="simple">
-<li><p>如果<span class="math notranslate nohighlight">\(F(x)\)</span>满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私性</p></li>
-<li><p>我们将数据集<span class="math notranslate nohighlight">\(X\)</span>切分为<span class="math notranslate nohighlight">\(k\)</span>个互不相交的子数据块<span class="math notranslate nohighlight">\(x_1 \cup ... \cup x_k = X\)</span></p></li>
-<li><p>则发布所有结果<span class="math notranslate nohighlight">\(F(x_1), ..., F(x_k)\)</span>的机制满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私性</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(F(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy</p></li>
+<li><p>And we split a dataset <span class="math notranslate nohighlight">\(X\)</span> into <span class="math notranslate nohighlight">\(k\)</span> disjoint chunks such that <span class="math notranslate nohighlight">\(x_1 \cup ... \cup x_k = X\)</span></p></li>
+<li><p>Then the mechanism which releases all of the results <span class="math notranslate nohighlight">\(F(x_1), ..., F(x_k)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy</p></li>
 </ul>
-<p>注意到，并行组合性给出的隐私消耗量比串行组合性要好得多。如果我们运行<span class="math notranslate nohighlight">\(k\)</span>次<span class="math notranslate nohighlight">\(F\)</span>，串行组合性告诉我们这个过程满足<span class="math notranslate nohighlight">\(k \epsilon\)</span>-差分隐私性，而并行组合性告诉我们总隐私消耗量仅为<span class="math notranslate nohighlight">\(\epsilon\)</span>。</p>
-<p>并行组合性的数学定义与我们的直觉相匹配。如果每个个体只为数据集<span class="math notranslate nohighlight">\(X\)</span>贡献一行数据，则这行数据<em>仅可能</em>出现在<span class="math notranslate nohighlight">\(x_1, ..., x_k\)</span>的一个子数据块中。这意味着<span class="math notranslate nohighlight">\(F\)</span>只能”看到”<em>一次</em>此个体的数据。因此，将此个体的隐私消耗量设置为<span class="math notranslate nohighlight">\(\epsilon\)</span>是合理的。对于任意一个个体，<span class="math notranslate nohighlight">\(F\)</span>都只能”看到”<em>一次</em>此个体的数据，因此每个个体的隐私消耗量都等于<span class="math notranslate nohighlight">\(\epsilon\)</span>。</p>
-<div class="section" id="id6">
-<h3>直方图<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
-<p><em>直方图</em>（Histogram）是数据集的一种分析方法。直方图根据数据的某个属性将数据集划分到各个”桶”中，并统计每个桶所包含的数据行数。举个例子，直方图可以统计数据集中达到特定教育水平的人数。</p>
+<p>Note that this is a much better bound than sequential composition would give. Since we run <span class="math notranslate nohighlight">\(F\)</span> <span class="math notranslate nohighlight">\(k\)</span> times, sequential composition would say that this procedure satisfies <span class="math notranslate nohighlight">\(k\epsilon\)</span>-differential privacy. Parallel composition allows us to say that the total privacy cost is just <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
+<p>The formal definition matches up with our intuition - if each participant in the dataset contributes one row to <span class="math notranslate nohighlight">\(X\)</span>, then this row will appear in <em>exactly</em> one of the chunks <span class="math notranslate nohighlight">\(x_1, ..., x_k\)</span>. That means <span class="math notranslate nohighlight">\(F\)</span> will only “see” this participant’s data <em>one time</em>, meaning a privacy cost of <span class="math notranslate nohighlight">\(\epsilon\)</span> is appropriate for that individual. Since this property holds for all individuals, the privacy cost is <span class="math notranslate nohighlight">\(\epsilon\)</span> for everyone.</p>
+<div class="section" id="histograms">
+<h3>Histograms<a class="headerlink" href="#histograms" title="Permalink to this headline">¶</a></h3>
+<p>In our context, a <em>histogram</em> is an analysis of a dataset which splits the dataset into “bins” based on the value of one of the data attributes, and counts the number of rows in each bin. For example, a histogram might count the number of people in the dataset who achieved a particular educational level.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;adult_with_pii.csv&quot;</span><span class="p">)</span>
@@ -482,12 +487,12 @@
 </table>
 </div></div></div>
 </div>
-<p>直方图是差分隐私领域中一个非常有趣的实例，因为直方图天生满足并行组合性。直方图的每个”桶”都与数据的某个属性值对应（例如<code class="docutils literal notranslate"><span class="pre">'Education'</span> <span class="pre">==</span> <span class="pre">'HS-grad'</span></code>）。由于单行数据不可能同时拥有<em>两个</em>属性值，因此当通过这种方式定义桶时，可以<em>保证</em>各个桶包含的数据一定是互不相交的。这样一来，直方图满足了并行组合性的应用条件，我们可以应用一个差分隐私机制发布<em>所有</em>桶中数据行数的计数结果，而总隐私消耗量仅为<span class="math notranslate nohighlight">\(\epsilon\)</span>。</p>
+<p>Histograms are particularly interesting for differential privacy because they automatically satisfy parallel composition. Each “bin” in a histogram is defined by a possible value for a data attribute (for example, <code class="docutils literal notranslate"><span class="pre">'Education'</span> <span class="pre">==</span> <span class="pre">'HS-grad'</span></code>). It’s impossible for a single row to have <em>two</em> values for an attribute simultaneously, so defining the bins this way <em>guarantees</em> that they will be disjoint. Thus we have satisfied the requirements for parallel composition, and we can use a differentially private mechanism to release <em>all</em> of the bin counts with a total privacy cost of just <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="c1"># 虽然我们发布了多个结果，但此次数据分析的总隐私消耗量为ε = 1</span>
+<span class="c1"># This analysis has a total privacy cost of epsilon = 1, even though we release many results!</span>
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Education&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="n">s</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -519,32 +524,32 @@
   <tbody>
     <tr>
       <th>HS-grad</th>
-      <td>10502.086396</td>
+      <td>10500.079011</td>
     </tr>
     <tr>
       <th>Some-college</th>
-      <td>7291.297297</td>
+      <td>7291.326638</td>
     </tr>
     <tr>
       <th>Bachelors</th>
-      <td>5354.984649</td>
+      <td>5355.571888</td>
     </tr>
     <tr>
       <th>Masters</th>
-      <td>1722.399910</td>
+      <td>1721.755188</td>
     </tr>
     <tr>
       <th>Assoc-voc</th>
-      <td>1381.184528</td>
+      <td>1382.600081</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
 </div>
-<div class="section" id="id7">
-<h3>列联表<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
-<p><em>列联表</em>（Contingency Table）也被称为<em>交叉列表</em>（Cross Tabulation），有时也被简称为<em>交叉表</em>（Crosstab）。可以把列联表看成一个高维直方图。列联表统计数据集中拥有多个特定属性值的数据量。在进行数据分析时，列联表通常用于展示两个变量之间的关系。例如，我们可能希望看到基于教育水平和性别这两种属性的联合统计结果：</p>
+<div class="section" id="contingency-tables">
+<h3>Contingency Tables<a class="headerlink" href="#contingency-tables" title="Permalink to this headline">¶</a></h3>
+<p>A <em>contingency table</em> or <em>cross tabulation</em> (often shortened to <em>crosstab</em>) is like a multi-dimensional histogram. It counts the frequency of rows in the dataset with particular values for more than one attribute at a time. Contingency tables are frequently used to show the relationship between two variables when analyzing data. For example, we might want to see counts based on both education level and gender:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Education&#39;</span><span class="p">],</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -609,7 +614,7 @@
 </table>
 </div></div></div>
 </div>
-<p>与我们前面已经介绍的直方图一样，数据集中的每个个体同样仅参与了列联表中的<em>一次</em>计数统计。对于任何可以用于构建列联表的属性，任何单行数据都不可能同时拥有此属性的多个属性值。</p>
+<p>Like the histogram we saw earlier, each individual in the dataset participates in exactly <em>one</em> count appearing in this table. It’s impossible for any single row to have multiple values simultaneously, for any set of data attributes considered in building the contingency table. As a result, it’s safe to use parallel composition here, too.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Education&#39;</span><span class="p">],</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">])</span>
@@ -649,47 +654,47 @@
   <tbody>
     <tr>
       <th>10th</th>
-      <td>296.136127</td>
-      <td>637.936848</td>
+      <td>295.863380</td>
+      <td>641.726775</td>
     </tr>
     <tr>
       <th>11th</th>
-      <td>431.751136</td>
-      <td>744.000424</td>
+      <td>431.457752</td>
+      <td>743.818341</td>
     </tr>
     <tr>
       <th>12th</th>
-      <td>143.968316</td>
-      <td>290.377701</td>
+      <td>142.007554</td>
+      <td>289.007022</td>
     </tr>
     <tr>
       <th>1st-4th</th>
-      <td>41.659980</td>
-      <td>120.694574</td>
+      <td>46.453134</td>
+      <td>121.412048</td>
     </tr>
     <tr>
       <th>5th-6th</th>
-      <td>84.850925</td>
-      <td>247.466093</td>
+      <td>84.192272</td>
+      <td>249.134223</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p>也可以为包含2个以上的属性生成相应的列联表。但我们要考虑一下，每次我们增加一个属性后会发生什么：每个计数结果都会变得更小。直观上看，当我们将数据集分割成更多的数据块时，每个数据块包含的数据行数会变得更少，因此所有的计数结果都会变得更小。</p>
-<p>真实计数值的缩小将对差分隐私计数结果的准确性造成巨大的影响。我们可以从信号和噪声的角度来做个类比。较大的计数结果表示一个强<em>信号</em>，不太可能被一个相对较弱的噪声（例如我们前面增加的噪声）所淹没。此时，即使我们增加了噪声，得到的计数结果也有较好的可用性。反之，较小的计数结果表示一个弱<em>信号</em>，信号强度甚至可能接近噪声量。此时，如果再增加噪声，我们就无法从结果中获得任何有用的信息了。</p>
-<p>因此，虽然并行组合性看起来为我们提供了部分”免费”的隐私保护能力（在相同隐私消耗量下可以发布更多的结果），但事实并非如此。并行组合性只是沿着不同的方向在准确性和隐私性之间进行权衡。当我们将数据集划分成更多的数据块并发布更多的结果时，每个结果的信号量也会变弱，结果的准确性也会变得更低。</p>
+<p>It’s also possible to generate contingency tables of more than 2 variables. Consider what happens each time we add a variable, though: each of the counts tends to get smaller. Intuitively, as we split the dataset into more chunks, each chunk has fewer rows in it, so all of the counts get smaller.</p>
+<p>These shrinking counts can have a significant affect on the accuracy of the differentially private results we calculate from them. If we think of things in terms of signal and noise, a large count represents a strong <em>signal</em> - it’s unlikely to be disrupted too much by relatively weak noise (like the noise we add above), and therefore the results are likely to be useful even after the noise is added. However, a small count represents a weak <em>signal</em> - potentially <em>as weak</em> as the noise itself - and after we add the noise, we won’t be able to infer anything useful from the results.</p>
+<p>So while it may seem that parallel composition gives us something “for free” (more results for the same privacy cost), that’s not really the case. Parallel composition simply moves the tradeoff between accuracy and privacy along a different axis - as we split the dataset into more chunks and release more results, each result contains a weaker signal, and so it’s less accurate.</p>
 </div>
 </div>
-<div class="section" id="id8">
-<h2>后处理性<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
-<p>我们在本章要讨论的第三个差分隐私性质称为<em>后处理性</em>（Post-processing）。此性质的基本思想非常简单：不可能通过某种方式对差分隐私保护下的数据进行后处理，来降低差分隐私的隐私保护程度。此性质的数学语言描述为：</p>
+<div class="section" id="post-processing">
+<h2>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">¶</a></h2>
+<p>The third property of differential privacy we will discuss here is called <em>post-processing</em>. The idea is simple: it’s impossible to reverse the privacy protection provided by differential privacy by post-processing the data in some way. Formally:</p>
 <ul class="simple">
-<li><p>如果<span class="math notranslate nohighlight">\(F(X)\)</span>满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私</p></li>
-<li><p>则对于任意（确定或随机）函数<span class="math notranslate nohighlight">\(g\)</span>，<span class="math notranslate nohighlight">\(g(F(X))\)</span>也满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(F(X)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy</p></li>
+<li><p>Then for any (deterministic or randomized) function <span class="math notranslate nohighlight">\(g\)</span>, <span class="math notranslate nohighlight">\(g(F(X))\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy</p></li>
 </ul>
-<p>后处理性意味着在差分隐私机制的输出结果上执行任意计算也总是安全的。任意计算均不会降低差分隐私机制所提供的隐私保护程度。特别地，我们甚至可以对计算结果进行后处理，以降低噪声量、改善输出结果（例如，对于不应该返回负数的问询，将负数回复结果替换为零）。事实上，许多复杂的差分隐私算法都会利用后处理性来降低噪声，提高输出结果的准确性。</p>
-<p>后处理性的另一个含义是，差分隐私可以抵抗基于辅助信息的隐私攻击方法。例如，函数<span class="math notranslate nohighlight">\(g\)</span>可能包含关于数据集元素的辅助信息，<span class="math notranslate nohighlight">\(g\)</span>期望利用该信息实施关联攻击。后处理性告诉我们，无论<span class="math notranslate nohighlight">\(g\)</span>中包含何种辅助信息，此攻击的效果都会被隐私参数<span class="math notranslate nohighlight">\(\epsilon\)</span>所约束。</p>
+<p>The post-processing property means that it’s always safe to perform arbitrary computations on the output of a differentially private mechanism - there’s no danger of reversing the privacy protection the mechanism has provided. In particular, it’s fine to perform post-processing that might reduce the noise or improve the signal in the mechanism’s output (e.g. replacing negative results with zeros, for queries that shouldn’t return negative results). In fact, many sophisticated differentially private algorithms make use of post-processing to reduce noise and improve the accuracy of their results.</p>
+<p>The other implication of the post-processing property is that differential privacy provides resistance against privacy attacks based on auxiliary information. For example, the function <span class="math notranslate nohighlight">\(g\)</span> might contain auxiliary information about elements of the dataset, and attempt to perform a linkage attack using this information. The post-processing property says that such an attack is limited in its effectiveness by the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>, regardless of the auxiliary information contained in <span class="math notranslate nohighlight">\(g\)</span>.</p>
 </div>
 </div>
 
@@ -718,8 +723,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="ch3.html" title="previous page">差分隐私</a>
-    <a class='right-next' id="next-link" href="ch5.html" title="next page">敏感度</a>
+    <a class='left-prev' id="prev-link" href="ch3.html" title="previous page">Differential Privacy</a>
+    <a class='right-next' id="next-link" href="ch5.html" title="next page">Sensitivity</a>
 
         </div>
         
@@ -729,7 +734,7 @@
     <div class="container">
       <p>
         
-          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+          By Joseph P. Near and Chiké Abuah<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html lang="zh_CN">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>机器学习 &#8212; 动手学差分隐私</title>
+    <title>Machine Learning &#8212; Programming Differential Privacy</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -40,7 +40,6 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/translations.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -50,12 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="本地差分隐私" href="ch13.html" />
-    <link rel="prev" title="算法设计练习" href="ch11.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Local Differential Privacy" href="ch13.html" />
+    <link rel="prev" title="Exercises in Algorithm Design" href="ch11.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -74,10 +73,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -87,15 +86,20 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   引言
+  <a class="reference internal" href="cover.html">
+   Programming Differential Privacy
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="ch1.html">
-   去标识
+   De-identification
   </a>
  </li>
  <li class="toctree-l1">
@@ -103,72 +107,72 @@
    <span class="math notranslate nohighlight">
     \(k\)
    </span>
-   -匿名性
+   -Anonymity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch3.html">
-   差分隐私
+   Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch4.html">
-   差分隐私的性质
+   Properties of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch5.html">
-   敏感度
+   Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch6.html">
-   近似差分隐私
+   Approximate Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch7.html">
-   局部敏感度
+   Local Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch8.html">
-   差分隐私变体
+   Variants of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch9.html">
-   指数机制
+   The Exponential Mechanism
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch10.html">
-   稀疏向量技术
+   The Sparse Vector Technique
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch11.html">
-   算法设计练习
+   Exercises in Algorithm Design
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   机器学习
+   Machine Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch13.html">
-   本地差分隐私
+   Local Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch14.html">
-   合成数据
+   Synthetic Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   参考文献
+   Bibliography
   </a>
  </li>
 </ul>
@@ -260,52 +264,52 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#scikit-learn">
-   使用Scikit-Learn实现逻辑回归
+  <a class="reference internal nav-link" href="#logistic-regression-with-scikit-learn">
+   Logistic Regression with Scikit-Learn
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   模型是什么？
+  <a class="reference internal nav-link" href="#what-is-a-model">
+   What is a Model?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   使用梯度下降训练模型
+  <a class="reference internal nav-link" href="#training-a-model-with-gradient-descent">
+   Training a Model with Gradient Descent
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     单步梯度下降
+    <a class="reference internal nav-link" href="#a-single-step-of-gradient-descent">
+     A Single Step of Gradient Descent
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     梯度下降算法
+    <a class="reference internal nav-link" href="#a-gradient-descent-algorithm">
+     A Gradient Descent Algorithm
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id6">
-   差分隐私梯度下降
+  <a class="reference internal nav-link" href="#gradient-descent-with-differential-privacy">
+   Gradient Descent with Differential Privacy
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     梯度裁剪
+    <a class="reference internal nav-link" href="#gradient-clipping">
+     Gradient Clipping
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     梯度的敏感度
+    <a class="reference internal nav-link" href="#sensitivity-of-the-gradient">
+     Sensitivity of the Gradient
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id9">
-   噪声对训练的影响
+  <a class="reference internal nav-link" href="#effect-of-noise-on-training">
+   Effect of Noise on Training
   </a>
  </li>
 </ul>
@@ -319,23 +323,28 @@
         
               <div>
                 
-  <div class="section" id="id1">
-<h1>机器学习<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<div class="admonition- admonition">
-<p class="admonition-title">学习目标</p>
-<p>阅读本章后，您将能够：</p>
+  <div class="section" id="machine-learning">
+<h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
 <ul class="simple">
-<li><p>描述和实现基础梯度下降算法</p></li>
-<li><p>使用高斯机制实现差分隐私梯度下降</p></li>
-<li><p>裁剪梯度，保证任意损失函数都可实现差分隐私保护</p></li>
-<li><p>描述噪声给训练过程带来的影响</p></li>
+<li><p>Describe and implement the basic algorithm for gradient descent</p></li>
+<li><p>Use the Gaussian mechanism to implement differentially private gradient descent</p></li>
+<li><p>Clip gradients to enforce differential privacy for arbitrary loss functions</p></li>
+<li><p>Describe the effect of noise on the training process</p></li>
 </ul>
 </div>
-<p>本章我们将探索如何构建差分隐私学习分类器。我们将重点关注一类特定的<em>监督学习</em>问题：给定一组<em>带标签的训练样本</em><span class="math notranslate nohighlight">\(\{(x_1, y_1), \dots, (x_n, y_n)\}\)</span>，其中<span class="math notranslate nohighlight">\(x_i\)</span>称为<em>特征向量</em>，<span class="math notranslate nohighlight">\(y_i\)</span>称为<em>标签</em>，我们要训练一个<em>模型</em><span class="math notranslate nohighlight">\(\theta\)</span>。该模型可以<em>预测</em>没有在训练集中出现过的新特征向量所对应的标签。一般来说，每个<span class="math notranslate nohighlight">\(x_i\)</span>都是一个描述训练样本特征的实数向量，而<span class="math notranslate nohighlight">\(y_i\)</span>是从预先定义好的<em>类型</em>集合中选取的，每个类型一般用一个整数来表示。我们预先要从全部样本中提取出所有可能的类型，构成类型集合。一个二分类器的类型集合应包含两个类型（一般分别用1和0，或1和-1表示）。</p>
-<div class="section" id="scikit-learn">
-<h2>使用Scikit-Learn实现逻辑回归<a class="headerlink" href="#scikit-learn" title="永久链接至标题">¶</a></h2>
-<p>当要训练一个模型时，我们从所有可用的数据中选择一些数据来构造一组<em>训练样本</em>（如前所述），但我们也会留出一些数据作为<em>测试样本</em>。一旦训练完模型，我们肯定想要知道该模型在<em>非</em>训练样本上的表现如何。如果一个模型在未知的新样本上表现很好，我们称其<em>泛化</em>能力很好。一个泛化能力<em>不足</em>的模型，我们称其在训练数据上发生了<em>过拟合</em>。</p>
-<p>我们使用测试样本来测试模型的泛化能力。由于我们事先已知测试样本的标签，我们可以让模型对每个测试样本进行分类，并比较预测标签和真实标签的结果，以测试模型的泛化能力。我们将把数据集切分为训练集和测试集。训练集包含80%的样本，而测试集包含其余20%的样本。</p>
+<p>In this chapter, we’re going to explore building differentially private machine learning classifiers. We’ll focus on a kind of <em>supervised learning</em> problem: given a set of <em>labeled training examples</em> <span class="math notranslate nohighlight">\(\{(x_1, y_1), \dots, (x_n, y_n)\}\)</span>, in which <span class="math notranslate nohighlight">\(x_i\)</span> is called the <em>feature vector</em> and <span class="math notranslate nohighlight">\(y_i\)</span> is called the <em>label</em>, train a <em>model</em> <span class="math notranslate nohighlight">\(\theta\)</span> which can <em>predict</em> the label for a new feature vector which was not present in the training set. Each <span class="math notranslate nohighlight">\(x_i\)</span> is typically a vector of real numbers which describe the features of a training example, and the <span class="math notranslate nohighlight">\(y_i\)</span>s are drawn from a predefined set of <em>classes</em> (usually expressed as integers) that examples can be drawn from. A <em>binary</em> classifier has two classes (usually either 1 and 0, or 1 and -1).</p>
+<div class="section" id="logistic-regression-with-scikit-learn">
+<h2>Logistic Regression with Scikit-Learn<a class="headerlink" href="#logistic-regression-with-scikit-learn" title="Permalink to this headline">¶</a></h2>
+<p>To train a model, we will use some of the data we have available to build a set of <em>training examples</em> (as described earlier), but we’ll also set aside some of the data as <em>test examples</em>. Once we have trained the model, we want to know how well it works on examples that are <em>not</em> present in the training set. A model which works well on new examples it hasn’t seen before is said to <em>generalize</em> well. One which does <em>not</em> generalize well is said to have <em>overfitted</em> the training data.</p>
+<p>To test generalization, we’ll use the test examples - we have labels for
+them, so we can test the generalization accuracy of the model by asking
+the model to classify each one, and then comparing the predicted class
+against the actual label from our dataset. We’ll split our data into a
+training set containing 80% of the examples, and a testing set containing
+20% of the examples.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">training_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
@@ -356,7 +365,7 @@
 </div>
 </div>
 </div>
-<p>构建一个二分类器的简单方法是使用<em>逻辑回归（Logistic Regression）</em>。scikit-learn库包含了一个实现逻辑回归的内置模块，名为<code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>。通过调用此内置模块，很容易应用我们的数据构建二分类模型。</p>
+<p>A simple way to build a binary classifier is with <em>logistic regression</em>. The scikit-learn library has a built-in module for performing logistic regression, called <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>, and it’s easy to use to build a model using our data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
@@ -371,7 +380,7 @@
 </div>
 </div>
 </div>
-<p>接下来，我们可以使用模型的<code class="docutils literal notranslate"><span class="pre">predict</span></code>（预测）方法预测测试集的标签。</p>
+<p>Next, we can use the model’s <code class="docutils literal notranslate"><span class="pre">predict</span></code> method to predict labels for the test set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
@@ -384,7 +393,11 @@
 </div>
 </div>
 </div>
-<p>我们的模型预测对了多少个测试样本呢？我们可以比较预测标签和真实标签的结果。如果用预测正确的标签数量除以测试样本总数，我们就可以计算出测试样本的预测准确率。</p>
+<p>So, how many test examples does our model get correct? We can compare the
+predicted labels against the actual labels from the dataset; if we divide
+the number of correctly predicted labels by the total number of test
+examples, we can measure the percent of the examples which are correctly
+classified.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -397,19 +410,20 @@
 </div>
 </div>
 </div>
-<p>我们的模型对测试样本的标签预测准确率为82%。对该数据集来说，这是一个相当不错的预测准确率。</p>
+<p>Our model predicts the correct label for 82% of the examples in our test
+set. For this dataset, that’s a pretty decent result.</p>
 </div>
-<div class="section" id="id2">
-<h2>模型是什么？<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
-<p>模型到底<em>是</em>什么？它是如何编码预测所用信息的？</p>
-<p>有很多种不同类型的模型。这里我们要探讨的是<em>线性模型（Linear Model）</em>。给定一个包含<span class="math notranslate nohighlight">\(k\)</span>-维特征向量<span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>的无标签样本，线性模型预测此样本的标签时，将计算下述值：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9fe1dcaa-64b1-4199-b76f-5292f728261a">
-<span class="eqno">(33)<a class="headerlink" href="#equation-9fe1dcaa-64b1-4199-b76f-5292f728261a" title="公式的永久链接">¶</a></span>\[\begin{align}
+<div class="section" id="what-is-a-model">
+<h2>What is a Model?<a class="headerlink" href="#what-is-a-model" title="Permalink to this headline">¶</a></h2>
+<p>What exactly <em>is</em> a model? How does it encode the information it uses to make predictions?</p>
+<p>There are many different kinds of models, but the ones we’ll explore here are <em>linear models</em>. For an unlabeled example with a <span class="math notranslate nohighlight">\(k\)</span>-dimensional feature vector <span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>, a linear model predicts a label by first calculating the quantity:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b1a66551-2907-4763-b228-37af73a90e49">
+<span class="eqno">(33)<a class="headerlink" href="#equation-b1a66551-2907-4763-b228-37af73a90e49" title="Permalink to this equation">¶</a></span>\[\begin{align}
 w_1 x_1 + \dots + w_k x_k + bias
 \end{align}\]</div>
-<p>并用此值的符号作为预测标签（如果此值为负数，则预测结果为-1；如果此值为正数，则预测结果为1）。</p>
-<p>此模型可以用一个由<span class="math notranslate nohighlight">\(w_1, \dots, w_k\)</span>和<span class="math notranslate nohighlight">\(bias\)</span>组成的向量来表示。之所以称该模型是线性模型，是因为模型在预测时要计算一个1次多项式（即线性多项式）的值。<span class="math notranslate nohighlight">\(w_1, \dots, w_k\)</span>通常被称为模型的<em>权重</em>或<em>系数</em>，<span class="math notranslate nohighlight">\(bias\)</span>则被称为<em>偏差项</em>或<em>截距</em>。</p>
-<p>这实际上也是scikit-learn表示逻辑回归模型的方式！我们可以使用模型的<code class="docutils literal notranslate"><span class="pre">coef_</span></code>属性来查看训练得到的模型权重：</p>
+<p>and then taking the sign of it (i.e. if the quantity above is negative, we predict the label -1; if it’s positive, we predict 1).</p>
+<p>The model itself, then, can be represented by a vector containing the values <span class="math notranslate nohighlight">\(w_1, \dots, w_k\)</span> and the value for <span class="math notranslate nohighlight">\(bias\)</span>. The model is said to be linear because the quantity we calculate in predicting a label is a polynomial of degree 1 (i.e. linear). The values <span class="math notranslate nohighlight">\(w_1, \dots, w_k\)</span> are often called the <em>weights</em> or <em>coefficients</em> of the model, and <span class="math notranslate nohighlight">\(bias\)</span> is often called the <em>bias term</em> or <em>intercept</em>.</p>
+<p>This is actually how scikit-learn represents its logistic regression model, too! We can check out the weights of our trained model using the <code class="docutils literal notranslate"><span class="pre">coef_</span></code> attribute of the model:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -448,11 +462,11 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<p>注意到，权重<span class="math notranslate nohighlight">\(w_i\)</span>的数量和特征<span class="math notranslate nohighlight">\(x_i\)</span>的数量总是一致的，因为模型在预测时需要将各个特征和其对应的权重相乘。这也意味着我们模型的维度和特征向量的维度完全相同。</p>
-<p>有了获得权重和偏差项的方法后，我们就可以实现自己的预测函数了：</p>
+<p>Note that we’ll always have exactly the same number of weights <span class="math notranslate nohighlight">\(w_i\)</span> as we have features <span class="math notranslate nohighlight">\(x_i\)</span>, since we have to multiply each feature by its corresponding weight. That means our model has exactly the same dimensionality as our feature vectors.</p>
+<p>Now that we have a way to get the weights and bias term, we can implement our own function to perform prediction:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 预测：以模型（theta）单一样本（xi）为输入，返回预测标签</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prediction: take a model (theta) and a single example (xi) and return its predicted label</span>
 <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="n">label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">xi</span> <span class="o">@</span> <span class="n">theta</span> <span class="o">+</span> <span class="n">bias</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">label</span>
@@ -467,18 +481,18 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<p>这里我们将偏差项设置为可选参数，因为在大多数情况下，无偏差项模型的预测效果也足够好了。为了简化模型训练的整个过程，后续我们先不考虑训练偏差项。</p>
+<p>We’ve made the bias term optional here, because in many cases it’s possible to do just as well without it. To make things simpler, we won’t bother to train a bias term in our own algorithm.</p>
 </div>
-<div class="section" id="id3">
-<h2>使用梯度下降训练模型<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
-<p>训练过程究竟是如何进行的呢？scikit-learn库实现了一些非常复杂的算法，但我们也可以通过实现一个简单算法来实现同等的效果。此算法称为<em>梯度下降</em>（Gradient Descent）。</p>
-<p>大多数机器学习训练算法要根据所选择的<em>损失函数</em>（Loss Function）来定义。损失函数是一种衡量模型预测结果有多”差”的方法。训练算法的目标是使损失函数达到最小值。换句话说，损失值低的模型具有<em>更好的</em>预测能力。</p>
-<p>机器学习社区已经提出了多种不同的常用损失函数。对于每个预测正确的样本，简单的损失函数直接返回0。对于每个预测错误的样本，损失函数直接返回1。损失值为0意味着模型可以正确预测出每个样本的标签。二分类器中较为常用的损失函数为<em>对率损失</em>（Logistic Loss）。对率损失帮助我们度量出模型”还有多远的距离”才能正确预测出标签（与简单地输出0和1相比，对率损失可以提供更多的信息）。</p>
-<p>下述Python代码实现了对率损失函数：</p>
+<div class="section" id="training-a-model-with-gradient-descent">
+<h2>Training a Model with Gradient Descent<a class="headerlink" href="#training-a-model-with-gradient-descent" title="Permalink to this headline">¶</a></h2>
+<p>How does the training process actually work? The scikit-learn library has some pretty sophisticated algorithms, but we can do just about as well by implementing a simple one called <em>gradient descent</em>.</p>
+<p>Most training algorithms for machine learning are defined in terms of a <em>loss function</em>, which specifies a way to measure how “bad” a model is at prediction. The goal of the training algorithm is to minimize the output of the loss function - a model with low loss will be <em>good</em> at prediction.</p>
+<p>The machine learning community has developed many different commonly-used loss functions. A simple loss function might return 0 for each correctly predicted example, and 1 for each incorrectly predicted example; when the loss becomes 0, that means we’ve predicted each example’s label correctly. A more commonly used loss function for binary classification is called the <em>logistic loss</em>; the logistic loss gives us a measure of “how far” we are from predicting the correct label (which is more informative than the simple 0 vs 1 approach).</p>
+<p>The logistic loss is implemented by the following Python function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 损失函数用于衡量我们的模型有多好。训练目标是最小化损失值。</span>
-<span class="c1"># 这是对率损失函数。</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The loss function measures how good our model is. The training goal is to minimize the loss.</span>
+<span class="c1"># This is the logistic loss function.</span>
 <span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">):</span>
     <span class="n">exponent</span> <span class="o">=</span> <span class="o">-</span> <span class="n">yi</span> <span class="o">*</span> <span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">exponent</span><span class="p">))</span>
@@ -486,7 +500,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<p>我们可以使用损失函数衡量指定模型的效果。让我们用权重全为0的模型来试一试。该模型大概率效果不佳，但我们可以把此模型作为起点，逐步训练出更好的模型。</p>
+<p>We can use the loss function to measure how good a particular model is. Let’s try it out with a model whose weights are all zeros. This model isn’t likely to work very well, but it’s a starting point from which we can train a better one.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -500,7 +514,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<p>一般来说，通过简单地计算所有训练样本的平均损失值，我们就可以测量出模型在整个训练集上有多好。当模型的权重全为0时，所有样本<em>全部</em>预测错误，整个训练集的平均损失值刚好等于我们前面计算得到的单个样本损失值。</p>
+<p>We typically measure how good our model is over our entire training set by simply averaging the loss over all of the examples in the training data. In this case, we get <em>every</em> example wrong, so the average loss on the whole training set is exactly equal to the loss we calculated above for just one example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)])</span>
@@ -513,13 +527,13 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<p>我们<em>训练</em>模型的目标是<em>最小化</em>损失值。这里的关键问题是：我们如何修改模型才能降低损失值呢？</p>
-<p>梯度下降是一种根据<a class="reference external" href="https://en.wikipedia.org/wiki/Gradient"><em>梯度</em></a>更新模型以降低损失值的方法。梯度就像一个多维导数：对于一个有着多维输入的函数（例如我们前面提到的损失函数），梯度告诉我们<em>每个</em>维度输入的变化会在多大程度上影响函数输出的变化。如果某一维度的梯度为正，意味着一旦我们增加该维度的模型权重，函数输出值将<em>变大</em>。我们想要<em>降低</em>损失值，因此我们应该用<em>负</em>梯度来修改模型，即做与梯度<em>相反</em>的事情。由于我们沿梯度的相反方向修改模型，因此这一过程称为<em>降低</em>梯度。</p>
-<p>当我们经过多次迭代，重复执行此下降过程后，我们会越来越接近最小化损失值的模型。这就是<em>梯度下降</em>的整个过程。让我们来看看梯度下降算法在Python下的运行效果。首先，我们定义梯度函数。</p>
+<p>Our goal in <em>training</em> the model is to <em>minimize</em> the loss. So the key question is: how do we modify the model to make the loss smaller?</p>
+<p>Gradient descent is an approach that makes the loss smaller by updating the model according to the <a class="reference external" href="https://en.wikipedia.org/wiki/Gradient"><em>gradient</em></a> of the loss. The gradient is like a multi-dimensional derivative: for a function with multi-dimensional inputs (like our loss function above), the gradient tells you how fast the function’s output is changing with respect to <em>each</em> dimension of the input. If the gradient is positive in a particular dimension, that means the function’s value will <em>increase</em> if we increase the model’s weight for that dimension; we want the loss to <em>decrease</em>, so we should modify our model by <em>negating</em> the gradient - i.e. do the <em>opposite</em> of what the gradient says. Since we move the model in the opposite direction of the gradient, this is called <em>descending</em> the gradient.</p>
+<p>When we iteratively perform many steps of this descent process, we slowly get closer and closer to the model which minimizes the loss. This algorithm is called <em>gradient descent</em>. Let’s see how this looks in Python; first, we’ll define the gradient function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 这是对率损失函数的梯度</span>
-<span class="c1"># 梯度是一个表示各个方向损失变化率的向量</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the gradient of the logistic loss</span>
+<span class="c1"># The gradient is a vector that indicates the rate of change of the loss in each direction</span>
 <span class="k">def</span> <span class="nf">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">):</span>
     <span class="n">exponent</span> <span class="o">=</span> <span class="n">yi</span> <span class="o">*</span> <span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
     <span class="k">return</span> <span class="o">-</span> <span class="p">(</span><span class="n">yi</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">exponent</span><span class="p">))</span>
@@ -527,15 +541,15 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<div class="section" id="id4">
-<h3>单步梯度下降<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
-<p>接下来，我们来单步执行一次梯度下降。我们将训练集中的一个样本都输入到<code class="docutils literal notranslate"><span class="pre">gradient</span></code>（梯度）函数中，得到此样本的梯度值。得到梯度值可以为我们提供足够信息来改善模型。我们在当前模型<code class="docutils literal notranslate"><span class="pre">theta</span></code>上减去得到的梯度，以实现梯度”下降”。</p>
+<div class="section" id="a-single-step-of-gradient-descent">
+<h3>A Single Step of Gradient Descent<a class="headerlink" href="#a-single-step-of-gradient-descent" title="Permalink to this headline">¶</a></h3>
+<p>Next, let’s perform a single step of gradient descent. We can apply the <code class="docutils literal notranslate"><span class="pre">gradient</span></code> function to a single example from our training data, which should give us enough information to improve the model for that example. We “descend” the gradient by subtracting it from our current model <code class="docutils literal notranslate"><span class="pre">theta</span></code>.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 如果我们想把我们向梯度的反方向移动一步（即减去梯度值），</span>
-<span class="c1"># 我们应该可以让theta向损失值*变小）的方向移动</span>
-<span class="c1"># 这就是单步梯度下降。我们在每一步都要尝试*降低*梯度</span>
-<span class="c1"># 在这个例子中，我们只计算了训练集中（第）一个样本的梯度</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If we take a step in the *opposite* direction from the gradient (by negating it), we should </span>
+<span class="c1"># move theta in a direction that makes the loss *lower*</span>
+<span class="c1"># This is one step of gradient descent - in each step, we&#39;re trying to &quot;descend&quot; the gradient</span>
+<span class="c1"># In this example, we&#39;re taking the gradient on just a single training example (the first one)</span>
 <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">theta</span>
 </pre></div>
@@ -567,7 +581,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<p>现在，如果我们以相同的训练样本为输入调用<code class="docutils literal notranslate"><span class="pre">predict</span></code>函数，模型就可以正确预测此样本的标签了！我们的模型更新方法确实提高了模型的预测能力，因为更新后的模型已经具备分类此样本的能力了。</p>
+<p>Now, if we call <code class="docutils literal notranslate"><span class="pre">predict</span></code> on the same example from the training data, its label is predicted correctly! That means our update did indeed improve the model, since it’s now capable of classifying this example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">predict</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -580,7 +594,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<p>我们需要多次度量模型的准确性。为此，我们定义一个用于度量准确性的辅助函数。它的工作方式和sklearn模型的准确性度量方式相同。我们可以用这个函数度量经过单个样本梯度下降后所得到的模型<code class="docutils literal notranslate"><span class="pre">theta</span></code>，看看新模型在测试集的效果怎么样。</p>
+<p>We’ll be measuring the accuracy of our model many times, so let’s define a helper function for measuring accuracy. It works in the same way as the accuracy measurement for the sklearn model above. We can use it on the <code class="docutils literal notranslate"><span class="pre">theta</span></code> we’ve built by descending the gradient for one example, to see how good our model is on the test set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
@@ -596,12 +610,12 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<p>我们改善后的模型现在可以正确预测测试集中75%的标签！这是一个很大的进步，我们大大改善了模型的预测效果。</p>
+<p>Our improved model now predicts 75% of the labels for the test set correctly! That’s good progress - we’ve improved the model considerably.</p>
 </div>
-<div class="section" id="id5">
-<h3>梯度下降算法<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
-<p>我们需要进一步对算法的两个部分进行改进，从而最终实现基础梯度下降算法。第一，我们前面的单步梯度下降仅使用了训练数据中的单个样本。我们希望用<em>整个</em>训练集来更新模型，从而改善模型在<em>所有</em>样本上的预测效果。第二，我们需要执行多次迭代，尽可能让损失值达到最小。</p>
-<p>对于第一个改进点，我们可以计算所有训练样本的<em>平均梯度</em>，以替代单步梯度下降中的单样本梯度。我们用下述实现的<code class="docutils literal notranslate"><span class="pre">avg_grad</span></code>（平均梯度）函数来计算所有训练样本和对应标签的平均梯度。</p>
+<div class="section" id="a-gradient-descent-algorithm">
+<h3>A Gradient Descent Algorithm<a class="headerlink" href="#a-gradient-descent-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>We need to make two changes to arrive at a basic gradient descent algorithm. First, our single step above used only a single example from the training data; we want to consider the <em>whole</em> training set when updating the model, so that we improve the model for <em>all</em> examples. Second, we need to perform multiple iterations, to get as close as possible to minimizing the loss.</p>
+<p>We can solve the first problem by calculating the <em>average gradient</em> over all of the training examples, and using it for the descent step in place of the single-example gradient we used before. Our <code class="docutils literal notranslate"><span class="pre">avg_grad</span></code> function calculates the average gradient over a whole array of training examples and the corresponding labels.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -643,14 +657,14 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<p>对于第二个改进点，我们来定义一个可以多次执行梯度下降的迭代算法。</p>
+<p>To solve the second problem, we’ll define an iterative algorithm that descends the gradient multiple times.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
-    <span class="c1"># 我们用&quot;猜测&quot;的一个模型参数（权重全为0的模型）作为起始点</span>
+    <span class="c1"># Start by &quot;guessing&quot; what the model should be (all zeros)</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-    <span class="c1"># 应用训练集迭代执行梯度下降步骤</span>
+    <span class="c1"># Perform `iterations` steps of gradient descent using training data</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
         <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
@@ -672,10 +686,10 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<p>经过10轮迭代，我们的模型几乎达到78%的准确率，效果还不错！我们的梯度下降算法看起来很简单（也确实挺简单的！），但这个算法可以说是大智若愚：该方法是近年来绝大多数大规模深度学习的基础。我们给出的算法在设计上已经非常接近于TensorFlow等主流机器学习框架所实现的算法了。</p>
-<p>注意到，与前面用sklearn训练得到的模型相比，我们的模型还没有达到84%的准确率。别担心，我们的算法绝对有能力做到！我们只是需要更多轮迭代，使损失值更接近最小值。</p>
-<p>经过100轮迭代，模型的准确率达到82%，更接近84%的准确率了。但是，如此多的迭代次数导致算法运行了非常长的时间。更糟糕的是，我们越接近最小损失值，模型的预测效果就越难得到进一步的改善了。100轮迭代后的模型可以达到82%的准确率，但达到84%的准确率可能需要1000轮迭代。这也体现出了机器学习的一个根本矛盾：一般来说，更多的训练轮数可以带来更高的准确率，但同时也需要更多的计算时间。在实际场景中使用大规模深度学习时，绝大多数实现”技巧”都是为梯度下降的每轮迭代加速，以便在相同时间内执行更多轮迭代。</p>
-<p>还有一个有趣的现象值得我们注意：损失函数的输出值确实会随着每轮梯度下降的迭代而下降。因此，随着执行轮数的增加，我们的模型的确在逐渐接近最小损失值。另外要注意的是，如果训练集和测试集的损失值非常接近，意味着我们的模型没有<em>过拟合</em>训练数据。</p>
+<p>After 10 iterations, our model reaches nearly 78% accuracy - not bad! Our gradient descent algorithm looks simple (and it is!) but don’t let its simplicity fool you - this basic approach is behind many of the recent successes in large-scale deep learning, and our algorithm is <em>very</em> close in its design to the ones implemented in popular frameworks for machine learning like TensorFlow.</p>
+<p>Notice that we didn’t quite make it to the 84% accuracy of the sklearn model we trained earlier. Don’t worry - our algorithm is definitely capable of this! We just need more iterations, to get closer to the minimum of the loss.</p>
+<p>With 100 iterations, we get closer - 82% accuracy. However, the algorithm takes a long time to run when we ask for so many iterations. Even worse, the closer we get to minimizing the loss, the more difficult it is to improve - so we might get to 82% accuracy after 100 iterations, but it might take 1000 iterations to get to 84%. This points to a fundamental tension in machine learning - generally speaking, more iterations of training can improve accuracy, but more iterations requires more computation time. Most of the “tricks” used to make large-scale deep learning practical are actually aimed at speeding up each iteration of gradient descent, so that more iterations can be performed in the same amount of time.</p>
+<p>One more thing that’s interesting to note: the value of the loss function does indeed go down with each iteration of gradient descent we perform - so as we perform more iterations, we slowly get closer to minimizing the loss. Also note that the training and testing loss are very close to one another, suggesting that our model is not <em>overfitting</em> to the training data.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent_log</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
@@ -683,8 +697,8 @@ w_1 x_1 + \dots + w_k x_k + bias
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
         <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;训练集损失值: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;测试集损失值: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Training loss: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Testing loss: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">theta</span>
 
@@ -693,35 +707,35 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.549109439168421
-测试集损失值: 0.5415350837580458
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training loss: 0.549109439168421
+Testing loss: 0.5415350837580458
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.5224689105514977
-测试集损失值: 0.5162665121068426
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training loss: 0.5224689105514977
+Testing loss: 0.5162665121068426
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.5028090736020403
-测试集损失值: 0.49753785424732383
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training loss: 0.5028090736020403
+Testing loss: 0.49753785424732383
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.4878874803989895
-测试集损失值: 0.48335633696635527
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training loss: 0.4878874803989895
+Testing loss: 0.48335633696635527
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.47628573924997925
-测试集损失值: 0.4723742456095848
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training loss: 0.47628573924997925
+Testing loss: 0.4723742456095848
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="id6">
-<h2>差分隐私梯度下降<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
-<p>我们如何使上述算法满足差分隐私呢？我们想要设计一种算法来为训练数据提供差分隐私保护，使最终训练得到的模型不会泄露与单个训练样本相关的任何信息。</p>
-<p>算法执行过程中唯一使用了训练数据的部分是梯度计算步骤。使该算法满足差分隐私的一种方法是，在每轮模型更新前在梯度上增加噪声。由于我们直接在梯度上增加噪声，因此该方法通常被称为<em>噪声梯度下降</em>（Noisy Gradient Descent）。</p>
-<p>我们的梯度函数是向量值函数，因此我们使用<code class="docutils literal notranslate"><span class="pre">gaussian_mech_vec</span></code>（向量高斯机制）在梯度函数的输出值上增加噪声：</p>
+<div class="section" id="gradient-descent-with-differential-privacy">
+<h2>Gradient Descent with Differential Privacy<a class="headerlink" href="#gradient-descent-with-differential-privacy" title="Permalink to this headline">¶</a></h2>
+<p>How can we make the above algorithm differentially private? We’d like to design an algorithm that ensures differential privacy for the training data, so that the final model doesn’t reveal anything about individual training examples.</p>
+<p>The only part of the algorithm which uses the training data is the gradient calculation. One way to make the algorithm differentially private is to add noise to the gradient itself at each iteration before updating the model. This approach is usually called <em>noisy gradient descent</em>, since we add noise directly to the gradient.</p>
+<p>Our gradient function is a vector-valued function, so we can use <code class="docutils literal notranslate"><span class="pre">gaussian_mech_vec</span></code> to add noise to its output:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">noisy_gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
@@ -738,23 +752,23 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<p>这里就差一块拼图了：<strong>梯度函数的敏感度是多少</strong>？这是使算法满足差分隐私的关键所在。</p>
-<p>这里我们主要面临两个挑战。第一，梯度是<em>均值问询</em>的结果，即梯度是每个样本梯度的均值。我们之前已经提到，最好将均值问询拆分为一个求和问询和一个计数问询。做到这一点并不难，我们可以不直接计算梯度均值，而是计算每个样本梯度噪声和，再除以噪声计数值。第二，我们需要限制每个样本梯度的敏感度。有两种基础方法可以做到这一点。我们可以（如之前讲解的其他问询那样）分析梯度函数，确定其在最差情况下的全局敏感度。我们也可以（如”采样-聚合”框架那样）裁剪梯度函数的输出值，从而<em>强制</em>限定敏感度上界。</p>
-<p>我们先介绍第二种方法。第二种方法从概念上看更简单，在实际应用中的普适性更好。此方法一般被称为<em>梯度裁剪</em>（Gradient Clipping）。</p>
-<div class="section" id="id7">
-<h3>梯度裁剪<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
-<p>回想一下，在实现”采样-聚合”框架时，我们裁剪未知敏感度函数<span class="math notranslate nohighlight">\(f\)</span>的输出，强制限定<span class="math notranslate nohighlight">\(f\)</span>的敏感度上界。<span class="math notranslate nohighlight">\(f\)</span>的敏感度为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d2a024b8-935f-408a-811e-fd6e309bb809">
-<span class="eqno">(34)<a class="headerlink" href="#equation-d2a024b8-935f-408a-811e-fd6e309bb809" title="公式的永久链接">¶</a></span>\[\begin{align}
+<p>There’s just one piece of the puzzle missing - <strong>what is the sensitivity of the gradient function</strong>? Answering this question is the central difficulty in making the algorithm work.</p>
+<p>There are two major challenges here. First, the gradient is the result of an <em>average query</em> - it’s the mean of many per-example gradients. As we’ve seen previously, it’s best to split queries like this up into a sum query and a count query. This isn’t difficult to do - we can compute the noisy sum of the per-example gradients, rather than their average, and divide by a noisy count later. Second, we need to bound the sensitivity of each per-example gradient. There are two basic approaches for this: we can either analyze the gradient function itself (as we have done with previous queries) to determine its worst-case global sensitivity, or we can <em>enforce</em> a sensitivity by clipping the output of the gradient function (as we did in sample and aggregate).</p>
+<p>We’ll start with the second approach - often called <em>gradient clipping</em> - because it’s simpler conceptually and more general in its applications.</p>
+<div class="section" id="gradient-clipping">
+<h3>Gradient Clipping<a class="headerlink" href="#gradient-clipping" title="Permalink to this headline">¶</a></h3>
+<p>Recall that when we implemented sample and aggregate, we enforced a desired sensitivity on a function <span class="math notranslate nohighlight">\(f\)</span> with unknown sensitivity by clipping its output. The sensitivity of <span class="math notranslate nohighlight">\(f\)</span> was:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-eb5fdd20-a3fb-4909-81c8-9c5ccfd9290d">
+<span class="eqno">(34)<a class="headerlink" href="#equation-eb5fdd20-a3fb-4909-81c8-9c5ccfd9290d" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
-<p>使用参数<span class="math notranslate nohighlight">\(b\)</span>裁剪后，上述表达式变为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-94e4d2c0-5755-472d-a519-5606f5db5203">
-<span class="eqno">(35)<a class="headerlink" href="#equation-94e4d2c0-5755-472d-a519-5606f5db5203" title="公式的永久链接">¶</a></span>\[\begin{align}
+<p>After clipping with parameter <span class="math notranslate nohighlight">\(b\)</span>, this becomes:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-08b480b3-c76e-4b28-8a2a-f2988cb60012">
+<span class="eqno">(35)<a class="headerlink" href="#equation-08b480b3-c76e-4b28-8a2a-f2988cb60012" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \lvert \mathsf{clip}(f(x), b) - \mathsf{clip}(f(x'),b) \rvert
 \end{align}\]</div>
-<p>最差情况下，<span class="math notranslate nohighlight">\(\mathsf{clip}(f(x), b) = b\)</span>，且<span class="math notranslate nohighlight">\(\mathsf{clip}(f(x'),b) = 0\)</span>，因此裁剪结果的敏感度为<span class="math notranslate nohighlight">\(b\)</span>（即敏感度等于裁剪参数）。</p>
-<p>我们可以使用相同的技巧来限定梯度函数的<span class="math notranslate nohighlight">\(L2\)</span>敏感度。我们需要定义一个用来”裁剪”向量的函数，使输出向量的<span class="math notranslate nohighlight">\(L2\)</span>范数落在期望的范围内。我们可以通过<em>缩放</em>向量来做到这一点：如果把向量中每个位置的元素都除以向量的<span class="math notranslate nohighlight">\(L2\)</span>范数，则所得向量的<span class="math notranslate nohighlight">\(L2\)</span>范数为1。如果想要使用裁剪参数<span class="math notranslate nohighlight">\(b\)</span>，我们可以在缩放后的向量上乘以<span class="math notranslate nohighlight">\(b\)</span>，将其放大回<span class="math notranslate nohighlight">\(L2\)</span>范数等于<span class="math notranslate nohighlight">\(b\)</span>的向量。我们还希望不对<span class="math notranslate nohighlight">\(L2\)</span>范数已经小于<span class="math notranslate nohighlight">\(b\)</span>的向量进行任何修改。因此，如果向量的<span class="math notranslate nohighlight">\(L2\)</span>范数已经小于<span class="math notranslate nohighlight">\(b\)</span>，我们直接返回此向量即可。我们可以使用<code class="docutils literal notranslate"><span class="pre">np.linalg.norm</span></code>函数，并以参数<code class="docutils literal notranslate"><span class="pre">ord=2</span></code>作为输入，以计算向量的<span class="math notranslate nohighlight">\(L2\)</span>范数。</p>
+<p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x), b) = b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x'),b) = 0\)</span>, so the sensitivity of the clipped result is exactly <span class="math notranslate nohighlight">\(b\)</span> (the value of the clipping parameter).</p>
+<p>We can use the same trick to bound the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of our gradient function. We’ll need to define a function which “clips” a vector so that it has <span class="math notranslate nohighlight">\(L2\)</span> norm within a desired range. We can accomplish this by <em>scaling</em> the vector: if we divide the vector elementwise by its <span class="math notranslate nohighlight">\(L2\)</span> norm, then the resulting vector will have an <span class="math notranslate nohighlight">\(L2\)</span> norm of 1. If we want to target a particular clipping parameter <span class="math notranslate nohighlight">\(b\)</span>, we can multiply the scaled vector by <span class="math notranslate nohighlight">\(b\)</span> to scale it back up to have <span class="math notranslate nohighlight">\(L2\)</span> norm <span class="math notranslate nohighlight">\(b\)</span>. We want to avoid modifying vectors that already have <span class="math notranslate nohighlight">\(L2\)</span> norm below <span class="math notranslate nohighlight">\(b\)</span>; in that case, we just return the original vector. We can use <code class="docutils literal notranslate"><span class="pre">np.linalg.norm</span></code> with the parameter <code class="docutils literal notranslate"><span class="pre">ord=2</span></code> to calculate the <span class="math notranslate nohighlight">\(L2\)</span> norm of a vector.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">L2_clip</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -768,30 +782,30 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<p>现在，我们可以开始分析裁剪梯度的敏感度了。我们将梯度表示为<span class="math notranslate nohighlight">\(\nabla(\theta; X, y)\)</span>（对应我们Python代码中的<code class="docutils literal notranslate"><span class="pre">gradient</span></code>）：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06f64804-bc09-4d7e-a04a-d9e4862a8766">
-<span class="eqno">(36)<a class="headerlink" href="#equation-06f64804-bc09-4d7e-a04a-d9e4862a8766" title="公式的永久链接">¶</a></span>\[\begin{align}
+<p>Now we’re ready to analyze the sensitivity of the clipped gradient. We denote the gradient as <span class="math notranslate nohighlight">\(\nabla(\theta; X, y)\)</span> (corresponding to <code class="docutils literal notranslate"><span class="pre">gradient</span></code> in our Python code):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5bfafcf3-2162-4f96-9d79-42e567736cf8">
+<span class="eqno">(36)<a class="headerlink" href="#equation-5bfafcf3-2162-4f96-9d79-42e567736cf8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \lVert \mathsf{L2\_clip}( \nabla (\theta; X, y), b) - \mathsf{L2\_clip}( \nabla (\theta; X', y), 0) \rVert_2
 \end{align}\]</div>
-<p>最差情况下，<span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X, y), b)\)</span>的<span class="math notranslate nohighlight">\(L2\)</span>范数为<span class="math notranslate nohighlight">\(b\)</span>，且<span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X', y))\)</span>全为0。此时，两者的<span class="math notranslate nohighlight">\(L2\)</span>范数差等于<span class="math notranslate nohighlight">\(b\)</span>。这样一来，我们成功用裁剪参数<span class="math notranslate nohighlight">\(b\)</span>限定了梯度的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界！</p>
-<p>现在，我们可以继续计算裁剪梯度之和，并根据我们通过裁剪技术得到的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界<span class="math notranslate nohighlight">\(b\)</span>来增加噪声。</p>
+<p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X, y), b)\)</span> has <span class="math notranslate nohighlight">\(L2\)</span> norm of <span class="math notranslate nohighlight">\(b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X', y))\)</span> is all zeros - so that the <span class="math notranslate nohighlight">\(L2\)</span> norm of the difference is equal to <span class="math notranslate nohighlight">\(b\)</span>. Thus, the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the clipped gradient is bounded by the clipping parameter <span class="math notranslate nohighlight">\(b\)</span>!</p>
+<p>Now we can proceed to compute the sum of clipped gradients, and add noise based on the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity <span class="math notranslate nohighlight">\(b\)</span> that we’ve enforced by clipping.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="n">L2_clip</span><span class="p">(</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
         
-    <span class="c1"># 求和问询</span>
-    <span class="c1"># （经过裁剪后的）L2敏感度为b</span>
+    <span class="c1"># sum query</span>
+    <span class="c1"># L2 sensitivity is b (by clipping performed above)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>我们现在就快要完成噪声梯度下降算法的设计和实现了。为了计算平均噪声梯度，我们需要：</p>
+<p>Now we’re ready to complete our noisy gradient descent algorithm. To compute the noisy average gradient, we need to:</p>
 <ol class="simple">
-<li><p>基于敏感度<span class="math notranslate nohighlight">\(b\)</span>，在梯度和上增加噪声</p></li>
-<li><p>计算训练样本数量的噪声计数值（敏感度为1）</p></li>
-<li><p>用(1)的噪声梯度值和除以(2)的噪声计数值</p></li>
+<li><p>Add noise to the sum of the gradients based on its sensitivity <span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p>Compute a noisy count of the number of training examples (sensitivity 1)</p></li>
+<li><p>Divide the noisy sum from (1) by the noisy count from (2)</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -820,31 +834,31 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7799646174259177
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7783060592658115
 </pre></div>
 </div>
 </div>
 </div>
-<p>该算法的每轮迭代过程都满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私。我们还需额外执行一次噪声计数问询来得到满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私的噪声计数值。如果执行<span class="math notranslate nohighlight">\(k\)</span>轮迭代，则根据串行组合性，算法满足<span class="math notranslate nohighlight">\((k\epsilon + \epsilon, k\delta)\)</span>-差分隐私。我们也可以使用高级组合性来分析总隐私消耗量。更进一步，我们可以将算法转化为瑞丽差分隐私或零集中差分隐私，应用相应的组合定理得到更紧致的总隐私消耗量。</p>
+<p>Each iteration of this algorithm satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy, and we perform one additional query to determine the noisy count which satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. If we perform <span class="math notranslate nohighlight">\(k\)</span> iterations, then by sequential composition, the algorithm satisfies <span class="math notranslate nohighlight">\((k\epsilon + \epsilon, k\delta)\)</span>-differential privacy. We can also use advanced composition to analyze the total privacy cost; even better, we could convert the algorithm to Rényi differential privacy or zero-concentrated differential privacy, and obtain tight bounds on composition.</p>
 </div>
-<div class="section" id="id8">
-<h3>梯度的敏感度<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
-<p>前面所述方法的普适性很高，因为此方法不需要假设梯度函数满足什么特定的要求。但是，我们有时<em>的确</em>对梯度函数有所了解。特别地，一大类常用的梯度函数（包括本章用到的对率损失梯度）是<em>利普希茨连续</em>（Lipschitz Continuous）的。这意味着这些梯度函数的全局敏感度是有界的。用数学语言描述，我们可以证明：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-19ada745-8b8c-4e72-9c6e-fa3acf6968dc">
-<span class="eqno">(37)<a class="headerlink" href="#equation-19ada745-8b8c-4e72-9c6e-fa3acf6968dc" title="公式的永久链接">¶</a></span>\[\begin{align}
+<div class="section" id="sensitivity-of-the-gradient">
+<h3>Sensitivity of the Gradient<a class="headerlink" href="#sensitivity-of-the-gradient" title="Permalink to this headline">¶</a></h3>
+<p>Our previous approach is very general, since it makes no assumptions about the behavior of the gradient. Sometimes, however, we <em>do</em> know something about the behavior of the gradient. In particular, a large class of useful gradient functions (including the gradient of the logistic loss, which we’re using here) are <em>Lipschitz continuous</em> - meaning they have bounded global sensitivity. Formally, it is possible to show that:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-44b69226-3c12-49ab-8d42-8729e01a582a">
+<span class="eqno">(37)<a class="headerlink" href="#equation-44b69226-3c12-49ab-8d42-8729e01a582a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \text{If}\; \lVert x_i \rVert_2 \leq b\; \text{then}\; \lVert \nabla(\theta; x_i, y_i) \rVert_2 \leq b
 \end{align}\]</div>
-<p>这一结论允许我们通过裁剪<em>训练样本</em>（即梯度函数的<em>输入</em>）来获得梯度函数的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界。这样，我们就不再需要裁剪梯度函数的<em>输出</em>了。</p>
-<p>用裁剪训练样本代替裁剪梯度会带来两个优点。第一，与预估训练阶段的梯度尺度相比，预估训练样本的尺度（进而选择一个好的裁剪参数）通常要容易得多。第二，裁剪训练样本的计算开销更低：我们只需要对训练样本裁剪一次，训练模型时就可以重复使用裁剪后的训练数据了。但如果选择裁剪梯度，我们就需要裁剪训练过程中计算得到的每一个梯度。此外，为了实现梯度裁剪，我们不得不依次计算出每个训练样本的梯度。但如果选择裁剪训练样本，我们就可以一次计算得到所有训练样本的梯度，从而提高训练效率（这是机器学习中的常用技巧，这里我们不再展开讨论）。</p>
-<p>然而，需要注意的是，还有很多常用损失函数的全局敏感度是无界的，尤其是深度学习中神经网络里用到的损失函数更是如此。对于这些损失函数，我们只能使用梯度裁剪法。</p>
-<p>我们只需对算法进行简单的修改，就可以把裁剪梯度替换为裁剪训练样本。在开始训练之前，我们需要先使用<code class="docutils literal notranslate"><span class="pre">L2_clip</span></code>（L2裁剪）函数来裁剪训练样本。随后，我们只需要直接把裁剪梯度的代码移除即可。</p>
+<p>This fact allows us to clip the values of the <em>training examples</em> (i.e. the <em>inputs</em> to the gradient function), instead of the <em>output</em> of the gradient function, and obtain a bound on the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the gradient.</p>
+<p>Clipping the training examples instead of the gradients has two advantages. First, it’s often easier to estimate the scale of the training data (and thus to pick a good clipping parameter) than it is to estimate the scale of the gradients you’ll compute during training. Second, it’s computationally more efficient: we can clip the training examples <em>once</em>, and re-use the clipped training data every time we train a model; with gradient clipping, we need to clip each gradient during training. Furthermore, we’re no longer forced to compute per-example gradients so that we can clip them; instead, we can compute all of the gradients at once, which can be done very efficiently (this is a commonly used trick in machine learning, but we won’t discuss it here).</p>
+<p>Note, however, that many useful loss functions - in particular, those derived from neural networks in deep learning - do <em>not</em> have bounded global sensitivity. For these loss functions, we’re forced to use gradient clipping.</p>
+<p>We can clip the training examples instead of the gradients with a couple of simple modifications to our algorithm. First, we clip the training examples using <code class="docutils literal notranslate"><span class="pre">L2_clip</span></code> before we start training. Second, we simply delete the code for clipping the gradients.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
-
-    <span class="c1"># 求和问询</span>
-    <span class="c1"># （经过裁剪后的）L2敏感度为b</span>
+        
+    <span class="c1"># sum query</span>
+    <span class="c1"># L2 sensitivity is b (by sensitivity of the gradient)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -878,27 +892,27 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.778858911985847
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7816231755860239
 </pre></div>
 </div>
 </div>
 </div>
-<p>M可以对此算法进行多种改进，以进一步降低隐私消耗量、提升模型预测的准确率。很多改进方法都源自机器学习领域的论文。这里给出几个例子：</p>
+<p>Many improvements to this algorithm are possible, which can improve privacy cost and accuracy. Many are drawn from the machine learning literature. Some examples include:</p>
 <ul class="simple">
-<li><p>将总隐私消耗量限定为<span class="math notranslate nohighlight">\(\epsilon\)</span>，在算法内部计算每轮迭代的隐私消耗量<span class="math notranslate nohighlight">\(\epsilon_i\)</span>。</p></li>
-<li><p>利用高级组合性、瑞丽差分隐私或零集中差分隐私，从而获得更好的总隐私消耗量。</p></li>
-<li><p>小批次训练：每轮迭代中，不使用整个训练数据，而是使用一小块训练数据来计算梯度（这样可以减少梯度计算过程中的计算开销）。</p></li>
-<li><p>同时使用小批次训练和并行组合性。</p></li>
-<li><p>同时使用小批次训练和小批次随机采样。</p></li>
-<li><p>调整学习率<span class="math notranslate nohighlight">\(\eta\)</span>等其他超参数。</p></li>
+<li><p>Bounding the <em>total</em> privacy cost by <span class="math notranslate nohighlight">\(\epsilon\)</span> by calculating a per-iteration <span class="math notranslate nohighlight">\(\epsilon_i\)</span> as part of the algorithm.</p></li>
+<li><p>Better composition for large numbers of iterations via advanced composition, RDP, or zCDP.</p></li>
+<li><p>Minibatching: calculating the gradient for each iteration using a small chunk of the training data, rather than the whole training set (this reduces the computation needed to calculate the gradient).</p></li>
+<li><p>Parallel composition in conjunction with minibatching.</p></li>
+<li><p>Random sampling of batches in conjunction with minibatching.</p></li>
+<li><p>Other hyperparameters, like a learning rate <span class="math notranslate nohighlight">\(\eta\)</span>.</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id9">
-<h2>噪声对训练的影响<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
-<p>我们已经知道，迭代次数会对模型的预测准确率带来很大的影响，因为更多的迭代次数可以使模型更接近最小损失值。我们的差分隐私算法需要在梯度上增加噪声，这会对准确率噪声带来很大的影响。噪声可能导致训练算法在训练过程中向<em>错误的方向</em>移动，使模型变得<em>更糟糕</em>。</p>
-<p>我们有理由相信更小的<span class="math notranslate nohighlight">\(\epsilon\)</span>会带来准确率更低的模型（我们已经学习的差分隐私算法都存在类似的关系）。这个结论确实是正确的，但由于在执行多轮迭代算法时要考虑组合定理，因此这里也存在一些微妙的平衡。更多的迭代次数意味着更大的隐私消耗量，而在标准梯度下降算法中，更多的迭代次数一般意味着产出更好的模型。在差分隐私保护下，当总隐私消耗量保持不变时，更多的迭代次数可能会导致模型变得更加糟糕，因为我们不得不使用更小的<span class="math notranslate nohighlight">\(\epsilon\)</span>来支持更多轮迭代，这会带来更大的噪声。在差分隐私机器学习中，适当平衡迭代轮数和单轮添加的噪声量是一个很重要的（有时也是一个非常有挑战性的）问题。</p>
-<p>让我们做一个小实验，看看不同的<span class="math notranslate nohighlight">\(\epsilon\)</span>会对模型的预测准确率带来何种影响。我们将使用不同的<span class="math notranslate nohighlight">\(\epsilon\)</span>来训练模型，每次训练迭代20轮。我们根据训练时使用的<span class="math notranslate nohighlight">\(\epsilon\)</span>作为横坐标来绘制每个模型的准确率变化图。</p>
+<div class="section" id="effect-of-noise-on-training">
+<h2>Effect of Noise on Training<a class="headerlink" href="#effect-of-noise-on-training" title="Permalink to this headline">¶</a></h2>
+<p>So far, we’ve seen that the number of iterations has a big effect on the accuracy of the model we get, since more iterations can get you closer to the minimum of the loss. Since our differentially private algorithm adds noise to the gradient, this can also affect accuracy - the noise can cause our algorithm to move in <em>the wrong direction</em> during training, and actually make the model <em>worse</em>.</p>
+<p>It’s reasonable to expect that smaller values of <span class="math notranslate nohighlight">\(\epsilon\)</span> will result in less accurate models (since this has been the trend in every differentially private algorithm we have seen so far). This is true, but there’s also a slightly more subtle tradeoff which occurs because of the composition we need to consider when we perform many iterations of the algorithm: more iterations means a larger privacy cost. In the standard gradient descent algorithm, more iterations generally result in a better model. In our differentially private version, more iterations can make the model <em>worse</em>, since we have to use a smaller <span class="math notranslate nohighlight">\(\epsilon\)</span> for each iteration, and so the scale of the noise goes up. In differentially private machine learning, it’s important (and sometimes, very challenging) to strike the right balance between the number of iterations used and the scale of the noise added.</p>
+<p>Let’s do a small experiment to see how the setting of <span class="math notranslate nohighlight">\(\epsilon\)</span> effects the accuracy of our model. We’ll train a model for several values of <span class="math notranslate nohighlight">\(\epsilon\)</span>, using 20 iterations each time, and graph the accuracy of each model against the <span class="math notranslate nohighlight">\(\epsilon\)</span> value used in training it.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>
@@ -931,6 +945,25 @@ w_1 x_1 + \dots + w_k x_k + bias
 <span class="g g-Whitespace">     </span><span class="mi">10</span>         <span class="n">noisy_grad_sum</span>  <span class="o">=</span> <span class="n">gaussian_mech_vec</span><span class="p">(</span><span class="n">grad_sum</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">11</span>         <span class="n">noisy_avg_grad</span>  <span class="o">=</span> <span class="n">noisy_grad_sum</span> <span class="o">/</span> <span class="n">noisy_count</span>
 
+<span class="nn">&lt;ipython-input-25-08653265428c&gt;</span> in <span class="ni">gradient_sum</span><span class="nt">(theta, X, y, b)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="c1"># sum query</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="c1"># L2 sensitivity is b (by sensitivity of the gradient)</span>
+
+<span class="nn">&lt;ipython-input-25-08653265428c&gt;</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="c1"># sum query</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="c1"># L2 sensitivity is b (by sensitivity of the gradient)</span>
+
+<span class="nn">&lt;ipython-input-12-30637787ec34&gt;</span> in <span class="ni">gradient</span><span class="nt">(theta, xi, yi)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">def</span> <span class="nf">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">exponent</span> <span class="o">=</span> <span class="n">yi</span> <span class="o">*</span> <span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">5</span>     <span class="k">return</span> <span class="o">-</span> <span class="p">(</span><span class="n">yi</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">exponent</span><span class="p">))</span>
+
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
@@ -938,8 +971,8 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;ε&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;准确率&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epsilon&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epsilons</span><span class="p">,</span> <span class="n">accs</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -948,7 +981,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 <img alt="../_images/ch12_60_0.png" src="../_images/ch12_60_0.png" />
 </div>
 </div>
-<p>从上图可以看出，<span class="math notranslate nohighlight">\(\epsilon\)</span>非常小时会产生准确率非常低的模型。请记住，我们在图中指定的<span class="math notranslate nohighlight">\(\epsilon\)</span>是每轮迭代时使用的<span class="math notranslate nohighlight">\(\epsilon\)</span>，因此组合后的总隐私消耗量还要大得多。</p>
+<p>The plot shows that very small values of <span class="math notranslate nohighlight">\(\epsilon\)</span> result in far less accurate models. Keep in mind that the <span class="math notranslate nohighlight">\(\epsilon\)</span> we specify in the plot is a <em>per-iteration</em> <span class="math notranslate nohighlight">\(\epsilon\)</span>, so the privacy cost is much higher after composition.</p>
 </div>
 </div>
 
@@ -977,8 +1010,8 @@ w_1 x_1 + \dots + w_k x_k + bias
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="ch11.html" title="previous page">算法设计练习</a>
-    <a class='right-next' id="next-link" href="ch13.html" title="next page">本地差分隐私</a>
+    <a class='left-prev' id="prev-link" href="ch11.html" title="previous page">Exercises in Algorithm Design</a>
+    <a class='right-next' id="next-link" href="ch13.html" title="next page">Local Differential Privacy</a>
 
         </div>
         
@@ -988,7 +1021,7 @@ w_1 x_1 + \dots + w_k x_k + bias
     <div class="container">
       <p>
         
-          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+          By Joseph P. Near and Chiké Abuah<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

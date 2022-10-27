@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html lang="zh_CN">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>差分隐私 &#8212; 动手学差分隐私</title>
+    <title>Differential Privacy &#8212; Programming Differential Privacy</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -40,7 +40,6 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/translations.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -50,12 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="差分隐私的性质" href="ch4.html" />
-    <link rel="prev" title="\(k\)-匿名性" href="ch2.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Properties of Differential Privacy" href="ch4.html" />
+    <link rel="prev" title="\(k\)-Anonymity" href="ch2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -74,10 +73,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -87,15 +86,20 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   引言
+  <a class="reference internal" href="cover.html">
+   Programming Differential Privacy
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="ch1.html">
-   去标识
+   De-identification
   </a>
  </li>
  <li class="toctree-l1">
@@ -103,72 +107,72 @@
    <span class="math notranslate nohighlight">
     \(k\)
    </span>
-   -匿名性
+   -Anonymity
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   差分隐私
+   Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch4.html">
-   差分隐私的性质
+   Properties of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch5.html">
-   敏感度
+   Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch6.html">
-   近似差分隐私
+   Approximate Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch7.html">
-   局部敏感度
+   Local Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch8.html">
-   差分隐私变体
+   Variants of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch9.html">
-   指数机制
+   The Exponential Mechanism
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch10.html">
-   稀疏向量技术
+   The Sparse Vector Technique
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch11.html">
-   算法设计练习
+   Exercises in Algorithm Design
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch12.html">
-   机器学习
+   Machine Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch13.html">
-   本地差分隐私
+   Local Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch14.html">
-   合成数据
+   Synthetic Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   参考文献
+   Bibliography
   </a>
  </li>
 </ul>
@@ -260,13 +264,13 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   拉普拉斯机制
+  <a class="reference internal nav-link" href="#the-laplace-mechanism">
+   The Laplace Mechanism
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   需要多大的噪声？
+  <a class="reference internal nav-link" href="#how-much-noise-is-enough">
+   How Much Noise is Enough?
   </a>
  </li>
 </ul>
@@ -280,35 +284,34 @@
         
               <div>
                 
-  <div class="section" id="id1">
-<h1>差分隐私<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<div class="admonition- admonition">
-<p class="admonition-title">学习目标</p>
-<p>阅读本章后，您将能够：</p>
+  <div class="section" id="differential-privacy">
+<h1>Differential Privacy<a class="headerlink" href="#differential-privacy" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
 <ul class="simple">
-<li><p>定义差分隐私</p></li>
-<li><p>解释<span class="math notranslate nohighlight">\(\epsilon\)</span>这一重要的隐私参数</p></li>
-<li><p>应用拉普拉斯机制实现满足差分隐私的计数问询</p></li>
+<li><p>Define differential privacy</p></li>
+<li><p>Explain the importance of the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span></p></li>
+<li><p>Use the Laplace mechanism to enforce differential privacy for counting queries</p></li>
 </ul>
 </div>
-<p>与<span class="math notranslate nohighlight">\(k\)</span>-匿名性类似，<em>差分隐私</em>（Differential Privacy） <span id="id2">[<a class="reference internal" href="bibliography.html#id7"><span>3</span></a>,<a class="reference internal" href="bibliography.html#id8"><span>4</span></a>]</span>也是一个用数学语言描述的隐私定义（即可以用数学方法证明发布数据满足此性质）。然而，与<span class="math notranslate nohighlight">\(k\)</span>-匿名性不同，差分隐私不是<em>数据</em>所具有的属性，而是<em>算法</em>所具有的属性。也就是说，我们可以证明一个<em>算法</em>满足差分隐私。如果想证明一个<em>数据集</em>满足差分隐私，我们需要证明的是产生此数据集的算法满足差分隐私。</p>
-<div class="admonition- admonition">
-<p class="admonition-title">定义</p>
-<p>一般将满足差分隐私的函数称为一个<em>机制</em>（Mechanism）。如果对于所有<em>临近数据集</em>（Neighboring Dataset）<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>和所有可能的输出<span class="math notranslate nohighlight">\(S\)</span>，机制<span class="math notranslate nohighlight">\(F\)</span>均满足</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5a2fe6b7-3c35-46ec-a3e7-7b4f02009e4a">
-<span class="eqno">(1)<a class="headerlink" href="#equation-5a2fe6b7-3c35-46ec-a3e7-7b4f02009e4a" title="公式的永久链接">¶</a></span>\[\begin{equation}
+<p>Like <span class="math notranslate nohighlight">\(k\)</span>-Anonymity, <em>differential privacy</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id6"><span>3</span></a>,<a class="reference internal" href="bibliography.html#id7"><span>4</span></a>]</span> is a formal notion of privacy (i.e. it’s possible to prove that a data release has the property). Unlike <span class="math notranslate nohighlight">\(k\)</span>-Anonymity, however, differential privacy is a property of <em>algorithms</em>, and not a property of <em>data</em>. That is, we can prove that an <em>algorithm</em> satisfies differential privacy; to show that a <em>dataset</em> satisfies differential privacy, we must show that the algorithm which produced it satisfies differential privacy.</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>A function which satisfies differential privacy is often called a <em>mechanism</em>. We say that a <em>mechanism</em> <span class="math notranslate nohighlight">\(F\)</span> satisfies differential privacy if for all <em>neighboring datasets</em> <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all possible outputs <span class="math notranslate nohighlight">\(S\)</span>,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-27b232d3-ac77-4a8b-85cb-ed2c836ded66">
+<span class="eqno">(1)<a class="headerlink" href="#equation-27b232d3-ac77-4a8b-85cb-ed2c836ded66" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
 \end{equation}\]</div>
-<p>则称机制<span class="math notranslate nohighlight">\(F\)</span>满足差分隐私。</p>
 </div>
-<p>如果两个数据集中只有一个个体的数据项不同，则认为这两个数据集是临近数据集。请注意，<span class="math notranslate nohighlight">\(F\)</span>一般是一个<em>随机</em>函数。也就是说，即使给定相同的输入，<span class="math notranslate nohighlight">\(F\)</span>一般也包含多个可能的输出。因此，<span class="math notranslate nohighlight">\(F\)</span>输出的概率分布一般不是一个点分布。</p>
-<p>这个定义所蕴含的一个重要含义是，无论输入<em>是否包含</em>任意特定个体的数据，<span class="math notranslate nohighlight">\(F\)</span>的输出总是几乎相同的。换句话说，<span class="math notranslate nohighlight">\(F\)</span>所引入的随机性应该足够大，使得观察<span class="math notranslate nohighlight">\(F\)</span>的输出无法判断输入是<span class="math notranslate nohighlight">\(x\)</span>还是<span class="math notranslate nohighlight">\(x'\)</span>。假设我的数据在<span class="math notranslate nohighlight">\(x\)</span>中，但不在<span class="math notranslate nohighlight">\(x'\)</span>中。如果攻击者无法确定<span class="math notranslate nohighlight">\(F\)</span>的输入是<span class="math notranslate nohighlight">\(x\)</span>还是<span class="math notranslate nohighlight">\(x'\)</span>，则攻击者甚至无法判断输入是否包含我的数据，更无法判断出我的数据是什么了。</p>
-<p>一般将差分隐私定义中的参数<span class="math notranslate nohighlight">\(\epsilon\)</span>称为<em>隐私参数</em>（Privacy Parameter）或<em>隐私预算</em>（Privacy Budget）。<span class="math notranslate nohighlight">\(\epsilon\)</span>提供了一个旋钮，用来调整差分隐私定义所能提供的”隐私量”。<span class="math notranslate nohighlight">\(\epsilon\)</span>较小时，意味着<span class="math notranslate nohighlight">\(F\)</span>需要为相似的输入提供<em>非常</em>相似的输出，因此提供更高等级的隐私性。较大的<span class="math notranslate nohighlight">\(\epsilon\)</span>允许<span class="math notranslate nohighlight">\(F\)</span>给出不那么相似的输出，因此提供更少的隐私性。</p>
-<p>我们在实际中应该如何设置<span class="math notranslate nohighlight">\(\epsilon\)</span>，差分隐私才能提供足够的隐私性呢？没人知道这个问题的答案。一般的共识是：将<span class="math notranslate nohighlight">\(\epsilon\)</span>设置为约等于1或者更小的值；大于10的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值意味着大概率无法提供足够的隐私性。但实际上，这个经验法则下的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值过于保守了。我们后续将会进一步展开讨论这个问题。</p>
-<div class="section" id="id3">
-<h2>拉普拉斯机制<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
-<p>差分隐私一般用于回复特定的问询。我们来考虑一个针对人口普查数据的问询。我们首先不使用差分隐私。</p>
-<p>“数据集中有多少个体的年龄大于等于40岁？”</p>
+<p>Two datasets are considered neighbors if they differ in the data of a single individual. Note that <span class="math notranslate nohighlight">\(F\)</span> is typically a <em>randomized</em> function, which has many possible outputs under the same input. Therefore, the probability distribution describing its outputs is not just a point distribution.</p>
+<p>The important implication of this definition is that <span class="math notranslate nohighlight">\(F\)</span>’s output will be pretty much the same, <em>with or without</em> the data of any specific individual. In other words, the randomness built into <span class="math notranslate nohighlight">\(F\)</span> should be “enough” so that an observed output from <span class="math notranslate nohighlight">\(F\)</span> will not reveal which of <span class="math notranslate nohighlight">\(x\)</span> or <span class="math notranslate nohighlight">\(x'\)</span> was the input. Imagine that my data is present in <span class="math notranslate nohighlight">\(x\)</span> but not in <span class="math notranslate nohighlight">\(x'\)</span>. If an adversary can’t determine which of <span class="math notranslate nohighlight">\(x\)</span> or <span class="math notranslate nohighlight">\(x'\)</span> was the input to <span class="math notranslate nohighlight">\(F\)</span>, then the adversary can’t tell whether or not my data was <em>present</em> in the input - let alone the contents of that data.</p>
+<p>The <span class="math notranslate nohighlight">\(\epsilon\)</span> parameter in the definition is called the <em>privacy parameter</em> or the <em>privacy budget</em>. <span class="math notranslate nohighlight">\(\epsilon\)</span> provides a knob to tune the “amount of privacy” the definition provides. Small values of <span class="math notranslate nohighlight">\(\epsilon\)</span> require <span class="math notranslate nohighlight">\(F\)</span> to provide <em>very</em> similar outputs when given similar inputs, and therefore provide higher levels of privacy; large values of <span class="math notranslate nohighlight">\(\epsilon\)</span> allow less similarity in the outputs, and therefore provide less privacy.</p>
+<p>How should we set <span class="math notranslate nohighlight">\(\epsilon\)</span> to prevent bad outcomes in practice? Nobody knows. The general consensus is that <span class="math notranslate nohighlight">\(\epsilon\)</span> should be around 1 or smaller, and values of <span class="math notranslate nohighlight">\(\epsilon\)</span> above 10 probably don’t do much to protect privacy - but this rule of thumb could turn out to be very conservative. We will have more to say on this subject later on.</p>
+<div class="section" id="the-laplace-mechanism">
+<h2>The Laplace Mechanism<a class="headerlink" href="#the-laplace-mechanism" title="Permalink to this headline">¶</a></h2>
+<p>Differential privacy is typically used to answer specific queries. Let’s consider a query on the census data, <em>without</em> differential privacy.</p>
+<p>“How many individuals in the dataset are 40 years old or older?”</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">40</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -321,18 +324,18 @@
 </div>
 </div>
 </div>
-<p>使这个问询满足差分隐私的最简单方法是：在回复结果上增加随机噪声。这里的关键挑战是：既需要增加足够大的噪声，使问询满足差分隐私，但噪声又不能加得太多，否则问询结果就无意义了。为了简化这一过程，差分隐私领域的学者提出了一些基础<em>机制</em>。这些基础机制具体描述了应该增加何种类型的噪声，以及噪声量应该有多大。最典型的基础机制是<em>拉普拉斯机制</em>（Laplace Mechanism） <span id="id4">[<a class="reference internal" href="bibliography.html#id8"><span>4</span></a>]</span>。</p>
-<div class="admonition- admonition">
-<p class="admonition-title">定义</p>
-<p>根据拉普拉斯机制，对于可以输出一个数值型结果的函数<span class="math notranslate nohighlight">\(f(x)\)</span>，按下述方法定义的<span class="math notranslate nohighlight">\(F(x)\)</span>满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-34570968-189d-4b3c-a164-de7e0ca7457d">
-<span class="eqno">(2)<a class="headerlink" href="#equation-34570968-189d-4b3c-a164-de7e0ca7457d" title="公式的永久链接">¶</a></span>\[\begin{equation}
+<p>The easiest way to achieve differential privacy for this query is to add random noise to its answer. The key challenge is to add enough noise to satisfy the definition of differential privacy, but not so much that the answer becomes too noisy to be useful. To make this process easier, some basic <em>mechanisms</em> have been developed in the field of differential privacy, which describe exactly what kind of - and how much - noise to use. One of these is called the <em>Laplace mechanism</em> <span id="id2">[<a class="reference internal" href="bibliography.html#id7"><span>4</span></a>]</span>.</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>According to the Laplace mechanism, for a function <span class="math notranslate nohighlight">\(f(x)\)</span> which returns a number, the following definition of <span class="math notranslate nohighlight">\(F(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-26565592-d84f-4202-9972-7d45217e1f70">
+<span class="eqno">(2)<a class="headerlink" href="#equation-26565592-d84f-4202-9972-7d45217e1f70" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{equation}\]</div>
-<p>其中<span class="math notranslate nohighlight">\(s\)</span>是<span class="math notranslate nohighlight">\(f\)</span>的<em>敏感度</em>（Sensitivity），<span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span>表示以均值为0、放缩系数为<span class="math notranslate nohighlight">\(S\)</span>的拉普拉斯分布采样。</p>
+<p>where <span class="math notranslate nohighlight">\(s\)</span> is the <em>sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span> denotes sampling from the Laplace distribution with center 0 and scale <span class="math notranslate nohighlight">\(S\)</span>.</p>
 </div>
-<p>函数<span class="math notranslate nohighlight">\(f\)</span>的<em>敏感度</em>是指，当输入由数据集<span class="math notranslate nohighlight">\(x\)</span>变化为临近数据集<span class="math notranslate nohighlight">\(x'\)</span>后，<span class="math notranslate nohighlight">\(f\)</span>的输出变化量。计算函数<span class="math notranslate nohighlight">\(f\)</span>的敏感度是一个非常复杂的问题，也是设计差分隐私算法时所需面临的核心问题，我们稍后会更进一步展开讨论。我们现在只需要指出，<em>计数问询</em>（Counting Query）的敏感度总为1：当问询数据集中满足特定属性的数据量时，如果我们只修改数据集中的一个数据项，则问询的输出变化量最多为1。</p>
-<p>因此，我们可以根据我们所选择的<span class="math notranslate nohighlight">\(\epsilon\)</span>，在计数问询中使用敏感度等于1的拉普拉斯机制，从而使我们的样例问询满足差分隐私性。现在，我们取<span class="math notranslate nohighlight">\(\epsilon = 0.1\)</span>。我们可以用Numpy的<code class="docutils literal notranslate"><span class="pre">random.laplace</span></code>函数实现拉普拉斯分布采样。</p>
+<p>The <em>sensitivity</em> of a function <span class="math notranslate nohighlight">\(f\)</span> is the amount <span class="math notranslate nohighlight">\(f\)</span>’s output changes when its input changes by 1. Sensitivity is a complex topic, and an integral part of designing differentially private algorithms; we will have much more to say about it later. For now, we will just point out that <em>counting queries</em> always have a sensitivity of 1: if a query counts the number of rows in the dataset with a particular property, and then we modify exactly one row of the dataset, then the query’s output can change by at most 1.</p>
+<p>Thus we can achieve differential privacy for our example query by using the Laplace mechanism with sensitivity 1 and an <span class="math notranslate nohighlight">\(\epsilon\)</span> of our choosing. For now, let’s pick <span class="math notranslate nohighlight">\(\epsilon = 0.1\)</span>. We can sample from the Laplace distribution using Numpy’s <code class="docutils literal notranslate"><span class="pre">random.laplace</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sensitivity</span> <span class="o">=</span> <span class="mi">1</span>
@@ -343,16 +346,16 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14213.226527895278
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14254.574490023344
 </pre></div>
 </div>
 </div>
 </div>
-<p>可以试着多次运行此代码，查看噪声对问询结果造成的影响。虽然每次代码的输出结果都会发生变化，但在大多数情况下，输出的结果都与真实结果（14,235）很接近，输出结果的可用性相对较高。</p>
+<p>You can see the effect of the noise by running this code multiple times. Each time, the output changes, but most of the time, the answer is close enough to the true answer (14,235) to be useful.</p>
 </div>
-<div class="section" id="id5">
-<h2>需要多大的噪声？<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
-<p>我们如何知道拉普拉斯机制是否已经增加了足够的噪声，可以阻止攻击者对数据集中的个体实施重标识攻击？我们可以先尝试自己来实施攻击！我们构造一个恶意的计数问询，专门用于确定凯莉·特鲁斯洛夫的收入是否大于$50k。</p>
+<div class="section" id="how-much-noise-is-enough">
+<h2>How Much Noise is Enough?<a class="headerlink" href="#how-much-noise-is-enough" title="Permalink to this headline">¶</a></h2>
+<p>How do we know that the Laplace mechanism adds enough noise to prevent the re-identification of individuals in the dataset? For one thing, we can try to break it! Let’s write down a malicious counting query, which is specifically designed to determine whether Karrie Trusslove has an income greater than $50k.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">karries_row</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Karrie Trusslove&#39;</span><span class="p">]</span>
@@ -366,7 +369,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 </div>
-<p>此回复结果给出了凯莉所在数据行的收入值，显然侵犯了凯莉的隐私。由于我们知道如何应用拉普拉斯机制使计数问询满足差分隐私，我们可以这样回复问询：</p>
+<p>This result definitely violates Karrie’s privacy, since it reveals the value of the income column for Karrie’s row. Since we know how to ensure differential privacy for counting queries with the Laplace mechanism, we can do so for this query:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sensitivity</span> <span class="o">=</span> <span class="mi">1</span>
@@ -379,12 +382,12 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13.294461647527443
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.43344754770407024
 </pre></div>
 </div>
 </div>
 </div>
-<p>真实结果是0还是1呢？因为增加的噪声比较大，我们已经无法可靠地判断真实结果是什么了。这就是差分隐私要实现的目的：哪怕可以判定出此问询是恶意的，我们也不会<em>拒绝</em>回复问询。相反，我们会增加足够大的噪声，使恶意问询的回复结果对攻击者来说变得毫无用处。</p>
+<p>Is the true answer 0 or 1? There’s too much noise to be able to reliably tell. This is how differential privacy is <em>intended</em> to work - the approach does not <em>reject</em> queries which are determined to be malicious; instead, it adds enough noise that the results of a malicious query will be useless to the adversary.</p>
 </div>
 </div>
 
@@ -413,8 +416,8 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="ch2.html" title="previous page"><span class="math notranslate nohighlight">\(k\)</span>-匿名性</a>
-    <a class='right-next' id="next-link" href="ch4.html" title="next page">差分隐私的性质</a>
+    <a class='left-prev' id="prev-link" href="ch2.html" title="previous page"><span class="math notranslate nohighlight">\(k\)</span>-Anonymity</a>
+    <a class='right-next' id="next-link" href="ch4.html" title="next page">Properties of Differential Privacy</a>
 
         </div>
         
@@ -424,7 +427,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
     <div class="container">
       <p>
         
-          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+          By Joseph P. Near and Chiké Abuah<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

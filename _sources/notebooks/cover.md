@@ -1,9 +1,7 @@
-# 动手学差分隐私
+# Programming Differential Privacy
 
-![logo](logo_zh_cn.png)
+![logo](logo.png)
 
-**一本面向程序员的差分隐私书籍**
+**A book about differential privacy, for programmers**
 
-**Joseph P. Near、Chiké Abuah（著）**
-
-**刘巍然，李双（译）**
+**By Joseph P. Near and Chiké Abuah**

@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html lang="zh_CN">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>动手学差分隐私 &#8212; 动手学差分隐私</title>
+    <title>Programming Differential Privacy &#8212; Programming Differential Privacy</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -40,7 +40,6 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/translations.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -50,8 +49,9 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -70,10 +70,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -82,89 +82,91 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   引言
+ <li class="toctree-l1 current">
+  <a class="reference internal" href="#">
+   Programming Differential Privacy
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="ch1.html">
-   去标识
+   De-identification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch2.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -匿名性
+   k-Anonymity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch3.html">
-   差分隐私
+   Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch4.html">
-   差分隐私的性质
+   Properties of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch5.html">
-   敏感度
+   Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch6.html">
-   近似差分隐私
+   Approximate Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch7.html">
-   局部敏感度
+   Local Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch8.html">
-   差分隐私变体
+   Variants of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch9.html">
-   指数机制
+   The Exponential Mechanism
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch10.html">
-   稀疏向量技术
+   The Sparse Vector Technique
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch11.html">
-   算法设计练习
+   Exercises in Algorithm Design
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch12.html">
-   机器学习
+   Machine Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch13.html">
-   本地差分隐私
+   Local Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch14.html">
-   合成数据
+   Synthetic Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   参考文献
+   Bibliography
   </a>
  </li>
 </ul>
@@ -241,12 +243,13 @@
         
               <div>
                 
-  <div class="section" id="id1">
-<h1>动手学差分隐私<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<p><img alt="logo" src="../_images/logo_zh_cn.png" /></p>
-<p><strong>一本面向程序员的差分隐私书籍</strong></p>
-<p><strong>Joseph P. Near、Chiké Abuah（著）</strong></p>
-<p><strong>刘巍然，李双（译）</strong></p>
+  <div class="section" id="programming-differential-privacy">
+<h1>Programming Differential Privacy<a class="headerlink" href="#programming-differential-privacy" title="Permalink to this headline">¶</a></h1>
+<p><img alt="logo" src="../_images/logo.png" /></p>
+<p><strong>A book about differential privacy, for programmers</strong></p>
+<p><strong>By Joseph P. Near and Chiké Abuah</strong></p>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -274,6 +277,7 @@
         
         <div class='prev-next-bottom'>
             
+    <a class='right-next' id="next-link" href="intro.html" title="next page">Introduction</a>
 
         </div>
         
@@ -283,7 +287,7 @@
     <div class="container">
       <p>
         
-          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+          By Joseph P. Near and Chiké Abuah<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

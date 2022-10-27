@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html lang="zh_CN">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>稀疏向量技术 &#8212; 动手学差分隐私</title>
+    <title>The Sparse Vector Technique &#8212; Programming Differential Privacy</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -40,7 +40,6 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/translations.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -50,12 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="算法设计练习" href="ch11.html" />
-    <link rel="prev" title="指数机制" href="ch9.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Exercises in Algorithm Design" href="ch11.html" />
+    <link rel="prev" title="The Exponential Mechanism" href="ch9.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -74,10 +73,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -87,15 +86,20 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   引言
+  <a class="reference internal" href="cover.html">
+   Programming Differential Privacy
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="ch1.html">
-   去标识
+   De-identification
   </a>
  </li>
  <li class="toctree-l1">
@@ -103,72 +107,72 @@
    <span class="math notranslate nohighlight">
     \(k\)
    </span>
-   -匿名性
+   -Anonymity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch3.html">
-   差分隐私
+   Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch4.html">
-   差分隐私的性质
+   Properties of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch5.html">
-   敏感度
+   Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch6.html">
-   近似差分隐私
+   Approximate Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch7.html">
-   局部敏感度
+   Local Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch8.html">
-   差分隐私变体
+   Variants of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch9.html">
-   指数机制
+   The Exponential Mechanism
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   稀疏向量技术
+   The Sparse Vector Technique
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch11.html">
-   算法设计练习
+   Exercises in Algorithm Design
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch12.html">
-   机器学习
+   Machine Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch13.html">
-   本地差分隐私
+   Local Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch14.html">
-   合成数据
+   Synthetic Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   参考文献
+   Bibliography
   </a>
  </li>
 </ul>
@@ -260,23 +264,23 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   高于阈值算法
+  <a class="reference internal nav-link" href="#above-threshold">
+   Above Threshold
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   应用稀疏向量技术
+  <a class="reference internal nav-link" href="#applying-the-sparse-vector-technique">
+   Applying the Sparse Vector Technique
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id6">
-   返回多个问询结果
+  <a class="reference internal nav-link" href="#returning-multiple-values">
+   Returning Multiple Values
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id8">
-   应用：范围问询
+  <a class="reference internal nav-link" href="#application-range-queries">
+   Application: Range Queries
   </a>
  </li>
 </ul>
@@ -290,25 +294,25 @@
         
               <div>
                 
-  <div class="section" id="id1">
-<h1>稀疏向量技术<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<div class="admonition- admonition">
-<p class="admonition-title">学习目标</p>
-<p>阅读本章后，您将能够：</p>
+  <div class="section" id="the-sparse-vector-technique">
+<h1>The Sparse Vector Technique<a class="headerlink" href="#the-sparse-vector-technique" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
 <ul class="simple">
-<li><p>描述稀疏向量技术，以及使用此技术的原因</p></li>
-<li><p>定义和实现”高于阈值”算法</p></li>
-<li><p>在迭代算法中应用稀疏向量技术</p></li>
+<li><p>Describe the Sparse Vector Technique and the reasons to use it</p></li>
+<li><p>Define and implement Above Threshold</p></li>
+<li><p>Apply the Sparse Vector Technique in iterative algorithms</p></li>
 </ul>
 </div>
-<p>我们已经学习了一个很有代表性的机制：指数机制。指数机制通过隐瞒一部分信息来获得低于预期的隐私消耗量。还有其他类似的方法吗？</p>
-<p>当然还有类似的方法：<em>稀疏向量技术</em>（Sparse Vector Technique，SVT）<span id="id2">[<a class="reference internal" href="bibliography.html#id17"><span>14</span></a>]</span>。实际应用已证明稀疏向量技术可以非常有效地节省隐私消耗量。稀疏向量技术适用于在数据集上执行敏感度为1的问询流。此技术只发布问询流中第一个通过测试的问询<em>索引号</em>，而不发布其他任何信息。稀疏向量技术的优势在于，<em>无论总共收到了多少问询</em>，此机制消耗的总隐私消耗量都是固定的。</p>
-<div class="section" id="id3">
-<h2>高于阈值算法<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
-<p>稀疏向量技术最基础的实例是<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>（高于阈值）算法（详见<a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork和Roth</a> <span id="id4">[<a class="reference internal" href="bibliography.html#id11"><span>13</span></a>]</span>论文中的算法1）。算法输入是敏感度为1的问询流、数据集<span class="math notranslate nohighlight">\(D\)</span>阈值<span class="math notranslate nohighlight">\(T\)</span>、以及隐私参数<span class="math notranslate nohighlight">\(\epsilon\)</span>；算法满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。算法的Python实现如下所述。</p>
+<p>We’ve already seen one example of a mechanism - the exponential mechanism - which achieves a lower-than-expected privacy cost by withholding some information. Are there others?</p>
+<p>There are, and one that turns out to be extremely useful in practical algorithms is the <em>sparse vector technique</em> (SVT) <span id="id1">[<a class="reference internal" href="bibliography.html#id16"><span>14</span></a>]</span>. The sparse vector technique operates on a stream of sensitivity-1 queries over a dataset; it releases the <em>identity</em> of the first query in the stream which passes a test, and nothing else. The advantage of SVT is that it incurs a fixed total privacy cost, no matter <em>how many queries it considers</em>.</p>
+<div class="section" id="above-threshold">
+<h2>Above Threshold<a class="headerlink" href="#above-threshold" title="Permalink to this headline">¶</a></h2>
+<p>The most basic instantiation of the sparse vector technique is an algorithm called <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id10"><span>13</span></a>]</span>, Algorithm 1). The inputs to the algorithm are a stream of sensitivity-1 queries, a dataset <span class="math notranslate nohighlight">\(D\)</span>, a <em>threshold</em> <span class="math notranslate nohighlight">\(T\)</span>, and the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>; the algorithm preserves <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. A Python implementation of the algorithm appears below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 满足ε-差分隐私</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># preserves epsilon-differential privacy</span>
 <span class="k">def</span> <span class="nf">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
     <span class="n">T_hat</span> <span class="o">=</span> <span class="n">T</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
     
@@ -316,17 +320,17 @@
         <span class="n">nu_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">q</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="n">nu_i</span> <span class="o">&gt;=</span> <span class="n">T_hat</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">idx</span>
-    <span class="k">return</span> <span class="kc">None</span> <span class="c1"># 返回一个无效的问询索引号</span>
+    <span class="k">return</span> <span class="kc">None</span> <span class="c1"># an invalid index</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>（近似）返回<code class="docutils literal notranslate"><span class="pre">queries</span></code>中回复结果超过阈值的第一个问询所对应的索引号。算法之所以满足差分隐私，是因为算法有可能返回<em>错误的</em>索引号，索引号对应的问询回复结果有可能未超过给定阈值，索引号对应的问询有可能不是第一个回复结果超过阈值的问询。</p>
-<p>算法的工作原理如下。首先，算法生成一个<em>噪声阈值</em><code class="docutils literal notranslate"><span class="pre">T_hat</span></code>；随后，算法比较噪声问询回复（<code class="docutils literal notranslate"><span class="pre">q(i)</span> <span class="pre">+</span> <span class="pre">nu_i</span></code>）与噪声阈值；最后，算法返回第一个噪声问询回复大于噪声阈值的问询索引号。</p>
-<p>尽管此机制会计算<em>多个</em>问询的回复结果，但该算法的隐私消耗量仅为<span class="math notranslate nohighlight">\(\epsilon\)</span>。这个结论或多或少会令人感到惊讶。与之对比，该算法一种可能的朴素实现方法是，先计算所有问询的噪声回复结果，再选择高于阈值的第一个问询索引号：</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> algorithm returns (approximately) the index of the first query in <code class="docutils literal notranslate"><span class="pre">queries</span></code> whose result exceeds the threshold. The algorithm preserves differential privacy by sometimes returning the <em>wrong</em> index; sometimes, the index returned may be for a query whose result does <em>not</em> exceed the threshold, and sometimes, the index may not be the <em>first</em> whose query result exceeds the threshold.</p>
+<p>The algorithm works by generating a <em>noisy threshold</em> <code class="docutils literal notranslate"><span class="pre">T_hat</span></code>, then comparing noisy query answers (<code class="docutils literal notranslate"><span class="pre">q(i)</span> <span class="pre">+</span> <span class="pre">nu_i</span></code>) against the noisy threshold. The algorithm returns the index of the first comparison that succeeds.</p>
+<p>It’s a little bit surprising that the privacy cost of this algorithm is just <span class="math notranslate nohighlight">\(\epsilon\)</span>, because it may compute the answers to <em>many</em> queries. In particular, a naive version of this algorithm might compute noisy answers to all of the queries first, then select the index of the first one whose value is above the threshold:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 满足|queries|*ε-差分隐私</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># preserves |queries|*epsilon-differential privacy</span>
 <span class="k">def</span> <span class="nf">naive_above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
         <span class="n">nu_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
@@ -337,14 +341,14 @@
 </div>
 </div>
 </div>
-<p>当问询总数量为<span class="math notranslate nohighlight">\(n\)</span>时，根据串行组合性，该朴素实现可以满足<span class="math notranslate nohighlight">\(n\epsilon\)</span>-差分隐私。</p>
-<p>为什么<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>的效果会如此好呢？正如我们在指数机制中所看到的那样，串行组合性允许<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>发布比实际所需<em>更多的信息</em>。特别地，该算法的朴素实现允许发布每一个（而不仅仅是第一个）超过阈值的问询索引号，也允许<em>额外</em>发布噪声问询回复本身。即便额外发布了这么多信息，朴素实现依然可以满足<span class="math notranslate nohighlight">\(n\epsilon\)</span>-差分隐私。<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>可以隐瞒所有这些额外的信息，从而得到更加紧致的隐私消耗量。</p>
+<p>For a list of queries of length <span class="math notranslate nohighlight">\(n\)</span>, this version preserves <span class="math notranslate nohighlight">\(n\epsilon\)</span>-differential privacy by sequential composition.</p>
+<p>Why does <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> do so much better? As we saw with the exponential mechanism, sequential composition would allow <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> to release <em>more information</em> than it actually does. In particular, our naive version of the algorithm could release the indices of <em>every</em> query exceeding the threshold (not just the first one), <em>plus</em> the noisy query answers themselves, and it would still preserve <span class="math notranslate nohighlight">\(n\epsilon\)</span>-differential privacy. The fact that <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> withholds all this information allows for a tighter analysis of privacy cost.</p>
 </div>
-<div class="section" id="id5">
-<h2>应用稀疏向量技术<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
-<p>当我们想执行很多不同的问询，但我们只关心其中一个问询（或一小部分问询）的回复结果时，稀疏向量技术就有很大的用武之地了。实际上，之所以叫稀疏向量技术，正是因为此技术的适用场景：问询<em>向量</em>越<em>稀疏</em>（即大多数回复结果不会超过阈值），此技术作用最大。</p>
-<p>在前面提到的场景中，我们已经有了一个完美的适用场景：选择求和问询的裁剪边界。之前，我们实现的方法类似于<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>的朴素实现：获得多个不同的裁剪边界后，分别计算噪声裁剪边界，并选择一个尽可能低的，且不会导致最终回复结果改变太大的一个裁剪边界。</p>
-<p>我们可以通过使用稀疏向量技术获得更好的效果。考虑这样一个问询：此问询首先对数据集中每个人的年龄进行裁剪，再把裁剪结果求和：</p>
+<div class="section" id="applying-the-sparse-vector-technique">
+<h2>Applying the Sparse Vector Technique<a class="headerlink" href="#applying-the-sparse-vector-technique" title="Permalink to this headline">¶</a></h2>
+<p>The sparse vector technique is extremely useful when we want to run many different queries, but we only care about the answer for one of them (or a small subset of them). In fact, this application gives the technique its name: it’s most useful when the <em>vector</em> of queries is <em>sparse</em> - i.e. most of the answers don’t exceed the threshold.</p>
+<p>We’ve already seen a perfect example of such a scenario: selecting a clipping bound for summation queries. Earlier, we took an approach like the naive version of <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> defined above: compute noisy answers under many different clipping bounds, then select the lowest one for which the answer doesn’t change much.</p>
+<p>We can do much better with the sparse vector technique. Consider a query which clips the ages of everyone in the dataset, then sums them up:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">age_sum_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -360,7 +364,7 @@
 </div>
 </div>
 </div>
-<p>我们想选择一个较好的<code class="docutils literal notranslate"><span class="pre">b</span></code>。朴素算法是获取多个满足差分隐私的<code class="docutils literal notranslate"><span class="pre">b</span></code>，返回使求和结果不再增大的最小的<code class="docutils literal notranslate"><span class="pre">b</span></code>。</p>
+<p>The naive algorithm for selecting a good value for <code class="docutils literal notranslate"><span class="pre">b</span></code> is to obtain differentially private answers for many values of <code class="docutils literal notranslate"><span class="pre">b</span></code>, returning the smallest one where the value stops increasing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">naive_select_b</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
@@ -372,10 +376,10 @@
     <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bs</span><span class="p">:</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">b</span><span class="p">,</span> <span class="n">epsilon_i</span><span class="p">)</span>
         
-        <span class="c1"># 如果新的求和结果与旧的求和结果很接近，则停止</span>
+        <span class="c1"># if the new answer is pretty close to the old answer, stop</span>
         <span class="k">if</span> <span class="n">r</span> <span class="o">-</span> <span class="n">best</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">b</span>
-        <span class="c1"># 否则，将&quot;最佳&quot;求和结果更新为当前求和结果</span>
+        <span class="c1"># otherwise update the &quot;best&quot; answer to be the current one</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">best</span> <span class="o">=</span> <span class="n">r</span>
         
@@ -386,19 +390,19 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>91
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111
 </pre></div>
 </div>
 </div>
 </div>
-<p>我们可以在这里使用稀疏向量技术吗？我们只关心一件事：当<code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code>停止增加时<code class="docutils literal notranslate"><span class="pre">b</span></code>的值。然而，<code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code>的敏感度就等于<code class="docutils literal notranslate"><span class="pre">b</span></code>，因为增加或移除<code class="docutils literal notranslate"><span class="pre">df</span></code>中的一列会至多使求和结果改变<code class="docutils literal notranslate"><span class="pre">b</span></code>；要想使用稀疏向量技术，我们需要构建敏感度为1的问询流。</p>
-<p>实际上，我们真正关心的是求和结果在特定<span class="math notranslate nohighlight">\(b\)</span>的取值下是否会<em>变化</em>（即<code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span> <span class="pre">-</span> <span class="pre">age_sum_query(df,</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">1)</span></code>是否足够小）。考虑一下，如果我们向<code class="docutils literal notranslate"><span class="pre">df</span></code>增加一行数据会发生什么：问询中第一部分<code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code>的结果会增加<span class="math notranslate nohighlight">\(b\)</span>，但问询中第二部分<code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">1)</span></code>的结果<em>也</em>会增加，只不过增加了<span class="math notranslate nohighlight">\(b + 1\)</span>。因此，敏感度实际上为<span class="math notranslate nohighlight">\(\vert b - (b + 1) \vert = 1\)</span>。这意味着此问询的敏感度为1，满足要求！随着<span class="math notranslate nohighlight">\(b\)</span>的值趋近于最优值，问询中两部分的差值将趋近于0：</p>
+<p>Can we use SVT here? We only care about one thing: the value of <code class="docutils literal notranslate"><span class="pre">b</span></code> where the value of <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code> stops increasing. However, the sensitivity of <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code> is <code class="docutils literal notranslate"><span class="pre">b</span></code>, because adding or removing a row in <code class="docutils literal notranslate"><span class="pre">df</span></code> could change the sum by at most <code class="docutils literal notranslate"><span class="pre">b</span></code>; to use SVT, we need to build a stream of 1-sensitive queries.</p>
+<p>The value we actually care about, though, is whether or not the query’s answer is <em>changing</em> at a specific value of <span class="math notranslate nohighlight">\(b\)</span> (i.e. <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span> <span class="pre">-</span> <span class="pre">age_sum_query(df,</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">1)</span></code>). Consider what happens when we add a row to <code class="docutils literal notranslate"><span class="pre">df</span></code>: the answer to the first part of the query <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code> goes up by <span class="math notranslate nohighlight">\(b\)</span>, but the answer to the second part of the query <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">1)</span></code> <em>also</em> goes up - by <span class="math notranslate nohighlight">\(b + 1\)</span>. The sensitivity is therefore <span class="math notranslate nohighlight">\(\vert b - (b + 1) \vert = 1\)</span> - so each query will be 1-sensitive, as desired! As the value of <span class="math notranslate nohighlight">\(b\)</span> approaches the optimal one, the value of the difference we defined above will approach 0:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">query_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">age_sum_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">age_sum_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bs</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;&quot;b&quot;的值&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;问询输出变化&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Value of &quot;b&quot;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Change in Query Output&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">query_results</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -407,7 +411,7 @@
 <img alt="../_images/ch10_12_0.png" src="../_images/ch10_12_0.png" />
 </div>
 </div>
-<p>根据这一观察结论，我们来定义一个求和差问询流，并基于稀疏向量技术，应用<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>确定最佳<code class="docutils literal notranslate"><span class="pre">b</span></code>的问询索引号。</p>
+<p>Let’s define a stream of difference queries, and use <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> to determine the index of the best value of <code class="docutils literal notranslate"><span class="pre">b</span></code> using the sparse vector technique.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_query</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
@@ -422,55 +426,40 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>116
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>91
 </pre></div>
 </div>
 </div>
 </div>
-<p>请注意，备选<code class="docutils literal notranslate"><span class="pre">b</span></code>的列表有多长<em>并不重要</em>。无论此列表有多长，我们都能获得准确的结果（并消耗相同的隐私预算）。稀疏向量技术真正的强大之处在于，其消除了隐私消耗量与所执行问询数量的依赖关系。尝试改变上述<code class="docutils literal notranslate"><span class="pre">b</span></code>的备选范围后重新运行此机制，可以得到下图。我们可以看到，机制的输出结果不依赖于<code class="docutils literal notranslate"><span class="pre">b</span></code>的数量。即使备选<code class="docutils literal notranslate"><span class="pre">b</span></code>的列表中包含<em>上千个</em>元素，我们仍将得到准确的结果！</p>
+<p>Note that it <em>doesn’t matter</em> how long the list <code class="docutils literal notranslate"><span class="pre">bs</span></code> is - we’ll get accurate results (and pay the same privacy cost) no matter its length. The really powerful effect of SVT is to eliminate the dependence of privacy cost on the number of queries we perform. Try changing the range for <code class="docutils literal notranslate"><span class="pre">bs</span></code> above and re-running the plot below. You’ll see that the output doesn’t depend on the number of values for <code class="docutils literal notranslate"><span class="pre">b</span></code> we try - even if the list has <em>thousands</em> of elements!</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;备选&quot;b&quot;的值&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;出现次数&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Chosen Value of &quot;b&quot;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Occurrences&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">bs</span><span class="p">[</span><span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">adult</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="n">a30a22d109d8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;备选&quot;b&quot;的值&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;出现次数&#39;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">bs</span><span class="p">[</span><span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">adult</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]);</span>
-
-<span class="nn">&lt;ipython-input-8-a30a22d109d8&gt;</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;备选&quot;b&quot;的值&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;出现次数&#39;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">bs</span><span class="p">[</span><span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">adult</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]);</span>
-
-<span class="ne">TypeError</span>: range indices must be integers or slices, not NoneType
-</pre></div>
-</div>
-<img alt="../_images/ch10_16_1.png" src="../_images/ch10_16_1.png" />
+<img alt="../_images/ch10_16_0.png" src="../_images/ch10_16_0.png" />
 </div>
 </div>
-<p>我们可以使用稀疏向量技术构建可自动计算裁剪参数的求和问询算法（也可以构建对应的均值问询算法）。</p>
+<p>We can use SVT to build an algorithm for summation queries (and using this, for average queries) that automatically computes the clipping parameter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">auto_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">create_query</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
         <span class="k">return</span> <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
-    <span class="c1"># 构造问询流</span>
+    <span class="c1"># Construct the stream of queries</span>
     <span class="n">bs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">150000</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">queries</span> <span class="o">=</span> <span class="p">[</span><span class="n">create_query</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bs</span><span class="p">]</span>
     
-    <span class="c1"># 使用1/3的隐私预算执行AboveThreshold，得到一个好的裁剪参数</span>
+    <span class="c1"># Run AboveThreshold, using 1/3 of the privacy budget, to find a good clipping parameter</span>
     <span class="n">epsilon_svt</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">/</span> <span class="mi">3</span>
     <span class="n">final_b</span> <span class="o">=</span> <span class="n">bs</span><span class="p">[</span><span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon_svt</span><span class="p">)]</span>
 
-    <span class="c1"># 分别使用1/3的隐私预算来获得噪声求和值与噪声计数值</span>
+    <span class="c1"># Compute the noisy sum and noisy count, using 1/3 of the privacy budget for each</span>
     <span class="n">epsilon_sum</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">/</span> <span class="mi">3</span>
     <span class="n">epsilon_count</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">/</span> <span class="mi">3</span>
     
@@ -484,12 +473,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.5750654706846
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.56356389618943
 </pre></div>
 </div>
 </div>
 </div>
-<p>该算法调用了三个差分隐私机制：一次<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>，两次拉普拉斯机制，每个机制消耗<span class="math notranslate nohighlight">\(\frac{1}{3}\)</span>的隐私预算。根据串行组合性，此算法满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。由于我们可自由测试<code class="docutils literal notranslate"><span class="pre">b</span></code>更大可能的取值范围，因此我们能够对不同尺度的数据使用相同的<code class="docutils literal notranslate"><span class="pre">auto_avg</span></code>函数！例如，我们也可以在资本收益列上使用<code class="docutils literal notranslate"><span class="pre">auto_avg</span></code>函数。要知道，资本收益列的数据尺度与年龄列有很大的区别。</p>
+<p>This algorithm invokes three differentially private mechanisms: <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> once, and the Laplace mechanism twice, each with <span class="math notranslate nohighlight">\(\frac{1}{3}\)</span> of the privacy budget. By sequential composition, it satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. Because we are free to test a really wide range of possible values for <code class="docutils literal notranslate"><span class="pre">b</span></code>, we’re able to use the same <code class="docutils literal notranslate"><span class="pre">auto_avg</span></code> function for data on many different scales! For example, we can also use it on the capital gain column, even though it has a very different scale than the age column.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">auto_avg</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Capital Gain&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
@@ -497,23 +486,112 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1068.1445048412666
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">5</span><span class="n">b72967cbeb8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">auto_avg</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Capital Gain&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nn">&lt;ipython-input-9-d75c5d3477ec&gt;</span> in <span class="ni">auto_avg</span><span class="nt">(df, epsilon)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="c1"># Run AboveThreshold, using 1/3 of the privacy budget, to find a good clipping parameter</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">epsilon_svt</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="ne">---&gt; </span><span class="mi">11</span>     <span class="n">final_b</span> <span class="o">=</span> <span class="n">bs</span><span class="p">[</span><span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon_svt</span><span class="p">)]</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> 
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="c1"># Compute the noisy sum and noisy count, using 1/3 of the privacy budget for each</span>
+
+<span class="nn">&lt;ipython-input-2-3930d5c29300&gt;</span> in <span class="ni">above_threshold</span><span class="nt">(queries, df, T, epsilon)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>         <span class="n">nu_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">7</span>         <span class="k">if</span> <span class="n">q</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="n">nu_i</span> <span class="o">&gt;=</span> <span class="n">T_hat</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>             <span class="k">return</span> <span class="n">idx</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="k">return</span> <span class="kc">None</span> <span class="c1"># an invalid index</span>
+
+<span class="nn">&lt;ipython-input-9-d75c5d3477ec&gt;</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(df)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">auto_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="k">def</span> <span class="nf">create_query</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>         <span class="k">return</span> <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="c1"># Construct the stream of queries</span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">clip</span><span class="nt">(self, lower, upper, axis, inplace, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7350</span>             <span class="n">upper</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="n">is_scalar</span><span class="p">(</span><span class="n">upper</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_number</span><span class="p">(</span><span class="n">upper</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">7351</span>         <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">7352</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clip_with_scalar</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7353</span> 
+<span class="g g-Whitespace">   </span><span class="mi">7354</span>         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">_clip_with_scalar</span><span class="nt">(self, lower, upper, inplace)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7204</span>             <span class="k">if</span> <span class="n">upper</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7205</span>                 <span class="n">subset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">upper</span>
+<span class="ne">-&gt; </span><span class="mi">7206</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7207</span>             <span class="k">if</span> <span class="n">lower</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7208</span>                 <span class="n">subset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">lower</span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">where</span><span class="nt">(self, cond, other, inplace, axis, level, errors, try_cast)</span>
+<span class="g g-Whitespace">   </span><span class="mi">9002</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">9003</span><span class="s2">         other = com.apply_if_callable(other, self)</span>
+<span class="ne">-&gt; </span><span class="mi">9004</span><span class="s2">         return self._where(</span>
+<span class="g g-Whitespace">   </span><span class="mi">9005</span><span class="s2">             cond, other, inplace, axis, level, errors=errors, try_cast=try_cast</span>
+<span class="g g-Whitespace">   </span><span class="mi">9006</span><span class="s2">         )</span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">_where</span><span class="nt">(self, cond, other, inplace, axis, level, errors, try_cast)</span>
+<span class="g g-Whitespace">   </span><span class="mi">8843</span><span class="s2">             other = other.reindex(self._info_axis, axis=self._info_axis_number)</span>
+<span class="g g-Whitespace">   </span><span class="mi">8844</span><span class="s2">         if isinstance(cond, NDFrame):</span>
+<span class="ne">-&gt; </span><span class="mi">8845</span><span class="s2">             cond = cond.reindex(self._info_axis, axis=self._info_axis_number)</span>
+<span class="g g-Whitespace">   </span><span class="mi">8846</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">8847</span><span class="s2">         block_axis = self._get_block_manager_axis(axis)</span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/series.py</span> in <span class="ni">reindex</span><span class="nt">(self, index, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4409</span><span class="s2">     )</span>
+<span class="g g-Whitespace">   </span><span class="mi">4410</span><span class="s2">     def reindex(self, index=None, **kwargs):</span>
+<span class="ne">-&gt; </span><span class="mi">4411</span><span class="s2">         return super().reindex(index=index, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4412</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">4413</span><span class="s2">     def drop(</span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">reindex</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4451</span><span class="s2">         ):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4452</span><span class="s2">             if copy:</span>
+<span class="ne">-&gt; </span><span class="mi">4453</span><span class="s2">                 return self.copy()</span>
+<span class="g g-Whitespace">   </span><span class="mi">4454</span><span class="s2">             return self</span>
+<span class="g g-Whitespace">   </span><span class="mi">4455</span><span class="s2"> </span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">copy</span><span class="nt">(self, deep)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5663</span><span class="s2">         data = self._mgr.copy(deep=deep)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5664</span><span class="s2">         self._clear_item_cache()</span>
+<span class="ne">-&gt; </span><span class="mi">5665</span><span class="s2">         return self._constructor(data).__finalize__(self, method=&quot;copy&quot;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5666</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">5667</span><span class="s2">     def __copy__(self: FrameOrSeries, deep: bool_t = True) -&gt; FrameOrSeries:</span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/series.py</span> in <span class="ni">__init__</span><span class="nt">(self, data, index, dtype, name, copy, fastpath)</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span><span class="s2">         ):</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span><span class="s2">             # GH#33357 called with just the SingleBlockManager</span>
+<span class="ne">--&gt; </span><span class="mi">212</span><span class="s2">             NDFrame.__init__(self, data)</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span><span class="s2">             self.name = name</span>
+<span class="g g-Whitespace">    </span><span class="mi">214</span><span class="s2">             return</span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">__init__</span><span class="nt">(self, data, copy, attrs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span><span class="s2">         # copy kwarg is retained for mypy compat, is not used</span>
+<span class="g g-Whitespace">    </span><span class="mi">202</span><span class="s2"> </span>
+<span class="ne">--&gt; </span><span class="mi">203</span><span class="s2">         object.__setattr__(self, &quot;_is_copy&quot;, None)</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span><span class="s2">         object.__setattr__(self, &quot;_mgr&quot;, data)</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span><span class="s2">         object.__setattr__(self, &quot;_item_cache&quot;, </span><span class="si">{}</span><span class="s2">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
 </div>
-<p>请注意，这需要运行非常长的时间！因为资本收益列的尺度要大得多，我们需要尝试非常多的<code class="docutils literal notranslate"><span class="pre">b</span></code>值才能找到最好的那一个。我们可以通过增加步长（我们的实现代码使用的步长是5）或利用指数尺度来构建<code class="docutils literal notranslate"><span class="pre">b</span></code>的列表，以节省计算开销。</p>
+<p>Note that this takes a long time to run! That’s because we have to try a lot more values for <code class="docutils literal notranslate"><span class="pre">b</span></code> before finding a good one, since the capital gain column has a much larger scale. We can reduce this cost by increasing the step size (5, in our implementation above) or by constructing <code class="docutils literal notranslate"><span class="pre">bs</span></code> with an exponential scale.</p>
 </div>
-<div class="section" id="id6">
-<h2>返回多个问询结果<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
-<p>在上述应用场景中，我们只需要得到<em>第一个</em>超过阈值的问询索引号。但在其他的一些应用场景中，我们可能想要找到<em>所有</em>超过阈值的问询索引号。</p>
-<p>我们也可以使用稀疏向量技术实现这一点，但代价是我们必须消耗更高的隐私预算。我们可以实现<code class="docutils literal notranslate"><span class="pre">sparse</span></code>（稀疏）算法（详见<a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork和Roth论文</a> <span id="id7">[<a class="reference internal" href="bibliography.html#id11"><span>13</span></a>]</span>中的算法2）来完成该任务。实现方法非常简单：</p>
+<div class="section" id="returning-multiple-values">
+<h2>Returning Multiple Values<a class="headerlink" href="#returning-multiple-values" title="Permalink to this headline">¶</a></h2>
+<p>In the above application, we only needed the index of the <em>first</em> query which exceeded the threshold, but in many other applications we would like to find the indices of <em>all</em> such queries.</p>
+<p>We can use SVT to do this, but we’ll have to pay a higher privacy cost. We can implement an algorithm called <code class="docutils literal notranslate"><span class="pre">sparse</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id10"><span>13</span></a>]</span>, Algorithm 2) to accomplish the task, using a very simple approach:</p>
 <ol class="simple">
-<li><p>从问询流<span class="math notranslate nohighlight">\(qs = \{q_1, \dots, q_k\}\)</span>开始</p></li>
-<li><p>在问询流<span class="math notranslate nohighlight">\(qs\)</span>上执行<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>，得到<em>第一个</em>超过阈值的问询索引号<span class="math notranslate nohighlight">\(i\)</span></p></li>
-<li><p>使用<span class="math notranslate nohighlight">\(qs = \{q_{i+1}, \dots, q_k\}\)</span>（即问询流的剩余部分）重启算法（转到步骤(1)）</p></li>
+<li><p>Start with a stream <span class="math notranslate nohighlight">\(qs = \{q_1, \dots, q_k\}\)</span> of queries</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> on <span class="math notranslate nohighlight">\(qs\)</span> to learn the index <span class="math notranslate nohighlight">\(i\)</span> of the first query which exceeds the threshold</p></li>
+<li><p>Restart the algorithm (go to (1)) with <span class="math notranslate nohighlight">\(qs = \{q_{i+1}, \dots, q_k\}\)</span> (i.e. the <em>remaining</em> queries)</p></li>
 </ol>
-<p>如果算法调用<span class="math notranslate nohighlight">\(n\)</span>次<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>，每次调用的隐私参数为<span class="math notranslate nohighlight">\(\epsilon\)</span>，则根据串行组合性，此算法满足<span class="math notranslate nohighlight">\(n\epsilon\)</span>-差分隐私。如果想在给定的总隐私消耗量下执行算法，我们就需要限制<span class="math notranslate nohighlight">\(n\)</span>的大小。也就是说，<code class="docutils literal notranslate"><span class="pre">sparse</span></code>算法可以要求分析者最多调用<span class="math notranslate nohighlight">\(c\)</span>次<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>。</p>
+<p>If the algorithm invokes <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> <span class="math notranslate nohighlight">\(n\)</span> times, with a privacy parameter of <span class="math notranslate nohighlight">\(\epsilon\)</span> for each invocation, then it satisfies <span class="math notranslate nohighlight">\(n\epsilon\)</span>-differential privacy by sequential composition. If we want to specify an upper bound on total privacy cost, we need to bound <span class="math notranslate nohighlight">\(n\)</span> - so the <code class="docutils literal notranslate"><span class="pre">sparse</span></code> algorithm asks the analyst to specify an upper bound <span class="math notranslate nohighlight">\(c\)</span> on the number of times <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> will be invoked.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sparse</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
@@ -521,20 +599,20 @@
     <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">epsilon_i</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">/</span> <span class="n">c</span>
     
-    <span class="c1"># 如果我们执行完问询流中的所有问询，或者我们找到了c个超过阈值的问询回复，则停止</span>
+    <span class="c1"># stop if we reach the end of the stream of queries, or if we find c queries above the threshold</span>
     <span class="k">while</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">c</span><span class="p">:</span>
-        <span class="c1"># 执行AboveThreshold，寻找下一个超过阈值的问询回复</span>
+        <span class="c1"># run AboveThreshold to find the next query above the threshold</span>
         <span class="n">next_idx</span> <span class="o">=</span> <span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">[</span><span class="n">pos</span><span class="p">:],</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon_i</span><span class="p">)</span>
         
-        <span class="c1"># 如果AboveThreshold执行完了最后一个问询，则返回所有超过阈值的问询索引号</span>
+        <span class="c1"># if AboveThreshold reaches the end, return</span>
         <span class="k">if</span> <span class="n">next_idx</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">idxs</span>
         
-        <span class="c1"># 否则，更新pos，使其指向问询流中剩余的问询</span>
+        <span class="c1"># otherwise, update pos to point to the rest of the queries</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="n">next_idx</span><span class="o">+</span><span class="n">pos</span>
-        <span class="c1"># 更新idxs，添加AboveThreshold找到的问询索引号</span>
+        <span class="c1"># update return value to include the index found by AboveThreshold</span>
         <span class="n">idxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
-        <span class="c1"># 移动到问询流中的下一个问询</span>
+        <span class="c1"># and move to the next query in the stream</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span>
 
     <span class="k">return</span> <span class="n">idxs</span>
@@ -555,12 +633,12 @@
 </div>
 </div>
 </div>
-<p>根据串行组合性，<code class="docutils literal notranslate"><span class="pre">sparse</span></code>算法满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私（每次消耗<span class="math notranslate nohighlight">\(\epsilon_i = \frac{\epsilon}{c}\)</span>的隐私预算来调用<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>）。在Dwork和Roth的算法描述中，每次调用<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>都将消耗相应的隐私预算<span class="math notranslate nohighlight">\(\epsilon_i\)</span>。他们进一步使用高级组合性，使总隐私消耗量为<span class="math notranslate nohighlight">\(\epsilon\)</span>（也可以在此使用零集中差分隐私或瑞丽差分隐私的组合性）。</p>
+<p>By sequential composition, the <code class="docutils literal notranslate"><span class="pre">sparse</span></code> algorithm satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy (it uses <span class="math notranslate nohighlight">\(\epsilon_i = \frac{\epsilon}{c}\)</span> for each invocation of <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>). The version described in Dwork and Roth uses advanced composition, setting the <span class="math notranslate nohighlight">\(\epsilon_i\)</span> value for each invocation of <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> so that the total privacy cost is <span class="math notranslate nohighlight">\(\epsilon\)</span> (zCDP or RDP could also be used to perform the composition).</p>
 </div>
-<div class="section" id="id8">
-<h2>应用：范围问询<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
-<p><em>范围问询</em>（Range Query）要问的是：”数据集中有多少行的值落在范围<span class="math notranslate nohighlight">\((a, b)\)</span>中？”范围问询是一种计数问询，因此其敏感度为1；我们不能对一组范围问询使用并行组合性，因为满足相应问询条件的数据行可能会有重叠。</p>
-<p>考虑一组针对年龄列的范围问询（即问询形式为”有多少人的年龄在<span class="math notranslate nohighlight">\(a\)</span>和<span class="math notranslate nohighlight">\(b\)</span>之间？”）。我们可以随机生成很多这样的问询：</p>
+<div class="section" id="application-range-queries">
+<h2>Application: Range Queries<a class="headerlink" href="#application-range-queries" title="Permalink to this headline">¶</a></h2>
+<p>A <em>range query</em> asks: “how many rows exist in the dataset whose values lie in the range <span class="math notranslate nohighlight">\((a, b)\)</span>?” Range queries are counting queries, so they have sensitivity 1; we can’t use parallel composition on a set of range queries, however, since the rows they examine might overlap.</p>
+<p>Consider a set of range queries over ages (i.e. queries of the form “how many people have ages between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>?”). We can generate many such queries at random:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">age_range_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">):</span>
@@ -585,16 +663,16 @@
 </div>
 </div>
 </div>
-<p>这些范围问询的回复结果可能相差甚远。部分问询范围可能只会匹配上很少的数据行（甚至匹配不上任何数据行），对应的计数值很小。然而，另一部分问询范围可能会匹配上大量的数据行，对应的计数值很大。在多数情况下，我们知道小计数值的差分隐私回复结果会很不准确，得到这些问询结果的实际意义不大。我们想要做的是了解哪些问询的结果是有价值的，并<em>仅为</em>这些有价值的问询结果支付隐私预算。</p>
-<p>我们可以使用稀疏向量技术实现这一点。首先，我们确定一个阈值，并得到范围问询流中回复结果超过此阈值的问询索引号。我们认为这些问询都是”有价值的”问询。随后，我们应用拉普拉斯机制得到这些有价值问询的差分隐私回复结果。这样一来，总隐私开销与超过阈值的问询数量成正比，而非与总问询数量成正比。如果我们预计只有少数问询的回复结果会超过阈值，则所需的总隐私开销会小得多。</p>
+<p>The answers to such range queries vary widely - some ranges create tiny (or even empty) groups, with small counts, while others create large groups with high counts. In many cases, we know that the small groups will have inaccurate answers under differential privacy, so there’s not much point in even running the query. What we’d like to do is learn which queries are worth answering, and then pay privacy cost for <em>just</em> those queries.</p>
+<p>We can use the sparse vector technique to do this. First, we’ll determine the indices of the range queries in the stream which exceed a threshold for “goodness” that we decide on. Then, we’ll use the Laplace mechanism to find differentially private answers for <em>just</em> those queries. The total privacy cost will be proportional to the number of queries <em>above</em> the threshold - not the total number of queries. In cases where we expect just a few queries to be above the threshold, this can result in a much smaller privacy cost.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">range_query_svt</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
-    <span class="c1"># 首先，执行sparse，得到&quot;有价值的&quot;问询</span>
+    <span class="c1"># first, run Sparse to get the indices of the &quot;good&quot; queries</span>
     <span class="n">sparse_epsilon</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">/</span> <span class="mi">2</span>
     <span class="n">indices</span> <span class="o">=</span> <span class="n">sparse</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">adult</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">sparse_epsilon</span><span class="p">)</span>
     
-    <span class="c1"># 所有，为每个&quot;有价值的&quot;问询执行拉普拉斯机制</span>
+    <span class="c1"># then, run the Laplace mechanism on each &quot;good&quot; query</span>
     <span class="n">laplace_epsilon</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">laplace_mech</span><span class="p">(</span><span class="n">queries</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">df</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">laplace_epsilon</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">results</span>
@@ -614,7 +692,7 @@
 </div>
 </div>
 </div>
-<p>此算法实现中，我们使用一半的隐私预算来确定高于阈值10000的前<span class="math notranslate nohighlight">\(c\)</span>个问询，另一半隐私预算则用于获取这些问询的噪声回复结果。如果高于阈值的问询数量远小于总问询数量，使用此方法就可以获得更准确的回复结果。</p>
+<p>Using this algorithm, we pay half of the privacy budget to determine the first <span class="math notranslate nohighlight">\(c\)</span> queries which lie above the threshold of 10000, then the other half of the budget to obtain noisy answers to <em>just</em> those queries. If the number of queries exceeding the threshold is tiny compared to the total number, then we’re able to obtain much more accurate answers using this approach.</p>
 </div>
 </div>
 
@@ -643,8 +721,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="ch9.html" title="previous page">指数机制</a>
-    <a class='right-next' id="next-link" href="ch11.html" title="next page">算法设计练习</a>
+    <a class='left-prev' id="prev-link" href="ch9.html" title="previous page">The Exponential Mechanism</a>
+    <a class='right-next' id="next-link" href="ch11.html" title="next page">Exercises in Algorithm Design</a>
 
         </div>
         
@@ -654,7 +732,7 @@
     <div class="container">
       <p>
         
-          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+          By Joseph P. Near and Chiké Abuah<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html lang="zh_CN">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>合成数据 &#8212; 动手学差分隐私</title>
+    <title>Synthetic Data &#8212; Programming Differential Privacy</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -40,7 +40,6 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/translations.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -50,12 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="参考文献" href="bibliography.html" />
-    <link rel="prev" title="本地差分隐私" href="ch13.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bibliography" href="bibliography.html" />
+    <link rel="prev" title="Local Differential Privacy" href="ch13.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -74,10 +73,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -87,15 +86,20 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   引言
+  <a class="reference internal" href="cover.html">
+   Programming Differential Privacy
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="ch1.html">
-   去标识
+   De-identification
   </a>
  </li>
  <li class="toctree-l1">
@@ -103,72 +107,72 @@
    <span class="math notranslate nohighlight">
     \(k\)
    </span>
-   -匿名性
+   -Anonymity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch3.html">
-   差分隐私
+   Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch4.html">
-   差分隐私的性质
+   Properties of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch5.html">
-   敏感度
+   Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch6.html">
-   近似差分隐私
+   Approximate Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch7.html">
-   局部敏感度
+   Local Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch8.html">
-   差分隐私变体
+   Variants of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch9.html">
-   指数机制
+   The Exponential Mechanism
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch10.html">
-   稀疏向量技术
+   The Sparse Vector Technique
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch11.html">
-   算法设计练习
+   Exercises in Algorithm Design
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch12.html">
-   机器学习
+   Machine Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch13.html">
-   本地差分隐私
+   Local Differential Privacy
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   合成数据
+   Synthetic Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   参考文献
+   Bibliography
   </a>
  </li>
 </ul>
@@ -260,28 +264,28 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   合成表示：直方图
+  <a class="reference internal nav-link" href="#synthetic-representation-a-histogram">
+   Synthetic Representation: a Histogram
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   增加差分隐私
+  <a class="reference internal nav-link" href="#adding-differential-privacy">
+   Adding Differential Privacy
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   生成列表数据
+  <a class="reference internal nav-link" href="#generating-tabular-data">
+   Generating Tabular Data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   生成更多数据列
+  <a class="reference internal nav-link" href="#generating-more-columns">
+   Generating More Columns
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id6">
-   总结
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
  </li>
 </ul>
@@ -295,26 +299,26 @@
         
               <div>
                 
-  <div class="section" id="id1">
-<h1>合成数据<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<div class="admonition- admonition">
-<p class="admonition-title">学习目标</p>
-<p>阅读本章后，您将能够：</p>
+  <div class="section" id="synthetic-data">
+<h1>Synthetic Data<a class="headerlink" href="#synthetic-data" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
 <ul class="simple">
-<li><p>描述差分隐私合成数据的思想并解释其作用</p></li>
-<li><p>定义数据的合成表示，用于后续生成合成数据</p></li>
-<li><p>定义<em>边际</em>，并实现计算边际的代码</p></li>
-<li><p>实现生成低维合成数据的简单差分隐私算法</p></li>
-<li><p>描述生成高维合成数据的挑战</p></li>
+<li><p>Describe the idea of differentially private synthetic data and explain why it is useful</p></li>
+<li><p>Define simple synthetic representations used in generating synthetic data</p></li>
+<li><p>Define <em>marginals</em> and implement code to calculate them</p></li>
+<li><p>Implement simple differentially private algorithms to generate low-dimensional synthetic data</p></li>
+<li><p>Describe the challenges of generating high-dimensional synthetic data</p></li>
 </ul>
 </div>
-<p>本章，我们将研究使用差分隐私算法生成<em>合成数据</em>（Synthetic Data）的问题。严格来说，合成数据生成算法的输入是一个<em>原始数据集</em>，其输出是维度相同（即列数和行数相同）的<em>合成数据集</em>。进一步，我们希望合成数据集的数据与原始数据集的对应数据满足相同的性质。例如，如果我们将美国人口普查数据集作为原始数据集，我们期望合成数据集与原始数据集有相似的人群年龄分布，并保留列之间的相关性（如年龄和职业的相关性）。</p>
-<p>大多数合成数据生成算法都依赖于原始数据集的<em>合成表示</em>（Synthetic Representation）。合成表示和原始数据的维度不同，但可以用于回答原始数据的问询。例如，如果我们只关心年龄的范围问询，那么我们可以统计原始数据中每个年龄的人数，生成年龄直方图，并使用直方图回答问询。该直方图就是一个适合回答一些问询的数据集<em>合成表示</em>。但由于和原始数据集的维度不同，因此合成表示不是<em>合成数据</em>。</p>
-<p>部分算法简单地使用合成表示来回答问询。部分算法使用合成表示生成合成数据集。下面，我们将研究直方图合成表示，并介绍基于直方图生成合成数据集的几种方法。</p>
-<div class="section" id="id2">
-<h2>合成表示：直方图<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
-<p>我们已经学习过很多差分隐私直方图问询算法了。由于可以直接使用并行组合性，直方图是一种适用于差分隐私的典型数据分析场景。我们也学习过<em>范围问询</em>的概念，虽然我们不常使用这个术语来表示范围问询。作为合成数据的第一步，我们先为原始数据集中的一列数据设计一个能够回答范围问询的合成表示。</p>
-<p><em>范围问询</em>统计数据集中落在给定范围内值的行数。例如，”有多少参与者的年龄在21到33岁之间？”是一个范围问询。</p>
+<p>In this section, we’ll examine the problem of generating <em>synthetic data</em> using differentially private algorithms. Strictly speaking, the input of such an algorithm is an <em>original dataset</em>, and its output is a <em>synthetic dataset</em> with the same shape (i.e. same set of columns and same number of rows); in addition, we would like the <em>values</em> in the synthetic dataset to have the same properties as the corresponding values in the original dataset. For example, if we take our US Census dataset to be the original data, then we’d like our synthetic data to have a similar distribution of ages for the participants as the original data, and to preserve correlations between columns (e.g. a link between age and occupation).</p>
+<p>Most algorithms for generating such synthetic data rely on a <em>synthetic representation</em> of the original dataset, which does <em>not</em> have the same shape as the original data, but which <em>does</em> allow answering queries about the original data. For example, if we <em>only</em> care about range queries over ages, then we could generate an age histogram - a count of how many participants in the original data had each possible age - and use the histogram to answer the queries. This histogram is a <em>synthetic representation</em> which is suitable for answering some queries, but it does not have the same shape as the original data, so it’s not <em>synthetic data</em>.</p>
+<p>Some algorithms simply use the synthetic representation to answer queries. Others use the synthetic representation to generate synthetic data. We’ll look at one kind of synthetic representation - a histogram - and several methods of generating synthetic data from it.</p>
+<div class="section" id="synthetic-representation-a-histogram">
+<h2>Synthetic Representation: a Histogram<a class="headerlink" href="#synthetic-representation-a-histogram" title="Permalink to this headline">¶</a></h2>
+<p>We’ve already seen many histograms - they’re a staple of differentially private analyses, since parallel composition can be immediately applied. We’ve also seen the concept of a <em>range query</em>, though we haven’t used that name very much. As a first step towards synthetic data, we’re going to design a synthetic representation for one column of the original dataset which is capable of answering range queries.</p>
+<p>A <em>range query</em> counts the number of rows in the dataset which have a value lying in a given range. For example, “how many participants are between the ages of 21 and 33?” is a range query.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">range_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -330,13 +334,13 @@
 </div>
 </div>
 </div>
-<p>我们可以把0到100之间每个年龄的计数值定义为一个直方图问询，并应用范围问询计算每个年龄的人数。问询结果看起来很像数据调用<code class="docutils literal notranslate"><span class="pre">plt.hist</span></code>函数的输出结果，因为我们本质上只是把这个函数又手动实现了一遍。</p>
+<p>We can define a histogram query which defines a histogram bin for each age between 0 and 100, and count the number of people in each bin using range queries. The result looks very much like the output of calling <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code> on the data - because we’ve essentially computed the same result manually.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bins</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bins</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;年龄&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;出现次数&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Occurrences&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">counts</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -345,7 +349,7 @@
 <img alt="../_images/ch14_5_0.png" src="../_images/ch14_5_0.png" />
 </div>
 </div>
-<p>我们可以将直方图中的各个计数结果作为原始数据的合成表示！为了回答一个范围问询，我们可以将落在范围内所有年龄的计数结果相加，作为此问询的回复结果。</p>
+<p>We can use these histogram results as a synthetic representation for the original data! To answer a range query, we can add up all the counts of the bins which fall into the range.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">range_query_synth</span><span class="p">(</span><span class="n">syn_rep</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -369,11 +373,11 @@
 </div>
 </div>
 </div>
-<p>注意，无论是在原始数据集还是在合成表示上执行范围问询，我们都得到了<em>完全</em>相同的结果。（至少在回答年龄范围问询时）我们没有丢失原始数据集中的任何信息。</p>
+<p>Notice that we get <em>exactly</em> the same result, whether we issue the range query on the original data or our synthetic representation. We haven’t lost any information from the original dataset (at least for the purposes of answering range queries over ages).</p>
 </div>
-<div class="section" id="id3">
-<h2>增加差分隐私<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
-<p>我们可以很容易使合成表示满足差分隐私，只需要在直方图中的每个计数值上单独增加拉普拉斯噪声。根据并行组合性，这一机制满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。</p>
+<div class="section" id="adding-differential-privacy">
+<h2>Adding Differential Privacy<a class="headerlink" href="#adding-differential-privacy" title="Permalink to this headline">¶</a></h2>
+<p>We can easily make our synthetic representation differentially private. We can add Laplace noise separately to each count in the histogram; by parallel composition, this satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>
@@ -382,7 +386,7 @@
 </div>
 </div>
 </div>
-<p>我们可以使用与之前相同的函数，基于差分隐私合成表示回答范围问询。根据后处理性，得到的问询也满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。此外，由于依赖的是后处理性，我们可以在不消耗任何额外隐私预算的条件下回答任意数量的年龄范围问询。</p>
+<p>We can use the same function as before to answer range queries using our differentially private synthetic representation. By post-processing, these results also satisfy <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy; furthermore, since we’re relying on post-processing, we can answer as many queries as we want without incurring additional privacy cost.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">range_query_synth</span><span class="p">(</span><span class="n">dp_syn_rep</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span>
@@ -390,49 +394,49 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9884.909438046094
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9887.77040498546
 </pre></div>
 </div>
 </div>
 </div>
-<p>问询结果的准确度怎么样呢？对于年龄范围比较小的问询，我们从合成表示得到的问询结果与直接应用拉普拉斯机制得到的问询结果有非常相似的准确度。例如：</p>
+<p>How accurate are the results? For small ranges, the results we get from our synthetic representation have very similar accuracy to the results we could get by applying the Laplace mechanism directly to the result of the range query we want to answer. For example:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;合成表示误差率：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="n">range_query_synth</span><span class="p">(</span><span class="n">dp_syn_rep</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;拉普拉斯机制误差率：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Synthetic representation error: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="n">range_query_synth</span><span class="p">(</span><span class="n">dp_syn_rep</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Laplace mechanism error: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">))))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>合成表示误差率：0.07398481835625706
-拉普拉斯机制误差率：0.15119573504970324
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.19117815582979247
+Laplace mechanism error: 0.028127088868012084
 </pre></div>
 </div>
 </div>
 </div>
-<p>计数值会随着年龄范围的增大而增大，我们认为相对误差应该会变小。我们已经多次印证过这个事实了：更大的分组意味着更强的信号，这会使统计结果的信噪比变低，相对误差也随之降低。如果直接使用拉普拉斯机制回复问询，我们能看到事实的确如此。然而，当使用合成表示回复问询时，我们会将很多小分组的噪声也加在一起。因此，信号虽然变强了，但噪声也变大了！当使用合成表示回复问询时，我们发现大年龄范围问询的相对误差与小年龄范围问询的相对误差几乎相同。相对误差与<em>问询范围无关</em>，这一现象恰恰与拉普拉斯机制相反！</p>
+<p>As the range gets bigger, the count gets larger, so we would expect relative error to decrease. We have seen this over and over again - larger groups means a stronger signal, which leads to lower relative error. With the Laplace mechanism, we see exactly this behavior. With our synthetic representation, however, we’re adding together noisy results from many <em>smaller</em> groups - so as the signal grows, so does the noise! As a result, we see roughly the same magnitude of relative error when using the synthetic representation, <em>regardless of the size of the range</em> - precisely the opposite of the Laplace mechanism!</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">71</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;合成表示误差率：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="n">range_query_synth</span><span class="p">(</span><span class="n">dp_syn_rep</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">71</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;拉普拉斯机制误差率：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Synthetic representation error: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="n">range_query_synth</span><span class="p">(</span><span class="n">dp_syn_rep</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">71</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Laplace mechanism error: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">true_answer</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">))))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>合成表示误差率：0.12065580362569546
-拉普拉斯机制误差率：0.0030221665731110666
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.0031779971290526133
+Laplace mechanism error: 0.0051851533192774964
 </pre></div>
 </div>
 </div>
 </div>
-<p>这一差异体现出了合成表示的缺点：它可以回答所覆盖范围内的任何范围问询，但可能无法提供与拉普拉斯机制相同的准确度。合成表示的主要优势是可以在无需额外隐私预算的条件下支持回复无限多次问询。合成表示的主要劣势是精度损失。</p>
+<p>This difference demonstrates the drawback of our synthetic representation: it can answer any range query over the range it covers, but it might not offer the same accuracy as the Laplace mechanism. The major advantage of our synthetic representation is the ability to answer infinitely many queries without additional privacy budget; the major disadvantage is the loss in accuracy.</p>
 </div>
-<div class="section" id="id4">
-<h2>生成列表数据<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
-<p>合成表示的下一步是基于合成表示来<em>合成数据</em>。为了实现这一点，我们希望将合成表示视为一个可以用于估计原始数据潜在分布的概率分布函数，进而可以根据此概率分布采样，得到合成数据集。这里我们忽略其他数据列，只考虑单列数据，单列数据的概率分布称为<a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_distribution"><em>边际分布</em></a>（Marginal Distribution）。确切地说，应该叫<em>单维边际分布</em>（1-way Marginal）。</p>
-<p>我们这里的策略很简单：先对直方图的每个属性值计数；随后归一化计数结果，使所有技术结果的和为1；最后将得到的归一化视为概率值。得到了这些概率值后，我们就可以基于这些概率值所表示的概率分布采样了。方法很简单，根据直方图属性值对应的概率值随机选择一个属性值即可。我们的第一步是获得计数值，保证结果中没有负数，并将这些计数值归一化，使他们的求和值等于1：</p>
+<div class="section" id="generating-tabular-data">
+<h2>Generating Tabular Data<a class="headerlink" href="#generating-tabular-data" title="Permalink to this headline">¶</a></h2>
+<p>The next step is to go from our synthetic representation to <em>synthetic data</em>. To do this, we want to treat our synthetic representation as a probability distribution that estimates the underlying distribution from which the original data was drawn, and sample from it. Because we’re considering just a single column, and ignoring all the others, this is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_distribution"><em>marginal distribution</em></a> (specifically, a <em>1-way marginal</em>).</p>
+<p>Our strategy here will be simple: we have counts for each histogram bin; we’ll normalize these counts so that they sum to 1, and then treat them as probabilities. Once we have these probabilities, we can sample from the distribution it represents by randomly selecting a bin of the histogram, weighted by the probabilities. Our first step is to prepare the counts, by ensuring that none is negative and by normalizing them to sum to 1:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dp_syn_rep_nn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">dp_syn_rep</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -442,16 +446,16 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0000000000000002
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999999999999999
 </pre></div>
 </div>
 </div>
 </div>
-<p>注意，由于归一化直方图中的所有计数值的求和结果为1，因此现在我们可以把它们看作对应属性值的概率值了。如果画出归一化的直方图，我们可以看到此直方图和原始直方图非常相似（也就是说，概率分布图的形状看起来和原始数据集的形状非常相似）。这个结果没有超出我们的预估，这些概率值<em>仍然是</em>简单的计数值，我们只是对它们进行了缩放处理。</p>
+<p>Notice that if we plot the normalized counts - which we can now treat as probabilities for each corresponding histogram bin, since they sum to 1 - we see a shape that looks very much like the original histogram (which, in turn, looks a lot like the shape of the original data). This is all to be expected - except for their scale, these probabilities <em>are</em> simply the counts.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;年龄&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;概率&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">syn_normalized</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -460,7 +464,7 @@
 <img alt="../_images/ch14_22_0.png" src="../_images/ch14_22_0.png" />
 </div>
 </div>
-<p>最后一步是基于这些概率值生成新的样本。我们可以使用<code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code>函数，其第一个输入参数（对应参数<code class="docutils literal notranslate"><span class="pre">p</span></code>）可以为表示各个属性值采样概率的概率列表。此函数实现的就是我们采样任务所需的加权采样功能。因为获得计数值的过程已经满足差分隐私，我们可以在无需额外隐私预算的条件下生成任意数量的样本。</p>
+<p>The final step is to generate new samples based on these probabilities. We can use <code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code>, which allows passing in a list of probabilities (in the <code class="docutils literal notranslate"><span class="pre">p</span></code> parameter) associated with the choices given in the first parameter. It implements exactly the weighted random selection that we need for our sampling task. We can generate as many samples as we want without additional privacy cost, since we’ve already made our counts differentially private.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_samples</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -496,34 +500,34 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>42</td>
+      <td>23</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>27</td>
+      <td>41</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>42</td>
+      <td>36</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>25</td>
+      <td>51</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>42</td>
+      <td>32</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p>该方法生成的样本分布与原始数据集的分布大体一致。这样一来，我们可以用生成的合成数据集替代原始数据集，基于合成数据集回复问询。特别地，如果我们画出一个超大规模合成数据集的年龄直方图，我们可以看到此图的形状与原始数据集的形状相同。</p>
+<p>The samples we generate this way will be roughly distributed - we hope - according to the same underlying distribution as the original data. That means we can use the generated synthetic data to answer the same queries we could answer using the original data. In particular, if we plot the histogram of ages in a large synthetic dataset, we’ll see the same shape as we did in the original data.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">syn_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gen_samples</span><span class="p">(</span><span class="mi">10000</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;年龄&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;出现次数&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Occurrences&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">syn_data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -532,66 +536,68 @@
 <img alt="../_images/ch14_26_0.png" src="../_images/ch14_26_0.png" />
 </div>
 </div>
-<p>我们现在可以回答均值问询、范围问询等等之前看到的一些问询了：</p>
+<p>We can also answer some queries we’ve seen in the past, like averages and range queries:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;年龄均值，合成结果：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">syn_data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;年龄均值，真实结果：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;误差率：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">syn_data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]))))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean age, synthetic: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">syn_data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean age, true answer: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Percent error: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">syn_data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]))))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄均值，合成结果：38.6706
-年龄均值，真实结果：38.58164675532078
-误差率：0.23002809545033537
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 38.51
+Mean age, true answer: 38.58164675532078
+Percent error: 0.18604714443205636
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;年龄范围问询，合成结果：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">syn_data</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;年龄范围问询，真实结果：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;误差率：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">),</span> <span class="n">range_query</span><span class="p">(</span><span class="n">syn_data</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">))))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Range query for age, synthetic: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">syn_data</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Range query for age, true answer: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Percent error: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">),</span> 
+                                           <span class="n">range_query</span><span class="p">(</span><span class="n">syn_data</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">))))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄范围问询，合成结果：9085
-年龄范围问询，真实结果：29568
-误差率：69.27421536796537
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 9073
+Range query for age, true answer: 29568
+Percent error: 69.31479978354979
 </pre></div>
 </div>
 </div>
 </div>
-<p>我们的均值问询的误差率相当低（尽管仍然高于直接应用拉普拉斯机制的误差率）。但是，范围问询的误差非常大！不过，这只是因为合成数据集的大小与原始数据集不一致。我们只生成了10,000个样本，而原始数据集超过30,000行。我们可以执行额外的差分隐私问询来确定原始数据集的行数，进而生成相同行数的新合成数据集。这样以来，范围问询的准确率就会得到提高。</p>
+<p>Our mean query has fairly low error (though still much larger than we would achieve by applying the Laplace mechanism directly). Our range query, however, has very large error! This is simply because we haven’t quite matched the shape of the original data - we only generated 10,000 samples, and the original dataset has more than 30,000 rows. We can perform an additional differentially private query to determine the number of rows in the original data, and then generate a new synthetic dataset with the same number of rows, and this will improve our range query results.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adult</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="n">syn_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gen_samples</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;年龄范围问询，合成结果：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">syn_data</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;年龄范围问询，真实结果：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;误差率：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">),</span> <span class="n">range_query</span><span class="p">(</span><span class="n">syn_data</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Range query for age, synthetic: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">syn_data</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Range query for age, true answer: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Percent error: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct_error</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">),</span> 
+                                           <span class="n">range_query</span><span class="p">(</span><span class="n">syn_data</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">))))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄范围问询，合成结果：29540
-年龄范围问询，真实结果：29568
-误差率：0.0946969696969697
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 29589
+Range query for age, true answer: 29568
+Percent error: 0.07102272727272728
 </pre></div>
 </div>
 </div>
 </div>
-<p>可以看出，问询回复的误差率很低，这正是我们期望得到的结果。</p>
+<p>Now we see the lower error we expect.</p>
 </div>
-<div class="section" id="id5">
-<h2>生成更多数据列<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
-<p>我们现在已经生成了与原始数据集行数相等的合成数据集。此合成数据集确实有助于回答有关原始数据集的问询。然而，这个合成数据集只包含一列数据！我们如何生成包含更多列数据的合成数据集呢？</p>
-<p>有两种基本实现方法。我们可以分别对<span class="math notranslate nohighlight">\(k\)</span>列数据重复上述过程（生成<span class="math notranslate nohighlight">\(k\)</span>个单维边际），得到<span class="math notranslate nohighlight">\(k\)</span>个相互独立、各包含一列数据的合成数据集。随后，我们将这些数据集合并在一起，构建出一个包含<span class="math notranslate nohighlight">\(k\)</span>列的合成数据集。这是一种很直接的实现方法，但由于我们会单独考虑各列数据，因此得到的合成数据集会丢失列<em>之间</em>的相关性信息。例如，原始数据集中的年龄和职业可能存在相关性（举例来说，职业为”经理”的人会更年长一些）。如果我们分别考虑各列数据，则合成数据集中年龄为18岁的<em>人数</em>和职位为经理的<em>人数</em>是正确的，但年龄为18岁的经理人数可能会错得离谱。</p>
-<p>另一种方法是在生成合成数据时考虑多个数据列。例如，我们可以同时考虑年龄和职业这两列数据，分别计算出有多少18岁的经理，有多少19岁的经理等等。这一改进方法所得到的结果称为两维边缘分布（2-way Marginal Distribution）。同时考虑所有可能的年龄和职业组合的这一做法正是我们之前构建列联表的方法！例如：</p>
+<div class="section" id="generating-more-columns">
+<h2>Generating More Columns<a class="headerlink" href="#generating-more-columns" title="Permalink to this headline">¶</a></h2>
+<p>So far we’ve generated synthetic data that matches the number of rows of the original dataset, and is useful for answering queries about the original data, but it has only a single column! How do we generate more columns?</p>
+<p>There are two basic approaches. We could repeat the process we followed above for each of <span class="math notranslate nohighlight">\(k\)</span> columns (generating <span class="math notranslate nohighlight">\(k\)</span> 1-way marginals), and arrive at <span class="math notranslate nohighlight">\(k\)</span> separate synthetic datasets, each with a single column. Then, we could smash these datasets together to construct a single dataset with <span class="math notranslate nohighlight">\(k\)</span> columns. This approach is straightforward, but since we consider each column in isolation, we’ll lose correlations <em>between</em> columns that existed in the original data. For example, it might be the case that age and occupation are correlated in the data (e.g. managers are more likely to be old than they are to be young); if we consider each column in isolation, we’ll get the <em>number</em> of 18-year-olds and the <em>number</em> of managers correct, but we may be very wrong about the number of 18-year-old managers.</p>
+<p>The other approach is to consider multiple columns together. For example, we can consider both age and occupation at the same time, and count how many 18-year-old managers there are, how many 19-year-old managers there are, and so on. The result of this modified process is a 2-way marginal distribution. We’ll end up considering all possible combinations of age and occupation - which is exactly what we did when we built contingency tables earlier! For example:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">],</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">])</span>
@@ -741,7 +747,7 @@
 </table>
 </div></div></div>
 </div>
-<p>我们现在可以完全沿用之前的做法：在各个计数值上增加噪声后归一化处理，将得到的计数结果视为概率值！现在，每个计数结果对应的是年龄和职业这<em>一对</em>属性值。因此，当我们从这一分布采样时，得到是同时满足这两个属性值的合成数据。</p>
+<p>Now we can do exactly what we did before - add noise to these counts, then normalize them and treat them as probabilities! Each count now corresponds to a <em>pair</em> of values - both an age and an occupation - so when we sample from the distribution we have constructed, we’ll get data with both values at once.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dp_ct</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="n">laplace_mech</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">))</span>
@@ -754,12 +760,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.0007233279731604455)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.0007464302325148687)
 </pre></div>
 </div>
 </div>
 </div>
-<p>查看所得概率中的第一个元素，我们发现有0.07%的机会生成表示”17岁文书工作者”的数据行。现在，我们已经准确好生成合成数据集了！首先生成<code class="docutils literal notranslate"><span class="pre">vals</span></code>列的取值索引表，随后根据取值索引表生成<code class="docutils literal notranslate"><span class="pre">vals</span></code>的各个行。我们之所以这样实现，原因是<code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code>函数的第一个参数不能以元组列表作为输入。</p>
+<p>Examining the first element of the probabilities, we find that we’ll have a 0.07% chance of generating a row representing a 17-year-old clerical worker. Now we’re ready to generate some rows! We’ll first generate a list of indices into the <code class="docutils literal notranslate"><span class="pre">vals</span></code> list, then generate rows by indexing into <code class="docutils literal notranslate"><span class="pre">vals</span></code>; we have to do this because <code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code> won’t accept a list of tuples in the first argument.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indices</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">))</span>
@@ -798,38 +804,38 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>44</td>
-      <td>Tech-support</td>
+      <td>54</td>
+      <td>Exec-managerial</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>25</td>
-      <td>Transport-moving</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>46</td>
+      <td>85</td>
       <td>Tech-support</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>45</td>
+      <td>Sales</td>
+    </tr>
+    <tr>
       <th>3</th>
-      <td>73</td>
-      <td>Armed-Forces</td>
+      <td>27</td>
+      <td>Craft-repair</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>36</td>
-      <td>Adm-clerical</td>
+      <td>27</td>
+      <td>Prof-specialty</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p>同时考虑两个数据列的缺点是问询的准确度会降低。如果我们进一步同时考虑更多的数据列，即构建<span class="math notranslate nohighlight">\(n\)</span>逐渐增加的<span class="math notranslate nohighlight">\(n\)</span>维边际（<span class="math notranslate nohighlight">\(n\)</span>-way Marginal），我们会看到和列联表相同的效果：每个计数值会变得更小，因此相对于噪声来说数据体现出的信号会变小，准确度因此降低。我们可以通过绘制新合成数据集的年龄直方图，从视觉上进一步观察出这一效果。注意到，图像的形状基本正确，但与原始数据集或单独为年龄列加差分隐私的计数值相比，图像的平滑度变差了一些。</p>
+<p>The downside of considering two columns at once is that our accuracy will be lower. As we add more columns to the set we’re considering (i.e., build an <span class="math notranslate nohighlight">\(n\)</span>-way marginal, with increasing values of <span class="math notranslate nohighlight">\(n\)</span>), we see the same effect we did with contingency tables - each count gets smaller, so the signal gets smaller relative to the noise, and our results are not as accurate. We can see this effect by plotting the histogram of ages in our new synthetic dataset; notice that it has approximately the right shape, but it’s less smooth than either the original data or the differentially private counts we used for the age column by itself.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;年龄&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;出现次数&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Occurrences&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">syn_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -838,39 +844,39 @@
 <img alt="../_images/ch14_40_0.png" src="../_images/ch14_40_0.png" />
 </div>
 </div>
-<p>当我们只对年龄列进行问询时，会看到相同的准确度损失问题：</p>
+<p>We see the same loss in accuracy when we try specific queries on just the age column:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">real_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
 <span class="n">syn_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">syn_df</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;使用合成数据的误差率：&#39;</span><span class="p">,</span> <span class="n">pct_error</span><span class="p">(</span><span class="n">real_answer</span><span class="p">,</span> <span class="n">syn_answer</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Percent error using synthetic data:&#39;</span><span class="p">,</span> <span class="n">pct_error</span><span class="p">(</span><span class="n">real_answer</span><span class="p">,</span> <span class="n">syn_answer</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>使用合成数据的误差率： 1.2788676434070028
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Percent error using synthetic data: 1.5147752669481005
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="id6">
-<h2>总结<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>数据集的<em>合成表示</em>可以回答有关原始数据集的问询</p></li>
-<li><p>一种常用的合成表示是直方图，可以通过在计数值上增加噪声来实现差分隐私</p></li>
-<li><p>将计数值视为概率后，可以根据直方图合成表示生成与原始数据集规模相同的<em>合成数据集</em>：将计数值归一化为求和等于1，进而使用归一化计数值作为概率，依概率采样生成直方图各属性值的数据</p></li>
-<li><p>归一化直方图表示的是涵盖单数据列信息的<em>单维边际分布</em></p></li>
-<li><p>单维边际无法涵盖数据列之间的相关性</p></li>
-<li><p>如果想生成包含多列数据的合成数据集，我们可以使用多个单维边际，也可以构造<span class="math notranslate nohighlight">\(n&gt;1\)</span>的<span class="math notranslate nohighlight">\(n\)</span>维边际</p></li>
-<li><p>随着<span class="math notranslate nohighlight">\(n\)</span>的增加，差分隐私<span class="math notranslate nohighlight">\(n\)</span>维边际的相对噪声会变大，因为更大的<span class="math notranslate nohighlight">\(n\)</span>意味着直方图各个计数值变得更小</p></li>
-<li><p>因此，生成合成数据集的挑战在于：</p>
+<li><p>A <em>synthetic representation</em> of a dataset allows answering queries about the original data</p></li>
+<li><p>One common example of a synthetic representation is a histogram, which can be made differentially private by adding noise to its counts</p></li>
+<li><p>A histogram representation can be used to generate <em>synthetic data</em> with the same shape as the original data by treating its counts as probabilities: normalize the counts to sum to 1, then sample from the histogram bins using the corresponding normalized counts as probabilities</p></li>
+<li><p>The normalized histogram is a representation of a <em>1-way marginal distribution</em>, which captures the information in a single column in isolation</p></li>
+<li><p>A 1-way marginal does <em>not</em> capture correlations between columns</p></li>
+<li><p>To generate multiple columns, we can use multiple 1-way marginals, or we can construct a representation of a <span class="math notranslate nohighlight">\(n\)</span>-way marginal where <span class="math notranslate nohighlight">\(n&gt;1\)</span></p></li>
+<li><p>Differentially private <span class="math notranslate nohighlight">\(n\)</span>-way marginals become increasingly noisy as <span class="math notranslate nohighlight">\(n\)</span> grows, since a larger <span class="math notranslate nohighlight">\(n\)</span> implies a smaller count for each bin of the resulting histogram</p></li>
+<li><p>The challenging tradeoff in generating synthetic data is thus:</p>
 <ul>
-<li><p>使用多个单维边际会丢失数据列之间的相关性</p></li>
-<li><p>使用单个<span class="math notranslate nohighlight">\(n\)</span>维边际往往带来较低的准确度</p></li>
+<li><p>Using multiple 1-way marginals loses correlation between columns</p></li>
+<li><p>Using a single <span class="math notranslate nohighlight">\(n\)</span>-way marginal tends to be very inaccurate</p></li>
 </ul>
 </li>
-<li><p>在很多情况下，似乎不可能生成准确度又高，又能涵盖多数据列相关性的合成数据集</p></li>
+<li><p>In many cases, generating synthetic data which is both accurate and captures the important correlations between columns is likely to be impossible</p></li>
 </ul>
 </div>
 </div>
@@ -900,8 +906,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="ch13.html" title="previous page">本地差分隐私</a>
-    <a class='right-next' id="next-link" href="bibliography.html" title="next page">参考文献</a>
+    <a class='left-prev' id="prev-link" href="ch13.html" title="previous page">Local Differential Privacy</a>
+    <a class='right-next' id="next-link" href="bibliography.html" title="next page">Bibliography</a>
 
         </div>
         
@@ -911,7 +917,7 @@
     <div class="container">
       <p>
         
-          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+          By Joseph P. Near and Chiké Abuah<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

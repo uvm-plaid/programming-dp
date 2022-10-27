@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html lang="zh_CN">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>搜索 &#8212; 动手学差分隐私</title>
+    <title>Search &#8212; Programming Differential Privacy</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -41,7 +41,6 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/translations.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -53,8 +52,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script src="_static/searchtools.js"></script>
     <script src="_static/language_data.js"></script>
-    <link rel="index" title="索引" href="genindex.html" />
-    <link rel="search" title="搜索" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="#" />
   <script src="searchindex.js" defer></script>
   
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -76,10 +75,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
-      <img src="_static/logo_zh_cn.png" class="logo" alt="logo">
+      <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="#" method="get">
@@ -89,88 +88,90 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="notebooks/intro.html">
-   引言
+  <a class="reference internal" href="notebooks/cover.html">
+   Programming Differential Privacy
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch1.html">
-   去标识
+   De-identification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch2.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -匿名性
+   k-Anonymity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch3.html">
-   差分隐私
+   Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch4.html">
-   差分隐私的性质
+   Properties of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch5.html">
-   敏感度
+   Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch6.html">
-   近似差分隐私
+   Approximate Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch7.html">
-   局部敏感度
+   Local Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch8.html">
-   差分隐私变体
+   Variants of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch9.html">
-   指数机制
+   The Exponential Mechanism
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch10.html">
-   稀疏向量技术
+   The Sparse Vector Technique
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch11.html">
-   算法设计练习
+   Exercises in Algorithm Design
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch12.html">
-   机器学习
+   Machine Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch13.html">
-   本地差分隐私
+   Local Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/ch14.html">
-   合成数据
+   Synthetic Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks/bibliography.html">
-   参考文献
+   Bibliography
   </a>
  </li>
 </ul>
@@ -230,11 +231,12 @@
         
               <div>
                 
-  <h1 id="search-documentation">搜索</h1>
+  <h1 id="search-documentation">Search</h1>
   <div id="fallback" class="admonition warning">
   <script>$('#fallback').hide();</script>
   <p>
-    请激活 JavaScript 以开启搜索功能。
+    Please activate JavaScript to enable the search
+    functionality.
   </p>
   </div>
   <p>
@@ -243,7 +245,7 @@
   </p>
   <form action="" method="get">
     <input type="text" name="q" aria-labelledby="search-documentation" value="" />
-    <input type="submit" value="搜索" />
+    <input type="submit" value="search" />
     <span id="search-progress" style="padding-left: 10px"></span>
   </form>
   
@@ -265,7 +267,7 @@
     <div class="container">
       <p>
         
-          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+          By Joseph P. Near and Chiké Abuah<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html lang="zh_CN">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>&lt;no title&gt; &#8212; 动手学差分隐私</title>
+    <title>&lt;no title&gt; &#8212; Programming Differential Privacy</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -40,7 +40,6 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/translations.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -50,8 +49,8 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -70,10 +69,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -83,15 +82,20 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../notebooks/intro.html">
-   引言
+  <a class="reference internal" href="../notebooks/cover.html">
+   Programming Differential Privacy
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/ch1.html">
-   去标识
+   De-identification
   </a>
  </li>
  <li class="toctree-l1">
@@ -99,72 +103,72 @@
    <span class="math notranslate nohighlight">
     \(k\)
    </span>
-   -匿名性
+   -Anonymity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/ch3.html">
-   差分隐私
+   Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/ch4.html">
-   差分隐私的性质
+   Properties of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/ch5.html">
-   敏感度
+   Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/ch6.html">
-   近似差分隐私
+   Approximate Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/ch7.html">
-   局部敏感度
+   Local Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/ch8.html">
-   差分隐私变体
+   Variants of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/ch9.html">
-   指数机制
+   The Exponential Mechanism
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/ch10.html">
-   稀疏向量技术
+   The Sparse Vector Technique
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/ch11.html">
-   算法设计练习
+   Exercises in Algorithm Design
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/ch12.html">
-   机器学习
+   Machine Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/ch13.html">
-   本地差分隐私
+   Local Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/ch14.html">
-   合成数据
+   Synthetic Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks/bibliography.html">
-   参考文献
+   Bibliography
   </a>
  </li>
 </ul>
@@ -208,7 +212,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/extras/logo_zh_cn.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/extras/logo.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -233,7 +237,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/extras/logo_zh_cn.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/extras/logo.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -270,10 +274,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">mplfonts.bin.cli</span> <span class="kn">import</span> <span class="n">init</span>
-<span class="n">init</span><span class="p">()</span>
-<span class="kn">from</span> <span class="nn">mplfonts</span> <span class="kn">import</span> <span class="n">use_font</span>
-<span class="n">use_font</span><span class="p">(</span><span class="s1">&#39;SimHei&#39;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.patheffects</span> <span class="k">as</span> <span class="nn">path_effects</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-whitegrid&#39;</span><span class="p">)</span>
@@ -291,14 +291,19 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">font_manager</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;SimHei&#39;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">font_manager</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Roboto Condensed&#39;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 <span class="n">f</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.font_manager.FontProperties at 0x10aed2d00&gt;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">7140</span><span class="n">fc272a17</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">f</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">font_manager</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Roboto Condensed&#39;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">f</span>
+
+<span class="ne">NameError</span>: name &#39;matplotlib&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -312,17 +317,17 @@
         <span class="n">path_effects</span><span class="o">=</span><span class="p">[</span><span class="n">path_effects</span><span class="o">.</span><span class="n">withSimplePatchShadow</span><span class="p">(</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))]);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">1.7</span><span class="p">,</span> <span class="o">-</span><span class="mi">240</span><span class="p">,</span> <span class="s1">&#39;动手学&#39;</span><span class="p">,</span> <span class="n">fontproperties</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#007155&#39;</span><span class="p">,</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">4.6</span><span class="p">,</span> <span class="o">-</span><span class="mi">240</span><span class="p">,</span> <span class="s1">&#39;Programming&#39;</span><span class="p">,</span> <span class="n">fontproperties</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#007155&#39;</span><span class="p">,</span> 
          <span class="n">path_effects</span><span class="o">=</span><span class="p">[</span><span class="n">path_effects</span><span class="o">.</span><span class="n">withSimplePatchShadow</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">1</span><span class="p">)]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">240</span><span class="p">,</span> <span class="s1">&#39;差分隐私&#39;</span><span class="p">,</span> <span class="n">fontproperties</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#66AC47&#39;</span><span class="p">,</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mi">240</span><span class="p">,</span> <span class="s1">&#39;Differential Privacy&#39;</span><span class="p">,</span> <span class="n">fontproperties</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#66AC47&#39;</span><span class="p">,</span>
          <span class="n">path_effects</span><span class="o">=</span><span class="p">[</span><span class="n">path_effects</span><span class="o">.</span><span class="n">withSimplePatchShadow</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">1</span><span class="p">)]);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;logo_zh_cn.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;logo.pdf&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/logo_zh_cn_3_0.png" src="../_images/logo_zh_cn_3_0.png" />
+<img alt="../_images/logo_3_0.png" src="../_images/logo_3_0.png" />
 </div>
 </div>
 
@@ -360,7 +365,7 @@
     <div class="container">
       <p>
         
-          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+          By Joseph P. Near and Chiké Abuah<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

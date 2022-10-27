@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html lang="zh_CN">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>引言 &#8212; 动手学差分隐私</title>
+    <title>Introduction &#8212; Programming Differential Privacy</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -40,7 +40,6 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/translations.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -50,11 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="去标识" href="ch1.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="De-identification" href="ch1.html" />
+    <link rel="prev" title="Programming Differential Privacy" href="cover.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -73,10 +73,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -85,16 +85,21 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
-   引言
+ <li class="toctree-l1">
+  <a class="reference internal" href="cover.html">
+   Programming Differential Privacy
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch1.html">
-   去标识
+   De-identification
   </a>
  </li>
  <li class="toctree-l1">
@@ -102,72 +107,72 @@
    <span class="math notranslate nohighlight">
     \(k\)
    </span>
-   -匿名性
+   -Anonymity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch3.html">
-   差分隐私
+   Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch4.html">
-   差分隐私的性质
+   Properties of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch5.html">
-   敏感度
+   Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch6.html">
-   近似差分隐私
+   Approximate Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch7.html">
-   局部敏感度
+   Local Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch8.html">
-   差分隐私变体
+   Variants of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch9.html">
-   指数机制
+   The Exponential Mechanism
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch10.html">
-   稀疏向量技术
+   The Sparse Vector Technique
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch11.html">
-   算法设计练习
+   Exercises in Algorithm Design
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch12.html">
-   机器学习
+   Machine Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch13.html">
-   本地差分隐私
+   Local Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch14.html">
-   合成数据
+   Synthetic Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   参考文献
+   Bibliography
   </a>
  </li>
 </ul>
@@ -261,21 +266,19 @@
         
               <div>
                 
-  <div class="section" id="id1">
-<h1>引言<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<p>这是一本面向程序员的差分隐私书籍。本书旨在向您介绍数据隐私保护领域所面临的挑战，描述为解决这些挑战而提出的技术，并帮助您理解如何实现其中一部分技术。</p>
-<p>本书包含了很多示例，也包含了很多概念的具体实现，这些示例和实现都是用可以实际运行的<em>程序</em>撰写的。每一章都由一个独立的Jupyter笔记本（Jupyter Notebook）文件生成。您可以单击相应章节右上角的“下载”图标并选择“.ipynb”，从而下载此章的Jupyter笔记本文件，并亲手执行这些示例。章节中的很多示例都是用代码生成的。为了便于阅读，我们将这些代码隐藏了起来。您可以通过单击示例单元格下方的”点击显示”（Click to show）按钮显示隐藏在背后的代码。</p>
-<p>本书假定您可以使用Python语言编写和运行程序，并掌握Pandas和NumPy的一些基本概念。如果您具有离散数学和概率论的相关背景知识，那您会更加轻松地理解本书的内容。不必担心，本科课程上的离散数学和概率论知识对学习本书来说已经绰绰有余了。</p>
-<p>本书的源代码已开源，可以从<a class="reference external" href="https://uvm-plaid.github.io/programming-dp/notebooks/intro.html">这里</a>在线获取本书的最新（英文）版本。您可以在<a class="reference external" href="https://github.com/uvm-plaid/programming-dp">GitHub</a>上获取本书（英文版）的源代码。如果您找到一处笔误、提出一处改进建议或报告一个程序错误，请在GitHub上提交问题。</p>
-<p>本书描述的技术是从<em>数据隐私</em>（Data Privacy）领域的研究中发展得来的。以本书的撰写目的出发，我们将按照下述方式定义数据隐私：</p>
-<div class="admonition- admonition">
-<p class="admonition-title">定义</p>
-<p><em>数据隐私</em>技术的目标是，允许数据分析方获取隐私数据中蕴含的<em>趋势</em>，但不会泄露特定<em>个体</em>的信息。</p>
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>This is a book about differential privacy, for programmers. It is intended to give you an introduction to the challenges of data privacy, introduce you to the techniques that have been developed for addressing those challenges, and help you understand how to implement some of those techniques.</p>
+<p>The book contains numerous examples <em>as programs</em>, including implementations of many concepts. Each chapter is generated from a self-contained Jupyter Notebook. You can click on the “download” button at the top-right of the chapter, and then select “.ipynb” to download the notebook for that chapter, and you’ll be able to execute the examples yourself. Many of the examples are generated by code that is hidden (for readability) in the chapters you’ll see here. You can show this code by clicking the “Click to show” labels adjacent to these cells.</p>
+<p>This book assumes a working knowledge of Python, as well as basic knowledge of the pandas and NumPy libraries. You will also benefit from some background in discrete mathematics and probability - a basic undergraduate course in these topics should be more than sufficient.</p>
+<p>This book is open source, and the latest version will always be available online <a class="reference external" href="https://uvm-plaid.github.io/programming-dp/notebooks/intro.html">here</a>. The source code is available <a class="reference external" href="https://github.com/uvm-plaid/programming-dp">on GitHub</a>. If you would like to fix a typo, suggest an improvement, or report a bug, please open an issue on GitHub.</p>
+<p>The techniques described in this book have developed out of the study of <em>data privacy</em>. For our purposes, we will define data privacy this way:</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p><em>Data privacy</em> techniques have the goal of allowing analysts to learn about <em>trends</em> in sensitive data, without revealing information specific to <em>individuals</em>.</p>
 </div>
-<p>这是一个宽泛的数据隐私定义，很多不同的技术都是围绕这个定义而提出的。但要特别注意的是，这一定义<em>不包括</em>保证<em>安全性</em>的技术，如加密技术。加密数据不会泄露<em>任何</em>信息，因此加密技术不能满足我们定义的前半部分要求。我们需要特别注意安全与隐私之间的差异：隐私技术涉及到<em>故意</em>发布信息，并试图控制从发布信息中<em>学到什么</em>。安全技术通常会<em>阻止</em>信息的泄露，并控制数据可以<em>被谁访问</em>。本书主要涵盖的是隐私技术。只有当安全对隐私有重要影响时，我们才会讨论相应的安全技术。</p>
-<p>本书主要聚焦于差分隐私（Differential Privacy）。我们将在前几章概述本书聚焦差分隐私的部分原因：差分隐私（及其变体）是我们已知的唯一能从数学角度提供可证明隐私保护能力的方法。去标识化、聚合等技术是人们这十几年来常用的隐私技术。这些技术近期已被证明无法抵御复杂的隐私攻击。如<span class="math notranslate nohighlight">\(k\)</span>-匿名性等更先进的一些隐私技术也无法抵御特定的攻击。因此，差分隐私正迅速成为隐私保护的黄金标准，也是本书重点介绍的隐私技术。</p>
-<div class="toctree-wrapper compound">
-</div>
+<p>This is a broad definition, and many different techniques fall under it. But it’s important to note what this definition <em>excludes</em>: techniques for ensuring <em>security</em>, like encryption. Encrypted data doesn’t reveal <em>anything</em> - so it fails to meet the first requirement of our definition. The distinction between security and privacy is an important one: privacy techniques involve an <em>intentional</em> release of information, and attempt to control <em>what can be learned</em> from that release; security techniques usually <em>prevent</em> the release of information, and control <em>who can access</em> data. This book covers privacy techniques, and we will only discuss security when it has important implications for privacy.</p>
+<p>This book is primarily focused on differential privacy. The first couple of chapters outline some of the reasons why: differential privacy (and its variants) is the only formal approach we know about that seems to provide robust privacy protection. Commonly-used approaches that have been used for decades (like de-identification and aggregation) have more recently been shown to break down under sophisticated privacy attacks, and even more modern techniques (like <span class="math notranslate nohighlight">\(k\)</span>-Anonymity) are susceptible to certain attacks. For this reason, differential privacy is fast becoming the gold standard in privacy protection, and thus it is the primary focus of this book.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -303,7 +306,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='right-next' id="next-link" href="ch1.html" title="next page">去标识</a>
+    <a class='left-prev' id="prev-link" href="cover.html" title="previous page">Programming Differential Privacy</a>
+    <a class='right-next' id="next-link" href="ch1.html" title="next page">De-identification</a>
 
         </div>
         
@@ -313,7 +317,7 @@
     <div class="container">
       <p>
         
-          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+          By Joseph P. Near and Chiké Abuah<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

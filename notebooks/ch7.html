@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html lang="zh_CN">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>局部敏感度 &#8212; 动手学差分隐私</title>
+    <title>Local Sensitivity &#8212; Programming Differential Privacy</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -40,7 +40,6 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/translations.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -50,12 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="差分隐私变体" href="ch8.html" />
-    <link rel="prev" title="近似差分隐私" href="ch6.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Variants of Differential Privacy" href="ch8.html" />
+    <link rel="prev" title="Approximate Differential Privacy" href="ch6.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -74,10 +73,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -87,15 +86,20 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   引言
+  <a class="reference internal" href="cover.html">
+   Programming Differential Privacy
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="ch1.html">
-   去标识
+   De-identification
   </a>
  </li>
  <li class="toctree-l1">
@@ -103,72 +107,72 @@
    <span class="math notranslate nohighlight">
     \(k\)
    </span>
-   -匿名性
+   -Anonymity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch3.html">
-   差分隐私
+   Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch4.html">
-   差分隐私的性质
+   Properties of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch5.html">
-   敏感度
+   Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch6.html">
-   近似差分隐私
+   Approximate Differential Privacy
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   局部敏感度
+   Local Sensitivity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch8.html">
-   差分隐私变体
+   Variants of Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch9.html">
-   指数机制
+   The Exponential Mechanism
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch10.html">
-   稀疏向量技术
+   The Sparse Vector Technique
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch11.html">
-   算法设计练习
+   Exercises in Algorithm Design
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch12.html">
-   机器学习
+   Machine Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch13.html">
-   本地差分隐私
+   Local Differential Privacy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch14.html">
-   合成数据
+   Synthetic Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   参考文献
+   Bibliography
   </a>
  </li>
 </ul>
@@ -260,30 +264,28 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   均值问询的局部敏感度
+  <a class="reference internal nav-link" href="#local-sensitivity-of-the-mean">
+   Local Sensitivity of the Mean
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   通过局部敏感度实现差分隐私？
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     “建议-测试-发布”框架
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id7">
-   平滑敏感度
+  <a class="reference internal nav-link" href="#achieving-differential-privacy-via-local-sensitivity">
+   Achieving Differential Privacy via Local Sensitivity?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id9">
-   “采样-聚合”框架
+  <a class="reference internal nav-link" href="#propose-test-release">
+   Propose-test-release
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#smooth-sensitivity">
+   Smooth Sensitivity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sample-and-aggregate">
+   Sample and Aggregate
   </a>
  </li>
 </ul>
@@ -297,85 +299,86 @@
         
               <div>
                 
-  <div class="section" id="id1">
-<h1>局部敏感度<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<div class="admonition- admonition">
-<p class="admonition-title">学习目标</p>
-<p>阅读本章后，您将能够：</p>
+  <div class="section" id="local-sensitivity">
+<h1>Local Sensitivity<a class="headerlink" href="#local-sensitivity" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
 <ul class="simple">
-<li><p>定义局部敏感度并解释其与全局敏感度的区别</p></li>
-<li><p>描述局部敏感度是如何泄露数据信息的</p></li>
-<li><p>使用”建议-测试-发布”框架来安全地使用局部敏感度</p></li>
-<li><p>描述平滑敏感度框架</p></li>
-<li><p>使用”采样-聚合”框架来回复敏感度为任意值的问询</p></li>
+<li><p>Define local sensitivity and explain how it differs from global sensitivity</p></li>
+<li><p>Describe how local sensitivity can leak information about the data</p></li>
+<li><p>Use propose-test-release to safely apply local sensitivity</p></li>
+<li><p>Describe the smooth sensitivity framework</p></li>
+<li><p>Use the sample-and-aggregate framework to answer queries with arbitrary sensitivity</p></li>
 </ul>
 </div>
-<p>截至目前，我们只学习了一种敏感度指标：全局敏感度。全局敏感度定义考察的是<em>任意</em>两个临近数据集。这种定义似乎显得过于严苛了。由于我们将在<em>实际</em>数据集上执行差分隐私机制，我们难道不应该只需要考虑<em>此</em>数据集的临近数据集吗？</p>
-<p><em>局部敏感度</em>（Local Sensitivity）<span id="id2">[<a class="reference internal" href="bibliography.html#id9"><span>8</span></a>]</span>的直观思想是：将两个数据集中的一个作为待问询的<em>实际</em>数据集，仅考虑此数据集的所有临近数据集。用更严谨的数学语言来描述，函数<span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span>在<span class="math notranslate nohighlight">\(x : \mathcal{D}\)</span>的局部敏感度定义如下：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5d6c1a71-7c61-4114-98a8-45d2e151b230">
-<span class="eqno">(15)<a class="headerlink" href="#equation-5d6c1a71-7c61-4114-98a8-45d2e151b230" title="公式的永久链接">¶</a></span>\[\begin{align}
+<p>So far, we have seen only one measure of sensitivity: global sensitivity. Our definition for global sensitivity considers <em>any</em> two neighboring datasets. This seems pessimistic, since we’re going to run our differentially private mechanisms on an <em>actual</em> dataset - shouldn’t we consider neighbors of <em>that</em> dataset?</p>
+<p>This is the intuition behind <em>local sensitivity</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id8"><span>8</span></a>]</span>: fix one of the two datasets to be the <em>actual</em> dataset being queried, and consider all of its neighbors. Formally, the local sensitivity of a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span> at <span class="math notranslate nohighlight">\(x : \mathcal{D}\)</span> is defined as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-eeee20e2-92db-4ab5-8275-c552cadc64c5">
+<span class="eqno">(15)<a class="headerlink" href="#equation-eeee20e2-92db-4ab5-8275-c552cadc64c5" title="Permalink to this equation">¶</a></span>\[\begin{align}
 LS(f, x) = \max_{x': d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
-<p>注意到，局部敏感度是以问询（<span class="math notranslate nohighlight">\(f\)</span>）和<em>实际</em>数据集（<span class="math notranslate nohighlight">\(x\)</span>）这两个输入定义的函数。与全局敏感度不同，我们不能抛开输入的数据集而单独讨论局部敏感度。反之，我们需要考虑局部敏感度<em>所依赖的</em>实际数据集是什么。</p>
-<div class="section" id="id3">
-<h2>均值问询的局部敏感度<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
-<p>很难为一些函数设置全局敏感度的上界。此时，局部敏感度就可以被派上用场，以允许我们对这些函数设置有界的敏感度。均值函数就是一个典型的例子。截至目前，为了使均值问询满足差分隐私，我们需要将均值问询拆分为两个问询：满足差分隐私的求和问询（分子）和满足差分隐私的计数问询（分母）。应用串行组合性和后处理性，这两个问询结果的商仍然满足差分隐私。</p>
-<p>我们为什么非要通过这种方式来回复均值问询呢？因为均值问询的输出结果<em>依赖于数据集的大小</em>。从数据集中增加或删除数据行，数据集的大小将随之变化，导致均值问询的输出结果发生变化。如果我们想计算均值问询的全局敏感度上界，我们就需要假设可能出现的最糟糕情况：数据集的大小为1。如果数据属性值的上下界分别为<span class="math notranslate nohighlight">\(u\)</span>和<span class="math notranslate nohighlight">\(l\)</span>，则均值的全局敏感度为<span class="math notranslate nohighlight">\(\lvert u - l \lvert\)</span>。对于较大规模的数据集来说，此全局敏感度上界是<em>极为</em>严苛的。与之相比，”噪声求和除以噪声计数”的问询回复方法要好得多。</p>
-<p>局部敏感度定义下的情况就有所不同了。我们考虑最糟糕的情况：添加一个包含最大值（<span class="math notranslate nohighlight">\(u\)</span>）的新数据行。令<span class="math notranslate nohighlight">\(n = \lvert x \rvert\)</span>（即<span class="math notranslate nohighlight">\(n\)</span>表示数据集的大小）。我们先考虑实际数据集的均值：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-10613042-319a-47a4-964a-113e789ec7d1">
-<span class="eqno">(16)<a class="headerlink" href="#equation-10613042-319a-47a4-964a-113e789ec7d1" title="公式的永久链接">¶</a></span>\[\begin{align}
+<p>Notice that local sensitivity is a function of both the query (<span class="math notranslate nohighlight">\(f\)</span>) and the <em>actual</em> dataset (<span class="math notranslate nohighlight">\(x\)</span>). Unlike in the case of global sensitivity, we can’t talk about the local sensitivity of a function without also considering the dataset <em>at which</em> that local sensitivity occurs.</p>
+<div class="section" id="local-sensitivity-of-the-mean">
+<h2>Local Sensitivity of the Mean<a class="headerlink" href="#local-sensitivity-of-the-mean" title="Permalink to this headline">¶</a></h2>
+<p>Local sensitivity allows us to place finite bounds on the sensitivity of some functions whose global sensitivity is difficult to bound. The mean function is one example. So far, we’ve calculated differentially private means by splitting the query into two queries: a differentially private sum (the numerator) and a differentially private count (the denominator). By sequential composition and post-processing, the quotient of these two results satisfies differential privacy.</p>
+<p>Why do we do it this way? Because the amount the output of a mean query might change when a row is added to or removed from the dataset <em>depends on the size of the dataset</em>. If we want to bound the global sensitivity of a mean query, we have to assume the worst: a dataset of size 1. In this case, if the data attribute values lie between upper and lower bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, the global sensitivity of the mean is just <span class="math notranslate nohighlight">\(\lvert u - l \lvert\)</span>. For large datasets, this is <em>extremely</em> pessimistic, and the “noisy sum over noisy count” approach is much better.</p>
+<p>The situation is different for local sensitivity. In the worst case, we can add a new row to the dataset which contains the maximum value (<span class="math notranslate nohighlight">\(u\)</span>). Let <span class="math notranslate nohighlight">\(n = \lvert x \rvert\)</span> (i.e. the size of the dataset). We start with the value of the mean:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3e3585a1-8ea4-480e-9d73-6c7461489d82">
+<span class="eqno">(16)<a class="headerlink" href="#equation-3e3585a1-8ea4-480e-9d73-6c7461489d82" title="Permalink to this equation">¶</a></span>\[\begin{align}
 f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 \end{align}\]</div>
-<p>现在，我们考虑添加一行后会发生什么：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e21e3643-38bb-44b5-b441-ea16d1a67f38">
-<span class="eqno">(17)<a class="headerlink" href="#equation-e21e3643-38bb-44b5-b441-ea16d1a67f38" title="公式的永久链接">¶</a></span>\[\begin{align}
+<p>Now we consider what happens when we add a row:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-050acaa7-238c-46b5-9eea-2bd7d625fbeb">
+<span class="eqno">(17)<a class="headerlink" href="#equation-050acaa7-238c-46b5-9eea-2bd7d625fbeb" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \lvert f(x') - f(x) \rvert = &amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n} \bigg\rvert \\
 \leq&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n+1} \bigg\rvert \\
 =&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u - \sum_{i=1}^{n} x_i}{n+1}\bigg\rvert \\
 =&amp; \bigg\lvert \frac{u}{n+1} \bigg\rvert \\
 \end{align}\]</div>
-<p>此问询的局部敏感度依赖于实际数据集的大小，而全局敏感度的定义不可能与数据集本身相关。</p>
+<p>This local sensitivity measure is defined in terms of the actual dataset’s size, which is not possible under global sensitivity.</p>
 </div>
-<div class="section" id="id4">
-<h2>通过局部敏感度实现差分隐私？<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
-<p>我们已经定义了一种新的敏感度指标，但我们该如何使用它呢？我们可以像全局敏感度那样直接使用拉普拉斯机制吗？以下对<span class="math notranslate nohighlight">\(F\)</span>的定义满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私性吗？</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dc11c272-5f35-4443-af94-266d2d539cb0">
-<span class="eqno">(18)<a class="headerlink" href="#equation-dc11c272-5f35-4443-af94-266d2d539cb0" title="公式的永久链接">¶</a></span>\[\begin{align}
+<div class="section" id="achieving-differential-privacy-via-local-sensitivity">
+<h2>Achieving Differential Privacy via Local Sensitivity?<a class="headerlink" href="#achieving-differential-privacy-via-local-sensitivity" title="Permalink to this headline">¶</a></h2>
+<p>We have defined an alternative measure of sensitivity - but how do we use it? Can we just use the Laplace mechanism, in the same way as we did with global sensitivity? Does the following definition of <span class="math notranslate nohighlight">\(F\)</span> satisfy <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy?</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8d914c4b-4218-4ea9-a67c-5ac2af0f3f15">
+<span class="eqno">(18)<a class="headerlink" href="#equation-8d914c4b-4218-4ea9-a67c-5ac2af0f3f15" title="Permalink to this equation">¶</a></span>\[\begin{align}
 F(x) = f(x) + \mathsf{Lap}\left(\frac{LS(f,x)}{\epsilon}\right)
 \end{align}\]</div>
-<p>不满足！很不幸，答案是否定的。由于<span class="math notranslate nohighlight">\(LS(f, x)\)</span>本身与数据集相关，如果分析者知道某个问询在<em>特定数据集</em>下的局部敏感度，那么分析者也许能够推断出一些与数据集相关的信息。因此，<em>不可能</em>直接使用局部敏感度来满足差分隐私。举例来说，考虑前面定义的均值问询局部敏感度边界。如果我们知道特定数据集<span class="math notranslate nohighlight">\(x\)</span>的局部敏感度，我们就可以推断出<em>没有噪声</em>的情况下数据集<span class="math notranslate nohighlight">\(x\)</span>的准确行数：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c5df7bda-49e3-4378-8061-fc9bdcc4b7a9">
-<span class="eqno">(19)<a class="headerlink" href="#equation-c5df7bda-49e3-4378-8061-fc9bdcc4b7a9" title="公式的永久链接">¶</a></span>\[\begin{align}
+<p>No! Unfortunately not. Since <span class="math notranslate nohighlight">\(LS(f, x)\)</span> itself depends on the dataset, if the analyst knows the local sensitivity of a query <em>at a particular dataset</em>, then the analyst may be able to infer some information about the dataset. It’s therefore <em>not possible</em> to use local sensitivity directly to achieve differential privacy. For example, consider the bound on local sensitivity for the mean, defined above. If we know the local sensitivity at a particular <span class="math notranslate nohighlight">\(x\)</span>, we can infer the exact size of <span class="math notranslate nohighlight">\(x\)</span> with <em>no noise</em>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-be6ad792-3b62-4a59-9dfd-89631e6a73a9">
+<span class="eqno">(19)<a class="headerlink" href="#equation-be6ad792-3b62-4a59-9dfd-89631e6a73a9" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \lvert x \rvert = \frac{b}{LS(f, x)} - 1
 \end{align}\]</div>
-<p>即使局部敏感度的取值对分析者保密也<em>无济于事</em>。分析者通过观察少量问询的回复就可能确定噪声尺度，从而使用该值推断出局部敏感度。差分隐私旨在保护<span class="math notranslate nohighlight">\(f(x)\)</span>的输出，但<em>并不能</em>保护差分隐私定义中所使用的敏感度指标。</p>
-<p>学者们已经提出了几种安全使用局部敏感度的方法。我们将在本章剩余部分展开讨论。</p>
-<p>辅助数据可以向我们透露出一些非常敏感的信息。试想一下，如果我们的问询是：”数据集中名叫Joe的人的平均成绩排名位于班级前2%吗？”，用于计算平均值的数据集大小就变得非常敏感了！！</p>
-<div class="section" id="id5">
-<h3>“建议-测试-发布”框架<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
-<p>局部敏感度的主要问题是敏感度本身会泄露数据的一些信息。如果我们让<em>敏感度本身</em>也满足差分隐私呢？直接实现这一目标很有挑战，因为一个函数局部敏感度的全局敏感度是无上界的。不过，我们可以通过提交满足差分隐私的问询来间接得到某个函数的局部敏感度。</p>
-<p>“<em>建议-测试-发布</em>”（Propose-Test-Release）框架<span id="id6">[<a class="reference internal" href="bibliography.html#id10"><span>9</span></a>]</span>采用的就是此种方法。该框架首先询问数据分析者函数的<em>建议</em>（Propose）局部敏感度上界。随后，该框架执行满足差分隐私的<em>测试</em>（Test），检验所问询的数据集是否”远离”了局部敏感度高于建议边界的数据集。如果测试通过，该框架<em>发布</em>（Release）噪声结果，并将噪声量校准到建议的边界。</p>
-<p>为了回答一个数据集是否”远离”了有着更高局部敏感度数据集的问题，我们定义<span class="math notranslate nohighlight">\(k\)</span><em>距离局部敏感度</em>的概念。我们用<span class="math notranslate nohighlight">\(A(f, x, k)\)</span>表示通过从数据集<span class="math notranslate nohighlight">\(x\)</span>执行<span class="math notranslate nohighlight">\(k\)</span>步可得到<span class="math notranslate nohighlight">\(f\)</span>的最大局部敏感度。用数学语言描述，我们有：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-093f0a32-283f-428d-91fc-ea7e1c15e68b">
-<span class="eqno">(20)<a class="headerlink" href="#equation-093f0a32-283f-428d-91fc-ea7e1c15e68b" title="公式的永久链接">¶</a></span>\[\begin{align}
+<p>Moreover, keeping the local sensitivity secret from the analyst <em>doesn’t help either</em>. It’s possible to determine the scale of the noise from just a few query answers, and the analyst can use this value to infer the local sensitivity. Differential privacy is designed to protect the output of <span class="math notranslate nohighlight">\(f(x)\)</span> - <em>not</em> of the sensitivity measure used in its definition.</p>
+<p>Several approaches have been proposed for safely using local sensitivity. We’ll explore these in the rest of this section.</p>
+<p>With auxiliary data, this can tell us something really sensitive. What if our query is: “Average score of people named Joe in the dataset with a 98% on the exam”? Then the size of the thing being averaged is sensitive!!</p>
+</div>
+<div class="section" id="propose-test-release">
+<h2>Propose-test-release<a class="headerlink" href="#propose-test-release" title="Permalink to this headline">¶</a></h2>
+<p>The primary problem with local sensitivity is that the sensitivity itself reveals something about the data. What if we make the <em>sensitivity itself</em> differentially private? This is challenging to do directly, as there’s often no finite bound on the global sensitivity of a function’s local sensitivity. However, we can ask a differentially private question that gets at this value indirectly.</p>
+<p>The <em>propose-test-release</em> framework <span id="id2">[<a class="reference internal" href="bibliography.html#id9"><span>9</span></a>]</span> takes this approach. The framework first asks the analyst to <em>propose</em> an upper bound on the local sensitivity of the function being applied. Then, the framework runs a differentially private <em>test</em> to check that the dataset being queried is “far from” a dataset where local sensitivity is higher than the proposed bound. If the test passes, the framework <em>releases</em> a noisy result, with the noise calibrated to the proposed bound.</p>
+<p>In order to answer the question of whether a dataset is “far from” one with high local sensitivity, we define the notion of <em>local sensitivity at distance <span class="math notranslate nohighlight">\(k\)</span></em>. We write <span class="math notranslate nohighlight">\(A(f, x, k)\)</span> to denote the maximum local sensitivity achievable for <span class="math notranslate nohighlight">\(f\)</span> by taking <span class="math notranslate nohighlight">\(k\)</span> steps away from the dataset <span class="math notranslate nohighlight">\(x\)</span>. Formally:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-fdc98e66-415f-4c9c-8a66-59ab6abcf384">
+<span class="eqno">(20)<a class="headerlink" href="#equation-fdc98e66-415f-4c9c-8a66-59ab6abcf384" title="Permalink to this equation">¶</a></span>\[\begin{align}
 A(f,x,k) = \max_{y: d(x,y) \leq k} LS(f, y)
 \end{align}\]</div>
-<p>现在，我们准备定义一个问询来回答以下问题：”需要多少步才能实现比给定上界<span class="math notranslate nohighlight">\(b\)</span>更大的局部敏感度？”</p>
-<div class="amsmath math notranslate nohighlight" id="equation-90760e1b-0194-4767-aae0-edca84aee8ee">
-<span class="eqno">(21)<a class="headerlink" href="#equation-90760e1b-0194-4767-aae0-edca84aee8ee" title="公式的永久链接">¶</a></span>\[\begin{align}
+<p>Now we’re ready to define a query to answer the question: “how many steps are needed to achieve a local sensitivity greater than a given upper bound <span class="math notranslate nohighlight">\(b\)</span>?”</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b3a30dd1-ffe6-4ebc-9a29-b2ded63048a7">
+<span class="eqno">(21)<a class="headerlink" href="#equation-b3a30dd1-ffe6-4ebc-9a29-b2ded63048a7" title="Permalink to this equation">¶</a></span>\[\begin{align}
 D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 \end{align}\]</div>
-<p>最后，我们定义”建议-测试-发布”框架（详见<a class="reference external" href="https://arxiv.org/abs/1407.2988">Barthe等人的论文</a>，图10），其满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私性：</p>
+<p>Finally, we define the propose-test-release framework (see <a class="reference external" href="https://arxiv.org/abs/1407.2988">Barthe et al.</a>, Figure 10), which satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy:</p>
 <ol class="simple">
-<li><p>建议一个局部敏感度的目标边界<span class="math notranslate nohighlight">\(b\)</span>。</p></li>
-<li><p>如果<span class="math notranslate nohighlight">\(D(f, x, b) + \mathsf{Lap}(\frac{1}{\epsilon}) &lt; \frac{\log(2/\delta)}{2\epsilon}\)</span>，返回<span class="math notranslate nohighlight">\(\bot\)</span>。</p></li>
-<li><p>否则，返回<span class="math notranslate nohighlight">\(f(x)+Lap(\frac{b}{\epsilon})\)</span></p></li>
+<li><p>Propose a target bound <span class="math notranslate nohighlight">\(b\)</span> on local sensitivity.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(D(f, x, b) + \mathsf{Lap}(\frac{1}{\epsilon}) &lt; \frac{\log(2/\delta)}{2\epsilon}\)</span>, return <span class="math notranslate nohighlight">\(\bot\)</span>.</p></li>
+<li><p>Return <span class="math notranslate nohighlight">\(f(x)+Lap(\frac{b}{\epsilon})\)</span></p></li>
 </ol>
-<p>注意到<span class="math notranslate nohighlight">\(D(f,x,b)\)</span>的<em>全局</em>敏感度为1：向<span class="math notranslate nohighlight">\(x\)</span>添加或移除一行都可能导致距离变化为到比当前局部敏感度”高”了1。因此，添加尺度为<span class="math notranslate nohighlight">\(\frac{1}{\epsilon}\)</span>的拉普拉斯噪声可以得到一种度量局部敏感度的差分隐私方法。</p>
-<p>为什么该方法满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私（而不是纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私）呢？这是存在<em>偶然通过测试</em>的可能性，且出现概率不为零。即使<span class="math notranslate nohighlight">\(D(f,x,b)\)</span>的真实值<em>小于</em>满足差分隐私所需的最小距离，但在第2步添加的噪声可能非常大，以至于可以直接通过测试。</p>
-<p>此失败方式更接近于我们在”灾难机制”中看到的灾难性失败方式，虽然仍然满足差分隐私，但”建议-测试-发布”框架允许有非0的概率发布包含<em>极小</em>噪声的问询结果。另一方面，”建议-测试-发布”框架并不像灾难机制那么糟糕，因为其永远不会发布<em>没有</em>噪声的问询结果。</p>
-<p>另外需要注意的是，即使返回值是<span class="math notranslate nohighlight">\(\bot\)</span>，此框架的隐私消耗量仍然为<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>（也就是说，无论分析者是否收到了有意义的问询回复，此框架都会带来隐私消耗）。</p>
-<p>让我们来实现均值问询的”建议-测试-发布”框架吧。回想一下，该问询的局部敏感度是<span class="math notranslate nohighlight">\(\big\lvert \frac{u}{n+1}\big\rvert\)</span>；提高此局部敏感度的最好方法是减小<span class="math notranslate nohighlight">\(n\)</span>。如果我们以数据集<span class="math notranslate nohighlight">\(x\)</span>为出发点执行<span class="math notranslate nohighlight">\(k\)</span>步，得到的局部敏感度就会变为<span class="math notranslate nohighlight">\(\big\lvert \frac{u}{(n-k)+1}\big\rvert\)</span>。我们使用如下Python代码实现该框架。</p>
+<p>Notice that <span class="math notranslate nohighlight">\(D(f,x,b)\)</span> has a <em>global</em> sensitivity of 1: adding or removing a row in <span class="math notranslate nohighlight">\(x\)</span> might change the distance to a “high” local sensitivity by 1. Thus, adding Laplace noise scaled to <span class="math notranslate nohighlight">\(\frac{1}{\epsilon}\)</span> yields a differentially private way to measure local sensitivity.</p>
+<p>Why does this approach satisfy <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy (and not pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy)? It’s because there’s a non-zero chance of <em>passing the test by accident</em>. The noise added in step 2 might be large enough to pass the test, even though the value of <span class="math notranslate nohighlight">\(D(f,x,b)\)</span> is actually <em>less</em> than the minimum distance required to satisfy differential privacy.</p>
+<p>This failure mode is much closer to the catastrophic failure we saw from the “catastrophe mechanism” - with non-zero probability, the propose-test-release framework allows releasing a query answer with <em>far</em> too little noise to satisfy differential privacy. On the other hand, it’s not nearly as bad as the catastrophe mechanism, since it never releases the answer with <em>no</em> noise.</p>
+<p>Also note that the privacy cost of the framework is <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span> <em>even if</em> it returns <span class="math notranslate nohighlight">\(\bot\)</span> (i.e. the privacy budget is consumed whether or not the analyst receives an answer).</p>
+<p>Let’s implement propose-test-release for our mean query. Recall that the local sensitivity for this query is <span class="math notranslate nohighlight">\(\big\lvert \frac{u}{n+1}\big\rvert\)</span>; the best way to increase this value is to make <span class="math notranslate nohighlight">\(n\)</span> smaller. If we take <span class="math notranslate nohighlight">\(k\)</span> steps from the dataset <span class="math notranslate nohighlight">\(x\)</span>, we can arrive at a local sensitivity of <span class="math notranslate nohighlight">\(\big\lvert \frac{u}{(n-k)+1}\big\rvert\)</span>. We can implement the framework in Python using the following code.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ls_at_distance</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -402,7 +405,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
     <span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">delta</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">epsilon</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">logging</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;噪声距离为</span><span class="si">{</span><span class="n">noisy_distance</span><span class="si">}</span><span class="s2">，而门限值为</span><span class="si">{</span><span class="n">threshold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noisy distance is </span><span class="si">{</span><span class="n">noisy_distance</span><span class="si">}</span><span class="s2"> and threshold is </span><span class="si">{</span><span class="n">threshold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">noisy_distance</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">df_clipped</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">b</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
@@ -415,25 +418,25 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span>
-<span class="n">u</span> <span class="o">=</span> <span class="mi">100</span>                    <span class="c1"># 设置年龄的上界为100</span>
-<span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>                <span class="c1"># 设置ε = 1</span>
-<span class="n">delta</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>     <span class="c1"># 设置δ = 1/n^2</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mf">0.005</span>                  <span class="c1"># 建议敏感度为0.005</span>
+<span class="n">u</span> <span class="o">=</span> <span class="mi">100</span>                    <span class="c1"># set the upper bound on age to 100</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>                <span class="c1"># set epsilon = 1</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>     <span class="c1"># set delta = 1/n^2</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.005</span>                  <span class="c1"># propose a sensitivity of 0.005</span>
 
 <span class="n">ptr_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>噪声距离为12561.923132210006，而门限值为10.73744412245554
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Noisy distance is 12562.297078257187 and threshold is 10.73744412245554
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.581432588736575
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.57697285312855
 </pre></div>
 </div>
 </div>
 </div>
-<p>请记住，局部敏感度并不总优于全局敏感度。对于均值问询，我们用旧回复策略得到的回复效果一般会好得多。这是因为我们可以将均值问询拆分为两个独立的、全局敏感度均有界的问询（求和与计数）。我们同样可以应用全局敏感度实现均值问询。</p>
+<p>Keep in mind that local sensitivity isn’t always better. For mean queries, our old strategy of splitting the query into two separate queries (a sum and a count), both with bounded global sensitivity, often works much better. We can implement the same mean query with global sensitivity:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gs_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
@@ -454,7 +457,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.58304394596377
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.580797661161974
 </pre></div>
 </div>
 </div>
@@ -464,10 +467,10 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs_results</span>  <span class="o">=</span> <span class="p">[</span><span class="n">pct_error</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]),</span> <span class="n">gs_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
 <span class="n">ptr_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">pct_error</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]),</span> <span class="n">ptr_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
 
-<span class="n">_</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">gs_results</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;全局敏感度&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ptr_results</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;&quot;建议-测试-发布&quot;框架&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;误差率&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;尝试次数&#39;</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">gs_results</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Global sensitivity&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ptr_results</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PTR&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Percent Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Trials&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -476,63 +479,62 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <img alt="../_images/ch7_14_0.png" src="../_images/ch7_14_0.png" />
 </div>
 </div>
-<p>使用”建议-测试-发布”框架的问询回复效果似乎更好一些，但实际上效果并没有太大的区别。此外，为使用”建议-测试-发布”框架，分析者必须建议一个敏感度边界。我们这里其实作了个弊，”神奇地”选择了一个非常合适的值（0.005）。事实上，分析者需要执行多次问询才能猜出可用的边界，而这一过程会消耗额外的隐私预算。</p>
+<p>We might do slightly better with propose-test-release, but it’s not a huge difference. Moreover, to use propose-test-release, the analyst has to propose a bound on sensitivity - and we’ve cheated by “magically” picking a decent value (0.005). In practice, the analyst would need to perform several queries to explore which values work - which will consume additional privacy budget.</p>
 </div>
-</div>
-<div class="section" id="id7">
-<h2>平滑敏感度<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
-<p>第二种使用局部敏感度的方法称为<em>平滑敏感度</em>（Smooth Sensitivity），来自<a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim、Raskhodnikova和Smith的论文</a> <span id="id8">[<a class="reference internal" href="bibliography.html#id9"><span>8</span></a>]</span>。利用拉普拉斯噪声实例化得到的<em>平滑敏感度框架</em>可提供<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私性：</p>
+<div class="section" id="smooth-sensitivity">
+<h2>Smooth Sensitivity<a class="headerlink" href="#smooth-sensitivity" title="Permalink to this headline">¶</a></h2>
+<p>Our second approach for leveraging local sensitivity is called <em>smooth sensitivity</em>, and is due to <a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim, Raskhodnikova, and Smith</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id8"><span>8</span></a>]</span>. The <em>smooth sensitivity framework</em>, instantiated with Laplace noise, provides <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy:</p>
 <ol class="simple">
-<li><p>设置<span class="math notranslate nohighlight">\(\beta = \frac{\epsilon}{2\log(2/\delta)}\)</span></p></li>
-<li><p>令<span class="math notranslate nohighlight">\(S = \max_{k = 1, \dots, n} e^{-\beta k} A(f, x, k)\)</span></p></li>
-<li><p>发布<span class="math notranslate nohighlight">\(f(x) + \mathsf{Lap}\left(\frac{2S}{\epsilon}\right)\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(\beta = \frac{\epsilon}{2\log(2/\delta)}\)</span></p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(S = \max_{k = 1, \dots, n} e^{-\beta k} A(f, x, k)\)</span></p></li>
+<li><p>Release <span class="math notranslate nohighlight">\(f(x) + \mathsf{Lap}\left(\frac{2S}{\epsilon}\right)\)</span></p></li>
 </ol>
-<p>平滑敏感度的基本思想是不使用局部敏感度本身，而是使用局部敏感度的”平滑”近似值来校准噪声。使用平滑量的目的就是要防止因直接使用局部敏感度而意外发布数据集的有关信息。上述步骤2就是在执行平滑操作：利用临近数据集与实际数据集距离的指数函数来缩放局部敏感度，并取缩放程度最大的结果作为最终的局部敏感度。这样做的效果是，如果<span class="math notranslate nohighlight">\(x\)</span>的临近数据集存在局部敏感度峰值，那么该峰值将作用于<span class="math notranslate nohighlight">\(x\)</span>的平滑敏感度中（因此，峰值本身被”平滑”了，不会泄露数据集的任何信息）。</p>
-<p>与”建议-测试-发布”框架相比，平滑敏感度拥有明显的优势：它不需要分析者建议敏感度边界。站在分析者的角度看，使用平滑敏感度和使用全局敏感度一样简单。但是，平滑敏感度有两个主要的缺点。第一，平滑敏感度通常比局部敏感度大（至少为2倍，详见步骤3），因此增加的噪声量可能会比”建议-测试-发布”等替代框架更大。第二，计算平滑敏感度时需要找到<em>所有</em>可能的<span class="math notranslate nohighlight">\(k\)</span>中最大的平滑敏感度，这可能涉及极大的计算开销。在多数情况下，可以证明只需要考虑少量的<span class="math notranslate nohighlight">\(k\)</span>值就足够了（对于多数问询函数，<span class="math notranslate nohighlight">\(e^{-\beta k}\)</span>的指数衰减效果会很快覆盖<span class="math notranslate nohighlight">\(A(f, x, k)\)</span>的增长效果）。然而，对于想使用平滑敏感度的<em>每一个</em>问询函数，我们都需要证明此函数只需要考虑少量的<span class="math notranslate nohighlight">\(k\)</span>值。</p>
-<p>举例来说，考虑之前定义的均值问询的平滑敏感度。</p>
+<p>The idea behind smooth sensitivity is to use a “smooth” approximation of local sensitivity, rather than local sensitivity itself, to calibrate the noise. The amount of smoothing is designed to prevent the unintentional release of information about the dataset that can happen when local sensitivity is used directly. Step 2 above performs the smoothing: it scales the local sensitivity of nearby datasets by an exponential function of their distance from the actual dataset, then takes the maximum scaled local sensitivity. The effect is that if a spike in local sensitivity exists in the neighborhood of <span class="math notranslate nohighlight">\(x\)</span>, that spike will be reflected in the smooth sensitivity of <span class="math notranslate nohighlight">\(x\)</span> (and therefore the spike itself is “smoothed out,” and doesn’t reveal anything about the dataset).</p>
+<p>Smooth sensitivity has a significant advantage over propose-test-release: it doesn’t require the analyst to propose a bound on sensitivity. For the analyst, using smooth sensitivity is just as easy as using global sensitivity. However, smooth sensitivity has two major drawbacks. First, smooth sensitivity is always larger than local sensitivity (by at least a factor of 2 - see step 3), so it may require adding quite a bit more noise than alternative frameworks like propose-test-release (or even global sensitivity). Second, calculating smooth sensitivity requires finding the maximum smoothed-out sensitivity over <em>all</em> possible values for <span class="math notranslate nohighlight">\(k\)</span>, which can be extremely challenging computationally. In many cases, it’s possible to prove that considering a small number of values for <span class="math notranslate nohighlight">\(k\)</span> is sufficient (for many functions, the exponentially decaying <span class="math notranslate nohighlight">\(e^{-\beta k}\)</span> quickly overwhelms the growing value of <span class="math notranslate nohighlight">\(A(f, x, k)\)</span>), but such a property has to be proven for <em>each</em> function we want to use with smooth sensitivity.</p>
+<p>As an example, let’s consider the smooth sensitivity of the mean query we defined earlier.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span>
-<span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>           <span class="c1"># 设置ε = 1</span>
-<span class="n">delta</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>  <span class="c1"># 设置δ = 1/n^2</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>           <span class="c1"># set epsilon = 1</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>  <span class="c1"># set delta = 1/n^2</span>
 
-<span class="c1"># 步骤1：设置β</span>
+<span class="c1"># Step 1: set beta</span>
 <span class="n">beta</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">delta</span><span class="p">))</span>
 
-<span class="c1"># 步骤2：对于不同的k值计算平滑后的局部敏感度</span>
+<span class="c1"># Step 2: compute smoothed-out sensitivity for various values of k</span>
 <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">ls_at_distance</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">)]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k的取值&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;平滑后的局部敏感度&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Value of k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Smoothed-out Local Sensitivity&#39;</span><span class="p">);</span>
 
 <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
 <span class="n">sensitivity</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">S</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;最终敏感度: </span><span class="si">{</span><span class="n">sensitivity</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Final sensitivity: </span><span class="si">{</span><span class="n">sensitivity</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>最终敏感度: 0.006142128861863522
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final sensitivity: 0.006142128861863522
 </pre></div>
 </div>
 <img alt="../_images/ch7_17_1.png" src="../_images/ch7_17_1.png" />
 </div>
 </div>
-<p>这里需要注意到两个现象。第一，即使只考虑<span class="math notranslate nohighlight">\(k\)</span>小于200的情况，我们也可以清楚地看到，均值问询平滑局部敏感度随着<span class="math notranslate nohighlight">\(k\)</span>的增加而趋近于0。事实上，<span class="math notranslate nohighlight">\(k=0\)</span>时的均值问询平滑局部敏感度取得最大值。在多数情况下，平滑局部敏感度都会随着<span class="math notranslate nohighlight">\(k\)</span>的增加而降低。但是，如果想要使用平滑敏感度，我们就必须<em>证明</em>它（这里我们并没有给出证明）。第二，注意到我们增加到问询结果中的最终噪声量<em>高于</em>我们之前（在”建议-测试-发布”框架中）建议的敏感度。尽管这两个噪声量的差距不大，但这也表明使用”建议-测试-发布”得到的局部敏感度有可能低于平滑敏感度。</p>
+<p>There are two things to notice here. First, even though we consider only values of <span class="math notranslate nohighlight">\(k\)</span> less than 200, it’s pretty clear that the smoothed-out local sensitivity of our mean query approaches 0 as <span class="math notranslate nohighlight">\(k\)</span> grows. In fact, for this case, the maximum occurs at <span class="math notranslate nohighlight">\(k=0\)</span>. This is true in many cases, but if we want to use smooth sensitivity, we have to <em>prove</em> it (which we won’t do here). Second, notice that the final sensitivity we’ll use for adding noise to the query’s answer is <em>higher</em> than the sensitivity we proposed earlier (under propose-test-release). It’s not a big difference, but it shows that it’s sometimes <em>possible</em> to achieve a lower sensitivity with propose-test-release than with smooth sensitivity.</p>
 </div>
-<div class="section" id="id9">
-<h2>“采样-聚合”框架<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
-<p>我们接下来考虑与局部敏感度相关的最后一个框架，即”<em>采样-聚合</em>”（Sample and Aggregate）框架（同样来自<a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim、Raskhodnikova和Smith的论文</a> <span id="id10">[<a class="reference internal" href="bibliography.html#id9"><span>8</span></a>]</span>）。对任意函数<span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>，令裁剪上界和下界分别为<span class="math notranslate nohighlight">\(u\)</span>和<span class="math notranslate nohighlight">\(l\)</span>，则下述框架满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私：</p>
+<div class="section" id="sample-and-aggregate">
+<h2>Sample and Aggregate<a class="headerlink" href="#sample-and-aggregate" title="Permalink to this headline">¶</a></h2>
+<p>We’ll consider one last framework related to local sensitivity, called <em>sample and aggregate</em> (also due to <a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim, Raskhodnikova, and Smith</a> <span id="id4">[<a class="reference internal" href="bibliography.html#id8"><span>8</span></a>]</span>). For any function <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span> and upper and lower clipping bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, the following framework satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
 <ol class="simple">
-<li><p>将数据集<span class="math notranslate nohighlight">\(X \in D\)</span>拆分为<span class="math notranslate nohighlight">\(k\)</span>个不相交的数据块<span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span></p></li>
-<li><p>计算每个数据块的裁剪回复值：<span class="math notranslate nohighlight">\(a_i = \max(l, \min(u, f(x_i)))\)</span></p></li>
-<li><p>计算平均回复值并增加噪声：<span class="math notranslate nohighlight">\(A = \left(\frac{1}{k} \sum_{i=1}^k a_i \right) + \mathsf{Lap}\left(\frac{u - l}{k\epsilon}\right)\)</span></p></li>
+<li><p>Split the dataset <span class="math notranslate nohighlight">\(X \in D\)</span> into <span class="math notranslate nohighlight">\(k\)</span> disjoint chunks <span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span></p></li>
+<li><p>Compute a clipped answer for each chunk: <span class="math notranslate nohighlight">\(a_i = \max(l, \min(u, f(x_i)))\)</span></p></li>
+<li><p>Compute a noisy average of the answers: <span class="math notranslate nohighlight">\(A = \left(\frac{1}{k} \sum_{i=1}^k a_i \right) + \mathsf{Lap}\left(\frac{u - l}{k\epsilon}\right)\)</span></p></li>
 </ol>
-<p>注意，该框架满足纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私，且实际执行时无需使用局部敏感度。事实上，我们不需要知道关于<span class="math notranslate nohighlight">\(f\)</span>（无论是全局还是局部）敏感度的<em>任何</em>信息。除了知道每个数据块<span class="math notranslate nohighlight">\(x_i\)</span>互不相交外，我们也不需要知道<span class="math notranslate nohighlight">\(x_i\)</span>的任何其他信息。我们一般需要对数据集进行随机拆分（”好”的随机拆分结果往往会给出更准确的回复），但随机拆分并不是”采样-聚合”框架得以应用的必要条件。</p>
-<p>仅仅利用全局敏感度和并行组合就可以证明该框架满足差分隐私。我们将数据集拆分为<span class="math notranslate nohighlight">\(k\)</span>个互不相交的数据块，因此每个个体仅出现在一个数据块中。我们不知道<span class="math notranslate nohighlight">\(f\)</span>的敏感度，但我们将其输出裁剪到<span class="math notranslate nohighlight">\(u\)</span>和<span class="math notranslate nohighlight">\(l\)</span>的范围内。因此，每个裁剪回复值<span class="math notranslate nohighlight">\(f(x_i)\)</span>的敏感度为<span class="math notranslate nohighlight">\(u-l\)</span>。由于我们调用了<span class="math notranslate nohighlight">\(k\)</span>次<span class="math notranslate nohighlight">\(f\)</span>，并取<span class="math notranslate nohighlight">\(k\)</span>次回复的平均值，因此均值的全局敏感度为<span class="math notranslate nohighlight">\(\frac{u-l}{k}\)</span>。</p>
-<p>请注意，我们在”采样-聚合”框架中<em>直接</em>声明了均值的全局敏感度边界，并没有将均值拆分为求和问询与计数问询。我们无法对”常规”均值问询执行此操作，因为”常规”均值问询中计算平均数的分母与数据集大小相关。在”采样-聚合”框架中，计算平均数的分母由分析者所选择的<span class="math notranslate nohighlight">\(k\)</span>确定，<span class="math notranslate nohighlight">\(k\)</span>的取值与数据集无关。当均值问询中计算平均数的分母可以独立确定并对外公开时，我们就可以放心地使用这一改进的全局敏感度边界。</p>
-<p>在该”采样-聚合”框架的简单实例中，我们要求分析者提供每个<span class="math notranslate nohighlight">\(f(x_i)\)</span>输出的上界<span class="math notranslate nohighlight">\(u\)</span>和下界<span class="math notranslate nohighlight">\(l\)</span>。由于<span class="math notranslate nohighlight">\(u\)</span>和<span class="math notranslate nohighlight">\(l\)</span>可能依赖于<span class="math notranslate nohighlight">\(f\)</span>的定义，因此可能<em>极难</em>确定<span class="math notranslate nohighlight">\(u\)</span>和<span class="math notranslate nohighlight">\(l\)</span>的取值。例如，在计数问询中，<span class="math notranslate nohighlight">\(f\)</span>的输出与数据集直接相关。</p>
-<p>学者们已经提出了更高级的”采样-聚合”框架实例化方法（<a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim、Raskhodnikova和Smith在论文中</a>讨论了一部分实例化方法），通过利用局部敏感度避免分析者给出<span class="math notranslate nohighlight">\(u\)</span>和<span class="math notranslate nohighlight">\(l\)</span>。然而，很容易限制一些特定函数<span class="math notranslate nohighlight">\(f\)</span>的输出范围，这种情况下就可以直接使用”采样-聚合”框架。我们仍然以计算给定数据集的平均年龄为例。人口的平均年龄很大可能在20到80之间，因此设置<span class="math notranslate nohighlight">\(l=20\)</span>和<span class="math notranslate nohighlight">\(u=80\)</span>是合理的。这样一来，我们限制了数据集平均年龄问询的输出范围，从而可以直接使用”采样-聚合”框架。只要每个数据块<span class="math notranslate nohighlight">\(x_i\)</span>都能体现人口信息的群体特性，不会出现过于极端的情况，我们就可以放心大胆地限制输出范围，而不丢失过多的信息。</p>
+<p>Note that this framework satisfies pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, and it actually works <em>without</em> the use of local sensitivity. In fact, we don’t need to know <em>anything</em> about the sensitivity of <span class="math notranslate nohighlight">\(f\)</span> (global or local). We also don’t need to know anything about the chunks <span class="math notranslate nohighlight">\(x_i\)</span>, except that they’re disjoint. Often, they’re chosen randomly (“good” samples tend to result in higher accuracy), but they don’t need to be.</p>
+<p>The framework can be shown to satisfy differential privacy just by global sensitivity and parallel composition. We split the dataset into <span class="math notranslate nohighlight">\(k\)</span> distinct chunks, so each individual appears in exactly one chunk. We don’t know the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>, but we clip its output to lie between <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, so the sensitivity of each clipped answer <span class="math notranslate nohighlight">\(f(x_i)\)</span> is <span class="math notranslate nohighlight">\(u-l\)</span>. Since we take the mean of <span class="math notranslate nohighlight">\(k\)</span> invocations of <span class="math notranslate nohighlight">\(f\)</span>, the global sensitivity of the mean is <span class="math notranslate nohighlight">\(\frac{u-l}{k}\)</span>.</p>
+<p>Note that we’re claiming a bound on the global sensitivity of a mean <em>directly</em>, rather than splitting it into sum and count queries. We weren’t able to do this for “regular” mean queries, because the number of things being averaged in a “regular” mean query depends on the dataset. In this case, however, the number of items being averaged is <em>fixed</em> by the analyst, via the choice of <span class="math notranslate nohighlight">\(k\)</span> - it’s <em>independent</em> of the dataset. Mean queries like this one - where the number of things being averaged is fixed, and can be made public - can leverage this improved bound on global sensitivity.</p>
+<p>In this simple instantiation of the sample and aggregate framework, we ask the analyst to provide the upper and lower bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span> on the <em>output</em> of each <span class="math notranslate nohighlight">\(f(x_i)\)</span>. Depending on the definition of <span class="math notranslate nohighlight">\(f\)</span>, this might be <em>extremely</em> difficult to do well. In a counting query, for example, <span class="math notranslate nohighlight">\(f\)</span>’s output will depend directly on the dataset.</p>
+<p>More advanced instantiations have been proposed (<a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim, Raskhodnikova, and Smith</a> discuss some of these) which leverage local sensitivity to avoid asking the analyst for <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>. For some functions, however, bounding <span class="math notranslate nohighlight">\(f\)</span>’s output is easy - so this framework suffices. We’ll consider our example from above - the mean of ages within a dataset - with this property. The mean age of a population is highly likely to fall between 20 and 80, so it’s reasonable to set <span class="math notranslate nohighlight">\(l=20\)</span> and <span class="math notranslate nohighlight">\(u=80\)</span>. As long as our chunks <span class="math notranslate nohighlight">\(x_i\)</span> are each representative of the population, we’re not likely to lose much information with this setting.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
@@ -541,23 +543,23 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <span class="k">def</span> <span class="nf">saa_avg_age</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span>
     
-    <span class="c1"># 计算每个数据块应包含的行数</span>
+    <span class="c1"># Calculate the number of rows in each chunk</span>
     <span class="n">chunk_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">k</span><span class="p">))</span>
     
     <span class="k">if</span> <span class="n">logging</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;数据块大小: </span><span class="si">{</span><span class="n">chunk_size</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Chunk size: </span><span class="si">{</span><span class="n">chunk_size</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         
-    <span class="c1"># 步骤1：将`df`拆分为数据块</span>
+    <span class="c1"># Step 1: split `df` into chunks</span>
     <span class="n">xs</span>      <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">chunk_size</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">chunk_size</span><span class="p">)]</span>
     
-    <span class="c1"># 步骤2：在每个x_i上执行f，并裁剪输出值</span>
+    <span class="c1"># Step 2: run f on each x_i and clip its output</span>
     <span class="n">answers</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">x_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
     
     <span class="n">u</span> <span class="o">=</span> <span class="mi">80</span>
     <span class="n">l</span> <span class="o">=</span> <span class="mi">20</span>
     <span class="n">clipped_answers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
     
-    <span class="c1"># 步骤3：计算输出均值，并增加噪声</span>
+    <span class="c1"># Step 3: take the noisy mean of the clipped answers</span>
     <span class="n">noisy_mean</span> <span class="o">=</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">clipped_answers</span><span class="p">),</span> <span class="p">(</span><span class="n">u</span><span class="o">-</span><span class="n">l</span><span class="p">)</span><span class="o">/</span><span class="n">k</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">noisy_mean</span>
 
@@ -566,16 +568,16 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>数据块大小: 55
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chunk size: 55
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.62153961902643
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.64575381944198
 </pre></div>
 </div>
 </div>
 </div>
-<p>该框架的关键参数是数据块数量，即<span class="math notranslate nohighlight">\(k\)</span>的取值。一方面，<span class="math notranslate nohighlight">\(k\)</span>越大，噪声均值的敏感度就越<em>小</em>。因此数据块数量越多，噪声量越小。另一方面，<span class="math notranslate nohighlight">\(k\)</span>越大，每个数据块就越<em>小</em>，因此每个回复值<span class="math notranslate nohighlight">\(f(x_i)\)</span>都越可能远离<em>正确</em>回复值<span class="math notranslate nohighlight">\(f(X)\)</span>。在上述例子中，我们希望每个数据块的平均年龄接近整个数据集的平均年龄。如果每个块只包含极少部分人，数据块的平均年龄很可能与数据集的平均年龄相差甚远。</p>
-<p>我们应该如何设置<span class="math notranslate nohighlight">\(k\)</span>的值呢？这依赖于<span class="math notranslate nohighlight">\(f\)</span>和数据集本身，因此很难为数据集设置适当的<span class="math notranslate nohighlight">\(k\)</span>值。让我们尝试使用不同的<span class="math notranslate nohighlight">\(k\)</span>值来回复均值问询。</p>
+<p>The key parameter in this framework is the number of chunks, <span class="math notranslate nohighlight">\(k\)</span>. As <span class="math notranslate nohighlight">\(k\)</span> goes up, the sensitivity of the final noisy mean goes <em>down</em> - so more chunks means less noise. On the other hand, as <span class="math notranslate nohighlight">\(k\)</span> goes up, each chunk gets <em>smaller</em>, so each answer <span class="math notranslate nohighlight">\(f(x_i)\)</span> is less likely to be close to the “true” answer <span class="math notranslate nohighlight">\(f(X)\)</span>. In our example above, we’d like the average age within each chunk to be close to the average age of the whole dataset - and this is less likely to happen if each chunk contains only a handful of people.</p>
+<p>How should we set <span class="math notranslate nohighlight">\(k\)</span>? It depends on <span class="math notranslate nohighlight">\(f\)</span> and on the dataset, which makes it tricky. Let’s try various values of <span class="math notranslate nohighlight">\(k\)</span> for our mean query.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_results</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
@@ -588,15 +590,15 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># k = 10；全局敏感度的回复结果准确性*非常*好</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># k = 10; global sensitivity is *much* better</span>
 <span class="n">plot_results</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;误差率&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;尝试次数&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Percent Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Trials&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;尝试次数&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Number of Trials&#39;)
 </pre></div>
 </div>
 <img alt="../_images/ch7_23_1.png" src="../_images/ch7_23_1.png" />
@@ -604,15 +606,15 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># k = 1000；全局敏感度的回复结果准确性仍然比较好</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># k = 1000; global sensitivity is still better</span>
 <span class="n">plot_results</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;误差率&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;尝试次数&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Percent Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Trials&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;尝试次数&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Number of Trials&#39;)
 </pre></div>
 </div>
 <img alt="../_images/ch7_24_1.png" src="../_images/ch7_24_1.png" />
@@ -620,21 +622,21 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># k = 6000；&quot;采样-聚合&quot;框架的回复结果接近全局敏感度的回复结果了！</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># k = 6000; sample and aggregate is getting close!</span>
 <span class="n">plot_results</span><span class="p">(</span><span class="mi">6000</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;误差率&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;尝试次数&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Percent Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Trials&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">13</span><span class="o">-</span><span class="mi">02</span><span class="n">df89393ef0</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># k = 6000；&quot;采样-聚合&quot;框架的回复结果接近全局敏感度的回复结果了！</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">13</span><span class="o">-</span><span class="mi">9</span><span class="n">f43a347f3ee</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># k = 6000; sample and aggregate is getting close!</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plot_results</span><span class="p">(</span><span class="mi">6000</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;误差率&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;尝试次数&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Percent Error&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Trials&#39;</span><span class="p">)</span>
 
 <span class="nn">&lt;ipython-input-10-c588e46b05ac&gt;</span> in <span class="ni">plot_results</span><span class="nt">(k)</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">plot_results</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
@@ -648,21 +650,21 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">_</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">pct_error</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="n">saa_avg_age</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]);</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">pct_error</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="n">gs_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">);</span>
 
-<span class="nn">&lt;ipython-input-9-ac65c5bf7d80&gt;</span> in <span class="ni">saa_avg_age</span><span class="nt">(k, epsilon, logging)</span>
+<span class="nn">&lt;ipython-input-9-b62d5128b2e1&gt;</span> in <span class="ni">saa_avg_age</span><span class="nt">(k, epsilon, logging)</span>
 <span class="g g-Whitespace">     </span><span class="mi">15</span> 
-<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="c1"># 步骤2：在每个x_i上执行f，并裁剪输出值</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="c1"># Step 2: run f on each x_i and clip its output</span>
 <span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">answers</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">x_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span> 
 <span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="n">u</span> <span class="o">=</span> <span class="mi">80</span>
 
-<span class="nn">&lt;ipython-input-9-ac65c5bf7d80&gt;</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="nn">&lt;ipython-input-9-b62d5128b2e1&gt;</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
 <span class="g g-Whitespace">     </span><span class="mi">15</span> 
-<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="c1"># 步骤2：在每个x_i上执行f，并裁剪输出值</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="c1"># Step 2: run f on each x_i and clip its output</span>
 <span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">answers</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">x_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span> 
 <span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="n">u</span> <span class="o">=</span> <span class="mi">80</span>
 
-<span class="nn">&lt;ipython-input-9-ac65c5bf7d80&gt;</span> in <span class="ni">f</span><span class="nt">(df)</span>
+<span class="nn">&lt;ipython-input-9-b62d5128b2e1&gt;</span> in <span class="ni">f</span><span class="nt">(df)</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> 
@@ -684,55 +686,18 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <span class="g g-Whitespace">   </span><span class="mi">4250</span>     <span class="k">def</span> <span class="nf">_reindex_indexer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">copy</span><span class="p">):</span>
 
 <span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/nanops.py</span> in <span class="ni">_f</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>             <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>                 <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">invalid</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">71</span>                     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span>             <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>                 <span class="c1"># we want to transform an object array</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/nanops.py</span> in <span class="ni">f</span><span class="nt">(values, axis, skipna, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">127</span>                     <span class="n">result</span> <span class="o">=</span> <span class="n">alt</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">128</span>             <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">129</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">alt</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">130</span> 
-<span class="g g-Whitespace">    </span><span class="mi">131</span>             <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/nanops.py</span> in <span class="ni">nanmean</span><span class="nt">(values, axis, skipna, mask)</span>
-<span class="g g-Whitespace">    </span><span class="mi">560</span>         <span class="n">dtype_sum</span> <span class="o">=</span> <span class="n">dtype</span>
-<span class="g g-Whitespace">    </span><span class="mi">561</span>         <span class="n">dtype_count</span> <span class="o">=</span> <span class="n">dtype</span>
-<span class="ne">--&gt; </span><span class="mi">562</span>     <span class="n">count</span> <span class="o">=</span> <span class="n">_get_counts</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype_count</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">563</span>     <span class="n">the_sum</span> <span class="o">=</span> <span class="n">_ensure_numeric</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype_sum</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">564</span> 
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/nanops.py</span> in <span class="ni">_get_counts</span><span class="nt">(values_shape, mask, axis, dtype)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1240</span>             <span class="n">n</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="n">mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1241</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1242</span>             <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">values_shape</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1243</span>         <span class="k">return</span> <span class="n">dtype</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1244</span> 
-
-<span class="nn">&lt;__array_function__ internals&gt;</span> in <span class="ni">prod</span><span class="nt">(*args, **kwargs)</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/numpy/core/fromnumeric.py</span> in <span class="ni">prod</span><span class="nt">(a, axis, dtype, out, keepdims, initial, where)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2997</span>     <span class="mi">10</span>
-<span class="g g-Whitespace">   </span><span class="mi">2998</span>     <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">2999</span><span class="s2">     return _wrapreduction(a, np.multiply, &#39;prod&#39;, axis, dtype, out,</span>
-<span class="g g-Whitespace">   </span><span class="mi">3000</span><span class="s2">                           keepdims=keepdims, initial=initial, where=where)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3001</span><span class="s2"> </span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/numpy/core/fromnumeric.py</span> in <span class="ni">_wrapreduction</span><span class="nt">(obj, ufunc, method, axis, dtype, out, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span><span class="s2"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span><span class="s2"> </span>
-<span class="ne">---&gt; </span><span class="mi">70</span><span class="s2"> def _wrapreduction(obj, ufunc, method, axis, dtype, out, **kwargs):</span>
-<span class="nn">     71     passkwargs = {k: v for k, v</span> in <span class="ni">kwargs.items</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span><span class="s2">                   if v is not np._NoValue}</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span>         <span class="k">def</span> <span class="nf">_f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>             <span class="n">obj_iter</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="ne">---&gt; </span><span class="mi">64</span>             <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">obj_iter</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span>                 <span class="n">f_name</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span>                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
 </div>
-<p>因此，尽管”采样-聚合”框架的准确性无法击败全局敏感度方法，但如果能选择合适的<span class="math notranslate nohighlight">\(k\)</span>，两者的回复效果也可以非常接近。”采样-聚合”框架最大的优势在于此框架适用于<em>任意</em>函数<span class="math notranslate nohighlight">\(f\)</span>。无论函数的敏感度是多少，都可以使用”采样-聚合”框架。这意味着只要<span class="math notranslate nohighlight">\(f\)</span>本身表现良好，就可以应用”采样-聚合”框架获得<span class="math notranslate nohighlight">\(f\)</span>满足差分隐私的输出，并得到较好的准确度。另一方面，”采样-聚合”框架要求分析者设置裁剪边界<span class="math notranslate nohighlight">\(u\)</span>和<span class="math notranslate nohighlight">\(l\)</span>，并设置数据块数量<span class="math notranslate nohighlight">\(k\)</span>。</p>
+<p>So - sample and aggregate isn’t able to beat our global sensitivity-based approach, but it can get pretty close if you choose the right value for <span class="math notranslate nohighlight">\(k\)</span>. The big advantage is that sample and aggregate works for <em>any</em> function <span class="math notranslate nohighlight">\(f\)</span>, regardless of its sensitivity; if <span class="math notranslate nohighlight">\(f\)</span> is well-behaved, then it’s possible to obtain good accuracy from the framework. On the other hand, using sample and aggregate requires the analyst to set the clipping bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, and the number of chunks <span class="math notranslate nohighlight">\(k\)</span>.</p>
 </div>
 </div>
 
@@ -761,8 +726,8 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="ch6.html" title="previous page">近似差分隐私</a>
-    <a class='right-next' id="next-link" href="ch8.html" title="next page">差分隐私变体</a>
+    <a class='left-prev' id="prev-link" href="ch6.html" title="previous page">Approximate Differential Privacy</a>
+    <a class='right-next' id="next-link" href="ch8.html" title="next page">Variants of Differential Privacy</a>
 
         </div>
         
@@ -772,7 +737,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
     <div class="container">
       <p>
         
-          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+          By Joseph P. Near and Chiké Abuah<br/>
         
             &copy; Copyright 2021.<br/>
       </p>
