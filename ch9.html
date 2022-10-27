@@ -195,9 +195,102 @@ const thebe_selector_output = ".output, .cell_output"
    15. Synthetic Data
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Chinese Version
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_intro.html">
+   16. 引言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch1.html">
+   17. 去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch2.html">
+   18.
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch3.html">
+   19. 差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch4.html">
+   20. 差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch5.html">
+   21. 敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch6.html">
+   22. 近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch7.html">
+   23. 局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch8.html">
+   24. 差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch9.html">
+   25. 指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch10.html">
+   26. 稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch11.html">
+   27. 算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch12.html">
+   28. 机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch13.html">
+   29. 本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch14.html">
+   30. 合成数据
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bibliography
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   16. Bibliography
+   31. Bibliography
   </a>
  </li>
 </ul>
@@ -438,8 +531,8 @@ title="Print to PDF"
 <li><p>The analyst specifies a scoring function <span class="math notranslate nohighlight">\(u : \mathcal{D} \times \mathcal{R} \rightarrow \mathbb{R}\)</span> with global sensitivity <span class="math notranslate nohighlight">\(\Delta u\)</span></p></li>
 <li><p>The exponential mechanism outputs <span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span> with probability proportional to:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-d2356b4a-43a4-4752-8c87-5a968b1424a8">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-d2356b4a-43a4-4752-8c87-5a968b1424a8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ade6e84d-acd1-4a41-ae47-498df6aba2c6">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-ade6e84d-acd1-4a41-ae47-498df6aba2c6" title="Permalink to this equation">#</a></span>\[\begin{align}
 \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)
 \end{align}\]</div>
 <p>The biggest practical difference between the exponential mechanism and the previous mechanisms we’ve seen (e.g. the Laplace mechanism) is that the output of the exponential mechanism is <em>always</em> a member of the set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>. This is extremely useful when selecting an item from a finite set, when a noisy answer would not make sense. For example, we might want to pick a date for a big meeting, which uses each participant’s personal calendar to maximize the number of participants without a conflict, while providing differential privacy for the calendars. Adding noise to a date doesn’t make much sense: it might turn a Friday into a Saturday, and <em>increase</em> the number of conflicts significantly. The exponential mechanism is perfect for problems like this one: it selects a date <em>without noise</em>.</p>
@@ -556,8 +649,8 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    195
-Never-married           5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    194
+Never-married           6
 dtype: int64
 </pre></div>
 </div>
@@ -570,14 +663,14 @@ dtype: int64
 <h2><span class="section-number">10.3. </span>The Exponential Mechanism as Fundamental Mechanism for Differential Privacy<a class="headerlink" href="#the-exponential-mechanism-as-fundamental-mechanism-for-differential-privacy" title="Permalink to this headline">#</a></h2>
 <p>We’ve seen that it’s not possible to recover the exponential mechanism using the Laplace mechanism plus sequential composition, because we can’t capture the fact that the algorithm we designed doesn’t release all of the noisy scores. What about the reverse - can we recover the Laplace mechanism from the exponential mechanism? It turns out that we can!</p>
 <p>Consider a query <span class="math notranslate nohighlight">\(q(x) : \mathcal{D} \rightarrow \mathbb{R}\)</span> with sensitivity <span class="math notranslate nohighlight">\(\Delta q\)</span>. We can release an <span class="math notranslate nohighlight">\(\epsilon\)</span>-differentially private answer by adding Laplace noise: <span class="math notranslate nohighlight">\(F(x) = q(x) + \mathsf{Lap}(\Delta q / \epsilon)\)</span>. The probability density function for this differentially private version of <span class="math notranslate nohighlight">\(q\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aaf58a40-602c-4dd1-a1a3-62f3d19d7983">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-aaf58a40-602c-4dd1-a1a3-62f3d19d7983" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1a77ea3a-eb2e-40e6-ac10-02cc985d2b48">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-1a77ea3a-eb2e-40e6-ac10-02cc985d2b48" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp; \frac{1}{2b} \exp\Big(- \frac{\lvert r - \mu \rvert}{b}\Big)\\
 =&amp; \frac{\epsilon}{2 \Delta q} \exp\Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q}\Big)
 \end{align}\]</div>
 <p>Consider what happens when we set the scoring function for the exponential mechanism to <span class="math notranslate nohighlight">\(u(x, r) = -2 \lvert q(x) - r \rvert\)</span>. The exponential mechanism says that we should sample from the probability distribution proportional to:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-477889b5-f710-4bf3-a8bb-a89954fcab16">
-<span class="eqno">(10.3)<a class="headerlink" href="#equation-477889b5-f710-4bf3-a8bb-a89954fcab16" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-93bb42f2-1307-4ae2-ba00-7451d50c5041">
+<span class="eqno">(10.3)<a class="headerlink" href="#equation-93bb42f2-1307-4ae2-ba00-7451d50c5041" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp;\; \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)\\
 &amp;= \exp \Big(\frac{\epsilon (-2 \lvert q(x) - r \rvert)}{2 \Delta q} \Big)\\
 &amp;= \exp \Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q} \Big)\\

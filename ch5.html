@@ -195,9 +195,102 @@ const thebe_selector_output = ".output, .cell_output"
    15. Synthetic Data
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Chinese Version
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_intro.html">
+   16. 引言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch1.html">
+   17. 去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch2.html">
+   18.
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch3.html">
+   19. 差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch4.html">
+   20. 差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch5.html">
+   21. 敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch6.html">
+   22. 近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch7.html">
+   23. 局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch8.html">
+   24. 差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch9.html">
+   25. 指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch10.html">
+   26. 稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch11.html">
+   27. 算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch12.html">
+   28. 机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch13.html">
+   29. 本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch14.html">
+   30. 合成数据
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bibliography
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   16. Bibliography
+   31. Bibliography
   </a>
  </li>
 </ul>
@@ -468,14 +561,14 @@ title="Print to PDF"
 </ul>
 </div>
 <p>As we mentioned when we discussed the Laplace mechanism, the amount of noise necessary to ensure differential privacy for a given query depends on the <em>sensitivity</em> of the query. Roughly speaking, the sensitivity of a function reflects the amount the function’s output will change when its input changes. Recall that the Laplace mechanism defines a mechanism <span class="math notranslate nohighlight">\(F(x)\)</span> as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c62e5dd9-a13e-4522-89c4-9fd40be9971a">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-c62e5dd9-a13e-4522-89c4-9fd40be9971a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-88cccc8e-e900-4c53-b0f7-9da6d28a1def">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-88cccc8e-e900-4c53-b0f7-9da6d28a1def" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(x)\)</span> is a deterministic function (the query), <span class="math notranslate nohighlight">\(\epsilon\)</span> is the privacy parameter, and <span class="math notranslate nohighlight">\(s\)</span> is the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <p>For a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span> mapping datasets (<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>) to real numbers, the <em>global sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span> is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-28a0d489-5444-4354-8876-b3a5a9ac6dd9">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-28a0d489-5444-4354-8876-b3a5a9ac6dd9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f84e4cb3-04cc-47ae-97a3-b95972278e66">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-f84e4cb3-04cc-47ae-97a3-b95972278e66" title="Permalink to this equation">#</a></span>\[\begin{align}
 GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 \end{align}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(d(x, x')\)</span> represents the <em>distance</em> between two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and we say that two datasets are <em>neighbors</em> if their distance is 1 or less. How this distance is defined has a huge effect on the definition of privacy we obtain, and we’ll discuss the distance metric on datasets in detail later on.</p>
@@ -484,8 +577,8 @@ GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 <h2><span class="section-number">6.1. </span>Distance<a class="headerlink" href="#distance" title="Permalink to this headline">#</a></h2>
 <p>The distance metric <span class="math notranslate nohighlight">\(d(x,x')\)</span> described earlier can be defined in many different ways. Intuitively, the distance between two datasets should be equal to 1 (i.e. the datasets are neighbors) if they differ in the data of exactly one individual. This idea is easy to formalize in some contexts (e.g. in the US Census, each individual submits a single response containing their data) but extremely challenging in others (e.g. location trajectories, social networks, and time-series data).</p>
 <p>A common formal definition for datasets containing rows is to consider the number of rows which differ between the two. When each individual’s data is contained in a single row, this definition often makes sense. Formally, this definition of distance is encoded as a <em>symmetric difference</em> between the two datasets:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7330d952-9e4a-4080-bddc-f9d58e7d98c0">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-7330d952-9e4a-4080-bddc-f9d58e7d98c0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5a59f871-12b8-4149-a4ba-128856c1f7a6">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-5a59f871-12b8-4149-a4ba-128856c1f7a6" title="Permalink to this equation">#</a></span>\[\begin{align}
 d(x, x') = | x - x' \cup x' - x |
 \end{align}\]</div>
 <p>This particular definition has several interesting and important implications:</p>

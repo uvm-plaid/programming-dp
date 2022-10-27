@@ -1,0 +1,1302 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>28. 机器学习 &#8212; Programming Differential Privacy</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="29. 本地差分隐私" href="cn_ch13.html" />
+    <link rel="prev" title="27. 算法设计练习" href="cn_ch11.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover.html">
+                    Programming Differential Privacy
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  English Version
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch1.html">
+   2. De-identification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch2.html">
+   3. k-Anonymity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch3.html">
+   4. Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch4.html">
+   5. Properties of Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch5.html">
+   6. Sensitivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch6.html">
+   7. Approximate Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch7.html">
+   8. Local Sensitivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch8.html">
+   9. Variants of Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch9.html">
+   10. The Exponential Mechanism
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch10.html">
+   11. The Sparse Vector Technique
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch11.html">
+   12. Exercises in Algorithm Design
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch12.html">
+   13. Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch13.html">
+   14. Local Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch14.html">
+   15. Synthetic Data
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Chinese Version
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_intro.html">
+   16. 引言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch1.html">
+   17. 去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch2.html">
+   18.
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch3.html">
+   19. 差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch4.html">
+   20. 差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch5.html">
+   21. 敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch6.html">
+   22. 近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch7.html">
+   23. 局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch8.html">
+   24. 差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch9.html">
+   25. 指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch10.html">
+   26. 稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch11.html">
+   27. 算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   28. 机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch13.html">
+   29. 本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch14.html">
+   30. 合成数据
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bibliography
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   31. Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/cn_ch12.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/cn_ch12.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scikit-learn">
+   28.1. 使用Scikit-Learn实现逻辑回归
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   28.2. 模型是什么？
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   28.3. 使用梯度下降训练模型
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     28.3.1. 单步梯度下降
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     28.3.2. 梯度下降算法
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   28.4. 差分隐私梯度下降
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     28.4.1. 梯度裁剪
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     28.4.2. 梯度的敏感度
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   28.5. 噪声对训练的影响
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>机器学习</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scikit-learn">
+   28.1. 使用Scikit-Learn实现逻辑回归
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   28.2. 模型是什么？
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   28.3. 使用梯度下降训练模型
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     28.3.1. 单步梯度下降
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     28.3.2. 梯度下降算法
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   28.4. 差分隐私梯度下降
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     28.4.1. 梯度裁剪
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     28.4.2. 梯度的敏感度
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   28.5. 噪声对训练的影响
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1><span class="section-number">28. </span>机器学习<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<div class="admonition- admonition">
+<p class="admonition-title">学习目标</p>
+<p>阅读本章后，您将能够：</p>
+<ul class="simple">
+<li><p>描述和实现基础梯度下降算法</p></li>
+<li><p>使用高斯机制实现差分隐私梯度下降</p></li>
+<li><p>裁剪梯度，保证任意损失函数都可实现差分隐私保护</p></li>
+<li><p>描述噪声给训练过程带来的影响</p></li>
+</ul>
+</div>
+<p>本章我们将探索如何构建差分隐私学习分类器。我们将重点关注一类特定的<em>监督学习</em>问题：给定一组<em>带标签的训练样本</em><span class="math notranslate nohighlight">\(\{(x_1, y_1), \dots, (x_n, y_n)\}\)</span>，其中<span class="math notranslate nohighlight">\(x_i\)</span>称为<em>特征向量</em>，<span class="math notranslate nohighlight">\(y_i\)</span>称为<em>标签</em>，我们要训练一个<em>模型</em><span class="math notranslate nohighlight">\(\theta\)</span>。该模型可以<em>预测</em>没有在训练集中出现过的新特征向量所对应的标签。一般来说，每个<span class="math notranslate nohighlight">\(x_i\)</span>都是一个描述训练样本特征的实数向量，而<span class="math notranslate nohighlight">\(y_i\)</span>是从预先定义好的<em>类型</em>集合中选取的，每个类型一般用一个整数来表示。我们预先要从全部样本中提取出所有可能的类型，构成类型集合。一个二分类器的类型集合应包含两个类型（一般分别用1和0，或1和-1表示）。</p>
+<div class="section" id="scikit-learn">
+<h2><span class="section-number">28.1. </span>使用Scikit-Learn实现逻辑回归<a class="headerlink" href="#scikit-learn" title="Permalink to this headline">#</a></h2>
+<p>当要训练一个模型时，我们从所有可用的数据中选择一些数据来构造一组<em>训练样本</em>（如前所述），但我们也会留出一些数据作为<em>测试样本</em>。一旦训练完模型，我们肯定想要知道该模型在<em>非</em>训练样本上的表现如何。如果一个模型在未知的新样本上表现很好，我们称其<em>泛化</em>能力很好。一个泛化能力<em>不足</em>的模型，我们称其在训练数据上发生了<em>过拟合</em>。</p>
+<p>我们使用测试样本来测试模型的泛化能力。由于我们事先已知测试样本的标签，我们可以让模型对每个测试样本进行分类，并比较预测标签和真实标签的结果，以测试模型的泛化能力。我们将把数据集切分为训练集和测试集。训练集包含80%的样本，而测试集包含其余20%的样本。</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">training_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">training_size</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">training_size</span><span class="p">:]</span>
+
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">training_size</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">training_size</span><span class="p">:]</span>
+
+<span class="n">y_test</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9044,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>构建一个二分类器的简单方法是使用<em>逻辑回归（Logistic Regression）</em>。scikit-learn库包含了一个实现逻辑回归的内置模块，名为<code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>。通过调用此内置模块，很容易应用我们的数据构建二分类模型。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span><span class="n">y_train</span><span class="p">[:</span><span class="mi">1000</span><span class="p">])</span>
+<span class="n">model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogisticRegression()
+</pre></div>
+</div>
+</div>
+</div>
+<p>接下来，我们可以使用模型的<code class="docutils literal notranslate"><span class="pre">predict</span></code>（预测）方法预测测试集的标签。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1., -1., -1., ..., -1., -1., -1.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们的模型预测对了多少个测试样本呢？我们可以比较预测标签和真实标签的结果。如果用预测正确的标签数量除以测试样本总数，我们就可以计算出测试样本的预测准确率。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8243034055727554
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们的模型对测试样本的标签预测准确率为82%。对该数据集来说，这是一个相当不错的预测准确率。</p>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">28.2. </span>模型是什么？<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>模型到底<em>是</em>什么？它是如何编码预测所用信息的？</p>
+<p>有很多种不同类型的模型。这里我们要探讨的是<em>线性模型（Linear Model）</em>。给定一个包含<span class="math notranslate nohighlight">\(k\)</span>-维特征向量<span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>的无标签样本，线性模型预测此样本的标签时，将计算下述值：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-07ef52bb-ce80-4156-ac19-37efd1aff056">
+<span class="eqno">(28.1)<a class="headerlink" href="#equation-07ef52bb-ce80-4156-ac19-37efd1aff056" title="Permalink to this equation">#</a></span>\[\begin{align}
+w_1 x_1 + \dots + w_k x_k + bias
+\end{align}\]</div>
+<p>并用此值的符号作为预测标签（如果此值为负数，则预测结果为-1；如果此值为正数，则预测结果为1）。</p>
+<p>此模型可以用一个由<span class="math notranslate nohighlight">\(w_1, \dots, w_k\)</span>和<span class="math notranslate nohighlight">\(bias\)</span>组成的向量来表示。之所以称该模型是线性模型，是因为模型在预测时要计算一个1次多项式（即线性多项式）的值。<span class="math notranslate nohighlight">\(w_1, \dots, w_k\)</span>通常被称为模型的<em>权重</em>或<em>系数</em>，<span class="math notranslate nohighlight">\(bias\)</span>则被称为<em>偏差项</em>或<em>截距</em>。</p>
+<p>这实际上也是scikit-learn表示逻辑回归模型的方式！我们可以使用模型的<code class="docutils literal notranslate"><span class="pre">coef_</span></code>属性来查看训练得到的模型权重：</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-5.346167750306461,
+ array([ 3.76035057e-01, -2.55358856e-01, -3.21341426e-02,  3.74545737e-01,
+        -6.85885223e-01,  3.91875239e-01, -1.69476241e-01, -7.41793527e-02,
+        -5.76496538e-01,  3.94976503e-01, -3.41457312e-01, -6.24912317e-01,
+        -6.05605602e-01, -4.56928100e-01, -5.19167009e-01, -1.05743009e-01,
+         8.19586633e-01,  9.96762702e-01, -3.09342985e-01,  6.57277160e-01,
+        -1.06436104e-01,  7.71287796e-01,  7.99791034e-02,  1.43803702e-01,
+        -1.01006564e-01,  1.59416785e+00, -5.06233997e-02, -5.78477239e-01,
+        -3.72601413e-01, -6.35661364e-01, -1.02810175e-01,  0.00000000e+00,
+        -1.35478173e-01,  4.36864993e-01, -3.42554362e-01, -1.32819675e-01,
+        -2.00200285e-01, -1.53919241e+00,  6.44831702e-02,  7.17836796e-01,
+         3.80039408e-01,  4.25898498e-02,  8.81653483e-01, -7.08110462e-02,
+         6.10385977e-02,  8.94590966e-02,  6.93679716e-01, -1.30382712e+00,
+        -6.55878656e-01,  1.11512993e+00,  3.78012650e-01, -4.28231712e-02,
+        -3.72812689e-01,  2.41180415e-01, -2.03955636e-01, -3.07042908e-01,
+         3.06644477e-01,  4.31360344e-01,  5.31199745e-01, -6.89615763e-02,
+         4.66366585e-01, -5.81829004e-01, -2.21952424e-01, -2.39529124e-01,
+        -1.40562769e-03,  7.26045748e-01,  2.46167426e-01, -6.08617054e-01,
+         0.00000000e+00, -9.02427102e-02, -3.54430134e-03,  0.00000000e+00,
+         0.00000000e+00, -1.29034794e-01,  5.90856998e-01, -5.15912614e-01,
+         0.00000000e+00, -5.42096249e-03,  7.28556009e-01, -5.15261422e-02,
+         2.30704112e-01, -1.61821068e-01, -6.60183260e-01, -1.01170807e-01,
+        -2.52337853e-01, -5.77230791e-02, -1.45064565e-01, -3.09985224e-01,
+         0.00000000e+00, -3.31415590e-02,  0.00000000e+00, -1.38495395e-01,
+         0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  4.26243747e-01,
+         0.00000000e+00,  0.00000000e+00,  1.72867533e+00,  7.37281346e-02,
+         1.83154145e+00,  2.40009511e+00,  1.46921214e+00,  1.96856497e+00]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>注意到，权重<span class="math notranslate nohighlight">\(w_i\)</span>的数量和特征<span class="math notranslate nohighlight">\(x_i\)</span>的数量总是一致的，因为模型在预测时需要将各个特征和其对应的权重相乘。这也意味着我们模型的维度和特征向量的维度完全相同。</p>
+<p>有了获得权重和偏差项的方法后，我们就可以实现自己的预测函数了：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 预测：以模型（theta）单一样本（xi）为输入，返回预测标签</span>
+<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">xi</span> <span class="o">@</span> <span class="n">theta</span> <span class="o">+</span> <span class="n">bias</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">label</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8243034055727554
+</pre></div>
+</div>
+</div>
+</div>
+<p>这里我们将偏差项设置为可选参数，因为在大多数情况下，无偏差项模型的预测效果也足够好了。为了简化模型训练的整个过程，后续我们先不考虑训练偏差项。</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">28.3. </span>使用梯度下降训练模型<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>训练过程究竟是如何进行的呢？scikit-learn库实现了一些非常复杂的算法，但我们也可以通过实现一个简单算法来实现同等的效果。此算法称为<em>梯度下降</em>（Gradient Descent）。</p>
+<p>大多数机器学习训练算法要根据所选择的<em>损失函数</em>（Loss Function）来定义。损失函数是一种衡量模型预测结果有多”差”的方法。训练算法的目标是使损失函数达到最小值。换句话说，损失值低的模型具有<em>更好的</em>预测能力。</p>
+<p>机器学习社区已经提出了多种不同的常用损失函数。对于每个预测正确的样本，简单的损失函数直接返回0。对于每个预测错误的样本，损失函数直接返回1。损失值为0意味着模型可以正确预测出每个样本的标签。二分类器中较为常用的损失函数为<em>对率损失</em>（Logistic Loss）。对率损失帮助我们度量出模型”还有多远的距离”才能正确预测出标签（与简单地输出0和1相比，对率损失可以提供更多的信息）。</p>
+<p>下述Python代码实现了对率损失函数：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 损失函数用于衡量我们的模型有多好。训练目标是最小化损失值。</span>
+<span class="c1"># 这是对率损失函数。</span>
+<span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">):</span>
+    <span class="n">exponent</span> <span class="o">=</span> <span class="o">-</span> <span class="n">yi</span> <span class="o">*</span> <span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">exponent</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们可以使用损失函数衡量指定模型的效果。让我们用权重全为0的模型来试一试。该模型大概率效果不佳，但我们可以把此模型作为起点，逐步训练出更好的模型。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6931471805599453
+</pre></div>
+</div>
+</div>
+</div>
+<p>一般来说，通过简单地计算所有训练样本的平均损失值，我们就可以测量出模型在整个训练集上有多好。当模型的权重全为0时，所有样本<em>全部</em>预测错误，整个训练集的平均损失值刚好等于我们前面计算得到的单个样本损失值。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6931471805599453
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们<em>训练</em>模型的目标是<em>最小化</em>损失值。这里的关键问题是：我们如何修改模型才能降低损失值呢？</p>
+<p>梯度下降是一种根据<a class="reference external" href="https://en.wikipedia.org/wiki/Gradient"><em>梯度</em></a>更新模型以降低损失值的方法。梯度就像一个多维导数：对于一个有着多维输入的函数（例如我们前面提到的损失函数），梯度告诉我们<em>每个</em>维度输入的变化会在多大程度上影响函数输出的变化。如果某一维度的梯度为正，意味着一旦我们增加该维度的模型权重，函数输出值将<em>变大</em>。我们想要<em>降低</em>损失值，因此我们应该用<em>负</em>梯度来修改模型，即做与梯度<em>相反</em>的事情。由于我们沿梯度的相反方向修改模型，因此这一过程称为<em>降低</em>梯度。</p>
+<p>当我们经过多次迭代，重复执行此下降过程后，我们会越来越接近最小化损失值的模型。这就是<em>梯度下降</em>的整个过程。让我们来看看梯度下降算法在Python下的运行效果。首先，我们定义梯度函数。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 这是对率损失函数的梯度</span>
+<span class="c1"># 梯度是一个表示各个方向损失变化率的向量</span>
+<span class="k">def</span> <span class="nf">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">):</span>
+    <span class="n">exponent</span> <span class="o">=</span> <span class="n">yi</span> <span class="o">*</span> <span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span> <span class="p">(</span><span class="n">yi</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">exponent</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3><span class="section-number">28.3.1. </span>单步梯度下降<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>接下来，我们来单步执行一次梯度下降。我们将训练集中的一个样本都输入到<code class="docutils literal notranslate"><span class="pre">gradient</span></code>（梯度）函数中，得到此样本的梯度值。得到梯度值可以为我们提供足够信息来改善模型。我们在当前模型<code class="docutils literal notranslate"><span class="pre">theta</span></code>上减去得到的梯度，以实现梯度”下降”。</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 如果我们想把我们向梯度的反方向移动一步（即减去梯度值），</span>
+<span class="c1"># 我们应该可以让theta向损失值*变小）的方向移动</span>
+<span class="c1"># 这就是单步梯度下降。我们在每一步都要尝试*降低*梯度</span>
+<span class="c1"># 在这个例子中，我们只计算了训练集中（第）一个样本的梯度</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">theta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.        ,  0.        ,  0.        ,  0.        , -0.5       ,
+        0.        ,  0.        ,  0.        , -0.5       ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+       -0.5       ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        , -0.5       ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        , -0.5       ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        , -0.5       ,
+        0.        , -0.5       ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+       -0.5       ,  0.        ,  0.        , -0.25      , -0.0606146 ,
+       -0.21875   ,  0.        ,  0.        , -0.17676768])
+</pre></div>
+</div>
+</div>
+</div>
+<p>现在，如果我们以相同的训练样本为输入调用<code class="docutils literal notranslate"><span class="pre">predict</span></code>函数，模型就可以正确预测此样本的标签了！我们的模型更新方法确实提高了模型的预测能力，因为更新后的模型已经具备分类此样本的能力了。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">predict</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.0, -1.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们需要多次度量模型的准确性。为此，我们定义一个用于度量准确性的辅助函数。它的工作方式和sklearn模型的准确性度量方式相同。我们可以用这个函数度量经过单个样本梯度下降后所得到的模型<code class="docutils literal notranslate"><span class="pre">theta</span></code>，看看新模型在测试集的效果怎么样。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7585139318885449
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们改善后的模型现在可以正确预测测试集中75%的标签！这是一个很大的进步，我们大大改善了模型的预测效果。</p>
+</div>
+<div class="section" id="id5">
+<h3><span class="section-number">28.3.2. </span>梯度下降算法<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p>我们需要进一步对算法的两个部分进行改进，从而最终实现基础梯度下降算法。第一，我们前面的单步梯度下降仅使用了训练数据中的单个样本。我们希望用<em>整个</em>训练集来更新模型，从而改善模型在<em>所有</em>样本上的预测效果。第二，我们需要执行多次迭代，尽可能让损失值达到最小。</p>
+<p>对于第一个改进点，我们可以计算所有训练样本的<em>平均梯度</em>，以替代单步梯度下降中的单样本梯度。我们用下述实现的<code class="docutils literal notranslate"><span class="pre">avg_grad</span></code>（平均梯度）函数来计算所有训练样本和对应标签的平均梯度。</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">grads</span> <span class="o">=</span> <span class="p">[</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-8.03202480e-03, -1.09365062e-02, -5.86649848e-02, -1.70297784e-02,
+       -1.85949049e-02, -5.32762100e-03,  3.15432083e-05,  2.24692568e-03,
+        1.80942171e-03,  1.10891317e-03,  7.17940863e-04,  1.22012681e-03,
+        1.09385854e-03,  1.42352970e-03, -4.29266203e-03, -5.73114012e-03,
+       -4.96409990e-02, -7.90844879e-03, -1.08970068e-02, -2.50609905e-02,
+        3.27410319e-04, -1.20102580e-02, -1.29608985e-02,  1.15182321e-02,
+       -2.26895536e-04, -1.83255483e-01,  1.34642262e-03,  4.47703452e-02,
+        4.31895523e-03,  2.97414610e-03,  6.16295082e-03, -4.88903955e-05,
+       -2.13933205e-02, -4.86969833e-02, -8.62802483e-04,  3.11463168e-03,
+        1.23013848e-03,  1.54486498e-02,  1.21336873e-03, -4.38864985e-02,
+       -4.34689131e-03, -1.64743409e-02, -4.53583200e-03, -5.47845717e-03,
+       -1.67472715e-01,  1.93015718e-02,  4.73608091e-03,  2.44149704e-02,
+        1.61917788e-02, -1.57259641e-02,  6.59058497e-04, -1.58429762e-03,
+        9.21938268e-03,  8.76978910e-04, -1.27725399e-01,  3.39811988e-02,
+       -1.52535476e-01, -1.11859092e-04, -7.43481028e-04, -2.46346175e-04,
+        2.71911076e-04, -2.55366711e-04,  4.50825450e-04,  1.10378277e-04,
+        3.56606530e-04, -6.45268003e-04, -2.29994332e-04, -3.86436617e-04,
+       -3.08625397e-04,  2.96102401e-04,  1.88227302e-04,  8.58078928e-06,
+        7.20867325e-05, -4.19942412e-05, -8.78083803e-05, -8.39666492e-04,
+       -3.06575834e-04, -8.40712924e-05, -5.70563641e-04,  4.00302057e-04,
+       -2.64158094e-04,  6.99057157e-05,  2.42709304e-03,  1.82470777e-04,
+        8.76079931e-05,  1.54645694e-04, -2.72063515e-04, -6.37207436e-05,
+        1.24980547e-05,  4.45197135e-04,  4.61621071e-05,  1.15265174e-04,
+       -2.77439358e-04,  5.96595409e-05,  1.20539191e-04, -1.18965672e-01,
+        3.44932395e-04, -7.41634269e-05, -6.91870325e-02, -1.45516103e-02,
+       -9.95735544e-02, -8.85669054e-03, -9.10018120e-03, -6.35462985e-02])
+</pre></div>
+</div>
+</div>
+</div>
+<p>对于第二个改进点，我们来定义一个可以多次执行梯度下降的迭代算法。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+    <span class="c1"># 我们用&quot;猜测&quot;的一个模型参数（权重全为0的模型）作为起始点</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># 应用训练集迭代执行梯度下降步骤</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">theta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7787483414418399
+</pre></div>
+</div>
+</div>
+</div>
+<p>经过10轮迭代，我们的模型几乎达到78%的准确率，效果还不错！我们的梯度下降算法看起来很简单（也确实挺简单的！），但这个算法可以说是大智若愚：该方法是近年来绝大多数大规模深度学习的基础。我们给出的算法在设计上已经非常接近于TensorFlow等主流机器学习框架所实现的算法了。</p>
+<p>注意到，与前面用sklearn训练得到的模型相比，我们的模型还没有达到84%的准确率。别担心，我们的算法绝对有能力做到！我们只是需要更多轮迭代，使损失值更接近最小值。</p>
+<p>经过100轮迭代，模型的准确率达到82%，更接近84%的准确率了。但是，如此多的迭代次数导致算法运行了非常长的时间。更糟糕的是，我们越接近最小损失值，模型的预测效果就越难得到进一步的改善了。100轮迭代后的模型可以达到82%的准确率，但达到84%的准确率可能需要1000轮迭代。这也体现出了机器学习的一个根本矛盾：一般来说，更多的训练轮数可以带来更高的准确率，但同时也需要更多的计算时间。在实际场景中使用大规模深度学习时，绝大多数实现”技巧”都是为梯度下降的每轮迭代加速，以便在相同时间内执行更多轮迭代。</p>
+<p>还有一个有趣的现象值得我们注意：损失函数的输出值确实会随着每轮梯度下降的迭代而下降。因此，随着执行轮数的增加，我们的模型的确在逐渐接近最小损失值。另外要注意的是，如果训练集和测试集的损失值非常接近，意味着我们的模型没有<em>过拟合</em>训练数据。</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent_log</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;训练集损失值: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;测试集损失值: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">theta</span>
+
+<span class="n">gradient_descent_log</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.549109439168421
+测试集损失值: 0.5415350837580458
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.5224689105514977
+测试集损失值: 0.5162665121068426
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.5028090736020403
+测试集损失值: 0.49753785424732383
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.4878874803989895
+测试集损失值: 0.48335633696635527
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.47628573924997925
+测试集损失值: 0.4723742456095848
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2><span class="section-number">28.4. </span>差分隐私梯度下降<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
+<p>我们如何使上述算法满足差分隐私呢？我们想要设计一种算法来为训练数据提供差分隐私保护，使最终训练得到的模型不会泄露与单个训练样本相关的任何信息。</p>
+<p>算法执行过程中唯一使用了训练数据的部分是梯度计算步骤。使该算法满足差分隐私的一种方法是，在每轮模型更新前在梯度上增加噪声。由于我们直接在梯度上增加噪声，因此该方法通常被称为<em>噪声梯度下降</em>（Noisy Gradient Descent）。</p>
+<p>我们的梯度函数是向量值函数，因此我们使用<code class="docutils literal notranslate"><span class="pre">gaussian_mech_vec</span></code>（向量高斯机制）在梯度函数的输出值上增加噪声：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">noisy_gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">sensitivity</span> <span class="o">=</span> <span class="s1">&#39;???&#39;</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">grad</span> <span class="o">=</span> <span class="n">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">noisy_grad</span> <span class="o">=</span> <span class="n">gaussian_mech_vec</span><span class="p">(</span><span class="n">grad</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">noisy_grad</span>
+
+    <span class="k">return</span> <span class="n">theta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>这里就差一块拼图了：<strong>梯度函数的敏感度是多少</strong>？这是使算法满足差分隐私的关键所在。</p>
+<p>这里我们主要面临两个挑战。第一，梯度是<em>均值问询</em>的结果，即梯度是每个样本梯度的均值。我们之前已经提到，最好将均值问询拆分为一个求和问询和一个计数问询。做到这一点并不难，我们可以不直接计算梯度均值，而是计算每个样本梯度噪声和，再除以噪声计数值。第二，我们需要限制每个样本梯度的敏感度。有两种基础方法可以做到这一点。我们可以（如之前讲解的其他问询那样）分析梯度函数，确定其在最差情况下的全局敏感度。我们也可以（如”采样-聚合”框架那样）裁剪梯度函数的输出值，从而<em>强制</em>限定敏感度上界。</p>
+<p>我们先介绍第二种方法。第二种方法从概念上看更简单，在实际应用中的普适性更好。此方法一般被称为<em>梯度裁剪</em>（Gradient Clipping）。</p>
+<div class="section" id="id7">
+<h3><span class="section-number">28.4.1. </span>梯度裁剪<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<p>回想一下，在实现”采样-聚合”框架时，我们裁剪未知敏感度函数<span class="math notranslate nohighlight">\(f\)</span>的输出，强制限定<span class="math notranslate nohighlight">\(f\)</span>的敏感度上界。<span class="math notranslate nohighlight">\(f\)</span>的敏感度为：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-343dcf85-4784-4558-812c-e9ade32d2b32">
+<span class="eqno">(28.2)<a class="headerlink" href="#equation-343dcf85-4784-4558-812c-e9ade32d2b32" title="Permalink to this equation">#</a></span>\[\begin{align}
+\lvert f(x) - f(x') \rvert
+\end{align}\]</div>
+<p>使用参数<span class="math notranslate nohighlight">\(b\)</span>裁剪后，上述表达式变为：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-44befaf7-bdad-4d9c-bf68-7e2a2cf11fcf">
+<span class="eqno">(28.3)<a class="headerlink" href="#equation-44befaf7-bdad-4d9c-bf68-7e2a2cf11fcf" title="Permalink to this equation">#</a></span>\[\begin{align}
+\lvert \mathsf{clip}(f(x), b) - \mathsf{clip}(f(x'),b) \rvert
+\end{align}\]</div>
+<p>最差情况下，<span class="math notranslate nohighlight">\(\mathsf{clip}(f(x), b) = b\)</span>，且<span class="math notranslate nohighlight">\(\mathsf{clip}(f(x'),b) = 0\)</span>，因此裁剪结果的敏感度为<span class="math notranslate nohighlight">\(b\)</span>（即敏感度等于裁剪参数）。</p>
+<p>我们可以使用相同的技巧来限定梯度函数的<span class="math notranslate nohighlight">\(L2\)</span>敏感度。我们需要定义一个用来”裁剪”向量的函数，使输出向量的<span class="math notranslate nohighlight">\(L2\)</span>范数落在期望的范围内。我们可以通过<em>缩放</em>向量来做到这一点：如果把向量中每个位置的元素都除以向量的<span class="math notranslate nohighlight">\(L2\)</span>范数，则所得向量的<span class="math notranslate nohighlight">\(L2\)</span>范数为1。如果想要使用裁剪参数<span class="math notranslate nohighlight">\(b\)</span>，我们可以在缩放后的向量上乘以<span class="math notranslate nohighlight">\(b\)</span>，将其放大回<span class="math notranslate nohighlight">\(L2\)</span>范数等于<span class="math notranslate nohighlight">\(b\)</span>的向量。我们还希望不对<span class="math notranslate nohighlight">\(L2\)</span>范数已经小于<span class="math notranslate nohighlight">\(b\)</span>的向量进行任何修改。因此，如果向量的<span class="math notranslate nohighlight">\(L2\)</span>范数已经小于<span class="math notranslate nohighlight">\(b\)</span>，我们直接返回此向量即可。我们可以使用<code class="docutils literal notranslate"><span class="pre">np.linalg.norm</span></code>函数，并以参数<code class="docutils literal notranslate"><span class="pre">ord=2</span></code>作为输入，以计算向量的<span class="math notranslate nohighlight">\(L2\)</span>范数。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">L2_clip</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">norm</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">b</span> <span class="o">*</span> <span class="p">(</span><span class="n">v</span> <span class="o">/</span> <span class="n">norm</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">v</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>现在，我们可以开始分析裁剪梯度的敏感度了。我们将梯度表示为<span class="math notranslate nohighlight">\(\nabla(\theta; X, y)\)</span>（对应我们Python代码中的<code class="docutils literal notranslate"><span class="pre">gradient</span></code>）：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5ba9b7ff-5df9-435c-bce5-0179f31fc3dd">
+<span class="eqno">(28.4)<a class="headerlink" href="#equation-5ba9b7ff-5df9-435c-bce5-0179f31fc3dd" title="Permalink to this equation">#</a></span>\[\begin{align}
+\lVert \mathsf{L2\_clip}( \nabla (\theta; X, y), b) - \mathsf{L2\_clip}( \nabla (\theta; X', y), 0) \rVert_2
+\end{align}\]</div>
+<p>最差情况下，<span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X, y), b)\)</span>的<span class="math notranslate nohighlight">\(L2\)</span>范数为<span class="math notranslate nohighlight">\(b\)</span>，且<span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X', y))\)</span>全为0。此时，两者的<span class="math notranslate nohighlight">\(L2\)</span>范数差等于<span class="math notranslate nohighlight">\(b\)</span>。这样一来，我们成功用裁剪参数<span class="math notranslate nohighlight">\(b\)</span>限定了梯度的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界！</p>
+<p>现在，我们可以继续计算裁剪梯度之和，并根据我们通过裁剪技术得到的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界<span class="math notranslate nohighlight">\(b\)</span>来增加噪声。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="n">L2_clip</span><span class="p">(</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
+        
+    <span class="c1"># 求和问询</span>
+    <span class="c1"># （经过裁剪后的）L2敏感度为b</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们现在就快要完成噪声梯度下降算法的设计和实现了。为了计算平均噪声梯度，我们需要：</p>
+<ol class="simple">
+<li><p>基于敏感度<span class="math notranslate nohighlight">\(b\)</span>，在梯度和上增加噪声</p></li>
+<li><p>计算训练样本数量的噪声计数值（敏感度为1）</p></li>
+<li><p>用(1)的噪声梯度值和除以(2)的噪声计数值</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">noisy_gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">sensitivity</span> <span class="o">=</span> <span class="mf">5.0</span>
+    
+    <span class="n">noisy_count</span> <span class="o">=</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">grad_sum</span>        <span class="o">=</span> <span class="n">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">)</span>
+        <span class="n">noisy_grad_sum</span>  <span class="o">=</span> <span class="n">gaussian_mech_vec</span><span class="p">(</span><span class="n">grad_sum</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+        <span class="n">noisy_avg_grad</span>  <span class="o">=</span> <span class="n">noisy_grad_sum</span> <span class="o">/</span> <span class="n">noisy_count</span>
+        <span class="n">theta</span>           <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">noisy_avg_grad</span>
+
+    <span class="k">return</span> <span class="n">theta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">noisy_gradient_descent</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">)</span>
+<span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7772003538257408
+</pre></div>
+</div>
+</div>
+</div>
+<p>该算法的每轮迭代过程都满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私。我们还需额外执行一次噪声计数问询来得到满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私的噪声计数值。如果执行<span class="math notranslate nohighlight">\(k\)</span>轮迭代，则根据串行组合性，算法满足<span class="math notranslate nohighlight">\((k\epsilon + \epsilon, k\delta)\)</span>-差分隐私。我们也可以使用高级组合性来分析总隐私消耗量。更进一步，我们可以将算法转化为瑞丽差分隐私或零集中差分隐私，应用相应的组合定理得到更紧致的总隐私消耗量。</p>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">28.4.2. </span>梯度的敏感度<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<p>前面所述方法的普适性很高，因为此方法不需要假设梯度函数满足什么特定的要求。但是，我们有时<em>的确</em>对梯度函数有所了解。特别地，一大类常用的梯度函数（包括本章用到的对率损失梯度）是<em>利普希茨连续</em>（Lipschitz Continuous）的。这意味着这些梯度函数的全局敏感度是有界的。用数学语言描述，我们可以证明：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a5443861-17be-4c9b-b872-2ab4f41cbd0e">
+<span class="eqno">(28.5)<a class="headerlink" href="#equation-a5443861-17be-4c9b-b872-2ab4f41cbd0e" title="Permalink to this equation">#</a></span>\[\begin{align}
+\text{If}\; \lVert x_i \rVert_2 \leq b\; \text{then}\; \lVert \nabla(\theta; x_i, y_i) \rVert_2 \leq b
+\end{align}\]</div>
+<p>这一结论允许我们通过裁剪<em>训练样本</em>（即梯度函数的<em>输入</em>）来获得梯度函数的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界。这样，我们就不再需要裁剪梯度函数的<em>输出</em>了。</p>
+<p>用裁剪训练样本代替裁剪梯度会带来两个优点。第一，与预估训练阶段的梯度尺度相比，预估训练样本的尺度（进而选择一个好的裁剪参数）通常要容易得多。第二，裁剪训练样本的计算开销更低：我们只需要对训练样本裁剪一次，训练模型时就可以重复使用裁剪后的训练数据了。但如果选择裁剪梯度，我们就需要裁剪训练过程中计算得到的每一个梯度。此外，为了实现梯度裁剪，我们不得不依次计算出每个训练样本的梯度。但如果选择裁剪训练样本，我们就可以一次计算得到所有训练样本的梯度，从而提高训练效率（这是机器学习中的常用技巧，这里我们不再展开讨论）。</p>
+<p>然而，需要注意的是，还有很多常用损失函数的全局敏感度是无界的，尤其是深度学习中神经网络里用到的损失函数更是如此。对于这些损失函数，我们只能使用梯度裁剪法。</p>
+<p>我们只需对算法进行简单的修改，就可以把裁剪梯度替换为裁剪训练样本。在开始训练之前，我们需要先使用<code class="docutils literal notranslate"><span class="pre">L2_clip</span></code>（L2裁剪）函数来裁剪训练样本。随后，我们只需要直接把裁剪梯度的代码移除即可。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
+
+    <span class="c1"># 求和问询</span>
+    <span class="c1"># （经过裁剪后的）L2敏感度为b</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">noisy_gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">sensitivity</span> <span class="o">=</span> <span class="mf">5.0</span>
+    
+    <span class="n">noisy_count</span> <span class="o">=</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
+    <span class="n">clipped_X</span> <span class="o">=</span> <span class="p">[</span><span class="n">L2_clip</span><span class="p">(</span><span class="n">x_i</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span> <span class="ow">in</span> <span class="n">X_train</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">grad_sum</span>        <span class="o">=</span> <span class="n">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">clipped_X</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">)</span>
+        <span class="n">noisy_grad_sum</span>  <span class="o">=</span> <span class="n">gaussian_mech_vec</span><span class="p">(</span><span class="n">grad_sum</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+        <span class="n">noisy_avg_grad</span>  <span class="o">=</span> <span class="n">noisy_grad_sum</span> <span class="o">/</span> <span class="n">noisy_count</span>
+        <span class="n">theta</span>           <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">noisy_avg_grad</span>
+
+    <span class="k">return</span> <span class="n">theta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">noisy_gradient_descent</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">)</span>
+<span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7804068996019461
+</pre></div>
+</div>
+</div>
+</div>
+<p>M可以对此算法进行多种改进，以进一步降低隐私消耗量、提升模型预测的准确率。很多改进方法都源自机器学习领域的论文。这里给出几个例子：</p>
+<ul class="simple">
+<li><p>将总隐私消耗量限定为<span class="math notranslate nohighlight">\(\epsilon\)</span>，在算法内部计算每轮迭代的隐私消耗量<span class="math notranslate nohighlight">\(\epsilon_i\)</span>。</p></li>
+<li><p>利用高级组合性、瑞丽差分隐私或零集中差分隐私，从而获得更好的总隐私消耗量。</p></li>
+<li><p>小批次训练：每轮迭代中，不使用整个训练数据，而是使用一小块训练数据来计算梯度（这样可以减少梯度计算过程中的计算开销）。</p></li>
+<li><p>同时使用小批次训练和并行组合性。</p></li>
+<li><p>同时使用小批次训练和小批次随机采样。</p></li>
+<li><p>调整学习率<span class="math notranslate nohighlight">\(\eta\)</span>等其他超参数。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id9">
+<h2><span class="section-number">28.5. </span>噪声对训练的影响<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
+<p>我们已经知道，迭代次数会对模型的预测准确率带来很大的影响，因为更多的迭代次数可以使模型更接近最小损失值。我们的差分隐私算法需要在梯度上增加噪声，这会对准确率噪声带来很大的影响。噪声可能导致训练算法在训练过程中向<em>错误的方向</em>移动，使模型变得<em>更糟糕</em>。</p>
+<p>我们有理由相信更小的<span class="math notranslate nohighlight">\(\epsilon\)</span>会带来准确率更低的模型（我们已经学习的差分隐私算法都存在类似的关系）。这个结论确实是正确的，但由于在执行多轮迭代算法时要考虑组合定理，因此这里也存在一些微妙的平衡。更多的迭代次数意味着更大的隐私消耗量，而在标准梯度下降算法中，更多的迭代次数一般意味着产出更好的模型。在差分隐私保护下，当总隐私消耗量保持不变时，更多的迭代次数可能会导致模型变得更加糟糕，因为我们不得不使用更小的<span class="math notranslate nohighlight">\(\epsilon\)</span>来支持更多轮迭代，这会带来更大的噪声。在差分隐私机器学习中，适当平衡迭代轮数和单轮添加的噪声量是一个很重要的（有时也是一个非常有挑战性的）问题。</p>
+<p>让我们做一个小实验，看看不同的<span class="math notranslate nohighlight">\(\epsilon\)</span>会对模型的预测准确率带来何种影响。我们将使用不同的<span class="math notranslate nohighlight">\(\epsilon\)</span>来训练模型，每次训练迭代20轮。我们根据训练时使用的<span class="math notranslate nohighlight">\(\epsilon\)</span>作为横坐标来绘制每个模型的准确率变化图。</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>
+
+<span class="n">epsilons</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.008</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="n">thetas</span>   <span class="o">=</span> <span class="p">[</span><span class="n">noisy_gradient_descent</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> <span class="k">for</span> <span class="n">epsilon</span> <span class="ow">in</span> <span class="n">epsilons</span><span class="p">]</span>
+<span class="n">accs</span>     <span class="o">=</span> <span class="p">[</span><span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">thetas</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">28</span><span class="o">-</span><span class="n">d488448b8736</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">epsilons</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.008</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">thetas</span>   <span class="o">=</span> <span class="p">[</span><span class="n">noisy_gradient_descent</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> <span class="k">for</span> <span class="n">epsilon</span> <span class="ow">in</span> <span class="n">epsilons</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">accs</span>     <span class="o">=</span> <span class="p">[</span><span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">thetas</span><span class="p">]</span>
+
+<span class="nn">&lt;ipython-input-28-d488448b8736&gt;</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">epsilons</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.008</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">thetas</span>   <span class="o">=</span> <span class="p">[</span><span class="n">noisy_gradient_descent</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> <span class="k">for</span> <span class="n">epsilon</span> <span class="ow">in</span> <span class="n">epsilons</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">accs</span>     <span class="o">=</span> <span class="p">[</span><span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">thetas</span><span class="p">]</span>
+
+<span class="nn">&lt;ipython-input-26-c83bc1f2a62e&gt;</span> in <span class="ni">noisy_gradient_descent</span><span class="nt">(iterations, epsilon, delta)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> 
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">9</span>         <span class="n">grad_sum</span>        <span class="o">=</span> <span class="n">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">clipped_X</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>         <span class="n">noisy_grad_sum</span>  <span class="o">=</span> <span class="n">gaussian_mech_vec</span><span class="p">(</span><span class="n">grad_sum</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>         <span class="n">noisy_avg_grad</span>  <span class="o">=</span> <span class="n">noisy_grad_sum</span> <span class="o">/</span> <span class="n">noisy_count</span>
+
+<span class="nn">&lt;ipython-input-25-bf58122bae57&gt;</span> in <span class="ni">gradient_sum</span><span class="nt">(theta, X, y, b)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="c1"># 求和问询</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="c1"># （经过裁剪后的）L2敏感度为b</span>
+
+<span class="nn">&lt;ipython-input-25-bf58122bae57&gt;</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="c1"># 求和问询</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="c1"># （经过裁剪后的）L2敏感度为b</span>
+
+<span class="nn">&lt;ipython-input-12-17038926ac6d&gt;</span> in <span class="ni">gradient</span><span class="nt">(theta, xi, yi)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">def</span> <span class="nf">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">exponent</span> <span class="o">=</span> <span class="n">yi</span> <span class="o">*</span> <span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">5</span>     <span class="k">return</span> <span class="o">-</span> <span class="p">(</span><span class="n">yi</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">exponent</span><span class="p">))</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;ε&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;准确率&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epsilons</span><span class="p">,</span> <span class="n">accs</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/cn_ch12_60_0.png" src="_images/cn_ch12_60_0.png" />
+</div>
+</div>
+<p>从上图可以看出，<span class="math notranslate nohighlight">\(\epsilon\)</span>非常小时会产生准确率非常低的模型。请记住，我们在图中指定的<span class="math notranslate nohighlight">\(\epsilon\)</span>是每轮迭代时使用的<span class="math notranslate nohighlight">\(\epsilon\)</span>，因此组合后的总隐私消耗量还要大得多。</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="cn_ch11.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">27. </span>算法设计练习</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="cn_ch13.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">29. </span>本地差分隐私</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joseph P. Near and Chiké Abuah<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

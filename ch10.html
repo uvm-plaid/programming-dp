@@ -195,9 +195,102 @@ const thebe_selector_output = ".output, .cell_output"
    15. Synthetic Data
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Chinese Version
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_intro.html">
+   16. 引言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch1.html">
+   17. 去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch2.html">
+   18.
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch3.html">
+   19. 差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch4.html">
+   20. 差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch5.html">
+   21. 敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch6.html">
+   22. 近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch7.html">
+   23. 局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch8.html">
+   24. 差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch9.html">
+   25. 指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch10.html">
+   26. 稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch11.html">
+   27. 算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch12.html">
+   28. 机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch13.html">
+   29. 本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch14.html">
+   30. 合成数据
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bibliography
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   16. Bibliography
+   31. Bibliography
   </a>
  </li>
 </ul>
@@ -609,7 +702,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.58316627898872
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.57576367047065
 </pre></div>
 </div>
 </div>
@@ -670,60 +763,32 @@ title="Print to PDF"
 <span class="g g-Whitespace">   </span><span class="mi">9006</span><span class="sd">         )</span>
 
 <span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">_where</span><span class="nt">(self, cond, other, inplace, axis, level, errors, try_cast)</span>
-<span class="g g-Whitespace">   </span><span class="mi">8843</span><span class="sd">             other = other.reindex(self._info_axis, axis=self._info_axis_number)</span>
-<span class="g g-Whitespace">   </span><span class="mi">8844</span><span class="sd">         if isinstance(cond, NDFrame):</span>
-<span class="ne">-&gt; </span><span class="mi">8845</span><span class="sd">             cond = cond.reindex(self._info_axis, axis=self._info_axis_number)</span>
-<span class="g g-Whitespace">   </span><span class="mi">8846</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">8847</span><span class="sd">         block_axis = self._get_block_manager_axis(axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">8748</span><span class="sd">             if cond.shape != self.shape:</span>
+<span class="g g-Whitespace">   </span><span class="mi">8749</span><span class="sd">                 raise ValueError(&quot;Array conditional must be same shape as self&quot;)</span>
+<span class="ne">-&gt; </span><span class="mi">8750</span><span class="sd">             cond = self._constructor(cond, **self._construct_axes_dict())</span>
+<span class="g g-Whitespace">   </span><span class="mi">8751</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">8752</span><span class="sd">         # make sure we are boolean</span>
 
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/series.py</span> in <span class="ni">reindex</span><span class="nt">(self, index, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4409</span><span class="sd">     )</span>
-<span class="g g-Whitespace">   </span><span class="mi">4410</span><span class="sd">     def reindex(self, index=None, **kwargs):</span>
-<span class="ne">-&gt; </span><span class="mi">4411</span><span class="sd">         return super().reindex(index=index, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4412</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">4413</span><span class="sd">     def drop(</span>
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/series.py</span> in <span class="ni">__init__</span><span class="nt">(self, data, index, dtype, name, copy, fastpath)</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span><span class="sd">                     data = data.copy()</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span><span class="sd">             else:</span>
+<span class="ne">--&gt; </span><span class="mi">327</span><span class="sd">                 data = sanitize_array(data, index, dtype, copy, raise_cast_failure=True)</span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span><span class="sd">                 data = SingleBlockManager.from_array(data, index)</span>
 
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">reindex</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4451</span><span class="sd">         ):</span>
-<span class="g g-Whitespace">   </span><span class="mi">4452</span><span class="sd">             if copy:</span>
-<span class="ne">-&gt; </span><span class="mi">4453</span><span class="sd">                 return self.copy()</span>
-<span class="g g-Whitespace">   </span><span class="mi">4454</span><span class="sd">             return self</span>
-<span class="g g-Whitespace">   </span><span class="mi">4455</span><span class="sd"> </span>
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/construction.py</span> in <span class="ni">sanitize_array</span><span class="nt">(data, index, dtype, copy, raise_cast_failure)</span>
+<span class="g g-Whitespace">    </span><span class="mi">510</span><span class="sd">                 subarr = np.array(data, dtype=object, copy=copy)</span>
+<span class="g g-Whitespace">    </span><span class="mi">511</span><span class="sd"> </span>
+<span class="ne">--&gt; </span><span class="mi">512</span><span class="sd">         if is_object_dtype(subarr.dtype) and not is_object_dtype(dtype):</span>
+<span class="g g-Whitespace">    </span><span class="mi">513</span><span class="sd">             inferred = lib.infer_dtype(subarr, skipna=False)</span>
+<span class="g g-Whitespace">    </span><span class="mi">514</span><span class="sd">             if inferred in {&quot;interval&quot;, &quot;period&quot;}:</span>
 
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">copy</span><span class="nt">(self, deep)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5661</span><span class="sd">         dtype: object</span>
-<span class="g g-Whitespace">   </span><span class="mi">5662</span><span class="sd">         &quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">5663</span>         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="n">deep</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5664</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_clear_item_cache</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">5665</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;copy&quot;</span><span class="p">)</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/internals/managers.py</span> in <span class="ni">copy</span><span class="nt">(self, deep)</span>
-<span class="g g-Whitespace">    </span><span class="mi">800</span>             <span class="n">new_axes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">801</span> 
-<span class="ne">--&gt; </span><span class="mi">802</span>         <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="s2">&quot;copy&quot;</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="n">deep</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">803</span>         <span class="n">res</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="n">new_axes</span>
-<span class="g g-Whitespace">    </span><span class="mi">804</span>         <span class="k">return</span> <span class="n">res</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/internals/managers.py</span> in <span class="ni">apply</span><span class="nt">(self, f, align_keys, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">404</span>                 <span class="n">applied</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">405</span>             <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">406</span>                 <span class="n">applied</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">)(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">407</span>             <span class="n">result_blocks</span> <span class="o">=</span> <span class="n">_extend_blocks</span><span class="p">(</span><span class="n">applied</span><span class="p">,</span> <span class="n">result_blocks</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">408</span> 
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/internals/blocks.py</span> in <span class="ni">copy</span><span class="nt">(self, deep)</span>
-<span class="g g-Whitespace">    </span><span class="mi">678</span>         <span class="k">if</span> <span class="n">deep</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">679</span>             <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">680</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_block_same_class</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">681</span> 
-<span class="g g-Whitespace">    </span><span class="mi">682</span>     <span class="k">def</span> <span class="nf">replace</span><span class="p">(</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/internals/blocks.py</span> in <span class="ni">make_block_same_class</span><span class="nt">(self, values, placement, ndim)</span>
-<span class="g g-Whitespace">    </span><span class="mi">257</span>         <span class="sd">&quot;&quot;&quot; Wrap given values in a block of same type as self. &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">258</span>         <span class="k">if</span> <span class="n">placement</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">259</span>             <span class="n">placement</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mgr_locs</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="k">if</span> <span class="n">ndim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>             <span class="n">ndim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span>
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/dtypes/common.py</span> in <span class="ni">is_object_dtype</span><span class="nt">(arr_or_dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">219</span><span class="sd">     False</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">221</span>     <span class="k">return</span> <span class="n">_is_dtype_type</span><span class="p">(</span><span class="n">arr_or_dtype</span><span class="p">,</span> <span class="n">classes</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">object_</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span> 
+<span class="g g-Whitespace">    </span><span class="mi">223</span> 
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

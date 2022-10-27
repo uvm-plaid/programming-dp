@@ -1,0 +1,963 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>29. 本地差分隐私 &#8212; Programming Differential Privacy</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="30. 合成数据" href="cn_ch14.html" />
+    <link rel="prev" title="28. 机器学习" href="cn_ch12.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover.html">
+                    Programming Differential Privacy
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  English Version
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch1.html">
+   2. De-identification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch2.html">
+   3. k-Anonymity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch3.html">
+   4. Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch4.html">
+   5. Properties of Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch5.html">
+   6. Sensitivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch6.html">
+   7. Approximate Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch7.html">
+   8. Local Sensitivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch8.html">
+   9. Variants of Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch9.html">
+   10. The Exponential Mechanism
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch10.html">
+   11. The Sparse Vector Technique
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch11.html">
+   12. Exercises in Algorithm Design
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch12.html">
+   13. Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch13.html">
+   14. Local Differential Privacy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch14.html">
+   15. Synthetic Data
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Chinese Version
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_intro.html">
+   16. 引言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch1.html">
+   17. 去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch2.html">
+   18.
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch3.html">
+   19. 差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch4.html">
+   20. 差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch5.html">
+   21. 敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch6.html">
+   22. 近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch7.html">
+   23. 局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch8.html">
+   24. 差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch9.html">
+   25. 指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch10.html">
+   26. 稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch11.html">
+   27. 算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch12.html">
+   28. 机器学习
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   29. 本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch14.html">
+   30. 合成数据
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bibliography
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   31. Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/cn_ch13.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/cn_ch13.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   29.1. 随机应答
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   29.2. 一元编码
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>本地差分隐私</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   29.1. 随机应答
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   29.2. 一元编码
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1><span class="section-number">29. </span>本地差分隐私<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<div class="admonition- admonition">
+<p class="admonition-title">学习目标</p>
+<p>阅读本章后，您将能够：</p>
+<ul class="simple">
+<li><p>定义差分隐私的本地模型，并比较本地模型与中心模型的异同</p></li>
+<li><p>定义和实现随机应答和一元编码机制</p></li>
+<li><p>描述这些机制的准确性影响，以及本地模型的挑战</p></li>
+</ul>
+</div>
+<p>截至目前，我们只考虑了差分隐私的<em>中心模型</em>（Central Model）。在中心模型中，原始敏感数据被汇总到单个数据集中。在这种场景下，我们假定<em>分析者</em>是恶意的，但存在一个<em>可信任的数据管理者</em>，由它持有数据集并能正确执行分析者指定的差分隐私机制。</p>
+<p>这种设定通常是不现实的。在很多情况下，数据管理者和分析者是<em>同一个人</em>，且实际上不存在一个可信第三方，能由它持有数据集并执行差分隐私机制。事实上，往往是我们<em>不</em>信任的组织来收集我们最敏感的数据。这样的组织显然无法成为可信数据管理者。</p>
+<p>中心差分隐私模型的一种替代方案是差分隐私<em>本地模型</em>（Local Model）。在本地模型中，数据在离开数据主体控制之前就已经满足差分隐私。例如，在将数据发送给数据管理者之前，用户就在自己的设备上为自己的数据添加噪声。在本地模型中，数据管理者不需要是可信的，因为他们收集的是已经满足差分隐私的数据。</p>
+<p>因此，相比于中心模型，本地模型有着巨大的优势：数据主体不需要相信除他们自己以外的任何人。这一优势使得本地模型在实际系统中有着广泛的应用，包括<a class="reference external" href="https://github.com/google/rappor">谷歌</a>和<a class="reference external" href="https://www.apple.com/privacy/docs/Differential_Privacy_Overview.pdf">苹果</a>都部署了基于本地模型的差分隐私应用。</p>
+<p>不幸的是，本地模型也有明显的缺点：在相同的隐私消耗量下，对于相同的问询，本地模型问询结果的准确性通常比中心模型<em>低几个数量级</em>。这种巨大的准确性损失意味着只有较少类型的问询适用于本地差分隐私。即便如此，只有当数据量较大（即参与者数量较多时）时，差分隐私本地模型分析结果的准确率才可以满足实际要求。</p>
+<p>本章，我们将学习两种本地差分隐私机制。第一种是<em>随机应答</em>（Randomized Response），第二种是<em>一元编码</em>（Unary Encoding）。</p>
+<div class="section" id="id2">
+<h2><span class="section-number">29.1. </span>随机应答<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Randomized_response">随机应答</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id18" title="Stanley L. Warner. Randomized response: a survey technique for eliminating evasive answer bias. Journal of the American Statistical Association, 60(309):63-69, 1965. PMID: 12261830. URL: https://www.tandfonline.com/doi/abs/10.1080/01621459.1965.10480775, doi:10.1080/01621459.1965.10480775.">16</a>]</span>是一种本地差分隐私机制，<a class="reference external" href="https://www.jstor.org/stable/2283137?seq=1#metadata_info_tab_contents">S. L. Warner</a>在其1965年的论文中首次提出了这一机制。当时，该技术提出的目的是允许用户可以用错误的回复来应答调研中的敏感问题，且学者们当初也没有意识到这是一种差分隐私机制（此后40年内，学者们都尚未提出差分隐私的概念）。在提出差分隐私的概念后，统计学家们才意识到随机应答技术<em>已经</em>满足了差分隐私的定义。</p>
+<p>Dwork和Roth提出了一种随机应答变种机制。在此机制中，数据主体按下述方法用”是”或”不是”来回答一个问题：</p>
+<ol class="simple">
+<li><p>掷一枚硬币</p></li>
+<li><p>如果硬币正面向上，如实回答问题</p></li>
+<li><p>如果硬币反面向上，再掷一枚硬币</p></li>
+<li><p>如果第二枚硬币也是正面向上，回答”是”；否则，回答”否”</p></li>
+</ol>
+<p>该算法的随机性来自两次硬币的抛掷结果。正如其他差分隐私算法一样，硬币抛掷结果的随机性为真实结果引入了不确定性，而这种不确定性正是差分隐私机制可以提供隐私保护的根本原因。</p>
+<p>事实证明，该随机应答算法满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私，其中<span class="math notranslate nohighlight">\(\epsilon = \log(3) = 1.09\)</span>。</p>
+<p>让我们来实现这个算法，并用其回答一个简单的”是或否”问题：”你的职业是’销售’吗？”我们可以在Python中使用<code class="docutils literal notranslate"><span class="pre">np.random.randint(0,</span> <span class="pre">2)</span></code>函数模拟硬币抛掷过程。此函数的输出仅可能是0或1。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rand_resp_sales</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+    <span class="n">truthful_response</span> <span class="o">=</span> <span class="n">response</span> <span class="o">==</span> <span class="s1">&#39;Sales&#39;</span>
+    
+    <span class="c1"># 第一次抛掷硬币</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># 如实回答</span>
+        <span class="k">return</span> <span class="n">truthful_response</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># （用第二次硬币抛掷结果）随机应答</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>让我们来询问200名从事销售工作的人，请他们使用随机应答算法回答此问题，看看结果如何。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">rand_resp_sales</span><span class="p">(</span><span class="s1">&#39;Sales&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)])</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     147
+False     53
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>可以看到，我们可以得到答案为”是”和”否”的人数，但”是”的数量远多于”否”的数量。与我们学过的算法类似，此输出结果也展示出了差分隐私算法的两个性质：算法引入一定的不确定性来实现隐私保护，但算法的输出结果仍然释放出足够的信号，帮助我们推断出人口相关信息。</p>
+<p>让我们试试在实际数据上做同样的实验。我们从一直使用的美国人口数据集中获取所有个体的职业信息。我们要问询的问题是”你的职业是’销售’吗？”，并对每个职业的回复结果进行编码。在实际部署的系统中，我们不会集中收集真实数据。相对地，每个回复者会在本地执行<code class="docutils literal notranslate"><span class="pre">rand_resp_sales</span></code>（随机应答销售职业）函数，并把随机应答结果提交给数据管理者。在实验中，我们在现有的数据集上执行<code class="docutils literal notranslate"><span class="pre">rand_resp_sales</span></code>函数。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="n">rand_resp_sales</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22671
+True      9890
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>这次，我们得到的”否”数量比”是”数量更多。稍加思考，就会发现这是一个合理的统计结果，因为数据集中大多数参与者的职位都不是销售。</p>
+<p>现在的关键问题是：我们如何根据这些回复，估计出数据集中销售人员的<em>真实</em>人数呢？”是”的数量并不能很好地估计销售人员数量：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Sales&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3650
+</pre></div>
+</div>
+</div>
+</div>
+<p>这并不奇怪，因为很多”是”都来自于算法中的随机硬币抛掷结果。</p>
+<p>为了估计销售人员的正确人数，我们需要分析随机应答算法的随机性，估计出有多少”是”来自实际销售人员，以及有多少”是”来自随机硬币抛掷结果。我们知道：</p>
+<ul class="simple">
+<li><p>每个响应者随机回复的概率为<span class="math notranslate nohighlight">\(\frac{1}{2}\)</span></p></li>
+<li><p>每个随机回复中”是”的概率为<span class="math notranslate nohighlight">\(\frac{1}{2}\)</span></p></li>
+</ul>
+<p>因此，响应者随机回复（而不是因为他们真的是销售人员才回复）”是”的概率为<span class="math notranslate nohighlight">\(\frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}\)</span>。这意味着我们得到的回复中有四分之一是假的”是”。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="n">rand_resp_sales</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]]</span>
+
+<span class="c1"># 我们估计出有1/4的&quot;是&quot;回复完全来自于硬币的随机抛掷结果</span>
+<span class="c1"># 这些都是假的&quot;是&quot;</span>
+<span class="n">fake_yeses</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span>
+
+<span class="c1"># 回复为&quot;是&quot;的总人数</span>
+<span class="n">num_yeses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="mi">1</span> <span class="k">if</span> <span class="n">r</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">])</span>
+
+<span class="c1"># 真实&quot;是&quot;的人数等于回复为&quot;是&quot;的总人数减去假&quot;是&quot;的人数</span>
+<span class="n">true_yeses</span> <span class="o">=</span> <span class="n">num_yeses</span> <span class="o">-</span> <span class="n">fake_yeses</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>另一个我们需要考虑的因素是，虽然有一半受访者是随机应答的，但<em>在这些随机应答的响应者中，部分响应者实际上可能也是销售人员</em>。随机应答响应者中有多少是销售人员呢？我们得不到相关数据，因为他们的应答是完全随机的！</p>
+<p>但是，因为我们（根据第一次硬币抛掷结果）把受访者随机分为了”真实”和”随机”两组，我们期望两组的销售人员数量基本一致。因此，如果我们能估计出”真实”组的销售人员数量，那么我们可以将该人数翻倍，进而得到销售人员总数。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 用true_yesses估计&quot;真实&quot;组中回答&quot;是&quot;的人数</span>
+<span class="c1"># 我们把人数翻倍，估计出回复为&quot;是&quot;的总人数</span>
+<span class="n">rr_result</span> <span class="o">=</span> <span class="n">true_yeses</span><span class="o">*</span><span class="mi">2</span>
+<span class="n">rr_result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3793.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>得到的人数和销售人员的真实人数有多接近呢？让我们来比较一下！</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Sales&#39;</span><span class="p">)</span>
+<span class="n">true_result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3650
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_result</span><span class="p">,</span> <span class="n">rr_result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.931506849315068
+</pre></div>
+</div>
+</div>
+</div>
+<p>当总人数相对比较大时，（例如，本例的总人数超过了3000），我们通常可以使用此方法得到一个错误率”可接受”的统计结果。此例子中的错误率低于5%。如果我们的目标是统计最受欢迎的职位，这个方法可以帮助我们得到较为准确的结果。然而，统计结果的错误率会随着总人数的降低而快速增大。</p>
+<p>此外，随机应答的准确率和中心模型拉普拉斯机制的准确率相比要差出<em>几个数量级</em>。让我们使用此例子比较一下这两种机制：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pct_error</span><span class="p">(</span><span class="n">true_result</span><span class="p">,</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">true_result</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.07230107491298826
+</pre></div>
+</div>
+</div>
+</div>
+<p>即使我们中心模型中的<span class="math notranslate nohighlight">\(\epsilon\)</span>值略低于随机应答的<span class="math notranslate nohighlight">\(\epsilon\)</span>，中心模型的误差也仅约为0.01%，远小于本地模型。</p>
+<p>确实<em>存在</em>效果更好的本地模型算法。然而，本地模型存在天生的限制条件：必须在提交数据前增加噪声。这意味着本地模型算法的准确率<em>总是</em>比最好的中心模型算法准确率低。</p>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">29.2. </span>一元编码<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<p>随机应答允许我们基于本地差分隐私回答”是或否”的问题。如何实现直方图问询呢？</p>
+<p>学者们已经提出了多种不同的算法，来解决本地差分隐私的直方图问询问题。<a class="reference external" href="https://arxiv.org/abs/1705.04421">Wang等人</a> <span id="id5">[<a class="reference internal" href="bibliography.html#id19" title="Tianhao Wang, Jeremiah Blocki, Ninghui Li, and Somesh Jha. Locally differentially private protocols for frequency estimation. In 26th USENIX Security Symposium (USENIX Security 17), 729–745. Vancouver, BC, August 2017. USENIX Association. URL: https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/wang-tianhao.">17</a>]</span>在2017年的论文中总结了一些优化方法。这里，我们介绍其中最简单的一个方法：<em>一元编码</em>。该方法是<a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42852.pdf">谷歌RAPPOR系统</a> <span id="id6">[<a class="reference internal" href="bibliography.html#id17" title="Úlfar Erlingsson, Vasyl Pihur, and Aleksandra Korolova. Rappor: randomized aggregatable privacy-preserving ordinal response. In Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security, CCS '14, 1054–1067. New York, NY, USA, 2014. Association for Computing Machinery. URL: https://doi.org/10.1145/2660267.2660348, doi:10.1145/2660267.2660348.">15</a>]</span>的基础算法（谷歌RAPPOR系统对基础算法作了大量的修改，使算法支持更大的标签数量、支持随时间推移的多次应答）。</p>
+<p>我们首先需要定义应答域，即直方图包含的标签。下述例子中，我们想要知道各个职业的从业者人数，因此应答域是所有职位所构成的集合。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">domain</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">domain</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Adm-clerical&#39;, &#39;Exec-managerial&#39;, &#39;Handlers-cleaners&#39;,
+       &#39;Prof-specialty&#39;, &#39;Other-service&#39;, &#39;Sales&#39;, &#39;Craft-repair&#39;,
+       &#39;Transport-moving&#39;, &#39;Farming-fishing&#39;, &#39;Machine-op-inspct&#39;,
+       &#39;Tech-support&#39;, &#39;Protective-serv&#39;, &#39;Armed-Forces&#39;,
+       &#39;Priv-house-serv&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们将定义三个函数，这三个函数共同实现了一元编码机制：</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">encode</span></code>（编码），编码应答值</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">perturb</span></code>（扰动），扰动编码后的应答值</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">aggregate</span></code>（聚合），根据扰动应答值重构最终结果</p></li>
+</ol>
+<p>该技术的名称来源于所用的编码方法：如果应答域大小为<span class="math notranslate nohighlight">\(k\)</span>，我们将每个应答值编码为长度为<span class="math notranslate nohighlight">\(k\)</span>的比特向量。除了应答者的职位所对应的比特值为1以外，所有其他位置的编码均为0。机器学习领域称这种表示方法”独热编码”（One-hot Encoding）。</p>
+<p>举例来说，’销售’是应答域中的第6个元素，因此’销售’职位的编码是第6个比特为1、其余比特值均为0的向量。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="n">response</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">]</span>
+
+<span class="n">encode</span><span class="p">(</span><span class="s1">&#39;Sales&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们接下来要用<code class="docutils literal notranslate"><span class="pre">perturb</span></code>函数翻转应答向量中的各个比特值，从而满足差分隐私。翻转一个比特值的概率由<span class="math notranslate nohighlight">\(p\)</span>和<span class="math notranslate nohighlight">\(q\)</span>这两个参数共同决定。这两个参数也决定了隐私参数<span class="math notranslate nohighlight">\(\epsilon\)</span>的值（我们稍后将看到具体的计算公式）。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \mathsf{Pr}[B'[i] = 1] =   \left\{
+\begin{array}{ll}
+      p\;\;\;\text{if}\;B[i] = 1 \\
+      q\;\;\;\text{if}\;B[i] = 0\\
+\end{array} 
+\right.  \end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">perturb</span><span class="p">(</span><span class="n">encoded_response</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">perturb_bit</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">encoded_response</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">perturb_bit</span><span class="p">(</span><span class="n">bit</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="o">.</span><span class="mi">75</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="o">.</span><span class="mi">25</span>
+
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">bit</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sample</span> <span class="o">&lt;=</span> <span class="n">p</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">bit</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sample</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span> 
+            <span class="k">return</span> <span class="mi">0</span>
+
+<span class="n">perturb</span><span class="p">(</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;Sales&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们可以根据<span class="math notranslate nohighlight">\(p\)</span>和<span class="math notranslate nohighlight">\(q\)</span>计算出隐私参数<span class="math notranslate nohighlight">\(\epsilon\)</span>。如果<span class="math notranslate nohighlight">\(p=.75\)</span>，<span class="math notranslate nohighlight">\(q=.25\)</span>，则计算得到的<span class="math notranslate nohighlight">\(\epsilon\)</span>略高于2。</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7a247fa9-0de8-422d-a037-2a2d910aaf9a">
+<span class="eqno">(29.1)<a class="headerlink" href="#equation-7a247fa9-0de8-422d-a037-2a2d910aaf9a" title="Permalink to this equation">#</a></span>\[\begin{align}
+\epsilon = \log{\left(\frac{p (1-q)}{(1-p) q}\right)}
+\end{align}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unary_epsilon</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">p</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">q</span><span class="p">))</span> <span class="o">/</span> <span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">q</span><span class="p">))</span>
+
+<span class="n">unary_epsilon</span><span class="p">(</span><span class="o">.</span><span class="mi">75</span><span class="p">,</span> <span class="o">.</span><span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.1972245773362196
+</pre></div>
+</div>
+</div>
+</div>
+<p>最后一步是聚合。如果我们没有对应答值进行过任何扰动，我们可以简单地对所有得到的应答向量逐比特相加，得到应答域中每个元素的计数结果：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">encode</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">counts</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3770),
+ (&#39;Exec-managerial&#39;, 4066),
+ (&#39;Handlers-cleaners&#39;, 1370),
+ (&#39;Prof-specialty&#39;, 4140),
+ (&#39;Other-service&#39;, 3295),
+ (&#39;Sales&#39;, 3650),
+ (&#39;Craft-repair&#39;, 4099),
+ (&#39;Transport-moving&#39;, 1597),
+ (&#39;Farming-fishing&#39;, 994),
+ (&#39;Machine-op-inspct&#39;, 2002),
+ (&#39;Tech-support&#39;, 928),
+ (&#39;Protective-serv&#39;, 649),
+ (&#39;Armed-Forces&#39;, 9),
+ (&#39;Priv-house-serv&#39;, 149)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>但是，正如我们在随机应答中所看到的，翻转比特值产生的”假”应答值将使我们得到难以解释的统计结果。如果我们把扰动后的应答向量逐比特相加，得到的所有计数结果都是错误的：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">perturb</span><span class="p">(</span><span class="n">encode</span><span class="p">(</span><span class="n">r</span><span class="p">))</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">counts</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 10123),
+ (&#39;Exec-managerial&#39;, 10251),
+ (&#39;Handlers-cleaners&#39;, 8844),
+ (&#39;Prof-specialty&#39;, 10279),
+ (&#39;Other-service&#39;, 9851),
+ (&#39;Sales&#39;, 9992),
+ (&#39;Craft-repair&#39;, 10325),
+ (&#39;Transport-moving&#39;, 9046),
+ (&#39;Farming-fishing&#39;, 8589),
+ (&#39;Machine-op-inspct&#39;, 9140),
+ (&#39;Tech-support&#39;, 8661),
+ (&#39;Protective-serv&#39;, 8580),
+ (&#39;Armed-Forces&#39;, 8236),
+ (&#39;Priv-house-serv&#39;, 8181)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>一元编码算法的聚合步骤需要考虑每个标签的”假”应答数量。此步骤以<span class="math notranslate nohighlight">\(p\)</span>、<span class="math notranslate nohighlight">\(q\)</span>，以及应答数量<span class="math notranslate nohighlight">\(n\)</span>为输入，得到聚合结果：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-dc6ef8fb-a5e2-49a5-adcd-cca3e3d72a9c">
+<span class="eqno">(29.2)<a class="headerlink" href="#equation-dc6ef8fb-a5e2-49a5-adcd-cca3e3d72a9c" title="Permalink to this equation">#</a></span>\[\begin{align}
+A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
+\end{align}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">responses</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="o">.</span><span class="mi">75</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="o">.</span><span class="mi">25</span>
+    
+    <span class="n">sums</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">[(</span><span class="n">v</span> <span class="o">-</span> <span class="n">n</span><span class="o">*</span><span class="n">q</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="n">q</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sums</span><span class="p">]</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="n">perturb</span><span class="p">(</span><span class="n">encode</span><span class="p">(</span><span class="n">r</span><span class="p">))</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Occupation&#39;</span><span class="p">]]</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">aggregate</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">counts</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3971.5),
+ (&#39;Exec-managerial&#39;, 3719.5),
+ (&#39;Handlers-cleaners&#39;, 1409.5),
+ (&#39;Prof-specialty&#39;, 4091.5),
+ (&#39;Other-service&#39;, 3439.5),
+ (&#39;Sales&#39;, 3571.5),
+ (&#39;Craft-repair&#39;, 4073.5),
+ (&#39;Transport-moving&#39;, 1687.5),
+ (&#39;Farming-fishing&#39;, 893.5),
+ (&#39;Machine-op-inspct&#39;, 2145.5),
+ (&#39;Tech-support&#39;, 1045.5),
+ (&#39;Protective-serv&#39;, 807.5),
+ (&#39;Armed-Forces&#39;, -152.5),
+ (&#39;Priv-house-serv&#39;, -234.5)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>正如我们在随机应答中所看到的，一元编码机制得到的统计结果也比较准确，我们可以得到应答域中各个标签的粗略排序结果（至少可以统计出最受欢迎的职位是什么）。即便如此，一元编码机制的准确率要比中心模型拉普拉斯机制的准确率低几个数量级。</p>
+<p>学者们已经提出了其他在本地模型下实现直方图问询的方法。之前链接给出的<a class="reference external" href="https://arxiv.org/abs/1705.04421">论文</a>具体介绍了这些方法。这些方法可以在一定程度上提高准确率，但这些方法都必须保证本地模型下<em>每个样本需独立</em>满足差分隐私。这一基本限制条件使得即便使用最复杂的技术，本地模型机制的准确率也无法达到中心模型机制的准确率。</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="cn_ch12.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">28. </span>机器学习</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="cn_ch14.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">30. </span>合成数据</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joseph P. Near and Chiké Abuah<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

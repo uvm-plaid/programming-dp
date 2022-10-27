@@ -195,9 +195,102 @@ const thebe_selector_output = ".output, .cell_output"
    15. Synthetic Data
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Chinese Version
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_intro.html">
+   16. 引言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch1.html">
+   17. 去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch2.html">
+   18.
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch3.html">
+   19. 差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch4.html">
+   20. 差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch5.html">
+   21. 敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch6.html">
+   22. 近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch7.html">
+   23. 局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch8.html">
+   24. 差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch9.html">
+   25. 指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch10.html">
+   26. 稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch11.html">
+   27. 算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch12.html">
+   28. 机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch13.html">
+   29. 本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cn_ch14.html">
+   30. 合成数据
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bibliography
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   16. Bibliography
+   31. Bibliography
   </a>
  </li>
 </ul>
@@ -425,8 +518,8 @@ title="Print to PDF"
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p>A function which satisfies differential privacy is often called a <em>mechanism</em>. We say that a <em>mechanism</em> <span class="math notranslate nohighlight">\(F\)</span> satisfies differential privacy if for all <em>neighboring datasets</em> <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all possible outputs <span class="math notranslate nohighlight">\(S\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b2e6f9b8-2bc8-461a-b2de-b4f5e540bfd8">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-b2e6f9b8-2bc8-461a-b2de-b4f5e540bfd8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ad3857b8-b948-4c25-ab46-c020e8ae1bdf">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-ad3857b8-b948-4c25-ab46-c020e8ae1bdf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
 \end{equation}\]</div>
 </div>
@@ -454,8 +547,8 @@ title="Print to PDF"
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p>According to the Laplace mechanism, for a function <span class="math notranslate nohighlight">\(f(x)\)</span> which returns a number, the following definition of <span class="math notranslate nohighlight">\(F(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5308207d-0d3a-4c44-81e8-74236eff79e6">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-5308207d-0d3a-4c44-81e8-74236eff79e6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fb538cfb-eb6f-43d4-9dd6-9c34b93f4906">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-fb538cfb-eb6f-43d4-9dd6-9c34b93f4906" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(s\)</span> is the <em>sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span> denotes sampling from the Laplace distribution with center 0 and scale <span class="math notranslate nohighlight">\(S\)</span>.</p>
@@ -472,7 +565,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14257.841072219202
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14239.053553739685
 </pre></div>
 </div>
 </div>
@@ -508,7 +601,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-11.334607881227331
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-5.889893917880022
 </pre></div>
 </div>
 </div>
