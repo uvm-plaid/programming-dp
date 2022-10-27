@@ -1,0 +1,237 @@
+@misc{identifiability
+, author = {Sweeney, Latanya}
+, title={Simple Demographics Often Identify People Uniquely}
+, url={https://dataprivacylab.org/projects/identifiability/}
+, journal={Identifiability}}
+
+
+@article{sweeney2002,
+author = {Sweeney, Latanya},
+title = {k-ANONYMITY: A MODEL FOR PROTECTING PRIVACY},
+journal = {International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems},
+volume = {10},
+number = {05},
+pages = {557-570},
+year = {2002},
+doi = {10.1142/S0218488502001648},
+URL = {
+        https://doi.org/10.1142/S0218488502001648
+},
+eprint = {
+        https://doi.org/10.1142/S0218488502001648
+}}
+
+@inproceedings{mcsherry2009,
+author = {McSherry, Frank D.},
+title = {Privacy Integrated Queries: An Extensible Platform for Privacy-Preserving Data Analysis},
+year = {2009},
+isbn = {9781605585512},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1559845.1559850},
+doi = {10.1145/1559845.1559850},
+abstract = {We report on the design and implementation of the Privacy Integrated Queries (PINQ) platform for privacy-preserving data analysis. PINQ provides analysts with a programming interface to unscrubbed data through a SQL-like language. At the same time, the design of PINQ's analysis language and its careful implementation provide formal guarantees of differential privacy for any and all uses of the platform. PINQ's unconditional structural guarantees require no trust placed in the expertise or diligence of the analysts, substantially broadening the scope for design and deployment of privacy-preserving data analysis, especially by non-experts.},
+booktitle = {Proceedings of the 2009 ACM SIGMOD International Conference on Management of Data},
+pages = {19–30},
+numpages = {12},
+keywords = {differential privacy, linq, confidentiality, anonymization},
+location = {Providence, Rhode Island, USA},
+series = {SIGMOD '09}
+}
+
+@InProceedings{dwork2006,
+author="Dwork, Cynthia
+and Kenthapadi, Krishnaram
+and McSherry, Frank
+and Mironov, Ilya
+and Naor, Moni",
+editor="Vaudenay, Serge",
+title="Our Data, Ourselves: Privacy Via Distributed Noise Generation",
+booktitle="Advances in Cryptology - EUROCRYPT 2006",
+year="2006",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="486--503"
+}
+
+@inproceedings{dwork2006A,
+author = {Dwork, Cynthia},
+title = {Differential Privacy},
+year = {2006},
+isbn = {3540359079},
+publisher = {Springer-Verlag},
+address = {Berlin, Heidelberg},
+url = {https://doi.org/10.1007/11787006_1},
+doi = {10.1007/11787006_1},
+abstract = {In 1977 Dalenius articulated a desideratum for statistical databases: nothing about an individual should be learnable from the database that cannot be learned without access to the database. We give a general impossibility result showing that a formalization of Dalenius' goal along the lines of semantic security cannot be achieved. Contrary to intuition, a variant of the result threatens the privacy even of someone not in the database. This state of affairs suggests a new measure, differential privacy, which, intuitively, captures the increased risk to one's privacy incurred by participating in a database. The techniques developed in a sequence of papers [8, 13, 3], culminating in those described in [12], can achieve any desired level of privacy under this measure. In many cases, extremely accurate information about the database can be provided while simultaneously ensuring very high levels of privacy},
+booktitle = {Proceedings of the 33rd International Conference on Automata, Languages and Programming - Volume Part II},
+pages = {1–12},
+numpages = {12},
+location = {Venice, Italy},
+series = {ICALP'06}
+}
+
+@inproceedings{dwork2006B,
+author = {Dwork, Cynthia and McSherry, Frank and Nissim, Kobbi and Smith, Adam},
+title = {Calibrating Noise to Sensitivity in Private Data Analysis},
+year = {2006},
+isbn = {3540327312},
+publisher = {Springer-Verlag},
+address = {Berlin, Heidelberg},
+url = {https://doi.org/10.1007/11681878_14},
+doi = {10.1007/11681878_14},
+abstract = {We continue a line of research initiated in [10,11]on privacy-preserving statistical databases. Consider a trusted server that holds a database of sensitive information. Given a query function f mapping databases to reals, the so-called true answer is the result of applying f to the database. To protect privacy, the true answer is perturbed by the addition of random noise generated according to a carefully chosen distribution, and this response, the true answer plus noise, is returned to the user.Previous work focused on the case of noisy sums, in which f = ∑ig(xi), where xi denotes the ith row of the database and g maps database rows to [0,1]. We extend the study to general functions f, proving that privacy can be preserved by calibrating the standard deviation of the noise according to the sensitivity of the function f. Roughly speaking, this is the amount that any single argument to f can change its output. The new analysis shows that for several particular applications substantially less noise is needed than was previously understood to be the case.The first step is a very clean characterization of privacy in terms of indistinguishability of transcripts. Additionally, we obtain separation results showing the increased value of interactive sanitization mechanisms over non-interactive.},
+booktitle = {Proceedings of the Third Conference on Theory of Cryptography},
+pages = {265–284},
+numpages = {20},
+location = {New York, NY},
+series = {TCC'06}
+}
+
+@inproceedings{nissim2007,
+author = {Nissim, Kobbi and Raskhodnikova, Sofya and Smith, Adam},
+title = {Smooth Sensitivity and Sampling in Private Data Analysis},
+year = {2007},
+isbn = {9781595936318},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1250790.1250803},
+doi = {10.1145/1250790.1250803},
+abstract = {We introduce a new, generic framework for private data analysis.The goal of private data analysis is to release aggregate information about a data set while protecting the privacy of the individuals whose information the data set contains.Our framework allows one to release functions f of the data withinstance-based additive noise. That is, the noise magnitude is determined not only by the function we want to release, but also bythe database itself. One of the challenges is to ensure that the noise magnitude does not leak information about the database. To address that, we calibrate the noise magnitude to the smoothsensitivity of f on the database x --- a measure of variabilityof f in the neighborhood of the instance x. The new frameworkgreatly expands the applicability of output perturbation, a technique for protecting individuals' privacy by adding a smallamount of random noise to the released statistics. To our knowledge, this is the first formal analysis of the effect of instance-basednoise in the context of data privacy.Our framework raises many interesting algorithmic questions. Namely,to apply the framework one must compute or approximate the smoothsensitivity of f on x. We show how to do this efficiently for several different functions, including the median and the cost ofthe minimum spanning tree. We also give a generic procedure based on sampling that allows one to release f(x) accurately on manydatabases x. This procedure is applicable even when no efficient algorithm for approximating smooth sensitivity of f is known orwhen f is given as a black box. We illustrate the procedure by applying it to k-SED (k-means) clustering and learning mixtures of Gaussians.},
+booktitle = {Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing},
+pages = {75–84},
+numpages = {10},
+keywords = {private data analysis, output perturbation, clustering, sensitivity, privacy preserving data mining},
+location = {San Diego, California, USA},
+series = {STOC '07}
+}
+
+@inproceedings{dwork2009,
+author = {Dwork, Cynthia and Lei, Jing},
+title = {Differential Privacy and Robust Statistics},
+year = {2009},
+isbn = {9781605585062},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1536414.1536466},
+doi = {10.1145/1536414.1536466},
+abstract = {We show by means of several examples that robust statistical estimators present an excellent starting point for differentially private estimators. Our algorithms use a new paradigm for differentially private mechanisms, which we call Propose-Test-Release (PTR), and for which we give a formal definition and general composition theorems.},
+booktitle = {Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing},
+pages = {371–380},
+numpages = {10},
+keywords = {propose-test-release paradigm, local sensitivity, differential privacy, robust statistics},
+location = {Bethesda, MD, USA},
+series = {STOC '09}
+}
+
+@article{dwork2014,
+  title={The algorithmic foundations of differential privacy},
+  author={Dwork, Cynthia and Roth, Aaron and others},
+  journal={Foundations and Trends{\textregistered} in Theoretical Computer Science},
+  volume={9},
+  number={3--4},
+  pages={211--407},
+  year={2014},
+  publisher={Now Publishers, Inc.}
+}
+
+@INPROCEEDINGS{dwork2010,
+  author={Dwork, Cynthia and Rothblum, Guy N. and Vadhan, Salil},
+  booktitle={2010 IEEE 51st Annual Symposium on Foundations of Computer Science},
+  title={Boosting and Differential Privacy},
+  year={2010},  volume={},  number={},  pages={51-60},  doi={10.1109/FOCS.2010.12}}
+
+@inproceedings{bun2018composable,
+  title={Composable and versatile privacy via truncated CDP},
+  author={Bun, Mark and Dwork, Cynthia and Rothblum, Guy N and Steinke, Thomas},
+  booktitle={Proceedings of the 50th Annual ACM SIGACT Symposium on Theory of Computing},
+  pages={74--86},
+  year={2018},
+  organization={ACM}
+}
+
+@inproceedings{mironov2017renyi,
+  title={Renyi differential privacy},
+  author={Mironov, Ilya},
+  booktitle={Computer Security Foundations Symposium (CSF), 2017 IEEE 30th},
+  pages={263--275},
+  year={2017},
+  organization={IEEE}
+}
+
+@inproceedings{bun2016concentrated,
+  title={Concentrated differential privacy: Simplifications, extensions, and lower bounds},
+  author={Bun, Mark and Steinke, Thomas},
+  booktitle={Theory of Cryptography Conference},
+  pages={635--658},
+  year={2016},
+  organization={Springer}
+}
+
+@INPROCEEDINGS{mcsherry2007,
+  author={McSherry, Frank and Talwar, Kunal},
+  booktitle={48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07)},
+  title={Mechanism Design via Differential Privacy},
+  year={2007},  volume={},  number={},  pages={94-103},  doi={10.1109/FOCS.2007.66}}
+
+@inproceedings{dwork2009A,
+  author = {Dwork, Cynthia and Naor, Moni and Reingold, Omer and Rothblum, Guy N. and Vadhan, Salil},
+  title = {On the Complexity of Differentially Private Data Release: Efficient Algorithms and Hardness Results},
+  year = {2009},
+  isbn = {9781605585062},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/1536414.1536467},
+  doi = {10.1145/1536414.1536467},
+  abstract = {We consider private data analysis in the setting in which a trusted and trustworthy curator, having obtained a large data set containing private information, releases to the public a "sanitization" of the data set that simultaneously protects the privacy of the individual contributors of data and offers utility to the data analyst. The sanitization may be in the form of an arbitrary data structure, accompanied by a computational procedure for determining approximate answers to queries on the original data set, or it may be a "synthetic data set" consisting of data items drawn from the same universe as items in the original data set; queries are carried out as if the synthetic data set were the actual input. In either case the process is non-interactive; once the sanitization has been released the original data and the curator play no further role.For the task of sanitizing with a synthetic dataset output, we map the boundary between computational feasibility and infeasibility with respect to a variety of utility measures. For the (potentially easier) task of sanitizing with unrestricted output format, we show a tight qualitative and quantitative connection between hardness of sanitizing and the existence of traitor tracing schemes.},
+  booktitle = {Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing},
+  pages = {381–390},
+  numpages = {10},
+  keywords = {cryptography, privacy, differential privacy, traitor tracing, exponential mechanism},
+  location = {Bethesda, MD, USA},
+  series = {STOC '09}
+  }
+
+@inproceedings{rappor,
+  author = {Erlingsson, \'{U}lfar and Pihur, Vasyl and Korolova, Aleksandra},
+  title = {RAPPOR: Randomized Aggregatable Privacy-Preserving Ordinal Response},
+  year = {2014},
+  isbn = {9781450329576},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/2660267.2660348},
+  doi = {10.1145/2660267.2660348},
+  abstract = {Randomized Aggregatable Privacy-Preserving Ordinal Response, or RAPPOR, is a technology for crowdsourcing statistics from end-user client software, anonymously, with strong privacy guarantees. In short, RAPPORs allow the forest of client data to be studied, without permitting the possibility of looking at individual trees. By applying randomized response in a novel manner, RAPPOR provides the mechanisms for such collection as well as for efficient, high-utility analysis of the collected data. In particular, RAPPOR permits statistics to be collected on the population of client-side strings with strong privacy guarantees for each client, and without linkability of their reports. This paper describes and motivates RAPPOR, details its differential-privacy and utility guarantees, discusses its practical deployment and properties in the face of different attack models, and, finally, gives results of its application to both synthetic and real-world data.},
+  booktitle = {Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security},
+  pages = {1054–1067},
+  numpages = {14},
+  keywords = {population statistics, crowdsourcing, cloud computing, statistical inference, privacy protection},
+  location = {Scottsdale, Arizona, USA},
+  series = {CCS '14}
+  }
+
+@article{warner1965,
+  author = { Stanley L. Warner },
+  title = {Randomized Response: A Survey Technique for Eliminating Evasive Answer Bias},
+  journal = {Journal of the American Statistical Association},
+  volume = {60},
+  number = {309},
+  pages = {63-69},
+  year  = {1965},
+  publisher = {Taylor & Francis},
+  doi = {10.1080/01621459.1965.10480775},
+  note ={PMID: 12261830},
+  URL = {https://www.tandfonline.com/doi/abs/10.1080/01621459.1965.10480775}}
+
+@inproceedings {wang2017,
+author = {Tianhao Wang and Jeremiah Blocki and Ninghui Li and Somesh Jha},
+title = {Locally Differentially Private Protocols for Frequency Estimation},
+booktitle = {26th {USENIX} Security Symposium ({USENIX} Security 17)},
+year = {2017},
+isbn = {978-1-931971-40-9},
+address = {Vancouver, BC},
+pages = {729--745},
+url = {https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/wang-tianhao},
+publisher = {{USENIX} Association},
+month = aug,
+}
