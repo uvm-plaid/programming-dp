@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>动手学差分隐私（Programming Differential Privacy） &#8212; 动手学差分隐私</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo_zh_cn.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/intro.html">
+   引言
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch1.html">
+   去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch2.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch3.html">
+   差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch4.html">
+   差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch5.html">
+   敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch6.html">
+   近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch7.html">
+   局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch8.html">
+   差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch9.html">
+   指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch10.html">
+   稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch11.html">
+   算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch12.html">
+   机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch13.html">
+   本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/ch14.html">
+   合成数据
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/bibliography.html">
+   参考文献
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/README.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#declaration">
+   声明（Declaration）
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#translation-tool">
+   翻译工具（Translation Tool）
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-book-install-jupyter-book">
+   安装Jupyter Book（Install Jupyter Book）
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuration-for-chinese-version">
+   中文版本配置（Configuration for Chinese Version）
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compile-chinese-version">
+   编译中文版（Compile Chinese Version）
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="programming-differential-privacy">
+<h1>动手学差分隐私（Programming Differential Privacy）<a class="headerlink" href="#programming-differential-privacy" title="永久链接至标题">¶</a></h1>
+<p>This is the source repository for the book “Programming Differential Privacy.” You can find the book online <a class="reference external" href="https://uvm-plaid.github.io/programming-dp">here</a>.</p>
+<p>这是教材《动手学深度学习（Programming Differential Privacy）》的源代码仓库。你可以<a class="reference external" href="https://uvm-plaid.github.io/programming-dp">在此</a>在线阅读本教材。</p>
+<div class="section" id="declaration">
+<h2>声明（Declaration）<a class="headerlink" href="#declaration" title="永久链接至标题">¶</a></h2>
+<p>The translation work is authorized by original authors Joseph P. Near and Chiké Abuah. The translation is supported by the editor Lei Yao from China Machine Press. The Chinese version of the book will be freely available online, and there will be a printed version edited by China Machine Press.</p>
+<p>本教材的翻译工作得到了原作者Joseph P. Near和Chiké Abuah的授权，并得到了机械工业出版社（China Machine Press）编辑姚蕾老师的支持。本教材的中文版本将免费在线发布，并推出机械工业出版社编辑的纸质版本。</p>
+</div>
+<div class="section" id="translation-tool">
+<h2>翻译工具（Translation Tool）<a class="headerlink" href="#translation-tool" title="永久链接至标题">¶</a></h2>
+<p>The Chinese version of the book is translated via <a class="reference external" href="https://www.jetbrains.com/dataspell/">DataSpell</a>.</p>
+<p>本书中文版应用<a class="reference external" href="https://www.jetbrains.com/dataspell/">DataSpell</a>进行翻译。</p>
+</div>
+<div class="section" id="jupyter-book-install-jupyter-book">
+<h2>安装Jupyter Book（Install Jupyter Book）<a class="headerlink" href="#jupyter-book-install-jupyter-book" title="永久链接至标题">¶</a></h2>
+<p>See <a class="reference external" href="https://jupyterbook.org/en/stable/start/overview.html">Jupyter Book Overview</a> for details on installing Jupyter Book.</p>
+<p>查看<a class="reference external" href="https://jupyterbook.org/en/stable/start/overview.html">Jupyter Book Overview</a>给出的安装过程安装Jupyter Book工具。</p>
+<blockquote>
+<div><p>You can install Jupyter Book via <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a>:</p>
+<p>你可以通过<a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a>安装Jupyter Book：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install -U jupyter-book
+</pre></div>
+</div>
+<p>or via <a class="reference external" href="https://conda-forge.org/">conda-forge</a>:</p>
+<p>或者通过<a class="reference external" href="https://conda-forge.org/">conda-forge</a>安装Jupyter Book：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge jupyter-book
+</pre></div>
+</div>
+<p>This will install everything you need to build a Jupyter Book locally.</p>
+<p>这两种方法都可以安装在本地构建Jupyter Book所需的全部工具。</p>
+</div></blockquote>
+</div>
+<div class="section" id="configuration-for-chinese-version">
+<h2>中文版本配置（Configuration for Chinese Version）<a class="headerlink" href="#configuration-for-chinese-version" title="永久链接至标题">¶</a></h2>
+<p>You need to add the following configuration in <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> to generate a well-displayed Chinese version of the PDF:</p>
+<p>为使编译得到的PDF版本正确显示中文，需在<code class="docutils literal notranslate"><span class="pre">_config.yml</span></code>下增加下述配置：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sphinx:
+    config:
+        language: zh_CN
+</pre></div>
+</div>
+<p>Note that you may meet display problems when using Chinese labels in <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>. We use a library named <code class="docutils literal notranslate"><span class="pre">mplfonts</span></code> to successfully solve that problem. See <a class="reference external" href="https://www.zhihu.com/question/25404709">here</a> for details. First, install <code class="docutils literal notranslate"><span class="pre">mplfonts</span></code>.</p>
+<p>当使用<code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>时，可能会遇到中文显示乱码的问题。我们成功使用<code class="docutils literal notranslate"><span class="pre">mplfonts</span></code>库解决了这个问题，详见<a class="reference external" href="https://www.zhihu.com/question/25404709">这里的描述</a>。首先，安装<code class="docutils literal notranslate"><span class="pre">mplfonts</span></code>。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install mplfonts -i https://pypi.tuna.tsinghua.edu.cn/simple
+</pre></div>
+</div>
+<p>Next, add the following codes before using <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>.</p>
+<p>随后，在使用<code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>前增加下述代码。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mplfonts.bin.cli</span> <span class="kn">import</span> <span class="n">init</span>
+<span class="n">init</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">mplfonts</span> <span class="kn">import</span> <span class="n">use_font</span>
+<span class="n">use_font</span><span class="p">(</span><span class="s1">&#39;SimHei&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Unfortunately, the style <code class="docutils literal notranslate"><span class="pre">seaborn-whitegrid</span></code> used in the English version of the book does not support Chinese characters. We need to change <code class="docutils literal notranslate"><span class="pre">seaborn-whitegrid</span></code> as <code class="docutils literal notranslate"><span class="pre">fivethirtyeight</span></code>.</p>
+<p>不幸的是，英文版书籍中使用的绘图风格<code class="docutils literal notranslate"><span class="pre">seaborn-whitegrid</span></code>不支持中文字符。我们需要把<code class="docutils literal notranslate"><span class="pre">seaborn-whitegrid</span></code>换为<code class="docutils literal notranslate"><span class="pre">fivethirtyeight</span></code>。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="compile-chinese-version">
+<h2>编译中文版（Compile Chinese Version）<a class="headerlink" href="#compile-chinese-version" title="永久链接至标题">¶</a></h2>
+<p>If you follow <code class="docutils literal notranslate"><span class="pre">deploy.sh</span></code> and direct execute <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">.</span></code> under the directory containing source codes for the Chinese version, you may get the following error:</p>
+<p>如果你应用<code class="docutils literal notranslate"><span class="pre">deploy.sh</span></code>描述的方法，在中文版源代码目录下直接执行<code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">.</span></code>，你将会看到下述错误信息：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The Table of Contents file is malformed: toc is not a mapping: &lt;class &#39;list&#39;&gt;
+You may need to migrate from the old format, using:
+
+        jupyter-book toc migrate /XXX/zh_cn/_toc.yml -o /XXX/zh_cn/_toc.yml
+</pre></div>
+</div>
+<p>Please just execute the recommended instruction to migrate <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code> from the old format.</p>
+<p>如果使用新版本的<code class="docutils literal notranslate"><span class="pre">jupyter-book</span></code>完成编译，需先在源代码目录下执行下述命令，将<code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code>迁移为新版本。</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>jupyter-book toc migrate /XXX/zh_cn/_toc.yml -o /XXX/zh_cn/_toc.yml
+</pre></div>
+</div>
+<p>For old-format <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">jupyter-book</span></code> would treat it as an article (<code class="docutils literal notranslate"><span class="pre">format:</span> <span class="pre">jb-article</span></code>) rather than a book (<code class="docutils literal notranslate"><span class="pre">format:</span> <span class="pre">jb-book</span></code>). You need to modify the auto-generated <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code> by changing <code class="docutils literal notranslate"><span class="pre">format:</span> <span class="pre">jb-article</span></code> to <code class="docutils literal notranslate"><span class="pre">format:</span> <span class="pre">jb-book</span></code>, and changing <code class="docutils literal notranslate"><span class="pre">sections:</span></code> to <code class="docutils literal notranslate"><span class="pre">chapters:</span></code>. After that, you can successfully build the project and generate the PDF version with the correct format.</p>
+<p>对于旧版本的<code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code>，<code class="docutils literal notranslate"><span class="pre">jupyter-book</span></code>会把项目看成是文章（<code class="docutils literal notranslate"><span class="pre">format:</span> <span class="pre">jb-article</span></code>）而非书籍（<code class="docutils literal notranslate"><span class="pre">format:</span> <span class="pre">jb-book</span></code>）。为此，需要对自动迁移的<code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code>进行修改，将<code class="docutils literal notranslate"><span class="pre">format:</span> <span class="pre">jb-article</span></code>替换为<code class="docutils literal notranslate"><span class="pre">format:</span> <span class="pre">jb-book</span></code>，并将<code class="docutils literal notranslate"><span class="pre">sections:</span></code>替换为<code class="docutils literal notranslate"><span class="pre">chapters:</span></code>。这样就可以成功构建项目，并生成正确格式的PDF。</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

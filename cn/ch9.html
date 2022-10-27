@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>指数机制 &#8212; 动手学差分隐私</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="稀疏向量技术" href="ch10.html" />
+    <link rel="prev" title="差分隐私变体" href="ch8.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh_CN">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo_zh_cn.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover.html">
+                    动手学差分隐私
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   引言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch1.html">
+   去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch2.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch3.html">
+   差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch4.html">
+   差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch5.html">
+   敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch6.html">
+   近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch7.html">
+   局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch8.html">
+   差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch10.html">
+   稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch11.html">
+   算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch12.html">
+   机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch13.html">
+   本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch14.html">
+   合成数据
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   参考文献
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/ch9.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/ch9.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   有限集合的指数机制
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   报告噪声最大值
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   指数机制是差分隐私的基本机制
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>指数机制</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   有限集合的指数机制
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   报告噪声最大值
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   指数机制是差分隐私的基本机制
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>指数机制<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<div class="admonition- admonition">
+<p class="admonition-title">学习目标</p>
+<p>阅读本章后，您将能够：</p>
+<ul class="simple">
+<li><p>定义、实现并应用指数机制和报告噪声最大值机制</p></li>
+<li><p>描述实际中应用指数机制所面临的挑战</p></li>
+<li><p>描述指数机制和报告噪声最大值机制的优势</p></li>
+</ul>
+</div>
+<p>截至目前，我们已学习的基本机制（拉普拉斯机制和高斯机制）针对的都是数值型回复，只需直接在回复的数值结果上增加噪声即可。如果我们想返回一个准确结果（即不能直接在结果上增加噪声），同时还要保证回复过程满足差分隐私，该怎么办呢？一种解决方法是使用指数机制（Exponential Mechanism）<span id="id2">[<a class="reference internal" href="bibliography.html#id16" title="Frank McSherry and Kunal Talwar. Mechanism design via differential privacy. In 48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07), volume, 94-103. 2007. doi:10.1109/FOCS.2007.66.">12</a>]</span>。此机制可以从备选回复集合中选出”最佳”回复的同时，保证回复过程满足差分隐私。分析者需要定义一个备选回复集合。同时，分析者需要指定一个<em>评分函数</em>（Scoring Function），此评分函数输出备选回复集合中每个回复的分数。分数最高的回复就是最佳回复。指数机制通过返回分数<em>近似</em>最大的回复来实现差分隐私保护。换言之，为了使回复过程满足差分隐私，指数机制返回结果所对应的分数可能<em>不是</em>备选回复集合中分数最高的那个结果。</p>
+<p>指数机制满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私：</p>
+<ol class="simple">
+<li><p>分析者选择一个备选回复集合<span class="math notranslate nohighlight">\(\mathcal{R}\)</span></p></li>
+<li><p>分析者指定一个全局敏感度为<span class="math notranslate nohighlight">\(\Delta u\)</span>的评分函数<span class="math notranslate nohighlight">\(u : \mathcal{D} \times \mathcal{R} \rightarrow \mathbb{R}\)</span></p></li>
+<li><p>指数机制输出<span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span>，各个回复的输出概率与下述表达式成正比：</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-82e72ad2-aa06-4a73-a317-81c35effa2ce">
+<span class="eqno">(30)<a class="headerlink" href="#equation-82e72ad2-aa06-4a73-a317-81c35effa2ce" title="公式的永久链接">#</a></span>\[\begin{align}
+\exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)
+\end{align}\]</div>
+<p>和我们之前学习过的机制（如拉普拉斯机制）相比，指数机制最大的不同点在于其<em>总会</em>输出集合<span class="math notranslate nohighlight">\(\mathcal{R}\)</span>中的一个元素。当必须从一个有限集合中选择输出结果，或不能直接在结果上增加噪声时，指数机制就会变得非常有用。例如，假设我们要为一个大型会议敲定一个日期。为此，我们获得了每个参会者的日程表。我们想选择一个与尽可能少的参会者有时间冲突的日期来举办会议，同时想通过差分隐私为所有参会者的日程信息提供隐私保护。在这个场景下，在举办日期上增加噪声没有太大意义，增加噪声可能会使日期从星期五变成星期六，使冲突参会者的数量显著增加。应用指数机制就可以完美解决此类问题：既<em>不需要在日期上增加噪声</em>，又可以实现差分隐私。</p>
+<p>指数机制的有趣之处在于：</p>
+<ul class="simple">
+<li><p>无论<span class="math notranslate nohighlight">\(\mathcal{R}\)</span>中包含多少个备选输出，指数机制的隐私消耗量仍然为<span class="math notranslate nohighlight">\(\epsilon\)</span>。我们后续将详细讨论这一点。</p></li>
+<li><p>无论<span class="math notranslate nohighlight">\(\mathcal{R}\)</span>是有限集合还是无限集合，均可应用指数机制。但如果<span class="math notranslate nohighlight">\(\mathcal{R}\)</span>是无限集合，则我们会面临一个非常有挑战的问题：如何构造一个实际可用的实现方法，其可以遵循适当的概率分布从无限集合中采样得到输出结果。</p></li>
+<li><p>指数机制代表了<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私的”基本机制”：通过选择适当的评分函数<span class="math notranslate nohighlight">\(u\)</span>，所有其他的<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私机制都可以用指数机制定义。</p></li>
+</ul>
+<div class="section" id="id3">
+<h2>有限集合的指数机制<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">option</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="n">option</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span>
+
+<span class="n">score</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">],</span> <span class="s1">&#39;Never-married&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.683
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">exponential</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+    <span class="c1"># 计算R中每个回复的分数</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R</span><span class="p">]</span>
+    
+    <span class="c1"># 根据分数计算每个回复的输出概率</span>
+    <span class="n">probabilities</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">epsilon</span> <span class="o">*</span> <span class="n">score</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sensitivity</span><span class="p">))</span> <span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">]</span>
+    
+    <span class="c1"># 对概率进行归一化处理，使概率和等于1</span>
+    <span class="n">probabilities</span> <span class="o">=</span> <span class="n">probabilities</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">probabilities</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># 根据概率分布选择回复结果</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">probabilities</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">exponential</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">],</span> <span class="n">options</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Married-civ-spouse&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">exponential</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">],</span> <span class="n">options</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)]</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    174
+Never-married          25
+Divorced                1
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>报告噪声最大值<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
+<p>我们能用拉普拉斯机制实现指数机制吗？当<span class="math notranslate nohighlight">\(\mathcal{R}\)</span>为有限集合时，指数机制的基本思想是使从集合中选择元素的过程满足差分隐私。我们可以应用拉普拉斯机制给出此基本思想的一种朴素实现方法：</p>
+<ol class="simple">
+<li><p>对于每个<span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span>，计算<em>噪声分数</em><span class="math notranslate nohighlight">\(u(x, r) + \mathsf{Lap}\left(\frac{\Delta u}{\epsilon}\right)\)</span></p></li>
+<li><p>输出噪声分数最大的元素<span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span></p></li>
+</ol>
+<p>因为评分函数<span class="math notranslate nohighlight">\(u\)</span>在<span class="math notranslate nohighlight">\(x\)</span>下的敏感度为<span class="math notranslate nohighlight">\(\Delta u\)</span>，所以步骤1中的每次”问询”都满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。因此，如果<span class="math notranslate nohighlight">\(\mathcal{R}\)</span>包含<span class="math notranslate nohighlight">\(n\)</span>个元素，根据串行组合性，上述算法满足<span class="math notranslate nohighlight">\(n\epsilon\)</span>-差分隐私。</p>
+<p>然而，如果我们使用指数机制，则总隐私消耗量将只有<span class="math notranslate nohighlight">\(\epsilon\)</span>！为什么指数机制效果如此之好？原因是指数机制<em>泄露的信息更少</em>。</p>
+<p>对于上述定义的拉普拉斯机制实现方法，我们的隐私消耗量分析过程是非常严苛的。实际上，步骤1中计算整个集合噪声分数的过程满足<span class="math notranslate nohighlight">\(n\epsilon\)</span>-差分隐私，因此我们可以发布得到的所有噪声分数。我们应用后处理性得到步骤2的输出满足<span class="math notranslate nohighlight">\(n\epsilon\)</span>-差分隐私。</p>
+<p>与之相比，指数机制<em>仅</em>发布最大噪声分数所对应的元素，但不发布最大噪声分数本身，也不会发布其他元素的噪声分数。</p>
+<p>上述定义的算法通常被称为<em>报告噪声最大值</em>（Report Noisy Max）算法。实际上，因为此算法只发布最大噪声分数所对应的回复，所以无论集合<span class="math notranslate nohighlight">\(\mathcal{R}\)</span>包含多少个备选回复，此算法都满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。可以在<a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork和Roth论文</a> <span id="id5">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>的断言3.9中找到相应的证明。</p>
+<p>输出噪声最大值算法的实现方法非常简单，而且很容易看出，此算法得到的回复结果与之前我们实现的有限集合指数机制非常相似。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">report_noisy_max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+    <span class="c1"># 计算R中每个回复的分数</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R</span><span class="p">]</span>
+
+    <span class="c1"># 为每个分数增加噪声</span>
+    <span class="n">noisy_scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">laplace_mech</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span> <span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">]</span>
+
+    <span class="c1"># 找到最大分数对应的回复索引号</span>
+    <span class="n">max_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">noisy_scores</span><span class="p">)</span>
+    
+    <span class="c1"># 返回此索引号对应的回复</span>
+    <span class="k">return</span> <span class="n">R</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]</span>
+
+<span class="n">report_noisy_max</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">],</span> <span class="n">options</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Married-civ-spouse&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">report_noisy_max</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">],</span> <span class="n">options</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)]</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    197
+Never-married           3
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>因此，当<span class="math notranslate nohighlight">\(\mathcal{R}\)</span>为有限集合时，可以用报告噪声最大值机制代替指数机制。但如果<span class="math notranslate nohighlight">\(\mathcal{R}\)</span>为无限集合呢？我们无法简单地为无限集合中每一个元素对应的分数增加拉普拉斯噪声。当<span class="math notranslate nohighlight">\(\mathcal{R}\)</span>为无限集合时，我们不得不使用指数机制。</p>
+<p>然而，在实际应用中，在无限集合上应用指数机制通常是极具挑战的，甚至是不可能的。尽管可以很容易写出无限集合下指数机制定义的概率密度函数，但一般来说对应的高效采样算法是不存在的。因此，很多理论论文会应用指数机制证明”存在”满足某些特定性质的差分隐私算法，但多数算法在实际中都是不可用的。</p>
+</div>
+<div class="section" id="id6">
+<h2>指数机制是差分隐私的基本机制<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h2>
+<p>我们已经知道，无法使用拉普拉斯机制与串行组合性来实现指数机制，这是因为当使用拉普拉斯机制与串行组合性时，我们可以得到差分隐私保护的所有噪声分数，但我们想实现的差分隐私算法不需要发布这些噪声分数。那么，反过来又如何呢？我们可以应用指数机制实现拉普拉斯机制吗？事实证明，这是可以做到的！</p>
+<p>考虑一个敏感度为<span class="math notranslate nohighlight">\(\Delta q\)</span>的问询函数<span class="math notranslate nohighlight">\(q(x) : \mathcal{D} \rightarrow \mathbb{R}\)</span>。我们可以在真实回复值上增加拉普拉斯噪声<span class="math notranslate nohighlight">\(F(x) = q(x) + \mathsf{Lap}(\Delta q / \epsilon)\)</span>，以得到满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私的回复结果。差分隐私回复<span class="math notranslate nohighlight">\(q\)</span>的概率密度函数为：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-aaf2e523-149f-446d-8547-171c40eca740">
+<span class="eqno">(31)<a class="headerlink" href="#equation-aaf2e523-149f-446d-8547-171c40eca740" title="公式的永久链接">#</a></span>\[\begin{align}
+\mathsf{Pr}[F(x) = r] =&amp; \frac{1}{2b} \exp\Big(- \frac{\lvert r - \mu \rvert}{b}\Big)\\
+=&amp; \frac{\epsilon}{2 \Delta q} \exp\Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q}\Big)
+\end{align}\]</div>
+<p>考虑一下，当我们将指数机制的评分函数设置为<span class="math notranslate nohighlight">\(u(x, r) = -2 \lvert q(x) - r \rvert\)</span>时会发生什么？指数机制的定义告诉我们，每个回复值的采样概率应该与下述表达式成正比：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0e498e62-3e4b-496b-9190-735068de5bb4">
+<span class="eqno">(32)<a class="headerlink" href="#equation-0e498e62-3e4b-496b-9190-735068de5bb4" title="公式的永久链接">#</a></span>\[\begin{align}
+\mathsf{Pr}[F(x) = r] =&amp;\; \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)\\
+&amp;= \exp \Big(\frac{\epsilon (-2 \lvert q(x) - r \rvert)}{2 \Delta q} \Big)\\
+&amp;= \exp \Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q} \Big)\\
+\end{align}\]</div>
+<p>因此，可以应用指数机制实现拉普拉斯机制，并得到相同的概率分布（两个概率分布可能会相差一个常数因子，这是因为指数机制的通用分析结论不一定在所有情况下都是紧致的）。</p>
+<p>指数机制非常具有普适性。一般情况下，通过精心选择评分函数<span class="math notranslate nohighlight">\(u\)</span>，我们可以用指数机制重定义任何<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私机制。只要我们可以分析出该评分函数的敏感度，我们就可以轻松证明相应机制满足差分隐私。</p>
+<p>另一方面，指数机制之所以具有普适性，是因为其通用分析方法得到的隐私消耗量边界可能会更宽松一些（就像前面给出的拉普拉斯例子那样）。此外，用指数机制定义的差分隐私机制一般都比较难实现。指数机制通常用于证明理论下界（即证明差分隐私算法的<em>存在性</em>）。在实际中，一般会使用一些其他的算法来复现指数机制（如前面描述的输出噪声最大值例子）。</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="ch8.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title">差分隐私变体</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ch10.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">稀疏向量技术</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

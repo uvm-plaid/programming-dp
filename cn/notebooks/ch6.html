@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>近似差分隐私 &#8212; 动手学差分隐私</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="局部敏感度" href="ch7.html" />
+    <link rel="prev" title="敏感度" href="ch5.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   引言
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch1.html">
+   去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch2.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch3.html">
+   差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch4.html">
+   差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch5.html">
+   敏感度
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch7.html">
+   局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch8.html">
+   差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch9.html">
+   指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch10.html">
+   稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch11.html">
+   算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch12.html">
+   机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch13.html">
+   本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch14.html">
+   合成数据
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   参考文献
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/ch6.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/ch6.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   近似差分隐私的性质
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   高斯机制
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   向量值函数及其敏感度
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#l1l2">
+     L1和L2范数
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     L1和L2敏感度
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     选择L1还是L2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   灾难机制
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   高级组合性
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   近似差分隐私的高级组合性
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>近似差分隐私<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="admonition- admonition">
+<p class="admonition-title">学习目标</p>
+<p>阅读本章后，您将能够：</p>
+<ul class="simple">
+<li><p>定义近似差分隐私</p></li>
+<li><p>解释近似差分隐私和纯粹差分隐私的区别</p></li>
+<li><p>描述近似差分隐私的优势和劣势</p></li>
+<li><p>描述和计算向量值查询的L1和L2敏感度</p></li>
+<li><p>定义和使用高斯机制</p></li>
+<li><p>应用高级组合性</p></li>
+</ul>
+</div>
+<p>近似差分隐私（Approximate Differential Privacy）<span id="id2">[<a class="reference internal" href="bibliography.html#id6"><span>5</span></a>]</span>，也称<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私，其定义如下所述：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6481420a-2809-4ba7-9e81-ce9cc9d6487c">
+<span class="eqno">(6)<a class="headerlink" href="#equation-6481420a-2809-4ba7-9e81-ce9cc9d6487c" title="公式的永久链接">¶</a></span>\[\begin{align}
+\mathsf{Pr}[F(x) = S] \leq e^\epsilon \mathsf{Pr}[F(x') = s] + \delta
+\end{align}\]</div>
+<p>新出现的隐私参数<span class="math notranslate nohighlight">\(\delta\)</span>表示不满足此近似差分隐私定义的”失败概率”。我们有<span class="math notranslate nohighlight">\(1-\delta\)</span>的概率获得等价于纯粹差分隐私的隐私保护程度。同时，我们有<span class="math notranslate nohighlight">\(\delta\)</span>的概率不满足隐私参数为<span class="math notranslate nohighlight">\(\epsilon\)</span>的纯粹差分隐私。换句话说：</p>
+<ul class="simple">
+<li><p>满足<span class="math notranslate nohighlight">\(\frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = s]} \leq e^\epsilon\)</span>的概率为<span class="math notranslate nohighlight">\(1-\delta\)</span></p></li>
+<li><p>不能保证满足上述不等式的概率为<span class="math notranslate nohighlight">\(\delta\)</span></p></li>
+</ul>
+<p>上述定义看起来有点吓人！我们有<span class="math notranslate nohighlight">\(\delta\)</span>的概率无法保证差分隐私，这意味着我们甚至可能有<span class="math notranslate nohighlight">\(\delta\)</span>的概率泄露整个敏感数据集！因此，我们通常要求<span class="math notranslate nohighlight">\(\delta\)</span>很小。一般来说，我们要求<span class="math notranslate nohighlight">\(\delta\)</span>的取值小于等于<span class="math notranslate nohighlight">\(\frac{1}{n^2}\)</span>，其中<span class="math notranslate nohighlight">\(n\)</span>表示数据集的总大小。此外，我们还将看到，实际使用的<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私机制不会像定义所描述的那样吓人，不会出现一旦失败就引发灾难性后果的情况。实际上，该机制会<em>温和地</em>失败，一般不会造成诸如泄露整个数据集之类的严重后果。</p>
+<p>确实<em>可以</em>构造出此类机制，并可以证明构造出的机制确实满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私。我们将在本章后续部分看到实际的机制构造方法。</p>
+<div class="section" id="id3">
+<h2>近似差分隐私的性质<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>近似差分隐私拥有和纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私相似的特性。它同样满足<strong>串行组合性</strong>：</p>
+<ul class="simple">
+<li><p>如果<span class="math notranslate nohighlight">\(F_1(x)\)</span>满足<span class="math notranslate nohighlight">\((\epsilon_1, \delta_1)\)</span>-差分隐私</p></li>
+<li><p>同时<span class="math notranslate nohighlight">\(F_2(x)\)</span>满足<span class="math notranslate nohighlight">\((\epsilon_2, \delta_2)\)</span>-差分隐私</p></li>
+<li><p>则发布两个结果的机制<span class="math notranslate nohighlight">\(G(x) = (F_1(x), F_2(x))\)</span>满足<span class="math notranslate nohighlight">\((\epsilon_1+\epsilon_2, \delta_1 + \delta_2)\)</span>-差分隐私</p></li>
+</ul>
+<p>与纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私相比，近似差分隐私串行组合性唯一的不同之处在于需要分别对<span class="math notranslate nohighlight">\(\delta\)</span>和<span class="math notranslate nohighlight">\(\epsilon\)</span>相加。近似差分隐私同样满足后处理性和并行组合性。</p>
+</div>
+<div class="section" id="id4">
+<h2>高斯机制<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>可以用高斯机制替代拉普拉斯机制。高斯机制增加的不是拉普拉斯噪声，而是高斯噪声。高斯机制<em>无法</em>满足纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私，但可以满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私。对于一个返回数值的函数<span class="math notranslate nohighlight">\(f(x)\)</span>，应用下述定义的高斯机制，可以得到满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私的<span class="math notranslate nohighlight">\(F(x)\)</span>：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5d236ed7-da66-4156-a9e3-85096d7c1bd7">
+<span class="eqno">(7)<a class="headerlink" href="#equation-5d236ed7-da66-4156-a9e3-85096d7c1bd7" title="公式的永久链接">¶</a></span>\[\begin{align}
+F(x) = f(x) + \mathcal{N}(\sigma^2)\\
+\text{where } \sigma^2 = \frac{2s^2 \log(1.25/\delta)}{\epsilon^2}
+\end{align}\]</div>
+<p>其中<span class="math notranslate nohighlight">\(s\)</span>是<span class="math notranslate nohighlight">\(f\)</span>的敏感度，<span class="math notranslate nohighlight">\(\mathcal{N}(\sigma^2)\)</span>表示均值为0，方差为<span class="math notranslate nohighlight">\(\sigma^2\)</span>的高斯（正态）分布采样结果。请注意，这里的<span class="math notranslate nohighlight">\(\log\)</span>表示自然对数（本书其他地方出现的<span class="math notranslate nohighlight">\(\log\)</span>同样表示自然对数）。</p>
+<p>对于实值函数<span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>，我们可以按照与拉普拉斯机制完全相同的方法使用高斯机制。在相同的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值下，很容易对比两种机制的应用效果。</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">vals_laplace</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span class="p">)]</span>
+
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">10e-5</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.25</span> <span class="o">/</span> <span class="n">delta</span><span class="p">))</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">epsilon</span>
+<span class="n">vals_gauss</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span class="p">)]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">vals_laplace</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;拉普拉斯&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">vals_gauss</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;高斯&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ch6_5_0.png" src="../_images/ch6_5_0.png" />
+</div>
+</div>
+<p>这里我们画出了<span class="math notranslate nohighlight">\(\epsilon = 1\)</span>时，拉普拉斯机制和高斯机制的经验概率密度函数，我们这里令高斯机制的<span class="math notranslate nohighlight">\(\delta = 10^{-5}\)</span>。</p>
+<p>与拉普拉斯机制的曲线相比，高斯机制的曲线看起来更”平”。当应用高斯机制时，我们更有可能得到远离真实值的差分隐私输出结果，而拉普拉斯机制的输出结果与真实值更接近一些（相比之下，拉普拉斯机制的曲线看起来更”尖”）。</p>
+<p>因此，高斯机制有两个严重的缺点：其一，该机制需要使用宽松的<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私定义；其二，该机制的准确性不如拉普拉斯机制。既然如此，为什么我们还需要高斯机制呢？</p>
+</div>
+<div class="section" id="id5">
+<h2>向量值函数及其敏感度<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>截至目前，我们考虑的都是实值函数（即输出总为单一实数的函数）。此类函数的形式为：<span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>。拉普拉斯机制和高斯机制都可以扩展到形式为：<span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}^k\)</span>的<em>向量值</em>函数，即输出为实数向量的函数。我们可以将直方图看作向量值函数，其返回的向量表示直方图各个分箱的计数值。</p>
+<p>我们在前面提到，函数的<em>敏感度</em>定义为：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a16e5aed-5f30-4383-98ad-f4862a927094">
+<span class="eqno">(8)<a class="headerlink" href="#equation-a16e5aed-5f30-4383-98ad-f4862a927094" title="公式的永久链接">¶</a></span>\[\begin{align}
+GS(f) = \max_{d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
+\end{align}\]</div>
+<p>我们如何定义向量值函数的敏感度呢？</p>
+<p>考虑表达式<span class="math notranslate nohighlight">\(f(x) - f(x')\)</span>。如果<span class="math notranslate nohighlight">\(f\)</span>是向量值函数，那么该表达式表示的是两个向量之间的差，可以通过计算对应位置元素之间的差来得到（两个长度为<span class="math notranslate nohighlight">\(k\)</span>的向量差是一个长度为<span class="math notranslate nohighlight">\(k\)</span>的新向量）。这个新向量就是<span class="math notranslate nohighlight">\(f(x)\)</span>和<span class="math notranslate nohighlight">\(f(x')\)</span>之间的距离。</p>
+<p>该向量的标量长度就是<span class="math notranslate nohighlight">\(f\)</span>的敏感度。有很多计算向量标量长度的方法。我们将使用两种方法：<span class="math notranslate nohighlight">\(L1\)</span>范数和<span class="math notranslate nohighlight">\(L2\)</span>范数。</p>
+<div class="section" id="l1l2">
+<h3>L1和L2范数<a class="headerlink" href="#l1l2" title="永久链接至标题">¶</a></h3>
+<p>给定长度为<span class="math notranslate nohighlight">\(k\)</span>的向量<span class="math notranslate nohighlight">\(V\)</span>，其<span class="math notranslate nohighlight">\(L1\)</span>范数定义为<span class="math notranslate nohighlight">\(\lVert V \rVert_1 = \sum_{i=1}^k \lvert V_i \rvert\)</span>（即向量各个元素的和）。在二维空间中，两个向量之差的<span class="math notranslate nohighlight">\(L1\)</span>范数就是它们的”曼哈顿距离”。</p>
+<p>给定长度为<span class="math notranslate nohighlight">\(k\)</span>的向量<span class="math notranslate nohighlight">\(V\)</span>，其<span class="math notranslate nohighlight">\(L2\)</span>范数定义为<span class="math notranslate nohighlight">\(\lVert V \rVert_2 = \sqrt{\sum_{i=1}^k V_i^2}\)</span>（即向量各个元素平方和再求平方根）。在二维空间中，两个向量之差的<span class="math notranslate nohighlight">\(L2\)</span>范数就是它们的”欧氏距离”。<span class="math notranslate nohighlight">\(L2\)</span>范数总是小于或等于<span class="math notranslate nohighlight">\(L1\)</span>范数。</p>
+</div>
+<div class="section" id="id6">
+<h3>L1和L2敏感度<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>向量值函数<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L1\)</span>敏感度为：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-abb79c95-16d9-4eca-bc27-422df68d6285">
+<span class="eqno">(9)<a class="headerlink" href="#equation-abb79c95-16d9-4eca-bc27-422df68d6285" title="公式的永久链接">¶</a></span>\[\begin{align}
+GS(f) = \max_{d(x,x') \leq 1} \lVert f(x) - f(x') \rVert_1
+\end{align}\]</div>
+<p>此敏感度等于向量各个元素敏感度的和。举例来说，如果我们定义了一个向量值函数<span class="math notranslate nohighlight">\(f\)</span>，其返回一个长度为<span class="math notranslate nohighlight">\(k\)</span>的向量，且向量中各个元素的敏感度均为1，则<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L1\)</span>敏感度为<span class="math notranslate nohighlight">\(k\)</span>。</p>
+<p>类似地，向量值函数<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L2\)</span>敏感度为：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-aa9a878a-f0e2-420f-96ee-e2285f618178">
+<span class="eqno">(10)<a class="headerlink" href="#equation-aa9a878a-f0e2-420f-96ee-e2285f618178" title="公式的永久链接">¶</a></span>\[\begin{align}
+GS_2(f) = \max_{d(x,x') \leq 1} \lVert f(x) - f(x') \rVert_2
+\end{align}\]</div>
+<p>同样是上述的例子，向量值函数<span class="math notranslate nohighlight">\(f\)</span>返回一个长度为<span class="math notranslate nohighlight">\(k\)</span>的向量，且向量中各个元素的敏感度均为1，则<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L2\)</span>敏感度为<span class="math notranslate nohighlight">\(\sqrt{k}\)</span>。对于长向量，<span class="math notranslate nohighlight">\(L2\)</span>敏感度显然比<span class="math notranslate nohighlight">\(L1\)</span>敏感度低得多！在机器学习算法（返回的向量有时包含成千上万个元素）等应用中，<span class="math notranslate nohighlight">\(L2\)</span>敏感度<em>显著</em>低于<span class="math notranslate nohighlight">\(L1\)</span>敏感度。</p>
+</div>
+<div class="section" id="id7">
+<h3>选择L1还是L2<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<p>如之前所述，拉普拉斯机制和高斯机制都可以扩展到向量值函数。然而，这两种机制的扩展结果间有一个关键差异点：向量值拉普拉斯机制<strong>需要</strong>使用<span class="math notranslate nohighlight">\(L1\)</span>敏感度，而向量值高斯机制既可以使用<span class="math notranslate nohighlight">\(L1\)</span>敏感度，也可以使用<span class="math notranslate nohighlight">\(L2\)</span>敏感度。这是高斯机制的一个重要优势。对于<span class="math notranslate nohighlight">\(L2\)</span>敏感度远低于<span class="math notranslate nohighlight">\(L1\)</span>敏感度的应用来说，高斯机制添加的噪声要<em>小</em>得多。</p>
+<ul class="simple">
+<li><p><strong>向量拉普拉斯机制</strong>发布的是<span class="math notranslate nohighlight">\(f(x) + (Y_1, \dots, Y_k)\)</span>，其中<span class="math notranslate nohighlight">\(Y_i\)</span>是采样自拉普拉斯分布的独立同分布噪声，噪声尺度为<span class="math notranslate nohighlight">\(\frac{s}{\epsilon}\)</span>，其中<span class="math notranslate nohighlight">\(s\)</span>是<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L1\)</span>敏感度。</p></li>
+<li><p><strong>向量高斯机制</strong>发布的是<span class="math notranslate nohighlight">\(f(x) + (Y_1, \dots, Y_k)\)</span>，其中<span class="math notranslate nohighlight">\(Y_i\)</span>是采样自高斯分布的独立同分布噪声，且<span class="math notranslate nohighlight">\(\sigma^2 = \frac{2s^2 \log(1.25/\delta)}{\epsilon^2}\)</span>，其中<span class="math notranslate nohighlight">\(s\)</span>是<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L2\)</span>的敏感度。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>灾难机制<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p><span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私定义称，满足此差分隐私定义的机制必须以<span class="math notranslate nohighlight">\(1-\delta\)</span>的概率”表现良好”。但这也意味着此机制可以有<span class="math notranslate nohighlight">\(\delta\)</span>的概率执行任何操作。”失败概率”的存在令人无比担忧，因为满足宽松定义的差分隐私机制总可能（即使发生的概率很低）给出糟糕的输出结果。</p>
+<p>考虑如下机制，我们称之为<em>灾难机制</em>（Catastrophe Mechanism）：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-017e3dfe-dbb1-430d-bce8-0514a7debedd">
+<span class="eqno">(11)<a class="headerlink" href="#equation-017e3dfe-dbb1-430d-bce8-0514a7debedd" title="公式的永久链接">¶</a></span>\[\begin{align}
+F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
+&amp;\text{如果 } r &lt; \delta, \text{返回 } x\\
+&amp;\text{否则，返回 } q(x) + \text{Lap}(s/\epsilon), \text{其中$s$是$q$的敏感度}\\
+\end{align}\]</div>
+<p>灾难机制有<span class="math notranslate nohighlight">\(1-\delta\)</span>的概率满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。然而，灾难机制同时有<span class="math notranslate nohighlight">\(\delta\)</span>的概率<em>泄露无噪声的整个数据集</em>。尽管该机制满足近似差分隐私定义，但我们在实际中不太可能会应用此机制。</p>
+<p>幸运的是，大多数<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私机制不会出现类似的灾难性失效情况。例如，高斯机制就不会真的发布整个数据集。高斯机制只是有<span class="math notranslate nohighlight">\(\delta\)</span>的概率不会<em>严格地</em>满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私，而是满足某个值<span class="math notranslate nohighlight">\(c\)</span>下的<span class="math notranslate nohighlight">\(c\epsilon\)</span>-差分隐私。</p>
+<p>因此，高斯机制会很<em>温和地</em>失败，而不会灾难性地失败。因此，与灾难机制相比，我们有理由相信高斯机制可以为我们提供更好的隐私保护。我们后续还将看到差分隐私的另一种宽松定义方法。此定义可以区分温和性失败机制（如高斯机制）和灾难性失败机制（如灾难机制）。</p>
+</div>
+<div class="section" id="id9">
+<h2>高级组合性<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<p>我们已经学习了差分隐私机制的两种组合方式：串行组合性和并行组合性。事实证明，<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私引入了差分隐私机制串行组合性的一种新分析方法，此分析方法可以进一步降低隐私消耗量。</p>
+<p>高级组合定理<span id="id10">[<a class="reference internal" href="bibliography.html#id12"><span>7</span></a>]</span>通常用<span class="math notranslate nohighlight">\(k\)</span>-<em>折叠适应性组合</em>（<span class="math notranslate nohighlight">\(k\)</span>-fold Adaptive Composition）机制来描述。<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合指的是将一系列机制<span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span>组合起来，这些机制满足下述条件：</p>
+<ul class="simple">
+<li><p><em>适应性</em>：可以根据所有前述机制<span class="math notranslate nohighlight">\(m_1, \dots, m_{i-1}\)</span>的输出来选择下一个机制<span class="math notranslate nohighlight">\(m_i\)</span></p></li>
+<li><p><em>组合性</em>：每个机制<span class="math notranslate nohighlight">\(m_i\)</span>的输入既包括隐私数据集，也包括前述机制的所有输出</p></li>
+</ul>
+<p>迭代程序（如循环或递归函数）几乎都是<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合的实例。例如，一个执行1000轮的<code class="docutils literal notranslate"><span class="pre">for</span></code>循环是1000-折叠适应性组合。再举一个更特殊的例子，平均攻击也是<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 此攻击针对的是敏感度为1的问询</span>
+<span class="k">def</span> <span class="nf">avg_attack</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">query</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+<span class="n">avg_attack</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.898300069058049
+</pre></div>
+</div>
+</div>
+</div>
+<p>在这个例子中，我们提前确定好了机制的组合顺序（我们每次都使用相同的机制），且<span class="math notranslate nohighlight">\(k = 500\)</span>。</p>
+<p>标准串行组合定理称，该机制的总隐私消耗量为<span class="math notranslate nohighlight">\(k\epsilon\)</span>（本例的总隐私消耗量为<span class="math notranslate nohighlight">\(500 \epsilon\)</span>）。</p>
+<p>高级组合定理称：</p>
+<ul class="simple">
+<li><p>如果<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合<span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span>中的每一个机制<span class="math notranslate nohighlight">\(m_i\)</span>都满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私</p></li>
+<li><p>则对于任意<span class="math notranslate nohighlight">\(\delta \geq 0\)</span>，整个<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合满足<span class="math notranslate nohighlight">\((\epsilon', \delta')\)</span>-差分隐私，其中：</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-0178d58f-b588-437b-a0a4-b98f35f79184">
+<span class="eqno">(12)<a class="headerlink" href="#equation-0178d58f-b588-437b-a0a4-b98f35f79184" title="公式的永久链接">¶</a></span>\[\begin{align}
+\epsilon' = 2\epsilon \sqrt{2k \log(1/\delta')}
+\end{align}\]</div>
+<p>根据前面的例子，将<span class="math notranslate nohighlight">\(\epsilon = 1\)</span>代入到表达式中，并设置<span class="math notranslate nohighlight">\(\delta' = 10^{-5}\)</span>，我们有：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-bfad35fc-596b-49c3-be8b-d205963bf1af">
+<span class="eqno">(13)<a class="headerlink" href="#equation-bfad35fc-596b-49c3-be8b-d205963bf1af" title="公式的永久链接">¶</a></span>\[\begin{align}
+\epsilon' =&amp; 2 \sqrt{1000 \log(100000)}\\
+\approx&amp; 214.59
+\end{align}\]</div>
+<p>因此，<em>对于相同机制</em>，应用高级组合性得到的<span class="math notranslate nohighlight">\(\epsilon'\)</span>下界远低于应用串行组合性得到的下界。这意味着什么呢？这意味着串行组合性得到的隐私消耗量下界是<em>宽松</em>的。与<em>实际</em>隐私消耗相比，串行组合性得到的下界不够紧致。事实上，高级组合性得到的下界也是宽松的，此下界只是比串行组合性给出的下界<em>稍显</em>紧致一些。</p>
+<p>需要着重强调的是，得到的两种隐私消耗量上界在技术角度看不具有可比性，因为高级组合性引入了<span class="math notranslate nohighlight">\(\delta\)</span>。但当<span class="math notranslate nohighlight">\(\delta\)</span>很小时，我们通常可以比较两种方法给出的<span class="math notranslate nohighlight">\(\epsilon\)</span>。</p>
+<p>既然如此，我们应该<em>总是</em>使用高级组合性吗？<em>并非如此</em>。我们分别对于不同的<span class="math notranslate nohighlight">\(k\)</span>值计算隐私消耗量，绘制串行组合性和高级组合性的<em>总隐私消耗</em>图。</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">10e-5</span>
+
+<span class="k">def</span> <span class="nf">adv_comp</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">epsilon</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">delta</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">seq_comp</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">k</span><span class="o">*</span><span class="n">epsilon</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">seq_comp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;串行组合性&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">adv_comp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;高级组合性&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ch6_12_0.png" src="../_images/ch6_12_0.png" />
+</div>
+</div>
+<p>事实证明，当<span class="math notranslate nohighlight">\(k\)</span>小于70时，标准的串行组合性比高级组合性得到的总隐私消耗量更小。因此，仅当<span class="math notranslate nohighlight">\(k\)</span>比较大时（如大于100时），高级组合性才会有用武之地。不过，当<span class="math notranslate nohighlight">\(k\)</span>非常大时，高级组合性可以显露出<em>巨大</em>的优势。</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">seq_comp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;串行组合性&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">adv_comp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;高级组合性&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ch6_14_0.png" src="../_images/ch6_14_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>近似差分隐私的高级组合性<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
+<p>当使用高级组合性时，前述要求各个机制均需满足纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。然而，如果各个机制满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私，高级组合定理同样适用。高级组合定理更一般的描述如下（<span id="id12">[<a class="reference internal" href="bibliography.html#id12"><span>7</span></a>]</span>, 定理3.20）：</p>
+<ul class="simple">
+<li><p>如果<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合<span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span>中的每个机制<span class="math notranslate nohighlight">\(m_i\)</span>都满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私</p></li>
+<li><p>则对于任意<span class="math notranslate nohighlight">\(\delta' \geq 0\)</span>，整个<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合都满足<span class="math notranslate nohighlight">\((\epsilon', k\delta + \delta')\)</span>-差分隐私，其中：</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-e171e28b-2aea-4dcb-ac89-1996a607409c">
+<span class="eqno">(14)<a class="headerlink" href="#equation-e171e28b-2aea-4dcb-ac89-1996a607409c" title="公式的永久链接">¶</a></span>\[\begin{align}
+\epsilon' = 2\epsilon \sqrt{2k \log(1/\delta')}
+\end{align}\]</div>
+<p>与前面的描述相比，唯一的区别是组合机制的失败参数<span class="math notranslate nohighlight">\(\delta\)</span>，即这里的失败参数包含额外的<span class="math notranslate nohighlight">\(k\delta\)</span>项。当待组合的机制满足纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私时，我们有<span class="math notranslate nohighlight">\(\delta = k\delta = 0\)</span>。两种描述在纯粹差分隐私下得到的结果一致。</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="ch5.html" title="previous page">敏感度</a>
+    <a class='right-next' id="next-link" href="ch7.html" title="next page">局部敏感度</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

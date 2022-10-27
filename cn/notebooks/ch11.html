@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>算法设计练习 &#8212; 动手学差分隐私</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="机器学习" href="ch12.html" />
+    <link rel="prev" title="稀疏向量技术" href="ch10.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   引言
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch1.html">
+   去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch2.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch3.html">
+   差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch4.html">
+   差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch5.html">
+   敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch6.html">
+   近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch7.html">
+   局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch8.html">
+   差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch9.html">
+   指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch10.html">
+   稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch12.html">
+   机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch13.html">
+   本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch14.html">
+   合成数据
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   参考文献
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/ch11.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/ch11.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   需要考虑的问题
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   1. 更普适的”采样-聚合”算法
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   2. 汇总统计
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   3. 频繁项
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   4.分层查询
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   5. 一系列范围问询
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     第1部分
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     第2部分
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     第3部分
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>算法设计练习<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>需要考虑的问题<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>一共需要多少次问询，以及我们可以使用何种组合定理？</p>
+<ul>
+<li><p>可以使用并行组合性吗？</p></li>
+<li><p>我们应该使用串行组合性，高级组合性，还是差分隐私变体？</p></li>
+</ul>
+</li>
+<li><p>我们可以使用稀疏向量技术吗？</p></li>
+<li><p>我们可以使用指数机制吗？</p></li>
+<li><p>我们应该如何分配隐私预算？</p></li>
+<li><p>如果敏感度无上界，该如何限制敏感度的上界？</p></li>
+<li><p>使用合成数据会带来帮助吗？</p></li>
+<li><p>后处理性有助于”降噪”吗？</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>1. 更普适的”采样-聚合”算法<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>设计一个变种”采样-聚合”算法，使其<em>不</em>需要分析者指定问询函数<span class="math notranslate nohighlight">\(f\)</span>的输出范围。</p>
+<p><strong>思想</strong>：首先，使用稀疏向量技术找到适用于整个数据集的<span class="math notranslate nohighlight">\(f(x)\)</span>上界和下界。由于<span class="math notranslate nohighlight">\(clip(f(x), lower, upper)\)</span>是一个敏感度有上界的问询，我们可以在此问询上应用稀疏向量技术。随后，基于得到的上界和下界使用”采样-聚合”算法。</p>
+</div>
+<div class="section" id="id4">
+<h2>2. 汇总统计<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>设计一种算法来生成满足差分隐私的下述统计数据：</p>
+<ul class="simple">
+<li><p>均值：<span class="math notranslate nohighlight">\(\mu = \frac{1}{n} \sum_{i=1}^n x_i\)</span></p></li>
+<li><p>方差：<span class="math notranslate nohighlight">\(var = \frac{1}{n} \sum_{i=1}^n (x_i - \mu)^2\)</span></p></li>
+<li><p>标准差：<span class="math notranslate nohighlight">\(\sigma = \sqrt{\frac{1}{n} \sum_{i=1}^n (x_i - \mu)^2}\)</span></p></li>
+</ul>
+<p><strong>思想</strong>：</p>
+<p><strong>均值</strong></p>
+<ol class="simple">
+<li><p>使用稀疏向量技术找到裁剪边界的上界和下界</p></li>
+<li><p>计算噪声求和值与噪声计数值，再应用后处理性得到均值</p></li>
+</ol>
+<p><strong>方差</strong></p>
+<ol class="simple">
+<li><p>将方差问询拆分为一个计数问询（并计算得到<span class="math notranslate nohighlight">\(\frac{1}{n}\)</span>，我们可以从计算均值问询的过程中得到计数问询的结果）与一个求和问询</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sum_{i=1}^n (x_i - \mu)^2\)</span>的敏感度是什么？我们可以裁剪并计算<span class="math notranslate nohighlight">\(\sum_{i=1}^n (x_i - \mu)^2\)</span>，然后根据后处理性与（1）得到的结果相乘</p></li>
+</ol>
+<p><strong>标准差</strong></p>
+<ol class="simple">
+<li><p>只需计算方差的平方根</p></li>
+</ol>
+<p>涉及到的全部问询：</p>
+<ul class="simple">
+<li><p>裁剪下界（稀疏向量技术）</p></li>
+<li><p>裁剪上界（稀疏向量技术）</p></li>
+<li><p>噪声求和（均值）</p></li>
+<li><p>噪声计数</p></li>
+<li><p>噪声求和（方差）</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>3. 频繁项<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>谷歌的RAPPOR系统<span id="id6">[<a class="reference internal" href="bibliography.html#id18"><span>15</span></a>]</span>用于统计谷歌浏览器用户最常设置的主页是什么。请设计下述算法：</p>
+<ul class="simple">
+<li><p>给定基于流量统计得到的10,000个最受欢迎的网页列表，</p></li>
+<li><p>从这10,000个最受欢迎的网页中确定前10个最受欢迎的主页</p></li>
+</ul>
+<p><strong>思想</strong>：使用并行组合性，获取加噪后排名前10的主页</p>
+</div>
+<div class="section" id="id7">
+<h2>4.分层查询<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>设计一种为美国人口普查信息生成汇总统计结果的算法。算法应该能按下述从低到高的层次输出相应的人口统计结果：</p>
+<ul class="simple">
+<li><p>人口普查区</p></li>
+<li><p>城市 / 乡镇</p></li>
+<li><p>邮编</p></li>
+<li><p>国家</p></li>
+<li><p>洲</p></li>
+<li><p>美国</p></li>
+</ul>
+<p><strong>思想</strong>：</p>
+<p>思想1：使用并行组合性，<em>只</em>计算最低层次（人口普查区）的人口统计结果。将所有区域的计数结果相加，得到各个城市的人口统计结果，以此类推，得到所有统计结果。优势：隐私预算低。</p>
+<p>思想2：计算所有层次的计数结果，分别对每一层使用并行组合性，根据真实数据调整预算分配。优势：对于较低层，我们可以得到更准确的统计结果。</p>
+<p>思想3：和（2）一样，但应用后处理性，基于更高层的计数结果重新缩放较低层的计数结果，将缩放后的（浮点数）结果截断为整数；将负数设置为0。</p>
+</div>
+<div class="section" id="id8">
+<h2>5. 一系列范围问询<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>设计一种算法来准确回答一系列<em>范围问询</em>。这些范围问询都是针对某一个数据表的问询：”有多少行数据的值在<span class="math notranslate nohighlight">\(a\)</span>和<span class="math notranslate nohighlight">\(b\)</span>之间？”（即特定取值范围的数据行数）。</p>
+<div class="section" id="id9">
+<h3>第1部分<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>这一系列范围问询是已经预先确定的、数量有限的、形式为： <span class="math notranslate nohighlight">\(\{(a_1, b_1), \dots, (a_k, b_k)\}\)</span>的问询序列。</p>
+</div>
+<div class="section" id="id10">
+<h3>第2部分<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>这一系列范围问询序列的长度<span class="math notranslate nohighlight">\(k\)</span>是预先确定的，但是问询以流方式执行，每一个问询必须在执行时就给出回复。</p>
+</div>
+<div class="section" id="id11">
+<h3>第3部分<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>范围问询序列可能是无限长的。</p>
+<p><strong>思想</strong>：</p>
+<p>根据串行组合性，依次执行每一个问询</p>
+<p>对于第1部分，我们可以引入<span class="math notranslate nohighlight">\(L2\)</span>敏感度，从而引入高斯机制。当<span class="math notranslate nohighlight">\(k\)</span>很大时，高斯噪声的应用效果会更好。</p>
+<p>或者，我们可以构造合成数据：</p>
+<ul class="simple">
+<li><p>为每个问询范围<span class="math notranslate nohighlight">\((i, i+1)\)</span>计算一个计数值（这样就可以应用并行组合性了）。这就是所谓的合成数据表示法！我们可以将直方图中落在指定问询区间内的所有分段计数结果相加，从而回答无穷多的范围问询。</p></li>
+<li><p>对于第2部分，使用稀疏向量技术</p></li>
+</ul>
+<p>使用稀疏向量技术：对于问询流中的每个问询，查看真实数据回复结果与合成数据回复结果之间的差值。如果差值较大，则问询一次真实数据，得到（应用并行组合性，得到直方图形式的）回复结果，并更新合成数据。否则，给出直接返回合成数据回复结果。这样一来，只有当需要更新合成数据时，我们<em>才需要</em>消耗隐私预算。</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="ch10.html" title="previous page">稀疏向量技术</a>
+    <a class='right-next' id="next-link" href="ch12.html" title="next page">机器学习</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

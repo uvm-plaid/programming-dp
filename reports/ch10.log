@@ -1,15 +1,4 @@
 Traceback (most recent call last):
-  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 622, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-  File "/usr/local/lib/python3.9/site-packages/nbclient/util.py", line 85, in ensure_async
-    result = await obj
-  File "/usr/local/lib/python3.9/site-packages/jupyter_client/asynchronous/channels.py", line 48, in get_msg
-    raise Empty
-_queue.Empty
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
   File "/usr/local/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
     executenb(
   File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 1112, in execute
@@ -22,16 +11,29 @@ Traceback (most recent call last):
     return future.result()
   File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 553, in async_execute
     await self.async_execute_cell(
-  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 841, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 646, in _async_poll_for_reply
-    await self._async_handle_timeout(timeout, cell)
-  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 696, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-auto_avg(adult['Capital Gain'], 1)
--------------------
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+plt.xlabel('Chosen Value of "b"')
+plt.ylabel('Number of Occurrences')
+plt.hist([bs[above_threshold(queries, adult, 0, epsilon)] for i in range(20)]);
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-8-ba7372cfd937>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mplt[0m[0;34m.[0m[0mxlabel[0m[0;34m([0m[0;34m'Chosen Value of "b"'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0mplt[0m[0;34m.[0m[0mylabel[0m[0;34m([0m[0;34m'Number of Occurrences'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0mplt[0m[0;34m.[0m[0mhist[0m[0;34m([0m[0;34m[[0m[0mbs[0m[0;34m[[0m[0mabove_threshold[0m[0;34m([0m[0mqueries[0m[0;34m,[0m [0madult[0m[0;34m,[0m [0;36m0[0m[0;34m,[0m [0mepsilon[0m[0;34m)[0m[0;34m][0m [0;32mfor[0m [0mi[0m [0;32min[0m [0mrange[0m[0;34m([0m[0;36m20[0m[0;34m)[0m[0;34m][0m[0;34m)[0m[0;34m;[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m<ipython-input-8-ba7372cfd937>[0m in [0;36m<listcomp>[0;34m(.0)[0m
+[1;32m      1[0m [0mplt[0m[0;34m.[0m[0mxlabel[0m[0;34m([0m[0;34m'Chosen Value of "b"'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0mplt[0m[0;34m.[0m[0mylabel[0m[0;34m([0m[0;34m'Number of Occurrences'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0mplt[0m[0;34m.[0m[0mhist[0m[0;34m([0m[0;34m[[0m[0mbs[0m[0;34m[[0m[0mabove_threshold[0m[0;34m([0m[0mqueries[0m[0;34m,[0m [0madult[0m[0;34m,[0m [0;36m0[0m[0;34m,[0m [0mepsilon[0m[0;34m)[0m[0;34m][0m [0;32mfor[0m [0mi[0m [0;32min[0m [0mrange[0m[0;34m([0m[0;36m20[0m[0;34m)[0m[0;34m][0m[0;34m)[0m[0;34m;[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mTypeError[0m: range indices must be integers or slices, not NoneType
+TypeError: range indices must be integers or slices, not NoneType
 

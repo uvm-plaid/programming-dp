@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>参考文献 &#8212; 动手学差分隐私</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="合成数据" href="ch14.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   引言
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch1.html">
+   去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch2.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch3.html">
+   差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch4.html">
+   差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch5.html">
+   敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch6.html">
+   近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch7.html">
+   局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch8.html">
+   差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch9.html">
+   指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch10.html">
+   稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch11.html">
+   算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch12.html">
+   机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch13.html">
+   本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch14.html">
+   合成数据
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   参考文献
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/bibliography.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/bibliography.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>参考文献<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p id="id2"><dl class="citation">
+<dt class="label" id="id3"><span class="brackets">1</span></dt>
+<dd><p>Latanya Sweeney. Simple demographics often identify people uniquely. URL: <a class="reference external" href="https://dataprivacylab.org/projects/identifiability/">https://dataprivacylab.org/projects/identifiability/</a>.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">2</span></dt>
+<dd><p>Latanya Sweeney. K-anonymity: a model for protecting privacy. <em>International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems</em>, 10(05):557–570, 2002. URL: <a class="reference external" href="https://doi.org/10.1142/S0218488502001648">https://doi.org/10.1142/S0218488502001648</a>, <a class="reference external" href="https://arxiv.org/abs/https://doi.org/10.1142/S0218488502001648">arXiv:https://doi.org/10.1142/S0218488502001648</a>, <a class="reference external" href="https://doi.org/10.1142/S0218488502001648">doi:10.1142/S0218488502001648</a>.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets">3</span></dt>
+<dd><p>Cynthia Dwork. Differential privacy. In <em>Proceedings of the 33rd International Conference on Automata, Languages and Programming - Volume Part II</em>, ICALP'06, 1–12. Berlin, Heidelberg, 2006. Springer-Verlag. URL: <a class="reference external" href="https://doi.org/10.1007/11787006_1">https://doi.org/10.1007/11787006_1</a>, <a class="reference external" href="https://doi.org/10.1007/11787006_1">doi:10.1007/11787006_1</a>.</p>
+</dd>
+<dt class="label" id="id8"><span class="brackets">4</span></dt>
+<dd><p>Cynthia Dwork, Frank McSherry, Kobbi Nissim, and Adam Smith. Calibrating noise to sensitivity in private data analysis. In <em>Proceedings of the Third Conference on Theory of Cryptography</em>, TCC'06, 265–284. Berlin, Heidelberg, 2006. Springer-Verlag. URL: <a class="reference external" href="https://doi.org/10.1007/11681878_14">https://doi.org/10.1007/11681878_14</a>, <a class="reference external" href="https://doi.org/10.1007/11681878_14">doi:10.1007/11681878_14</a>.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">5</span></dt>
+<dd><p>Cynthia Dwork, Krishnaram Kenthapadi, Frank McSherry, Ilya Mironov, and Moni Naor. Our data, ourselves: privacy via distributed noise generation. In Serge Vaudenay, editor, <em>Advances in Cryptology - EUROCRYPT 2006</em>, 486–503. Berlin, Heidelberg, 2006. Springer Berlin Heidelberg.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets">6</span></dt>
+<dd><p>Frank D. McSherry. Privacy integrated queries: an extensible platform for privacy-preserving data analysis. In <em>Proceedings of the 2009 ACM SIGMOD International Conference on Management of Data</em>, SIGMOD '09, 19–30. New York, NY, USA, 2009. Association for Computing Machinery. URL: <a class="reference external" href="https://doi.org/10.1145/1559845.1559850">https://doi.org/10.1145/1559845.1559850</a>, <a class="reference external" href="https://doi.org/10.1145/1559845.1559850">doi:10.1145/1559845.1559850</a>.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets">7</span></dt>
+<dd><p>Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In <em>2010 IEEE 51st Annual Symposium on Foundations of Computer Science</em>, volume, 51–60. 2010. <a class="reference external" href="https://doi.org/10.1109/FOCS.2010.12">doi:10.1109/FOCS.2010.12</a>.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets">8</span></dt>
+<dd><p>Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In <em>Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing</em>, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: <a class="reference external" href="https://doi.org/10.1145/1250790.1250803">https://doi.org/10.1145/1250790.1250803</a>, <a class="reference external" href="https://doi.org/10.1145/1250790.1250803">doi:10.1145/1250790.1250803</a>.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets">9</span></dt>
+<dd><p>Cynthia Dwork and Jing Lei. Differential privacy and robust statistics. In <em>Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing</em>, STOC '09, 371–380. New York, NY, USA, 2009. Association for Computing Machinery. URL: <a class="reference external" href="https://doi.org/10.1145/1536414.1536466">https://doi.org/10.1145/1536414.1536466</a>, <a class="reference external" href="https://doi.org/10.1145/1536414.1536466">doi:10.1145/1536414.1536466</a>.</p>
+</dd>
+<dt class="label" id="id14"><span class="brackets">10</span></dt>
+<dd><p>Ilya Mironov. Renyi differential privacy. In <em>Computer Security Foundations Symposium (CSF), 2017 IEEE 30th</em>, 263–275. IEEE, 2017.</p>
+</dd>
+<dt class="label" id="id15"><span class="brackets">11</span></dt>
+<dd><p>Mark Bun and Thomas Steinke. Concentrated differential privacy: simplifications, extensions, and lower bounds. In <em>Theory of Cryptography Conference</em>, 635–658. Springer, 2016.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets">12</span></dt>
+<dd><p>Frank McSherry and Kunal Talwar. Mechanism design via differential privacy. In <em>48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07)</em>, volume, 94–103. 2007. <a class="reference external" href="https://doi.org/10.1109/FOCS.2007.66">doi:10.1109/FOCS.2007.66</a>.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets">13</span></dt>
+<dd><p>Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. <em>Foundations and Trends® in Theoretical Computer Science</em>, 9(3–4):211–407, 2014.</p>
+</dd>
+<dt class="label" id="id17"><span class="brackets">14</span></dt>
+<dd><p>Cynthia Dwork, Moni Naor, Omer Reingold, Guy N. Rothblum, and Salil Vadhan. On the complexity of differentially private data release: efficient algorithms and hardness results. In <em>Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing</em>, STOC '09, 381–390. New York, NY, USA, 2009. Association for Computing Machinery. URL: <a class="reference external" href="https://doi.org/10.1145/1536414.1536467">https://doi.org/10.1145/1536414.1536467</a>, <a class="reference external" href="https://doi.org/10.1145/1536414.1536467">doi:10.1145/1536414.1536467</a>.</p>
+</dd>
+<dt class="label" id="id18"><span class="brackets">15</span></dt>
+<dd><p>Úlfar Erlingsson, Vasyl Pihur, and Aleksandra Korolova. Rappor: randomized aggregatable privacy-preserving ordinal response. In <em>Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security</em>, CCS '14, 1054–1067. New York, NY, USA, 2014. Association for Computing Machinery. URL: <a class="reference external" href="https://doi.org/10.1145/2660267.2660348">https://doi.org/10.1145/2660267.2660348</a>, <a class="reference external" href="https://doi.org/10.1145/2660267.2660348">doi:10.1145/2660267.2660348</a>.</p>
+</dd>
+<dt class="label" id="id19"><span class="brackets">16</span></dt>
+<dd><p>Stanley L. Warner. Randomized response: a survey technique for eliminating evasive answer bias. <em>Journal of the American Statistical Association</em>, 60(309):63–69, 1965. PMID: 12261830. URL: <a class="reference external" href="https://www.tandfonline.com/doi/abs/10.1080/01621459.1965.10480775">https://www.tandfonline.com/doi/abs/10.1080/01621459.1965.10480775</a>, <a class="reference external" href="https://doi.org/10.1080/01621459.1965.10480775">doi:10.1080/01621459.1965.10480775</a>.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets">17</span></dt>
+<dd><p>Tianhao Wang, Jeremiah Blocki, Ninghui Li, and Somesh Jha. Locally differentially private protocols for frequency estimation. In <em>26th USENIX Security Symposium (USENIX Security 17)</em>, 729–745. Vancouver, BC, August 2017. USENIX Association. URL: <a class="reference external" href="https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/wang-tianhao">https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/wang-tianhao</a>.</p>
+</dd>
+</dl>
+</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="ch14.html" title="previous page">合成数据</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

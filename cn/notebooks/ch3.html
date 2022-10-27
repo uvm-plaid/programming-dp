@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>差分隐私 &#8212; 动手学差分隐私</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="差分隐私的性质" href="ch4.html" />
+    <link rel="prev" title="\(k\)-匿名性" href="ch2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo_zh_cn.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   引言
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch1.html">
+   去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch2.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch4.html">
+   差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch5.html">
+   敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch6.html">
+   近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch7.html">
+   局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch8.html">
+   差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch9.html">
+   指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch10.html">
+   稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch11.html">
+   算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch12.html">
+   机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch13.html">
+   本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch14.html">
+   合成数据
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   参考文献
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/ch3.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/ch3.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   拉普拉斯机制
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   需要多大的噪声？
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>差分隐私<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="admonition- admonition">
+<p class="admonition-title">学习目标</p>
+<p>阅读本章后，您将能够：</p>
+<ul class="simple">
+<li><p>定义差分隐私</p></li>
+<li><p>解释<span class="math notranslate nohighlight">\(\epsilon\)</span>这一重要的隐私参数</p></li>
+<li><p>应用拉普拉斯机制实现满足差分隐私的计数问询</p></li>
+</ul>
+</div>
+<p>与<span class="math notranslate nohighlight">\(k\)</span>-匿名性类似，<em>差分隐私</em>（Differential Privacy） <span id="id2">[<a class="reference internal" href="bibliography.html#id7"><span>3</span></a>,<a class="reference internal" href="bibliography.html#id8"><span>4</span></a>]</span>也是一个用数学语言描述的隐私定义（即可以用数学方法证明发布数据满足此性质）。然而，与<span class="math notranslate nohighlight">\(k\)</span>-匿名性不同，差分隐私不是<em>数据</em>所具有的属性，而是<em>算法</em>所具有的属性。也就是说，我们可以证明一个<em>算法</em>满足差分隐私。如果想证明一个<em>数据集</em>满足差分隐私，我们需要证明的是产生此数据集的算法满足差分隐私。</p>
+<div class="admonition- admonition">
+<p class="admonition-title">定义</p>
+<p>一般将满足差分隐私的函数称为一个<em>机制</em>（Mechanism）。如果对于所有<em>临近数据集</em>（Neighboring Dataset）<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>和所有可能的输出<span class="math notranslate nohighlight">\(S\)</span>，机制<span class="math notranslate nohighlight">\(F\)</span>均满足</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5a2fe6b7-3c35-46ec-a3e7-7b4f02009e4a">
+<span class="eqno">(1)<a class="headerlink" href="#equation-5a2fe6b7-3c35-46ec-a3e7-7b4f02009e4a" title="公式的永久链接">¶</a></span>\[\begin{equation}
+\frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
+\end{equation}\]</div>
+<p>则称机制<span class="math notranslate nohighlight">\(F\)</span>满足差分隐私。</p>
+</div>
+<p>如果两个数据集中只有一个个体的数据项不同，则认为这两个数据集是临近数据集。请注意，<span class="math notranslate nohighlight">\(F\)</span>一般是一个<em>随机</em>函数。也就是说，即使给定相同的输入，<span class="math notranslate nohighlight">\(F\)</span>一般也包含多个可能的输出。因此，<span class="math notranslate nohighlight">\(F\)</span>输出的概率分布一般不是一个点分布。</p>
+<p>这个定义所蕴含的一个重要含义是，无论输入<em>是否包含</em>任意特定个体的数据，<span class="math notranslate nohighlight">\(F\)</span>的输出总是几乎相同的。换句话说，<span class="math notranslate nohighlight">\(F\)</span>所引入的随机性应该足够大，使得观察<span class="math notranslate nohighlight">\(F\)</span>的输出无法判断输入是<span class="math notranslate nohighlight">\(x\)</span>还是<span class="math notranslate nohighlight">\(x'\)</span>。假设我的数据在<span class="math notranslate nohighlight">\(x\)</span>中，但不在<span class="math notranslate nohighlight">\(x'\)</span>中。如果攻击者无法确定<span class="math notranslate nohighlight">\(F\)</span>的输入是<span class="math notranslate nohighlight">\(x\)</span>还是<span class="math notranslate nohighlight">\(x'\)</span>，则攻击者甚至无法判断输入是否包含我的数据，更无法判断出我的数据是什么了。</p>
+<p>一般将差分隐私定义中的参数<span class="math notranslate nohighlight">\(\epsilon\)</span>称为<em>隐私参数</em>（Privacy Parameter）或<em>隐私预算</em>（Privacy Budget）。<span class="math notranslate nohighlight">\(\epsilon\)</span>提供了一个旋钮，用来调整差分隐私定义所能提供的”隐私量”。<span class="math notranslate nohighlight">\(\epsilon\)</span>较小时，意味着<span class="math notranslate nohighlight">\(F\)</span>需要为相似的输入提供<em>非常</em>相似的输出，因此提供更高等级的隐私性。较大的<span class="math notranslate nohighlight">\(\epsilon\)</span>允许<span class="math notranslate nohighlight">\(F\)</span>给出不那么相似的输出，因此提供更少的隐私性。</p>
+<p>我们在实际中应该如何设置<span class="math notranslate nohighlight">\(\epsilon\)</span>，差分隐私才能提供足够的隐私性呢？没人知道这个问题的答案。一般的共识是：将<span class="math notranslate nohighlight">\(\epsilon\)</span>设置为约等于1或者更小的值；大于10的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值意味着大概率无法提供足够的隐私性。但实际上，这个经验法则下的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值过于保守了。我们后续将会进一步展开讨论这个问题。</p>
+<div class="section" id="id3">
+<h2>拉普拉斯机制<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>差分隐私一般用于回复特定的问询。我们来考虑一个针对人口普查数据的问询。我们首先不使用差分隐私。</p>
+<p>“数据集中有多少个体的年龄大于等于40岁？”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">40</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14237
+</pre></div>
+</div>
+</div>
+</div>
+<p>使这个问询满足差分隐私的最简单方法是：在回复结果上增加随机噪声。这里的关键挑战是：既需要增加足够大的噪声，使问询满足差分隐私，但噪声又不能加得太多，否则问询结果就无意义了。为了简化这一过程，差分隐私领域的学者提出了一些基础<em>机制</em>。这些基础机制具体描述了应该增加何种类型的噪声，以及噪声量应该有多大。最典型的基础机制是<em>拉普拉斯机制</em>（Laplace Mechanism） <span id="id4">[<a class="reference internal" href="bibliography.html#id8"><span>4</span></a>]</span>。</p>
+<div class="admonition- admonition">
+<p class="admonition-title">定义</p>
+<p>根据拉普拉斯机制，对于可以输出一个数值型结果的函数<span class="math notranslate nohighlight">\(f(x)\)</span>，按下述方法定义的<span class="math notranslate nohighlight">\(F(x)\)</span>满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-34570968-189d-4b3c-a164-de7e0ca7457d">
+<span class="eqno">(2)<a class="headerlink" href="#equation-34570968-189d-4b3c-a164-de7e0ca7457d" title="公式的永久链接">¶</a></span>\[\begin{equation}
+F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
+\end{equation}\]</div>
+<p>其中<span class="math notranslate nohighlight">\(s\)</span>是<span class="math notranslate nohighlight">\(f\)</span>的<em>敏感度</em>（Sensitivity），<span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span>表示以均值为0、放缩系数为<span class="math notranslate nohighlight">\(S\)</span>的拉普拉斯分布采样。</p>
+</div>
+<p>函数<span class="math notranslate nohighlight">\(f\)</span>的<em>敏感度</em>是指，当输入由数据集<span class="math notranslate nohighlight">\(x\)</span>变化为临近数据集<span class="math notranslate nohighlight">\(x'\)</span>后，<span class="math notranslate nohighlight">\(f\)</span>的输出变化量。计算函数<span class="math notranslate nohighlight">\(f\)</span>的敏感度是一个非常复杂的问题，也是设计差分隐私算法时所需面临的核心问题，我们稍后会更进一步展开讨论。我们现在只需要指出，<em>计数问询</em>（Counting Query）的敏感度总为1：当问询数据集中满足特定属性的数据量时，如果我们只修改数据集中的一个数据项，则问询的输出变化量最多为1。</p>
+<p>因此，我们可以根据我们所选择的<span class="math notranslate nohighlight">\(\epsilon\)</span>，在计数问询中使用敏感度等于1的拉普拉斯机制，从而使我们的样例问询满足差分隐私性。现在，我们取<span class="math notranslate nohighlight">\(\epsilon = 0.1\)</span>。我们可以用Numpy的<code class="docutils literal notranslate"><span class="pre">random.laplace</span></code>函数实现拉普拉斯分布采样。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sensitivity</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">40</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sensitivity</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14213.226527895278
+</pre></div>
+</div>
+</div>
+</div>
+<p>可以试着多次运行此代码，查看噪声对问询结果造成的影响。虽然每次代码的输出结果都会发生变化，但在大多数情况下，输出的结果都与真实结果（14,235）很接近，输出结果的可用性相对较高。</p>
+</div>
+<div class="section" id="id5">
+<h2>需要多大的噪声？<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>我们如何知道拉普拉斯机制是否已经增加了足够的噪声，可以阻止攻击者对数据集中的个体实施重标识攻击？我们可以先尝试自己来实施攻击！我们构造一个恶意的计数问询，专门用于确定凯莉·特鲁斯洛夫的收入是否大于$50k。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">karries_row</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Karrie Trusslove&#39;</span><span class="p">]</span>
+<span class="n">karries_row</span><span class="p">[</span><span class="n">karries_row</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&lt;=50K&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>此回复结果给出了凯莉所在数据行的收入值，显然侵犯了凯莉的隐私。由于我们知道如何应用拉普拉斯机制使计数问询满足差分隐私，我们可以这样回复问询：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sensitivity</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">karries_row</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Karrie Trusslove&#39;</span><span class="p">]</span>
+<span class="n">karries_row</span><span class="p">[</span><span class="n">karries_row</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&lt;=50K&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> \
+  <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sensitivity</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13.294461647527443
+</pre></div>
+</div>
+</div>
+</div>
+<p>真实结果是0还是1呢？因为增加的噪声比较大，我们已经无法可靠地判断真实结果是什么了。这就是差分隐私要实现的目的：哪怕可以判定出此问询是恶意的，我们也不会<em>拒绝</em>回复问询。相反，我们会增加足够大的噪声，使恶意问询的回复结果对攻击者来说变得毫无用处。</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="ch2.html" title="previous page"><span class="math notranslate nohighlight">\(k\)</span>-匿名性</a>
+    <a class='right-next' id="next-link" href="ch4.html" title="next page">差分隐私的性质</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,728 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>差分隐私变体 &#8212; 动手学差分隐私</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="指数机制" href="ch9.html" />
+    <link rel="prev" title="局部敏感度" href="ch7.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh_CN">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo_zh_cn.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover.html">
+                    动手学差分隐私
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   引言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch1.html">
+   去标识
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch2.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -匿名性
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch3.html">
+   差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch4.html">
+   差分隐私的性质
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch5.html">
+   敏感度
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch6.html">
+   近似差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch7.html">
+   局部敏感度
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   差分隐私变体
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch9.html">
+   指数机制
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch10.html">
+   稀疏向量技术
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch11.html">
+   算法设计练习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch12.html">
+   机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch13.html">
+   本地差分隐私
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch14.html">
+   合成数据
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   参考文献
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/ch8.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/ch8.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   最大散度和瑞丽散度
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   瑞丽差分隐私
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   零集中差分隐私
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   不同差分隐私变体的组合性
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>差分隐私变体</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   最大散度和瑞丽散度
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   瑞丽差分隐私
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   零集中差分隐私
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   不同差分隐私变体的组合性
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>差分隐私变体<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<div class="admonition- admonition">
+<p class="admonition-title">学习目标</p>
+<p>阅读本章后，您将能够：</p>
+<ul class="simple">
+<li><p>定义瑞丽差分隐私和零集中差分隐私</p></li>
+<li><p>描述与<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私定义相比，这些差分隐私变体定义的优势</p></li>
+<li><p>将这些变体的隐私消耗量转换为<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私的隐私消耗量</p></li>
+</ul>
+</div>
+<p>回想一下，我们前面讲解的大多数隐私消耗量计算方法所得到的都是隐私消耗量的<em>上</em>界。有时，我们计算得到的都是非常宽松的上界，而真正的隐私消耗量远低于计算得到的上界。提出差分隐私新变体的主要目的就是能得到更加紧致的隐私消耗量（这对于迭代算法非常重要），且相应的隐私定义在实际中仍然可用。例如，<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私的灾难性失败情况就不是我们想要的隐私保护效果。我们在本节中介绍的差分隐私变体可以为某些类型的问询提供更加紧致的隐私消耗量组合结果，同时<em>消除</em>灾难性失败情况。</p>
+<p>快速回忆一下我们已经介绍过的工具。我们首先来看<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私的串行组合性。可以证明<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私的串行组合性是<em>紧致的</em>。这是什么意思呢？意思是对于任何小于串行组合性得到的隐私消耗量下界，我们都可以找到不满足此下界的反例：</p>
+<ul class="simple">
+<li><p>存在满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私的机制<span class="math notranslate nohighlight">\(F\)</span></p></li>
+<li><p>当组合<span class="math notranslate nohighlight">\(k\)</span>次时，<span class="math notranslate nohighlight">\(F\)</span>满足<span class="math notranslate nohighlight">\(k\epsilon\)</span>-差分隐私</p></li>
+<li><p>但对任意<span class="math notranslate nohighlight">\(c &lt; k\)</span>，<span class="math notranslate nohighlight">\(F\)</span>不满足<span class="math notranslate nohighlight">\(c\epsilon\)</span>-差分隐私</p></li>
+</ul>
+<p>我们通过图像直观感受一下上述结论。我们把问询”向量化”，看看隐私消耗量会发生什么变化。我们将多个问询合并为一个问询，此问询返回包含多个回复的向量。因为回复值是一个向量，我们可以使用一次向量值拉普拉斯机制，从而避免使用组合定理。接下来，我们分别为串行组合性和”向量”形式画出<span class="math notranslate nohighlight">\(k\)</span>次问询所需的噪声量。在串行组合性中，每个问询的敏感度是1，因此每个问询的噪声尺度为<span class="math notranslate nohighlight">\(\frac{1}{\epsilon_i}\)</span>。如果我们想让总隐私消耗量等于<span class="math notranslate nohighlight">\(\epsilon\)</span>，则<span class="math notranslate nohighlight">\(\epsilon_i\)</span>的求和结果应等于<span class="math notranslate nohighlight">\(\epsilon\)</span>，因此<span class="math notranslate nohighlight">\(\epsilon_i = \frac{\epsilon}{k}\)</span>。这意味着每个问询需要尺度为<span class="math notranslate nohighlight">\(\frac{k}{\epsilon}\)</span>的拉普拉斯噪声。”向量化”形式只包含一次问询，但此问询的<span class="math notranslate nohighlight">\(L1\)</span>敏感度为<span class="math notranslate nohighlight">\(\sum_{i=1}^k 1 = k\)</span>。因此，向量化形式的噪声尺度同样为<span class="math notranslate nohighlight">\(\frac{k}{\epsilon}\)</span>。</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+
+<span class="c1"># 每个问询的L1敏感度：1</span>
+<span class="c1"># 每个问询的噪声尺度：1/ε</span>
+<span class="c1"># 问询次数：k</span>
+<span class="n">noises_seq</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ks</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="n">noises_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;串行组合性&#39;</span><span class="p">)</span>
+
+<span class="c1"># 问询次数：1</span>
+<span class="c1"># 每个问询的L1敏感度：k</span>
+<span class="c1"># 每个问询的噪声尺度：k/ε</span>
+<span class="n">noises_l1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ks</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="n">noises_l1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;向量化&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;拉普拉斯机制：向量化 vs. 组合性&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;问询数量&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;噪声尺度&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch8_3_0.png" src="_images/ch8_3_0.png" />
+</div>
+</div>
+<p>两条线<em>完全</em>重合。这意味着我们无论执行多少次问询，只要要求问询满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私，我们就不可能得到比串行组合性更好的组合方法。这是因为串行组合性与向量化问询的结果一致，而向量化问询是单次的，不涉及问询的组合，因此串行组合性得到的隐私消耗量已经是最优的了。</p>
+<p>那<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私呢？情况有所不同。我们可以在串行组合下使用高级组合性。这里我们必须非常小心，保证总隐私消耗量确实为<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>。特别地，我们设置<span class="math notranslate nohighlight">\(\epsilon_i = \frac{\epsilon}{2 \sqrt{2k \log(1/\delta')}}\)</span>，<span class="math notranslate nohighlight">\(\delta_i = \frac{\delta}{2k}\)</span>，以及<span class="math notranslate nohighlight">\(\delta' = \frac{\delta}{2}\)</span>（将<span class="math notranslate nohighlight">\(\delta\)</span>拆分成两部分，50%用于问询，50%用于高级组合）。利用高级组合性，所有<span class="math notranslate nohighlight">\(k\)</span>次问询的总隐私消耗量为<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>。使用高斯机制的噪声尺度为：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3c5c73d5-8243-46df-bc23-8b5d8225466f">
+<span class="eqno">(22)<a class="headerlink" href="#equation-3c5c73d5-8243-46df-bc23-8b5d8225466f" title="公式的永久链接">#</a></span>\[\begin{align}
+\sigma^2 =&amp; \frac{2 \log\left(\frac{1.25}{\delta_i}\right)}{\epsilon_i^2}\\
+ =&amp; \frac{16 k \log\left(\frac{1}{\delta'}\right) \log\left(\frac{1.25}{\delta_i}\right)}{\epsilon^2}\\
+ =&amp; \frac{16 k \log\left(\frac{2}{\delta}\right) \log\left(\frac{2.5 k}{\delta}\right)}{\epsilon^2}\\
+\end{align}\]</div>
+<p>在”向量化”形式下，我们只需要一次问询，其<span class="math notranslate nohighlight">\(L2\)</span>敏感度为<span class="math notranslate nohighlight">\(\sqrt{k}\)</span>。使用高斯机制的噪声尺度为<span class="math notranslate nohighlight">\(\sigma^2 = \frac{2 k \log(1.25/\delta)}{\epsilon^2}\)</span>。</p>
+<p>在实际应用中，两个噪声尺度表达式的差异意味着什么呢？随着<span class="math notranslate nohighlight">\(k\)</span>的增大，两个表达式的渐进变化趋势相同，但常数项有所不同。与此同时，应用高级组合性得到的表达式中，<span class="math notranslate nohighlight">\(\delta\)</span>包含额外的对数因子。在这些因素的作用下，应用高级组合性得到的隐私消耗量边界要比实际情况宽松得多。我们同样把两个噪声尺度表达式的图像画出来。</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>
+
+<span class="c1"># 每个问询的L2敏感度：1</span>
+<span class="c1"># 问询次数：k</span>
+<span class="n">noises_seq</span> <span class="o">=</span> <span class="p">[</span><span class="mi">16</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.25</span><span class="o">/</span><span class="n">delta</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">delta</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">epsilon</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ks</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="n">noises_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;高级组合性&#39;</span><span class="p">)</span>
+
+<span class="c1"># 问询次数：1</span>
+<span class="c1"># 每个问询的L2敏感度：sqrt(k)</span>
+<span class="n">noises_l1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.25</span><span class="o">/</span><span class="n">delta</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">epsilon</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ks</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;高斯机制：向量化 vs. 组合性&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;问询次数&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;噪声尺度&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="n">noises_l1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;向量化&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch8_5_0.png" src="_images/ch8_5_0.png" />
+</div>
+</div>
+<p>两者的图像甚至相距甚远，”向量化”的噪声尺度增长量<em>远</em>比高级组合性慢。这意味着什么呢？我们应该能在串行组合方面做得<em>更</em>好！</p>
+<div class="section" id="id2">
+<h2>最大散度和瑞丽散度<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<p>可以证明，可以直接应用<em>最大散度</em>（Max Divergence）来描述差分隐私的定义。在统计学中，<a class="reference external" href="https://en.wikipedia.org/wiki/Divergence_(statistics)"><em>散度</em></a>（Divergence）是一种度量两种概率分布差异的方法，而这正是差分隐私定义的基本思想。<em>最大散度</em>是<a class="reference external" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">KL散度</a>（Kullback–Leibler Divergence）的最坏情况，也是度量概率分布差异最常见的方法之一。两个概率分布<span class="math notranslate nohighlight">\(Y\)</span>和<span class="math notranslate nohighlight">\(Z\)</span>的最大散度定义为：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-127c6a81-0cdb-4d43-9a30-e2b0145daa24">
+<span class="eqno">(23)<a class="headerlink" href="#equation-127c6a81-0cdb-4d43-9a30-e2b0145daa24" title="公式的永久链接">#</a></span>\[\begin{align}
+D_\infty(Y \Vert Z) = \max_{S \subseteq \text{Supp}(Y)} \Big[\log \frac{Pr[Y \in S]}{Pr[Z \in S]} \Big]
+\end{align}\]</div>
+<p>此定义从形式上看已经很像<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私的定义了！特别地，可以证明如果：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0e1b8dc2-9f66-4d01-840a-f64e7b9902a2">
+<span class="eqno">(24)<a class="headerlink" href="#equation-0e1b8dc2-9f66-4d01-840a-f64e7b9902a2" title="公式的永久链接">#</a></span>\[\begin{align}
+D_\infty(F(x) \Vert F(x') \leq \epsilon
+\end{align}\]</div>
+<p>则<span class="math notranslate nohighlight">\(F\)</span>满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。</p>
+<p>差分隐私的一个有趣研究方向是尝试引入不同类型的散度来构建变种隐私定义。在已有的散度定义中，<a class="reference external" href="https://en.wikipedia.org/wiki/R%C3%A9nyi_entropy#R%C3%A9nyi_divergence">瑞丽散度</a>（Rényi Divergence）尤其有趣，因为我们也可以（像最大散度一样）从瑞丽散度中恢复出差分隐私的原始定义。概率分布<span class="math notranslate nohighlight">\(P\)</span>和<span class="math notranslate nohighlight">\(Q\)</span>的<span class="math notranslate nohighlight">\(\alpha\)</span>阶瑞丽散度定义为：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-05118b68-8090-471b-99d9-7c14e09431a3">
+<span class="eqno">(25)<a class="headerlink" href="#equation-05118b68-8090-471b-99d9-7c14e09431a3" title="公式的永久链接">#</a></span>\[\begin{align}
+D_\alpha(P \Vert Q) = \frac{1}{\alpha - 1} \log E_{x \sim Q} \Big(\frac{P(x)}{Q(x)}\Big)^\alpha
+\end{align}\]</div>
+<p>其中<span class="math notranslate nohighlight">\(P(x)\)</span>和<span class="math notranslate nohighlight">\(Q(x)\)</span>分别为<span class="math notranslate nohighlight">\(P\)</span>和<span class="math notranslate nohighlight">\(Q\)</span>在点<span class="math notranslate nohighlight">\(x\)</span>处的概率密度。</p>
+<p>如果我们令<span class="math notranslate nohighlight">\(\alpha = \infty\)</span>，则我们可以立即恢复出<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私的定义！我们会自然而然地想到这样一个问题：如果我们把<span class="math notranslate nohighlight">\(\alpha\)</span>设置为别的数会发生什么？我们接下来将看到，使用瑞丽散度可以得到有趣的宽松差分隐私定义，这些定义对于组合定理更加友好，同时可以避免像<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私定义那样出现灾难性失败的可能。</p>
+</div>
+<div class="section" id="id3">
+<h2>瑞丽差分隐私<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h2>
+<p>2017年，Ilya Mironov提出<a class="reference external" href="https://arxiv.org/abs/1702.07476">瑞丽差分隐私</a>（Rényi Differential Privacy，RDP） <span id="id4">[<a class="reference internal" href="bibliography.html#id14" title="Ilya Mironov. Renyi differential privacy. In Computer Security Foundations Symposium (CSF), 2017 IEEE 30th, 263–275. IEEE, 2017.">10</a>]</span>。如果对与所有的临近数据集<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>，随机机制<span class="math notranslate nohighlight">\(F\)</span>满足</p>
+<div class="amsmath math notranslate nohighlight" id="equation-29401af4-f87a-41ae-be3d-a53a97289009">
+<span class="eqno">(26)<a class="headerlink" href="#equation-29401af4-f87a-41ae-be3d-a53a97289009" title="公式的永久链接">#</a></span>\[\begin{align}
+D_\alpha(F(x) \Vert F(x')) \leq \bar{\epsilon}
+\end{align}\]</div>
+<p>则称此机制<span class="math notranslate nohighlight">\(F\)</span>满足<span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP。</p>
+<p>换句话说，瑞丽差分隐私要求<span class="math notranslate nohighlight">\(F(x)\)</span>和<span class="math notranslate nohighlight">\(F(x')\)</span>的<span class="math notranslate nohighlight">\(\alpha\)</span>阶瑞丽散度不超过<span class="math notranslate nohighlight">\(\bar{\epsilon}\)</span>。请注意，我们将使用<span class="math notranslate nohighlight">\(\bar{\epsilon}\)</span>表示瑞丽差分隐私的参数<span class="math notranslate nohighlight">\(\epsilon\)</span>，以区分<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私和<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私中的<span class="math notranslate nohighlight">\(\epsilon\)</span>。</p>
+<p>瑞丽差分隐私的一个关键性质是，如果一个机制满足瑞丽差分隐私，那么此机制也满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私。具体而言，如果<span class="math notranslate nohighlight">\(F\)</span>满足<span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-瑞丽差分隐私，那么对于任意给定的<span class="math notranslate nohighlight">\(\delta &gt; 0\)</span>，<span class="math notranslate nohighlight">\(F\)</span>满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私，其中<span class="math notranslate nohighlight">\(\epsilon = \bar{\epsilon} + \frac{\log(1/\delta)}{\alpha - 1}\)</span>。分析者可以自由选择<span class="math notranslate nohighlight">\(\delta\)</span>的取值。实际应用中应该选择一个有意义的<span class="math notranslate nohighlight">\(\delta\)</span>值（如令<span class="math notranslate nohighlight">\(\delta \leq \frac{1}{n^2}\)</span>）。</p>
+<p>实现瑞丽差分隐私的基本机制是高斯机制。具体来说，对于一个<span class="math notranslate nohighlight">\(L2\)</span>敏感度为<span class="math notranslate nohighlight">\(\Delta f\)</span>的函数<span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}^k\)</span>，可以按照下述方法构造<span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-瑞丽差分隐私机制：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-78077aab-4693-4adc-a2d1-6d160ca3a3a7">
+<span class="eqno">(27)<a class="headerlink" href="#equation-78077aab-4693-4adc-a2d1-6d160ca3a3a7" title="公式的永久链接">#</a></span>\[\begin{align}
+F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2 \alpha}{2\bar{\epsilon}}
+\end{align}\]</div>
+<p>我们按照如下方法实现满足瑞丽差分隐私的高斯机制：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian_mech_RDP_vec</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">epsilon_bar</span><span class="p">):</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">sensitivity</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">epsilon_bar</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vec</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>瑞丽差分隐私的主要优势是，用高斯机制实现的瑞丽差分隐私满足<em>紧致组合</em>性。同时，组合使用机制时不需要引入特殊的高级组合定理。瑞丽差分隐私的串行组合性为：</p>
+<ul class="simple">
+<li><p>如果<span class="math notranslate nohighlight">\(F_1\)</span>满足<span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon_1})\)</span>-瑞丽差分隐私</p></li>
+<li><p>且<span class="math notranslate nohighlight">\(F_2\)</span>也满足<span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon_2})\)</span>-瑞丽差分隐私</p></li>
+<li><p>则他们的组合机制满足<span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon_1} + \bar{\epsilon_2})\)</span>-瑞丽差分隐私</p></li>
+</ul>
+<p>基于上述串行组合性描述，组合使用<span class="math notranslate nohighlight">\(k\)</span>次<span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-瑞丽差分隐私机制所得到的机制满足<span class="math notranslate nohighlight">\((\alpha, k\bar{\epsilon})\)</span>-瑞丽差分隐私。当给定噪声等级时（即给定<span class="math notranslate nohighlight">\(\sigma^2\)</span>的值时），使用瑞丽差分隐私的串行组合性来限制重复应用高斯机制的隐私消耗量，再将隐私定义转换为<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私，这一过程计算得到的总隐私消耗量通常比直接在<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>中应用串行组合定理（甚至使用高级组合定理）得到的总隐私消耗量要低得多。</p>
+<p>因此，瑞丽差分隐私的基本思想已被广泛应用于近期提出的迭代算法中，大大改善隐私消耗量的计算结果。谷歌的<a class="reference external" href="https://github.com/tensorflow/privacy">差分隐私Tensorflow</a>就使用了瑞丽差分隐私的基本思想。</p>
+<p>最后，与其他差分隐私变体一样，瑞丽差分隐私也满足后处理性。</p>
+</div>
+<div class="section" id="id5">
+<h2>零集中差分隐私<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h2>
+<p>Mark Bun和Thomas Steinke也考虑到了类似的问题。他们于2016年提出了<a class="reference external" href="https://arxiv.org/abs/1605.02065">零集中差分隐私</a>（Zero-concentrated Differential Privacy，zCDP） <span id="id6">[<a class="reference internal" href="bibliography.html#id15" title="Mark Bun and Thomas Steinke. Concentrated differential privacy: simplifications, extensions, and lower bounds. In Theory of Cryptography Conference, 635–658. Springer, 2016.">11</a>]</span>。与瑞丽差分隐私相同，零集中差分隐私也是根据瑞丽散度定义的差分隐私变体。不过，零集中差分隐私定义只包含了一个隐私参数（<span class="math notranslate nohighlight">\(\rho\)</span>）。如果对于所有的临近数据集<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>，以及所有的<span class="math notranslate nohighlight">\(\alpha \in (1, \infty)\)</span>，如果一个随机机制<span class="math notranslate nohighlight">\(F\)</span>满足：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6371e0fd-0cac-44b4-a21f-9f996693b498">
+<span class="eqno">(28)<a class="headerlink" href="#equation-6371e0fd-0cac-44b4-a21f-9f996693b498" title="公式的永久链接">#</a></span>\[\begin{align}
+D_\alpha (F(x) \Vert F(x')) \leq \rho\alpha
+\end{align}\]</div>
+<p>则称此<span class="math notranslate nohighlight">\(F\)</span>满足<span class="math notranslate nohighlight">\(\rho\)</span>-零集中差分隐私。</p>
+<p>零集中差分隐私的定义比瑞丽差分隐私更强，因为零集中差分隐私对瑞丽散度的阶提出了更严格的限制。不过，随着<span class="math notranslate nohighlight">\(\alpha\)</span>的增大，限制会变得更加宽松。与瑞丽差分隐私相同，也可以把零集中差分隐私转换为<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私：如果<span class="math notranslate nohighlight">\(F\)</span>满足<span class="math notranslate nohighlight">\(\rho\)</span>-零集中差分隐私，则对于任意给定的<span class="math notranslate nohighlight">\(\delta &gt; 0\)</span>，<span class="math notranslate nohighlight">\(F\)</span>满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私，其中<span class="math notranslate nohighlight">\(\epsilon = \rho + 2\sqrt{\rho \log(1/\delta)}\)</span>。</p>
+<p>零集中差分隐私和瑞丽差分隐私的另一个相似点在于，也可以使用高斯机制实现零集中差分隐私。具体而言，对于一个<span class="math notranslate nohighlight">\(L2\)</span>敏感度为<span class="math notranslate nohighlight">\(\Delta f\)</span>的函数<span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}^k\)</span>，下述机制满足<span class="math notranslate nohighlight">\(\rho\)</span>-零集中差分隐私：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d2cce963-9b4b-46f7-a12a-f845c772373d">
+<span class="eqno">(29)<a class="headerlink" href="#equation-d2cce963-9b4b-46f7-a12a-f845c772373d" title="公式的永久链接">#</a></span>\[\begin{align}
+F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ 其中 } \sigma^2 = \frac{\Delta f^2}{2\rho}
+\end{align}\]</div>
+<p>与瑞丽差分隐私一样，很容易实现零集中差分隐私机制：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian_mech_zCDP_vec</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">rho</span><span class="p">):</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">sensitivity</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">rho</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vec</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>零集中差分隐私和瑞丽差分隐私还有一个相似点：当重复使用高斯机制实现零集中差分隐私时，应用串行组合性得到的隐私消耗量也是渐进紧致的。零集中差分隐私的串行组合性描述也非常简单：把各个<span class="math notranslate nohighlight">\(\rho\)</span>相加即可。具体而言：</p>
+<p>串行组合：</p>
+<ul class="simple">
+<li><p>如果<span class="math notranslate nohighlight">\(F_1\)</span>满足<span class="math notranslate nohighlight">\(\rho_1\)</span>-零集中差分隐私</p></li>
+<li><p>且<span class="math notranslate nohighlight">\(F_2\)</span>满足<span class="math notranslate nohighlight">\(\rho_2\)</span>-零集中差分隐私</p></li>
+<li><p>则他们的组合机制满足<span class="math notranslate nohighlight">\(\rho_1+\rho_2\)</span>-零集中差分隐私。</p></li>
+</ul>
+<p>最后，零集中差分隐私同样满足后处理性。</p>
+</div>
+<div class="section" id="id7">
+<h2>不同差分隐私变体的组合性<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h2>
+<p>我们何时需要使用差分隐私变体？我们又应该使用哪个差分隐私变体呢？</p>
+<p>当遇到下述情况时，近年来提出的差分隐私变体将<em>显著</em>收紧隐私消耗量的边界：</p>
+<ul class="simple">
+<li><p>使用高斯机制实现差分隐私（特别是高维向量）</p></li>
+<li><p>问询算法多次（如成百上千次）使用差分隐私机制</p></li>
+</ul>
+<p>我们该如何使用瑞丽差分隐私和零集中差分隐私呢？通常，我们先选择好差分隐私变体，并应用此变体实现差分隐私算法。随后，我们计算总隐私消耗量，并将计算结果转换回<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私，以便与其他算法进行比较。</p>
+<p>我们用一个例子来展示使用瑞丽差分隐私和零集中差分隐私的效果。想象一个应用<span class="math notranslate nohighlight">\(k\)</span>次高斯机制的问询算法。我们固定<span class="math notranslate nohighlight">\(\sigma\)</span>（即固定<span class="math notranslate nohighlight">\(k\)</span>轮迭代中每轮高斯机制引入的噪声量）和<span class="math notranslate nohighlight">\(\delta\)</span>的取值，比较每个变体最终组合得到的总隐私消耗量<span class="math notranslate nohighlight">\(\epsilon\)</span>。</p>
+<p>可以看到，虽然增加了相同的噪声量，但瑞丽差分隐私和零集中差分隐私的串行组合会得到<em>更小的<span class="math notranslate nohighlight">\(\epsilon\)</span></em>。由于所有变体都应用了相同的实现机制（即每种情况下增加的噪声类型和噪声量都相同），这意味着瑞丽差分隐私和零集中差分隐私为同一算法提供了<em>更加紧致的隐私消耗量上界</em>。</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span> <span class="o">=</span> <span class="mf">200.0</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>
+<span class="n">lap_eps</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">gauss_eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.25</span><span class="o">/</span><span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ys_gauss</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.25</span><span class="o">/</span><span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="n">ys_gauss_adv</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">gauss_eps</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">delta</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="n">rho</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ys_gauss_zcdp</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="o">*</span><span class="n">rho</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x</span><span class="o">*</span><span class="n">rho</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">delta</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">rdp_eps</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ys_gauss_rdp</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="o">*</span><span class="n">rdp_eps</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">delta</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="c1"># ys_moments = [4*np.sqrt(x*np.log(1/delta))/sigma for x in xs]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys_gauss_adv</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;高斯机制+高级组合性&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys_gauss_zcdp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;高斯机制+零集中差分隐私&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys_gauss_rdp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;高斯机制+瑞丽差分隐私&quot;</span><span class="p">)</span>
+<span class="c1"># plt.plot(xs, ys_moments, label=&quot;Moments Accountant&quot;)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;迭代轮数&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ε&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch8_15_0.png" src="_images/ch8_15_0.png" />
+</div>
+</div>
+<p>首先要注意的是，无论应用零集中差分隐私还是瑞丽差分隐私，其串行组合性都比应用高级组合性的<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私所得到的总隐私消耗量要好得多。当使用高斯机制来构造迭代算法时，应该优先考虑使用这些差分隐私变体。</p>
+<p>其次要注意的是零集中差分隐私（橘色曲线）和瑞丽差分隐私（绿色曲线）之间的区别。由于瑞丽差分隐私固定了<span class="math notranslate nohighlight">\(\alpha\)</span>，瑞丽差分隐私的<span class="math notranslate nohighlight">\(\epsilon\)</span>会随<span class="math notranslate nohighlight">\(k\)</span>值的增长而线性增长。与之相比，零集中差分隐私会同时考虑多个<span class="math notranslate nohighlight">\(\alpha\)</span>，因此零集中差分隐私的<span class="math notranslate nohighlight">\(\epsilon\)</span>会随<span class="math notranslate nohighlight">\(k\)</span>值的增长而次线性增长。两条曲线在某些<span class="math notranslate nohighlight">\(k\)</span>下会相交，相交点由瑞丽差分隐私选择的<span class="math notranslate nohighlight">\(\alpha\)</span>决定（当<span class="math notranslate nohighlight">\(\alpha = 20\)</span>时，两条曲线大概在<span class="math notranslate nohighlight">\(k=300\)</span>时相交）。</p>
+<p>该差异的实际影响在于，使用瑞丽差分隐私时必须慎重选择<span class="math notranslate nohighlight">\(\alpha\)</span>的取值，以得到尽可能紧致的隐私消耗量。通常很容易做到这一点，因为算法本身一般也需要以<span class="math notranslate nohighlight">\(\alpha\)</span>作为输入参数，因此我们可以简单地测试多个<span class="math notranslate nohighlight">\(\alpha\)</span>的取值，观察哪个值得到的隐私消耗量<span class="math notranslate nohighlight">\(\epsilon\)</span>最小。因为该测试与数据<em>无关</em>（仅与我们选择的隐私参数和迭代次数有关），我们可以根据需要测试任意数量的<span class="math notranslate nohighlight">\(\alpha\)</span>，这不会增加额外的隐私消耗量。我们只需要测试少量的<span class="math notranslate nohighlight">\(\alpha\)</span>（一般可以令<span class="math notranslate nohighlight">\(\alpha\)</span>从2取到100）即可找到最小值。实际应用中大多都会使用此方法。谷歌的差分隐私Tensorflow就是使用此方法来得到适当的<span class="math notranslate nohighlight">\(\alpha\)</span>。</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="ch7.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title">局部敏感度</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ch9.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">指数机制</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
