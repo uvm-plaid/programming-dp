@@ -1,0 +1,27 @@
+# Book settings
+title: 动手学差分隐私
+author: Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）
+copyright: "2021"
+logo: notebooks/logo_zh_cn.png
+
+latex:
+  latex_documents:
+    targetname: book.tex
+
+parse:
+  myst_enable_extensions:
+    # don't forget to list any other extensions you want enabled,
+    # including those that are enabled by default!
+    - amsmath
+    - dollarmath
+
+bibtex_bibfiles:
+    - references.bib
+
+repository:
+  url: https://github.com/uvm-plaid/programming-dp
+  branch: master
+
+sphinx:
+  config:
+    language: zh_CN
