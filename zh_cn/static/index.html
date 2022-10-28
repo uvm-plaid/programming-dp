@@ -1,0 +1,264 @@
+
+<html prefix="og: https://ogp.me/ns#">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+<title>动手学差分隐私（Programming Differential Privacy）</title>
+<meta name="description" content="一本面向开发者的差分隐私书籍（A book about differential privacy, for programmers.）"/>
+
+
+<meta property="og:title" content="动手学差分隐私（Programming Differential Privacy）" />
+<meta property="og:type" content="book" />
+<meta property="og:image" content="https://uvm-plaid.github.io/programming-dp/cn/book-logo.png" />
+<meta property="og:image:secure_url" content="https://uvm-plaid.github.io/programming-dp/cn/book-logo.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="book logo" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@josephnear" />
+<meta name="twitter:title" content="动手学差分隐私（Programming Differential Privacy）" />
+<meta name="twitter:description" content="一本面向开发者的差分隐私书籍（A book about differential privacy, for programmers）" />
+<meta name="twitter:image" content="https://uvm-plaid.github.io/programming-dp/cn/book-logo.png" />
+
+
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "Book",
+	"name": "动手学差分隐私（Programming Differential Privacy）",
+  "about": "一本面向开发者的差分隐私教材（A book about differential privacy, for programmers）"
+	"image": "https://uvm-plaid.github.io/programming-dp/book-logo.png",
+}
+</script>
+
+<PageMap>
+  <DataObject type="thumbnail">
+    <Attribute name="src" value="https://uvm-plaid.github.io/programming-dp/cn/book-logo.png"/>
+  </DataObject>
+</PageMap>
+
+<meta name="thumbnail" content="https://uvm-plaid.github.io/programming-dp/cn/book-logo.png" />
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<style type="text/css">
+body         { background-color: #FFFFFF;
+               font-family: Optima, Palatino, Arial, sans-serif, Helvetica;
+	       padding:0ex 0ex 0ex 0ex ;
+	       margin: 0ex 0ex 0ex 0ex ;
+}
+hr {
+  border: 0;
+  width: 90%;
+  height: 2px;
+  color: #e3e7ef;
+  background-color: #e3e7ef;
+  margin:3ex 2ex 0ex 0ex ;
+}
+h1 {
+  font-family: Optima,Segoe,Segoe UI,Candara,Calibri,Arial,sans-serif;
+  color:#333333;
+  font-size:2.7em;
+  letter-spacing:-2px;
+}
+h2 {
+  font-family: Optima,Segoe,Segoe UI,Candara,Calibri,Arial,sans-serif;
+  color:#333333;
+  font-size:1.7em;
+  padding-bottom: 0.5em;
+}
+
+h3 {
+  font-family: Optima,Segoe,Segoe UI,Candara,Calibri,Arial,sans-serif;
+  color:#444444;
+}
+
+h4 {
+  font-family: Optima,Segoe,Segoe UI,Candara,Calibri,Arial,sans-serif;
+  color:#777777;
+  padding: 0.5em;
+}
+big {
+  font-size:1.3em;
+}
+spam {
+  color:#ffffff;
+}
+
+a {
+  padding: .2em;
+}
+
+html { font-size: 18px !important }
+
+@media (pointer: coarse) {
+   a {
+    padding: .4em;
+  }
+}
+img {
+max-width: 300px;
+}
+a:link {
+  color:#444444;
+  text-decoration: underline;
+}
+a:visited {
+  color:#444444;
+}
+a:hover {
+  color:#222222;
+  text-decoration:none;
+}
+a:active {
+  color:#000000;
+}
+p.small {
+    font-variant: small-caps;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-flow: row nowrap;
+  margin: 10%;
+}
+
+@media screen and (max-width:600px) {
+  .box {
+    flex-flow: column nowrap;
+  }
+}
+</style>
+
+
+<style type=text/css>
+
+#book-logo{
+  border: black;
+  border-width: thin;
+  border-style: solid;
+  max-width: 70%;
+  height: auto;
+}
+
+#citation{
+  font-size: 10px;
+  background: lightgray;
+  padding: 10px;
+  font-family: monospace;
+  width: 80%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+
+  <div style="flex: 0 0 50%; margin-bottom: 10px;">
+	<a href="https://programming-dp.com/cover.html">
+		<img id="book-logo"  src="book-logo.png" alt="Book Logo" >
+	</a>
+</div>
+
+<div style="flex: 0 0 50%; padding-bottom: 2em; text-align: left;">
+  <h1>动手学差分隐私</h1>
+  <h1>（Programming Differential Privacy）</h1>
+  <h2>一本面向开发者的差分隐私书籍</h2>
+  <h2>（A book about differential privacy, for programmers）</h2>
+
+  <h2><a href="http://uvm.edu/~jnear">Joseph P. Near</a>、<a href="http://uvm.edu/~cabuah">Chiké Abuah</a>（著）</h2>
+  <h2><a href="https://github.com/liuweiran900217">刘巍然（Weiran Liu）</a>、<a href="https://github.com/little12">李双（Shuang Li）</a>（译）</h2>
+
+  <p><b><i>Programming Differential Privacy</i> uses examples and
+  Python code to explain the ideas behind differential privacy!</b>
+  The book is suitable for undergraduate students in computer science,
+  and no theory background is expected.</p>
+
+  <p><b><i>动手学差分隐私</i>应用具体实例和Python代码解释差分隐私的基本原理！</b>
+    本书适合计算机专业的本科生使用，学习本书的内容不需要预先了解任何理论背景知识。</p>
+
+  <p><b><i>Programming Differential Privacy</i> is executable!</b>
+    Each chapter is actually generated from Python code. If you view the
+    HTML version of the book, you can click on the "Launch Binder" icon
+    at the top of each page to start an interactive version of that
+    chapter.</p>
+
+  <p><b><i>动手学差分隐私</i>是一本可上手执行代码的书！</b>
+    每章的内容实际上都是用Python代码生成的。如果您浏览的是本书的HTML版本，
+    可以点击页面上方的"Launch Binder"图标，开启对应章节的交互式版本。</p>
+
+  <p>
+    <ul>
+      <li><b><a href="https://programming-dp.com/cover.html">点击此处阅读HTML版本
+        （Click here to read the HTML version）</a></b>
+      <li><b><a href="book.pdf">点击此处下载PDF版本（Click here to download the PDF version）</a></b>
+      <li><b><a href="https://programming-dp.com/cn/notebooks/cover.html">点击此处阅读中文HTML版本
+    （Click here to read the Chinese HTML version）</a></b>
+      <li><b><a href="https://programming-dp.com/cn/book.pdf">点击此处下载中文PDF版本（Click here to download the Chinese PDF version）</a></b>
+    </ul>
+  </p>
+
+  <p>This book was originally developed at the University of Vermont
+    as part
+    of <a href="https://jnear.github.io/cs211-data-privacy/">CS211:
+      Data Privacy</a>. The material has since been used at the
+    University of Chicago, Penn State, and Rice University. If you're
+    using the book in your course, please let us know!</p>
+
+  <p>本书最初在佛蒙特大学开发，服务于<a href="https://jnear.github.io/cs211-data-privacy/">CS211课程：数据隐私</a>。随后，
+    本书被芝加哥大学、宾夕法尼亚州立大学、以及莱斯大学所使用。如果您在您的课程中使用了本书，还请告知我们！</p>
+
+  <p><b><i>Programming Differential Privacy</i> is a living,
+  open-source book.</b> We welcome comments, suggestions, and
+  contributions via issues and pull requests
+  on <a href="https://github.com/uvm-plaid/programming-dp">the GitHub
+  repository</a>.
+
+  <p><b><i>动手学差分隐私</i>是一本内容可随时更新的开源书籍。</b>
+  我们欢迎您提交任何意见和建议，
+  或通过在<a href="https://github.com/uvm-plaid/programming-dp">GitHub仓库</a>上提交问题（Issue）和推送请求（Pull request）来为本书作出您的贡献。
+
+  <p>Please use the following to cite the book:</p>
+
+	<div id="citation">
+	  @book{near_abuah_2021,<br>
+          &nbsp;&nbsp; title={Programming Differential Privacy},<br>
+          &nbsp;&nbsp; author={Near, Joseph P. and Abuah, Chiké},<br>
+          &nbsp;&nbsp; volume={1},<br>
+          &nbsp;&nbsp; url={https://uvm-plaid.github.io/programming-dp/}, <br>
+          &nbsp;&nbsp; year={2021}<br>
+          }<br>
+	</div>
+
+  <p>请使用下述方法引用本书：</p>
+
+  <div id="citation">
+    @book{near_abuah_2021,<br>
+    &nbsp;&nbsp; title={Programming Differential Privacy},<br>
+    &nbsp;&nbsp; author={Near, Joseph P. and Abuah, Chiké},<br>
+    &nbsp;&nbsp; volume={1},<br>
+    &nbsp;&nbsp; url={https://uvm-plaid.github.io/programming-dp/}, <br>
+    &nbsp;&nbsp; year={2021}<br>
+    }<br>
+  </div>
+</div>
+
+
+
+
+</body>
+</html>
