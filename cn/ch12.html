@@ -568,8 +568,8 @@ title="Print to PDF"
 <h2>模型是什么？<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
 <p>模型到底<em>是</em>什么？它是如何编码预测所用信息的？</p>
 <p>有很多种不同类型的模型。这里我们要探讨的是<em>线性模型（Linear Model）</em>。给定一个包含<span class="math notranslate nohighlight">\(k\)</span>-维特征向量<span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>的无标签样本，线性模型预测此样本的标签时，将计算下述值：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c6b9efa3-34b0-478c-90fd-a779b23ae798">
-<span class="eqno">(33)<a class="headerlink" href="#equation-c6b9efa3-34b0-478c-90fd-a779b23ae798" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bd9fb9f6-074f-42bc-b787-ed784bdd20b6">
+<span class="eqno">(33)<a class="headerlink" href="#equation-bd9fb9f6-074f-42bc-b787-ed784bdd20b6" title="公式的永久链接">#</a></span>\[\begin{align}
 w_1 x_1 + \dots + w_k x_k + bias
 \end{align}\]</div>
 <p>并用此值的符号作为预测标签（如果此值为负数，则预测结果为-1；如果此值为正数，则预测结果为1）。</p>
@@ -909,13 +909,13 @@ w_1 x_1 + \dots + w_k x_k + bias
 <div class="section" id="id7">
 <h3>梯度裁剪<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h3>
 <p>回想一下，在实现”采样-聚合”框架时，我们裁剪未知敏感度函数<span class="math notranslate nohighlight">\(f\)</span>的输出，强制限定<span class="math notranslate nohighlight">\(f\)</span>的敏感度上界。<span class="math notranslate nohighlight">\(f\)</span>的敏感度为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-236a812a-c684-41f8-8b96-df3c90eb8d87">
-<span class="eqno">(34)<a class="headerlink" href="#equation-236a812a-c684-41f8-8b96-df3c90eb8d87" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b386c032-ed2b-4d56-8d81-fc649d82a4dd">
+<span class="eqno">(34)<a class="headerlink" href="#equation-b386c032-ed2b-4d56-8d81-fc649d82a4dd" title="公式的永久链接">#</a></span>\[\begin{align}
 \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>使用参数<span class="math notranslate nohighlight">\(b\)</span>裁剪后，上述表达式变为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ab289986-3a39-49c1-929a-354edc6d5b1b">
-<span class="eqno">(35)<a class="headerlink" href="#equation-ab289986-3a39-49c1-929a-354edc6d5b1b" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-abba2c56-1ca7-434d-b284-c09b85f3be8c">
+<span class="eqno">(35)<a class="headerlink" href="#equation-abba2c56-1ca7-434d-b284-c09b85f3be8c" title="公式的永久链接">#</a></span>\[\begin{align}
 \lvert \mathsf{clip}(f(x), b) - \mathsf{clip}(f(x'),b) \rvert
 \end{align}\]</div>
 <p>最差情况下，<span class="math notranslate nohighlight">\(\mathsf{clip}(f(x), b) = b\)</span>，且<span class="math notranslate nohighlight">\(\mathsf{clip}(f(x'),b) = 0\)</span>，因此裁剪结果的敏感度为<span class="math notranslate nohighlight">\(b\)</span>（即敏感度等于裁剪参数）。</p>
@@ -934,8 +934,8 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <p>现在，我们可以开始分析裁剪梯度的敏感度了。我们将梯度表示为<span class="math notranslate nohighlight">\(\nabla(\theta; X, y)\)</span>（对应我们Python代码中的<code class="docutils literal notranslate"><span class="pre">gradient</span></code>）：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-978188dc-0da6-4d1a-9115-53075d260899">
-<span class="eqno">(36)<a class="headerlink" href="#equation-978188dc-0da6-4d1a-9115-53075d260899" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d5286c1d-5544-461c-8a1f-4fc47be6f9f7">
+<span class="eqno">(36)<a class="headerlink" href="#equation-d5286c1d-5544-461c-8a1f-4fc47be6f9f7" title="公式的永久链接">#</a></span>\[\begin{align}
 \lVert \mathsf{L2\_clip}( \nabla (\theta; X, y), b) - \mathsf{L2\_clip}( \nabla (\theta; X', y), 0) \rVert_2
 \end{align}\]</div>
 <p>最差情况下，<span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X, y), b)\)</span>的<span class="math notranslate nohighlight">\(L2\)</span>范数为<span class="math notranslate nohighlight">\(b\)</span>，且<span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X', y))\)</span>全为0。此时，两者的<span class="math notranslate nohighlight">\(L2\)</span>范数差等于<span class="math notranslate nohighlight">\(b\)</span>。这样一来，我们成功用裁剪参数<span class="math notranslate nohighlight">\(b\)</span>限定了梯度的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界！</p>
@@ -985,7 +985,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7785272003538257
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7784166298098186
 </pre></div>
 </div>
 </div>
@@ -995,8 +995,8 @@ w_1 x_1 + \dots + w_k x_k + bias
 <div class="section" id="id8">
 <h3>梯度的敏感度<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h3>
 <p>前面所述方法的普适性很高，因为此方法不需要假设梯度函数满足什么特定的要求。但是，我们有时<em>的确</em>对梯度函数有所了解。特别地，一大类常用的梯度函数（包括本章用到的对率损失梯度）是<em>利普希茨连续</em>（Lipschitz Continuous）的。这意味着这些梯度函数的全局敏感度是有界的。用数学语言描述，我们可以证明：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29933cea-0da2-4310-9afb-920353a0f485">
-<span class="eqno">(37)<a class="headerlink" href="#equation-29933cea-0da2-4310-9afb-920353a0f485" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8d16c457-dd9e-43c9-87b4-0e36df42ecf1">
+<span class="eqno">(37)<a class="headerlink" href="#equation-8d16c457-dd9e-43c9-87b4-0e36df42ecf1" title="公式的永久链接">#</a></span>\[\begin{align}
 \text{If}\; \lVert x_i \rVert_2 \leq b\; \text{then}\; \lVert \nabla(\theta; x_i, y_i) \rVert_2 \leq b
 \end{align}\]</div>
 <p>这一结论允许我们通过裁剪<em>训练样本</em>（即梯度函数的<em>输入</em>）来获得梯度函数的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界。这样，我们就不再需要裁剪梯度函数的<em>输出</em>了。</p>
@@ -1043,7 +1043,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7804068996019461
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7799646174259177
 </pre></div>
 </div>
 </div>

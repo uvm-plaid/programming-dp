@@ -522,7 +522,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>81
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111
 </pre></div>
 </div>
 </div>
@@ -573,7 +573,22 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ch10_16_0.png" src="_images/ch10_16_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="n">a30a22d109d8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;备选&quot;b&quot;的值&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;出现次数&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">bs</span><span class="p">[</span><span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">adult</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]);</span>
+
+<span class="nn">&lt;ipython-input-8-a30a22d109d8&gt;</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;备选&quot;b&quot;的值&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;出现次数&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">bs</span><span class="p">[</span><span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">adult</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]);</span>
+
+<span class="ne">TypeError</span>: range indices must be integers or slices, not NoneType
+</pre></div>
+</div>
+<img alt="_images/ch10_16_1.png" src="_images/ch10_16_1.png" />
 </div>
 </div>
 <p>我们可以使用稀疏向量技术构建可自动计算裁剪参数的求和问询算法（也可以构建对应的均值问询算法）。</p>
@@ -605,7 +620,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.563062582400185
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.5750654706846
 </pre></div>
 </div>
 </div>
@@ -618,68 +633,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">5</span><span class="n">b72967cbeb8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">auto_avg</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Capital Gain&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="nn">&lt;ipython-input-9-e7e31a12e688&gt;</span> in <span class="ni">auto_avg</span><span class="nt">(df, epsilon)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="c1"># 使用1/3的隐私预算执行AboveThreshold，得到一个好的裁剪参数</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">epsilon_svt</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">/</span> <span class="mi">3</span>
-<span class="ne">---&gt; </span><span class="mi">11</span>     <span class="n">final_b</span> <span class="o">=</span> <span class="n">bs</span><span class="p">[</span><span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon_svt</span><span class="p">)]</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> 
-<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="c1"># 分别使用1/3的隐私预算来获得噪声求和值与噪声计数值</span>
-
-<span class="nn">&lt;ipython-input-2-8665ff89037a&gt;</span> in <span class="ni">above_threshold</span><span class="nt">(queries, df, T, epsilon)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>         <span class="n">nu_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">7</span>         <span class="k">if</span> <span class="n">q</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="n">nu_i</span> <span class="o">&gt;=</span> <span class="n">T_hat</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>             <span class="k">return</span> <span class="n">idx</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="k">return</span> <span class="kc">None</span> <span class="c1"># 返回一个无效的问询索引号</span>
-
-<span class="nn">&lt;ipython-input-9-e7e31a12e688&gt;</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(df)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">auto_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="k">def</span> <span class="nf">create_query</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">3</span>         <span class="k">return</span> <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="c1"># 构造问询流</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">clip</span><span class="nt">(self, lower, upper, axis, inplace, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7350</span>             <span class="n">upper</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="n">is_scalar</span><span class="p">(</span><span class="n">upper</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_number</span><span class="p">(</span><span class="n">upper</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">7351</span>         <span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">7352</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clip_with_scalar</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7353</span> 
-<span class="g g-Whitespace">   </span><span class="mi">7354</span>         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">_clip_with_scalar</span><span class="nt">(self, lower, upper, inplace)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7207</span>             <span class="k">if</span> <span class="n">lower</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">7208</span>                 <span class="n">subset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">lower</span>
-<span class="ne">-&gt; </span><span class="mi">7209</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7210</span> 
-<span class="g g-Whitespace">   </span><span class="mi">7211</span>         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">mask</span><span class="p">):</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/numpy/core/_ufunc_config.py</span> in <span class="ni">__exit__</span><span class="nt">(self, *exc_info)</span>
-<span class="g g-Whitespace">    </span><span class="mi">437</span> 
-<span class="g g-Whitespace">    </span><span class="mi">438</span>     <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exc_info</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">439</span>         <span class="n">seterr</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">oldstate</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">440</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">call</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_Unspecified</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">441</span>             <span class="n">seterrcall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">oldcall</span><span class="p">)</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/numpy/core/_ufunc_config.py</span> in <span class="ni">seterr</span><span class="nt">(all, divide, over, under, invalid)</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span> 
-<span class="g g-Whitespace">    </span><span class="mi">110</span>     <span class="n">pyvals</span> <span class="o">=</span> <span class="n">umath</span><span class="o">.</span><span class="n">geterrobj</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">111</span>     <span class="n">old</span> <span class="o">=</span> <span class="n">geterr</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span> 
-<span class="g g-Whitespace">    </span><span class="mi">113</span>     <span class="k">if</span> <span class="n">divide</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/numpy/core/_ufunc_config.py</span> in <span class="ni">geterr</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span> 
-<span class="g g-Whitespace">    </span><span class="mi">168</span>     <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">169</span><span class="s2">     maskvalue = umath.geterrobj()[1]</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span><span class="s2">     mask = 7</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span><span class="s2">     res = </span><span class="si">{}</span><span class="s2"></span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1068.1445048412666
 </pre></div>
 </div>
 </div>

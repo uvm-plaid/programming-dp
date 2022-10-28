@@ -421,8 +421,8 @@ title="Print to PDF"
 <div class="admonition- admonition">
 <p class="admonition-title">定义</p>
 <p>一般将满足差分隐私的函数称为一个<em>机制</em>（Mechanism）。如果对于所有<em>临近数据集</em>（Neighboring Dataset）<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>和所有可能的输出<span class="math notranslate nohighlight">\(S\)</span>，机制<span class="math notranslate nohighlight">\(F\)</span>均满足</p>
-<div class="amsmath math notranslate nohighlight" id="equation-74be656d-55f7-4e1a-84f6-af5e7bbf9644">
-<span class="eqno">(1)<a class="headerlink" href="#equation-74be656d-55f7-4e1a-84f6-af5e7bbf9644" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-40cf8cdf-fd68-4704-b402-cf063b5e1c61">
+<span class="eqno">(1)<a class="headerlink" href="#equation-40cf8cdf-fd68-4704-b402-cf063b5e1c61" title="公式的永久链接">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
 \end{equation}\]</div>
 <p>则称机制<span class="math notranslate nohighlight">\(F\)</span>满足差分隐私。</p>
@@ -451,8 +451,8 @@ title="Print to PDF"
 <div class="admonition- admonition">
 <p class="admonition-title">定义</p>
 <p>根据拉普拉斯机制，对于可以输出一个数值型结果的函数<span class="math notranslate nohighlight">\(f(x)\)</span>，按下述方法定义的<span class="math notranslate nohighlight">\(F(x)\)</span>满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0e697dee-a2a5-413b-8967-979ab992e5fa">
-<span class="eqno">(2)<a class="headerlink" href="#equation-0e697dee-a2a5-413b-8967-979ab992e5fa" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c8d25328-6a6e-4a02-8def-574de8c041a3">
+<span class="eqno">(2)<a class="headerlink" href="#equation-c8d25328-6a6e-4a02-8def-574de8c041a3" title="公式的永久链接">#</a></span>\[\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{equation}\]</div>
 <p>其中<span class="math notranslate nohighlight">\(s\)</span>是<span class="math notranslate nohighlight">\(f\)</span>的<em>敏感度</em>（Sensitivity），<span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span>表示以均值为0、放缩系数为<span class="math notranslate nohighlight">\(S\)</span>的拉普拉斯分布采样。</p>
@@ -469,7 +469,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14246.155609649675
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14229.769249330557
 </pre></div>
 </div>
 </div>
@@ -505,7 +505,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.33727457200366306
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.231925333430109
 </pre></div>
 </div>
 </div>
