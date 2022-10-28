@@ -4,6 +4,10 @@ author: Joseph P. Near and Chiké Abuah
 copyright: "2021"
 logo: logo.png
 
+execute:
+  timeout: -1
+  execute_notebooks: force
+
 sphinx:
   config:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

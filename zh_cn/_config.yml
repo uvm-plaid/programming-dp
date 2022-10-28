@@ -4,6 +4,10 @@ author: Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）
 copyright: "2021"
 logo: logo_zh_cn.png
 
+execute:
+  timeout: -1
+  execute_notebooks: force
+
 latex:
   latex_documents:
     targetname: cn_book.tex
