@@ -434,8 +434,8 @@ title="Print to PDF"
 <li><p>分析者指定一个全局敏感度为<span class="math notranslate nohighlight">\(\Delta u\)</span>的评分函数<span class="math notranslate nohighlight">\(u : \mathcal{D} \times \mathcal{R} \rightarrow \mathbb{R}\)</span></p></li>
 <li><p>指数机制输出<span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span>，各个回复的输出概率与下述表达式成正比：</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-6dd36c16-1180-45c0-8f9b-c28b03a35391">
-<span class="eqno">(30)<a class="headerlink" href="#equation-6dd36c16-1180-45c0-8f9b-c28b03a35391" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8283d176-9e4b-49de-805e-0000a2cdea9f">
+<span class="eqno">(30)<a class="headerlink" href="#equation-8283d176-9e4b-49de-805e-0000a2cdea9f" title="公式的永久链接">#</a></span>\[\begin{align}
 \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)
 \end{align}\]</div>
 <p>和我们之前学习过的机制（如拉普拉斯机制）相比，指数机制最大的不同点在于其<em>总会</em>输出集合<span class="math notranslate nohighlight">\(\mathcal{R}\)</span>中的一个元素。当必须从一个有限集合中选择输出结果，或不能直接在结果上增加噪声时，指数机制就会变得非常有用。例如，假设我们要为一个大型会议敲定一个日期。为此，我们获得了每个参会者的日程表。我们想选择一个与尽可能少的参会者有时间冲突的日期来举办会议，同时想通过差分隐私为所有参会者的日程信息提供隐私保护。在这个场景下，在举办日期上增加噪声没有太大意义，增加噪声可能会使日期从星期五变成星期六，使冲突参会者的数量显著增加。应用指数机制就可以完美解决此类问题：既<em>不需要在日期上增加噪声</em>，又可以实现差分隐私。</p>
@@ -497,10 +497,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    183
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    185
 Never-married          15
-Divorced                1
-Separated               1
 dtype: int64
 </pre></div>
 </div>
@@ -553,8 +551,8 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    194
-Never-married           6
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    196
+Never-married           4
 dtype: int64
 </pre></div>
 </div>
@@ -567,14 +565,14 @@ dtype: int64
 <h2>指数机制是差分隐私的基本机制<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h2>
 <p>我们已经知道，无法使用拉普拉斯机制与串行组合性来实现指数机制，这是因为当使用拉普拉斯机制与串行组合性时，我们可以得到差分隐私保护的所有噪声分数，但我们想实现的差分隐私算法不需要发布这些噪声分数。那么，反过来又如何呢？我们可以应用指数机制实现拉普拉斯机制吗？事实证明，这是可以做到的！</p>
 <p>考虑一个敏感度为<span class="math notranslate nohighlight">\(\Delta q\)</span>的问询函数<span class="math notranslate nohighlight">\(q(x) : \mathcal{D} \rightarrow \mathbb{R}\)</span>。我们可以在真实回复值上增加拉普拉斯噪声<span class="math notranslate nohighlight">\(F(x) = q(x) + \mathsf{Lap}(\Delta q / \epsilon)\)</span>，以得到满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私的回复结果。差分隐私回复<span class="math notranslate nohighlight">\(q\)</span>的概率密度函数为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-50504a97-e3c8-4345-91c8-4817232905a2">
-<span class="eqno">(31)<a class="headerlink" href="#equation-50504a97-e3c8-4345-91c8-4817232905a2" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f3d0db28-b307-428a-9588-54adb2a7e048">
+<span class="eqno">(31)<a class="headerlink" href="#equation-f3d0db28-b307-428a-9588-54adb2a7e048" title="公式的永久链接">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp; \frac{1}{2b} \exp\Big(- \frac{\lvert r - \mu \rvert}{b}\Big)\\
 =&amp; \frac{\epsilon}{2 \Delta q} \exp\Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q}\Big)
 \end{align}\]</div>
 <p>考虑一下，当我们将指数机制的评分函数设置为<span class="math notranslate nohighlight">\(u(x, r) = -2 \lvert q(x) - r \rvert\)</span>时会发生什么？指数机制的定义告诉我们，每个回复值的采样概率应该与下述表达式成正比：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a669860a-8540-49a1-ada2-8fb4be72461e">
-<span class="eqno">(32)<a class="headerlink" href="#equation-a669860a-8540-49a1-ada2-8fb4be72461e" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-83f1d123-2829-4fcc-bf7b-187cc433f7ab">
+<span class="eqno">(32)<a class="headerlink" href="#equation-83f1d123-2829-4fcc-bf7b-187cc433f7ab" title="公式的永久链接">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp;\; \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)\\
 &amp;= \exp \Big(\frac{\epsilon (-2 \lvert q(x) - r \rvert)}{2 \Delta q} \Big)\\
 &amp;= \exp \Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q} \Big)\\
