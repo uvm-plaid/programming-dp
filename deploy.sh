@@ -12,6 +12,7 @@ jupyter-book build --builder pdflatex notebooks
 echo "# cp cn assets"
 mkdir -p _build/html/cn
 cp -R zh_cn/_build/html/*  _build/html/cn/
+cp zh_cn/static/index.html _build/html/cn/
 cp zh_cn/_build/latex/cn_book.pdf _build/html/cn 2>/dev/null || :
 
 # cp en assets
