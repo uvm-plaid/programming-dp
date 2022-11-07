@@ -483,8 +483,8 @@ title="Print to PDF"
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p>A function which satisfies differential privacy is often called a <em>mechanism</em>. We say that a <em>mechanism</em> <span class="math notranslate nohighlight">\(F\)</span> satisfies differential privacy if for all <em>neighboring datasets</em> <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all possible outputs <span class="math notranslate nohighlight">\(S\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c62dcd54-18cb-4dca-8df0-c69474713ea4">
-<span class="eqno">(1)<a class="headerlink" href="#equation-c62dcd54-18cb-4dca-8df0-c69474713ea4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ea940e6d-b6da-4fa1-8ebc-41ae03430ddc">
+<span class="eqno">(1)<a class="headerlink" href="#equation-ea940e6d-b6da-4fa1-8ebc-41ae03430ddc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
 \end{equation}\]</div>
 </div>
@@ -512,8 +512,8 @@ title="Print to PDF"
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p>According to the Laplace mechanism, for a function <span class="math notranslate nohighlight">\(f(x)\)</span> which returns a number, the following definition of <span class="math notranslate nohighlight">\(F(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-647485fc-704f-450a-ac94-0dc82204a377">
-<span class="eqno">(2)<a class="headerlink" href="#equation-647485fc-704f-450a-ac94-0dc82204a377" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7f7adc69-b2a5-44a1-9f6d-bc66686ab1e3">
+<span class="eqno">(2)<a class="headerlink" href="#equation-7f7adc69-b2a5-44a1-9f6d-bc66686ab1e3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(s\)</span> is the <em>sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span> denotes sampling from the Laplace distribution with center 0 and scale <span class="math notranslate nohighlight">\(S\)</span>.</p>
@@ -530,7 +530,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14237.387444630212
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14227.979288541002
 </pre></div>
 </div>
 </div>
@@ -566,7 +566,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7221346077893516
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8147615704220925
 </pre></div>
 </div>
 </div>

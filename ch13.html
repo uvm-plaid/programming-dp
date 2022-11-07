@@ -522,8 +522,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     156
-False     44
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     145
+False     55
 dtype: int64
 </pre></div>
 </div>
@@ -545,8 +545,8 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22511
-True     10050
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22794
+True      9767
 dtype: int64
 </pre></div>
 </div>
@@ -602,7 +602,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3449.5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3819.5
 </pre></div>
 </div>
 </div>
@@ -628,7 +628,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.493150684931507
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.6438356164383565
 </pre></div>
 </div>
 </div>
@@ -642,7 +642,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.06652343014137505
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0049054270180956695
 </pre></div>
 </div>
 </div>
@@ -729,14 +729,14 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0]
 </pre></div>
 </div>
 </div>
 </div>
 <p>Based on the values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, we can calculate the value of the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>. For <span class="math notranslate nohighlight">\(p=.75\)</span> and <span class="math notranslate nohighlight">\(q=.25\)</span>, we will see an <span class="math notranslate nohighlight">\(\epsilon\)</span> of slightly more than 2.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2147f5a4-03f6-4d97-ba43-971f21449551">
-<span class="eqno">(38)<a class="headerlink" href="#equation-2147f5a4-03f6-4d97-ba43-971f21449551" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5d9978e3-d4c3-422a-b396-0d1a3aa28476">
+<span class="eqno">(38)<a class="headerlink" href="#equation-5d9978e3-d4c3-422a-b396-0d1a3aa28476" title="Permalink to this equation">#</a></span>\[\begin{align}
 \epsilon = \log{\left(\frac{p (1-q)}{(1-p) q}\right)}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -790,27 +790,27 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 10087),
- (&#39;Exec-managerial&#39;, 10180),
- (&#39;Handlers-cleaners&#39;, 8729),
- (&#39;Prof-specialty&#39;, 10164),
- (&#39;Other-service&#39;, 9766),
- (&#39;Sales&#39;, 9976),
- (&#39;Craft-repair&#39;, 10119),
- (&#39;Transport-moving&#39;, 9044),
- (&#39;Farming-fishing&#39;, 8741),
- (&#39;Machine-op-inspct&#39;, 9150),
- (&#39;Tech-support&#39;, 8570),
- (&#39;Protective-serv&#39;, 8356),
- (&#39;Armed-Forces&#39;, 8126),
- (&#39;Priv-house-serv&#39;, 8178)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 9936),
+ (&#39;Exec-managerial&#39;, 10089),
+ (&#39;Handlers-cleaners&#39;, 8866),
+ (&#39;Prof-specialty&#39;, 10192),
+ (&#39;Other-service&#39;, 9918),
+ (&#39;Sales&#39;, 9949),
+ (&#39;Craft-repair&#39;, 10212),
+ (&#39;Transport-moving&#39;, 8851),
+ (&#39;Farming-fishing&#39;, 8617),
+ (&#39;Machine-op-inspct&#39;, 9061),
+ (&#39;Tech-support&#39;, 8646),
+ (&#39;Protective-serv&#39;, 8513),
+ (&#39;Armed-Forces&#39;, 8199),
+ (&#39;Priv-house-serv&#39;, 8233)]
 </pre></div>
 </div>
 </div>
 </div>
 <p>The aggregate step of the unary encoding algorithm takes into account the number of “fake” responses in each category, which is a function of both <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, and the number of responses <span class="math notranslate nohighlight">\(n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d55b74e7-8f11-466d-9679-35772f20464e">
-<span class="eqno">(39)<a class="headerlink" href="#equation-d55b74e7-8f11-466d-9679-35772f20464e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ab434e76-3a01-4e39-a516-8d1b085a0b90">
+<span class="eqno">(39)<a class="headerlink" href="#equation-ab434e76-3a01-4e39-a516-8d1b085a0b90" title="Permalink to this equation">#</a></span>\[\begin{align}
 A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -836,20 +836,20 @@ A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3605.5),
- (&#39;Exec-managerial&#39;, 4241.5),
- (&#39;Handlers-cleaners&#39;, 1375.5),
- (&#39;Prof-specialty&#39;, 3821.5),
- (&#39;Other-service&#39;, 3531.5),
- (&#39;Sales&#39;, 3805.5),
- (&#39;Craft-repair&#39;, 3831.5),
- (&#39;Transport-moving&#39;, 1777.5),
- (&#39;Farming-fishing&#39;, 1307.5),
- (&#39;Machine-op-inspct&#39;, 2049.5),
- (&#39;Tech-support&#39;, 727.5),
- (&#39;Protective-serv&#39;, 575.5),
- (&#39;Armed-Forces&#39;, 233.5),
- (&#39;Priv-house-serv&#39;, 161.5)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3731.5),
+ (&#39;Exec-managerial&#39;, 4077.5),
+ (&#39;Handlers-cleaners&#39;, 1611.5),
+ (&#39;Prof-specialty&#39;, 3965.5),
+ (&#39;Other-service&#39;, 3489.5),
+ (&#39;Sales&#39;, 3715.5),
+ (&#39;Craft-repair&#39;, 4191.5),
+ (&#39;Transport-moving&#39;, 1359.5),
+ (&#39;Farming-fishing&#39;, 947.5),
+ (&#39;Machine-op-inspct&#39;, 2075.5),
+ (&#39;Tech-support&#39;, 857.5),
+ (&#39;Protective-serv&#39;, 807.5),
+ (&#39;Armed-Forces&#39;, 53.5),
+ (&#39;Priv-house-serv&#39;, 325.5)]
 </pre></div>
 </div>
 </div>
