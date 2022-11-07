@@ -30,6 +30,7 @@ bibtex_bibfiles:
 
 repository:
   url: https://github.com/uvm-plaid/programming-dp
+  path_to_book: zh_cn/notebooks
   branch: master
 
 sphinx:

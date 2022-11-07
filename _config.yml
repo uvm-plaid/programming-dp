@@ -10,10 +10,11 @@ execute:
 
 sphinx:
   config:
+    html_theme: pydata_sphinx_theme
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 html:
-  favicon                   : favicon.png  
+  favicon                   : favicon.png
   use_edit_page_button      : true
   use_repository_button     : true
   use_issues_button         : true
@@ -34,4 +35,5 @@ bibtex_bibfiles:
 
 repository:
   url: https://github.com/uvm-plaid/programming-dp
+  path_to_book: notebooks
   branch: master
