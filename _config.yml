@@ -10,7 +10,6 @@ execute:
 
 sphinx:
   config:
-    html_theme: pydata_sphinx_theme
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 html:
