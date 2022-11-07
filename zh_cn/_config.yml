@@ -19,6 +19,12 @@ parse:
     - amsmath
     - dollarmath
 
+html:
+  favicon                   : favicon.png
+  use_edit_page_button      : true
+  use_repository_button     : true
+  use_issues_button         : true
+
 bibtex_bibfiles:
     - references.bib
 
