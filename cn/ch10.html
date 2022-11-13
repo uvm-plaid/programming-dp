@@ -507,15 +507,26 @@ title="Print to PDF"
 <p>稀疏向量技术最基础的实例是<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>（高于阈值）算法（详见<a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork和Roth</a> <span id="id4">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>论文中的算法1）。算法输入是敏感度为1的问询流、数据集<span class="math notranslate nohighlight">\(D\)</span>阈值<span class="math notranslate nohighlight">\(T\)</span>、以及隐私参数<span class="math notranslate nohighlight">\(\epsilon\)</span>；算法满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。算法的Python实现如下所述。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 满足ε-差分隐私</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># 满足ε-差分隐私</span>
 <span class="k">def</span> <span class="nf">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+    <span class="n">T_hat</span> <span class="o">=</span> <span class="n">T</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>   
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
+        <span class="n">nu_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">q</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="n">nu_i</span> <span class="o">&gt;=</span> <span class="n">T_hat</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">idx</span>   
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">above_threshold_fail_signal</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
     <span class="n">T_hat</span> <span class="o">=</span> <span class="n">T</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
     
     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
         <span class="n">nu_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">q</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="n">nu_i</span> <span class="o">&gt;=</span> <span class="n">T_hat</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">idx</span>
-    <span class="k">return</span> <span class="kc">None</span> <span class="c1"># 返回一个无效的问询索引号</span>
+    <span class="c1"># 返回一个无效的问询索引号    </span>
+    <span class="k">return</span> <span class="kc">None</span> 
 </pre></div>
 </div>
 </div>
@@ -585,7 +596,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>71
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>121
 </pre></div>
 </div>
 </div>
@@ -621,7 +632,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>101
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>91
 </pre></div>
 </div>
 </div>
@@ -636,22 +647,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="n">a30a22d109d8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;备选&quot;b&quot;的值&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;出现次数&#39;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">bs</span><span class="p">[</span><span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">adult</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]);</span>
-
-<span class="nn">&lt;ipython-input-8-a30a22d109d8&gt;</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;备选&quot;b&quot;的值&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;出现次数&#39;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">bs</span><span class="p">[</span><span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">adult</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]);</span>
-
-<span class="ne">TypeError</span>: range indices must be integers or slices, not NoneType
-</pre></div>
-</div>
-<img alt="_images/ch10_16_1.png" src="_images/ch10_16_1.png" />
+<img alt="_images/ch10_16_0.png" src="_images/ch10_16_0.png" />
 </div>
 </div>
 <p>我们可以使用稀疏向量技术构建可自动计算裁剪参数的求和问询算法（也可以构建对应的均值问询算法）。</p>
@@ -683,7 +679,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.5750654706846
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.61143249756207
 </pre></div>
 </div>
 </div>
@@ -696,7 +692,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1068.1445048412666
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1073.3153976795852
 </pre></div>
 </div>
 </div>
@@ -723,10 +719,10 @@ title="Print to PDF"
     <span class="c1"># 如果我们执行完问询流中的所有问询，或者我们找到了c个超过阈值的问询回复，则停止</span>
     <span class="k">while</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">c</span><span class="p">:</span>
         <span class="c1"># 执行AboveThreshold，寻找下一个超过阈值的问询回复</span>
-        <span class="n">next_idx</span> <span class="o">=</span> <span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">[</span><span class="n">pos</span><span class="p">:],</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon_i</span><span class="p">)</span>
+        <span class="n">next_idx</span> <span class="o">=</span> <span class="n">above_threshold_fail_signal</span><span class="p">(</span><span class="n">queries</span><span class="p">[</span><span class="n">pos</span><span class="p">:],</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon_i</span><span class="p">)</span>
         
         <span class="c1"># 如果AboveThreshold执行完了最后一个问询，则返回所有超过阈值的问询索引号</span>
-        <span class="k">if</span> <span class="n">next_idx</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">next_idx</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">idxs</span>
         
         <span class="c1"># 否则，更新pos，使其指向问询流中剩余的问询</span>
@@ -749,7 +745,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[19, 22, 23]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[18, 21, 22]
 </pre></div>
 </div>
 </div>
@@ -779,7 +775,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6163, 1602, 3967, 3745, 14271, 898, 0, 808, 6657, 17655]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4640, 12634, 10130, 3674, 14039, 816, 6551, 0, 3674, 3518]
 </pre></div>
 </div>
 </div>
@@ -808,7 +804,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[14272.137097167237, 17697.903735723932]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12605.826637490505, 10119.093018138914, 14026.551280367026]
 </pre></div>
 </div>
 </div>
