@@ -506,15 +506,29 @@ title="Print to PDF"
 <p>The most basic instantiation of the sparse vector technique is an algorithm called <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>, Algorithm 1). The inputs to the algorithm are a stream of sensitivity-1 queries, a dataset <span class="math notranslate nohighlight">\(D\)</span>, a <em>threshold</em> <span class="math notranslate nohighlight">\(T\)</span>, and the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>; the algorithm preserves <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. A Python implementation of the algorithm appears below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># preserves epsilon-differential privacy</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
 <span class="k">def</span> <span class="nf">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
-    <span class="n">T_hat</span> <span class="o">=</span> <span class="n">T</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
-    
+    <span class="n">T_hat</span> <span class="o">=</span> <span class="n">T</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>   
     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
         <span class="n">nu_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">q</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="n">nu_i</span> <span class="o">&gt;=</span> <span class="n">T_hat</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">idx</span>
-    <span class="k">return</span> <span class="kc">None</span> <span class="c1"># an invalid index</span>
+    <span class="c1"># if the algorithm &quot;fails&quot;, return a random index </span>
+    <span class="c1"># more convenient in certain use cases    </span>
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># preserves epsilon-differential privacy</span>
+<span class="k">def</span> <span class="nf">above_threshold_fail_signal</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+    <span class="n">T_hat</span> <span class="o">=</span> <span class="n">T</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>   
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
+        <span class="n">nu_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">q</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="n">nu_i</span> <span class="o">&gt;=</span> <span class="n">T_hat</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">idx</span>
+    <span class="c1"># return an invalid index as the special &quot;fail&quot; signal</span>
+    <span class="c1"># this is convenient for implementing the sparse algorithm</span>
+    <span class="k">return</span> <span class="kc">None</span> 
+                                  
 </pre></div>
 </div>
 </div>
@@ -620,7 +634,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>86
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>91
 </pre></div>
 </div>
 </div>
@@ -667,7 +681,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.58954317460856
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.58493349783509
 </pre></div>
 </div>
 </div>
@@ -680,7 +694,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1072.5351249388561
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1077.993629942565
 </pre></div>
 </div>
 </div>
@@ -707,10 +721,10 @@ title="Print to PDF"
     <span class="c1"># stop if we reach the end of the stream of queries, or if we find c queries above the threshold</span>
     <span class="k">while</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">c</span><span class="p">:</span>
         <span class="c1"># run AboveThreshold to find the next query above the threshold</span>
-        <span class="n">next_idx</span> <span class="o">=</span> <span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">[</span><span class="n">pos</span><span class="p">:],</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon_i</span><span class="p">)</span>
+        <span class="n">next_idx</span> <span class="o">=</span> <span class="n">above_threshold_fail_signal</span><span class="p">(</span><span class="n">queries</span><span class="p">[</span><span class="n">pos</span><span class="p">:],</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon_i</span><span class="p">)</span>
         
         <span class="c1"># if AboveThreshold reaches the end, return</span>
-        <span class="k">if</span> <span class="n">next_idx</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">next_idx</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">idxs</span>
         
         <span class="c1"># otherwise, update pos to point to the rest of the queries</span>
@@ -733,7 +747,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[18, 19, 21]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[18, 19, 20]
 </pre></div>
 </div>
 </div>
@@ -763,7 +777,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4793, 7427, 7347, 2716, 16001, 17736, 7325, 5865, 7766, 1251]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5161, 7346, 8817, 10574, 4704, 5538, 12336, 8890, 8593, 14423]
 </pre></div>
 </div>
 </div>
@@ -792,26 +806,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">15</span><span class="o">-</span><span class="mi">1</span><span class="n">fc4648de073</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">range_query_svt</span><span class="p">(</span><span class="n">range_queries</span><span class="p">,</span> <span class="n">adult</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="nn">&lt;ipython-input-14-d5f151802f5e&gt;</span> in <span class="ni">range_query_svt</span><span class="nt">(queries, df, c, T, epsilon)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="c1"># first, run Sparse to get the indices of the &quot;good&quot; queries</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">sparse_epsilon</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="ne">----&gt; </span><span class="mi">4</span>     <span class="n">indices</span> <span class="o">=</span> <span class="n">sparse</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">adult</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">sparse_epsilon</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> 
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="c1"># then, run the Laplace mechanism on each &quot;good&quot; query</span>
-
-<span class="nn">&lt;ipython-input-11-363530af13ec&gt;</span> in <span class="ni">sparse</span><span class="nt">(queries, df, c, T, epsilon)</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> 
-<span class="g g-Whitespace">     </span><span class="mi">15</span>         <span class="c1"># otherwise, update pos to point to the rest of the queries</span>
-<span class="ne">---&gt; </span><span class="mi">16</span>         <span class="n">pos</span> <span class="o">=</span> <span class="n">next_idx</span><span class="o">+</span><span class="n">pos</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span>         <span class="c1"># update return value to include the index found by AboveThreshold</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>         <span class="n">idxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
-
-<span class="ne">TypeError</span>: unsupported operand type(s) for +: &#39;NoneType&#39; and &#39;int&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10568.404937271855, 12334.296461747736, 14422.184165986262]
 </pre></div>
 </div>
 </div>
