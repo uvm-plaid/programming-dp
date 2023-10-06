@@ -428,14 +428,14 @@ document.write(`
 </ul>
 </div>
 <p>As we mentioned when we discussed the Laplace mechanism, the amount of noise necessary to ensure differential privacy for a given query depends on the <em>sensitivity</em> of the query. Roughly speaking, the sensitivity of a function reflects the amount the function’s output will change when its input changes. Recall that the Laplace mechanism defines a mechanism <span class="math notranslate nohighlight">\(F(x)\)</span> as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-37571919-e185-42ce-9b8c-955b69493599">
-<span class="eqno">(4)<a class="headerlink" href="#equation-37571919-e185-42ce-9b8c-955b69493599" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8cfb3b66-dff4-4b0d-a06d-02ba4b39adf0">
+<span class="eqno">(4)<a class="headerlink" href="#equation-8cfb3b66-dff4-4b0d-a06d-02ba4b39adf0" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(x)\)</span> is a deterministic function (the query), <span class="math notranslate nohighlight">\(\epsilon\)</span> is the privacy parameter, and <span class="math notranslate nohighlight">\(s\)</span> is the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <p>For a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span> mapping datasets (<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>) to real numbers, the <em>global sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span> is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9f6eae49-34d7-4ef2-a7a9-611293995881">
-<span class="eqno">(5)<a class="headerlink" href="#equation-9f6eae49-34d7-4ef2-a7a9-611293995881" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4103b308-340e-42b2-82f0-a469d08e41bb">
+<span class="eqno">(5)<a class="headerlink" href="#equation-4103b308-340e-42b2-82f0-a469d08e41bb" title="Permalink to this equation">#</a></span>\[\begin{align}
 GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 \end{align}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(d(x, x')\)</span> represents the <em>distance</em> between two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and we say that two datasets are <em>neighbors</em> if their distance is 1 or less. How this distance is defined has a huge effect on the definition of privacy we obtain, and we’ll discuss the distance metric on datasets in detail later on.</p>
@@ -444,8 +444,8 @@ GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 <h2>Distance<a class="headerlink" href="#distance" title="Permalink to this headline">#</a></h2>
 <p>The distance metric <span class="math notranslate nohighlight">\(d(x,x')\)</span> described earlier can be defined in many different ways. Intuitively, the distance between two datasets should be equal to 1 (i.e. the datasets are neighbors) if they differ in the data of exactly one individual. This idea is easy to formalize in some contexts (e.g. in the US Census, each individual submits a single response containing their data) but extremely challenging in others (e.g. location trajectories, social networks, and time-series data).</p>
 <p>A common formal definition for datasets containing rows is to consider the number of rows which differ between the two. When each individual’s data is contained in a single row, this definition often makes sense. Formally, this definition of distance is encoded as a <em>symmetric difference</em> between the two datasets:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6b519d47-7f57-4916-a6fc-6e542d89c45b">
-<span class="eqno">(6)<a class="headerlink" href="#equation-6b519d47-7f57-4916-a6fc-6e542d89c45b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3f3c33ac-cd75-43e2-8cba-effb0f4182bd">
+<span class="eqno">(6)<a class="headerlink" href="#equation-3f3c33ac-cd75-43e2-8cba-effb0f4182bd" title="Permalink to this equation">#</a></span>\[\begin{align}
 d(x, x') = | x - x' \cup x' - x |
 \end{align}\]</div>
 <p>This particular definition has several interesting and important implications:</p>
@@ -639,7 +639,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/b0b14c2aa734490c2e68c08d8710ef3c0f97fcc9d57c5daacdece64a29a8ecce.png" src="_images/b0b14c2aa734490c2e68c08d8710ef3c0f97fcc9d57c5daacdece64a29a8ecce.png" />
+<img alt="_images/911e2c97618f6f7272ea9b3619e9dfb638a41b312c0111dbdf000fff803a67e0.png" src="_images/911e2c97618f6f7272ea9b3619e9dfb638a41b312c0111dbdf000fff803a67e0.png" />
 </div>
 </div>
 <p>The total privacy cost for building this plot is <span class="math notranslate nohighlight">\(\epsilon = 1\)</span> by sequential composition, since we do 100 queries each with <span class="math notranslate nohighlight">\(\epsilon_i = 0.01\)</span>. It’s clear that the results level off around a value of <code class="docutils literal notranslate"><span class="pre">upper</span> <span class="pre">=</span> <span class="pre">80</span></code>, so this is a good choice for the clipping bound.</p>
@@ -662,7 +662,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/85f64732940405b86d46901407a2d04b1fb2177dda9f4835a12f1e28e640c68a.png" src="_images/85f64732940405b86d46901407a2d04b1fb2177dda9f4835a12f1e28e640c68a.png" />
+<img alt="_images/6b3ce68d9010c0fac875a18c0166f850164d6c6e7312974d105064b48b99f623.png" src="_images/6b3ce68d9010c0fac875a18c0166f850164d6c6e7312974d105064b48b99f623.png" />
 </div>
 </div>
 <p>This approach allows us to test a huge range of possible bounds with a small number of queries, but at the expense of less precision in determining the perfect bound. As the upper bound gets really large, the noise will start to overwhelm the signal - notice how the sum fluctuates wildly for the largest clipping parameters! The key is to look for a region of the graph which is relatively smooth (meaning low noise) and also not increasing (meaning the clipping bound is sufficient). Here, this occurs at roughly <span class="math notranslate nohighlight">\(2^8 = 256\)</span>, which is a reasonable approximation of the upper bound we derived earlier.</p>

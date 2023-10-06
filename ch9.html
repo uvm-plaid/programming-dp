@@ -427,8 +427,8 @@ document.write(`
 <li><p>The analyst specifies a scoring function <span class="math notranslate nohighlight">\(u : \mathcal{D} \times \mathcal{R} \rightarrow \mathbb{R}\)</span> with global sensitivity <span class="math notranslate nohighlight">\(\Delta u\)</span></p></li>
 <li><p>The exponential mechanism outputs <span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span> with probability proportional to:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-01bfe8d1-5b61-40ca-990e-f9dc79f941a4">
-<span class="eqno">(31)<a class="headerlink" href="#equation-01bfe8d1-5b61-40ca-990e-f9dc79f941a4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-24bc5fd7-df0b-40aa-ab0b-7b403c88fcaa">
+<span class="eqno">(31)<a class="headerlink" href="#equation-24bc5fd7-df0b-40aa-ab0b-7b403c88fcaa" title="Permalink to this equation">#</a></span>\[\begin{align}
 \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)
 \end{align}\]</div>
 <p>The biggest practical difference between the exponential mechanism and the previous mechanisms we’ve seen (e.g. the Laplace mechanism) is that the output of the exponential mechanism is <em>always</em> a member of the set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>. This is extremely useful when selecting an item from a finite set, when a noisy answer would not make sense. For example, we might want to pick a date for a big meeting, which uses each participant’s personal calendar to maximize the number of participants without a conflict, while providing differential privacy for the calendars. Adding noise to a date doesn’t make much sense: it might turn a Friday into a Saturday, and <em>increase</em> the number of conflicts significantly. The exponential mechanism is perfect for problems like this one: it selects a date <em>without noise</em>.</p>
@@ -490,10 +490,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    177
-Never-married          18
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    183
+Never-married          13
 Divorced                3
-Separated               1
 Widowed                 1
 dtype: int64
 </pre></div>
@@ -547,8 +546,8 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    198
-Never-married           2
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    195
+Never-married           5
 dtype: int64
 </pre></div>
 </div>
@@ -561,14 +560,14 @@ dtype: int64
 <h2>The Exponential Mechanism as Fundamental Mechanism for Differential Privacy<a class="headerlink" href="#the-exponential-mechanism-as-fundamental-mechanism-for-differential-privacy" title="Permalink to this headline">#</a></h2>
 <p>We’ve seen that it’s not possible to recover the exponential mechanism using the Laplace mechanism plus sequential composition, because we can’t capture the fact that the algorithm we designed doesn’t release all of the noisy scores. What about the reverse - can we recover the Laplace mechanism from the exponential mechanism? It turns out that we can!</p>
 <p>Consider a query <span class="math notranslate nohighlight">\(q(x) : \mathcal{D} \rightarrow \mathbb{R}\)</span> with sensitivity <span class="math notranslate nohighlight">\(\Delta q\)</span>. We can release an <span class="math notranslate nohighlight">\(\epsilon\)</span>-differentially private answer by adding Laplace noise: <span class="math notranslate nohighlight">\(F(x) = q(x) + \mathsf{Lap}(\Delta q / \epsilon)\)</span>. The probability density function for this differentially private version of <span class="math notranslate nohighlight">\(q\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d3a838a5-ea60-4589-94b5-681344087a1b">
-<span class="eqno">(32)<a class="headerlink" href="#equation-d3a838a5-ea60-4589-94b5-681344087a1b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a6662206-aa63-4f56-8b2e-fac34121ffc6">
+<span class="eqno">(32)<a class="headerlink" href="#equation-a6662206-aa63-4f56-8b2e-fac34121ffc6" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp; \frac{1}{2b} \exp\Big(- \frac{\lvert r - \mu \rvert}{b}\Big)\\
 =&amp; \frac{\epsilon}{2 \Delta q} \exp\Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q}\Big)
 \end{align}\]</div>
 <p>Consider what happens when we set the scoring function for the exponential mechanism to <span class="math notranslate nohighlight">\(u(x, r) = -2 \lvert q(x) - r \rvert\)</span>. The exponential mechanism says that we should sample from the probability distribution proportional to:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4c29cd53-2a7c-457e-95b0-69ef3e24142f">
-<span class="eqno">(33)<a class="headerlink" href="#equation-4c29cd53-2a7c-457e-95b0-69ef3e24142f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-febd5964-32e0-45d2-bf43-5d60e704486f">
+<span class="eqno">(33)<a class="headerlink" href="#equation-febd5964-32e0-45d2-bf43-5d60e704486f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp;\; \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)\\
 &amp;= \exp \Big(\frac{\epsilon (-2 \lvert q(x) - r \rvert)}{2 \Delta q} \Big)\\
 &amp;= \exp \Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q} \Big)\\
