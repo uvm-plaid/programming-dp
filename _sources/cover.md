@@ -1,7 +1,7 @@
 # Programming Differential Privacy
 
 ```{image} logo.png
-:class: bg-dark
+:class: bg-logo
 ```
 
 **A book about differential privacy, for programmers**
