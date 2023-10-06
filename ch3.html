@@ -425,8 +425,8 @@ document.write(`
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p>A function which satisfies differential privacy is often called a <em>mechanism</em>. We say that a <em>mechanism</em> <span class="math notranslate nohighlight">\(F\)</span> satisfies differential privacy if for all <em>neighboring datasets</em> <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all possible sets of outputs <span class="math notranslate nohighlight">\(S\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ecc23bae-b788-46ca-b699-281131c861c3">
-<span class="eqno">(1)<a class="headerlink" href="#equation-ecc23bae-b788-46ca-b699-281131c861c3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-13e17f0c-904d-4af8-b699-3538260edd6f">
+<span class="eqno">(1)<a class="headerlink" href="#equation-13e17f0c-904d-4af8-b699-3538260edd6f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) \in S]}{\mathsf{Pr}[F(x') \in S]} \leq e^\epsilon
 \end{equation}\]</div>
 </div>
@@ -438,8 +438,8 @@ document.write(`
 <p class="admonition-title">Note</p>
 <p>Why is <span class="math notranslate nohighlight">\(S\)</span> a set, and why do we write <span class="math notranslate nohighlight">\(F(x) \in S\)</span>, instead of <span class="math notranslate nohighlight">\(F(x) = s\)</span> for a <em>single</em> output <span class="math notranslate nohighlight">\(s\)</span>? When <span class="math notranslate nohighlight">\(F\)</span> returns elements from a continuous domain (like the real numbers), then the probability <span class="math notranslate nohighlight">\(\mathsf{Pr}[F(x) = S] = 0\)</span> <em>for all <span class="math notranslate nohighlight">\(x\)</span></em> (this is a property of continuous probability distributions—<a class="reference external" href="https://www.probabilitycourse.com/chapter4/4_1_1_pdf.php">see here for a detailed explanation</a>). For the definition to make sense in the context of continuous distributions, it needs to instead consider <em>sets</em> of outputs <span class="math notranslate nohighlight">\(S\)</span>, and use set inclusion (<span class="math notranslate nohighlight">\(\in\)</span>) instead of equality.</p>
 <p>If <span class="math notranslate nohighlight">\(F\)</span> returns elements of a discrete set (e.g. 32-bit floating-point numbers), then the definition can instead consider <span class="math notranslate nohighlight">\(S\)</span> to be a single value, and use equality instead of set inclusion:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b9c70c42-f878-468d-8d7f-8473c88d8720">
-<span class="eqno">(2)<a class="headerlink" href="#equation-b9c70c42-f878-468d-8d7f-8473c88d8720" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-abccbb4e-8069-431c-aa92-ffcc4f15720c">
+<span class="eqno">(2)<a class="headerlink" href="#equation-abccbb4e-8069-431c-aa92-ffcc4f15720c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
 \end{equation}\]</div>
 <p>This definition might be more intuitive, especially if you have not studied probability theory.</p>
@@ -464,8 +464,8 @@ document.write(`
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p>According to the Laplace mechanism, for a function <span class="math notranslate nohighlight">\(f(x)\)</span> which returns a number, the following definition of <span class="math notranslate nohighlight">\(F(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-90bc7600-1d30-4a0c-9381-1f6db5f6bbc3">
-<span class="eqno">(3)<a class="headerlink" href="#equation-90bc7600-1d30-4a0c-9381-1f6db5f6bbc3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9a3a6ce1-9ef6-4dd2-8023-825dd9ccfc34">
+<span class="eqno">(3)<a class="headerlink" href="#equation-9a3a6ce1-9ef6-4dd2-8023-825dd9ccfc34" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(s\)</span> is the <em>sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span> denotes sampling from the Laplace distribution with center 0 and scale <span class="math notranslate nohighlight">\(S\)</span>.</p>
@@ -482,7 +482,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14238.085289464365
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14267.261707301783
 </pre></div>
 </div>
 </div>
@@ -518,7 +518,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.971644752280947
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6201323281037757
 </pre></div>
 </div>
 </div>

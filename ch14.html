@@ -506,7 +506,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9874.685862505861
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9878.335392466966
 </pre></div>
 </div>
 </div>
@@ -527,8 +527,8 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.0009252267692454394
-Laplace mechanism error: 0.36340777403163904
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.043144417661519725
+Laplace mechanism error: 0.01068719687186685
 </pre></div>
 </div>
 </div>
@@ -549,8 +549,8 @@ Laplace mechanism error: 0.36340777403163904
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.0037073653684025504
-Laplace mechanism error: 0.002078093360100423
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.055745131642724426
+Laplace mechanism error: 0.006409138512867002
 </pre></div>
 </div>
 </div>
@@ -570,7 +570,7 @@ Laplace mechanism error: 0.002078093360100423
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999999999999998
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
 </pre></div>
 </div>
 </div>
@@ -591,7 +591,7 @@ Laplace mechanism error: 0.002078093360100423
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/19689fd9dec3c08661366a4c871c497722e6f0fa87443cab4136715a9dab84ac.png" src="_images/19689fd9dec3c08661366a4c871c497722e6f0fa87443cab4136715a9dab84ac.png" />
+<img alt="_images/ffa9b6fa6f9ab32fef42744af6740f5327f070d6352a33fb9e6ff6934f208d05.png" src="_images/ffa9b6fa6f9ab32fef42744af6740f5327f070d6352a33fb9e6ff6934f208d05.png" />
 </div>
 </div>
 <p>The final step is to generate new samples based on these probabilities. We can use <code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code>, which allows passing in a list of probabilities (in the <code class="docutils literal notranslate"><span class="pre">p</span></code> parameter) associated with the choices given in the first parameter. It implements exactly the weighted random selection that we need for our sampling task. We can generate as many samples as we want without additional privacy cost, since we’ve already made our counts differentially private.</p>
@@ -630,23 +630,23 @@ Laplace mechanism error: 0.002078093360100423
   <tbody>
     <tr>
       <th>0</th>
-      <td>81</td>
+      <td>41</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>44</td>
+      <td>48</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>74</td>
+      <td>35</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>56</td>
+      <td>66</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>40</td>
+      <td>23</td>
     </tr>
   </tbody>
 </table>
@@ -669,7 +669,7 @@ Laplace mechanism error: 0.002078093360100423
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/9872a96243ef230f674cada7003f4070c0bf2cc6db6c4773e46731c6829e504f.png" src="_images/9872a96243ef230f674cada7003f4070c0bf2cc6db6c4773e46731c6829e504f.png" />
+<img alt="_images/1202f533c13278ba47cf929fa93d1a7ca22bb3d39ceac01a71fa6a2a031f26f7.png" src="_images/1202f533c13278ba47cf929fa93d1a7ca22bb3d39ceac01a71fa6a2a031f26f7.png" />
 </div>
 </div>
 <p>We can also answer some queries we’ve seen in the past, like averages and range queries:</p>
@@ -688,9 +688,9 @@ Laplace mechanism error: 0.002078093360100423
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 38.6248
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 38.3476
 Mean age, true answer: 38.58164675532078
-Percent error: 0.11172418932710992
+Percent error: 0.610329604253677
 </pre></div>
 </div>
 </div>
@@ -711,9 +711,9 @@ Percent error: 0.11172418932710992
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 9088
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 9042
 Range query for age, true answer: 29568
-Percent error: 69.26406926406926
+Percent error: 69.41964285714286
 </pre></div>
 </div>
 </div>
@@ -738,9 +738,9 @@ Percent error: 69.26406926406926
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 29539
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 29494
 Range query for age, true answer: 29568
-Percent error: 0.09807900432900432
+Percent error: 0.25027056277056275
 </pre></div>
 </div>
 </div>
@@ -920,7 +920,7 @@ Percent error: 0.09807900432900432
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.0007297181381365171)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.000588394458542539)
 </pre></div>
 </div>
 </div>
@@ -964,28 +964,28 @@ Percent error: 0.09807900432900432
   <tbody>
     <tr>
       <th>0</th>
-      <td>20</td>
-      <td>Other-service</td>
+      <td>21</td>
+      <td>Machine-op-inspct</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>76</td>
-      <td>Protective-serv</td>
+      <td>42</td>
+      <td>Craft-repair</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>41</td>
-      <td>Other-service</td>
+      <td>19</td>
+      <td>Adm-clerical</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>35</td>
+      <td>38</td>
       <td>Transport-moving</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>40</td>
-      <td>Protective-serv</td>
+      <td>30</td>
+      <td>Craft-repair</td>
     </tr>
   </tbody>
 </table>
@@ -1007,7 +1007,7 @@ Percent error: 0.09807900432900432
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/7fa1b9daf618be5eb5b66c2f99841b8ad5d3c14fc22f40156086e2bb4133d69d.png" src="_images/7fa1b9daf618be5eb5b66c2f99841b8ad5d3c14fc22f40156086e2bb4133d69d.png" />
+<img alt="_images/644b81600c6c1d2e88bb66da2a60b3b6009347ca1caf93110892dedb9010ec8f.png" src="_images/644b81600c6c1d2e88bb66da2a60b3b6009347ca1caf93110892dedb9010ec8f.png" />
 </div>
 </div>
 <p>We see the same loss in accuracy when we try specific queries on just the age column:</p>
@@ -1026,7 +1026,7 @@ Percent error: 0.09807900432900432
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Percent error using synthetic data: 0.7946362056121182
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Percent error using synthetic data: 2.1480009932952573
 </pre></div>
 </div>
 </div>

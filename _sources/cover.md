@@ -1,6 +1,6 @@
 # Programming Differential Privacy
 
-<img src="images/logo.png" alt="logo" class="bg-dark" style="background: rgba(0,0,0,0);">
+![logo](logo.png)
 
 **A book about differential privacy, for programmers**
 
