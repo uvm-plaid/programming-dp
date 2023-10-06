@@ -1,9 +1,6 @@
 # Programming Differential Privacy
 
-
-
 ```{image} logo.png
-:alt: logo
 :class: bg-dark
 ```
 
