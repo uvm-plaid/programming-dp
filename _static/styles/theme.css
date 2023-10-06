@@ -1,2 +1,10 @@
 /* Provided by Sphinx's 'basic' theme, and included in the final set of assets */
 @import "../basic.css";
+
+.bg-logo {
+    background: rgb(20, 24, 30);
+}
+
+@media (prefers-color-scheme: dark) {
+    background: rgb(20, 24, 30);
+}
