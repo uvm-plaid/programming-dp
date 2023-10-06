@@ -1,5 +1,5 @@
 format: jb-book
-root: index
+root: cover
 chapters:
 - file: intro
 - file: ch1
