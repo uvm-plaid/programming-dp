@@ -1,34 +1,46 @@
 
+
 <!DOCTYPE html>
 
-<html lang="zh_CN">
+
+<html lang="zh_CN" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>差分隐私 &#8212; 动手学差分隐私</title>
-    
-  <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    <title>差分隐私 &#8212; 动手学差分隐私</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -36,13 +48,13 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/translations.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,62 +64,103 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch3';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
     <link rel="next" title="差分隐私的性质" href="ch4.html" />
     <link rel="prev" title="k-匿名性" href="ch2.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="zh_CN">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh_CN"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="cover.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo_zh_cn.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/logo_zh_cn.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo_zh_cn.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -117,359 +170,246 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   引言
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch1.html">
-   去标识
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch2.html">
-   k-匿名性
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   差分隐私
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch4.html">
-   差分隐私的性质
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch5.html">
-   敏感度
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch6.html">
-   近似差分隐私
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch7.html">
-   局部敏感度
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch8.html">
-   差分隐私变体
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch9.html">
-   指数机制
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch10.html">
-   稀疏向量技术
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch11.html">
-   算法设计练习
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch12.html">
-   机器学习
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch13.html">
-   本地差分隐私
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch14.html">
-   合成数据
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bibliography.html">
-   参考文献
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">引言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch1.html">去标识</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch2.html">k-匿名性</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">差分隐私</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch4.html">差分隐私的性质</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch5.html">敏感度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch6.html">近似差分隐私</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch7.html">局部敏感度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch8.html">差分隐私变体</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch9.html">指数机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch10.html">稀疏向量技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">算法设计练习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch12.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch13.html">本地差分隐私</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch14.html">合成数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">参考文献</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/zh_cn/notebooks/ch3.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="源码库"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp/edit/master/zh_cn/notebooks/ch3.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp/issues/new?title=Issue%20on%20page%20%2Fch3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="创建议题"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ch3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/uvm-plaid/programming-dp"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/uvm-plaid/programming-dp/issues/new?title=Issue%20on%20page%20%2Fch3.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/uvm-plaid/programming-dp/edit/master/zh_cn/notebooks/ch3.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/ch3.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   拉普拉斯机制
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   需要多大的噪声？
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>差分隐私</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   拉普拉斯机制
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   需要多大的噪声？
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>差分隐私</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">拉普拉斯机制</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">需要多大的噪声？</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>差分隐私<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
@@ -484,8 +424,8 @@ title="Print to PDF"
 <div class="admonition- admonition">
 <p class="admonition-title">定义</p>
 <p>一般将满足差分隐私的函数称为一个<em>机制</em>（Mechanism）。如果对于所有<em>临近数据集</em>（Neighboring Dataset）<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>和所有可能的输出<span class="math notranslate nohighlight">\(S\)</span>，机制<span class="math notranslate nohighlight">\(F\)</span>均满足</p>
-<div class="amsmath math notranslate nohighlight" id="equation-00263e8d-6f04-4d41-a961-973f0bfbb877">
-<span class="eqno">(1)<a class="headerlink" href="#equation-00263e8d-6f04-4d41-a961-973f0bfbb877" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-05310d89-5a05-4446-9fca-e211b9983dbf">
+<span class="eqno">(1)<a class="headerlink" href="#equation-05310d89-5a05-4446-9fca-e211b9983dbf" title="公式的永久链接">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
 \end{equation}\]</div>
 <p>则称机制<span class="math notranslate nohighlight">\(F\)</span>满足差分隐私。</p>
@@ -494,7 +434,7 @@ title="Print to PDF"
 <p>这个定义所蕴含的一个重要含义是，无论输入<em>是否包含</em>任意特定个体的数据，<span class="math notranslate nohighlight">\(F\)</span>的输出总是几乎相同的。换句话说，<span class="math notranslate nohighlight">\(F\)</span>所引入的随机性应该足够大，使得观察<span class="math notranslate nohighlight">\(F\)</span>的输出无法判断输入是<span class="math notranslate nohighlight">\(x\)</span>还是<span class="math notranslate nohighlight">\(x'\)</span>。假设我的数据在<span class="math notranslate nohighlight">\(x\)</span>中，但不在<span class="math notranslate nohighlight">\(x'\)</span>中。如果攻击者无法确定<span class="math notranslate nohighlight">\(F\)</span>的输入是<span class="math notranslate nohighlight">\(x\)</span>还是<span class="math notranslate nohighlight">\(x'\)</span>，则攻击者甚至无法判断输入是否包含我的数据，更无法判断出我的数据是什么了。</p>
 <p>一般将差分隐私定义中的参数<span class="math notranslate nohighlight">\(\epsilon\)</span>称为<em>隐私参数</em>（Privacy Parameter）或<em>隐私预算</em>（Privacy Budget）。<span class="math notranslate nohighlight">\(\epsilon\)</span>提供了一个旋钮，用来调整差分隐私定义所能提供的”隐私量”。<span class="math notranslate nohighlight">\(\epsilon\)</span>较小时，意味着<span class="math notranslate nohighlight">\(F\)</span>需要为相似的输入提供<em>非常</em>相似的输出，因此提供更高等级的隐私性。较大的<span class="math notranslate nohighlight">\(\epsilon\)</span>允许<span class="math notranslate nohighlight">\(F\)</span>给出不那么相似的输出，因此提供更少的隐私性。</p>
 <p>我们在实际中应该如何设置<span class="math notranslate nohighlight">\(\epsilon\)</span>，差分隐私才能提供足够的隐私性呢？没人知道这个问题的答案。一般的共识是：将<span class="math notranslate nohighlight">\(\epsilon\)</span>设置为约等于1或者更小的值；大于10的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值意味着大概率无法提供足够的隐私性。但实际上，这个经验法则下的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值过于保守了。我们后续将会进一步展开讨论这个问题。</p>
-<div class="section" id="id3">
+<section id="id3">
 <h2>拉普拉斯机制<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h2>
 <p>差分隐私一般用于回复特定的问询。我们来考虑一个针对人口普查数据的问询。我们首先不使用差分隐私。</p>
 <p>“数据集中有多少个体的年龄大于等于40岁？”</p>
@@ -514,8 +454,8 @@ title="Print to PDF"
 <div class="admonition- admonition">
 <p class="admonition-title">定义</p>
 <p>根据拉普拉斯机制，对于可以输出一个数值型结果的函数<span class="math notranslate nohighlight">\(f(x)\)</span>，按下述方法定义的<span class="math notranslate nohighlight">\(F(x)\)</span>满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a5e94f9-06d5-4e57-8da4-f09f8210d5b7">
-<span class="eqno">(2)<a class="headerlink" href="#equation-4a5e94f9-06d5-4e57-8da4-f09f8210d5b7" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-547bece9-8914-4cbf-8bfd-afe7c0f6d6e7">
+<span class="eqno">(2)<a class="headerlink" href="#equation-547bece9-8914-4cbf-8bfd-afe7c0f6d6e7" title="公式的永久链接">#</a></span>\[\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{equation}\]</div>
 <p>其中<span class="math notranslate nohighlight">\(s\)</span>是<span class="math notranslate nohighlight">\(f\)</span>的<em>敏感度</em>（Sensitivity），<span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span>表示以均值为0、放缩系数为<span class="math notranslate nohighlight">\(S\)</span>的拉普拉斯分布采样。</p>
@@ -532,14 +472,14 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14238.272439932305
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14237.79529903685
 </pre></div>
 </div>
 </div>
 </div>
 <p>可以试着多次运行此代码，查看噪声对问询结果造成的影响。虽然每次代码的输出结果都会发生变化，但在大多数情况下，输出的结果都与真实结果（14,235）很接近，输出结果的可用性相对较高。</p>
-</div>
-<div class="section" id="id5">
+</section>
+<section id="id5">
 <h2>需要多大的噪声？<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h2>
 <p>我们如何知道拉普拉斯机制是否已经增加了足够的噪声，可以阻止攻击者对数据集中的个体实施重标识攻击？我们可以先尝试自己来实施攻击！我们构造一个恶意的计数问询，专门用于确定凯莉·特鲁斯洛夫的收入是否大于$50k。</p>
 <div class="cell docutils container">
@@ -568,14 +508,14 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.6318610474714244
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.09753090051702973
 </pre></div>
 </div>
 </div>
 </div>
 <p>真实结果是0还是1呢？因为增加的噪声比较大，我们已经无法可靠地判断真实结果是什么了。这就是差分隐私要实现的目的：哪怕可以判定出此问询是恶意的，我们也不会<em>拒绝</em>回复问询。相反，我们会增加足够大的噪声，使恶意问询的回复结果对攻击者来说变得毫无用处。</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -589,7 +529,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -597,50 +537,102 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="ch2.html" title="上一页 页">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">上一页</p>
-            <p class="prev-next-title">k-匿名性</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ch2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">k-匿名性</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="ch4.html" title="下一页 页">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="ch4.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">下一页</p>
         <p class="prev-next-title">差分隐私的性质</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">拉普拉斯机制</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">需要多大的噪声？</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
-  
-      &copy; Copyright 2021.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+作者： Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

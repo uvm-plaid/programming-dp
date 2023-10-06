@@ -1,34 +1,46 @@
 
+
 <!DOCTYPE html>
 
-<html lang="zh_CN">
+
+<html lang="zh_CN" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>本地差分隐私 &#8212; 动手学差分隐私</title>
-    
-  <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    <title>本地差分隐私 &#8212; 动手学差分隐私</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -36,13 +48,13 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/translations.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,62 +64,103 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch13';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
     <link rel="next" title="合成数据" href="ch14.html" />
     <link rel="prev" title="机器学习" href="ch12.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="zh_CN">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh_CN"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="cover.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo_zh_cn.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">动手学差分隐私</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/logo_zh_cn.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo_zh_cn.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -117,359 +170,246 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   引言
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch1.html">
-   去标识
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch2.html">
-   k-匿名性
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch3.html">
-   差分隐私
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch4.html">
-   差分隐私的性质
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch5.html">
-   敏感度
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch6.html">
-   近似差分隐私
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch7.html">
-   局部敏感度
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch8.html">
-   差分隐私变体
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch9.html">
-   指数机制
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch10.html">
-   稀疏向量技术
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch11.html">
-   算法设计练习
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch12.html">
-   机器学习
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   本地差分隐私
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch14.html">
-   合成数据
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bibliography.html">
-   参考文献
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">引言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch1.html">去标识</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch2.html">k-匿名性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch3.html">差分隐私</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch4.html">差分隐私的性质</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch5.html">敏感度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch6.html">近似差分隐私</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch7.html">局部敏感度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch8.html">差分隐私变体</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch9.html">指数机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch10.html">稀疏向量技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">算法设计练习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch12.html">机器学习</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">本地差分隐私</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch14.html">合成数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">参考文献</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/zh_cn/notebooks/ch13.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="源码库"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp/edit/master/zh_cn/notebooks/ch13.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp/issues/new?title=Issue%20on%20page%20%2Fch13.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="创建议题"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ch13.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/uvm-plaid/programming-dp"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/uvm-plaid/programming-dp/issues/new?title=Issue%20on%20page%20%2Fch13.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/uvm-plaid/programming-dp/edit/master/zh_cn/notebooks/ch13.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/ch13.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   随机应答
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   一元编码
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>本地差分隐私</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   随机应答
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   一元编码
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>本地差分隐私</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">随机应答</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">一元编码</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>本地差分隐私<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
@@ -486,11 +426,11 @@ title="Print to PDF"
 <p>因此，相比于中心模型，本地模型有着巨大的优势：数据主体不需要相信除他们自己以外的任何人。这一优势使得本地模型在实际系统中有着广泛的应用，包括<a class="reference external" href="https://github.com/google/rappor">谷歌</a>和<a class="reference external" href="https://www.apple.com/privacy/docs/Differential_Privacy_Overview.pdf">苹果</a>都部署了基于本地模型的差分隐私应用。</p>
 <p>不幸的是，本地模型也有明显的缺点：在相同的隐私消耗量下，对于相同的问询，本地模型问询结果的准确性通常比中心模型<em>低几个数量级</em>。这种巨大的准确性损失意味着只有较少类型的问询适用于本地差分隐私。即便如此，只有当数据量较大（即参与者数量较多时）时，差分隐私本地模型分析结果的准确率才可以满足实际要求。</p>
 <p>本章，我们将学习两种本地差分隐私机制。第一种是<em>随机应答</em>（Randomized Response），第二种是<em>一元编码</em>（Unary Encoding）。</p>
-<div class="section" id="id2">
+<section id="id2">
 <h2>随机应答<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Randomized_response">随机应答</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id19" title="Stanley L. Warner. Randomized response: a survey technique for eliminating evasive answer bias. Journal of the American Statistical Association, 60(309):63-69, 1965. PMID: 12261830. URL: https://www.tandfonline.com/doi/abs/10.1080/01621459.1965.10480775, doi:10.1080/01621459.1965.10480775.">16</a>]</span>是一种本地差分隐私机制，<a class="reference external" href="https://www.jstor.org/stable/2283137?seq=1#metadata_info_tab_contents">S. L. Warner</a>在其1965年的论文中首次提出了这一机制。当时，该技术提出的目的是允许用户可以用错误的回复来应答调研中的敏感问题，且学者们当初也没有意识到这是一种差分隐私机制（此后40年内，学者们都尚未提出差分隐私的概念）。在提出差分隐私的概念后，统计学家们才意识到随机应答技术<em>已经</em>满足了差分隐私的定义。</p>
 <p>Dwork和Roth提出了一种随机应答变种机制。在此机制中，数据主体按下述方法用”是”或”不是”来回答一个问题：</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>掷一枚硬币</p></li>
 <li><p>如果硬币正面向上，如实回答问题</p></li>
 <li><p>如果硬币反面向上，再掷一枚硬币</p></li>
@@ -523,8 +463,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     153
-False     47
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     147
+False     53
 dtype: int64
 </pre></div>
 </div>
@@ -546,8 +486,8 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22415
-True     10146
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22687
+True      9874
 dtype: int64
 </pre></div>
 </div>
@@ -603,7 +543,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3585.5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3683.5
 </pre></div>
 </div>
 </div>
@@ -629,7 +569,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.767123287671233
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9178082191780823
 </pre></div>
 </div>
 </div>
@@ -643,15 +583,15 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.002028728448001932
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0033312803816941544
 </pre></div>
 </div>
 </div>
 </div>
 <p>即使我们中心模型中的<span class="math notranslate nohighlight">\(\epsilon\)</span>值略低于随机应答的<span class="math notranslate nohighlight">\(\epsilon\)</span>，中心模型的误差也仅约为0.01%，远小于本地模型。</p>
 <p>确实<em>存在</em>效果更好的本地模型算法。然而，本地模型存在天生的限制条件：必须在提交数据前增加噪声。这意味着本地模型算法的准确率<em>总是</em>比最好的中心模型算法准确率低。</p>
-</div>
-<div class="section" id="id4">
+</section>
+<section id="id4">
 <h2>一元编码<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
 <p>随机应答允许我们基于本地差分隐私回答”是或否”的问题。如何实现直方图问询呢？</p>
 <p>学者们已经提出了多种不同的算法，来解决本地差分隐私的直方图问询问题。<a class="reference external" href="https://arxiv.org/abs/1705.04421">Wang等人</a> <span id="id5">[<a class="reference internal" href="bibliography.html#id20" title="Tianhao Wang, Jeremiah Blocki, Ninghui Li, and Somesh Jha. Locally differentially private protocols for frequency estimation. In 26th USENIX Security Symposium (USENIX Security 17), 729–745. Vancouver, BC, August 2017. USENIX Association. URL: https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/wang-tianhao.">17</a>]</span>在2017年的论文中总结了一些优化方法。这里，我们介绍其中最简单的一个方法：<em>一元编码</em>。该方法是<a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42852.pdf">谷歌RAPPOR系统</a> <span id="id6">[<a class="reference internal" href="bibliography.html#id18" title="Úlfar Erlingsson, Vasyl Pihur, and Aleksandra Korolova. Rappor: randomized aggregatable privacy-preserving ordinal response. In Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security, CCS '14, 1054–1067. New York, NY, USA, 2014. Association for Computing Machinery. URL: https://doi.org/10.1145/2660267.2660348, doi:10.1145/2660267.2660348.">15</a>]</span>的基础算法（谷歌RAPPOR系统对基础算法作了大量的修改，使算法支持更大的标签数量、支持随时间推移的多次应答）。</p>
@@ -674,7 +614,7 @@ dtype: int64
 </div>
 </div>
 <p>我们将定义三个函数，这三个函数共同实现了一元编码机制：</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">encode</span></code>（编码），编码应答值</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">perturb</span></code>（扰动），扰动编码后的应答值</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">aggregate</span></code>（聚合），根据扰动应答值重构最终结果</p></li>
@@ -710,8 +650,8 @@ dtype: int64
     <span class="k">return</span> <span class="p">[</span><span class="n">perturb_bit</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">encoded_response</span><span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">perturb_bit</span><span class="p">(</span><span class="n">bit</span><span class="p">):</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="o">.</span><span class="mi">75</span>
-    <span class="n">q</span> <span class="o">=</span> <span class="o">.</span><span class="mi">25</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="mf">.75</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="mf">.25</span>
 
     <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">bit</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -730,14 +670,14 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0]
 </pre></div>
 </div>
 </div>
 </div>
 <p>我们可以根据<span class="math notranslate nohighlight">\(p\)</span>和<span class="math notranslate nohighlight">\(q\)</span>计算出隐私参数<span class="math notranslate nohighlight">\(\epsilon\)</span>。如果<span class="math notranslate nohighlight">\(p=.75\)</span>，<span class="math notranslate nohighlight">\(q=.25\)</span>，则计算得到的<span class="math notranslate nohighlight">\(\epsilon\)</span>略高于2。</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2f6f652c-b138-46df-8c29-90a393844d53">
-<span class="eqno">(38)<a class="headerlink" href="#equation-2f6f652c-b138-46df-8c29-90a393844d53" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6d228f36-a86b-4928-a622-0d11ef886342">
+<span class="eqno">(38)<a class="headerlink" href="#equation-6d228f36-a86b-4928-a622-0d11ef886342" title="公式的永久链接">#</a></span>\[\begin{align}
 \epsilon = \log{\left(\frac{p (1-q)}{(1-p) q}\right)}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -745,7 +685,7 @@ dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unary_epsilon</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">p</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">q</span><span class="p">))</span> <span class="o">/</span> <span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">q</span><span class="p">))</span>
 
-<span class="n">unary_epsilon</span><span class="p">(</span><span class="o">.</span><span class="mi">75</span><span class="p">,</span> <span class="o">.</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">unary_epsilon</span><span class="p">(</span><span class="mf">.75</span><span class="p">,</span> <span class="mf">.25</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -791,34 +731,34 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 10083),
- (&#39;Exec-managerial&#39;, 10139),
- (&#39;Handlers-cleaners&#39;, 8768),
- (&#39;Prof-specialty&#39;, 10341),
- (&#39;Other-service&#39;, 9982),
- (&#39;Sales&#39;, 9854),
- (&#39;Craft-repair&#39;, 10336),
- (&#39;Transport-moving&#39;, 8929),
- (&#39;Farming-fishing&#39;, 8609),
- (&#39;Machine-op-inspct&#39;, 9118),
- (&#39;Tech-support&#39;, 8636),
- (&#39;Protective-serv&#39;, 8490),
- (&#39;Armed-Forces&#39;, 8153),
- (&#39;Priv-house-serv&#39;, 8169)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 9978),
+ (&#39;Exec-managerial&#39;, 10276),
+ (&#39;Handlers-cleaners&#39;, 8764),
+ (&#39;Prof-specialty&#39;, 10261),
+ (&#39;Other-service&#39;, 9816),
+ (&#39;Sales&#39;, 9864),
+ (&#39;Craft-repair&#39;, 10186),
+ (&#39;Transport-moving&#39;, 8954),
+ (&#39;Farming-fishing&#39;, 8543),
+ (&#39;Machine-op-inspct&#39;, 9092),
+ (&#39;Tech-support&#39;, 8713),
+ (&#39;Protective-serv&#39;, 8479),
+ (&#39;Armed-Forces&#39;, 8031),
+ (&#39;Priv-house-serv&#39;, 8020)]
 </pre></div>
 </div>
 </div>
 </div>
 <p>一元编码算法的聚合步骤需要考虑每个标签的”假”应答数量。此步骤以<span class="math notranslate nohighlight">\(p\)</span>、<span class="math notranslate nohighlight">\(q\)</span>，以及应答数量<span class="math notranslate nohighlight">\(n\)</span>为输入，得到聚合结果：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-066106dd-2c5a-460a-8fd1-15b2978d1f8f">
-<span class="eqno">(39)<a class="headerlink" href="#equation-066106dd-2c5a-460a-8fd1-15b2978d1f8f" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9b8854ce-d395-40f4-a70b-9f83d6ecc62c">
+<span class="eqno">(39)<a class="headerlink" href="#equation-9b8854ce-d395-40f4-a70b-9f83d6ecc62c" title="公式的永久链接">#</a></span>\[\begin{align}
 A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 \end{align}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">responses</span><span class="p">):</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="o">.</span><span class="mi">75</span>
-    <span class="n">q</span> <span class="o">=</span> <span class="o">.</span><span class="mi">25</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="mf">.75</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="mf">.25</span>
     
     <span class="n">sums</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
@@ -837,28 +777,28 @@ A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3761.5),
- (&#39;Exec-managerial&#39;, 4203.5),
- (&#39;Handlers-cleaners&#39;, 1405.5),
- (&#39;Prof-specialty&#39;, 4531.5),
- (&#39;Other-service&#39;, 3197.5),
- (&#39;Sales&#39;, 3507.5),
- (&#39;Craft-repair&#39;, 4097.5),
- (&#39;Transport-moving&#39;, 1517.5),
- (&#39;Farming-fishing&#39;, 1127.5),
- (&#39;Machine-op-inspct&#39;, 2047.5),
- (&#39;Tech-support&#39;, 765.5),
- (&#39;Protective-serv&#39;, 881.5),
- (&#39;Armed-Forces&#39;, -88.5),
- (&#39;Priv-house-serv&#39;, 247.5)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3923.5),
+ (&#39;Exec-managerial&#39;, 4073.5),
+ (&#39;Handlers-cleaners&#39;, 1399.5),
+ (&#39;Prof-specialty&#39;, 4321.5),
+ (&#39;Other-service&#39;, 3421.5),
+ (&#39;Sales&#39;, 3621.5),
+ (&#39;Craft-repair&#39;, 3847.5),
+ (&#39;Transport-moving&#39;, 1619.5),
+ (&#39;Farming-fishing&#39;, 1045.5),
+ (&#39;Machine-op-inspct&#39;, 1627.5),
+ (&#39;Tech-support&#39;, 995.5),
+ (&#39;Protective-serv&#39;, 785.5),
+ (&#39;Armed-Forces&#39;, 51.5),
+ (&#39;Priv-house-serv&#39;, -8.5)]
 </pre></div>
 </div>
 </div>
 </div>
 <p>正如我们在随机应答中所看到的，一元编码机制得到的统计结果也比较准确，我们可以得到应答域中各个标签的粗略排序结果（至少可以统计出最受欢迎的职位是什么）。即便如此，一元编码机制的准确率要比中心模型拉普拉斯机制的准确率低几个数量级。</p>
 <p>学者们已经提出了其他在本地模型下实现直方图问询的方法。之前链接给出的<a class="reference external" href="https://arxiv.org/abs/1705.04421">论文</a>具体介绍了这些方法。这些方法可以在一定程度上提高准确率，但这些方法都必须保证本地模型下<em>每个样本需独立</em>满足差分隐私。这一基本限制条件使得即便使用最复杂的技术，本地模型机制的准确率也无法达到中心模型机制的准确率。</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -872,7 +812,7 @@ A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -880,50 +820,102 @@ A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="ch12.html" title="上一页 页">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">上一页</p>
-            <p class="prev-next-title">机器学习</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ch12.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">机器学习</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="ch14.html" title="下一页 页">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="ch14.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">下一页</p>
         <p class="prev-next-title">合成数据</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">随机应答</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">一元编码</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）<br/>
-  
-      &copy; Copyright 2021.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+作者： Joseph P. Near、Chiké Abuah（著）；刘巍然、李双（译）
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

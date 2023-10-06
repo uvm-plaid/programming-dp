@@ -1,34 +1,45 @@
 
+
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Variants of Differential Privacy &#8212; Programming Differential Privacy</title>
-    
-  <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    <title>Variants of Differential Privacy &#8212; Programming Differential Privacy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -36,12 +47,12 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -51,444 +62,501 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch8';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="The Exponential Mechanism" href="ch9.html" />
     <link rel="prev" title="Local Sensitivity" href="ch7.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
-    <div class="container-fluid" id="banner"></div>
+      <div class="navbar-item">
+  
 
+<a class="navbar-brand logo" href="cover.html">
+  
+  
+  
+  
     
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="intro.html">
+                        Introduction
+                      </a>
+                    </li>
+                
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
-      <img src="_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="cover.html">
-                    Programming Differential Privacy
-                </a>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch1.html">
+                        De-identification
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch2.html">
+                        k-Anonymity
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch3.html">
+                        Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch4.html">
+                        Properties of Differential Privacy
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-header-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-header-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch5.html">
+                        Sensitivity
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch6.html">
+                        Approximate Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch7.html">
+                        Local Sensitivity
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link dropdown-item nav-internal" href="#">
+                        Variants of Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch9.html">
+                        The Exponential Mechanism
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch10.html">
+                        The Sparse Vector Technique
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch11.html">
+                        Exercises in Algorithm Design
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch12.html">
+                        Machine Learning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch13.html">
+                        Local Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch14.html">
+                        Synthetic Data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="bibliography.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+                </ul>
             </li>
-        </ul>
-        <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch1.html">
-   De-identification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch2.html">
-   k-Anonymity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch3.html">
-   Differential Privacy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch4.html">
-   Properties of Differential Privacy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch5.html">
-   Sensitivity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch6.html">
-   Approximate Differential Privacy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch7.html">
-   Local Sensitivity
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Variants of Differential Privacy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch9.html">
-   The Exponential Mechanism
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch10.html">
-   The Sparse Vector Technique
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch11.html">
-   Exercises in Algorithm Design
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch12.html">
-   Machine Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch13.html">
-   Local Differential Privacy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch14.html">
-   Synthetic Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bibliography.html">
-   Bibliography
-  </a>
- </li>
-</ul>
-
-    </div>
+            
+  </ul>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+      
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
     
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/ch8.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
+`);
+</script></div>
       
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/uvm-plaid/programming-dp"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/uvm-plaid/programming-dp/issues/new?title=Issue%20on%20page%20%2Fch8.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/uvm-plaid/programming-dp/edit/master/notebooks/ch8.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/ch8.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
     </div>
-</div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#max-divergence-and-renyi-divergence">
-   Max Divergence and Rényi Divergence
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#renyi-differential-privacy">
-   Rényi Differential Privacy
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#zero-concentrated-differential-privacy">
-   Zero-Concentrated Differential Privacy
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#composition-under-variants-of-differential-privacy">
-   Composition under Variants of Differential Privacy
-  </a>
- </li>
-</ul>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
 
     </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Variants of Differential Privacy</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#max-divergence-and-renyi-divergence">
-   Max Divergence and Rényi Divergence
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#renyi-differential-privacy">
-   Rényi Differential Privacy
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#zero-concentrated-differential-privacy">
-   Zero-Concentrated Differential Privacy
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#composition-under-variants-of-differential-privacy">
-   Composition under Variants of Differential Privacy
-  </a>
- </li>
-</ul>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="intro.html">
+                        Introduction
+                      </a>
+                    </li>
                 
-              <div>
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch1.html">
+                        De-identification
+                      </a>
+                    </li>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="variants-of-differential-privacy">
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch2.html">
+                        k-Anonymity
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch3.html">
+                        Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch4.html">
+                        Properties of Differential Privacy
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-header-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-header-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch5.html">
+                        Sensitivity
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch6.html">
+                        Approximate Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch7.html">
+                        Local Sensitivity
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link dropdown-item nav-internal" href="#">
+                        Variants of Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch9.html">
+                        The Exponential Mechanism
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch10.html">
+                        The Sparse Vector Technique
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch11.html">
+                        Exercises in Algorithm Design
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch12.html">
+                        Machine Learning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch13.html">
+                        Local Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch14.html">
+                        Synthetic Data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="bibliography.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="cover.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Variants of...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="variants-of-differential-privacy">
 <h1>Variants of Differential Privacy<a class="headerlink" href="#variants-of-differential-privacy" title="Permalink to this headline">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
@@ -508,9 +576,14 @@ title="Print to PDF"
 </ul>
 <p>A neat way to visualize this is to look at what happens to privacy cost when we “vectorize” a query: that is, we merge lots of queries into a single query which returns a vector of the individual answers. Because the answer is a vector, we can use the vector-valued Laplace mechanism just once, and avoid composition altogether. Below, we’ll graph how much noise is needed for <span class="math notranslate nohighlight">\(k\)</span> queries, first under sequential composition, and then using the “vectorized” form. In the sequential composition case, each query has a sensitivity of 1, so the scale of the noise for each one is <span class="math notranslate nohighlight">\(\frac{1}{\epsilon_i}\)</span>. If we want a total privacy cost of <span class="math notranslate nohighlight">\(\epsilon\)</span>, then the <span class="math notranslate nohighlight">\(\epsilon_i\)</span>s must add up to <span class="math notranslate nohighlight">\(\epsilon\)</span>, so <span class="math notranslate nohighlight">\(\epsilon_i = \frac{\epsilon}{k}\)</span>. This means that each query gets Laplace noise with scale <span class="math notranslate nohighlight">\(\frac{k}{\epsilon}\)</span>. In the “vectorized” case, there’s just one query, but it has an <span class="math notranslate nohighlight">\(L1\)</span> sensitivity of <span class="math notranslate nohighlight">\(\sum_{i=1}^k 1 = k\)</span>, so the scale of the noise is <span class="math notranslate nohighlight">\(\frac{k}{\epsilon}\)</span> in this case too.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<span class="n">epsilon</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">.1</span>
 
 <span class="c1"># L1 sensitivity of each query: 1</span>
 <span class="c1"># noise per query: 1/epsilon</span>
@@ -530,14 +603,15 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/ch8_3_0.png" src="_images/ch8_3_0.png" />
+<img alt="_images/9c8a4d14d3b677ef47b215ce6a2acceca85bb4ac44129ebc9e1c795552016310.png" src="_images/9c8a4d14d3b677ef47b215ce6a2acceca85bb4ac44129ebc9e1c795552016310.png" />
 </div>
 </div>
 <p>The two lines overlap <em>completely</em>. This means that no matter how many queries we’re running, under <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, we can’t do any better than sequential composition. That’s because sequential composition is just as good as vectorizing the query, effectively converting it to a single query without involving composition, and we can’t do any better than that.</p>
 <p>What about <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy? The story is a little different there. In the sequential composition case, we can use advanced composition; we have to be a little careful to ensure that the total privacy cost is exactly <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>. Specifically, we set <span class="math notranslate nohighlight">\(\epsilon_i = \frac{\epsilon}{2 \sqrt{2k \log(1/\delta')}}\)</span>, <span class="math notranslate nohighlight">\(\delta_i = \frac{\delta}{2k}\)</span>, and <span class="math notranslate nohighlight">\(\delta' = \frac{\delta}{2}\)</span> (splitting <span class="math notranslate nohighlight">\(\delta\)</span> to go 50% towards the queries, and 50% towards advanced composition). By advanced composition, the total privacy cost for all <span class="math notranslate nohighlight">\(k\)</span> queries is <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>. The scale of the noise, by the Gaussian mechanism, is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee16e4dc-b7c3-4a2c-8a08-545979b8aacf">
-<span class="eqno">(23)<a class="headerlink" href="#equation-ee16e4dc-b7c3-4a2c-8a08-545979b8aacf" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d886bbd5-ed61-4263-b1e9-9f19b498a4fc">
+<span class="eqno">(23)<a class="headerlink" href="#equation-d886bbd5-ed61-4263-b1e9-9f19b498a4fc" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sigma^2 =&amp; \frac{2 \log\left(\frac{1.25}{\delta_i}\right)}{\epsilon_i^2}\\
  =&amp; \frac{16 k \log\left(\frac{1}{\delta'}\right) \log\left(\frac{1.25}{\delta_i}\right)}{\epsilon^2}\\
  =&amp; \frac{16 k \log\left(\frac{2}{\delta}\right) \log\left(\frac{2.5 k}{\delta}\right)}{\epsilon^2}\\
@@ -545,9 +619,14 @@ title="Print to PDF"
 <p>In the “vectorized” case, we have just one query, with an <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of <span class="math notranslate nohighlight">\(\sqrt{k}\)</span>. The scale of the noise, by the Gaussian mechanism, is <span class="math notranslate nohighlight">\(\sigma^2 = \frac{2 k \log(1.25/\delta)}{\epsilon^2}\)</span>.</p>
 <p>What does this difference mean in practice? The two behave the same asymptotically in <span class="math notranslate nohighlight">\(k\)</span>, but have different constants, and the advanced composition case has an additional logarithmic factor in <span class="math notranslate nohighlight">\(\delta\)</span>. All this adds up to a much looser bound in the case of advanced composition. Let’s graph the two as we did before.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<span class="n">epsilon</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">.1</span>
 <span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>
 
 <span class="c1"># L2 sensitivity of each query: 1</span>
@@ -566,42 +645,43 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/ch8_5_0.png" src="_images/ch8_5_0.png" />
+<img alt="_images/54b1e1341dd83d76eefdc0884f1541e387c688b94e0ead25bd9313ecd7a166c4.png" src="_images/54b1e1341dd83d76eefdc0884f1541e387c688b94e0ead25bd9313ecd7a166c4.png" />
 </div>
 </div>
 <p>It’s not even close - the “vectorized” version grows <em>much</em> slower. What does this mean? We should be able to do <em>much</em> better for sequential composition!</p>
-<div class="section" id="max-divergence-and-renyi-divergence">
+<section id="max-divergence-and-renyi-divergence">
 <h2>Max Divergence and Rényi Divergence<a class="headerlink" href="#max-divergence-and-renyi-divergence" title="Permalink to this headline">#</a></h2>
 <p>It turns out that the definition of differential privacy can be stated directly in terms of something called <em>max divergence</em>. In statistics, a <a class="reference external" href="https://en.wikipedia.org/wiki/Divergence_(statistics)"><em>divergence</em></a> is a way of measuring the distance between two probability distributions - which is exactly what we want to do for differential privacy. The <em>max divergence</em> is the worst-case analog of the <a class="reference external" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback–Leibler divergence</a>, one of the most common such measures. The max divergence between two probability distributions <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> is defined to be:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ab4b5f4-e37c-498f-9810-ecb1f7d7c513">
-<span class="eqno">(24)<a class="headerlink" href="#equation-2ab4b5f4-e37c-498f-9810-ecb1f7d7c513" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-db3f8545-57c9-4194-b0cd-c7df411e0fd1">
+<span class="eqno">(24)<a class="headerlink" href="#equation-db3f8545-57c9-4194-b0cd-c7df411e0fd1" title="Permalink to this equation">#</a></span>\[\begin{align}
 D_\infty(Y \Vert Z) = \max_{S \subseteq \text{Supp}(Y)} \Big[\log \frac{Pr[Y \in S]}{Pr[Z \in S]} \Big]
 \end{align}\]</div>
 <p>This already looks a lot like the condition for <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy! In particular, it turns out that <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy if:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-79f49e21-2885-4e5d-9c03-e793952773c2">
-<span class="eqno">(25)<a class="headerlink" href="#equation-79f49e21-2885-4e5d-9c03-e793952773c2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-75d37bef-a47a-434e-826e-62f8eaa298c0">
+<span class="eqno">(25)<a class="headerlink" href="#equation-75d37bef-a47a-434e-826e-62f8eaa298c0" title="Permalink to this equation">#</a></span>\[\begin{align}
 D_\infty(F(x) \Vert F(x') \leq \epsilon
 \end{align}\]</div>
 <p>An interesting direction for research in differential privacy is the exploration of alternative privacy definitions in terms of other divergences. Of these, the <a class="reference external" href="https://en.wikipedia.org/wiki/R%C3%A9nyi_entropy#R%C3%A9nyi_divergence">Rényi divergence</a> is particularly interesting, since it also (like max divergence) allows us to recover the original definition of differential privacy. The Rényi divergence of order <span class="math notranslate nohighlight">\(\alpha\)</span> between probability distributions <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> is defined as (where <span class="math notranslate nohighlight">\(P(x)\)</span> and <span class="math notranslate nohighlight">\(Q(x)\)</span> denote the probability density of <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> at point <span class="math notranslate nohighlight">\(x\)</span>, respectively):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-997cdc0e-8b5a-4501-b245-1e46a6f572c6">
-<span class="eqno">(26)<a class="headerlink" href="#equation-997cdc0e-8b5a-4501-b245-1e46a6f572c6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a07ea8a9-afbe-4574-891a-a65b01571208">
+<span class="eqno">(26)<a class="headerlink" href="#equation-a07ea8a9-afbe-4574-891a-a65b01571208" title="Permalink to this equation">#</a></span>\[\begin{align}
 D_\alpha(P \Vert Q) = \frac{1}{\alpha - 1} \log E_{x \sim Q} \Big(\frac{P(x)}{Q(x)}\Big)^\alpha
 \end{align}\]</div>
 <p>If we set <span class="math notranslate nohighlight">\(\alpha = \infty\)</span>, then we immediately recover the definition of <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy! The obvious question arises: what happens if we set <span class="math notranslate nohighlight">\(\alpha\)</span> to something else? As we’ll see, it’s possible to use the Rényi divergence to derive really interesting relaxations of differential privacy that allow better composition theorems while at the same time avoiding the possibility of “catastrophe” which is possible under <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy.</p>
-</div>
-<div class="section" id="renyi-differential-privacy">
+</section>
+<section id="renyi-differential-privacy">
 <h2>Rényi Differential Privacy<a class="headerlink" href="#renyi-differential-privacy" title="Permalink to this headline">#</a></h2>
 <p>In 2017, Ilya Mironov proposed <a class="reference external" href="https://arxiv.org/abs/1702.07476">Rényi differential privacy (RDP)</a> <span id="id1">[<a class="reference internal" href="bibliography.html#id13" title="Ilya Mironov. Renyi differential privacy. In Computer Security Foundations Symposium (CSF), 2017 IEEE 30th, 263–275. IEEE, 2017.">10</a>]</span>. A randomized mechanism <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP if for all neighboring datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-052e9ae1-b592-45c6-b162-8bc7dfa3db73">
-<span class="eqno">(27)<a class="headerlink" href="#equation-052e9ae1-b592-45c6-b162-8bc7dfa3db73" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-48d3d00e-55af-4d09-ab30-2b8487bfa0fa">
+<span class="eqno">(27)<a class="headerlink" href="#equation-48d3d00e-55af-4d09-ab30-2b8487bfa0fa" title="Permalink to this equation">#</a></span>\[\begin{align}
 D_\alpha(F(x) \Vert F(x')) \leq \bar{\epsilon}
 \end{align}\]</div>
 <p>In other words, RDP requires that the Rényi divergence of order <span class="math notranslate nohighlight">\(\alpha\)</span> between <span class="math notranslate nohighlight">\(F(x)\)</span> and <span class="math notranslate nohighlight">\(F(x')\)</span> to be bounded by <span class="math notranslate nohighlight">\(\bar{\epsilon}\)</span>. Note that we’ll use <span class="math notranslate nohighlight">\(\bar{\epsilon}\)</span> to denote the <span class="math notranslate nohighlight">\(\epsilon\)</span> parameter of RDP, in order to distinguish it from the <span class="math notranslate nohighlight">\(\epsilon\)</span> in pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy and <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy.</p>
 <p>A key property of Rényi differential privacy is that a mechanism which satisfies RDP also satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy. Specifically, if <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP, then for <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span>, <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy for <span class="math notranslate nohighlight">\(\epsilon = \bar{\epsilon} + \frac{\log(1/\delta)}{\alpha - 1}\)</span>. The analyst is free to pick any value of <span class="math notranslate nohighlight">\(\delta\)</span>; a meaningful value (e.g. <span class="math notranslate nohighlight">\(\delta \leq \frac{1}{n^2}\)</span>) should be picked in practice.</p>
 <p>The basic mechanism for achieving Rényi differential privacy is the Gaussian mechanism. Specifically, for a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}^k\)</span> with <span class="math notranslate nohighlight">\(L2\)</span> sensitivity <span class="math notranslate nohighlight">\(\Delta f\)</span>, the following mechanism satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7c6a2a6a-d00b-4780-a88e-7530818fdfca">
-<span class="eqno">(28)<a class="headerlink" href="#equation-7c6a2a6a-d00b-4780-a88e-7530818fdfca" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-70841ea9-da30-4d3f-99e1-8144559c6345">
+<span class="eqno">(28)<a class="headerlink" href="#equation-70841ea9-da30-4d3f-99e1-8144559c6345" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2 \alpha}{2\bar{\epsilon}}
 \end{align}\]</div>
 <p>We can implement the Gaussian mechanism for Rényi differential privacy as follows:</p>
@@ -623,18 +703,18 @@ F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2 \
 <p>Based on this sequential composition theorem, running an <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP mechanism <span class="math notranslate nohighlight">\(k\)</span> times results in <span class="math notranslate nohighlight">\((\alpha, k\bar{\epsilon})\)</span>-RDP. For a given level of noise (i.e. a given value for <span class="math notranslate nohighlight">\(\sigma^2\)</span>), bounding the privacy cost of repeated applications of the Gaussian mechanism using RDP’s sequential composition, and <em>then</em> converting to <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy, will usually yield a <em>much</em> lower privacy cost than performing the composition directly in <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span> world (even with advanced composition).</p>
 <p>As a result, the ideas behind Rényi differential privacy have been used to greatly improve the privacy cost accounting in a number of recent iterative algorithms, including Google’s <a class="reference external" href="https://github.com/tensorflow/privacy">differentially private version of Tensorflow</a>.</p>
 <p>Finally, like other variants of differential privacy, RDP provides a post-processing property.</p>
-</div>
-<div class="section" id="zero-concentrated-differential-privacy">
+</section>
+<section id="zero-concentrated-differential-privacy">
 <h2>Zero-Concentrated Differential Privacy<a class="headerlink" href="#zero-concentrated-differential-privacy" title="Permalink to this headline">#</a></h2>
 <p>In concurrent work released in 2016, Mark Bun and Thomas Steinke proposed <a class="reference external" href="https://arxiv.org/abs/1605.02065">zero-concentrated differential privacy (zCDP)</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id14" title="Mark Bun and Thomas Steinke. Concentrated differential privacy: simplifications, extensions, and lower bounds. In Theory of Cryptography Conference, 635–658. Springer, 2016.">11</a>]</span>. Like RDP, zCDP is defined in terms of the Rényi divergence, but it includes only a single privacy parameter (<span class="math notranslate nohighlight">\(\rho\)</span>). A randomized mechanism <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP if for all neighboring datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all <span class="math notranslate nohighlight">\(\alpha \in (1, \infty)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-44cfdd06-dee9-4e57-9d96-9f040b822a34">
-<span class="eqno">(29)<a class="headerlink" href="#equation-44cfdd06-dee9-4e57-9d96-9f040b822a34" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f815adf0-d7a8-40cb-93b9-5f230ae52ebc">
+<span class="eqno">(29)<a class="headerlink" href="#equation-f815adf0-d7a8-40cb-93b9-5f230ae52ebc" title="Permalink to this equation">#</a></span>\[\begin{align}
 D_\alpha (F(x) \Vert F(x')) \leq \rho\alpha
 \end{align}\]</div>
 <p>This is a stronger requirement than RDP, because it restricts the Rényi divergence of many orders; however, the bound becomes more relaxed as <span class="math notranslate nohighlight">\(\alpha\)</span> grows. Like RDP, zCDP can be converted to <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy: if <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP, then for <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span>, <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy for <span class="math notranslate nohighlight">\(\epsilon = \rho + 2\sqrt{\rho \log(1/\delta)}\)</span>.</p>
 <p>zCDP is also similar to RDP in that the Gaussian mechanism can be used as a basic mechanism. Specifically, for a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}^k\)</span> with <span class="math notranslate nohighlight">\(L2\)</span> sensitivity <span class="math notranslate nohighlight">\(\Delta f\)</span>, the following mechanism satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-81a8a121-1dc3-47e9-afca-693d0cb6dfb7">
-<span class="eqno">(30)<a class="headerlink" href="#equation-81a8a121-1dc3-47e9-afca-693d0cb6dfb7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-85e73a6e-2846-427e-aca8-ee915a0dc47a">
+<span class="eqno">(30)<a class="headerlink" href="#equation-85e73a6e-2846-427e-aca8-ee915a0dc47a" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2}{2\rho}
 \end{align}\]</div>
 <p>As with RDP, this mechanism is easy to implement:</p>
@@ -655,8 +735,8 @@ F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2}{
 <li><p>Then their composition satisfies <span class="math notranslate nohighlight">\(\rho_1+\rho_2\)</span>-zCDP</p></li>
 </ul>
 <p>Finally, zCDP also provides a post-processing property.</p>
-</div>
-<div class="section" id="composition-under-variants-of-differential-privacy">
+</section>
+<section id="composition-under-variants-of-differential-privacy">
 <h2>Composition under Variants of Differential Privacy<a class="headerlink" href="#composition-under-variants-of-differential-privacy" title="Permalink to this headline">#</a></h2>
 <p>Which variant should we use, and when?</p>
 <p>The recently-developed variants will yield <em>significantly</em> tighter bounds on privacy cost when:</p>
@@ -668,6 +748,11 @@ F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2}{
 <p>To see the effect of this strategy, let’s imagine an algorithm that applies the Gaussian mechanism <span class="math notranslate nohighlight">\(k\)</span> times. We’ll fix values for <span class="math notranslate nohighlight">\(\sigma\)</span> (i.e. the amount of noise added with the Gaussian mechanism in each of the <span class="math notranslate nohighlight">\(k\)</span> iterations) and <span class="math notranslate nohighlight">\(\delta\)</span>, and then compare the final <span class="math notranslate nohighlight">\(\epsilon\)</span>s achieved for each variant.</p>
 <p>We’ll see that composition under RDP and zCDP result in <em>smaller values of <span class="math notranslate nohighlight">\(\epsilon\)</span> for the same amount of noise added</em>. The algorithm is identical under all variants (i.e. it adds the same amount of noise in each case) - so this means that RDP and zCDP are providing <em>significantly tighter bounds on privacy cost</em> for the <em>same algorithm</em>.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span> <span class="o">=</span> <span class="mf">200.0</span>
 <span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>
@@ -703,15 +788,16 @@ F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2}{
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/ch8_15_0.png" src="_images/ch8_15_0.png" />
+<img alt="_images/6cc866fe3f9a529660aed79a0b8532ad4ab6d2f9881ae2befe681fcc1d3b4a62.png" src="_images/6cc866fe3f9a529660aed79a0b8532ad4ab6d2f9881ae2befe681fcc1d3b4a62.png" />
 </div>
 </div>
 <p>The first thing to note is that using sequential composition under either zCDP or RDP is <em>much</em> better than using advanced composition with <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy. When building iterative algorithms with the Gaussian mechanism, these variants should always be used.</p>
 <p>The second thing to note is the difference between zCDP (in orange) and RDP (in green). The <span class="math notranslate nohighlight">\(\epsilon\)</span> for RDP grows linearly in <span class="math notranslate nohighlight">\(k\)</span>, because we have fixed a value for <span class="math notranslate nohighlight">\(\alpha\)</span>. The <span class="math notranslate nohighlight">\(\epsilon\)</span> for zCDP is sublinear in <span class="math notranslate nohighlight">\(k\)</span>, since zCDP effectively considers many <span class="math notranslate nohighlight">\(\alpha\)</span>s. The two lines touch at some value of <span class="math notranslate nohighlight">\(k\)</span>, depending on the <span class="math notranslate nohighlight">\(\alpha\)</span> chosen for RDP (for <span class="math notranslate nohighlight">\(\alpha = 20\)</span>, they touch at roughly <span class="math notranslate nohighlight">\(k=300\)</span>).</p>
 <p>The practical effect of this difference is that <span class="math notranslate nohighlight">\(\alpha\)</span> must be chosen carefully when using RDP in order to bound privacy cost as tightly as possible. This is usually easy to do, since algorithms are usually parameterized by <span class="math notranslate nohighlight">\(\alpha\)</span>; as a result, we can simply test multiple values of <span class="math notranslate nohighlight">\(\alpha\)</span> to see which one results in the smallest corresponding <span class="math notranslate nohighlight">\(\epsilon\)</span>. Since this test is <em>independent</em> of the data (it depends mainly on the privacy parameters we pick, and the number of iterations we want to run), we can test as many values of <span class="math notranslate nohighlight">\(\alpha\)</span> as we want without paying additional privacy cost. We only need to test a small range of values for <span class="math notranslate nohighlight">\(\alpha\)</span> - typically in the range between 2 and 100 - to find a minimum. This is the approach taken in most practical implementations, including Google’s differentially private version of Tensorflow.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -725,7 +811,7 @@ F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2}{
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -733,50 +819,129 @@ F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2}{
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="ch7.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Local Sensitivity</p>
-        </div>
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ch7.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Local Sensitivity</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="ch9.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="ch9.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">The Exponential Mechanism</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#max-divergence-and-renyi-divergence">Max Divergence and Rényi Divergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#renyi-differential-privacy">Rényi Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-concentrated-differential-privacy">Zero-Concentrated Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composition-under-variants-of-differential-privacy">Composition under Variants of Differential Privacy</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
   
-    By Joseph P. Near and Chiké Abuah<br/>
-  
-      &copy; Copyright 2023.<br/>
-</p>
-        </footer>
-    </div>
-    
+  <div class="tocsection editthispage">
+    <a href="https://github.com/uvm-plaid/programming-dp/edit/master/notebooks/ch8.ipynb">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
 </div>
 
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/ch8.ipynb">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
 
-      </div>
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.1.
+</p></div>
+      
+    </div>
+  
+</div>
 
+  </footer>
   </body>
 </html>

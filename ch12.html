@@ -1,34 +1,45 @@
 
+
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Machine Learning &#8212; Programming Differential Privacy</title>
-    
-  <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    <title>Machine Learning &#8212; Programming Differential Privacy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -36,12 +47,12 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -51,502 +62,501 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch12';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Local Differential Privacy" href="ch13.html" />
     <link rel="prev" title="Exercises in Algorithm Design" href="ch11.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
-    <div class="container-fluid" id="banner"></div>
+      <div class="navbar-item">
+  
 
+<a class="navbar-brand logo" href="cover.html">
+  
+  
+  
+  
     
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="intro.html">
+                        Introduction
+                      </a>
+                    </li>
+                
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
-      <img src="_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Programming Differential Privacy</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="cover.html">
-                    Programming Differential Privacy
-                </a>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch1.html">
+                        De-identification
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch2.html">
+                        k-Anonymity
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch3.html">
+                        Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch4.html">
+                        Properties of Differential Privacy
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-header-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-header-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch5.html">
+                        Sensitivity
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch6.html">
+                        Approximate Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch7.html">
+                        Local Sensitivity
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch8.html">
+                        Variants of Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch9.html">
+                        The Exponential Mechanism
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch10.html">
+                        The Sparse Vector Technique
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch11.html">
+                        Exercises in Algorithm Design
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link dropdown-item nav-internal" href="#">
+                        Machine Learning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch13.html">
+                        Local Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch14.html">
+                        Synthetic Data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="bibliography.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+                </ul>
             </li>
-        </ul>
-        <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch1.html">
-   De-identification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch2.html">
-   k-Anonymity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch3.html">
-   Differential Privacy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch4.html">
-   Properties of Differential Privacy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch5.html">
-   Sensitivity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch6.html">
-   Approximate Differential Privacy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch7.html">
-   Local Sensitivity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch8.html">
-   Variants of Differential Privacy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch9.html">
-   The Exponential Mechanism
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch10.html">
-   The Sparse Vector Technique
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch11.html">
-   Exercises in Algorithm Design
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Machine Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch13.html">
-   Local Differential Privacy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch14.html">
-   Synthetic Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bibliography.html">
-   Bibliography
-  </a>
- </li>
-</ul>
-
-    </div>
+            
+  </ul>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+      
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
     
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/ch12.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
+`);
+</script></div>
       
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/uvm-plaid/programming-dp"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/uvm-plaid/programming-dp/issues/new?title=Issue%20on%20page%20%2Fch12.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/uvm-plaid/programming-dp/edit/master/notebooks/ch12.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/ch12.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
     </div>
-</div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#logistic-regression-with-scikit-learn">
-   Logistic Regression with Scikit-Learn
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-a-model">
-   What is a Model?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#training-a-model-with-gradient-descent">
-   Training a Model with Gradient Descent
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-single-step-of-gradient-descent">
-     A Single Step of Gradient Descent
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-gradient-descent-algorithm">
-     A Gradient Descent Algorithm
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gradient-descent-with-differential-privacy">
-   Gradient Descent with Differential Privacy
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gradient-clipping">
-     Gradient Clipping
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sensitivity-of-the-gradient">
-     Sensitivity of the Gradient
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#effect-of-noise-on-training">
-   Effect of Noise on Training
-  </a>
- </li>
-</ul>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
 
     </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Machine Learning</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#logistic-regression-with-scikit-learn">
-   Logistic Regression with Scikit-Learn
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-a-model">
-   What is a Model?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#training-a-model-with-gradient-descent">
-   Training a Model with Gradient Descent
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-single-step-of-gradient-descent">
-     A Single Step of Gradient Descent
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-gradient-descent-algorithm">
-     A Gradient Descent Algorithm
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gradient-descent-with-differential-privacy">
-   Gradient Descent with Differential Privacy
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gradient-clipping">
-     Gradient Clipping
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sensitivity-of-the-gradient">
-     Sensitivity of the Gradient
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#effect-of-noise-on-training">
-   Effect of Noise on Training
-  </a>
- </li>
-</ul>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="intro.html">
+                        Introduction
+                      </a>
+                    </li>
                 
-              <div>
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch1.html">
+                        De-identification
+                      </a>
+                    </li>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="machine-learning">
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch2.html">
+                        k-Anonymity
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch3.html">
+                        Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ch4.html">
+                        Properties of Differential Privacy
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-header-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-header-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch5.html">
+                        Sensitivity
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch6.html">
+                        Approximate Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch7.html">
+                        Local Sensitivity
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch8.html">
+                        Variants of Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch9.html">
+                        The Exponential Mechanism
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch10.html">
+                        The Sparse Vector Technique
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch11.html">
+                        Exercises in Algorithm Design
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link dropdown-item nav-internal" href="#">
+                        Machine Learning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch13.html">
+                        Local Differential Privacy
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="ch14.html">
+                        Synthetic Data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="bibliography.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="cover.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Machine Learning</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="machine-learning">
 <h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
@@ -559,7 +569,7 @@ title="Print to PDF"
 </ul>
 </div>
 <p>In this chapter, we’re going to explore building differentially private machine learning classifiers. We’ll focus on a kind of <em>supervised learning</em> problem: given a set of <em>labeled training examples</em> <span class="math notranslate nohighlight">\(\{(x_1, y_1), \dots, (x_n, y_n)\}\)</span>, in which <span class="math notranslate nohighlight">\(x_i\)</span> is called the <em>feature vector</em> and <span class="math notranslate nohighlight">\(y_i\)</span> is called the <em>label</em>, train a <em>model</em> <span class="math notranslate nohighlight">\(\theta\)</span> which can <em>predict</em> the label for a new feature vector which was not present in the training set. Each <span class="math notranslate nohighlight">\(x_i\)</span> is typically a vector of real numbers which describe the features of a training example, and the <span class="math notranslate nohighlight">\(y_i\)</span>s are drawn from a predefined set of <em>classes</em> (usually expressed as integers) that examples can be drawn from. A <em>binary</em> classifier has two classes (usually either 1 and 0, or 1 and -1).</p>
-<div class="section" id="logistic-regression-with-scikit-learn">
+<section id="logistic-regression-with-scikit-learn">
 <h2>Logistic Regression with Scikit-Learn<a class="headerlink" href="#logistic-regression-with-scikit-learn" title="Permalink to this headline">#</a></h2>
 <p>To train a model, we will use some of the data we have available to build a set of <em>training examples</em> (as described earlier), but we’ll also set aside some of the data as <em>test examples</em>. Once we have trained the model, we want to know how well it works on examples that are <em>not</em> present in the training set. A model which works well on new examples it hasn’t seen before is said to <em>generalize</em> well. One which does <em>not</em> generalize well is said to have <em>overfitted</em> the training data.</p>
 <p>To test generalization, we’ll use the test examples - we have labels for
@@ -569,6 +579,11 @@ against the actual label from our dataset. We’ll split our data into a
 training set containing 80% of the examples, and a testing set containing
 20% of the examples.</p>
 <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">training_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
 
@@ -587,6 +602,7 @@ training set containing 80% of the examples, and a testing set containing
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>A simple way to build a binary classifier is with <em>logistic regression</em>. The scikit-learn library has a built-in module for performing logistic regression, called <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>, and it’s easy to use to build a model using our data.</p>
 <div class="cell docutils container">
@@ -635,24 +651,29 @@ classified.</p>
 </div>
 <p>Our model predicts the correct label for 82% of the examples in our test
 set. For this dataset, that’s a pretty decent result.</p>
-</div>
-<div class="section" id="what-is-a-model">
+</section>
+<section id="what-is-a-model">
 <h2>What is a Model?<a class="headerlink" href="#what-is-a-model" title="Permalink to this headline">#</a></h2>
 <p>What exactly <em>is</em> a model? How does it encode the information it uses to make predictions?</p>
 <p>There are many different kinds of models, but the ones we’ll explore here are <em>linear models</em>. For an unlabeled example with a <span class="math notranslate nohighlight">\(k\)</span>-dimensional feature vector <span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>, a linear model predicts a label by first calculating the quantity:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-83227817-9319-42f9-b262-98341e95e9cd">
-<span class="eqno">(34)<a class="headerlink" href="#equation-83227817-9319-42f9-b262-98341e95e9cd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9c37af46-bbee-44a5-82dd-b8398c7f62fd">
+<span class="eqno">(34)<a class="headerlink" href="#equation-9c37af46-bbee-44a5-82dd-b8398c7f62fd" title="Permalink to this equation">#</a></span>\[\begin{align}
 w_1 x_1 + \dots + w_k x_k + bias
 \end{align}\]</div>
 <p>and then taking the sign of it (i.e. if the quantity above is negative, we predict the label -1; if it’s positive, we predict 1).</p>
 <p>The model itself, then, can be represented by a vector containing the values <span class="math notranslate nohighlight">\(w_1, \dots, w_k\)</span> and the value for <span class="math notranslate nohighlight">\(bias\)</span>. The model is said to be linear because the quantity we calculate in predicting a label is a polynomial of degree 1 (i.e. linear). The values <span class="math notranslate nohighlight">\(w_1, \dots, w_k\)</span> are often called the <em>weights</em> or <em>coefficients</em> of the model, and <span class="math notranslate nohighlight">\(bias\)</span> is often called the <em>bias term</em> or <em>intercept</em>.</p>
 <p>This is actually how scikit-learn represents its logistic regression model, too! We can check out the weights of our trained model using the <code class="docutils literal notranslate"><span class="pre">coef_</span></code> attribute of the model:</p>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-5.346167750306461,
  array([ 3.76035057e-01, -2.55358856e-01, -3.21341426e-02,  3.74545737e-01,
@@ -684,6 +705,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>Note that we’ll always have exactly the same number of weights <span class="math notranslate nohighlight">\(w_i\)</span> as we have features <span class="math notranslate nohighlight">\(x_i\)</span>, since we have to multiply each feature by its corresponding weight. That means our model has exactly the same dimensionality as our feature vectors.</p>
 <p>Now that we have a way to get the weights and bias term, we can implement our own function to perform prediction:</p>
@@ -705,8 +727,8 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <p>We’ve made the bias term optional here, because in many cases it’s possible to do just as well without it. To make things simpler, we won’t bother to train a bias term in our own algorithm.</p>
-</div>
-<div class="section" id="training-a-model-with-gradient-descent">
+</section>
+<section id="training-a-model-with-gradient-descent">
 <h2>Training a Model with Gradient Descent<a class="headerlink" href="#training-a-model-with-gradient-descent" title="Permalink to this headline">#</a></h2>
 <p>How does the training process actually work? The scikit-learn library has some pretty sophisticated algorithms, but we can do just about as well by implementing a simple one called <em>gradient descent</em>.</p>
 <p>Most training algorithms for machine learning are defined in terms of a <em>loss function</em>, which specifies a way to measure how “bad” a model is at prediction. The goal of the training algorithm is to minimize the output of the loss function - a model with low loss will be <em>good</em> at prediction.</p>
@@ -764,11 +786,11 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<div class="section" id="a-single-step-of-gradient-descent">
+<section id="a-single-step-of-gradient-descent">
 <h3>A Single Step of Gradient Descent<a class="headerlink" href="#a-single-step-of-gradient-descent" title="Permalink to this headline">#</a></h3>
 <p>Next, let’s perform a single step of gradient descent. We can apply the <code class="docutils literal notranslate"><span class="pre">gradient</span></code> function to a single example from our training data, which should give us enough information to improve the model for that example. We “descend” the gradient by subtracting it from our current model <code class="docutils literal notranslate"><span class="pre">theta</span></code>.</p>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If we take a step in the *opposite* direction from the gradient (by negating it), we should </span>
 <span class="c1"># move theta in a direction that makes the loss *lower*</span>
 <span class="c1"># This is one step of gradient descent - in each step, we&#39;re trying to &quot;descend&quot; the gradient</span>
@@ -778,6 +800,11 @@ w_1 x_1 + \dots + w_k x_k + bias
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.        ,  0.        ,  0.        ,  0.        , -0.5       ,
         0.        ,  0.        ,  0.        , -0.5       ,  0.        ,
@@ -803,6 +830,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>Now, if we call <code class="docutils literal notranslate"><span class="pre">predict</span></code> on the same example from the training data, its label is predicted correctly! That means our update did indeed improve the model, since it’s now capable of classifying this example.</p>
 <div class="cell docutils container">
@@ -834,13 +862,13 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <p>Our improved model now predicts 75% of the labels for the test set correctly! That’s good progress - we’ve improved the model considerably.</p>
-</div>
-<div class="section" id="a-gradient-descent-algorithm">
+</section>
+<section id="a-gradient-descent-algorithm">
 <h3>A Gradient Descent Algorithm<a class="headerlink" href="#a-gradient-descent-algorithm" title="Permalink to this headline">#</a></h3>
 <p>We need to make two changes to arrive at a basic gradient descent algorithm. First, our single step above used only a single example from the training data; we want to consider the <em>whole</em> training set when updating the model, so that we improve the model for <em>all</em> examples. Second, we need to perform multiple iterations, to get as close as possible to minimizing the loss.</p>
 <p>We can solve the first problem by calculating the <em>average gradient</em> over all of the training examples, and using it for the descent step in place of the single-example gradient we used before. Our <code class="docutils literal notranslate"><span class="pre">avg_grad</span></code> function calculates the average gradient over a whole array of training examples and the corresponding labels.</p>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">grads</span> <span class="o">=</span> <span class="p">[</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)]</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -849,6 +877,11 @@ w_1 x_1 + \dots + w_k x_k + bias
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-8.03202480e-03, -1.09365062e-02, -5.86649848e-02, -1.70297784e-02,
        -1.85949049e-02, -5.32762100e-03,  3.15432083e-05,  2.24692568e-03,
@@ -879,6 +912,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>To solve the second problem, we’ll define an iterative algorithm that descends the gradient multiple times.</p>
 <div class="cell docutils container">
@@ -914,14 +948,19 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>With 100 iterations, we get closer - 82% accuracy. However, the algorithm takes a long time to run when we ask for so many iterations. Even worse, the closer we get to minimizing the loss, the more difficult it is to improve - so we might get to 82% accuracy after 100 iterations, but it might take 1000 iterations to get to 84%. This points to a fundamental tension in machine learning - generally speaking, more iterations of training can improve accuracy, but more iterations requires more computation time. Most of the “tricks” used to make large-scale deep learning practical are actually aimed at speeding up each iteration of gradient descent, so that more iterations can be performed in the same amount of time.</p>
 <p>One more thing that’s interesting to note: the value of the loss function does indeed go down with each iteration of gradient descent we perform - so as we perform more iterations, we slowly get closer to minimizing the loss. Also note that the training and testing loss are very close to one another, suggesting that our model is not <em>overfitting</em> to the training data.</p>
 <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent_log</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
         <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Training loss: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Testing loss: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Training loss: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="n">X_train</span><span class="p">,</span><span class="w"> </span><span class="n">y_train</span><span class="p">))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Testing loss: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">))</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">theta</span>
 
@@ -951,10 +990,11 @@ Testing loss: 0.4723742456095848
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-</div>
-</div>
-<div class="section" id="gradient-descent-with-differential-privacy">
+</section>
+</section>
+<section id="gradient-descent-with-differential-privacy">
 <h2>Gradient Descent with Differential Privacy<a class="headerlink" href="#gradient-descent-with-differential-privacy" title="Permalink to this headline">#</a></h2>
 <p>How can we make the above algorithm differentially private? We’d like to design an algorithm that ensures differential privacy for the training data, so that the final model doesn’t reveal anything about individual training examples.</p>
 <p>The only part of the algorithm which uses the training data is the gradient calculation. One way to make the algorithm differentially private is to add noise to the gradient itself at each iteration before updating the model. This approach is usually called <em>noisy gradient descent</em>, since we add noise directly to the gradient.</p>
@@ -978,16 +1018,16 @@ Testing loss: 0.4723742456095848
 <p>There’s just one piece of the puzzle missing - <strong>what is the sensitivity of the gradient function</strong>? Answering this question is the central difficulty in making the algorithm work.</p>
 <p>There are two major challenges here. First, the gradient is the result of an <em>average query</em> - it’s the mean of many per-example gradients. As we’ve seen previously, it’s best to split queries like this up into a sum query and a count query. This isn’t difficult to do - we can compute the noisy sum of the per-example gradients, rather than their average, and divide by a noisy count later. Second, we need to bound the sensitivity of each per-example gradient. There are two basic approaches for this: we can either analyze the gradient function itself (as we have done with previous queries) to determine its worst-case global sensitivity, or we can <em>enforce</em> a sensitivity by clipping the output of the gradient function (as we did in sample and aggregate).</p>
 <p>We’ll start with the second approach - often called <em>gradient clipping</em> - because it’s simpler conceptually and more general in its applications.</p>
-<div class="section" id="gradient-clipping">
+<section id="gradient-clipping">
 <h3>Gradient Clipping<a class="headerlink" href="#gradient-clipping" title="Permalink to this headline">#</a></h3>
 <p>Recall that when we implemented sample and aggregate, we enforced a desired sensitivity on a function <span class="math notranslate nohighlight">\(f\)</span> with unknown sensitivity by clipping its output. The sensitivity of <span class="math notranslate nohighlight">\(f\)</span> was:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f0d68ffd-8793-469e-93f5-28413d0a264b">
-<span class="eqno">(35)<a class="headerlink" href="#equation-f0d68ffd-8793-469e-93f5-28413d0a264b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9aea13a6-29e2-473a-9c84-d1c795a0a946">
+<span class="eqno">(35)<a class="headerlink" href="#equation-9aea13a6-29e2-473a-9c84-d1c795a0a946" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>After clipping with parameter <span class="math notranslate nohighlight">\(b\)</span>, this becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6a4f3781-c4ed-48e0-8b9b-04a8b0fc9640">
-<span class="eqno">(36)<a class="headerlink" href="#equation-6a4f3781-c4ed-48e0-8b9b-04a8b0fc9640" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-17b9fe4a-cf5a-4ec8-9f80-36d34216e65e">
+<span class="eqno">(36)<a class="headerlink" href="#equation-17b9fe4a-cf5a-4ec8-9f80-36d34216e65e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert \mathsf{clip}(f(x), b) - \mathsf{clip}(f(x'),b) \rvert
 \end{align}\]</div>
 <p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x), b) = b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x'),b) = 0\)</span>, so the sensitivity of the clipped result is exactly <span class="math notranslate nohighlight">\(b\)</span> (the value of the clipping parameter).</p>
@@ -1006,8 +1046,8 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <p>Now we’re ready to analyze the sensitivity of the clipped gradient. We denote the gradient as <span class="math notranslate nohighlight">\(\nabla(\theta; X, y)\)</span> (corresponding to <code class="docutils literal notranslate"><span class="pre">gradient</span></code> in our Python code):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-df0639b8-8376-46ac-959d-49fb49bf9324">
-<span class="eqno">(37)<a class="headerlink" href="#equation-df0639b8-8376-46ac-959d-49fb49bf9324" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a09510b2-4a33-42e5-985e-48a8442757af">
+<span class="eqno">(37)<a class="headerlink" href="#equation-a09510b2-4a33-42e5-985e-48a8442757af" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lVert \mathsf{L2\_clip}( \nabla (\theta; X, y), b) - \mathsf{L2\_clip}( \nabla (\theta; X', y), 0) \rVert_2
 \end{align}\]</div>
 <p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X, y), b)\)</span> has <span class="math notranslate nohighlight">\(L2\)</span> norm of <span class="math notranslate nohighlight">\(b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X', y))\)</span> is all zeros - so that the <span class="math notranslate nohighlight">\(L2\)</span> norm of the difference is equal to <span class="math notranslate nohighlight">\(b\)</span>. Thus, the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the clipped gradient is bounded by the clipping parameter <span class="math notranslate nohighlight">\(b\)</span>!</p>
@@ -1025,7 +1065,7 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <p>Now we’re ready to complete our noisy gradient descent algorithm. To compute the noisy average gradient, we need to:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Add noise to the sum of the gradients based on its sensitivity <span class="math notranslate nohighlight">\(b\)</span></p></li>
 <li><p>Compute a noisy count of the number of training examples (sensitivity 1)</p></li>
 <li><p>Divide the noisy sum from (1) by the noisy count from (2)</p></li>
@@ -1057,18 +1097,18 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7787483414418399
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7799646174259177
 </pre></div>
 </div>
 </div>
 </div>
 <p>Each iteration of this algorithm satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy, and we perform one additional query to determine the noisy count which satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. If we perform <span class="math notranslate nohighlight">\(k\)</span> iterations, then by sequential composition, the algorithm satisfies <span class="math notranslate nohighlight">\((k\epsilon + \epsilon, k\delta)\)</span>-differential privacy. We can also use advanced composition to analyze the total privacy cost; even better, we could convert the algorithm to Rényi differential privacy or zero-concentrated differential privacy, and obtain tight bounds on composition.</p>
-</div>
-<div class="section" id="sensitivity-of-the-gradient">
+</section>
+<section id="sensitivity-of-the-gradient">
 <h3>Sensitivity of the Gradient<a class="headerlink" href="#sensitivity-of-the-gradient" title="Permalink to this headline">#</a></h3>
 <p>Our previous approach is very general, since it makes no assumptions about the behavior of the gradient. Sometimes, however, we <em>do</em> know something about the behavior of the gradient. In particular, a large class of useful gradient functions (including the gradient of the logistic loss, which we’re using here) are <em>Lipschitz continuous</em> - meaning they have bounded global sensitivity. Formally, it is possible to show that:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b757b9fd-2c68-4ef4-980a-0f7c5240e379">
-<span class="eqno">(38)<a class="headerlink" href="#equation-b757b9fd-2c68-4ef4-980a-0f7c5240e379" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c6a78f1a-b071-4bb9-943d-12cfaf0535e1">
+<span class="eqno">(38)<a class="headerlink" href="#equation-c6a78f1a-b071-4bb9-943d-12cfaf0535e1" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{If}\; \lVert x_i \rVert_2 \leq b\; \text{then}\; \lVert \nabla(\theta; x_i, y_i) \rVert_2 \leq b
 \end{align}\]</div>
 <p>This fact allows us to clip the values of the <em>training examples</em> (i.e. the <em>inputs</em> to the gradient function), instead of the <em>output</em> of the gradient function, and obtain a bound on the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the gradient.</p>
@@ -1115,7 +1155,7 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7842768686421937
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7798540468819106
 </pre></div>
 </div>
 </div>
@@ -1129,14 +1169,19 @@ Testing loss: 0.4723742456095848
 <li><p>Random sampling of batches in conjunction with minibatching.</p></li>
 <li><p>Other hyperparameters, like a learning rate <span class="math notranslate nohighlight">\(\eta\)</span>.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="effect-of-noise-on-training">
+</section>
+</section>
+<section id="effect-of-noise-on-training">
 <h2>Effect of Noise on Training<a class="headerlink" href="#effect-of-noise-on-training" title="Permalink to this headline">#</a></h2>
 <p>So far, we’ve seen that the number of iterations has a big effect on the accuracy of the model we get, since more iterations can get you closer to the minimum of the loss. Since our differentially private algorithm adds noise to the gradient, this can also affect accuracy - the noise can cause our algorithm to move in <em>the wrong direction</em> during training, and actually make the model <em>worse</em>.</p>
 <p>It’s reasonable to expect that smaller values of <span class="math notranslate nohighlight">\(\epsilon\)</span> will result in less accurate models (since this has been the trend in every differentially private algorithm we have seen so far). This is true, but there’s also a slightly more subtle tradeoff which occurs because of the composition we need to consider when we perform many iterations of the algorithm: more iterations means a larger privacy cost. In the standard gradient descent algorithm, more iterations generally result in a better model. In our differentially private version, more iterations can make the model <em>worse</em>, since we have to use a smaller <span class="math notranslate nohighlight">\(\epsilon\)</span> for each iteration, and so the scale of the noise goes up. In differentially private machine learning, it’s important (and sometimes, very challenging) to strike the right balance between the number of iterations used and the scale of the noise added.</p>
 <p>Let’s do a small experiment to see how the setting of <span class="math notranslate nohighlight">\(\epsilon\)</span> effects the accuracy of our model. We’ll train a model for several values of <span class="math notranslate nohighlight">\(\epsilon\)</span>, using 20 iterations each time, and graph the accuracy of each model against the <span class="math notranslate nohighlight">\(\epsilon\)</span> value used in training it.</p>
 <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>
 
@@ -1146,8 +1191,14 @@ Testing loss: 0.4723742456095848
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epsilon&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
@@ -1155,13 +1206,14 @@ Testing loss: 0.4723742456095848
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/ch12_60_0.png" src="_images/ch12_60_0.png" />
+<img alt="_images/10f3cca25dd61dc262d7b8083261b25177547b5e55d4b6b3b44218dfea031908.png" src="_images/10f3cca25dd61dc262d7b8083261b25177547b5e55d4b6b3b44218dfea031908.png" />
 </div>
 </div>
 <p>The plot shows that very small values of <span class="math notranslate nohighlight">\(\epsilon\)</span> result in far less accurate models. Keep in mind that the <span class="math notranslate nohighlight">\(\epsilon\)</span> we specify in the plot is a <em>per-iteration</em> <span class="math notranslate nohighlight">\(\epsilon\)</span>, so the privacy cost is much higher after composition.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1175,7 +1227,7 @@ Testing loss: 0.4723742456095848
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1183,50 +1235,138 @@ Testing loss: 0.4723742456095848
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="ch11.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Exercises in Algorithm Design</p>
-        </div>
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ch11.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exercises in Algorithm Design</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="ch13.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="ch13.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Local Differential Privacy</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-with-scikit-learn">Logistic Regression with Scikit-Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-model">What is a Model?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-a-model-with-gradient-descent">Training a Model with Gradient Descent</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-single-step-of-gradient-descent">A Single Step of Gradient Descent</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-gradient-descent-algorithm">A Gradient Descent Algorithm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-with-differential-privacy">Gradient Descent with Differential Privacy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-clipping">Gradient Clipping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivity-of-the-gradient">Sensitivity of the Gradient</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-of-noise-on-training">Effect of Noise on Training</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
   
-    By Joseph P. Near and Chiké Abuah<br/>
-  
-      &copy; Copyright 2023.<br/>
-</p>
-        </footer>
-    </div>
-    
+  <div class="tocsection editthispage">
+    <a href="https://github.com/uvm-plaid/programming-dp/edit/master/notebooks/ch12.ipynb">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
 </div>
 
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/ch12.ipynb">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
 
-      </div>
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.1.
+</p></div>
+      
+    </div>
+  
+</div>
 
+  </footer>
   </body>
 </html>
