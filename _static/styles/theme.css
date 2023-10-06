@@ -1,2 +1,8 @@
 /* Provided by Sphinx's 'basic' theme, and included in the final set of assets */
 @import "../basic.css";
+@media (prefers-color-scheme: dark) {
+    background: rgba(0,0,0,0);
+    img {
+      background: rgba(0,0,0,0);
+    }
+}
