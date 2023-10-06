@@ -7,4 +7,8 @@
 
 @media (prefers-color-scheme: dark) {
     background: rgb(20, 24, 30);
+    img {
+      background: rgb(20, 24, 30);
+      background-color: rgb(20, 24, 30);
+    }
 }
