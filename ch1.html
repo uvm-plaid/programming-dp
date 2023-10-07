@@ -467,6 +467,7 @@ document.write(`
       <th>Zip</th>
       <th>Workclass</th>
       <th>Education</th>
+      <th>Education-Num</th>
       <th>Marital Status</th>
       <th>Occupation</th>
       <th>Relationship</th>
@@ -487,6 +488,7 @@ document.write(`
       <td>64152</td>
       <td>State-gov</td>
       <td>Bachelors</td>
+      <td>13</td>
       <td>Never-married</td>
       <td>Adm-clerical</td>
       <td>Not-in-family</td>
@@ -505,6 +507,7 @@ document.write(`
       <td>61523</td>
       <td>Self-emp-not-inc</td>
       <td>Bachelors</td>
+      <td>13</td>
       <td>Married-civ-spouse</td>
       <td>Exec-managerial</td>
       <td>Husband</td>
@@ -523,6 +526,7 @@ document.write(`
       <td>95668</td>
       <td>Private</td>
       <td>HS-grad</td>
+      <td>9</td>
       <td>Divorced</td>
       <td>Handlers-cleaners</td>
       <td>Not-in-family</td>
@@ -541,6 +545,7 @@ document.write(`
       <td>25503</td>
       <td>Private</td>
       <td>11th</td>
+      <td>7</td>
       <td>Married-civ-spouse</td>
       <td>Handlers-cleaners</td>
       <td>Husband</td>
@@ -559,6 +564,7 @@ document.write(`
       <td>75387</td>
       <td>Private</td>
       <td>Bachelors</td>
+      <td>13</td>
       <td>Married-civ-spouse</td>
       <td>Prof-specialty</td>
       <td>Wife</td>
@@ -630,6 +636,7 @@ document.write(`
       <th>Zip</th>
       <th>Workclass</th>
       <th>Education</th>
+      <th>Education-Num</th>
       <th>Marital Status</th>
       <th>Occupation</th>
       <th>Relationship</th>
@@ -648,6 +655,7 @@ document.write(`
       <td>64152</td>
       <td>State-gov</td>
       <td>Bachelors</td>
+      <td>13</td>
       <td>Never-married</td>
       <td>Adm-clerical</td>
       <td>Not-in-family</td>
@@ -699,6 +707,7 @@ document.write(`
       <th>Zip</th>
       <th>Workclass</th>
       <th>Education</th>
+      <th>Education-Num</th>
       <th>Marital Status</th>
       <th>Occupation</th>
       <th>Relationship</th>
@@ -719,6 +728,7 @@ document.write(`
       <td>64152</td>
       <td>State-gov</td>
       <td>Bachelors</td>
+      <td>13</td>
       <td>Never-married</td>
       <td>Adm-clerical</td>
       <td>Not-in-family</td>
@@ -769,6 +779,7 @@ document.write(`
       <th>DOB_y</th>
       <th>Workclass</th>
       <th>Education</th>
+      <th>Education-Num</th>
       <th>Marital Status</th>
       <th>Occupation</th>
       <th>Relationship</th>
@@ -790,6 +801,7 @@ document.write(`
       <td>9/7/1967</td>
       <td>State-gov</td>
       <td>Bachelors</td>
+      <td>13</td>
       <td>Never-married</td>
       <td>Adm-clerical</td>
       <td>Not-in-family</td>
@@ -837,6 +849,7 @@ document.write(`
       <th>Zip_y</th>
       <th>Workclass</th>
       <th>Education</th>
+      <th>Education-Num</th>
       <th>Marital Status</th>
       <th>Occupation</th>
       <th>Relationship</th>
@@ -858,6 +871,7 @@ document.write(`
       <td>64152</td>
       <td>State-gov</td>
       <td>Bachelors</td>
+      <td>13</td>
       <td>Never-married</td>
       <td>Adm-clerical</td>
       <td>Not-in-family</td>
@@ -877,6 +891,7 @@ document.write(`
       <td>67306</td>
       <td>Private</td>
       <td>11th</td>
+      <td>7</td>
       <td>Widowed</td>
       <td>Farming-fishing</td>
       <td>Unmarried</td>
@@ -896,6 +911,7 @@ document.write(`
       <td>62254</td>
       <td>Self-emp-not-inc</td>
       <td>Masters</td>
+      <td>14</td>
       <td>Married-civ-spouse</td>
       <td>Exec-managerial</td>
       <td>Husband</td>
@@ -1011,11 +1027,11 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Antonin Chittem     2
-Barnabe Haime       2
-Evelina Arnfield    1
-Aliza McManamen     1
-Monro De Bruyn      1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barnabe Haime      2
+Antonin Chittem    2
+Krishna Habbal     1
+Lisha Vanyukov     1
+Hazel Ferreira     1
 Name: Name, dtype: int64
 </pre></div>
 </div>
@@ -1044,7 +1060,7 @@ Name: Name, dtype: int64
 <p>In many cases, aggregate statistics are broken down into smaller groups. For example, we might want to know the average age of people with a particular education level.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[[</span><span class="s1">&#39;Education&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Education&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[[</span><span class="s1">&#39;Education&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Education&#39;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1067,24 +1083,24 @@ Name: Name, dtype: int64
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Age</th>
-    </tr>
-    <tr>
       <th>Education</th>
-      <th></th>
+      <th>Age</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>10th</th>
+      <th>0</th>
+      <td>10th</td>
       <td>42.032154</td>
     </tr>
     <tr>
-      <th>11th</th>
+      <th>1</th>
+      <td>11th</td>
       <td>42.057021</td>
     </tr>
     <tr>
-      <th>12th</th>
+      <th>2</th>
+      <td>12th</td>
       <td>41.879908</td>
     </tr>
   </tbody>
@@ -1094,7 +1110,7 @@ Name: Name, dtype: int64
 <p>Aggregation is supposed to improve privacy because it’s hard to identify the contribution of a particular individual to the aggregate statistic. But what if we aggregate over a group with just <em>one person</em> in it? In that case, the aggregate statistic reveals one person’s age <em>exactly</em>, and provides no privacy protection at all! In our dataset, most individuals have a unique ZIP code - so if we compute the average age by ZIP code, then most of the “averages” actually reveal an individual’s exact age.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[[</span><span class="s1">&#39;Zip&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Zip&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[[</span><span class="s1">&#39;Zip&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Zip&#39;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1117,32 +1133,34 @@ Name: Name, dtype: int64
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Age</th>
-    </tr>
-    <tr>
       <th>Zip</th>
-      <th></th>
+      <th>Age</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>4</th>
+      <th>0</th>
+      <td>4</td>
       <td>72.0</td>
     </tr>
     <tr>
-      <th>12</th>
+      <th>1</th>
+      <td>12</td>
       <td>46.0</td>
     </tr>
     <tr>
-      <th>16</th>
+      <th>2</th>
+      <td>16</td>
       <td>38.0</td>
     </tr>
     <tr>
-      <th>17</th>
+      <th>3</th>
+      <td>17</td>
       <td>31.0</td>
     </tr>
     <tr>
-      <th>18</th>
+      <th>4</th>
+      <td>18</td>
       <td>40.0</td>
     </tr>
   </tbody>
