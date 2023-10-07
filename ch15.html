@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Efficiency with Differential Privacy &#8212; Programming Differential Privacy</title>
+    <title>Efficiency &#8212; Programming Differential Privacy</title>
   
   
   
@@ -183,7 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Efficiency with Differential Privacy</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Efficiency</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -385,7 +385,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Efficiency with Differential Privacy</h1>
+    <h1>Efficiency</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -397,6 +397,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-efficiency-of-differential-privacy">Time Efficiency of Differential Privacy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#space-cost-of-differential-privacy">Space Cost of Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-random-number-generation">Limitations of Random Number Generation</a></li>
 </ul>
             </nav>
         </div>
@@ -408,8 +409,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="efficiency-with-differential-privacy">
-<h1>Efficiency with Differential Privacy<a class="headerlink" href="#efficiency-with-differential-privacy" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="efficiency">
+<h1>Efficiency<a class="headerlink" href="#efficiency" title="Permalink to this headline">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <p>After reading this chapter, you will be able to:</p>
@@ -443,19 +444,21 @@ document.write(`
     <span class="n">_</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
     <span class="n">stop</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span> 
-
-<span class="n">x_axis</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">1_000_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">)]</span>
-
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_axis</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">1_000_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">)]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">time_count</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">1_000_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regular Count&#39;</span><span class="p">)</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">time_priv_count</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">1_000_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Private Count&#39;</span><span class="p">)</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/19f56e70eb463333a04b10dcf8d72754dc06b1fdbacb5d8944dfa095148f860b.png" src="_images/19f56e70eb463333a04b10dcf8d72754dc06b1fdbacb5d8944dfa095148f860b.png" />
+<img alt="_images/d4dcae16d2d6037396d30c3edeae2592a0e47f97fc0c31e1e4ad86857da16f70.png" src="_images/d4dcae16d2d6037396d30c3edeae2592a0e47f97fc0c31e1e4ad86857da16f70.png" />
 </div>
 </div>
 <p>With the time spent counting on the y-axis, and the list lize on the x-axis, we can see that the time complexity of differential privacy for this particular operation is essentially linear in the size of the input.</p>
@@ -476,19 +479,21 @@ document.write(`
     <span class="n">noisy_gradient_descent</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
     <span class="n">stop</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span> 
-
-<span class="n">x_axis</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">25</span><span class="p">)]</span>
-
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_axis</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">25</span><span class="p">)]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">time_gd</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">25</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regular GD&#39;</span><span class="p">)</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">time_priv_gd</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">25</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Private GD&#39;</span><span class="p">)</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b725527afe4d2d9ebd70db2df566d8c5187faadc1c3e7e58a57fc382b0f37bd1.png" src="_images/b725527afe4d2d9ebd70db2df566d8c5187faadc1c3e7e58a57fc382b0f37bd1.png" />
+<img alt="_images/da7030eb4be8b582b0a2fd105708848f2fe43bb940c153aa14e098cc8fcbddc7.png" src="_images/da7030eb4be8b582b0a2fd105708848f2fe43bb940c153aa14e098cc8fcbddc7.png" />
 </div>
 </div>
 <p>The graph plots generally overlap or are close in most simulations of this experiment, indicating low (constant) time inefficiency overhead incurred from utilizing private gradient descent.</p>
@@ -502,8 +507,6 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">import</span> <span class="nn">tracemalloc</span>
- 
-<span class="n">tracemalloc</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">space_count</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>   
     <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">k</span>
@@ -518,21 +521,23 @@ document.write(`
     <span class="n">_</span><span class="p">,</span> <span class="n">peak</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">get_traced_memory</span><span class="p">()</span>
     <span class="n">tracemalloc</span><span class="o">.</span><span class="n">reset_peak</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">peak</span><span class="o">/</span><span class="mi">1000</span>
-
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracemalloc</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 <span class="n">x_axis</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">1_000_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">)]</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">space_count</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">1_000_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regular Count&#39;</span><span class="p">)</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">space_priv_count</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">1_000_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Private Count&#39;</span><span class="p">)</span>
-
 <span class="n">tracemalloc</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b03c2eeda44bf5804b3570764b15123f481caf697a9551c4379043b84c2ed1a6.png" src="_images/b03c2eeda44bf5804b3570764b15123f481caf697a9551c4379043b84c2ed1a6.png" />
+<img alt="_images/52431d8c2371dcdc083325efaae448d5a0b4c801ef2dab8dd7e3329823cdf3cd.png" src="_images/52431d8c2371dcdc083325efaae448d5a0b4c801ef2dab8dd7e3329823cdf3cd.png" />
 </div>
 </div>
 <p>We display every thousand memory blocks on the y-axis, against the list size on the x-axis.</p>
@@ -541,9 +546,7 @@ document.write(`
 <p>We can repeat this experiment to contrast private and non-private machine learning:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracemalloc</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">space_gd</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>   
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">space_gd</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>   
     <span class="n">gradient_descent</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">peak</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">get_traced_memory</span><span class="p">()</span>
     <span class="n">tracemalloc</span><span class="o">.</span><span class="n">reset_peak</span><span class="p">()</span>
@@ -554,27 +557,32 @@ document.write(`
     <span class="n">_</span><span class="p">,</span> <span class="n">peak</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">get_traced_memory</span><span class="p">()</span>
     <span class="n">tracemalloc</span><span class="o">.</span><span class="n">reset_peak</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">peak</span><span class="o">/</span><span class="mi">1_000_000</span>
-
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracemalloc</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 <span class="n">x_axis</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">space_gd</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regular GD&#39;</span><span class="p">)</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">space_priv_gd</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Private GD&#39;</span><span class="p">)</span>
-
 <span class="n">tracemalloc</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9b572d774a01c19efff44effaab1792fe84c82f7286cb9b69b44014ed536c949.png" src="_images/9b572d774a01c19efff44effaab1792fe84c82f7286cb9b69b44014ed536c949.png" />
+<img alt="_images/839f8c1c47065f8a1d962d8d637ed8d797958032604178a1b5e1c99189f144f2.png" src="_images/839f8c1c47065f8a1d962d8d637ed8d797958032604178a1b5e1c99189f144f2.png" />
 </div>
 </div>
 <p>In this case, since we are performing gradient descent, the memory allocation is generally much larger - as expected - so we graph against every millionth allocated memory block.</p>
 <p>We also observe generally constant space overhead during private gradient descent. However the space overhead is much larger here since we leverage extra space for vectorization and concurrency to improve time efficiency.</p>
+</section>
+<section id="limitations-of-random-number-generation">
+<h2>Limitations of Random Number Generation<a class="headerlink" href="#limitations-of-random-number-generation" title="Permalink to this headline">#</a></h2>
 <p>In conclusion, while some bottlenecks may exist, there are techniques we can use to keep both the space and time cost of differential privacy generally low (constant) throughout the lifetime of program evaluation.</p>
-<p>Why do any bottlenecks exist, and why are they particular to differential privacy? In order to preserve the guarantee of differential privacy, we require high-quality entropy, which is limited because it relies on some external source of non-deterministic environmental input - such as: disk/network IO, keyboard presses, and mouse movement.</p>
+<p>Why do any bottlenecks exist, and why are they particular to differential privacy? In order to preserve the guarantee of differential privacy, we require high-quality entropy. This is a limited resource because it generally relies on some external source of non-deterministic environmental input. Examples of non-determinintic entropy sources can include disk/network IO, keyboard presses, and mouse movement.</p>
 <p>Usually random number generators sample entropy bytes from some <a class="reference external" href="https://en.wikipedia.org/wiki//dev/random">buffer or file</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -584,7 +592,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;PJ\xda\xceh\xc9\x19X&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\xaf\xb2\x18\xe1\\\xe9\xa5\xb1&#39;
 </pre></div>
 </div>
 </div>
@@ -598,7 +606,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;}\x0c\xba(!i\xa7\n\x03\x0e\xe99\xefb\xcf\xbe)\xb6\xdc\x9a\xecj\xc4\x07\xd4n\x1b\xee\x89\x9bgN&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\x08\xb5\\\xbf\xe0\xf1o\x13T\xd0\xdb]\xb44\x80\xe8a\xcd#\xb5L\xe8\xa2W&gt;&quot;\xc9\xda\xb0\xc8\x0f\xdc&#39;
 </pre></div>
 </div>
 </div>
@@ -611,7 +619,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;!\xfe\xe4g;\xebOZ\xb0r\xf7F\xbd\xd4\x84H\xaa\xdf\xb4\xcb\xb0\x13Y\xf4\x05K/fWD\x01x&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\x98-\x06\x12\x97\xa8\x89o\\\xe0o^\xe0T\x18\x19\xcdy;\x7fL\xb9\x0f\xd5\x7f\x87Y\xa3-\xb7\xda\xa5&#39;
 </pre></div>
 </div>
 </div>
@@ -685,6 +693,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-efficiency-of-differential-privacy">Time Efficiency of Differential Privacy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#space-cost-of-differential-privacy">Space Cost of Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-random-number-generation">Limitations of Random Number Generation</a></li>
 </ul>
   </nav></div>
 
