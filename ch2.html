@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Differential Privacy" href="ch3.html" />
-    <link rel="prev" title="De-identification" href="ch1.html" />
+    <link rel="prev" title="Preliminary" href="ch1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -170,7 +170,8 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch1.html">De-identification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch1.html">Preliminary</a></li>
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">k-Anonymity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch3.html">Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch4.html">Properties of Differential Privacy</a></li>
@@ -184,6 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -774,7 +776,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -794,7 +796,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/1692be7a503d16b2c08a951fd47174e6c34859d8d5272a0d233fbe470f6b1656.png" src="_images/1692be7a503d16b2c08a951fd47174e6c34859d8d5272a0d233fbe470f6b1656.png" />
+<img alt="_images/ec460ac6991f17127d4211a21d73c75ca0eeb2119c176729cdc7aeb41a9a086f.png" src="_images/ec460ac6991f17127d4211a21d73c75ca0eeb2119c176729cdc7aeb41a9a086f.png" />
 </div>
 </div>
 <p>Achieving the optimal generalization for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity is very challenging in cases like this. Generalizing each row <em>more</em> would be overkill for the well-represented individuals with ages in the 20-40 range, and would hurt utility. However, more generalization is clearly needed for individuals at the upper and lower ends of the age range. This is the kind of challenge that occurs regularly in practice, and is difficult to solve automatically. In fact, optimal generalization for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity has been shown to be NP-hard.</p>
@@ -829,12 +831,15 @@ document.write(`
 </section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<div class="admonition-summary admonition">
+<p class="admonition-title">Summary</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(k\)</span>-Anonymity is a property of data, which ensures that each individual “blends in” with a group of at least <span class="math notranslate nohighlight">\(k\)</span> individuals.</p></li>
 <li><p><span class="math notranslate nohighlight">\(k\)</span>-Anonymity is computationally expensive even to check: the naive algorithm is <span class="math notranslate nohighlight">\(O(n^2)\)</span>, and faster algorithms take considerable space.</p></li>
 <li><p><span class="math notranslate nohighlight">\(k\)</span>-Anonymity can be achieved by modifying a dataset by <em>generalizing</em> it, so that particular values become more common and groups are easier to form.</p></li>
 <li><p>Optimal generalization is extremely difficult, and outliers can make it even more challenging. Solving this problem automatically is NP-hard.</p></li>
 </ul>
+</div>
 </section>
 </section>
 
@@ -874,7 +879,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">De-identification</p>
+        <p class="prev-next-title">Preliminary</p>
       </div>
     </a>
     <a class="right-next"

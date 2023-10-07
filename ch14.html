@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Bibliography" href="bibliography.html" />
+    <link rel="next" title="Efficiency" href="ch15.html" />
     <link rel="prev" title="Local Differential Privacy" href="ch13.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -170,7 +170,8 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch1.html">De-identification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch1.html">Preliminary</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="ch2.html">k-Anonymity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch3.html">Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch4.html">Properties of Differential Privacy</a></li>
@@ -184,6 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Synthetic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -399,7 +401,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-differential-privacy">Adding Differential Privacy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-tabular-data">Generating Tabular Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-more-columns">Generating More Columns</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
             </nav>
         </div>
@@ -441,7 +442,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9878
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6245
 </pre></div>
 </div>
 </div>
@@ -458,7 +459,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b69e0c0292fc649254d9b08747576e905f19f375b58e5ee6845bd2056089749c.png" src="_images/b69e0c0292fc649254d9b08747576e905f19f375b58e5ee6845bd2056089749c.png" />
+<img alt="_images/fe3fdfd856b0af4a4ef78f565c61b57d39c0786660d1083ef5b6130835106dfe.png" src="_images/fe3fdfd856b0af4a4ef78f565c61b57d39c0786660d1083ef5b6130835106dfe.png" />
 </div>
 </div>
 <p>We can use these histogram results as a synthetic representation for the original data! To answer a range query, we can add up all the counts of the bins which fall into the range.</p>
@@ -480,7 +481,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9878
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6245
 </pre></div>
 </div>
 </div>
@@ -506,7 +507,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9878.335392466966
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6248.224296049293
 </pre></div>
 </div>
 </div>
@@ -527,8 +528,8 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.043144417661519725
-Laplace mechanism error: 0.01068719687186685
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.16922470283179475
+Laplace mechanism error: 0.00855138137922494
 </pre></div>
 </div>
 </div>
@@ -549,8 +550,8 @@ Laplace mechanism error: 0.01068719687186685
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.055745131642724426
-Laplace mechanism error: 0.006409138512867002
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.042641560777845054
+Laplace mechanism error: 0.009426898648147428
 </pre></div>
 </div>
 </div>
@@ -591,7 +592,7 @@ Laplace mechanism error: 0.006409138512867002
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/ffa9b6fa6f9ab32fef42744af6740f5327f070d6352a33fb9e6ff6934f208d05.png" src="_images/ffa9b6fa6f9ab32fef42744af6740f5327f070d6352a33fb9e6ff6934f208d05.png" />
+<img alt="_images/1b1be92454112492d503c9a6de3fbbe2377f5b4a1ebd67fe4de8837e064a6aa9.png" src="_images/1b1be92454112492d503c9a6de3fbbe2377f5b4a1ebd67fe4de8837e064a6aa9.png" />
 </div>
 </div>
 <p>The final step is to generate new samples based on these probabilities. We can use <code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code>, which allows passing in a list of probabilities (in the <code class="docutils literal notranslate"><span class="pre">p</span></code> parameter) associated with the choices given in the first parameter. It implements exactly the weighted random selection that we need for our sampling task. We can generate as many samples as we want without additional privacy cost, since we’ve already made our counts differentially private.</p>
@@ -630,23 +631,23 @@ Laplace mechanism error: 0.006409138512867002
   <tbody>
     <tr>
       <th>0</th>
-      <td>41</td>
+      <td>16</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>48</td>
+      <td>38</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>35</td>
+      <td>31</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>66</td>
+      <td>39</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>23</td>
+      <td>16</td>
     </tr>
   </tbody>
 </table>
@@ -669,7 +670,7 @@ Laplace mechanism error: 0.006409138512867002
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/1202f533c13278ba47cf929fa93d1a7ca22bb3d39ceac01a71fa6a2a031f26f7.png" src="_images/1202f533c13278ba47cf929fa93d1a7ca22bb3d39ceac01a71fa6a2a031f26f7.png" />
+<img alt="_images/90239902069f7e1d068b83f77c67589a9c0f3680c1113120b4535f7bc4486cea.png" src="_images/90239902069f7e1d068b83f77c67589a9c0f3680c1113120b4535f7bc4486cea.png" />
 </div>
 </div>
 <p>We can also answer some queries we’ve seen in the past, like averages and range queries:</p>
@@ -688,9 +689,9 @@ Laplace mechanism error: 0.006409138512867002
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 38.3476
-Mean age, true answer: 38.58164675532078
-Percent error: 0.610329604253677
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 41.7772
+Mean age, true answer: 41.772181444058845
+Percent error: 0.012012667055609199
 </pre></div>
 </div>
 </div>
@@ -711,9 +712,9 @@ Percent error: 0.610329604253677
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 9042
-Range query for age, true answer: 29568
-Percent error: 69.41964285714286
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 7252
+Range query for age, true answer: 23574
+Percent error: 69.23729532535845
 </pre></div>
 </div>
 </div>
@@ -738,9 +739,9 @@ Percent error: 69.41964285714286
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 29494
-Range query for age, true answer: 29568
-Percent error: 0.25027056277056275
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 23530
+Range query for age, true answer: 23574
+Percent error: 0.18664630525154832
 </pre></div>
 </div>
 </div>
@@ -818,89 +819,89 @@ Percent error: 0.25027056277056275
   </thead>
   <tbody>
     <tr>
-      <th>17</th>
-      <td>23</td>
-      <td>0</td>
-      <td>14</td>
-      <td>1</td>
-      <td>9</td>
-      <td>40</td>
-      <td>2</td>
-      <td>129</td>
-      <td>8</td>
-      <td>10</td>
-      <td>3</td>
-      <td>87</td>
-      <td>1</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>55</td>
-      <td>0</td>
-      <td>17</td>
-      <td>6</td>
-      <td>14</td>
-      <td>50</td>
-      <td>17</td>
-      <td>152</td>
-      <td>4</td>
-      <td>10</td>
-      <td>5</td>
-      <td>115</td>
-      <td>2</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>102</td>
-      <td>0</td>
-      <td>40</td>
-      <td>12</td>
-      <td>24</td>
-      <td>65</td>
-      <td>30</td>
-      <td>166</td>
-      <td>3</td>
-      <td>18</td>
-      <td>3</td>
-      <td>112</td>
-      <td>8</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>117</td>
-      <td>0</td>
+      <th>11</th>
       <td>35</td>
-      <td>15</td>
-      <td>23</td>
-      <td>81</td>
-      <td>41</td>
-      <td>139</td>
-      <td>3</td>
-      <td>28</td>
-      <td>9</td>
-      <td>108</td>
+      <td>0</td>
+      <td>43</td>
+      <td>55</td>
+      <td>12</td>
+      <td>21</td>
+      <td>22</td>
+      <td>48</td>
+      <td>1</td>
+      <td>43</td>
+      <td>6</td>
+      <td>38</td>
       <td>14</td>
-      <td>24</td>
+      <td>18</td>
     </tr>
     <tr>
-      <th>21</th>
-      <td>121</td>
-      <td>0</td>
-      <td>59</td>
-      <td>18</td>
-      <td>25</td>
-      <td>51</td>
-      <td>51</td>
-      <td>142</td>
-      <td>4</td>
-      <td>30</td>
-      <td>7</td>
-      <td>93</td>
-      <td>16</td>
+      <th>12</th>
+      <td>68</td>
+      <td>1</td>
+      <td>70</td>
+      <td>60</td>
       <td>14</td>
+      <td>27</td>
+      <td>21</td>
+      <td>48</td>
+      <td>0</td>
+      <td>53</td>
+      <td>6</td>
+      <td>48</td>
+      <td>8</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>66</td>
+      <td>0</td>
+      <td>60</td>
+      <td>83</td>
+      <td>20</td>
+      <td>12</td>
+      <td>37</td>
+      <td>58</td>
+      <td>1</td>
+      <td>72</td>
+      <td>8</td>
+      <td>58</td>
+      <td>21</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>63</td>
+      <td>0</td>
+      <td>78</td>
+      <td>65</td>
+      <td>25</td>
+      <td>23</td>
+      <td>36</td>
+      <td>38</td>
+      <td>2</td>
+      <td>65</td>
+      <td>10</td>
+      <td>65</td>
+      <td>19</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>59</td>
+      <td>0</td>
+      <td>61</td>
+      <td>66</td>
+      <td>12</td>
+      <td>29</td>
+      <td>34</td>
+      <td>60</td>
+      <td>0</td>
+      <td>75</td>
+      <td>10</td>
+      <td>50</td>
+      <td>12</td>
+      <td>23</td>
     </tr>
   </tbody>
 </table>
@@ -920,7 +921,7 @@ Percent error: 0.25027056277056275
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.000588394458542539)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((11, &#39;Adm-clerical&#39;), 0.0010917804795203274)
 </pre></div>
 </div>
 </div>
@@ -964,28 +965,28 @@ Percent error: 0.25027056277056275
   <tbody>
     <tr>
       <th>0</th>
-      <td>21</td>
-      <td>Machine-op-inspct</td>
+      <td>44</td>
+      <td>Prof-specialty</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>42</td>
-      <td>Craft-repair</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>19</td>
+      <td>69</td>
       <td>Adm-clerical</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>69</td>
+      <td>Craft-repair</td>
+    </tr>
+    <tr>
       <th>3</th>
-      <td>38</td>
+      <td>27</td>
       <td>Transport-moving</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>30</td>
-      <td>Craft-repair</td>
+      <td>40</td>
+      <td>Sales</td>
     </tr>
   </tbody>
 </table>
@@ -1007,7 +1008,7 @@ Percent error: 0.25027056277056275
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/644b81600c6c1d2e88bb66da2a60b3b6009347ca1caf93110892dedb9010ec8f.png" src="_images/644b81600c6c1d2e88bb66da2a60b3b6009347ca1caf93110892dedb9010ec8f.png" />
+<img alt="_images/81966a8177ad87785c90c79c59630f23e885f345703f592935e3fc11a246d009.png" src="_images/81966a8177ad87785c90c79c59630f23e885f345703f592935e3fc11a246d009.png" />
 </div>
 </div>
 <p>We see the same loss in accuracy when we try specific queries on just the age column:</p>
@@ -1026,14 +1027,13 @@ Percent error: 0.25027056277056275
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Percent error using synthetic data: 2.1480009932952573
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Percent error using synthetic data: 0.26743075453677173
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<div class="admonition-summary admonition">
+<p class="admonition-title">Summary</p>
 <ul class="simple">
 <li><p>A <em>synthetic representation</em> of a dataset allows answering queries about the original data</p></li>
 <li><p>One common example of a synthetic representation is a histogram, which can be made differentially private by adding noise to its counts</p></li>
@@ -1050,6 +1050,7 @@ Percent error: 0.25027056277056275
 </li>
 <li><p>In many cases, generating synthetic data which is both accurate and captures the important correlations between columns is likely to be impossible</p></li>
 </ul>
+</div>
 </section>
 </section>
 
@@ -1093,11 +1094,11 @@ Percent error: 0.25027056277056275
       </div>
     </a>
     <a class="right-next"
-       href="bibliography.html"
+       href="ch15.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Bibliography</p>
+        <p class="prev-next-title">Efficiency</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1120,7 +1121,6 @@ Percent error: 0.25027056277056275
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-differential-privacy">Adding Differential Privacy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-tabular-data">Generating Tabular Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-more-columns">Generating More Columns</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
   </nav></div>
 
