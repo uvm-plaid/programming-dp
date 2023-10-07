@@ -404,7 +404,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clipping">Clipping</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avoiding-sensitivity-underestimation-error">Avoiding Sensitivity Underestimation Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avoiding-sensitivity-underestimation">Avoiding Sensitivity Underestimation</a></li>
 </ul>
             </nav>
         </div>
@@ -430,14 +430,14 @@ document.write(`
 </ul>
 </div>
 <p>As we mentioned when we discussed the Laplace mechanism, the amount of noise necessary to ensure differential privacy for a given query depends on the <em>sensitivity</em> of the query. Roughly speaking, the sensitivity of a function reflects the amount the function’s output will change when its input changes. Recall that the Laplace mechanism defines a mechanism <span class="math notranslate nohighlight">\(F(x)\)</span> as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-663a970d-f3c0-4132-8a0b-1d52c3fa18ca">
-<span class="eqno">(4)<a class="headerlink" href="#equation-663a970d-f3c0-4132-8a0b-1d52c3fa18ca" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-126491d0-b0b2-4ab9-8f5e-4a3405cbe85b">
+<span class="eqno">(4)<a class="headerlink" href="#equation-126491d0-b0b2-4ab9-8f5e-4a3405cbe85b" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(x)\)</span> is a deterministic function (the query), <span class="math notranslate nohighlight">\(\epsilon\)</span> is the privacy parameter, and <span class="math notranslate nohighlight">\(s\)</span> is the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <p>For a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span> mapping datasets (<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>) to real numbers, the <em>global sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span> is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2b52281c-b3eb-420d-8017-56a975e8bea6">
-<span class="eqno">(5)<a class="headerlink" href="#equation-2b52281c-b3eb-420d-8017-56a975e8bea6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-527c0aaa-62ba-4bc5-9002-06d078c193cd">
+<span class="eqno">(5)<a class="headerlink" href="#equation-527c0aaa-62ba-4bc5-9002-06d078c193cd" title="Permalink to this equation">#</a></span>\[\begin{align}
 GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 \end{align}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(d(x, x')\)</span> represents the <em>distance</em> between two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and we say that two datasets are <em>neighbors</em> if their distance is 1 or less. How this distance is defined has a huge effect on the definition of privacy we obtain, and we’ll discuss the distance metric on datasets in detail later on.</p>
@@ -446,8 +446,8 @@ GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 <h2>Distance<a class="headerlink" href="#distance" title="Permalink to this headline">#</a></h2>
 <p>The distance metric <span class="math notranslate nohighlight">\(d(x,x')\)</span> described earlier can be defined in many different ways. Intuitively, the distance between two datasets should be equal to 1 (i.e. the datasets are neighbors) if they differ in the data of exactly one individual. This idea is easy to formalize in some contexts (e.g. in the US Census, each individual submits a single response containing their data) but extremely challenging in others (e.g. location trajectories, social networks, and time-series data).</p>
 <p>A common formal definition for datasets containing rows is to consider the number of rows which differ between the two. When each individual’s data is contained in a single row, this definition often makes sense. Formally, this definition of distance is encoded as a <em>symmetric difference</em> between the two datasets:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cee55db2-4d35-4386-84de-4a250bba7b84">
-<span class="eqno">(6)<a class="headerlink" href="#equation-cee55db2-4d35-4386-84de-4a250bba7b84" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-07c324c3-be86-48f8-9f2f-b95218601ccd">
+<span class="eqno">(6)<a class="headerlink" href="#equation-07c324c3-be86-48f8-9f2f-b95218601ccd" title="Permalink to this equation">#</a></span>\[\begin{align}
 d(x, x') = | x - x' \cup x' - x |
 \end{align}\]</div>
 <p>This particular definition has several interesting and important implications:</p>
@@ -641,7 +641,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/626789aea29a5aafb55677f9fa7ba82f554827a5bc8d7e0974d36b630176c0a9.png" src="_images/626789aea29a5aafb55677f9fa7ba82f554827a5bc8d7e0974d36b630176c0a9.png" />
+<img alt="_images/ba330cdd013feb0a6887fad75cc87709168b2f3c60778ea7d20950cc0d46021f.png" src="_images/ba330cdd013feb0a6887fad75cc87709168b2f3c60778ea7d20950cc0d46021f.png" />
 </div>
 </div>
 <p>The total privacy cost for building this plot is <span class="math notranslate nohighlight">\(\epsilon = 1\)</span> by sequential composition, since we do 100 queries each with <span class="math notranslate nohighlight">\(\epsilon_i = 0.01\)</span>. It’s clear that the results level off around a value of <code class="docutils literal notranslate"><span class="pre">upper</span> <span class="pre">=</span> <span class="pre">80</span></code>, so this is a good choice for the clipping bound.</p>
@@ -664,13 +664,13 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/0f55f8ecbbaca4bcdb2ea4fa36ff58145cda10d02b0704abccd022102f6f60ee.png" src="_images/0f55f8ecbbaca4bcdb2ea4fa36ff58145cda10d02b0704abccd022102f6f60ee.png" />
+<img alt="_images/ace056d04788144f8fb92423c9a3c988f385dcbe9263e1620539d5ed2da0f470.png" src="_images/ace056d04788144f8fb92423c9a3c988f385dcbe9263e1620539d5ed2da0f470.png" />
 </div>
 </div>
 <p>This approach allows us to test a huge range of possible bounds with a small number of queries, but at the expense of less precision in determining the perfect bound. As the upper bound gets really large, the noise will start to overwhelm the signal - notice how the sum fluctuates wildly for the largest clipping parameters! The key is to look for a region of the graph which is relatively smooth (meaning low noise) and also not increasing (meaning the clipping bound is sufficient). Here, this occurs at roughly <span class="math notranslate nohighlight">\(2^8 = 256\)</span>, which is a reasonable approximation of the upper bound we derived earlier.</p>
 </section>
-<section id="avoiding-sensitivity-underestimation-error">
-<h2>Avoiding Sensitivity Underestimation Error<a class="headerlink" href="#avoiding-sensitivity-underestimation-error" title="Permalink to this headline">#</a></h2>
+<section id="avoiding-sensitivity-underestimation">
+<h2>Avoiding Sensitivity Underestimation<a class="headerlink" href="#avoiding-sensitivity-underestimation" title="Permalink to this headline">#</a></h2>
 <p>In order to correctly predict the sensitivity of our queries and tranformations, we rely on mathematical reasoning around numeric functions such as arithmetic operators.</p>
 <p>If for some reason our numeric functions failed to properly work as anticipated, this would throw off our sensitivity analysis. This could happen, for example, when integer overflow or floating-point representation error occur.</p>
 <div class="cell docutils container">
@@ -778,7 +778,7 @@ d(x, x') = | x - x' \cup x' - x |
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clipping">Clipping</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avoiding-sensitivity-underestimation-error">Avoiding Sensitivity Underestimation Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avoiding-sensitivity-underestimation">Avoiding Sensitivity Underestimation</a></li>
 </ul>
   </nav></div>
 
