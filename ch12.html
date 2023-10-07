@@ -185,6 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency using Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -409,8 +410,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-of-noise-on-training">Effect of Noise on Training</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-efficiency-of-differential-privacy">Time Efficiency of Differential Privacy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#space-cost-of-differential-privacy">Space Cost of Differential Privacy</a></li>
 </ul>
             </nav>
         </div>
@@ -522,8 +521,8 @@ set. For this dataset, that’s a pretty decent result.</p>
 <h2>What is a Model?<a class="headerlink" href="#what-is-a-model" title="Permalink to this headline">#</a></h2>
 <p>What exactly <em>is</em> a model? How does it encode the information it uses to make predictions?</p>
 <p>There are many different kinds of models, but the ones we’ll explore here are <em>linear models</em>. For an unlabeled example with a <span class="math notranslate nohighlight">\(k\)</span>-dimensional feature vector <span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>, a linear model predicts a label by first calculating the quantity:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ccfa52d3-912c-40f8-8b8e-f85df4028413">
-<span class="eqno">(34)<a class="headerlink" href="#equation-ccfa52d3-912c-40f8-8b8e-f85df4028413" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f8d6e6e5-cd90-43d2-8f19-aa7fd8699f29">
+<span class="eqno">(34)<a class="headerlink" href="#equation-f8d6e6e5-cd90-43d2-8f19-aa7fd8699f29" title="Permalink to this equation">#</a></span>\[\begin{align}
 w_1 x_1 + \dots + w_k x_k + bias
 \end{align}\]</div>
 <p>and then taking the sign of it (i.e. if the quantity above is negative, we predict the label -1; if it’s positive, we predict 1).</p>
@@ -887,13 +886,13 @@ Testing loss: 0.4723742456095848
 <section id="gradient-clipping">
 <h3>Gradient Clipping<a class="headerlink" href="#gradient-clipping" title="Permalink to this headline">#</a></h3>
 <p>Recall that when we implemented sample and aggregate, we enforced a desired sensitivity on a function <span class="math notranslate nohighlight">\(f\)</span> with unknown sensitivity by clipping its output. The sensitivity of <span class="math notranslate nohighlight">\(f\)</span> was:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3b495e0b-4562-49e9-828d-4001764bcc55">
-<span class="eqno">(35)<a class="headerlink" href="#equation-3b495e0b-4562-49e9-828d-4001764bcc55" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a59ffd13-38e6-44b8-a77c-50f9420e6e92">
+<span class="eqno">(35)<a class="headerlink" href="#equation-a59ffd13-38e6-44b8-a77c-50f9420e6e92" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>After clipping with parameter <span class="math notranslate nohighlight">\(b\)</span>, this becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-214f0122-dd39-46b0-be30-68ed0efe6a8a">
-<span class="eqno">(36)<a class="headerlink" href="#equation-214f0122-dd39-46b0-be30-68ed0efe6a8a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e46a5b0c-9d72-4be3-8846-f237f46ce1cc">
+<span class="eqno">(36)<a class="headerlink" href="#equation-e46a5b0c-9d72-4be3-8846-f237f46ce1cc" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert \mathsf{clip}(f(x), b) - \mathsf{clip}(f(x'),b) \rvert
 \end{align}\]</div>
 <p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x), b) = b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x'),b) = 0\)</span>, so the sensitivity of the clipped result is exactly <span class="math notranslate nohighlight">\(b\)</span> (the value of the clipping parameter).</p>
@@ -912,8 +911,8 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <p>Now we’re ready to analyze the sensitivity of the clipped gradient. We denote the gradient as <span class="math notranslate nohighlight">\(\nabla(\theta; X, y)\)</span> (corresponding to <code class="docutils literal notranslate"><span class="pre">gradient</span></code> in our Python code):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-30dbf42e-1eed-47ae-bff3-d1153feb040f">
-<span class="eqno">(37)<a class="headerlink" href="#equation-30dbf42e-1eed-47ae-bff3-d1153feb040f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f182e051-8f61-415f-9f04-d43a3d75f456">
+<span class="eqno">(37)<a class="headerlink" href="#equation-f182e051-8f61-415f-9f04-d43a3d75f456" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lVert \mathsf{L2\_clip}( \nabla (\theta; X, y), b) - \mathsf{L2\_clip}( \nabla (\theta; X', y), 0) \rVert_2
 \end{align}\]</div>
 <p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X, y), b)\)</span> has <span class="math notranslate nohighlight">\(L2\)</span> norm of <span class="math notranslate nohighlight">\(b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X', y))\)</span> is all zeros - so that the <span class="math notranslate nohighlight">\(L2\)</span> norm of the difference is equal to <span class="math notranslate nohighlight">\(b\)</span>. Thus, the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the clipped gradient is bounded by the clipping parameter <span class="math notranslate nohighlight">\(b\)</span>!</p>
@@ -963,7 +962,7 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7779743476337904
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.778858911985847
 </pre></div>
 </div>
 </div>
@@ -973,8 +972,8 @@ Testing loss: 0.4723742456095848
 <section id="sensitivity-of-the-gradient">
 <h3>Sensitivity of the Gradient<a class="headerlink" href="#sensitivity-of-the-gradient" title="Permalink to this headline">#</a></h3>
 <p>Our previous approach is very general, since it makes no assumptions about the behavior of the gradient. Sometimes, however, we <em>do</em> know something about the behavior of the gradient. In particular, a large class of useful gradient functions (including the gradient of the logistic loss, which we’re using here) are <em>Lipschitz continuous</em> - meaning they have bounded global sensitivity. Formally, it is possible to show that:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1cf75c8b-7e15-4d61-b30b-892a35472baf">
-<span class="eqno">(38)<a class="headerlink" href="#equation-1cf75c8b-7e15-4d61-b30b-892a35472baf" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-246d482e-621b-47a8-aa59-1a39d1c8e6ca">
+<span class="eqno">(38)<a class="headerlink" href="#equation-246d482e-621b-47a8-aa59-1a39d1c8e6ca" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{If}\; \lVert x_i \rVert_2 \leq b\; \text{then}\; \lVert \nabla(\theta; x_i, y_i) \rVert_2 \leq b
 \end{align}\]</div>
 <p>This fact allows us to clip the values of the <em>training examples</em> (i.e. the <em>inputs</em> to the gradient function), instead of the <em>output</em> of the gradient function, and obtain a bound on the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the gradient.</p>
@@ -1021,7 +1020,7 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7796329057938965
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7862671384343211
 </pre></div>
 </div>
 </div>
@@ -1074,162 +1073,10 @@ Testing loss: 0.4723742456095848
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/4d431b23875cbea104ee315e57e1d9e557efa03fcc143f45bd5c3022ee73c11e.png" src="_images/4d431b23875cbea104ee315e57e1d9e557efa03fcc143f45bd5c3022ee73c11e.png" />
+<img alt="_images/48c721e5a9da6d649559da470f69c9e0a59d38197a8fede855ac20952cf5322b.png" src="_images/48c721e5a9da6d649559da470f69c9e0a59d38197a8fede855ac20952cf5322b.png" />
 </div>
 </div>
 <p>The plot shows that very small values of <span class="math notranslate nohighlight">\(\epsilon\)</span> result in far less accurate models. Keep in mind that the <span class="math notranslate nohighlight">\(\epsilon\)</span> we specify in the plot is a <em>per-iteration</em> <span class="math notranslate nohighlight">\(\epsilon\)</span>, so the privacy cost is much higher after composition.</p>
-</section>
-<section id="time-efficiency-of-differential-privacy">
-<h2>Time Efficiency of Differential Privacy<a class="headerlink" href="#time-efficiency-of-differential-privacy" title="Permalink to this headline">#</a></h2>
-<p>In a situation where the application of differential privacy is implemented as a direct loop over sensitive entities, there is a significant time cost incurred from the added burden of random number generation.</p>
-<p>We can simulate and compare the runtime performance of two versions of a counting query - one with differential privacy, and one without it.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
-<span class="kn">import</span> <span class="nn">operator</span>
-<span class="kn">import</span> <span class="nn">time</span>
-
-<span class="k">def</span> <span class="nf">time_count</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>   
-    <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">k</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-    <span class="n">itertools</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">)</span>
-    <span class="n">stop</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span> 
-
-<span class="k">def</span> <span class="nf">time_priv_count</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>  
-    <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">k</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-    <span class="n">itertools</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">stop</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span> 
-
-<span class="n">x_axis</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">1_000_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">)]</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">time_count</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">1_000_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regular Count&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">time_priv_count</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">1_000_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Private Count&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/4605ea5f1787fd689e7d53cbd21faf7dc9c8226a115d08295903458e40541dcc.png" src="_images/4605ea5f1787fd689e7d53cbd21faf7dc9c8226a115d08295903458e40541dcc.png" />
-</div>
-</div>
-<p>With the time spent counting on the y-axis, and the list lize on the x-axis, we can see that the time complexity of differential privacy for this particular operation is essentially linear in the size of the input.</p>
-<p>The good news is that the above implementation of differentially private count is rather naive, and we can do much better using optimization techniques such as vectorization!</p>
-<p>For example, when implementing differential privacy for the machine learning operations in this chapter, we make use of NumPy functions which are heavily optimized for vector-based operations. In this particular scenario, leveraging this strategy, we manage to incur negligible time cost for the use of differential privacy.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_gd</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>   
-    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-    <span class="n">gradient_descent</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-    <span class="n">stop</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span> 
-
-<span class="k">def</span> <span class="nf">time_priv_gd</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>   
-    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-    <span class="n">noisy_gradient_descent</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
-    <span class="n">stop</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span> 
-
-<span class="n">x_axis</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">25</span><span class="p">)]</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">time_gd</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">25</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regular GD&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">time_priv_gd</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">25</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Private GD&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/35390fe0ef982edab41845d3c8922fc8e91d30cc2b427515095f9d8b641e7ff1.png" src="_images/35390fe0ef982edab41845d3c8922fc8e91d30cc2b427515095f9d8b641e7ff1.png" />
-</div>
-</div>
-<p>The graph plots generally overlap or are close in most simulations of this experiment, indicating low (constant) time inefficiency overhead incurred from utilizing private gradient descent.</p>
-</section>
-<section id="space-cost-of-differential-privacy">
-<h2>Space Cost of Differential Privacy<a class="headerlink" href="#space-cost-of-differential-privacy" title="Permalink to this headline">#</a></h2>
-<p>We can also analyze the space utilization of differential privacy mechanisms. In Python3 we can use a debug tool module to trace memory blocks allocated for use during evaluation. We may perform our analysis of space overhead by comparing the peak size of memory blocks used during private and non-private computation.</p>
-<p>Following this strategy, we can measure the space overhead of the private count operation as follows:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
-<span class="kn">import</span> <span class="nn">operator</span>
-<span class="kn">import</span> <span class="nn">tracemalloc</span>
- 
-<span class="n">tracemalloc</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">space_count</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>   
-    <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">k</span>
-    <span class="n">itertools</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">)</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">peak</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">get_traced_memory</span><span class="p">()</span>
-    <span class="n">tracemalloc</span><span class="o">.</span><span class="n">reset_peak</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">peak</span><span class="o">/</span><span class="mi">1000</span> 
-
-<span class="k">def</span> <span class="nf">space_priv_count</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>  
-    <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">k</span>
-    <span class="n">itertools</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">peak</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">get_traced_memory</span><span class="p">()</span>
-    <span class="n">tracemalloc</span><span class="o">.</span><span class="n">reset_peak</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">peak</span><span class="o">/</span><span class="mi">1000</span>
-
-<span class="n">x_axis</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">1_000_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">)]</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">space_count</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">1_000_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regular Count&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">space_priv_count</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">1_000_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Private Count&#39;</span><span class="p">)</span>
-
-<span class="n">tracemalloc</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/46566001776b8d453a1ff8f2441fe15ba568e976df949fcb2a66e7feeb91873a.png" src="_images/46566001776b8d453a1ff8f2441fe15ba568e976df949fcb2a66e7feeb91873a.png" />
-</div>
-</div>
-<p>We display every thousand memory blocks on the y-axis, against the list size on the x-axis.</p>
-<p>In this case, the memory complexity of differential privacy is generally constant.</p>
-<p>We also observe a spike in the initial space cost for private count, which we can attribute to memory allocation of the random number generator resources.</p>
-<p>We can repeat this experiment to contrast private and non-private machine learning:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracemalloc</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">space_gd</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>   
-    <span class="n">gradient_descent</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">peak</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">get_traced_memory</span><span class="p">()</span>
-    <span class="n">tracemalloc</span><span class="o">.</span><span class="n">reset_peak</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">peak</span><span class="o">/</span><span class="mi">1_000_000</span> 
-
-<span class="k">def</span> <span class="nf">space_priv_gd</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>   
-    <span class="n">noisy_gradient_descent</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">peak</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">get_traced_memory</span><span class="p">()</span>
-    <span class="n">tracemalloc</span><span class="o">.</span><span class="n">reset_peak</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">peak</span><span class="o">/</span><span class="mi">1_000_000</span>
-
-<span class="n">x_axis</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">space_gd</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regular GD&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="p">[</span><span class="n">space_priv_gd</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Private GD&#39;</span><span class="p">)</span>
-
-<span class="n">tracemalloc</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/839f8c1c47065f8a1d962d8d637ed8d797958032604178a1b5e1c99189f144f2.png" src="_images/839f8c1c47065f8a1d962d8d637ed8d797958032604178a1b5e1c99189f144f2.png" />
-</div>
-</div>
-<p>In this case the memory allocation is generally much larger - as expected - and we graph against every millionth allocated memory block.</p>
-<p>We also observe generally constant space overhead during private gradient descent.</p>
 </section>
 </section>
 
@@ -1309,8 +1156,6 @@ Testing loss: 0.4723742456095848
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-of-noise-on-training">Effect of Noise on Training</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-efficiency-of-differential-privacy">Time Efficiency of Differential Privacy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#space-cost-of-differential-privacy">Space Cost of Differential Privacy</a></li>
 </ul>
   </nav></div>
 
