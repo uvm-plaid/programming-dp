@@ -9,9 +9,14 @@ execute:
   execute_notebooks: force
 
 sphinx:
+  extra_extensions:
+    - sphinx_proof
   config:
     language: en
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    myst_enable_extensions:
+      - amsmath
+      - dollarmath
 
 html:
   favicon                   : favicon.png
@@ -22,13 +27,6 @@ html:
 latex:
   latex_documents:
     targetname: book.tex
-
-parse:
-  myst_enable_extensions:
-    # don't forget to list any other extensions you want enabled,
-    # including those that are enabled by default!
-    - amsmath
-    - dollarmath
 
 bibtex_bibfiles:
     - references.bib
