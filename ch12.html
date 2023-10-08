@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -45,7 +46,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -61,8 +64,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch12';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -170,8 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch1.html">Preliminary</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="ch1.html">De-identification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch2.html">k-Anonymity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch3.html">Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch4.html">Properties of Differential Privacy</a></li>
@@ -185,7 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency using Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -421,8 +421,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="machine-learning">
-<h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline">#</a></h1>
+  <section id="machine-learning">
+<h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this heading">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <p>After reading this chapter, you will be able to:</p>
@@ -433,9 +433,9 @@ document.write(`
 <li><p>Describe the effect of noise on the training process</p></li>
 </ul>
 </div>
-<p>In this chapter, we’re going to explore building differentially private machine learning classifiers. We’ll focus on a kind of <em>supervised learning</em> problem: given a set of <em>labeled training examples</em> <span class="math notranslate nohighlight">\(\{(x_1, y_1), \dots, (x_n, y_n)\}\)</span>, in which <span class="math notranslate nohighlight">\(x_i\)</span> is called the <em>feature vector</em> and <span class="math notranslate nohighlight">\(y_i\)</span> is called the <em>label</em>, train a <em>model</em> <span class="math notranslate nohighlight">\(\theta\)</span> which can <em>predict</em> the label for a new feature vector which was not present in the training set. Each <span class="math notranslate nohighlight">\(x_i\)</span> is typically a vector of real numbers which describe the features of a training example, and the <span class="math notranslate nohighlight">\(y_i\)</span>s are drawn from a predefined set of <em>classes</em> (usually expressed as integers) that examples can be drawn from. A <em>binary</em> classifier has two classes (usually either 1 and 0, or 1 and -1).</p>
+<p>In this chapter, we’re going to explore building differentially private machine learning classifiers. We’ll focus on a kind of <em>supervised learning</em> problem: given a set of <em>labeled training examples</em> ${(x_1, y_1), \dots, (x_n, y_n)}$, in which $x_i$ is called the <em>feature vector</em> and $y_i$ is called the <em>label</em>, train a <em>model</em> $\theta$ which can <em>predict</em> the label for a new feature vector which was not present in the training set. Each $x_i$ is typically a vector of real numbers which describe the features of a training example, and the $y_i$s are drawn from a predefined set of <em>classes</em> (usually expressed as integers) that examples can be drawn from. A <em>binary</em> classifier has two classes (usually either 1 and 0, or 1 and -1).</p>
 <section id="logistic-regression-with-scikit-learn">
-<h2>Logistic Regression with Scikit-Learn<a class="headerlink" href="#logistic-regression-with-scikit-learn" title="Permalink to this headline">#</a></h2>
+<h2>Logistic Regression with Scikit-Learn<a class="headerlink" href="#logistic-regression-with-scikit-learn" title="Permalink to this heading">#</a></h2>
 <p>To train a model, we will use some of the data we have available to build a set of <em>training examples</em> (as described earlier), but we’ll also set aside some of the data as <em>test examples</em>. Once we have trained the model, we want to know how well it works on examples that are <em>not</em> present in the training set. A model which works well on new examples it hasn’t seen before is said to <em>generalize</em> well. One which does <em>not</em> generalize well is said to have <em>overfitted</em> the training data.</p>
 <p>To test generalization, we’ll use the test examples - we have labels for
 them, so we can test the generalization accuracy of the model by asking
@@ -518,15 +518,14 @@ classified.</p>
 set. For this dataset, that’s a pretty decent result.</p>
 </section>
 <section id="what-is-a-model">
-<h2>What is a Model?<a class="headerlink" href="#what-is-a-model" title="Permalink to this headline">#</a></h2>
+<h2>What is a Model?<a class="headerlink" href="#what-is-a-model" title="Permalink to this heading">#</a></h2>
 <p>What exactly <em>is</em> a model? How does it encode the information it uses to make predictions?</p>
-<p>There are many different kinds of models, but the ones we’ll explore here are <em>linear models</em>. For an unlabeled example with a <span class="math notranslate nohighlight">\(k\)</span>-dimensional feature vector <span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>, a linear model predicts a label by first calculating the quantity:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f8d6e6e5-cd90-43d2-8f19-aa7fd8699f29">
-<span class="eqno">(34)<a class="headerlink" href="#equation-f8d6e6e5-cd90-43d2-8f19-aa7fd8699f29" title="Permalink to this equation">#</a></span>\[\begin{align}
+<p>There are many different kinds of models, but the ones we’ll explore here are <em>linear models</em>. For an unlabeled example with a $k$-dimensional feature vector $x_1, \dots, x_k$, a linear model predicts a label by first calculating the quantity:</p>
+<p>\begin{align}
 w_1 x_1 + \dots + w_k x_k + bias
-\end{align}\]</div>
+\end{align}</p>
 <p>and then taking the sign of it (i.e. if the quantity above is negative, we predict the label -1; if it’s positive, we predict 1).</p>
-<p>The model itself, then, can be represented by a vector containing the values <span class="math notranslate nohighlight">\(w_1, \dots, w_k\)</span> and the value for <span class="math notranslate nohighlight">\(bias\)</span>. The model is said to be linear because the quantity we calculate in predicting a label is a polynomial of degree 1 (i.e. linear). The values <span class="math notranslate nohighlight">\(w_1, \dots, w_k\)</span> are often called the <em>weights</em> or <em>coefficients</em> of the model, and <span class="math notranslate nohighlight">\(bias\)</span> is often called the <em>bias term</em> or <em>intercept</em>.</p>
+<p>The model itself, then, can be represented by a vector containing the values $w_1, \dots, w_k$ and the value for $bias$. The model is said to be linear because the quantity we calculate in predicting a label is a polynomial of degree 1 (i.e. linear). The values $w_1, \dots, w_k$ are often called the <em>weights</em> or <em>coefficients</em> of the model, and $bias$ is often called the <em>bias term</em> or <em>intercept</em>.</p>
 <p>This is actually how scikit-learn represents its logistic regression model, too! We can check out the weights of our trained model using the <code class="docutils literal notranslate"><span class="pre">coef_</span></code> attribute of the model:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -572,7 +571,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </details>
 </div>
-<p>Note that we’ll always have exactly the same number of weights <span class="math notranslate nohighlight">\(w_i\)</span> as we have features <span class="math notranslate nohighlight">\(x_i\)</span>, since we have to multiply each feature by its corresponding weight. That means our model has exactly the same dimensionality as our feature vectors.</p>
+<p>Note that we’ll always have exactly the same number of weights $w_i$ as we have features $x_i$, since we have to multiply each feature by its corresponding weight. That means our model has exactly the same dimensionality as our feature vectors.</p>
 <p>Now that we have a way to get the weights and bias term, we can implement our own function to perform prediction:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -594,7 +593,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>We’ve made the bias term optional here, because in many cases it’s possible to do just as well without it. To make things simpler, we won’t bother to train a bias term in our own algorithm.</p>
 </section>
 <section id="training-a-model-with-gradient-descent">
-<h2>Training a Model with Gradient Descent<a class="headerlink" href="#training-a-model-with-gradient-descent" title="Permalink to this headline">#</a></h2>
+<h2>Training a Model with Gradient Descent<a class="headerlink" href="#training-a-model-with-gradient-descent" title="Permalink to this heading">#</a></h2>
 <p>How does the training process actually work? The scikit-learn library has some pretty sophisticated algorithms, but we can do just about as well by implementing a simple one called <em>gradient descent</em>.</p>
 <p>Most training algorithms for machine learning are defined in terms of a <em>loss function</em>, which specifies a way to measure how “bad” a model is at prediction. The goal of the training algorithm is to minimize the output of the loss function - a model with low loss will be <em>good</em> at prediction.</p>
 <p>The machine learning community has developed many different commonly-used loss functions. A simple loss function might return 0 for each correctly predicted example, and 1 for each incorrectly predicted example; when the loss becomes 0, that means we’ve predicted each example’s label correctly. A more commonly used loss function for binary classification is called the <em>logistic loss</em>; the logistic loss gives us a measure of “how far” we are from predicting the correct label (which is more informative than the simple 0 vs 1 approach).</p>
@@ -652,7 +651,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <section id="a-single-step-of-gradient-descent">
-<h3>A Single Step of Gradient Descent<a class="headerlink" href="#a-single-step-of-gradient-descent" title="Permalink to this headline">#</a></h3>
+<h3>A Single Step of Gradient Descent<a class="headerlink" href="#a-single-step-of-gradient-descent" title="Permalink to this heading">#</a></h3>
 <p>Next, let’s perform a single step of gradient descent. We can apply the <code class="docutils literal notranslate"><span class="pre">gradient</span></code> function to a single example from our training data, which should give us enough information to improve the model for that example. We “descend” the gradient by subtracting it from our current model <code class="docutils literal notranslate"><span class="pre">theta</span></code>.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -729,7 +728,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>Our improved model now predicts 75% of the labels for the test set correctly! That’s good progress - we’ve improved the model considerably.</p>
 </section>
 <section id="a-gradient-descent-algorithm">
-<h3>A Gradient Descent Algorithm<a class="headerlink" href="#a-gradient-descent-algorithm" title="Permalink to this headline">#</a></h3>
+<h3>A Gradient Descent Algorithm<a class="headerlink" href="#a-gradient-descent-algorithm" title="Permalink to this heading">#</a></h3>
 <p>We need to make two changes to arrive at a basic gradient descent algorithm. First, our single step above used only a single example from the training data; we want to consider the <em>whole</em> training set when updating the model, so that we improve the model for <em>all</em> examples. Second, we need to perform multiple iterations, to get as close as possible to minimizing the loss.</p>
 <p>We can solve the first problem by calculating the <em>average gradient</em> over all of the training examples, and using it for the descent step in place of the single-example gradient we used before. Our <code class="docutils literal notranslate"><span class="pre">avg_grad</span></code> function calculates the average gradient over a whole array of training examples and the corresponding labels.</p>
 <div class="cell tag_hide-output docutils container">
@@ -860,7 +859,7 @@ Testing loss: 0.4723742456095848
 </section>
 </section>
 <section id="gradient-descent-with-differential-privacy">
-<h2>Gradient Descent with Differential Privacy<a class="headerlink" href="#gradient-descent-with-differential-privacy" title="Permalink to this headline">#</a></h2>
+<h2>Gradient Descent with Differential Privacy<a class="headerlink" href="#gradient-descent-with-differential-privacy" title="Permalink to this heading">#</a></h2>
 <p>How can we make the above algorithm differentially private? We’d like to design an algorithm that ensures differential privacy for the training data, so that the final model doesn’t reveal anything about individual training examples.</p>
 <p>The only part of the algorithm which uses the training data is the gradient calculation. One way to make the algorithm differentially private is to add noise to the gradient itself at each iteration before updating the model. This approach is usually called <em>noisy gradient descent</em>, since we add noise directly to the gradient.</p>
 <p>Our gradient function is a vector-valued function, so we can use <code class="docutils literal notranslate"><span class="pre">gaussian_mech_vec</span></code> to add noise to its output:</p>
@@ -884,19 +883,17 @@ Testing loss: 0.4723742456095848
 <p>There are two major challenges here. First, the gradient is the result of an <em>average query</em> - it’s the mean of many per-example gradients. As we’ve seen previously, it’s best to split queries like this up into a sum query and a count query. This isn’t difficult to do - we can compute the noisy sum of the per-example gradients, rather than their average, and divide by a noisy count later. Second, we need to bound the sensitivity of each per-example gradient. There are two basic approaches for this: we can either analyze the gradient function itself (as we have done with previous queries) to determine its worst-case global sensitivity, or we can <em>enforce</em> a sensitivity by clipping the output of the gradient function (as we did in sample and aggregate).</p>
 <p>We’ll start with the second approach - often called <em>gradient clipping</em> - because it’s simpler conceptually and more general in its applications.</p>
 <section id="gradient-clipping">
-<h3>Gradient Clipping<a class="headerlink" href="#gradient-clipping" title="Permalink to this headline">#</a></h3>
-<p>Recall that when we implemented sample and aggregate, we enforced a desired sensitivity on a function <span class="math notranslate nohighlight">\(f\)</span> with unknown sensitivity by clipping its output. The sensitivity of <span class="math notranslate nohighlight">\(f\)</span> was:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a59ffd13-38e6-44b8-a77c-50f9420e6e92">
-<span class="eqno">(35)<a class="headerlink" href="#equation-a59ffd13-38e6-44b8-a77c-50f9420e6e92" title="Permalink to this equation">#</a></span>\[\begin{align}
-\lvert f(x) - f(x') \rvert
-\end{align}\]</div>
-<p>After clipping with parameter <span class="math notranslate nohighlight">\(b\)</span>, this becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e46a5b0c-9d72-4be3-8846-f237f46ce1cc">
-<span class="eqno">(36)<a class="headerlink" href="#equation-e46a5b0c-9d72-4be3-8846-f237f46ce1cc" title="Permalink to this equation">#</a></span>\[\begin{align}
-\lvert \mathsf{clip}(f(x), b) - \mathsf{clip}(f(x'),b) \rvert
-\end{align}\]</div>
-<p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x), b) = b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x'),b) = 0\)</span>, so the sensitivity of the clipped result is exactly <span class="math notranslate nohighlight">\(b\)</span> (the value of the clipping parameter).</p>
-<p>We can use the same trick to bound the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of our gradient function. We’ll need to define a function which “clips” a vector so that it has <span class="math notranslate nohighlight">\(L2\)</span> norm within a desired range. We can accomplish this by <em>scaling</em> the vector: if we divide the vector elementwise by its <span class="math notranslate nohighlight">\(L2\)</span> norm, then the resulting vector will have an <span class="math notranslate nohighlight">\(L2\)</span> norm of 1. If we want to target a particular clipping parameter <span class="math notranslate nohighlight">\(b\)</span>, we can multiply the scaled vector by <span class="math notranslate nohighlight">\(b\)</span> to scale it back up to have <span class="math notranslate nohighlight">\(L2\)</span> norm <span class="math notranslate nohighlight">\(b\)</span>. We want to avoid modifying vectors that already have <span class="math notranslate nohighlight">\(L2\)</span> norm below <span class="math notranslate nohighlight">\(b\)</span>; in that case, we just return the original vector. We can use <code class="docutils literal notranslate"><span class="pre">np.linalg.norm</span></code> with the parameter <code class="docutils literal notranslate"><span class="pre">ord=2</span></code> to calculate the <span class="math notranslate nohighlight">\(L2\)</span> norm of a vector.</p>
+<h3>Gradient Clipping<a class="headerlink" href="#gradient-clipping" title="Permalink to this heading">#</a></h3>
+<p>Recall that when we implemented sample and aggregate, we enforced a desired sensitivity on a function $f$ with unknown sensitivity by clipping its output. The sensitivity of $f$ was:</p>
+<p>\begin{align}
+\lvert f(x) - f(x’) \rvert
+\end{align}</p>
+<p>After clipping with parameter $b$, this becomes:</p>
+<p>\begin{align}
+\lvert \mathsf{clip}(f(x), b) - \mathsf{clip}(f(x’),b) \rvert
+\end{align}</p>
+<p>In the worst case, $\mathsf{clip}(f(x), b) = b$, and $\mathsf{clip}(f(x’),b) = 0$, so the sensitivity of the clipped result is exactly $b$ (the value of the clipping parameter).</p>
+<p>We can use the same trick to bound the $L2$ sensitivity of our gradient function. We’ll need to define a function which “clips” a vector so that it has $L2$ norm within a desired range. We can accomplish this by <em>scaling</em> the vector: if we divide the vector elementwise by its $L2$ norm, then the resulting vector will have an $L2$ norm of 1. If we want to target a particular clipping parameter $b$, we can multiply the scaled vector by $b$ to scale it back up to have $L2$ norm $b$. We want to avoid modifying vectors that already have $L2$ norm below $b$; in that case, we just return the original vector. We can use <code class="docutils literal notranslate"><span class="pre">np.linalg.norm</span></code> with the parameter <code class="docutils literal notranslate"><span class="pre">ord=2</span></code> to calculate the $L2$ norm of a vector.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">L2_clip</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -910,13 +907,12 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 </div>
-<p>Now we’re ready to analyze the sensitivity of the clipped gradient. We denote the gradient as <span class="math notranslate nohighlight">\(\nabla(\theta; X, y)\)</span> (corresponding to <code class="docutils literal notranslate"><span class="pre">gradient</span></code> in our Python code):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f182e051-8f61-415f-9f04-d43a3d75f456">
-<span class="eqno">(37)<a class="headerlink" href="#equation-f182e051-8f61-415f-9f04-d43a3d75f456" title="Permalink to this equation">#</a></span>\[\begin{align}
-\lVert \mathsf{L2\_clip}( \nabla (\theta; X, y), b) - \mathsf{L2\_clip}( \nabla (\theta; X', y), 0) \rVert_2
-\end{align}\]</div>
-<p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X, y), b)\)</span> has <span class="math notranslate nohighlight">\(L2\)</span> norm of <span class="math notranslate nohighlight">\(b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X', y))\)</span> is all zeros - so that the <span class="math notranslate nohighlight">\(L2\)</span> norm of the difference is equal to <span class="math notranslate nohighlight">\(b\)</span>. Thus, the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the clipped gradient is bounded by the clipping parameter <span class="math notranslate nohighlight">\(b\)</span>!</p>
-<p>Now we can proceed to compute the sum of clipped gradients, and add noise based on the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity <span class="math notranslate nohighlight">\(b\)</span> that we’ve enforced by clipping.</p>
+<p>Now we’re ready to analyze the sensitivity of the clipped gradient. We denote the gradient as $\nabla(\theta; X, y)$ (corresponding to <code class="docutils literal notranslate"><span class="pre">gradient</span></code> in our Python code):</p>
+<p>\begin{align}
+\lVert \mathsf{L2_clip}( \nabla (\theta; X, y), b) - \mathsf{L2_clip}( \nabla (\theta; X’, y), 0) \rVert_2
+\end{align}</p>
+<p>In the worst case, $\mathsf{L2_clip}( \nabla (\theta; X, y), b)$ has $L2$ norm of $b$, and $\mathsf{L2_clip}( \nabla (\theta; X’, y))$ is all zeros - so that the $L2$ norm of the difference is equal to $b$. Thus, the $L2$ sensitivity of the clipped gradient is bounded by the clipping parameter $b$!</p>
+<p>Now we can proceed to compute the sum of clipped gradients, and add noise based on the $L2$ sensitivity $b$ that we’ve enforced by clipping.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -931,7 +927,7 @@ Testing loss: 0.4723742456095848
 </div>
 <p>Now we’re ready to complete our noisy gradient descent algorithm. To compute the noisy average gradient, we need to:</p>
 <ol class="arabic simple">
-<li><p>Add noise to the sum of the gradients based on its sensitivity <span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p>Add noise to the sum of the gradients based on its sensitivity $b$</p></li>
 <li><p>Compute a noisy count of the number of training examples (sensitivity 1)</p></li>
 <li><p>Divide the noisy sum from (1) by the noisy count from (2)</p></li>
 </ol>
@@ -962,21 +958,20 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.778858911985847
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7870411322423706
 </pre></div>
 </div>
 </div>
 </div>
-<p>Each iteration of this algorithm satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy, and we perform one additional query to determine the noisy count which satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. If we perform <span class="math notranslate nohighlight">\(k\)</span> iterations, then by sequential composition, the algorithm satisfies <span class="math notranslate nohighlight">\((k\epsilon + \epsilon, k\delta)\)</span>-differential privacy. We can also use advanced composition to analyze the total privacy cost; even better, we could convert the algorithm to Rényi differential privacy or zero-concentrated differential privacy, and obtain tight bounds on composition.</p>
+<p>Each iteration of this algorithm satisfies $(\epsilon, \delta)$-differential privacy, and we perform one additional query to determine the noisy count which satisfies $\epsilon$-differential privacy. If we perform $k$ iterations, then by sequential composition, the algorithm satisfies $(k\epsilon + \epsilon, k\delta)$-differential privacy. We can also use advanced composition to analyze the total privacy cost; even better, we could convert the algorithm to Rényi differential privacy or zero-concentrated differential privacy, and obtain tight bounds on composition.</p>
 </section>
 <section id="sensitivity-of-the-gradient">
-<h3>Sensitivity of the Gradient<a class="headerlink" href="#sensitivity-of-the-gradient" title="Permalink to this headline">#</a></h3>
+<h3>Sensitivity of the Gradient<a class="headerlink" href="#sensitivity-of-the-gradient" title="Permalink to this heading">#</a></h3>
 <p>Our previous approach is very general, since it makes no assumptions about the behavior of the gradient. Sometimes, however, we <em>do</em> know something about the behavior of the gradient. In particular, a large class of useful gradient functions (including the gradient of the logistic loss, which we’re using here) are <em>Lipschitz continuous</em> - meaning they have bounded global sensitivity. Formally, it is possible to show that:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-246d482e-621b-47a8-aa59-1a39d1c8e6ca">
-<span class="eqno">(38)<a class="headerlink" href="#equation-246d482e-621b-47a8-aa59-1a39d1c8e6ca" title="Permalink to this equation">#</a></span>\[\begin{align}
-\text{If}\; \lVert x_i \rVert_2 \leq b\; \text{then}\; \lVert \nabla(\theta; x_i, y_i) \rVert_2 \leq b
-\end{align}\]</div>
-<p>This fact allows us to clip the values of the <em>training examples</em> (i.e. the <em>inputs</em> to the gradient function), instead of the <em>output</em> of the gradient function, and obtain a bound on the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the gradient.</p>
+<p>\begin{align}
+\text{If}; \lVert x_i \rVert_2 \leq b; \text{then}; \lVert \nabla(\theta; x_i, y_i) \rVert_2 \leq b
+\end{align}</p>
+<p>This fact allows us to clip the values of the <em>training examples</em> (i.e. the <em>inputs</em> to the gradient function), instead of the <em>output</em> of the gradient function, and obtain a bound on the $L2$ sensitivity of the gradient.</p>
 <p>Clipping the training examples instead of the gradients has two advantages. First, it’s often easier to estimate the scale of the training data (and thus to pick a good clipping parameter) than it is to estimate the scale of the gradients you’ll compute during training. Second, it’s computationally more efficient: we can clip the training examples <em>once</em>, and re-use the clipped training data every time we train a model; with gradient clipping, we need to clip each gradient during training. Furthermore, we’re no longer forced to compute per-example gradients so that we can clip them; instead, we can compute all of the gradients at once, which can be done very efficiently (this is a commonly used trick in machine learning, but we won’t discuss it here).</p>
 <p>Note, however, that many useful loss functions - in particular, those derived from neural networks in deep learning - do <em>not</em> have bounded global sensitivity. For these loss functions, we’re forced to use gradient clipping.</p>
 <p>We can clip the training examples instead of the gradients with a couple of simple modifications to our algorithm. First, we clip the training examples using <code class="docutils literal notranslate"><span class="pre">L2_clip</span></code> before we start training. Second, we simply delete the code for clipping the gradients.</p>
@@ -1020,27 +1015,27 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7862671384343211
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7797434763379035
 </pre></div>
 </div>
 </div>
 </div>
 <p>Many improvements to this algorithm are possible, which can improve privacy cost and accuracy. Many are drawn from the machine learning literature. Some examples include:</p>
 <ul class="simple">
-<li><p>Bounding the <em>total</em> privacy cost by <span class="math notranslate nohighlight">\(\epsilon\)</span> by calculating a per-iteration <span class="math notranslate nohighlight">\(\epsilon_i\)</span> as part of the algorithm.</p></li>
+<li><p>Bounding the <em>total</em> privacy cost by $\epsilon$ by calculating a per-iteration $\epsilon_i$ as part of the algorithm.</p></li>
 <li><p>Better composition for large numbers of iterations via advanced composition, RDP, or zCDP.</p></li>
 <li><p>Minibatching: calculating the gradient for each iteration using a small chunk of the training data, rather than the whole training set (this reduces the computation needed to calculate the gradient).</p></li>
 <li><p>Parallel composition in conjunction with minibatching.</p></li>
 <li><p>Random sampling of batches in conjunction with minibatching.</p></li>
-<li><p>Other hyperparameters, like a learning rate <span class="math notranslate nohighlight">\(\eta\)</span>.</p></li>
+<li><p>Other hyperparameters, like a learning rate $\eta$.</p></li>
 </ul>
 </section>
 </section>
 <section id="effect-of-noise-on-training">
-<h2>Effect of Noise on Training<a class="headerlink" href="#effect-of-noise-on-training" title="Permalink to this headline">#</a></h2>
+<h2>Effect of Noise on Training<a class="headerlink" href="#effect-of-noise-on-training" title="Permalink to this heading">#</a></h2>
 <p>So far, we’ve seen that the number of iterations has a big effect on the accuracy of the model we get, since more iterations can get you closer to the minimum of the loss. Since our differentially private algorithm adds noise to the gradient, this can also affect accuracy - the noise can cause our algorithm to move in <em>the wrong direction</em> during training, and actually make the model <em>worse</em>.</p>
-<p>It’s reasonable to expect that smaller values of <span class="math notranslate nohighlight">\(\epsilon\)</span> will result in less accurate models (since this has been the trend in every differentially private algorithm we have seen so far). This is true, but there’s also a slightly more subtle tradeoff which occurs because of the composition we need to consider when we perform many iterations of the algorithm: more iterations means a larger privacy cost. In the standard gradient descent algorithm, more iterations generally result in a better model. In our differentially private version, more iterations can make the model <em>worse</em>, since we have to use a smaller <span class="math notranslate nohighlight">\(\epsilon\)</span> for each iteration, and so the scale of the noise goes up. In differentially private machine learning, it’s important (and sometimes, very challenging) to strike the right balance between the number of iterations used and the scale of the noise added.</p>
-<p>Let’s do a small experiment to see how the setting of <span class="math notranslate nohighlight">\(\epsilon\)</span> effects the accuracy of our model. We’ll train a model for several values of <span class="math notranslate nohighlight">\(\epsilon\)</span>, using 20 iterations each time, and graph the accuracy of each model against the <span class="math notranslate nohighlight">\(\epsilon\)</span> value used in training it.</p>
+<p>It’s reasonable to expect that smaller values of $\epsilon$ will result in less accurate models (since this has been the trend in every differentially private algorithm we have seen so far). This is true, but there’s also a slightly more subtle tradeoff which occurs because of the composition we need to consider when we perform many iterations of the algorithm: more iterations means a larger privacy cost. In the standard gradient descent algorithm, more iterations generally result in a better model. In our differentially private version, more iterations can make the model <em>worse</em>, since we have to use a smaller $\epsilon$ for each iteration, and so the scale of the noise goes up. In differentially private machine learning, it’s important (and sometimes, very challenging) to strike the right balance between the number of iterations used and the scale of the noise added.</p>
+<p>Let’s do a small experiment to see how the setting of $\epsilon$ effects the accuracy of our model. We’ll train a model for several values of $\epsilon$, using 20 iterations each time, and graph the accuracy of each model against the $\epsilon$ value used in training it.</p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1073,10 +1068,10 @@ Testing loss: 0.4723742456095848
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/48c721e5a9da6d649559da470f69c9e0a59d38197a8fede855ac20952cf5322b.png" src="_images/48c721e5a9da6d649559da470f69c9e0a59d38197a8fede855ac20952cf5322b.png" />
+<img alt="_images/a3d165ee69a7bb29873dd4740c52ad36abbd52b1191aad14304b9471a7261302.png" src="_images/a3d165ee69a7bb29873dd4740c52ad36abbd52b1191aad14304b9471a7261302.png" />
 </div>
 </div>
-<p>The plot shows that very small values of <span class="math notranslate nohighlight">\(\epsilon\)</span> result in far less accurate models. Keep in mind that the <span class="math notranslate nohighlight">\(\epsilon\)</span> we specify in the plot is a <em>per-iteration</em> <span class="math notranslate nohighlight">\(\epsilon\)</span>, so the privacy cost is much higher after composition.</p>
+<p>The plot shows that very small values of $\epsilon$ result in far less accurate models. Keep in mind that the $\epsilon$ we specify in the plot is a <em>per-iteration</em> $\epsilon$, so the privacy cost is much higher after composition.</p>
 </section>
 </section>
 

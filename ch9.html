@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -45,7 +46,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -61,8 +64,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch9';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -184,6 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -409,8 +411,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="the-exponential-mechanism">
-<h1>The Exponential Mechanism<a class="headerlink" href="#the-exponential-mechanism" title="Permalink to this headline">#</a></h1>
+  <section id="the-exponential-mechanism">
+<h1>The Exponential Mechanism<a class="headerlink" href="#the-exponential-mechanism" title="Permalink to this heading">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <p>After reading this chapter, you will be able to:</p>
@@ -421,25 +423,24 @@ document.write(`
 </ul>
 </div>
 <p>The fundamental mechanisms we have seen so far (Laplace and Gaussian) are focused on numerical answers, and add noise directly to the answer itself. What if we want to return a precise answer (i.e. no added noise), but still preserve differential privacy? One solution is the exponential mechanism <span id="id1">[<a class="reference internal" href="bibliography.html#id15" title="Frank McSherry and Kunal Talwar. Mechanism design via differential privacy. In 48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07), volume, 94-103. 2007. doi:10.1109/FOCS.2007.66.">12</a>]</span>, which allows selecting the “best” element from a set while preserving differential privacy. The analyst defines which element is the “best” by specifying a <em>scoring function</em> that outputs a score for each element in the set, and also defines the set of things to pick from. The mechanism provides differential privacy by <em>approximately</em> maximizing the score of the element it returns - in other words, to satisfy differential privacy, the exponential mechanism sometimes returns an element from the set which does <em>not</em> have the highest score.</p>
-<p>The exponential mechanism satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
+<p>The exponential mechanism satisfies $\epsilon$-differential privacy:</p>
 <ol class="arabic simple">
-<li><p>The analyst selects a set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> of possible outputs</p></li>
-<li><p>The analyst specifies a scoring function <span class="math notranslate nohighlight">\(u : \mathcal{D} \times \mathcal{R} \rightarrow \mathbb{R}\)</span> with global sensitivity <span class="math notranslate nohighlight">\(\Delta u\)</span></p></li>
-<li><p>The exponential mechanism outputs <span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span> with probability proportional to:</p></li>
+<li><p>The analyst selects a set $\mathcal{R}$ of possible outputs</p></li>
+<li><p>The analyst specifies a scoring function $u : \mathcal{D} \times \mathcal{R} \rightarrow \mathbb{R}$ with global sensitivity $\Delta u$</p></li>
+<li><p>The exponential mechanism outputs $r \in \mathcal{R}$ with probability proportional to:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-bd5e7f05-a4e5-4266-9dea-bc18ce441413">
-<span class="eqno">(31)<a class="headerlink" href="#equation-bd5e7f05-a4e5-4266-9dea-bc18ce441413" title="Permalink to this equation">#</a></span>\[\begin{align}
+<p>\begin{align}
 \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)
-\end{align}\]</div>
-<p>The biggest practical difference between the exponential mechanism and the previous mechanisms we’ve seen (e.g. the Laplace mechanism) is that the output of the exponential mechanism is <em>always</em> a member of the set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>. This is extremely useful when selecting an item from a finite set, when a noisy answer would not make sense. For example, we might want to pick a date for a big meeting, which uses each participant’s personal calendar to maximize the number of participants without a conflict, while providing differential privacy for the calendars. Adding noise to a date doesn’t make much sense: it might turn a Friday into a Saturday, and <em>increase</em> the number of conflicts significantly. The exponential mechanism is perfect for problems like this one: it selects a date <em>without noise</em>.</p>
+\end{align}</p>
+<p>The biggest practical difference between the exponential mechanism and the previous mechanisms we’ve seen (e.g. the Laplace mechanism) is that the output of the exponential mechanism is <em>always</em> a member of the set $\mathcal{R}$. This is extremely useful when selecting an item from a finite set, when a noisy answer would not make sense. For example, we might want to pick a date for a big meeting, which uses each participant’s personal calendar to maximize the number of participants without a conflict, while providing differential privacy for the calendars. Adding noise to a date doesn’t make much sense: it might turn a Friday into a Saturday, and <em>increase</em> the number of conflicts significantly. The exponential mechanism is perfect for problems like this one: it selects a date <em>without noise</em>.</p>
 <p>The exponential mechanism is interesting for several reasons:</p>
 <ul class="simple">
-<li><p>The privacy cost of the mechanism is just <span class="math notranslate nohighlight">\(\epsilon\)</span>, regardless of the size of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> - more on this next.</p></li>
-<li><p>It works for both finite and infinite sets <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>, but it can be really challenging to build a practical implementation which samples from the appropriate probability distribution when <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is infinite.</p></li>
-<li><p>It represents a “fundamental mechanism” of <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy: all other <span class="math notranslate nohighlight">\(\epsilon\)</span>-differentially private mechanisms can be defined in terms of the exponential mechanism with the appropriate definition of the scoring function <span class="math notranslate nohighlight">\(u\)</span>.</p></li>
+<li><p>The privacy cost of the mechanism is just $\epsilon$, regardless of the size of $\mathcal{R}$ - more on this next.</p></li>
+<li><p>It works for both finite and infinite sets $\mathcal{R}$, but it can be really challenging to build a practical implementation which samples from the appropriate probability distribution when $\mathcal{R}$ is infinite.</p></li>
+<li><p>It represents a “fundamental mechanism” of $\epsilon$-differential privacy: all other $\epsilon$-differentially private mechanisms can be defined in terms of the exponential mechanism with the appropriate definition of the scoring function $u$.</p></li>
 </ul>
 <section id="the-exponential-mechanism-for-finite-sets">
-<h2>The Exponential Mechanism for Finite Sets<a class="headerlink" href="#the-exponential-mechanism-for-finite-sets" title="Permalink to this headline">#</a></h2>
+<h2>The Exponential Mechanism for Finite Sets<a class="headerlink" href="#the-exponential-mechanism-for-finite-sets" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -490,8 +491,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    179
-Never-married          21
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    186
+Never-married          14
 dtype: int64
 </pre></div>
 </div>
@@ -499,17 +500,17 @@ dtype: int64
 </div>
 </section>
 <section id="report-noisy-max">
-<h2>Report Noisy Max<a class="headerlink" href="#report-noisy-max" title="Permalink to this headline">#</a></h2>
-<p>Can we recover the exponential mechanism using the Laplace mechanism? In the case of a finite set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>, the basic idea of the exponential mechanism - to select from a set with differential privacy - suggests a naive implementation in terms of the Laplace mechanism:</p>
+<h2>Report Noisy Max<a class="headerlink" href="#report-noisy-max" title="Permalink to this heading">#</a></h2>
+<p>Can we recover the exponential mechanism using the Laplace mechanism? In the case of a finite set $\mathcal{R}$, the basic idea of the exponential mechanism - to select from a set with differential privacy - suggests a naive implementation in terms of the Laplace mechanism:</p>
 <ol class="arabic simple">
-<li><p>For each <span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span>, calculate a <em>noisy score</em> <span class="math notranslate nohighlight">\(u(x, r) + \mathsf{Lap}\left(\frac{\Delta u}{\epsilon}\right)\)</span></p></li>
-<li><p>Output the element <span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span> with the maximum noisy score</p></li>
+<li><p>For each $r \in \mathcal{R}$, calculate a <em>noisy score</em> $u(x, r) + \mathsf{Lap}\left(\frac{\Delta u}{\epsilon}\right)$</p></li>
+<li><p>Output the element $r \in \mathcal{R}$ with the maximum noisy score</p></li>
 </ol>
-<p>Since the scoring function <span class="math notranslate nohighlight">\(u\)</span> is <span class="math notranslate nohighlight">\(\Delta u\)</span> sensitive in <span class="math notranslate nohighlight">\(x\)</span>, each “query” in step 1 satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. Thus if <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> contains <span class="math notranslate nohighlight">\(n\)</span> elements, the above algorithm satisfies <span class="math notranslate nohighlight">\(n\epsilon\)</span>-differential privacy by sequential composition.</p>
-<p>However, if we used the exponential mechanism, the total cost would be just <span class="math notranslate nohighlight">\(\epsilon\)</span> instead! Why is the exponential mechanism so much better? Because <em>it releases less information</em>.</p>
-<p>Our analysis of the Laplace-based approach defined above is very pessimistic. The whole set of noisy scores computed in step 1 actually satisfies <span class="math notranslate nohighlight">\(n\epsilon\)</span>-differential privacy, and we could release the whole thing. That the output in step 2 satisfies <span class="math notranslate nohighlight">\(n\epsilon\)</span>-differential privacy follows from the post-processing property.</p>
+<p>Since the scoring function $u$ is $\Delta u$ sensitive in $x$, each “query” in step 1 satisfies $\epsilon$-differential privacy. Thus if $\mathcal{R}$ contains $n$ elements, the above algorithm satisfies $n\epsilon$-differential privacy by sequential composition.</p>
+<p>However, if we used the exponential mechanism, the total cost would be just $\epsilon$ instead! Why is the exponential mechanism so much better? Because <em>it releases less information</em>.</p>
+<p>Our analysis of the Laplace-based approach defined above is very pessimistic. The whole set of noisy scores computed in step 1 actually satisfies $n\epsilon$-differential privacy, and we could release the whole thing. That the output in step 2 satisfies $n\epsilon$-differential privacy follows from the post-processing property.</p>
 <p>But the exponential mechanism releases <em>only</em> the identity of the element with the maximum noisy score - <em>not</em> the score itself, or the scores of any other element.</p>
-<p>The algorithm defined above is often called the <em>report noisy max</em> algorithm, and it actually satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, no matter how large the set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is - specifically because it releases <em>only</em> the identity of the element with the largest noisy count. The proof can be found in <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>, Claim 3.9.</p>
+<p>The algorithm defined above is often called the <em>report noisy max</em> algorithm, and it actually satisfies $\epsilon$-differential privacy, no matter how large the set $\mathcal{R}$ is - specifically because it releases <em>only</em> the identity of the element with the largest noisy count. The proof can be found in <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>, Claim 3.9.</p>
 <p>Report noisy max is easy to implement, and it’s easy to see that it produces very similar results to our earlier implementation of the exponential mechanism for finite sets.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -544,34 +545,32 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    197
-Never-married           3
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    196
+Never-married           4
 dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
-<p>So the exponential mechanism can be replaced with report noisy max when the set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is finite, but what about when it’s infinite? We can’t easily add Laplace noise to an infinite set of scores. In this context, we have to use the actual exponential mechanism.</p>
+<p>So the exponential mechanism can be replaced with report noisy max when the set $\mathcal{R}$ is finite, but what about when it’s infinite? We can’t easily add Laplace noise to an infinite set of scores. In this context, we have to use the actual exponential mechanism.</p>
 <p>In practice, however, using the exponential mechanism for infinite sets is often challenging or impossible. While it’s easy to write down the probability density function defined by the mechanism, it’s often the case that no efficient algorithm exists for sampling from it. As a result, numerous theoretical papers appeal to the exponential mechanism to show that a differentially private algorithm “exists” with certain desirable properties, but many of these algorithms are impossible to use in practice.</p>
 </section>
 <section id="the-exponential-mechanism-as-fundamental-mechanism-for-differential-privacy">
-<h2>The Exponential Mechanism as Fundamental Mechanism for Differential Privacy<a class="headerlink" href="#the-exponential-mechanism-as-fundamental-mechanism-for-differential-privacy" title="Permalink to this headline">#</a></h2>
+<h2>The Exponential Mechanism as Fundamental Mechanism for Differential Privacy<a class="headerlink" href="#the-exponential-mechanism-as-fundamental-mechanism-for-differential-privacy" title="Permalink to this heading">#</a></h2>
 <p>We’ve seen that it’s not possible to recover the exponential mechanism using the Laplace mechanism plus sequential composition, because we can’t capture the fact that the algorithm we designed doesn’t release all of the noisy scores. What about the reverse - can we recover the Laplace mechanism from the exponential mechanism? It turns out that we can!</p>
-<p>Consider a query <span class="math notranslate nohighlight">\(q(x) : \mathcal{D} \rightarrow \mathbb{R}\)</span> with sensitivity <span class="math notranslate nohighlight">\(\Delta q\)</span>. We can release an <span class="math notranslate nohighlight">\(\epsilon\)</span>-differentially private answer by adding Laplace noise: <span class="math notranslate nohighlight">\(F(x) = q(x) + \mathsf{Lap}(\Delta q / \epsilon)\)</span>. The probability density function for this differentially private version of <span class="math notranslate nohighlight">\(q\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4f2bf373-9ccd-41b7-9f3f-718cc2432d70">
-<span class="eqno">(32)<a class="headerlink" href="#equation-4f2bf373-9ccd-41b7-9f3f-718cc2432d70" title="Permalink to this equation">#</a></span>\[\begin{align}
-\mathsf{Pr}[F(x) = r] =&amp; \frac{1}{2b} \exp\Big(- \frac{\lvert r - \mu \rvert}{b}\Big)\\
+<p>Consider a query $q(x) : \mathcal{D} \rightarrow \mathbb{R}$ with sensitivity $\Delta q$. We can release an $\epsilon$-differentially private answer by adding Laplace noise: $F(x) = q(x) + \mathsf{Lap}(\Delta q / \epsilon)$. The probability density function for this differentially private version of $q$ is:</p>
+<p>\begin{align}
+\mathsf{Pr}[F(x) = r] =&amp; \frac{1}{2b} \exp\Big(- \frac{\lvert r - \mu \rvert}{b}\Big)\
 =&amp; \frac{\epsilon}{2 \Delta q} \exp\Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q}\Big)
-\end{align}\]</div>
-<p>Consider what happens when we set the scoring function for the exponential mechanism to <span class="math notranslate nohighlight">\(u(x, r) = -2 \lvert q(x) - r \rvert\)</span>. The exponential mechanism says that we should sample from the probability distribution proportional to:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6eb64f2d-d5df-443e-8903-bae5fd452d1d">
-<span class="eqno">(33)<a class="headerlink" href="#equation-6eb64f2d-d5df-443e-8903-bae5fd452d1d" title="Permalink to this equation">#</a></span>\[\begin{align}
-\mathsf{Pr}[F(x) = r] =&amp;\; \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)\\
-&amp;= \exp \Big(\frac{\epsilon (-2 \lvert q(x) - r \rvert)}{2 \Delta q} \Big)\\
-&amp;= \exp \Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q} \Big)\\
-\end{align}\]</div>
+\end{align}</p>
+<p>Consider what happens when we set the scoring function for the exponential mechanism to $u(x, r) = -2 \lvert q(x) - r \rvert$. The exponential mechanism says that we should sample from the probability distribution proportional to:</p>
+<p>\begin{align}
+\mathsf{Pr}[F(x) = r] =&amp;; \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)\
+&amp;= \exp \Big(\frac{\epsilon (-2 \lvert q(x) - r \rvert)}{2 \Delta q} \Big)\
+&amp;= \exp \Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q} \Big)\
+\end{align}</p>
 <p>So it’s possible to recover the Laplace mechanism from the exponential mechanism, and we get the same results (up to constant factors - the general analysis for the exponential mechanism is not tight in all cases).</p>
-<p>The exponential mechanism is extremely general - it’s generally possible to re-define any <span class="math notranslate nohighlight">\(\epsilon\)</span>-differentially private mechanism in terms of a carefully chosen definition of the scoring function <span class="math notranslate nohighlight">\(u\)</span>. If we can analyze the sensitivity of this scoring function, then the proof of differential privacy comes for free.</p>
+<p>The exponential mechanism is extremely general - it’s generally possible to re-define any $\epsilon$-differentially private mechanism in terms of a carefully chosen definition of the scoring function $u$. If we can analyze the sensitivity of this scoring function, then the proof of differential privacy comes for free.</p>
 <p>On the other hand, applying the general analysis of the exponential mechanism sometimes comes at the cost of looser bounds (as in the Laplace example above), and mechanisms defined in terms of the exponential mechanism are often very difficult to implement. The exponential mechanism is often used to prove theoretical lower bounds (by showing that a differentially private algorithm <em>exists</em>), but practical algorithms often replicate the same behavior using some other approach (as in the case of report noisy max above).</p>
 </section>
 </section>

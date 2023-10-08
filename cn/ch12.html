@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="zh_CN" >
+<html lang="zh-CN" >
 
   <head>
     <meta charset="utf-8" />
@@ -45,7 +45,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -71,7 +73,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="本地差分隐私" href="ch13.html" />
     <link rel="prev" title="算法设计练习" href="ch11.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="zh_CN"/>
+  <meta name="docsearch:language" content="zh-CN"/>
   </head>
   
   
@@ -421,7 +423,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>机器学习<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<h1>机器学习<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
 <p>阅读本章后，您将能够：</p>
@@ -434,7 +436,7 @@ document.write(`
 </div>
 <p>本章我们将探索如何构建差分隐私学习分类器。我们将重点关注一类特定的<em>监督学习</em>问题：给定一组<em>带标签的训练样本</em><span class="math notranslate nohighlight">\(\{(x_1, y_1), \dots, (x_n, y_n)\}\)</span>，其中<span class="math notranslate nohighlight">\(x_i\)</span>称为<em>特征向量</em>，<span class="math notranslate nohighlight">\(y_i\)</span>称为<em>标签</em>，我们要训练一个<em>模型</em><span class="math notranslate nohighlight">\(\theta\)</span>。该模型可以<em>预测</em>没有在训练集中出现过的新特征向量所对应的标签。一般来说，每个<span class="math notranslate nohighlight">\(x_i\)</span>都是一个描述训练样本特征的实数向量，而<span class="math notranslate nohighlight">\(y_i\)</span>是从预先定义好的<em>类型</em>集合中选取的，每个类型一般用一个整数来表示。我们预先要从全部样本中提取出所有可能的类型，构成类型集合。一个二分类器的类型集合应包含两个类型（一般分别用1和0，或1和-1表示）。</p>
 <section id="scikit-learn">
-<h2>使用Scikit-Learn实现逻辑回归<a class="headerlink" href="#scikit-learn" title="永久链接至标题">#</a></h2>
+<h2>使用Scikit-Learn实现逻辑回归<a class="headerlink" href="#scikit-learn" title="此标题的永久链接">#</a></h2>
 <p>当要训练一个模型时，我们从所有可用的数据中选择一些数据来构造一组<em>训练样本</em>（如前所述），但我们也会留出一些数据作为<em>测试样本</em>。一旦训练完模型，我们肯定想要知道该模型在<em>非</em>训练样本上的表现如何。如果一个模型在未知的新样本上表现很好，我们称其<em>泛化</em>能力很好。一个泛化能力<em>不足</em>的模型，我们称其在训练数据上发生了<em>过拟合</em>。</p>
 <p>我们使用测试样本来测试模型的泛化能力。由于我们事先已知测试样本的标签，我们可以让模型对每个测试样本进行分类，并比较预测标签和真实标签的结果，以测试模型的泛化能力。我们将把数据集切分为训练集和测试集。训练集包含80%的样本，而测试集包含其余20%的样本。</p>
 <div class="cell tag_hide-cell docutils container">
@@ -507,11 +509,11 @@ document.write(`
 <p>我们的模型对测试样本的标签预测准确率为82%。对该数据集来说，这是一个相当不错的预测准确率。</p>
 </section>
 <section id="id2">
-<h2>模型是什么？<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<h2>模型是什么？<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p>模型到底<em>是</em>什么？它是如何编码预测所用信息的？</p>
 <p>有很多种不同类型的模型。这里我们要探讨的是<em>线性模型（Linear Model）</em>。给定一个包含<span class="math notranslate nohighlight">\(k\)</span>-维特征向量<span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>的无标签样本，线性模型预测此样本的标签时，将计算下述值：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d60647b8-100d-4f42-bec0-0647255f2f91">
-<span class="eqno">(33)<a class="headerlink" href="#equation-d60647b8-100d-4f42-bec0-0647255f2f91" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-eed95569-9b8e-4b3d-a4f3-1d70e47cb99d">
+<span class="eqno">(33)<a class="headerlink" href="#equation-eed95569-9b8e-4b3d-a4f3-1d70e47cb99d" title="此公式的永久链接">#</a></span>\[\begin{align}
 w_1 x_1 + \dots + w_k x_k + bias
 \end{align}\]</div>
 <p>并用此值的符号作为预测标签（如果此值为负数，则预测结果为-1；如果此值为正数，则预测结果为1）。</p>
@@ -583,7 +585,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>这里我们将偏差项设置为可选参数，因为在大多数情况下，无偏差项模型的预测效果也足够好了。为了简化模型训练的整个过程，后续我们先不考虑训练偏差项。</p>
 </section>
 <section id="id3">
-<h2>使用梯度下降训练模型<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h2>
+<h2>使用梯度下降训练模型<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
 <p>训练过程究竟是如何进行的呢？scikit-learn库实现了一些非常复杂的算法，但我们也可以通过实现一个简单算法来实现同等的效果。此算法称为<em>梯度下降</em>（Gradient Descent）。</p>
 <p>大多数机器学习训练算法要根据所选择的<em>损失函数</em>（Loss Function）来定义。损失函数是一种衡量模型预测结果有多”差”的方法。训练算法的目标是使损失函数达到最小值。换句话说，损失值低的模型具有<em>更好的</em>预测能力。</p>
 <p>机器学习社区已经提出了多种不同的常用损失函数。对于每个预测正确的样本，简单的损失函数直接返回0。对于每个预测错误的样本，损失函数直接返回1。损失值为0意味着模型可以正确预测出每个样本的标签。二分类器中较为常用的损失函数为<em>对率损失</em>（Logistic Loss）。对率损失帮助我们度量出模型”还有多远的距离”才能正确预测出标签（与简单地输出0和1相比，对率损失可以提供更多的信息）。</p>
@@ -641,7 +643,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <section id="id4">
-<h3>单步梯度下降<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h3>
+<h3>单步梯度下降<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
 <p>接下来，我们来单步执行一次梯度下降。我们将训练集中的一个样本都输入到<code class="docutils literal notranslate"><span class="pre">gradient</span></code>（梯度）函数中，得到此样本的梯度值。得到梯度值可以为我们提供足够信息来改善模型。我们在当前模型<code class="docutils literal notranslate"><span class="pre">theta</span></code>上减去得到的梯度，以实现梯度”下降”。</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -718,7 +720,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>我们改善后的模型现在可以正确预测测试集中75%的标签！这是一个很大的进步，我们大大改善了模型的预测效果。</p>
 </section>
 <section id="id5">
-<h3>梯度下降算法<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h3>
+<h3>梯度下降算法<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
 <p>我们需要进一步对算法的两个部分进行改进，从而最终实现基础梯度下降算法。第一，我们前面的单步梯度下降仅使用了训练数据中的单个样本。我们希望用<em>整个</em>训练集来更新模型，从而改善模型在<em>所有</em>样本上的预测效果。第二，我们需要执行多次迭代，尽可能让损失值达到最小。</p>
 <p>对于第一个改进点，我们可以计算所有训练样本的<em>平均梯度</em>，以替代单步梯度下降中的单样本梯度。我们用下述实现的<code class="docutils literal notranslate"><span class="pre">avg_grad</span></code>（平均梯度）函数来计算所有训练样本和对应标签的平均梯度。</p>
 <div class="cell tag_hide-output docutils container">
@@ -849,7 +851,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </section>
 </section>
 <section id="id6">
-<h2>差分隐私梯度下降<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h2>
+<h2>差分隐私梯度下降<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
 <p>我们如何使上述算法满足差分隐私呢？我们想要设计一种算法来为训练数据提供差分隐私保护，使最终训练得到的模型不会泄露与单个训练样本相关的任何信息。</p>
 <p>算法执行过程中唯一使用了训练数据的部分是梯度计算步骤。使该算法满足差分隐私的一种方法是，在每轮模型更新前在梯度上增加噪声。由于我们直接在梯度上增加噪声，因此该方法通常被称为<em>噪声梯度下降</em>（Noisy Gradient Descent）。</p>
 <p>我们的梯度函数是向量值函数，因此我们使用<code class="docutils literal notranslate"><span class="pre">gaussian_mech_vec</span></code>（向量高斯机制）在梯度函数的输出值上增加噪声：</p>
@@ -873,15 +875,15 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>这里我们主要面临两个挑战。第一，梯度是<em>均值问询</em>的结果，即梯度是每个样本梯度的均值。我们之前已经提到，最好将均值问询拆分为一个求和问询和一个计数问询。做到这一点并不难，我们可以不直接计算梯度均值，而是计算每个样本梯度噪声和，再除以噪声计数值。第二，我们需要限制每个样本梯度的敏感度。有两种基础方法可以做到这一点。我们可以（如之前讲解的其他问询那样）分析梯度函数，确定其在最差情况下的全局敏感度。我们也可以（如”采样-聚合”框架那样）裁剪梯度函数的输出值，从而<em>强制</em>限定敏感度上界。</p>
 <p>我们先介绍第二种方法。第二种方法从概念上看更简单，在实际应用中的普适性更好。此方法一般被称为<em>梯度裁剪</em>（Gradient Clipping）。</p>
 <section id="id7">
-<h3>梯度裁剪<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h3>
+<h3>梯度裁剪<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
 <p>回想一下，在实现”采样-聚合”框架时，我们裁剪未知敏感度函数<span class="math notranslate nohighlight">\(f\)</span>的输出，强制限定<span class="math notranslate nohighlight">\(f\)</span>的敏感度上界。<span class="math notranslate nohighlight">\(f\)</span>的敏感度为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dc33b584-5929-4080-a209-fef4d46ef394">
-<span class="eqno">(34)<a class="headerlink" href="#equation-dc33b584-5929-4080-a209-fef4d46ef394" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bd87481a-5bc3-4089-ba15-04e7429dc716">
+<span class="eqno">(34)<a class="headerlink" href="#equation-bd87481a-5bc3-4089-ba15-04e7429dc716" title="此公式的永久链接">#</a></span>\[\begin{align}
 \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>使用参数<span class="math notranslate nohighlight">\(b\)</span>裁剪后，上述表达式变为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-642308e6-253c-4a66-916e-a06a4f956fc2">
-<span class="eqno">(35)<a class="headerlink" href="#equation-642308e6-253c-4a66-916e-a06a4f956fc2" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-05a8c178-addb-4d19-be54-176f8106f0b0">
+<span class="eqno">(35)<a class="headerlink" href="#equation-05a8c178-addb-4d19-be54-176f8106f0b0" title="此公式的永久链接">#</a></span>\[\begin{align}
 \lvert \mathsf{clip}(f(x), b) - \mathsf{clip}(f(x'),b) \rvert
 \end{align}\]</div>
 <p>最差情况下，<span class="math notranslate nohighlight">\(\mathsf{clip}(f(x), b) = b\)</span>，且<span class="math notranslate nohighlight">\(\mathsf{clip}(f(x'),b) = 0\)</span>，因此裁剪结果的敏感度为<span class="math notranslate nohighlight">\(b\)</span>（即敏感度等于裁剪参数）。</p>
@@ -900,8 +902,8 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <p>现在，我们可以开始分析裁剪梯度的敏感度了。我们将梯度表示为<span class="math notranslate nohighlight">\(\nabla(\theta; X, y)\)</span>（对应我们Python代码中的<code class="docutils literal notranslate"><span class="pre">gradient</span></code>）：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ebe3f0da-3b7c-4d58-a091-8a231bc1a263">
-<span class="eqno">(36)<a class="headerlink" href="#equation-ebe3f0da-3b7c-4d58-a091-8a231bc1a263" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d2db755f-425c-4227-9e82-538f833586d8">
+<span class="eqno">(36)<a class="headerlink" href="#equation-d2db755f-425c-4227-9e82-538f833586d8" title="此公式的永久链接">#</a></span>\[\begin{align}
 \lVert \mathsf{L2\_clip}( \nabla (\theta; X, y), b) - \mathsf{L2\_clip}( \nabla (\theta; X', y), 0) \rVert_2
 \end{align}\]</div>
 <p>最差情况下，<span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X, y), b)\)</span>的<span class="math notranslate nohighlight">\(L2\)</span>范数为<span class="math notranslate nohighlight">\(b\)</span>，且<span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X', y))\)</span>全为0。此时，两者的<span class="math notranslate nohighlight">\(L2\)</span>范数差等于<span class="math notranslate nohighlight">\(b\)</span>。这样一来，我们成功用裁剪参数<span class="math notranslate nohighlight">\(b\)</span>限定了梯度的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界！</p>
@@ -951,7 +953,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7799646174259177
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7789694825298541
 </pre></div>
 </div>
 </div>
@@ -959,10 +961,10 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>该算法的每轮迭代过程都满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私。我们还需额外执行一次噪声计数问询来得到满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私的噪声计数值。如果执行<span class="math notranslate nohighlight">\(k\)</span>轮迭代，则根据串行组合性，算法满足<span class="math notranslate nohighlight">\((k\epsilon + \epsilon, k\delta)\)</span>-差分隐私。我们也可以使用高级组合性来分析总隐私消耗量。更进一步，我们可以将算法转化为瑞丽差分隐私或零集中差分隐私，应用相应的组合定理得到更紧致的总隐私消耗量。</p>
 </section>
 <section id="id8">
-<h3>梯度的敏感度<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h3>
+<h3>梯度的敏感度<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
 <p>前面所述方法的普适性很高，因为此方法不需要假设梯度函数满足什么特定的要求。但是，我们有时<em>的确</em>对梯度函数有所了解。特别地，一大类常用的梯度函数（包括本章用到的对率损失梯度）是<em>利普希茨连续</em>（Lipschitz Continuous）的。这意味着这些梯度函数的全局敏感度是有界的。用数学语言描述，我们可以证明：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0b53fa46-b0c2-4116-90c6-0fbb79b17227">
-<span class="eqno">(37)<a class="headerlink" href="#equation-0b53fa46-b0c2-4116-90c6-0fbb79b17227" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-17ab7599-395b-440e-9b5e-ebf3157e39f3">
+<span class="eqno">(37)<a class="headerlink" href="#equation-17ab7599-395b-440e-9b5e-ebf3157e39f3" title="此公式的永久链接">#</a></span>\[\begin{align}
 \text{If}\; \lVert x_i \rVert_2 \leq b\; \text{then}\; \lVert \nabla(\theta; x_i, y_i) \rVert_2 \leq b
 \end{align}\]</div>
 <p>这一结论允许我们通过裁剪<em>训练样本</em>（即梯度函数的<em>输入</em>）来获得梯度函数的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界。这样，我们就不再需要裁剪梯度函数的<em>输出</em>了。</p>
@@ -1009,7 +1011,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.778858911985847
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7869305616983635
 </pre></div>
 </div>
 </div>
@@ -1026,7 +1028,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </section>
 </section>
 <section id="id9">
-<h2>噪声对训练的影响<a class="headerlink" href="#id9" title="永久链接至标题">#</a></h2>
+<h2>噪声对训练的影响<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h2>
 <p>我们已经知道，迭代次数会对模型的预测准确率带来很大的影响，因为更多的迭代次数可以使模型更接近最小损失值。我们的差分隐私算法需要在梯度上增加噪声，这会对准确率噪声带来很大的影响。噪声可能导致训练算法在训练过程中向<em>错误的方向</em>移动，使模型变得<em>更糟糕</em>。</p>
 <p>我们有理由相信更小的<span class="math notranslate nohighlight">\(\epsilon\)</span>会带来准确率更低的模型（我们已经学习的差分隐私算法都存在类似的关系）。这个结论确实是正确的，但由于在执行多轮迭代算法时要考虑组合定理，因此这里也存在一些微妙的平衡。更多的迭代次数意味着更大的隐私消耗量，而在标准梯度下降算法中，更多的迭代次数一般意味着产出更好的模型。在差分隐私保护下，当总隐私消耗量保持不变时，更多的迭代次数可能会导致模型变得更加糟糕，因为我们不得不使用更小的<span class="math notranslate nohighlight">\(\epsilon\)</span>来支持更多轮迭代，这会带来更大的噪声。在差分隐私机器学习中，适当平衡迭代轮数和单轮添加的噪声量是一个很重要的（有时也是一个非常有挑战性的）问题。</p>
 <p>让我们做一个小实验，看看不同的<span class="math notranslate nohighlight">\(\epsilon\)</span>会对模型的预测准确率带来何种影响。我们将使用不同的<span class="math notranslate nohighlight">\(\epsilon\)</span>来训练模型，每次训练迭代20轮。我们根据训练时使用的<span class="math notranslate nohighlight">\(\epsilon\)</span>作为横坐标来绘制每个模型的准确率变化图。</p>
@@ -1062,7 +1064,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/2b135e254e5b188615aaf4de5f37a12cb0d72d86509c77a7146b9878feb96431.png" src="_images/2b135e254e5b188615aaf4de5f37a12cb0d72d86509c77a7146b9878feb96431.png" />
+<img alt="_images/b7e168bcb2a354ef35c774be524fe812894a1f537cf0e88a08ee11f726fa8e07.png" src="_images/b7e168bcb2a354ef35c774be524fe812894a1f537cf0e88a08ee11f726fa8e07.png" />
 </div>
 </div>
 <p>从上图可以看出，<span class="math notranslate nohighlight">\(\epsilon\)</span>非常小时会产生准确率非常低的模型。请记住，我们在图中指定的<span class="math notranslate nohighlight">\(\epsilon\)</span>是每轮迭代时使用的<span class="math notranslate nohighlight">\(\epsilon\)</span>，因此组合后的总隐私消耗量还要大得多。</p>

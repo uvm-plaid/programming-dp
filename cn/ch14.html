@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="zh_CN" >
+<html lang="zh-CN" >
 
   <head>
     <meta charset="utf-8" />
@@ -45,7 +45,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -71,7 +73,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="参考文献" href="bibliography.html" />
     <link rel="prev" title="本地差分隐私" href="ch13.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="zh_CN"/>
+  <meta name="docsearch:language" content="zh-CN"/>
   </head>
   
   
@@ -413,7 +415,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>合成数据<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<h1>合成数据<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
 <p>阅读本章后，您将能够：</p>
@@ -429,7 +431,7 @@ document.write(`
 <p>大多数合成数据生成算法都依赖于原始数据集的<em>合成表示</em>（Synthetic Representation）。合成表示和原始数据的维度不同，但可以用于回答原始数据的问询。例如，如果我们只关心年龄的范围问询，那么我们可以统计原始数据中每个年龄的人数，生成年龄直方图，并使用直方图回答问询。该直方图就是一个适合回答一些问询的数据集<em>合成表示</em>。但由于和原始数据集的维度不同，因此合成表示不是<em>合成数据</em>。</p>
 <p>部分算法简单地使用合成表示来回答问询。部分算法使用合成表示生成合成数据集。下面，我们将研究直方图合成表示，并介绍基于直方图生成合成数据集的几种方法。</p>
 <section id="id2">
-<h2>合成表示：直方图<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<h2>合成表示：直方图<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p>我们已经学习过很多差分隐私直方图问询算法了。由于可以直接使用并行组合性，直方图是一种适用于差分隐私的典型数据分析场景。我们也学习过<em>范围问询</em>的概念，虽然我们不常使用这个术语来表示范围问询。作为合成数据的第一步，我们先为原始数据集中的一列数据设计一个能够回答范围问询的合成表示。</p>
 <p><em>范围问询</em>统计数据集中落在给定范围内值的行数。例如，”有多少参与者的年龄在21到33岁之间？”是一个范围问询。</p>
 <div class="cell docutils container">
@@ -489,7 +491,7 @@ document.write(`
 <p>注意，无论是在原始数据集还是在合成表示上执行范围问询，我们都得到了<em>完全</em>相同的结果。（至少在回答年龄范围问询时）我们没有丢失原始数据集中的任何信息。</p>
 </section>
 <section id="id3">
-<h2>增加差分隐私<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h2>
+<h2>增加差分隐私<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
 <p>我们可以很容易使合成表示满足差分隐私，只需要在直方图中的每个计数值上单独增加拉普拉斯噪声。根据并行组合性，这一机制满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -507,7 +509,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9869.535288874702
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9870.935514316481
 </pre></div>
 </div>
 </div>
@@ -528,8 +530,8 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>合成表示误差率：0.03058857526448328
-拉普拉斯机制误差率：0.042068947346166626
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>合成表示误差率：0.003537331899000287
+拉普拉斯机制误差率：0.043107954265005785
 </pre></div>
 </div>
 </div>
@@ -550,8 +552,8 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>合成表示误差率：0.0808605020485237
-拉普拉斯机制误差率：0.004057128785280417
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>合成表示误差率：0.03030434495133866
+拉普拉斯机制误差率：0.008269518601670231
 </pre></div>
 </div>
 </div>
@@ -559,7 +561,7 @@ document.write(`
 <p>这一差异体现出了合成表示的缺点：它可以回答所覆盖范围内的任何范围问询，但可能无法提供与拉普拉斯机制相同的准确度。合成表示的主要优势是可以在无需额外隐私预算的条件下支持回复无限多次问询。合成表示的主要劣势是精度损失。</p>
 </section>
 <section id="id4">
-<h2>生成列表数据<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
+<h2>生成列表数据<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
 <p>合成表示的下一步是基于合成表示来<em>合成数据</em>。为了实现这一点，我们希望将合成表示视为一个可以用于估计原始数据潜在分布的概率分布函数，进而可以根据此概率分布采样，得到合成数据集。这里我们忽略其他数据列，只考虑单列数据，单列数据的概率分布称为<a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_distribution"><em>边际分布</em></a>（Marginal Distribution）。确切地说，应该叫<em>单维边际分布</em>（1-way Marginal）。</p>
 <p>我们这里的策略很简单：先对直方图的每个属性值计数；随后归一化计数结果，使所有技术结果的和为1；最后将得到的归一化视为概率值。得到了这些概率值后，我们就可以基于这些概率值所表示的概率分布采样了。方法很简单，根据直方图属性值对应的概率值随机选择一个属性值即可。我们的第一步是获得计数值，保证结果中没有负数，并将这些计数值归一化，使他们的求和值等于1：</p>
 <div class="cell docutils container">
@@ -571,7 +573,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999999999999998
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
 </pre></div>
 </div>
 </div>
@@ -592,7 +594,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/0eb9b192c2765bbb2a894bddd9151439c719988bf95916467f4929c69b763d73.png" src="_images/0eb9b192c2765bbb2a894bddd9151439c719988bf95916467f4929c69b763d73.png" />
+<img alt="_images/3010ddbf660bbf524ea9fda16fd37b167a8e6166f7af1aac074c0eb30f05b230.png" src="_images/3010ddbf660bbf524ea9fda16fd37b167a8e6166f7af1aac074c0eb30f05b230.png" />
 </div>
 </div>
 <p>最后一步是基于这些概率值生成新的样本。我们可以使用<code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code>函数，其第一个输入参数（对应参数<code class="docutils literal notranslate"><span class="pre">p</span></code>）可以为表示各个属性值采样概率的概率列表。此函数实现的就是我们采样任务所需的加权采样功能。因为获得计数值的过程已经满足差分隐私，我们可以在无需额外隐私预算的条件下生成任意数量的样本。</p>
@@ -631,23 +633,23 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>43</td>
+      <td>76</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>34</td>
+      <td>47</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>37</td>
+      <td>50</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>33</td>
+      <td>41</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>20</td>
+      <td>25</td>
     </tr>
   </tbody>
 </table>
@@ -670,7 +672,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/b1b9e7c9ea7974b17324f0400fea26b6a8f0435e4cd0672ef8f3c8809f57ce28.png" src="_images/b1b9e7c9ea7974b17324f0400fea26b6a8f0435e4cd0672ef8f3c8809f57ce28.png" />
+<img alt="_images/f2fa67e5fe708feef220eeb35ecaab4cb33b7ebd3503a7f07a138b2fdefb54fb.png" src="_images/f2fa67e5fe708feef220eeb35ecaab4cb33b7ebd3503a7f07a138b2fdefb54fb.png" />
 </div>
 </div>
 <p>我们现在可以回答均值问询、范围问询等等之前看到的一些问询了：</p>
@@ -689,9 +691,9 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄均值，合成结果：38.6053
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄均值，合成结果：38.3965
 年龄均值，真实结果：38.58164675532078
-误差率：0.06126942331549505
+误差率：0.4821969588915128
 </pre></div>
 </div>
 </div>
@@ -711,9 +713,9 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄范围问询，合成结果：9035
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄范围问询，合成结果：9095
 年龄范围问询，真实结果：29568
-误差率：69.44331709956711
+误差率：69.24039502164501
 </pre></div>
 </div>
 </div>
@@ -737,9 +739,9 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄范围问询，合成结果：29500
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄范围问询，合成结果：29567
 年龄范围问询，真实结果：29568
-误差率：0.229978354978355
+误差率：0.003382034632034632
 </pre></div>
 </div>
 </div>
@@ -747,7 +749,7 @@ document.write(`
 <p>可以看出，问询回复的误差率很低，这正是我们期望得到的结果。</p>
 </section>
 <section id="id5">
-<h2>生成更多数据列<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h2>
+<h2>生成更多数据列<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
 <p>我们现在已经生成了与原始数据集行数相等的合成数据集。此合成数据集确实有助于回答有关原始数据集的问询。然而，这个合成数据集只包含一列数据！我们如何生成包含更多列数据的合成数据集呢？</p>
 <p>有两种基本实现方法。我们可以分别对<span class="math notranslate nohighlight">\(k\)</span>列数据重复上述过程（生成<span class="math notranslate nohighlight">\(k\)</span>个单维边际），得到<span class="math notranslate nohighlight">\(k\)</span>个相互独立、各包含一列数据的合成数据集。随后，我们将这些数据集合并在一起，构建出一个包含<span class="math notranslate nohighlight">\(k\)</span>列的合成数据集。这是一种很直接的实现方法，但由于我们会单独考虑各列数据，因此得到的合成数据集会丢失列<em>之间</em>的相关性信息。例如，原始数据集中的年龄和职业可能存在相关性（举例来说，职业为”经理”的人会更年长一些）。如果我们分别考虑各列数据，则合成数据集中年龄为18岁的<em>人数</em>和职位为经理的<em>人数</em>是正确的，但年龄为18岁的经理人数可能会错得离谱。</p>
 <p>另一种方法是在生成合成数据时考虑多个数据列。例如，我们可以同时考虑年龄和职业这两列数据，分别计算出有多少18岁的经理，有多少19岁的经理等等。这一改进方法所得到的结果称为两维边缘分布（2-way Marginal Distribution）。同时考虑所有可能的年龄和职业组合的这一做法正是我们之前构建列联表的方法！例如：</p>
@@ -919,7 +921,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.0008143924848214635)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.0007143741070435382)
 </pre></div>
 </div>
 </div>
@@ -963,28 +965,28 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>30</td>
-      <td>Sales</td>
+      <td>17</td>
+      <td>Craft-repair</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>18</td>
-      <td>Sales</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>32</td>
+      <td>41</td>
       <td>Prof-specialty</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>22</td>
+      <td>Farming-fishing</td>
+    </tr>
+    <tr>
       <th>3</th>
-      <td>30</td>
-      <td>Other-service</td>
+      <td>32</td>
+      <td>Craft-repair</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>68</td>
-      <td>Craft-repair</td>
+      <td>48</td>
+      <td>Sales</td>
     </tr>
   </tbody>
 </table>
@@ -1006,7 +1008,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/5b8d19a4e25af9a50dc65f1519049f8bdd282d8c29ff167c49e1ab0719056749.png" src="_images/5b8d19a4e25af9a50dc65f1519049f8bdd282d8c29ff167c49e1ab0719056749.png" />
+<img alt="_images/db7d1a6e322ead8b2b0be43919d1f26f03a93e3f42b02b27ee7819f5e622b964.png" src="_images/db7d1a6e322ead8b2b0be43919d1f26f03a93e3f42b02b27ee7819f5e622b964.png" />
 </div>
 </div>
 <p>当我们只对年龄列进行问询时，会看到相同的准确度损失问题：</p>
@@ -1025,14 +1027,14 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>使用合成数据的误差率： 1.1174571641420412
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>使用合成数据的误差率： 0.11174571641420412
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="id6">
-<h2>总结<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h2>
+<h2>总结<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
 <ul class="simple">
 <li><p>数据集的<em>合成表示</em>可以回答有关原始数据集的问询</p></li>
 <li><p>一种常用的合成表示是直方图，可以通过在计数值上增加噪声来实现差分隐私</p></li>

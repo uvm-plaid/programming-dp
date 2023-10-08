@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -45,7 +46,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -61,8 +64,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch3';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -184,6 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -410,42 +412,40 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="differential-privacy">
-<h1>Differential Privacy<a class="headerlink" href="#differential-privacy" title="Permalink to this headline">#</a></h1>
+  <section id="differential-privacy">
+<h1>Differential Privacy<a class="headerlink" href="#differential-privacy" title="Permalink to this heading">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <p>After reading this chapter, you will be able to:</p>
 <ul class="simple">
 <li><p>Define differential privacy</p></li>
-<li><p>Explain the importance of the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span></p></li>
+<li><p>Explain the importance of the privacy parameter $\epsilon$</p></li>
 <li><p>Use the Laplace mechanism to enforce differential privacy for counting queries</p></li>
 </ul>
 </div>
-<p>Like <span class="math notranslate nohighlight">\(k\)</span>-Anonymity, <em>differential privacy</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id6" title="Cynthia Dwork. Differential privacy. In Proceedings of the 33rd International Conference on Automata, Languages and Programming - Volume Part II, ICALP'06, 1–12. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11787006_1, doi:10.1007/11787006_1.">3</a>, <a class="reference internal" href="bibliography.html#id7" title="Cynthia Dwork, Frank McSherry, Kobbi Nissim, and Adam Smith. Calibrating noise to sensitivity in private data analysis. In Proceedings of the Third Conference on Theory of Cryptography, TCC'06, 265–284. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11681878_14, doi:10.1007/11681878_14.">4</a>]</span> is a formal notion of privacy (i.e. it’s possible to prove that a data release has the property). Unlike <span class="math notranslate nohighlight">\(k\)</span>-Anonymity, however, differential privacy is a property of <em>algorithms</em>, and not a property of <em>data</em>. That is, we can prove that an <em>algorithm</em> satisfies differential privacy; to show that a <em>dataset</em> satisfies differential privacy, we must show that the algorithm which produced it satisfies differential privacy.</p>
+<p>Like $k$-Anonymity, <em>differential privacy</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id6" title="Cynthia Dwork. Differential privacy. In Proceedings of the 33rd International Conference on Automata, Languages and Programming - Volume Part II, ICALP'06, 1–12. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11787006_1, doi:10.1007/11787006_1.">3</a>, <a class="reference internal" href="bibliography.html#id7" title="Cynthia Dwork, Frank McSherry, Kobbi Nissim, and Adam Smith. Calibrating noise to sensitivity in private data analysis. In Proceedings of the Third Conference on Theory of Cryptography, TCC'06, 265–284. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11681878_14, doi:10.1007/11681878_14.">4</a>]</span> is a formal notion of privacy (i.e. it’s possible to prove that a data release has the property). Unlike $k$-Anonymity, however, differential privacy is a property of <em>algorithms</em>, and not a property of <em>data</em>. That is, we can prove that an <em>algorithm</em> satisfies differential privacy; to show that a <em>dataset</em> satisfies differential privacy, we must show that the algorithm which produced it satisfies differential privacy.</p>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
-<p>A function which satisfies differential privacy is often called a <em>mechanism</em>. We say that a <em>mechanism</em> <span class="math notranslate nohighlight">\(F\)</span> satisfies differential privacy if for all <em>neighboring datasets</em> <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all possible sets of outputs <span class="math notranslate nohighlight">\(S\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-13e17f0c-904d-4af8-b699-3538260edd6f">
-<span class="eqno">(1)<a class="headerlink" href="#equation-13e17f0c-904d-4af8-b699-3538260edd6f" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\frac{\mathsf{Pr}[F(x) \in S]}{\mathsf{Pr}[F(x') \in S]} \leq e^\epsilon
-\end{equation}\]</div>
+<p>A function which satisfies differential privacy is often called a <em>mechanism</em>. We say that a <em>mechanism</em> $F$ satisfies differential privacy if for all <em>neighboring datasets</em> $x$ and $x’$, and all possible sets of outputs $S$,</p>
+<p>\begin{equation}
+\frac{\mathsf{Pr}[F(x) \in S]}{\mathsf{Pr}[F(x’) \in S]} \leq e^\epsilon
+\end{equation}</p>
 </div>
-<p>Two datasets are considered neighbors if they differ in the data of a single individual. Note that <span class="math notranslate nohighlight">\(F\)</span> is typically a <em>randomized</em> function, which has many possible outputs under the same input. Therefore, the probability distribution describing its outputs is not just a point distribution.</p>
-<p>The important implication of this definition is that <span class="math notranslate nohighlight">\(F\)</span>’s output will be pretty much the same, <em>with or without</em> the data of any specific individual. In other words, the randomness built into <span class="math notranslate nohighlight">\(F\)</span> should be “enough” so that an observed output from <span class="math notranslate nohighlight">\(F\)</span> will not reveal which of <span class="math notranslate nohighlight">\(x\)</span> or <span class="math notranslate nohighlight">\(x'\)</span> was the input. Imagine that my data is present in <span class="math notranslate nohighlight">\(x\)</span> but not in <span class="math notranslate nohighlight">\(x'\)</span>. If an adversary can’t determine which of <span class="math notranslate nohighlight">\(x\)</span> or <span class="math notranslate nohighlight">\(x'\)</span> was the input to <span class="math notranslate nohighlight">\(F\)</span>, then the adversary can’t tell whether or not my data was <em>present</em> in the input - let alone the contents of that data.</p>
-<p>The <span class="math notranslate nohighlight">\(\epsilon\)</span> parameter in the definition is called the <em>privacy parameter</em> or the <em>privacy budget</em>. <span class="math notranslate nohighlight">\(\epsilon\)</span> provides a knob to tune the “amount of privacy” the definition provides. Small values of <span class="math notranslate nohighlight">\(\epsilon\)</span> require <span class="math notranslate nohighlight">\(F\)</span> to provide <em>very</em> similar outputs when given similar inputs, and therefore provide higher levels of privacy; large values of <span class="math notranslate nohighlight">\(\epsilon\)</span> allow less similarity in the outputs, and therefore provide less privacy.</p>
-<p>How should we set <span class="math notranslate nohighlight">\(\epsilon\)</span> to prevent bad outcomes in practice? Nobody knows. The general consensus is that <span class="math notranslate nohighlight">\(\epsilon\)</span> should be around 1 or smaller, and values of <span class="math notranslate nohighlight">\(\epsilon\)</span> above 10 probably don’t do much to protect privacy - but this rule of thumb could turn out to be very conservative. We will have more to say on this subject later on.</p>
+<p>Two datasets are considered neighbors if they differ in the data of a single individual. Note that $F$ is typically a <em>randomized</em> function, which has many possible outputs under the same input. Therefore, the probability distribution describing its outputs is not just a point distribution.</p>
+<p>The important implication of this definition is that $F$’s output will be pretty much the same, <em>with or without</em> the data of any specific individual. In other words, the randomness built into $F$ should be “enough” so that an observed output from $F$ will not reveal which of $x$ or $x’$ was the input. Imagine that my data is present in $x$ but not in $x’$. If an adversary can’t determine which of $x$ or $x’$ was the input to $F$, then the adversary can’t tell whether or not my data was <em>present</em> in the input - let alone the contents of that data.</p>
+<p>The $\epsilon$ parameter in the definition is called the <em>privacy parameter</em> or the <em>privacy budget</em>. $\epsilon$ provides a knob to tune the “amount of privacy” the definition provides. Small values of $\epsilon$ require $F$ to provide <em>very</em> similar outputs when given similar inputs, and therefore provide higher levels of privacy; large values of $\epsilon$ allow less similarity in the outputs, and therefore provide less privacy.</p>
+<p>How should we set $\epsilon$ to prevent bad outcomes in practice? Nobody knows. The general consensus is that $\epsilon$ should be around 1 or smaller, and values of $\epsilon$ above 10 probably don’t do much to protect privacy - but this rule of thumb could turn out to be very conservative. We will have more to say on this subject later on.</p>
 <div class="admonition-note admonition">
 <p class="admonition-title">Note</p>
-<p>Why is <span class="math notranslate nohighlight">\(S\)</span> a set, and why do we write <span class="math notranslate nohighlight">\(F(x) \in S\)</span>, instead of <span class="math notranslate nohighlight">\(F(x) = s\)</span> for a <em>single</em> output <span class="math notranslate nohighlight">\(s\)</span>? When <span class="math notranslate nohighlight">\(F\)</span> returns elements from a continuous domain (like the real numbers), then the probability <span class="math notranslate nohighlight">\(\mathsf{Pr}[F(x) = S] = 0\)</span> <em>for all <span class="math notranslate nohighlight">\(x\)</span></em> (this is a property of continuous probability distributions—<a class="reference external" href="https://www.probabilitycourse.com/chapter4/4_1_1_pdf.php">see here for a detailed explanation</a>). For the definition to make sense in the context of continuous distributions, it needs to instead consider <em>sets</em> of outputs <span class="math notranslate nohighlight">\(S\)</span>, and use set inclusion (<span class="math notranslate nohighlight">\(\in\)</span>) instead of equality.</p>
-<p>If <span class="math notranslate nohighlight">\(F\)</span> returns elements of a discrete set (e.g. 32-bit floating-point numbers), then the definition can instead consider <span class="math notranslate nohighlight">\(S\)</span> to be a single value, and use equality instead of set inclusion:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-abccbb4e-8069-431c-aa92-ffcc4f15720c">
-<span class="eqno">(2)<a class="headerlink" href="#equation-abccbb4e-8069-431c-aa92-ffcc4f15720c" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
-\end{equation}\]</div>
+<p>Why is $S$ a set, and why do we write $F(x) \in S$, instead of $F(x) = s$ for a <em>single</em> output $s$? When $F$ returns elements from a continuous domain (like the real numbers), then the probability $\mathsf{Pr}[F(x) = S] = 0$ <em>for all $x$</em> (this is a property of continuous probability distributions—<a class="reference external" href="https://www.probabilitycourse.com/chapter4/4_1_1_pdf.php">see here for a detailed explanation</a>). For the definition to make sense in the context of continuous distributions, it needs to instead consider <em>sets</em> of outputs $S$, and use set inclusion ($\in$) instead of equality.</p>
+<p>If $F$ returns elements of a discrete set (e.g. 32-bit floating-point numbers), then the definition can instead consider $S$ to be a single value, and use equality instead of set inclusion:</p>
+<p>\begin{equation}
+\frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x’) = S]} \leq e^\epsilon
+\end{equation}</p>
 <p>This definition might be more intuitive, especially if you have not studied probability theory.</p>
 </div>
 <section id="the-laplace-mechanism">
-<h2>The Laplace Mechanism<a class="headerlink" href="#the-laplace-mechanism" title="Permalink to this headline">#</a></h2>
+<h2>The Laplace Mechanism<a class="headerlink" href="#the-laplace-mechanism" title="Permalink to this heading">#</a></h2>
 <p>Differential privacy is typically used to answer specific queries. Let’s consider a query on the census data, <em>without</em> differential privacy.</p>
 <p>“How many individuals in the dataset are 40 years old or older?”</p>
 <div class="cell docutils container">
@@ -455,7 +455,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14237
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17449
 </pre></div>
 </div>
 </div>
@@ -463,15 +463,14 @@ document.write(`
 <p>The easiest way to achieve differential privacy for this query is to add random noise to its answer. The key challenge is to add enough noise to satisfy the definition of differential privacy, but not so much that the answer becomes too noisy to be useful. To make this process easier, some basic <em>mechanisms</em> have been developed in the field of differential privacy, which describe exactly what kind of - and how much - noise to use. One of these is called the <em>Laplace mechanism</em> <span id="id2">[<a class="reference internal" href="bibliography.html#id7" title="Cynthia Dwork, Frank McSherry, Kobbi Nissim, and Adam Smith. Calibrating noise to sensitivity in private data analysis. In Proceedings of the Third Conference on Theory of Cryptography, TCC'06, 265–284. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11681878_14, doi:10.1007/11681878_14.">4</a>]</span>.</p>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
-<p>According to the Laplace mechanism, for a function <span class="math notranslate nohighlight">\(f(x)\)</span> which returns a number, the following definition of <span class="math notranslate nohighlight">\(F(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9a3a6ce1-9ef6-4dd2-8023-825dd9ccfc34">
-<span class="eqno">(3)<a class="headerlink" href="#equation-9a3a6ce1-9ef6-4dd2-8023-825dd9ccfc34" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>According to the Laplace mechanism, for a function $f(x)$ which returns a number, the following definition of $F(x)$ satisfies $\epsilon$-differential privacy:</p>
+<p>\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
-\end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(s\)</span> is the <em>sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span> denotes sampling from the Laplace distribution with center 0 and scale <span class="math notranslate nohighlight">\(S\)</span>.</p>
+\end{equation}</p>
+<p>where $s$ is the <em>sensitivity</em> of $f$, and $\textsf{Lap}(S)$ denotes sampling from the Laplace distribution with center 0 and scale $S$.</p>
 </div>
-<p>The <em>sensitivity</em> of a function <span class="math notranslate nohighlight">\(f\)</span> is the amount <span class="math notranslate nohighlight">\(f\)</span>’s output changes when its input changes by 1. Sensitivity is a complex topic, and an integral part of designing differentially private algorithms; we will have much more to say about it later. For now, we will just point out that <em>counting queries</em> always have a sensitivity of 1: if a query counts the number of rows in the dataset with a particular property, and then we modify exactly one row of the dataset, then the query’s output can change by at most 1.</p>
-<p>Thus we can achieve differential privacy for our example query by using the Laplace mechanism with sensitivity 1 and an <span class="math notranslate nohighlight">\(\epsilon\)</span> of our choosing. For now, let’s pick <span class="math notranslate nohighlight">\(\epsilon = 0.1\)</span>. We can sample from the Laplace distribution using Numpy’s <code class="docutils literal notranslate"><span class="pre">random.laplace</span></code>.</p>
+<p>The <em>sensitivity</em> of a function $f$ is the amount $f$’s output changes when its input changes by 1. Sensitivity is a complex topic, and an integral part of designing differentially private algorithms; we will have much more to say about it later. For now, we will just point out that <em>counting queries</em> always have a sensitivity of 1: if a query counts the number of rows in the dataset with a particular property, and then we modify exactly one row of the dataset, then the query’s output can change by at most 1.</p>
+<p>Thus we can achieve differential privacy for our example query by using the Laplace mechanism with sensitivity 1 and an $\epsilon$ of our choosing. For now, let’s pick $\epsilon = 0.1$. We can sample from the Laplace distribution using Numpy’s <code class="docutils literal notranslate"><span class="pre">random.laplace</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sensitivity</span> <span class="o">=</span> <span class="mi">1</span>
@@ -482,7 +481,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14267.261707301783
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17458.411199225066
 </pre></div>
 </div>
 </div>
@@ -490,7 +489,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 <p>You can see the effect of the noise by running this code multiple times. Each time, the output changes, but most of the time, the answer is close enough to the true answer (14,235) to be useful.</p>
 </section>
 <section id="how-much-noise-is-enough">
-<h2>How Much Noise is Enough?<a class="headerlink" href="#how-much-noise-is-enough" title="Permalink to this headline">#</a></h2>
+<h2>How Much Noise is Enough?<a class="headerlink" href="#how-much-noise-is-enough" title="Permalink to this heading">#</a></h2>
 <p>How do we know that the Laplace mechanism adds enough noise to prevent the re-identification of individuals in the dataset? For one thing, we can try to break it! Let’s write down a malicious counting query, which is specifically designed to determine whether Karrie Trusslove has an income greater than $50k.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -518,7 +517,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6201323281037757
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-15.709005608334728
 </pre></div>
 </div>
 </div>
@@ -526,7 +525,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 <p>Is the true answer 0 or 1? There’s too much noise to be able to reliably tell. This is how differential privacy is <em>intended</em> to work - the approach does not <em>reject</em> queries which are determined to be malicious; instead, it adds enough noise that the results of a malicious query will be useless to the adversary.</p>
 </section>
 <section id="the-unit-of-privacy">
-<h2>The Unit of Privacy<a class="headerlink" href="#the-unit-of-privacy" title="Permalink to this headline">#</a></h2>
+<h2>The Unit of Privacy<a class="headerlink" href="#the-unit-of-privacy" title="Permalink to this heading">#</a></h2>
 <p>The typical definition of differential privacy defines <em>neighboring datasets</em> as any two datasets that differ in “one person’s data.” It’s often difficult or impossible to figure out how much data “belongs” to which person.</p>
 <p>The <em>unit of privacy</em> refers to the formal definition of “neighboring” used in a differential privacy guarantee. The most common unit of privacy is “one person” - meaning the privacy guarantee protects the whole person, forever. But other definitions are possible; <a class="reference external" href="https://www.apple.com/privacy/docs/Differential_Privacy_Overview.pdf">Apple’s implementation of differential privacy</a>, for example, uses a “person-day” unit of privacy, meaning that the guarantee applies to the data submitted by one person on a single day.</p>
 <p>The unit of privacy can result in surprising privacy failures. For example, in Apple’s system, the differential privacy guarantee does <em>not</em> protect trends in the data occurring across multiple days - even for individual people. If a person submits identical data for 365 days in a row, then differential privacy provides essentially no protection for that data.</p>
@@ -538,15 +537,15 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 <p>If this assumption is true, then it’s possible to define neighboring datasets formally, in terms of the format of the data (see below), and retain the desired “one person” unit of privacy. When it’s not true, the best solution is to transform the data and queries in order to achieve the “one person” unit of privacy. It’s best to avoid using a different unit of privacy whenever possible.</p>
 </section>
 <section id="bounded-and-unbounded-differential-privacy">
-<h2>Bounded and Unbounded Differential Privacy<a class="headerlink" href="#bounded-and-unbounded-differential-privacy" title="Permalink to this headline">#</a></h2>
+<h2>Bounded and Unbounded Differential Privacy<a class="headerlink" href="#bounded-and-unbounded-differential-privacy" title="Permalink to this heading">#</a></h2>
 <p>Under the “one person = one row” simplification, neighboring datasets differ in <em>one row</em>. What does “differ” mean? There are two ways to define that, too! Here are the two formal definitions:</p>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
-<p>Under <em>unbounded differential privacy</em>, two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are considered neighbors if <span class="math notranslate nohighlight">\(x'\)</span> can be obtained from <span class="math notranslate nohighlight">\(x\)</span> by <strong>adding or removing</strong> one row. Under unbounded differential privacy, the sizes of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are different (by one row).</p>
+<p>Under <em>unbounded differential privacy</em>, two datasets $x$ and $x’$ are considered neighbors if $x’$ can be obtained from $x$ by <strong>adding or removing</strong> one row. Under unbounded differential privacy, the sizes of $x$ and $x’$ are different (by one row).</p>
 </div>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
-<p>Under <em>bounded differential privacy</em>, two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are considered neighbors if <span class="math notranslate nohighlight">\(x'\)</span> can be obtained from <span class="math notranslate nohighlight">\(x\)</span> by <strong>changing</strong> one row. Under bounded differential privacy, the sizes of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are equal.</p>
+<p>Under <em>bounded differential privacy</em>, two datasets $x$ and $x’$ are considered neighbors if $x’$ can be obtained from $x$ by <strong>changing</strong> one row. Under bounded differential privacy, the sizes of $x$ and $x’$ are equal.</p>
 </div>
 </section>
 </section>

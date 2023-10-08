@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="zh_CN" >
+<html lang="zh-CN" >
 
   <head>
     <meta charset="utf-8" />
@@ -45,7 +45,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -71,7 +73,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="敏感度" href="ch5.html" />
     <link rel="prev" title="差分隐私" href="ch3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="zh_CN"/>
+  <meta name="docsearch:language" content="zh-CN"/>
   </head>
   
   
@@ -415,7 +417,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>差分隐私的性质<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<h1>差分隐私的性质<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
 <p>阅读本章后，您将能够：</p>
@@ -432,7 +434,7 @@ document.write(`
 <li><p>后处理性</p></li>
 </ul>
 <section id="id2">
-<h2>串行组合性<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<h2>串行组合性<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p>差分隐私的第一个重要性质是<em>串行组合性</em>（Sequential Composition） <span id="id3">[<a class="reference internal" href="bibliography.html#id8" title="Cynthia Dwork, Frank McSherry, Kobbi Nissim, and Adam Smith. Calibrating noise to sensitivity in private data analysis. In Proceedings of the Third Conference on Theory of Cryptography, TCC'06, 265–284. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11681878_14, doi:10.1007/11681878_14.">4</a>, <a class="reference internal" href="bibliography.html#id6" title="Cynthia Dwork, Krishnaram Kenthapadi, Frank McSherry, Ilya Mironov, and Moni Naor. Our data, ourselves: privacy via distributed noise generation. In Serge Vaudenay, editor, Advances in Cryptology - EUROCRYPT 2006, 486–503. Berlin, Heidelberg, 2006. Springer Berlin Heidelberg.">5</a>]</span>。在相同的输入数据上发布多次差分隐私机制保护下的结果时，串行组合性给出了总隐私消耗量。用数学语言描述，差分隐私串行组合性定理称：</p>
 <ul class="simple">
 <li><p>如果<span class="math notranslate nohighlight">\(F_1(x)\)</span>满足<span class="math notranslate nohighlight">\(\epsilon_1\)</span>-差分隐私</p></li>
@@ -485,7 +487,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/0a1f946fb70fdc7031324a9ca3834ba894830b39fd484667c210bba49991c1b4.png" src="_images/0a1f946fb70fdc7031324a9ca3834ba894830b39fd484667c210bba49991c1b4.png" />
+<img alt="_images/4e0e4ff82dd678b9120f72b0b0459db9885aea867d064bd92cb87161ac40ed6f.png" src="_images/4e0e4ff82dd678b9120f72b0b0459db9885aea867d064bd92cb87161ac40ed6f.png" />
 </div>
 </div>
 <p>我们绘制出<code class="docutils literal notranslate"><span class="pre">F1</span></code>和<code class="docutils literal notranslate"><span class="pre">F3</span></code>的输出概率分布图。可以看出，<code class="docutils literal notranslate"><span class="pre">F3</span></code>的输出概率分布看起来比<code class="docutils literal notranslate"><span class="pre">F1</span></code>的更”尖”，这是因为<span class="math notranslate nohighlight">\(\epsilon\)</span>取值越大意味着隐私保护程度越低，因此输出结果远离真实结果的可能性也就越小。</p>
@@ -507,7 +509,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/0914db40f5b467c001ab657769a78871d706f44e086c4e93d780a4ff115065da.png" src="_images/0914db40f5b467c001ab657769a78871d706f44e086c4e93d780a4ff115065da.png" />
+<img alt="_images/e6ea65740a2fdc9efb85c66907ec352d3bd1bb6f9deba2aa29bd1516ca4cd654.png" src="_images/e6ea65740a2fdc9efb85c66907ec352d3bd1bb6f9deba2aa29bd1516ca4cd654.png" />
 </div>
 </div>
 <p>我们再绘制出<code class="docutils literal notranslate"><span class="pre">F</span></code>和<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出概率分布图。可以看出，<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出概率分布图更尖。这意味着<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出结果比<code class="docutils literal notranslate"><span class="pre">F1</span></code>的输出结果更准确，对应的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值一定更大（即<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的隐私保护程度比<code class="docutils literal notranslate"><span class="pre">F1</span></code>更低）。</p>
@@ -529,7 +531,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/17a27348852375cb333bd10455420a55f42f632438885467bf7b4fb0241c804e.png" src="_images/17a27348852375cb333bd10455420a55f42f632438885467bf7b4fb0241c804e.png" />
+<img alt="_images/87da944b1e71c915e7ec91535dcd575703867099a623c6ccd56c6acbca70ee73.png" src="_images/87da944b1e71c915e7ec91535dcd575703867099a623c6ccd56c6acbca70ee73.png" />
 </div>
 </div>
 <p>那<code class="docutils literal notranslate"><span class="pre">F3</span></code>和<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>呢？回想一下，这两种机制的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值相等，<span class="math notranslate nohighlight">\(\epsilon\)</span>都等于2。他们的输出概率分布看起来应该也相同才对。</p>
@@ -551,13 +553,13 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/082721e1fe7fa85aeb21562009b0796e36d60257f8849b596cdd82e78304b3a9.png" src="_images/082721e1fe7fa85aeb21562009b0796e36d60257f8849b596cdd82e78304b3a9.png" />
+<img alt="_images/fe5b8a299f3bef5d3cc43fe939c09161a2a71cbad39d2317ec15fd70039fe44c.png" src="_images/fe5b8a299f3bef5d3cc43fe939c09161a2a71cbad39d2317ec15fd70039fe44c.png" />
 </div>
 </div>
 <p>实际上，<code class="docutils literal notranslate"><span class="pre">F3</span></code>看起来更”尖”！为什么会这样呢？请记住，串行组合性给出了多次发布后总<span class="math notranslate nohighlight">\(\epsilon\)</span>的<em>上界</em>，实际发布的累积隐私消耗量可能会更低一些。这也是<code class="docutils literal notranslate"><span class="pre">F_3</span></code>看起来更”尖”，而<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>看起来更”平”的原因：实际隐私消耗量似乎比串行组合性给出的<span class="math notranslate nohighlight">\(\epsilon\)</span>上界要低一些。当控制总隐私消耗量时，串行组合性是一个极为有用的方法。我们后面将会通过各种不同的方式应用串行组合性。但请特别注意，串行组合性给出的隐私消耗量不一定是严格准确的，而是一个上界。</p>
 </section>
 <section id="id4">
-<h2>并行组合性<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
+<h2>并行组合性<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
 <p>差分隐私的第二个重要性质为<em>并行组合性</em>（Parallel Composition） <span id="id5">[<a class="reference internal" href="bibliography.html#id5" title="Frank D. McSherry. Privacy integrated queries: an extensible platform for privacy-preserving data analysis. In Proceedings of the 2009 ACM SIGMOD International Conference on Management of Data, SIGMOD '09, 19–30. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1559845.1559850, doi:10.1145/1559845.1559850.">6</a>]</span>。并行组合性是计算多次数据发布总隐私消耗量的第二种方法，可以看成是串行组合性的替代方法。并行组合性的基本思想是：将数据集拆分为互不相交的子数据块，在子数据块上分别应用相应的差分隐私机制。由于子数据块互不相交，每个个体的数据”仅可能”出现在一个子数据块中。因此，即使把数据集划分为<span class="math notranslate nohighlight">\(k\)</span>个子数据块，并在<span class="math notranslate nohighlight">\(k\)</span>个子数据块上分别应用相同的差分隐私机制（这意味着我们在数据集上应用了<span class="math notranslate nohighlight">\(k\)</span>次差分隐私机制），我们再每个<em>个体</em>数据上仅使用了一次差分隐私机制。数学语言描述如下：</p>
 <ul class="simple">
 <li><p>如果<span class="math notranslate nohighlight">\(F(x)\)</span>满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私性</p></li>
@@ -567,7 +569,7 @@ document.write(`
 <p>注意到，并行组合性给出的隐私消耗量比串行组合性要好得多。如果我们运行<span class="math notranslate nohighlight">\(k\)</span>次<span class="math notranslate nohighlight">\(F\)</span>，串行组合性告诉我们这个过程满足<span class="math notranslate nohighlight">\(k \epsilon\)</span>-差分隐私性，而并行组合性告诉我们总隐私消耗量仅为<span class="math notranslate nohighlight">\(\epsilon\)</span>。</p>
 <p>并行组合性的数学定义与我们的直觉相匹配。如果每个个体只为数据集<span class="math notranslate nohighlight">\(X\)</span>贡献一行数据，则这行数据<em>仅可能</em>出现在<span class="math notranslate nohighlight">\(x_1, ..., x_k\)</span>的一个子数据块中。这意味着<span class="math notranslate nohighlight">\(F\)</span>只能”看到”<em>一次</em>此个体的数据。因此，将此个体的隐私消耗量设置为<span class="math notranslate nohighlight">\(\epsilon\)</span>是合理的。对于任意一个个体，<span class="math notranslate nohighlight">\(F\)</span>都只能”看到”<em>一次</em>此个体的数据，因此每个个体的隐私消耗量都等于<span class="math notranslate nohighlight">\(\epsilon\)</span>。</p>
 <section id="id6">
-<h3>直方图<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h3>
+<h3>直方图<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
 <p><em>直方图</em>（Histogram）是数据集的一种分析方法。直方图根据数据的某个属性将数据集划分到各个”桶”中，并统计每个桶所包含的数据行数。举个例子，直方图可以统计数据集中达到特定教育水平的人数。</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -666,23 +668,23 @@ document.write(`
   <tbody>
     <tr>
       <th>HS-grad</th>
-      <td>10505.750830</td>
+      <td>10501.648968</td>
     </tr>
     <tr>
       <th>Some-college</th>
-      <td>7292.698887</td>
+      <td>7290.956309</td>
     </tr>
     <tr>
       <th>Bachelors</th>
-      <td>5355.855346</td>
+      <td>5355.120421</td>
     </tr>
     <tr>
       <th>Masters</th>
-      <td>1723.141466</td>
+      <td>1724.029035</td>
     </tr>
     <tr>
       <th>Assoc-voc</th>
-      <td>1384.198788</td>
+      <td>1379.860956</td>
     </tr>
   </tbody>
 </table>
@@ -690,7 +692,7 @@ document.write(`
 </div>
 </section>
 <section id="id7">
-<h3>列联表<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h3>
+<h3>列联表<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
 <p><em>列联表</em>（Contingency Table）也被称为<em>交叉列表</em>（Cross Tabulation），有时也被简称为<em>交叉表</em>（Crosstab）。可以把列联表看成一个高维直方图。列联表统计数据集中拥有多个特定属性值的数据量。在进行数据分析时，列联表通常用于展示两个变量之间的关系。例如，我们可能希望看到基于教育水平和性别这两种属性的联合统计结果：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -796,28 +798,28 @@ document.write(`
   <tbody>
     <tr>
       <th>10th</th>
-      <td>292.492927</td>
-      <td>636.347587</td>
+      <td>295.958076</td>
+      <td>638.688875</td>
     </tr>
     <tr>
       <th>11th</th>
-      <td>430.989693</td>
-      <td>743.339188</td>
+      <td>431.219381</td>
+      <td>743.054704</td>
     </tr>
     <tr>
       <th>12th</th>
-      <td>143.263987</td>
-      <td>288.549877</td>
+      <td>144.405872</td>
+      <td>289.873780</td>
     </tr>
     <tr>
       <th>1st-4th</th>
-      <td>46.682343</td>
-      <td>121.432800</td>
+      <td>44.343573</td>
+      <td>121.360561</td>
     </tr>
     <tr>
       <th>5th-6th</th>
-      <td>86.197473</td>
-      <td>249.733554</td>
+      <td>82.388971</td>
+      <td>249.011880</td>
     </tr>
   </tbody>
 </table>
@@ -829,7 +831,7 @@ document.write(`
 </section>
 </section>
 <section id="id8">
-<h2>后处理性<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h2>
+<h2>后处理性<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h2>
 <p>我们在本章要讨论的第三个差分隐私性质称为<em>后处理性</em>（Post-processing）。此性质的基本思想非常简单：不可能通过某种方式对差分隐私保护下的数据进行后处理，来降低差分隐私的隐私保护程度。此性质的数学语言描述为：</p>
 <ul class="simple">
 <li><p>如果<span class="math notranslate nohighlight">\(F(X)\)</span>满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私</p></li>

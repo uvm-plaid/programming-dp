@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -45,7 +46,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -61,8 +64,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch14';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -170,8 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch1.html">Preliminary</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="ch1.html">De-identification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch2.html">k-Anonymity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch3.html">Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch4.html">Properties of Differential Privacy</a></li>
@@ -412,8 +412,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="synthetic-data">
-<h1>Synthetic Data<a class="headerlink" href="#synthetic-data" title="Permalink to this headline">#</a></h1>
+  <section id="synthetic-data">
+<h1>Synthetic Data<a class="headerlink" href="#synthetic-data" title="Permalink to this heading">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <p>After reading this chapter, you will be able to:</p>
@@ -429,7 +429,7 @@ document.write(`
 <p>Most algorithms for generating such synthetic data rely on a <em>synthetic representation</em> of the original dataset, which does <em>not</em> have the same shape as the original data, but which <em>does</em> allow answering queries about the original data. For example, if we <em>only</em> care about range queries over ages, then we could generate an age histogram - a count of how many participants in the original data had each possible age - and use the histogram to answer the queries. This histogram is a <em>synthetic representation</em> which is suitable for answering some queries, but it does not have the same shape as the original data, so it’s not <em>synthetic data</em>.</p>
 <p>Some algorithms simply use the synthetic representation to answer queries. Others use the synthetic representation to generate synthetic data. We’ll look at one kind of synthetic representation - a histogram - and several methods of generating synthetic data from it.</p>
 <section id="synthetic-representation-a-histogram">
-<h2>Synthetic Representation: a Histogram<a class="headerlink" href="#synthetic-representation-a-histogram" title="Permalink to this headline">#</a></h2>
+<h2>Synthetic Representation: a Histogram<a class="headerlink" href="#synthetic-representation-a-histogram" title="Permalink to this heading">#</a></h2>
 <p>We’ve already seen many histograms - they’re a staple of differentially private analyses, since parallel composition can be immediately applied. We’ve also seen the concept of a <em>range query</em>, though we haven’t used that name very much. As a first step towards synthetic data, we’re going to design a synthetic representation for one column of the original dataset which is capable of answering range queries.</p>
 <p>A <em>range query</em> counts the number of rows in the dataset which have a value lying in a given range. For example, “how many participants are between the ages of 21 and 33?” is a range query.</p>
 <div class="cell docutils container">
@@ -489,8 +489,8 @@ document.write(`
 <p>Notice that we get <em>exactly</em> the same result, whether we issue the range query on the original data or our synthetic representation. We haven’t lost any information from the original dataset (at least for the purposes of answering range queries over ages).</p>
 </section>
 <section id="adding-differential-privacy">
-<h2>Adding Differential Privacy<a class="headerlink" href="#adding-differential-privacy" title="Permalink to this headline">#</a></h2>
-<p>We can easily make our synthetic representation differentially private. We can add Laplace noise separately to each count in the histogram; by parallel composition, this satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy.</p>
+<h2>Adding Differential Privacy<a class="headerlink" href="#adding-differential-privacy" title="Permalink to this heading">#</a></h2>
+<p>We can easily make our synthetic representation differentially private. We can add Laplace noise separately to each count in the histogram; by parallel composition, this satisfies $\epsilon$-differential privacy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>
@@ -499,7 +499,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>We can use the same function as before to answer range queries using our differentially private synthetic representation. By post-processing, these results also satisfy <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy; furthermore, since we’re relying on post-processing, we can answer as many queries as we want without incurring additional privacy cost.</p>
+<p>We can use the same function as before to answer range queries using our differentially private synthetic representation. By post-processing, these results also satisfy $\epsilon$-differential privacy; furthermore, since we’re relying on post-processing, we can answer as many queries as we want without incurring additional privacy cost.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">range_query_synth</span><span class="p">(</span><span class="n">dp_syn_rep</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span>
@@ -507,7 +507,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6248.224296049293
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6240.948290681102
 </pre></div>
 </div>
 </div>
@@ -528,8 +528,8 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.16922470283179475
-Laplace mechanism error: 0.00855138137922494
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.02217841491370426
+Laplace mechanism error: 0.12665339219051114
 </pre></div>
 </div>
 </div>
@@ -550,8 +550,8 @@ Laplace mechanism error: 0.00855138137922494
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.042641560777845054
-Laplace mechanism error: 0.009426898648147428
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.02583329666936763
+Laplace mechanism error: 0.001430687007069901
 </pre></div>
 </div>
 </div>
@@ -559,7 +559,7 @@ Laplace mechanism error: 0.009426898648147428
 <p>This difference demonstrates the drawback of our synthetic representation: it can answer any range query over the range it covers, but it might not offer the same accuracy as the Laplace mechanism. The major advantage of our synthetic representation is the ability to answer infinitely many queries without additional privacy budget; the major disadvantage is the loss in accuracy.</p>
 </section>
 <section id="generating-tabular-data">
-<h2>Generating Tabular Data<a class="headerlink" href="#generating-tabular-data" title="Permalink to this headline">#</a></h2>
+<h2>Generating Tabular Data<a class="headerlink" href="#generating-tabular-data" title="Permalink to this heading">#</a></h2>
 <p>The next step is to go from our synthetic representation to <em>synthetic data</em>. To do this, we want to treat our synthetic representation as a probability distribution that estimates the underlying distribution from which the original data was drawn, and sample from it. Because we’re considering just a single column, and ignoring all the others, this is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_distribution"><em>marginal distribution</em></a> (specifically, a <em>1-way marginal</em>).</p>
 <p>Our strategy here will be simple: we have counts for each histogram bin; we’ll normalize these counts so that they sum to 1, and then treat them as probabilities. Once we have these probabilities, we can sample from the distribution it represents by randomly selecting a bin of the histogram, weighted by the probabilities. Our first step is to prepare the counts, by ensuring that none is negative and by normalizing them to sum to 1:</p>
 <div class="cell docutils container">
@@ -571,7 +571,7 @@ Laplace mechanism error: 0.009426898648147428
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999999999999999
 </pre></div>
 </div>
 </div>
@@ -592,7 +592,7 @@ Laplace mechanism error: 0.009426898648147428
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/1b1be92454112492d503c9a6de3fbbe2377f5b4a1ebd67fe4de8837e064a6aa9.png" src="_images/1b1be92454112492d503c9a6de3fbbe2377f5b4a1ebd67fe4de8837e064a6aa9.png" />
+<img alt="_images/c5de933aa1daf7bf63154c377d7718f00007e068fbd21ea4e7c61b91e0085d09.png" src="_images/c5de933aa1daf7bf63154c377d7718f00007e068fbd21ea4e7c61b91e0085d09.png" />
 </div>
 </div>
 <p>The final step is to generate new samples based on these probabilities. We can use <code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code>, which allows passing in a list of probabilities (in the <code class="docutils literal notranslate"><span class="pre">p</span></code> parameter) associated with the choices given in the first parameter. It implements exactly the weighted random selection that we need for our sampling task. We can generate as many samples as we want without additional privacy cost, since we’ve already made our counts differentially private.</p>
@@ -631,23 +631,23 @@ Laplace mechanism error: 0.009426898648147428
   <tbody>
     <tr>
       <th>0</th>
-      <td>16</td>
+      <td>41</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>38</td>
+      <td>19</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>31</td>
+      <td>69</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>39</td>
+      <td>57</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>16</td>
+      <td>21</td>
     </tr>
   </tbody>
 </table>
@@ -670,7 +670,7 @@ Laplace mechanism error: 0.009426898648147428
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/90239902069f7e1d068b83f77c67589a9c0f3680c1113120b4535f7bc4486cea.png" src="_images/90239902069f7e1d068b83f77c67589a9c0f3680c1113120b4535f7bc4486cea.png" />
+<img alt="_images/3ca077f5cbb3591f36c69faef2eed5e0b69afebc0be39d04612204a465da56ee.png" src="_images/3ca077f5cbb3591f36c69faef2eed5e0b69afebc0be39d04612204a465da56ee.png" />
 </div>
 </div>
 <p>We can also answer some queries we’ve seen in the past, like averages and range queries:</p>
@@ -689,9 +689,9 @@ Laplace mechanism error: 0.009426898648147428
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 41.7772
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 42.0794
 Mean age, true answer: 41.772181444058845
-Percent error: 0.012012667055609199
+Percent error: 0.7300925296966095
 </pre></div>
 </div>
 </div>
@@ -712,9 +712,9 @@ Percent error: 0.012012667055609199
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 7252
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 7225
 Range query for age, true answer: 23574
-Percent error: 69.23729532535845
+Percent error: 69.35182828539916
 </pre></div>
 </div>
 </div>
@@ -739,9 +739,9 @@ Percent error: 69.23729532535845
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 23530
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 23560
 Range query for age, true answer: 23574
-Percent error: 0.18664630525154832
+Percent error: 0.05938746076185629
 </pre></div>
 </div>
 </div>
@@ -749,9 +749,9 @@ Percent error: 0.18664630525154832
 <p>Now we see the lower error we expect.</p>
 </section>
 <section id="generating-more-columns">
-<h2>Generating More Columns<a class="headerlink" href="#generating-more-columns" title="Permalink to this headline">#</a></h2>
+<h2>Generating More Columns<a class="headerlink" href="#generating-more-columns" title="Permalink to this heading">#</a></h2>
 <p>So far we’ve generated synthetic data that matches the number of rows of the original dataset, and is useful for answering queries about the original data, but it has only a single column! How do we generate more columns?</p>
-<p>There are two basic approaches. We could repeat the process we followed above for each of <span class="math notranslate nohighlight">\(k\)</span> columns (generating <span class="math notranslate nohighlight">\(k\)</span> 1-way marginals), and arrive at <span class="math notranslate nohighlight">\(k\)</span> separate synthetic datasets, each with a single column. Then, we could smash these datasets together to construct a single dataset with <span class="math notranslate nohighlight">\(k\)</span> columns. This approach is straightforward, but since we consider each column in isolation, we’ll lose correlations <em>between</em> columns that existed in the original data. For example, it might be the case that age and occupation are correlated in the data (e.g. managers are more likely to be old than they are to be young); if we consider each column in isolation, we’ll get the <em>number</em> of 18-year-olds and the <em>number</em> of managers correct, but we may be very wrong about the number of 18-year-old managers.</p>
+<p>There are two basic approaches. We could repeat the process we followed above for each of $k$ columns (generating $k$ 1-way marginals), and arrive at $k$ separate synthetic datasets, each with a single column. Then, we could smash these datasets together to construct a single dataset with $k$ columns. This approach is straightforward, but since we consider each column in isolation, we’ll lose correlations <em>between</em> columns that existed in the original data. For example, it might be the case that age and occupation are correlated in the data (e.g. managers are more likely to be old than they are to be young); if we consider each column in isolation, we’ll get the <em>number</em> of 18-year-olds and the <em>number</em> of managers correct, but we may be very wrong about the number of 18-year-old managers.</p>
 <p>The other approach is to consider multiple columns together. For example, we can consider both age and occupation at the same time, and count how many 18-year-old managers there are, how many 19-year-old managers there are, and so on. The result of this modified process is a 2-way marginal distribution. We’ll end up considering all possible combinations of age and occupation - which is exactly what we did when we built contingency tables earlier! For example:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -921,7 +921,7 @@ Percent error: 0.18664630525154832
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((11, &#39;Adm-clerical&#39;), 0.0010917804795203274)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((11, &#39;Adm-clerical&#39;), 0.0011724878530062618)
 </pre></div>
 </div>
 </div>
@@ -965,34 +965,34 @@ Percent error: 0.18664630525154832
   <tbody>
     <tr>
       <th>0</th>
-      <td>44</td>
-      <td>Prof-specialty</td>
+      <td>55</td>
+      <td>Exec-managerial</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>69</td>
-      <td>Adm-clerical</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>69</td>
+      <td>33</td>
       <td>Craft-repair</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>25</td>
+      <td>Adm-clerical</td>
+    </tr>
+    <tr>
       <th>3</th>
-      <td>27</td>
-      <td>Transport-moving</td>
+      <td>72</td>
+      <td>Other-service</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>40</td>
-      <td>Sales</td>
+      <td>48</td>
+      <td>Exec-managerial</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p>The downside of considering two columns at once is that our accuracy will be lower. As we add more columns to the set we’re considering (i.e., build an <span class="math notranslate nohighlight">\(n\)</span>-way marginal, with increasing values of <span class="math notranslate nohighlight">\(n\)</span>), we see the same effect we did with contingency tables - each count gets smaller, so the signal gets smaller relative to the noise, and our results are not as accurate. We can see this effect by plotting the histogram of ages in our new synthetic dataset; notice that it has approximately the right shape, but it’s less smooth than either the original data or the differentially private counts we used for the age column by itself.</p>
+<p>The downside of considering two columns at once is that our accuracy will be lower. As we add more columns to the set we’re considering (i.e., build an $n$-way marginal, with increasing values of $n$), we see the same effect we did with contingency tables - each count gets smaller, so the signal gets smaller relative to the noise, and our results are not as accurate. We can see this effect by plotting the histogram of ages in our new synthetic dataset; notice that it has approximately the right shape, but it’s less smooth than either the original data or the differentially private counts we used for the age column by itself.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1008,7 +1008,7 @@ Percent error: 0.18664630525154832
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/81966a8177ad87785c90c79c59630f23e885f345703f592935e3fc11a246d009.png" src="_images/81966a8177ad87785c90c79c59630f23e885f345703f592935e3fc11a246d009.png" />
+<img alt="_images/4e37444c4817095f7d383c0b4b37b414807258c727262a52f1bf1798ddc4cbcd.png" src="_images/4e37444c4817095f7d383c0b4b37b414807258c727262a52f1bf1798ddc4cbcd.png" />
 </div>
 </div>
 <p>We see the same loss in accuracy when we try specific queries on just the age column:</p>
@@ -1027,7 +1027,7 @@ Percent error: 0.18664630525154832
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Percent error using synthetic data: 0.26743075453677173
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Percent error using synthetic data: 2.0630372492836675
 </pre></div>
 </div>
 </div>
@@ -1040,12 +1040,12 @@ Percent error: 0.18664630525154832
 <li><p>A histogram representation can be used to generate <em>synthetic data</em> with the same shape as the original data by treating its counts as probabilities: normalize the counts to sum to 1, then sample from the histogram bins using the corresponding normalized counts as probabilities</p></li>
 <li><p>The normalized histogram is a representation of a <em>1-way marginal distribution</em>, which captures the information in a single column in isolation</p></li>
 <li><p>A 1-way marginal does <em>not</em> capture correlations between columns</p></li>
-<li><p>To generate multiple columns, we can use multiple 1-way marginals, or we can construct a representation of a <span class="math notranslate nohighlight">\(n\)</span>-way marginal where <span class="math notranslate nohighlight">\(n&gt;1\)</span></p></li>
-<li><p>Differentially private <span class="math notranslate nohighlight">\(n\)</span>-way marginals become increasingly noisy as <span class="math notranslate nohighlight">\(n\)</span> grows, since a larger <span class="math notranslate nohighlight">\(n\)</span> implies a smaller count for each bin of the resulting histogram</p></li>
+<li><p>To generate multiple columns, we can use multiple 1-way marginals, or we can construct a representation of a $n$-way marginal where $n&gt;1$</p></li>
+<li><p>Differentially private $n$-way marginals become increasingly noisy as $n$ grows, since a larger $n$ implies a smaller count for each bin of the resulting histogram</p></li>
 <li><p>The challenging tradeoff in generating synthetic data is thus:</p>
 <ul>
 <li><p>Using multiple 1-way marginals loses correlation between columns</p></li>
-<li><p>Using a single <span class="math notranslate nohighlight">\(n\)</span>-way marginal tends to be very inaccurate</p></li>
+<li><p>Using a single $n$-way marginal tends to be very inaccurate</p></li>
 </ul>
 </li>
 <li><p>In many cases, generating synthetic data which is both accurate and captures the important correlations between columns is likely to be impossible</p></li>

@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -45,7 +46,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -418,8 +421,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="de-identification">
-<h1>De-identification<a class="headerlink" href="#de-identification" title="Permalink to this headline">#</a></h1>
+  <section id="de-identification">
+<h1>De-identification<a class="headerlink" href="#de-identification" title="Permalink to this heading">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <p>After reading this chapter, you be able to:</p>
@@ -441,7 +444,7 @@ document.write(`
 </ul>
 </div>
 <section id="preliminary">
-<h2>Preliminary<a class="headerlink" href="#preliminary" title="Permalink to this headline">#</a></h2>
+<h2>Preliminary<a class="headerlink" href="#preliminary" title="Permalink to this heading">#</a></h2>
 <p>Download the dataset by clicking <a class="reference external" href="https://github.com/uvm-plaid/programming-dp/raw/master/notebooks/adult_with_pii.csv">here</a> and placing them in the same directory as this notebook.</p>
 <p>The dataset is based on census data. The personally identifiable information (PII) is made up.</p>
 <div class="cell docutils container">
@@ -599,7 +602,7 @@ document.write(`
 </div>
 </section>
 <section id="id1">
-<h2>De-identification<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h2>De-identification<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p><em>De-identification</em> is the process of removing <em>identifying information</em> from a dataset. The term <em>de-identification</em> is sometimes used synonymously with the terms <em>anonymization</em> and <em>pseudonymization</em>.</p>
 <p>Identifying information has no formal definition. It is usually understood to be information which would be used to identify us uniquely in the course of daily life - name, address, phone number, e-mail address, etc. As we will see later, it’s <em>impossible</em> to formalize the concept of identifying information, because <em>all</em> information is identifying. The term <em>personally identifiable information (PII)</em> is often used synonymously with identifying information.</p>
 <p>How do we de-identify information? Easy - we just remove the columns that contain identifying information!</p>
@@ -671,7 +674,7 @@ document.write(`
 <p>We’ll save some of the identifying information for later, when we’ll use it as <em>auxiliary data</em> to perform a <em>re-identification</em> attack.</p>
 </section>
 <section id="linkage-attacks">
-<h2>Linkage Attacks<a class="headerlink" href="#linkage-attacks" title="Permalink to this headline">#</a></h2>
+<h2>Linkage Attacks<a class="headerlink" href="#linkage-attacks" title="Permalink to this heading">#</a></h2>
 <p>Imagine we want to determine the income of a friend from our de-identified data. Names have been removed, but we happen to know some auxiliary information about our friend. Our friend’s name is Karrie Trusslove, and we know Karrie’s date of birth and zip code.</p>
 <p>To perform a simple <em>linkage attack</em>, we look at the overlapping columns between the dataset we’re trying to attack, and the auxiliary data we know. In this case, both datasets have dates of birth and zip codes. We look for rows in the dataset we’re attacking with dates of birth and zip codes that match Karrie’s date of birth and zip code. In databases, this is called a <em>join</em> of two tables, and we can do it in Pandas using <code class="docutils literal notranslate"><span class="pre">merge</span></code>. If there is only one such row, we’ve found Karrie’s row in the dataset we’re attacking.</p>
 <div class="cell docutils container">
@@ -744,7 +747,7 @@ document.write(`
 </div>
 <p>Indeed, there is only one row that matches. We have used auxiliary data to re-identify an individual in a de-identified dataset, and we’re able to infer that Karrie’s income is less than $50k.</p>
 <section id="how-hard-is-it-to-re-identify-karrie">
-<h3>How Hard is it to Re-Identify Karrie?<a class="headerlink" href="#how-hard-is-it-to-re-identify-karrie" title="Permalink to this headline">#</a></h3>
+<h3>How Hard is it to Re-Identify Karrie?<a class="headerlink" href="#how-hard-is-it-to-re-identify-karrie" title="Permalink to this heading">#</a></h3>
 <p>This scenario is made up, but linkage attacks are surprisingly easy to perform in practice. How easy? It turns out that in many cases, just one data point is sufficient to pinpoint a row!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -932,7 +935,7 @@ document.write(`
 </ul>
 </section>
 <section id="is-karrie-special">
-<h3>Is Karrie Special?<a class="headerlink" href="#is-karrie-special" title="Permalink to this headline">#</a></h3>
+<h3>Is Karrie Special?<a class="headerlink" href="#is-karrie-special" title="Permalink to this heading">#</a></h3>
 <p>How hard is it to re-identify others in the dataset? Is Karrie especially easy or especially difficult to re-identify? A good way to gauge the effectiveness of this type of attack is to look at how “selective” certain pieces of data are - how good they are at narrowing down the set of potential rows which may belong to the target individual. For example, is it common for birthdates to occur more than once?</p>
 <p>We’d like to get an idea of how many dates of birth are likely to be useful in performing an attack, which we can do by looking at how common “unique” dates of birth are in the dataset. The histogram below shows that <em>the vast majority</em> of dates of birth occur 1, 2, or 3 times in the dataset, and <em>no date of birth</em> occurs more than 8 times. This means that date of birth is fairly <em>selective</em> - it’s effective in narrowing down the possible records for an individual.</p>
 <div class="cell tag_hide-input docutils container">
@@ -974,7 +977,7 @@ document.write(`
 </div>
 </section>
 <section id="how-many-people-can-we-re-identify">
-<h3>How Many People can we Re-Identify?<a class="headerlink" href="#how-many-people-can-we-re-identify" title="Permalink to this headline">#</a></h3>
+<h3>How Many People can we Re-Identify?<a class="headerlink" href="#how-many-people-can-we-re-identify" title="Permalink to this heading">#</a></h3>
 <p>In this dataset, how many people can we re-identify uniquely? We can use our auxiliary information to find out! First, let’s see what happens with just dates of birth. We want to know how many <em>possible identities</em> are returned for each data record in the dataset. The following histogram shows the number of records with each number of possible identities. The results show that we can uniquely identify almost 7,000 of the data records (out of about 32,000), and an additional 10,000 data records are narrowed down to two possible identities.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1026,11 +1029,11 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barnabe Haime          2
-Antonin Chittem        2
-Griffie Ivasyushkin    1
-Charmion Clausner      1
-Amalea Minithorpe      1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barnabe Haime      2
+Antonin Chittem    2
+Dolley Gretham     1
+Theresina Howse    1
+Alley Vanner       1
 Name: Name, dtype: int64
 </pre></div>
 </div>
@@ -1040,7 +1043,7 @@ Name: Name, dtype: int64
 </section>
 </section>
 <section id="aggregation">
-<h2>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">#</a></h2>
+<h2>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this heading">#</a></h2>
 <p>Another way to prevent the release of private information is to release only <em>aggregate</em> data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1055,7 +1058,7 @@ Name: Name, dtype: int64
 </div>
 </div>
 <section id="problem-of-small-groups">
-<h3>Problem of Small Groups<a class="headerlink" href="#problem-of-small-groups" title="Permalink to this headline">#</a></h3>
+<h3>Problem of Small Groups<a class="headerlink" href="#problem-of-small-groups" title="Permalink to this heading">#</a></h3>
 <p>In many cases, aggregate statistics are broken down into smaller groups. For example, we might want to know the average age of people with a particular education level.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1170,7 +1173,7 @@ Name: Name, dtype: int64
 <p>How big a group is “big enough” for aggregate statistics to help? It’s hard to say - it depends on the data and on the attack - so it’s challenging to build confidence that aggregate statistics are really privacy-preserving. However, even very large groups do not make aggregation completely robust against attacks, as we will see next.</p>
 </section>
 <section id="differencing-attacks">
-<h3>Differencing Attacks<a class="headerlink" href="#differencing-attacks" title="Permalink to this headline">#</a></h3>
+<h3>Differencing Attacks<a class="headerlink" href="#differencing-attacks" title="Permalink to this heading">#</a></h3>
 <p>The problems with aggregation get even worse when you release multiple aggregate statistics over the same data. For example, consider the following two summation queries over large groups in our dataset (the first over the whole dataset, and the second over all records except one):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

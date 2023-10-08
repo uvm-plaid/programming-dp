@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -45,7 +46,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -61,8 +64,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch10';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -184,6 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -410,8 +412,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="the-sparse-vector-technique">
-<h1>The Sparse Vector Technique<a class="headerlink" href="#the-sparse-vector-technique" title="Permalink to this headline">#</a></h1>
+  <section id="the-sparse-vector-technique">
+<h1>The Sparse Vector Technique<a class="headerlink" href="#the-sparse-vector-technique" title="Permalink to this heading">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <p>After reading this chapter, you will be able to:</p>
@@ -424,8 +426,8 @@ document.write(`
 <p>We’ve already seen one example of a mechanism - the exponential mechanism - which achieves a lower-than-expected privacy cost by withholding some information. Are there others?</p>
 <p>There are, and one that turns out to be extremely useful in practical algorithms is the <em>sparse vector technique</em> (SVT) <span id="id1">[<a class="reference internal" href="bibliography.html#id16" title="Cynthia Dwork, Moni Naor, Omer Reingold, Guy N. Rothblum, and Salil Vadhan. On the complexity of differentially private data release: efficient algorithms and hardness results. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 381–390. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536467, doi:10.1145/1536414.1536467.">14</a>]</span>. The sparse vector technique operates on a stream of sensitivity-1 queries over a dataset; it releases the <em>identity</em> of the first query in the stream which passes a test, and nothing else. The advantage of SVT is that it incurs a fixed total privacy cost, no matter <em>how many queries it considers</em>.</p>
 <section id="above-threshold">
-<h2>Above Threshold<a class="headerlink" href="#above-threshold" title="Permalink to this headline">#</a></h2>
-<p>The most basic instantiation of the sparse vector technique is an algorithm called <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>, Algorithm 1). The inputs to the algorithm are a stream of sensitivity-1 queries, a dataset <span class="math notranslate nohighlight">\(D\)</span>, a <em>threshold</em> <span class="math notranslate nohighlight">\(T\)</span>, and the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>; the algorithm preserves <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. A Python implementation of the algorithm appears below.</p>
+<h2>Above Threshold<a class="headerlink" href="#above-threshold" title="Permalink to this heading">#</a></h2>
+<p>The most basic instantiation of the sparse vector technique is an algorithm called <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>, Algorithm 1). The inputs to the algorithm are a stream of sensitivity-1 queries, a dataset $D$, a <em>threshold</em> $T$, and the privacy parameter $\epsilon$; the algorithm preserves $\epsilon$-differential privacy. A Python implementation of the algorithm appears below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
@@ -457,7 +459,7 @@ document.write(`
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> algorithm returns (approximately) the index of the first query in <code class="docutils literal notranslate"><span class="pre">queries</span></code> whose result exceeds the threshold. The algorithm preserves differential privacy by sometimes returning the <em>wrong</em> index; sometimes, the index returned may be for a query whose result does <em>not</em> exceed the threshold, and sometimes, the index may not be the <em>first</em> whose query result exceeds the threshold.</p>
 <p>The algorithm works by generating a <em>noisy threshold</em> <code class="docutils literal notranslate"><span class="pre">T_hat</span></code>, then comparing noisy query answers (<code class="docutils literal notranslate"><span class="pre">q(i)</span> <span class="pre">+</span> <span class="pre">nu_i</span></code>) against the noisy threshold. The algorithm returns the index of the first comparison that succeeds.</p>
-<p>It’s a little bit surprising that the privacy cost of this algorithm is just <span class="math notranslate nohighlight">\(\epsilon\)</span>, because it may compute the answers to <em>many</em> queries. In particular, a naive version of this algorithm might compute noisy answers to all of the queries first, then select the index of the first one whose value is above the threshold:</p>
+<p>It’s a little bit surprising that the privacy cost of this algorithm is just $\epsilon$, because it may compute the answers to <em>many</em> queries. In particular, a naive version of this algorithm might compute noisy answers to all of the queries first, then select the index of the first one whose value is above the threshold:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># preserves |queries|*epsilon-differential privacy</span>
@@ -471,11 +473,11 @@ document.write(`
 </div>
 </div>
 </div>
-<p>For a list of queries of length <span class="math notranslate nohighlight">\(n\)</span>, this version preserves <span class="math notranslate nohighlight">\(n\epsilon\)</span>-differential privacy by sequential composition.</p>
-<p>Why does <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> do so much better? As we saw with the exponential mechanism, sequential composition would allow <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> to release <em>more information</em> than it actually does. In particular, our naive version of the algorithm could release the indices of <em>every</em> query exceeding the threshold (not just the first one), <em>plus</em> the noisy query answers themselves, and it would still preserve <span class="math notranslate nohighlight">\(n\epsilon\)</span>-differential privacy. The fact that <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> withholds all this information allows for a tighter analysis of privacy cost.</p>
+<p>For a list of queries of length $n$, this version preserves $n\epsilon$-differential privacy by sequential composition.</p>
+<p>Why does <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> do so much better? As we saw with the exponential mechanism, sequential composition would allow <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> to release <em>more information</em> than it actually does. In particular, our naive version of the algorithm could release the indices of <em>every</em> query exceeding the threshold (not just the first one), <em>plus</em> the noisy query answers themselves, and it would still preserve $n\epsilon$-differential privacy. The fact that <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> withholds all this information allows for a tighter analysis of privacy cost.</p>
 </section>
 <section id="applying-the-sparse-vector-technique">
-<h2>Applying the Sparse Vector Technique<a class="headerlink" href="#applying-the-sparse-vector-technique" title="Permalink to this headline">#</a></h2>
+<h2>Applying the Sparse Vector Technique<a class="headerlink" href="#applying-the-sparse-vector-technique" title="Permalink to this heading">#</a></h2>
 <p>The sparse vector technique is extremely useful when we want to run many different queries, but we only care about the answer for one of them (or a small subset of them). In fact, this application gives the technique its name: it’s most useful when the <em>vector</em> of queries is <em>sparse</em> - i.e. most of the answers don’t exceed the threshold.</p>
 <p>We’ve already seen a perfect example of such a scenario: selecting a clipping bound for summation queries. Earlier, we took an approach like the naive version of <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> defined above: compute noisy answers under many different clipping bounds, then select the lowest one for which the answer doesn’t change much.</p>
 <p>We can do much better with the sparse vector technique. Consider a query which clips the ages of everyone in the dataset, then sums them up:</p>
@@ -489,7 +491,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>913809
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>879617
 </pre></div>
 </div>
 </div>
@@ -520,13 +522,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>71
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111
 </pre></div>
 </div>
 </div>
 </div>
 <p>Can we use SVT here? We only care about one thing: the value of <code class="docutils literal notranslate"><span class="pre">b</span></code> where the value of <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code> stops increasing. However, the sensitivity of <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code> is <code class="docutils literal notranslate"><span class="pre">b</span></code>, because adding or removing a row in <code class="docutils literal notranslate"><span class="pre">df</span></code> could change the sum by at most <code class="docutils literal notranslate"><span class="pre">b</span></code>; to use SVT, we need to build a stream of 1-sensitive queries.</p>
-<p>The value we actually care about, though, is whether or not the query’s answer is <em>changing</em> at a specific value of <span class="math notranslate nohighlight">\(b\)</span> (i.e. <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span> <span class="pre">-</span> <span class="pre">age_sum_query(df,</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">1)</span></code>). Consider what happens when we add a row to <code class="docutils literal notranslate"><span class="pre">df</span></code>: the answer to the first part of the query <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code> goes up by <span class="math notranslate nohighlight">\(b\)</span>, but the answer to the second part of the query <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">1)</span></code> <em>also</em> goes up - by <span class="math notranslate nohighlight">\(b + 1\)</span>. The sensitivity is therefore <span class="math notranslate nohighlight">\(\vert b - (b + 1) \vert = 1\)</span> - so each query will be 1-sensitive, as desired! As the value of <span class="math notranslate nohighlight">\(b\)</span> approaches the optimal one, the value of the difference we defined above will approach 0:</p>
+<p>The value we actually care about, though, is whether or not the query’s answer is <em>changing</em> at a specific value of $b$ (i.e. <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span> <span class="pre">-</span> <span class="pre">age_sum_query(df,</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">1)</span></code>). Consider what happens when we add a row to <code class="docutils literal notranslate"><span class="pre">df</span></code>: the answer to the first part of the query <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code> goes up by $b$, but the answer to the second part of the query <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">1)</span></code> <em>also</em> goes up - by $b + 1$. The sensitivity is therefore $\vert b - (b + 1) \vert = 1$ - so each query will be 1-sensitive, as desired! As the value of $b$ approaches the optimal one, the value of the difference we defined above will approach 0:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -544,7 +546,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/fd3cea42760372a66c5c1183bd61b8d2c8fe11b4074d46e3c20681ccbf48c870.png" src="_images/fd3cea42760372a66c5c1183bd61b8d2c8fe11b4074d46e3c20681ccbf48c870.png" />
+<img alt="_images/a93451881d8445824e0ebbdcf98078ec1d255551760e4790693b23ee1ae9c9a1.png" src="_images/a93451881d8445824e0ebbdcf98078ec1d255551760e4790693b23ee1ae9c9a1.png" />
 </div>
 </div>
 <p>Let’s define a stream of difference queries, and use <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> to determine the index of the best value of <code class="docutils literal notranslate"><span class="pre">b</span></code> using the sparse vector technique.</p>
@@ -583,7 +585,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/35f93e04c3996d05dd0a2888e566742fdaaaf7ef706e985845435a31e0bd0609.png" src="_images/35f93e04c3996d05dd0a2888e566742fdaaaf7ef706e985845435a31e0bd0609.png" />
+<img alt="_images/b5040d2049d76c998186848f2715deffd2cd0fc37b3404606082c3545eb5a8a2.png" src="_images/b5040d2049d76c998186848f2715deffd2cd0fc37b3404606082c3545eb5a8a2.png" />
 </div>
 </div>
 <p>We can use SVT to build an algorithm for summation queries (and using this, for average queries) that automatically computes the clipping parameter.</p>
@@ -615,12 +617,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.570026731036165
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.7794814855881
 </pre></div>
 </div>
 </div>
 </div>
-<p>This algorithm invokes three differentially private mechanisms: <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> once, and the Laplace mechanism twice, each with <span class="math notranslate nohighlight">\(\frac{1}{3}\)</span> of the privacy budget. By sequential composition, it satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. Because we are free to test a really wide range of possible values for <code class="docutils literal notranslate"><span class="pre">b</span></code>, we’re able to use the same <code class="docutils literal notranslate"><span class="pre">auto_avg</span></code> function for data on many different scales! For example, we can also use it on the capital gain column, even though it has a very different scale than the age column.</p>
+<p>This algorithm invokes three differentially private mechanisms: <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> once, and the Laplace mechanism twice, each with $\frac{1}{3}$ of the privacy budget. By sequential composition, it satisfies $\epsilon$-differential privacy. Because we are free to test a really wide range of possible values for <code class="docutils literal notranslate"><span class="pre">b</span></code>, we’re able to use the same <code class="docutils literal notranslate"><span class="pre">auto_avg</span></code> function for data on many different scales! For example, we can also use it on the capital gain column, even though it has a very different scale than the age column.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">auto_avg</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Capital Gain&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
@@ -628,7 +630,44 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1075.3308604985655
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key, method, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2894</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2895</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2896</span>             <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+
+<span class="nn">pandas/_libs/index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">pandas/_libs/index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="ne">KeyError</span>: &#39;Capital Gain&#39;
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">5</span><span class="n">b72967cbeb8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">auto_avg</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Capital Gain&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/frame.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2904</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">nlevels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2905</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_multilevel</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2906</span>             <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2907</span>             <span class="k">if</span> <span class="n">is_integer</span><span class="p">(</span><span class="n">indexer</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">2908</span>                 <span class="n">indexer</span> <span class="o">=</span> <span class="p">[</span><span class="n">indexer</span><span class="p">]</span>
+
+<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key, method, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2895</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2896</span>             <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2897</span>                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="g g-Whitespace">   </span><span class="mi">2898</span> 
+<span class="g g-Whitespace">   </span><span class="mi">2899</span>         <span class="k">if</span> <span class="n">tolerance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="ne">KeyError</span>: &#39;Capital Gain&#39;
 </pre></div>
 </div>
 </div>
@@ -636,15 +675,15 @@ document.write(`
 <p>Note that this takes a long time to run! That’s because we have to try a lot more values for <code class="docutils literal notranslate"><span class="pre">b</span></code> before finding a good one, since the capital gain column has a much larger scale. We can reduce this cost by increasing the step size (5, in our implementation above) or by constructing <code class="docutils literal notranslate"><span class="pre">bs</span></code> with an exponential scale.</p>
 </section>
 <section id="returning-multiple-values">
-<h2>Returning Multiple Values<a class="headerlink" href="#returning-multiple-values" title="Permalink to this headline">#</a></h2>
+<h2>Returning Multiple Values<a class="headerlink" href="#returning-multiple-values" title="Permalink to this heading">#</a></h2>
 <p>In the above application, we only needed the index of the <em>first</em> query which exceeded the threshold, but in many other applications we would like to find the indices of <em>all</em> such queries.</p>
 <p>We can use SVT to do this, but we’ll have to pay a higher privacy cost. We can implement an algorithm called <code class="docutils literal notranslate"><span class="pre">sparse</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>, Algorithm 2) to accomplish the task, using a very simple approach:</p>
 <ol class="arabic simple">
-<li><p>Start with a stream <span class="math notranslate nohighlight">\(qs = \{q_1, \dots, q_k\}\)</span> of queries</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> on <span class="math notranslate nohighlight">\(qs\)</span> to learn the index <span class="math notranslate nohighlight">\(i\)</span> of the first query which exceeds the threshold</p></li>
-<li><p>Restart the algorithm (go to (1)) with <span class="math notranslate nohighlight">\(qs = \{q_{i+1}, \dots, q_k\}\)</span> (i.e. the <em>remaining</em> queries)</p></li>
+<li><p>Start with a stream $qs = {q_1, \dots, q_k}$ of queries</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> on $qs$ to learn the index $i$ of the first query which exceeds the threshold</p></li>
+<li><p>Restart the algorithm (go to (1)) with $qs = {q_{i+1}, \dots, q_k}$ (i.e. the <em>remaining</em> queries)</p></li>
 </ol>
-<p>If the algorithm invokes <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> <span class="math notranslate nohighlight">\(n\)</span> times, with a privacy parameter of <span class="math notranslate nohighlight">\(\epsilon\)</span> for each invocation, then it satisfies <span class="math notranslate nohighlight">\(n\epsilon\)</span>-differential privacy by sequential composition. If we want to specify an upper bound on total privacy cost, we need to bound <span class="math notranslate nohighlight">\(n\)</span> - so the <code class="docutils literal notranslate"><span class="pre">sparse</span></code> algorithm asks the analyst to specify an upper bound <span class="math notranslate nohighlight">\(c\)</span> on the number of times <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> will be invoked.</p>
+<p>If the algorithm invokes <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> $n$ times, with a privacy parameter of $\epsilon$ for each invocation, then it satisfies $n\epsilon$-differential privacy by sequential composition. If we want to specify an upper bound on total privacy cost, we need to bound $n$ - so the <code class="docutils literal notranslate"><span class="pre">sparse</span></code> algorithm asks the analyst to specify an upper bound $c$ on the number of times <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> will be invoked.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sparse</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
@@ -681,17 +720,17 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[18, 19, 21]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[19, 21, 22]
 </pre></div>
 </div>
 </div>
 </div>
-<p>By sequential composition, the <code class="docutils literal notranslate"><span class="pre">sparse</span></code> algorithm satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy (it uses <span class="math notranslate nohighlight">\(\epsilon_i = \frac{\epsilon}{c}\)</span> for each invocation of <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>). The version described in Dwork and Roth uses advanced composition, setting the <span class="math notranslate nohighlight">\(\epsilon_i\)</span> value for each invocation of <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> so that the total privacy cost is <span class="math notranslate nohighlight">\(\epsilon\)</span> (zCDP or RDP could also be used to perform the composition).</p>
+<p>By sequential composition, the <code class="docutils literal notranslate"><span class="pre">sparse</span></code> algorithm satisfies $\epsilon$-differential privacy (it uses $\epsilon_i = \frac{\epsilon}{c}$ for each invocation of <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>). The version described in Dwork and Roth uses advanced composition, setting the $\epsilon_i$ value for each invocation of <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> so that the total privacy cost is $\epsilon$ (zCDP or RDP could also be used to perform the composition).</p>
 </section>
 <section id="application-range-queries">
-<h2>Application: Range Queries<a class="headerlink" href="#application-range-queries" title="Permalink to this headline">#</a></h2>
-<p>A <em>range query</em> asks: “how many rows exist in the dataset whose values lie in the range <span class="math notranslate nohighlight">\((a, b)\)</span>?” Range queries are counting queries, so they have sensitivity 1; we can’t use parallel composition on a set of range queries, however, since the rows they examine might overlap.</p>
-<p>Consider a set of range queries over ages (i.e. queries of the form “how many people have ages between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>?”). We can generate many such queries at random:</p>
+<h2>Application: Range Queries<a class="headerlink" href="#application-range-queries" title="Permalink to this heading">#</a></h2>
+<p>A <em>range query</em> asks: “how many rows exist in the dataset whose values lie in the range $(a, b)$?” Range queries are counting queries, so they have sensitivity 1; we can’t use parallel composition on a set of range queries, however, since the rows they examine might overlap.</p>
+<p>Consider a set of range queries over ages (i.e. queries of the form “how many people have ages between $a$ and $b$?”). We can generate many such queries at random:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">age_range_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">):</span>
@@ -711,7 +750,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[20653, 4025, 7991, 15714, 1675, 8469, 5607, 2660, 13380, 875]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[16899, 16908, 11091, 8033, 11330, 4553, 18240, 8132, 9053, 11372]
 </pre></div>
 </div>
 </div>
@@ -740,12 +779,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[20670.263804638646, 15692.252255473777, 13370.326099564476]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[16917.45574425689,
+ 16933.282003171324,
+ 11093.27636133087,
+ 11324.844036991903,
+ 18243.71176080326]
 </pre></div>
 </div>
 </div>
 </div>
-<p>Using this algorithm, we pay half of the privacy budget to determine the first <span class="math notranslate nohighlight">\(c\)</span> queries which lie above the threshold of 10000, then the other half of the budget to obtain noisy answers to <em>just</em> those queries. If the number of queries exceeding the threshold is tiny compared to the total number, then we’re able to obtain much more accurate answers using this approach.</p>
+<p>Using this algorithm, we pay half of the privacy budget to determine the first $c$ queries which lie above the threshold of 10000, then the other half of the budget to obtain noisy answers to <em>just</em> those queries. If the number of queries exceeding the threshold is tiny compared to the total number, then we’re able to obtain much more accurate answers using this approach.</p>
 </section>
 </section>
 

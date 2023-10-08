@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -45,7 +46,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -61,8 +64,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch5';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -170,8 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch1.html">Preliminary</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="ch1.html">De-identification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch2.html">k-Anonymity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch3.html">Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch4.html">Properties of Differential Privacy</a></li>
@@ -185,6 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -416,8 +417,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="sensitivity">
-<h1>Sensitivity<a class="headerlink" href="#sensitivity" title="Permalink to this headline">#</a></h1>
+  <section id="sensitivity">
+<h1>Sensitivity<a class="headerlink" href="#sensitivity" title="Permalink to this heading">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <p>After reading this chapter, you will be able to:</p>
@@ -429,49 +430,46 @@ document.write(`
 <li><p>Use clipping to bound the sensitivity of summation queries</p></li>
 </ul>
 </div>
-<p>As we mentioned when we discussed the Laplace mechanism, the amount of noise necessary to ensure differential privacy for a given query depends on the <em>sensitivity</em> of the query. Roughly speaking, the sensitivity of a function reflects the amount the function’s output will change when its input changes. Recall that the Laplace mechanism defines a mechanism <span class="math notranslate nohighlight">\(F(x)\)</span> as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3bc700bb-2c2f-4bc5-9d96-5735fb9d0117">
-<span class="eqno">(4)<a class="headerlink" href="#equation-3bc700bb-2c2f-4bc5-9d96-5735fb9d0117" title="Permalink to this equation">#</a></span>\[\begin{align}
+<p>As we mentioned when we discussed the Laplace mechanism, the amount of noise necessary to ensure differential privacy for a given query depends on the <em>sensitivity</em> of the query. Roughly speaking, the sensitivity of a function reflects the amount the function’s output will change when its input changes. Recall that the Laplace mechanism defines a mechanism $F(x)$ as follows:</p>
+<p>\begin{align}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
-\end{align}\]</div>
-<p>where <span class="math notranslate nohighlight">\(f(x)\)</span> is a deterministic function (the query), <span class="math notranslate nohighlight">\(\epsilon\)</span> is the privacy parameter, and <span class="math notranslate nohighlight">\(s\)</span> is the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>.</p>
-<p>For a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span> mapping datasets (<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>) to real numbers, the <em>global sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span> is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-94e91163-8e27-4588-877c-94e091369042">
-<span class="eqno">(5)<a class="headerlink" href="#equation-94e91163-8e27-4588-877c-94e091369042" title="Permalink to this equation">#</a></span>\[\begin{align}
-GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
-\end{align}\]</div>
-<p>Here, <span class="math notranslate nohighlight">\(d(x, x')\)</span> represents the <em>distance</em> between two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and we say that two datasets are <em>neighbors</em> if their distance is 1 or less. How this distance is defined has a huge effect on the definition of privacy we obtain, and we’ll discuss the distance metric on datasets in detail later on.</p>
-<p>The definition of global sensitivity says that for <em>any two</em> neighboring datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, the difference between <span class="math notranslate nohighlight">\(f(x)\)</span> and <span class="math notranslate nohighlight">\(f(x')\)</span> is at most <span class="math notranslate nohighlight">\(GS(f)\)</span>. This measure of sensitivity is called “global” because it is independent of the actual dataset being queried (it holds for <em>any</em> choice of neighboring <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>). Another measure of sensitivity, called <em>local sensitivity</em>, fixes one of the datasets to be the one being queried; we will consider this measure in a later section. For now, when we say “sensitivity,” we mean global sensitivity.</p>
+\end{align}</p>
+<p>where $f(x)$ is a deterministic function (the query), $\epsilon$ is the privacy parameter, and $s$ is the sensitivity of $f$.</p>
+<p>For a function $f : \mathcal{D} \rightarrow \mathbb{R}$ mapping datasets ($\mathcal{D}$) to real numbers, the <em>global sensitivity</em> of $f$ is defined as follows:</p>
+<p>\begin{align}
+GS(f) = \max_{x, x’: d(x,x’) &lt;= 1} |f(x) - f(x’)|
+\end{align}</p>
+<p>Here, $d(x, x’)$ represents the <em>distance</em> between two datasets $x$ and $x’$, and we say that two datasets are <em>neighbors</em> if their distance is 1 or less. How this distance is defined has a huge effect on the definition of privacy we obtain, and we’ll discuss the distance metric on datasets in detail later on.</p>
+<p>The definition of global sensitivity says that for <em>any two</em> neighboring datasets $x$ and $x’$, the difference between $f(x)$ and $f(x’)$ is at most $GS(f)$. This measure of sensitivity is called “global” because it is independent of the actual dataset being queried (it holds for <em>any</em> choice of neighboring $x$ and $x’$). Another measure of sensitivity, called <em>local sensitivity</em>, fixes one of the datasets to be the one being queried; we will consider this measure in a later section. For now, when we say “sensitivity,” we mean global sensitivity.</p>
 <section id="distance">
-<h2>Distance<a class="headerlink" href="#distance" title="Permalink to this headline">#</a></h2>
-<p>The distance metric <span class="math notranslate nohighlight">\(d(x,x')\)</span> described earlier can be defined in many different ways. Intuitively, the distance between two datasets should be equal to 1 (i.e. the datasets are neighbors) if they differ in the data of exactly one individual. This idea is easy to formalize in some contexts (e.g. in the US Census, each individual submits a single response containing their data) but extremely challenging in others (e.g. location trajectories, social networks, and time-series data).</p>
+<h2>Distance<a class="headerlink" href="#distance" title="Permalink to this heading">#</a></h2>
+<p>The distance metric $d(x,x’)$ described earlier can be defined in many different ways. Intuitively, the distance between two datasets should be equal to 1 (i.e. the datasets are neighbors) if they differ in the data of exactly one individual. This idea is easy to formalize in some contexts (e.g. in the US Census, each individual submits a single response containing their data) but extremely challenging in others (e.g. location trajectories, social networks, and time-series data).</p>
 <p>A common formal definition for datasets containing rows is to consider the number of rows which differ between the two. When each individual’s data is contained in a single row, this definition often makes sense. Formally, this definition of distance is encoded as a <em>symmetric difference</em> between the two datasets:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8f0bac39-df12-48fc-8d12-e528ff423aaa">
-<span class="eqno">(6)<a class="headerlink" href="#equation-8f0bac39-df12-48fc-8d12-e528ff423aaa" title="Permalink to this equation">#</a></span>\[\begin{align}
-d(x, x') = | x - x' \cup x' - x |
-\end{align}\]</div>
+<p>\begin{align}
+d(x, x’) = | x - x’ \cup x’ - x |
+\end{align}</p>
 <p>This particular definition has several interesting and important implications:</p>
 <ul class="simple">
-<li><p>If <span class="math notranslate nohighlight">\(x'\)</span> is constructed from <span class="math notranslate nohighlight">\(x\)</span> by <em>adding one row</em>, then <span class="math notranslate nohighlight">\(d(x,x') = 1\)</span></p></li>
-<li><p>If <span class="math notranslate nohighlight">\(x'\)</span> is constructed from <span class="math notranslate nohighlight">\(x\)</span> by <em>removing one row</em>, then <span class="math notranslate nohighlight">\(d(x,x') = 1\)</span></p></li>
-<li><p>If <span class="math notranslate nohighlight">\(x'\)</span> is constructed from <span class="math notranslate nohighlight">\(x\)</span> by <em>modifying one row</em>, then <span class="math notranslate nohighlight">\(d(x,x') = 2\)</span></p></li>
+<li><p>If $x’$ is constructed from $x$ by <em>adding one row</em>, then $d(x,x’) = 1$</p></li>
+<li><p>If $x’$ is constructed from $x$ by <em>removing one row</em>, then $d(x,x’) = 1$</p></li>
+<li><p>If $x’$ is constructed from $x$ by <em>modifying one row</em>, then $d(x,x’) = 2$</p></li>
 </ul>
 <p>In other words, adding or removing a row results in a neighboring dataset; <em>modifying</em> a row results in a dataset at distance <em>2</em>.</p>
 <p>This particular definition of distance results in what is typically called <em>unbounded differential privacy</em>. Many other definitions are possible, including one called <em>bounded differential privacy</em> in which modifying a single row in a dataset <em>does</em> result in a neighboring dataset.</p>
 <p>For now, we will stick to the formal definition defined above in terms of symmetric difference. We will discuss alternative definitions in a later section.</p>
 </section>
 <section id="calculating-sensitivity">
-<h2>Calculating Sensitivity<a class="headerlink" href="#calculating-sensitivity" title="Permalink to this headline">#</a></h2>
+<h2>Calculating Sensitivity<a class="headerlink" href="#calculating-sensitivity" title="Permalink to this heading">#</a></h2>
 <p>How do we determine the sensitivity of a particular function of interest? For some simple functions on real numbers, the answer is obvious.</p>
 <ul class="simple">
-<li><p>The global sensitivity of <span class="math notranslate nohighlight">\(f(x) = x\)</span> is 1, since changing <span class="math notranslate nohighlight">\(x\)</span> by 1 changes <span class="math notranslate nohighlight">\(f(x)\)</span> by 1</p></li>
-<li><p>The global sensitivity of <span class="math notranslate nohighlight">\(f(x) = x+x\)</span> is 2, since changing <span class="math notranslate nohighlight">\(x\)</span> by 1 changes <span class="math notranslate nohighlight">\(f(x)\)</span> by 2</p></li>
-<li><p>The global sensitivity of <span class="math notranslate nohighlight">\(f(x) = 5*x\)</span> is 5, since changing <span class="math notranslate nohighlight">\(x\)</span> by 1 changes <span class="math notranslate nohighlight">\(f(x)\)</span> by 5</p></li>
-<li><p>The global sensitivity of <span class="math notranslate nohighlight">\(f(x) = x*x\)</span> is unbounded, since the change in <span class="math notranslate nohighlight">\(f(x)\)</span> depends on the value of <span class="math notranslate nohighlight">\(x\)</span></p></li>
+<li><p>The global sensitivity of $f(x) = x$ is 1, since changing $x$ by 1 changes $f(x)$ by 1</p></li>
+<li><p>The global sensitivity of $f(x) = x+x$ is 2, since changing $x$ by 1 changes $f(x)$ by 2</p></li>
+<li><p>The global sensitivity of $f(x) = 5*x$ is 5, since changing $x$ by 1 changes $f(x)$ by 5</p></li>
+<li><p>The global sensitivity of $f(x) = x*x$ is unbounded, since the change in $f(x)$ depends on the value of $x$</p></li>
 </ul>
 <p>For functions that map datasets to real numbers, we can perform a similar analysis. We will consider the functions which represent common aggregate database queries: counts, sums, and averages.</p>
 <section id="counting-queries">
-<h3>Counting Queries<a class="headerlink" href="#counting-queries" title="Permalink to this headline">#</a></h3>
+<h3>Counting Queries<a class="headerlink" href="#counting-queries" title="Permalink to this heading">#</a></h3>
 <p>Counting queries (<code class="docutils literal notranslate"><span class="pre">COUNT</span></code> in SQL) count the number of rows in the dataset which satisfy a specific property. As a rule of thumb, <strong>counting queries always have a sensitivity of 1</strong>. This is because adding a row to the dataset can increase the output of the query by at most 1: either the new row has the desired property, and the count increases by 1, or it does not, and the count stays the same (the count may correspondingly decrease when a row is removed).</p>
 <p><strong>Example: “How many people are in the dataset?”</strong> (sensitivity: 1 - counting rows where the property = True)</p>
 <div class="cell docutils container">
@@ -527,7 +525,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </section>
 <section id="summation-queries">
-<h3>Summation Queries<a class="headerlink" href="#summation-queries" title="Permalink to this headline">#</a></h3>
+<h3>Summation Queries<a class="headerlink" href="#summation-queries" title="Permalink to this heading">#</a></h3>
 <p>Summation queries (<code class="docutils literal notranslate"><span class="pre">SUM</span></code> in SQL) sum up the <em>attribute values</em> of dataset rows.</p>
 <p><strong>Example: “What is the sum of the ages of people with an educational status above 10?”</strong></p>
 <div class="cell docutils container">
@@ -549,7 +547,7 @@ d(x, x') = | x - x' \cup x' - x |
 <p>As a rule of thumb, summation queries have <strong>unbounded sensitivity</strong> when no lower and upper bounds exist on the value of the attribute being summed. When lower and upper bounds do exist, the sensitivity of a summation query is equal to the <strong>difference between them</strong>. In the next section, we will see a technique called <em>clipping</em> for enforcing bounds when none exist, so that summation queries with unbounded sensitivity can be converted into queries with bounded sensitivity.</p>
 </section>
 <section id="average-queries">
-<h3>Average Queries<a class="headerlink" href="#average-queries" title="Permalink to this headline">#</a></h3>
+<h3>Average Queries<a class="headerlink" href="#average-queries" title="Permalink to this heading">#</a></h3>
 <p>Average queries (<code class="docutils literal notranslate"><span class="pre">AVG</span></code> in SQL) calculate the mean of attribute values in a particular column.</p>
 <p><strong>Example: “What is the average age of people with an educational status above 10?”</strong></p>
 <div class="cell docutils container">
@@ -581,9 +579,9 @@ d(x, x') = | x - x' \cup x' - x |
 </section>
 </section>
 <section id="clipping">
-<h2>Clipping<a class="headerlink" href="#clipping" title="Permalink to this headline">#</a></h2>
+<h2>Clipping<a class="headerlink" href="#clipping" title="Permalink to this heading">#</a></h2>
 <p>Queries with unbounded sensitivity cannot be directly answered with differential privacy using the Laplace mechanism. Fortunately, we can often transform such queries into equivalent queries with <em>bounded</em> sensitivity, via a process called <em>clipping</em>.</p>
-<p>The basic idea behind clipping is to <em>enforce</em> upper and lower bounds on attribute values. For example, ages above 125 can be “clipped” to exactly 125. After clipping has been performed, we are <em>guaranteed</em> that all ages will be 125 or below. As a result, the sensitivity of a summation query on clipped data is equal to the difference between the upper and lower bounds used in clipping: <span class="math notranslate nohighlight">\(upper - lower\)</span>. For example, the following query has a sensitivity of 125:</p>
+<p>The basic idea behind clipping is to <em>enforce</em> upper and lower bounds on attribute values. For example, ages above 125 can be “clipped” to exactly 125. After clipping has been performed, we are <em>guaranteed</em> that all ages will be 125 or below. As a result, the sensitivity of a summation query on clipped data is equal to the difference between the upper and lower bounds used in clipping: $upper - lower$. For example, the following query has a sensitivity of 125:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">125</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -641,10 +639,10 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/0682348221d3e7d382d617f0cc2b48a668ee7d1ced705c1e8cbc23084259b8f9.png" src="_images/0682348221d3e7d382d617f0cc2b48a668ee7d1ced705c1e8cbc23084259b8f9.png" />
+<img alt="_images/9c63e9f37b0c88ef6674412314bfdb7f9dbd568b96906e411efc31a41b752373.png" src="_images/9c63e9f37b0c88ef6674412314bfdb7f9dbd568b96906e411efc31a41b752373.png" />
 </div>
 </div>
-<p>The total privacy cost for building this plot is <span class="math notranslate nohighlight">\(\epsilon = 1\)</span> by sequential composition, since we do 100 queries each with <span class="math notranslate nohighlight">\(\epsilon_i = 0.01\)</span>. It’s clear that the results level off around a value of <code class="docutils literal notranslate"><span class="pre">upper</span> <span class="pre">=</span> <span class="pre">80</span></code>, so this is a good choice for the clipping bound.</p>
+<p>The total privacy cost for building this plot is $\epsilon = 1$ by sequential composition, since we do 100 queries each with $\epsilon_i = 0.01$. It’s clear that the results level off around a value of <code class="docutils literal notranslate"><span class="pre">upper</span> <span class="pre">=</span> <span class="pre">80</span></code>, so this is a good choice for the clipping bound.</p>
 <p>We can use the same approach for data attributes from any numerical domain, but it helps to know something about the scale of the data in advance. For example, trying clipping values between 0 and 100 for yearly incomes would not work very well - we wouldn’t even come close to finding a reasonable upper bound.</p>
 <p>One refinement that can work well when the scale of the data is not known is to test upper bounds according to a logarithmic scale.</p>
 <div class="cell tag_hide-input docutils container">
@@ -664,13 +662,13 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/50594cd158aa1247d2504e5c6d6e1a5f9467a095264af9215027768d9449d82e.png" src="_images/50594cd158aa1247d2504e5c6d6e1a5f9467a095264af9215027768d9449d82e.png" />
+<img alt="_images/61f10447cdc814d2877f011826532d8049077ec5beaf28439368f824145727a1.png" src="_images/61f10447cdc814d2877f011826532d8049077ec5beaf28439368f824145727a1.png" />
 </div>
 </div>
-<p>This approach allows us to test a huge range of possible bounds with a small number of queries, but at the expense of less precision in determining the perfect bound. As the upper bound gets really large, the noise will start to overwhelm the signal - notice how the sum fluctuates wildly for the largest clipping parameters! The key is to look for a region of the graph which is relatively smooth (meaning low noise) and also not increasing (meaning the clipping bound is sufficient). Here, this occurs at roughly <span class="math notranslate nohighlight">\(2^8 = 256\)</span>, which is a reasonable approximation of the upper bound we derived earlier.</p>
+<p>This approach allows us to test a huge range of possible bounds with a small number of queries, but at the expense of less precision in determining the perfect bound. As the upper bound gets really large, the noise will start to overwhelm the signal - notice how the sum fluctuates wildly for the largest clipping parameters! The key is to look for a region of the graph which is relatively smooth (meaning low noise) and also not increasing (meaning the clipping bound is sufficient). Here, this occurs at roughly $2^8 = 256$, which is a reasonable approximation of the upper bound we derived earlier.</p>
 </section>
 <section id="avoiding-sensitivity-underestimation">
-<h2>Avoiding Sensitivity Underestimation<a class="headerlink" href="#avoiding-sensitivity-underestimation" title="Permalink to this headline">#</a></h2>
+<h2>Avoiding Sensitivity Underestimation<a class="headerlink" href="#avoiding-sensitivity-underestimation" title="Permalink to this heading">#</a></h2>
 <p>In order to correctly predict the sensitivity of our queries and tranformations, we rely on mathematical reasoning around numeric functions such as arithmetic operators.</p>
 <p>If for some reason our numeric functions failed to properly work as anticipated, this would throw off our sensitivity analysis. This could happen, for example, when integer overflow or floating-point representation error occur.</p>
 <div class="cell docutils container">

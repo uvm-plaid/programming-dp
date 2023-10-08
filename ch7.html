@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -45,7 +46,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -61,8 +64,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch7';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -184,6 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -411,8 +413,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="local-sensitivity">
-<h1>Local Sensitivity<a class="headerlink" href="#local-sensitivity" title="Permalink to this headline">#</a></h1>
+  <section id="local-sensitivity">
+<h1>Local Sensitivity<a class="headerlink" href="#local-sensitivity" title="Permalink to this heading">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <p>After reading this chapter, you will be able to:</p>
@@ -425,72 +427,65 @@ document.write(`
 </ul>
 </div>
 <p>So far, we have seen only one measure of sensitivity: global sensitivity. Our definition for global sensitivity considers <em>any</em> two neighboring datasets. This seems pessimistic, since we’re going to run our differentially private mechanisms on an <em>actual</em> dataset - shouldn’t we consider neighbors of <em>that</em> dataset?</p>
-<p>This is the intuition behind <em>local sensitivity</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id8" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">8</a>]</span>: fix one of the two datasets to be the <em>actual</em> dataset being queried, and consider all of its neighbors. Formally, the local sensitivity of a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span> at <span class="math notranslate nohighlight">\(x : \mathcal{D}\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7795b1a1-55e7-4d40-87d1-94b0aa0f1bd5">
-<span class="eqno">(16)<a class="headerlink" href="#equation-7795b1a1-55e7-4d40-87d1-94b0aa0f1bd5" title="Permalink to this equation">#</a></span>\[\begin{align}
-LS(f, x) = \max_{x': d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
-\end{align}\]</div>
-<p>Notice that local sensitivity is a function of both the query (<span class="math notranslate nohighlight">\(f\)</span>) and the <em>actual</em> dataset (<span class="math notranslate nohighlight">\(x\)</span>). Unlike in the case of global sensitivity, we can’t talk about the local sensitivity of a function without also considering the dataset <em>at which</em> that local sensitivity occurs.</p>
+<p>This is the intuition behind <em>local sensitivity</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id8" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">8</a>]</span>: fix one of the two datasets to be the <em>actual</em> dataset being queried, and consider all of its neighbors. Formally, the local sensitivity of a function $f : \mathcal{D} \rightarrow \mathbb{R}$ at $x : \mathcal{D}$ is defined as:</p>
+<p>\begin{align}
+LS(f, x) = \max_{x’: d(x,x’) \leq 1} \lvert f(x) - f(x’) \rvert
+\end{align}</p>
+<p>Notice that local sensitivity is a function of both the query ($f$) and the <em>actual</em> dataset ($x$). Unlike in the case of global sensitivity, we can’t talk about the local sensitivity of a function without also considering the dataset <em>at which</em> that local sensitivity occurs.</p>
 <section id="local-sensitivity-of-the-mean">
-<h2>Local Sensitivity of the Mean<a class="headerlink" href="#local-sensitivity-of-the-mean" title="Permalink to this headline">#</a></h2>
+<h2>Local Sensitivity of the Mean<a class="headerlink" href="#local-sensitivity-of-the-mean" title="Permalink to this heading">#</a></h2>
 <p>Local sensitivity allows us to place finite bounds on the sensitivity of some functions whose global sensitivity is difficult to bound. The mean function is one example. So far, we’ve calculated differentially private means by splitting the query into two queries: a differentially private sum (the numerator) and a differentially private count (the denominator). By sequential composition and post-processing, the quotient of these two results satisfies differential privacy.</p>
-<p>Why do we do it this way? Because the amount the output of a mean query might change when a row is added to or removed from the dataset <em>depends on the size of the dataset</em>. If we want to bound the global sensitivity of a mean query, we have to assume the worst: a dataset of size 1. In this case, if the data attribute values lie between upper and lower bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, the global sensitivity of the mean is just <span class="math notranslate nohighlight">\(\lvert u - l \lvert\)</span>. For large datasets, this is <em>extremely</em> pessimistic, and the “noisy sum over noisy count” approach is much better.</p>
-<p>The situation is different for local sensitivity. In the worst case, we can add a new row to the dataset which contains the maximum value (<span class="math notranslate nohighlight">\(u\)</span>). Let <span class="math notranslate nohighlight">\(n = \lvert x \rvert\)</span> (i.e. the size of the dataset). We start with the value of the mean:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9bb07105-e611-43f4-853d-a47cc608ff53">
-<span class="eqno">(17)<a class="headerlink" href="#equation-9bb07105-e611-43f4-853d-a47cc608ff53" title="Permalink to this equation">#</a></span>\[\begin{align}
+<p>Why do we do it this way? Because the amount the output of a mean query might change when a row is added to or removed from the dataset <em>depends on the size of the dataset</em>. If we want to bound the global sensitivity of a mean query, we have to assume the worst: a dataset of size 1. In this case, if the data attribute values lie between upper and lower bounds $u$ and $l$, the global sensitivity of the mean is just $\lvert u - l \lvert$. For large datasets, this is <em>extremely</em> pessimistic, and the “noisy sum over noisy count” approach is much better.</p>
+<p>The situation is different for local sensitivity. In the worst case, we can add a new row to the dataset which contains the maximum value ($u$). Let $n = \lvert x \rvert$ (i.e. the size of the dataset). We start with the value of the mean:</p>
+<p>\begin{align}
 f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
-\end{align}\]</div>
+\end{align}</p>
 <p>Now we consider what happens when we add a row:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f80ef9c8-cadc-4fb7-878b-df1ec80288f6">
-<span class="eqno">(18)<a class="headerlink" href="#equation-f80ef9c8-cadc-4fb7-878b-df1ec80288f6" title="Permalink to this equation">#</a></span>\[\begin{align}
-\lvert f(x') - f(x) \rvert = &amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n} \bigg\rvert \\
-\leq&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n+1} \bigg\rvert \\
-=&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u - \sum_{i=1}^{n} x_i}{n+1}\bigg\rvert \\
-=&amp; \bigg\lvert \frac{u}{n+1} \bigg\rvert \\
-\end{align}\]</div>
+<p>\begin{align}
+\lvert f(x’) - f(x) \rvert = &amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n} \bigg\rvert \
+\leq&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n+1} \bigg\rvert \
+=&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u - \sum_{i=1}^{n} x_i}{n+1}\bigg\rvert \
+=&amp; \bigg\lvert \frac{u}{n+1} \bigg\rvert \
+\end{align}</p>
 <p>This local sensitivity measure is defined in terms of the actual dataset’s size, which is not possible under global sensitivity.</p>
 </section>
 <section id="achieving-differential-privacy-via-local-sensitivity">
-<h2>Achieving Differential Privacy via Local Sensitivity?<a class="headerlink" href="#achieving-differential-privacy-via-local-sensitivity" title="Permalink to this headline">#</a></h2>
-<p>We have defined an alternative measure of sensitivity - but how do we use it? Can we just use the Laplace mechanism, in the same way as we did with global sensitivity? Does the following definition of <span class="math notranslate nohighlight">\(F\)</span> satisfy <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy?</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1768e32d-11f9-41c6-a195-0bcd51a5f147">
-<span class="eqno">(19)<a class="headerlink" href="#equation-1768e32d-11f9-41c6-a195-0bcd51a5f147" title="Permalink to this equation">#</a></span>\[\begin{align}
+<h2>Achieving Differential Privacy via Local Sensitivity?<a class="headerlink" href="#achieving-differential-privacy-via-local-sensitivity" title="Permalink to this heading">#</a></h2>
+<p>We have defined an alternative measure of sensitivity - but how do we use it? Can we just use the Laplace mechanism, in the same way as we did with global sensitivity? Does the following definition of $F$ satisfy $\epsilon$-differential privacy?</p>
+<p>\begin{align}
 F(x) = f(x) + \mathsf{Lap}\left(\frac{LS(f,x)}{\epsilon}\right)
-\end{align}\]</div>
-<p>No! Unfortunately not. Since <span class="math notranslate nohighlight">\(LS(f, x)\)</span> itself depends on the dataset, if the analyst knows the local sensitivity of a query <em>at a particular dataset</em>, then the analyst may be able to infer some information about the dataset. It’s therefore <em>not possible</em> to use local sensitivity directly to achieve differential privacy. For example, consider the bound on local sensitivity for the mean, defined above. If we know the local sensitivity at a particular <span class="math notranslate nohighlight">\(x\)</span>, we can infer the exact size of <span class="math notranslate nohighlight">\(x\)</span> with <em>no noise</em>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-63dc0e36-2c68-4735-bc7e-7705d40b8481">
-<span class="eqno">(20)<a class="headerlink" href="#equation-63dc0e36-2c68-4735-bc7e-7705d40b8481" title="Permalink to this equation">#</a></span>\[\begin{align}
+\end{align}</p>
+<p>No! Unfortunately not. Since $LS(f, x)$ itself depends on the dataset, if the analyst knows the local sensitivity of a query <em>at a particular dataset</em>, then the analyst may be able to infer some information about the dataset. It’s therefore <em>not possible</em> to use local sensitivity directly to achieve differential privacy. For example, consider the bound on local sensitivity for the mean, defined above. If we know the local sensitivity at a particular $x$, we can infer the exact size of $x$ with <em>no noise</em>:</p>
+<p>\begin{align}
 \lvert x \rvert = \frac{b}{LS(f, x)} - 1
-\end{align}\]</div>
-<p>Moreover, keeping the local sensitivity secret from the analyst <em>doesn’t help either</em>. It’s possible to determine the scale of the noise from just a few query answers, and the analyst can use this value to infer the local sensitivity. Differential privacy is designed to protect the output of <span class="math notranslate nohighlight">\(f(x)\)</span> - <em>not</em> of the sensitivity measure used in its definition.</p>
+\end{align}</p>
+<p>Moreover, keeping the local sensitivity secret from the analyst <em>doesn’t help either</em>. It’s possible to determine the scale of the noise from just a few query answers, and the analyst can use this value to infer the local sensitivity. Differential privacy is designed to protect the output of $f(x)$ - <em>not</em> of the sensitivity measure used in its definition.</p>
 <p>Several approaches have been proposed for safely using local sensitivity. We’ll explore these in the rest of this section.</p>
 <p>With auxiliary data, this can tell us something really sensitive. What if our query is: “Average score of people named Joe in the dataset with a 98% on the exam”? Then the size of the thing being averaged is sensitive!!</p>
 </section>
 <section id="propose-test-release">
-<h2>Propose-test-release<a class="headerlink" href="#propose-test-release" title="Permalink to this headline">#</a></h2>
+<h2>Propose-test-release<a class="headerlink" href="#propose-test-release" title="Permalink to this heading">#</a></h2>
 <p>The primary problem with local sensitivity is that the sensitivity itself reveals something about the data. What if we make the <em>sensitivity itself</em> differentially private? This is challenging to do directly, as there’s often no finite bound on the global sensitivity of a function’s local sensitivity. However, we can ask a differentially private question that gets at this value indirectly.</p>
 <p>The <em>propose-test-release</em> framework <span id="id2">[<a class="reference internal" href="bibliography.html#id9" title="Cynthia Dwork and Jing Lei. Differential privacy and robust statistics. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 371–380. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536466, doi:10.1145/1536414.1536466.">9</a>]</span> takes this approach. The framework first asks the analyst to <em>propose</em> an upper bound on the local sensitivity of the function being applied. Then, the framework runs a differentially private <em>test</em> to check that the dataset being queried is “far from” a dataset where local sensitivity is higher than the proposed bound. If the test passes, the framework <em>releases</em> a noisy result, with the noise calibrated to the proposed bound.</p>
-<p>In order to answer the question of whether a dataset is “far from” one with high local sensitivity, we define the notion of <em>local sensitivity at distance <span class="math notranslate nohighlight">\(k\)</span></em>. We write <span class="math notranslate nohighlight">\(A(f, x, k)\)</span> to denote the maximum local sensitivity achievable for <span class="math notranslate nohighlight">\(f\)</span> by taking <span class="math notranslate nohighlight">\(k\)</span> steps away from the dataset <span class="math notranslate nohighlight">\(x\)</span>. Formally:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2949cd72-ec12-4f39-af96-7edac9fdf80a">
-<span class="eqno">(21)<a class="headerlink" href="#equation-2949cd72-ec12-4f39-af96-7edac9fdf80a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<p>In order to answer the question of whether a dataset is “far from” one with high local sensitivity, we define the notion of <em>local sensitivity at distance $k$</em>. We write $A(f, x, k)$ to denote the maximum local sensitivity achievable for $f$ by taking $k$ steps away from the dataset $x$. Formally:</p>
+<p>\begin{align}
 A(f,x,k) = \max_{y: d(x,y) \leq k} LS(f, y)
-\end{align}\]</div>
-<p>Now we’re ready to define a query to answer the question: “how many steps are needed to achieve a local sensitivity greater than a given upper bound <span class="math notranslate nohighlight">\(b\)</span>?”</p>
-<div class="amsmath math notranslate nohighlight" id="equation-02c65de9-dfee-4fb6-93b2-7b3212a862f6">
-<span class="eqno">(22)<a class="headerlink" href="#equation-02c65de9-dfee-4fb6-93b2-7b3212a862f6" title="Permalink to this equation">#</a></span>\[\begin{align}
+\end{align}</p>
+<p>Now we’re ready to define a query to answer the question: “how many steps are needed to achieve a local sensitivity greater than a given upper bound $b$?”</p>
+<p>\begin{align}
 D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
-\end{align}\]</div>
-<p>Finally, we define the propose-test-release framework (see <a class="reference external" href="https://arxiv.org/abs/1407.2988">Barthe et al.</a>, Figure 10), which satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy:</p>
+\end{align}</p>
+<p>Finally, we define the propose-test-release framework (see <a class="reference external" href="https://arxiv.org/abs/1407.2988">Barthe et al.</a>, Figure 10), which satisfies $(\epsilon, \delta)$-differential privacy:</p>
 <ol class="arabic simple">
-<li><p>Propose a target bound <span class="math notranslate nohighlight">\(b\)</span> on local sensitivity.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(D(f, x, b) + \mathsf{Lap}(\frac{1}{\epsilon}) &lt; \frac{\log(2/\delta)}{2\epsilon}\)</span>, return <span class="math notranslate nohighlight">\(\bot\)</span>.</p></li>
-<li><p>Return <span class="math notranslate nohighlight">\(f(x)+Lap(\frac{b}{\epsilon})\)</span></p></li>
+<li><p>Propose a target bound $b$ on local sensitivity.</p></li>
+<li><p>If $D(f, x, b) + \mathsf{Lap}(\frac{1}{\epsilon}) &lt; \frac{\log(2/\delta)}{2\epsilon}$, return $\bot$.</p></li>
+<li><p>Return $f(x)+Lap(\frac{b}{\epsilon})$</p></li>
 </ol>
-<p>Notice that <span class="math notranslate nohighlight">\(D(f,x,b)\)</span> has a <em>global</em> sensitivity of 1: adding or removing a row in <span class="math notranslate nohighlight">\(x\)</span> might change the distance to a “high” local sensitivity by 1. Thus, adding Laplace noise scaled to <span class="math notranslate nohighlight">\(\frac{1}{\epsilon}\)</span> yields a differentially private way to measure local sensitivity.</p>
-<p>Why does this approach satisfy <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy (and not pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy)? It’s because there’s a non-zero chance of <em>passing the test by accident</em>. The noise added in step 2 might be large enough to pass the test, even though the value of <span class="math notranslate nohighlight">\(D(f,x,b)\)</span> is actually <em>less</em> than the minimum distance required to satisfy differential privacy.</p>
+<p>Notice that $D(f,x,b)$ has a <em>global</em> sensitivity of 1: adding or removing a row in $x$ might change the distance to a “high” local sensitivity by 1. Thus, adding Laplace noise scaled to $\frac{1}{\epsilon}$ yields a differentially private way to measure local sensitivity.</p>
+<p>Why does this approach satisfy $(\epsilon, \delta)$-differential privacy (and not pure $\epsilon$-differential privacy)? It’s because there’s a non-zero chance of <em>passing the test by accident</em>. The noise added in step 2 might be large enough to pass the test, even though the value of $D(f,x,b)$ is actually <em>less</em> than the minimum distance required to satisfy differential privacy.</p>
 <p>This failure mode is much closer to the catastrophic failure we saw from the “catastrophe mechanism” - with non-zero probability, the propose-test-release framework allows releasing a query answer with <em>far</em> too little noise to satisfy differential privacy. On the other hand, it’s not nearly as bad as the catastrophe mechanism, since it never releases the answer with <em>no</em> noise.</p>
-<p>Also note that the privacy cost of the framework is <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span> <em>even if</em> it returns <span class="math notranslate nohighlight">\(\bot\)</span> (i.e. the privacy budget is consumed whether or not the analyst receives an answer).</p>
-<p>Let’s implement propose-test-release for our mean query. Recall that the local sensitivity for this query is <span class="math notranslate nohighlight">\(\big\lvert \frac{u}{n+1}\big\rvert\)</span>; the best way to increase this value is to make <span class="math notranslate nohighlight">\(n\)</span> smaller. If we take <span class="math notranslate nohighlight">\(k\)</span> steps from the dataset <span class="math notranslate nohighlight">\(x\)</span>, we can arrive at a local sensitivity of <span class="math notranslate nohighlight">\(\big\lvert \frac{u}{(n-k)+1}\big\rvert\)</span>. We can implement the framework in Python using the following code.</p>
+<p>Also note that the privacy cost of the framework is $(\epsilon, \delta)$ <em>even if</em> it returns $\bot$ (i.e. the privacy budget is consumed whether or not the analyst receives an answer).</p>
+<p>Let’s implement propose-test-release for our mean query. Recall that the local sensitivity for this query is $\big\lvert \frac{u}{n+1}\big\rvert$; the best way to increase this value is to make $n$ smaller. If we take $k$ steps from the dataset $x$, we can arrive at a local sensitivity of $\big\lvert \frac{u}{(n-k)+1}\big\rvert$. We can implement the framework in Python using the following code.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -552,10 +547,10 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Noisy distance is 12562.134879254656 and threshold is 10.73744412245554
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Noisy distance is 12561.320590719804 and threshold is 10.73744412245554
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.587685195335254
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.77183131355589
 </pre></div>
 </div>
 </div>
@@ -593,7 +588,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.5828594257159
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.774079960619005
 </pre></div>
 </div>
 </div>
@@ -618,21 +613,21 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/5b3fb4f36856946a1350d8511a8550a9119dc7637695372efb89d4a9d7f7d161.png" src="_images/5b3fb4f36856946a1350d8511a8550a9119dc7637695372efb89d4a9d7f7d161.png" />
+<img alt="_images/296ef56ad6867dc160ee073fc5a22630b60d15fea57251cfaa9ea0883ee39177.png" src="_images/296ef56ad6867dc160ee073fc5a22630b60d15fea57251cfaa9ea0883ee39177.png" />
 </div>
 </div>
 <p>We might do slightly better with propose-test-release, but it’s not a huge difference. Moreover, to use propose-test-release, the analyst has to propose a bound on sensitivity - and we’ve cheated by “magically” picking a decent value (0.005). In practice, the analyst would need to perform several queries to explore which values work - which will consume additional privacy budget.</p>
 </section>
 <section id="smooth-sensitivity">
-<h2>Smooth Sensitivity<a class="headerlink" href="#smooth-sensitivity" title="Permalink to this headline">#</a></h2>
-<p>Our second approach for leveraging local sensitivity is called <em>smooth sensitivity</em>, and is due to <a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim, Raskhodnikova, and Smith</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id8" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">8</a>]</span>. The <em>smooth sensitivity framework</em>, instantiated with Laplace noise, provides <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy:</p>
+<h2>Smooth Sensitivity<a class="headerlink" href="#smooth-sensitivity" title="Permalink to this heading">#</a></h2>
+<p>Our second approach for leveraging local sensitivity is called <em>smooth sensitivity</em>, and is due to <a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim, Raskhodnikova, and Smith</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id8" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">8</a>]</span>. The <em>smooth sensitivity framework</em>, instantiated with Laplace noise, provides $(\epsilon, \delta)$-differential privacy:</p>
 <ol class="arabic simple">
-<li><p>Set <span class="math notranslate nohighlight">\(\beta = \frac{\epsilon}{2\log(2/\delta)}\)</span></p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(S = \max_{k = 1, \dots, n} e^{-\beta k} A(f, x, k)\)</span></p></li>
-<li><p>Release <span class="math notranslate nohighlight">\(f(x) + \mathsf{Lap}\left(\frac{2S}{\epsilon}\right)\)</span></p></li>
+<li><p>Set $\beta = \frac{\epsilon}{2\log(2/\delta)}$</p></li>
+<li><p>Let $S = \max_{k = 1, \dots, n} e^{-\beta k} A(f, x, k)$</p></li>
+<li><p>Release $f(x) + \mathsf{Lap}\left(\frac{2S}{\epsilon}\right)$</p></li>
 </ol>
-<p>The idea behind smooth sensitivity is to use a “smooth” approximation of local sensitivity, rather than local sensitivity itself, to calibrate the noise. The amount of smoothing is designed to prevent the unintentional release of information about the dataset that can happen when local sensitivity is used directly. Step 2 above performs the smoothing: it scales the local sensitivity of nearby datasets by an exponential function of their distance from the actual dataset, then takes the maximum scaled local sensitivity. The effect is that if a spike in local sensitivity exists in the neighborhood of <span class="math notranslate nohighlight">\(x\)</span>, that spike will be reflected in the smooth sensitivity of <span class="math notranslate nohighlight">\(x\)</span> (and therefore the spike itself is “smoothed out,” and doesn’t reveal anything about the dataset).</p>
-<p>Smooth sensitivity has a significant advantage over propose-test-release: it doesn’t require the analyst to propose a bound on sensitivity. For the analyst, using smooth sensitivity is just as easy as using global sensitivity. However, smooth sensitivity has two major drawbacks. First, smooth sensitivity is always larger than local sensitivity (by at least a factor of 2 - see step 3), so it may require adding quite a bit more noise than alternative frameworks like propose-test-release (or even global sensitivity). Second, calculating smooth sensitivity requires finding the maximum smoothed-out sensitivity over <em>all</em> possible values for <span class="math notranslate nohighlight">\(k\)</span>, which can be extremely challenging computationally. In many cases, it’s possible to prove that considering a small number of values for <span class="math notranslate nohighlight">\(k\)</span> is sufficient (for many functions, the exponentially decaying <span class="math notranslate nohighlight">\(e^{-\beta k}\)</span> quickly overwhelms the growing value of <span class="math notranslate nohighlight">\(A(f, x, k)\)</span>), but such a property has to be proven for <em>each</em> function we want to use with smooth sensitivity.</p>
+<p>The idea behind smooth sensitivity is to use a “smooth” approximation of local sensitivity, rather than local sensitivity itself, to calibrate the noise. The amount of smoothing is designed to prevent the unintentional release of information about the dataset that can happen when local sensitivity is used directly. Step 2 above performs the smoothing: it scales the local sensitivity of nearby datasets by an exponential function of their distance from the actual dataset, then takes the maximum scaled local sensitivity. The effect is that if a spike in local sensitivity exists in the neighborhood of $x$, that spike will be reflected in the smooth sensitivity of $x$ (and therefore the spike itself is “smoothed out,” and doesn’t reveal anything about the dataset).</p>
+<p>Smooth sensitivity has a significant advantage over propose-test-release: it doesn’t require the analyst to propose a bound on sensitivity. For the analyst, using smooth sensitivity is just as easy as using global sensitivity. However, smooth sensitivity has two major drawbacks. First, smooth sensitivity is always larger than local sensitivity (by at least a factor of 2 - see step 3), so it may require adding quite a bit more noise than alternative frameworks like propose-test-release (or even global sensitivity). Second, calculating smooth sensitivity requires finding the maximum smoothed-out sensitivity over <em>all</em> possible values for $k$, which can be extremely challenging computationally. In many cases, it’s possible to prove that considering a small number of values for $k$ is sufficient (for many functions, the exponentially decaying $e^{-\beta k}$ quickly overwhelms the growing value of $A(f, x, k)$), but such a property has to be proven for <em>each</em> function we want to use with smooth sensitivity.</p>
 <p>As an example, let’s consider the smooth sensitivity of the mean query we defined earlier.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -668,21 +663,21 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <img alt="_images/042a1824c7125caaba47f3ad609337de89b8ff88578ebc69749051352eb4e70c.png" src="_images/042a1824c7125caaba47f3ad609337de89b8ff88578ebc69749051352eb4e70c.png" />
 </div>
 </div>
-<p>There are two things to notice here. First, even though we consider only values of <span class="math notranslate nohighlight">\(k\)</span> less than 200, it’s pretty clear that the smoothed-out local sensitivity of our mean query approaches 0 as <span class="math notranslate nohighlight">\(k\)</span> grows. In fact, for this case, the maximum occurs at <span class="math notranslate nohighlight">\(k=0\)</span>. This is true in many cases, but if we want to use smooth sensitivity, we have to <em>prove</em> it (which we won’t do here). Second, notice that the final sensitivity we’ll use for adding noise to the query’s answer is <em>higher</em> than the sensitivity we proposed earlier (under propose-test-release). It’s not a big difference, but it shows that it’s sometimes <em>possible</em> to achieve a lower sensitivity with propose-test-release than with smooth sensitivity.</p>
+<p>There are two things to notice here. First, even though we consider only values of $k$ less than 200, it’s pretty clear that the smoothed-out local sensitivity of our mean query approaches 0 as $k$ grows. In fact, for this case, the maximum occurs at $k=0$. This is true in many cases, but if we want to use smooth sensitivity, we have to <em>prove</em> it (which we won’t do here). Second, notice that the final sensitivity we’ll use for adding noise to the query’s answer is <em>higher</em> than the sensitivity we proposed earlier (under propose-test-release). It’s not a big difference, but it shows that it’s sometimes <em>possible</em> to achieve a lower sensitivity with propose-test-release than with smooth sensitivity.</p>
 </section>
 <section id="sample-and-aggregate">
-<h2>Sample and Aggregate<a class="headerlink" href="#sample-and-aggregate" title="Permalink to this headline">#</a></h2>
-<p>We’ll consider one last framework related to local sensitivity, called <em>sample and aggregate</em> (also due to <a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim, Raskhodnikova, and Smith</a> <span id="id4">[<a class="reference internal" href="bibliography.html#id8" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">8</a>]</span>). For any function <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span> and upper and lower clipping bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, the following framework satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
+<h2>Sample and Aggregate<a class="headerlink" href="#sample-and-aggregate" title="Permalink to this heading">#</a></h2>
+<p>We’ll consider one last framework related to local sensitivity, called <em>sample and aggregate</em> (also due to <a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim, Raskhodnikova, and Smith</a> <span id="id4">[<a class="reference internal" href="bibliography.html#id8" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">8</a>]</span>). For any function $f : D \rightarrow \mathbb{R}$ and upper and lower clipping bounds $u$ and $l$, the following framework satisfies $\epsilon$-differential privacy:</p>
 <ol class="arabic simple">
-<li><p>Split the dataset <span class="math notranslate nohighlight">\(X \in D\)</span> into <span class="math notranslate nohighlight">\(k\)</span> disjoint chunks <span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span></p></li>
-<li><p>Compute a clipped answer for each chunk: <span class="math notranslate nohighlight">\(a_i = \max(l, \min(u, f(x_i)))\)</span></p></li>
-<li><p>Compute a noisy average of the answers: <span class="math notranslate nohighlight">\(A = \left(\frac{1}{k} \sum_{i=1}^k a_i \right) + \mathsf{Lap}\left(\frac{u - l}{k\epsilon}\right)\)</span></p></li>
+<li><p>Split the dataset $X \in D$ into $k$ disjoint chunks $x_1, \dots, x_k$</p></li>
+<li><p>Compute a clipped answer for each chunk: $a_i = \max(l, \min(u, f(x_i)))$</p></li>
+<li><p>Compute a noisy average of the answers: $A = \left(\frac{1}{k} \sum_{i=1}^k a_i \right) + \mathsf{Lap}\left(\frac{u - l}{k\epsilon}\right)$</p></li>
 </ol>
-<p>Note that this framework satisfies pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, and it actually works <em>without</em> the use of local sensitivity. In fact, we don’t need to know <em>anything</em> about the sensitivity of <span class="math notranslate nohighlight">\(f\)</span> (global or local). We also don’t need to know anything about the chunks <span class="math notranslate nohighlight">\(x_i\)</span>, except that they’re disjoint. Often, they’re chosen randomly (“good” samples tend to result in higher accuracy), but they don’t need to be.</p>
-<p>The framework can be shown to satisfy differential privacy just by global sensitivity and parallel composition. We split the dataset into <span class="math notranslate nohighlight">\(k\)</span> distinct chunks, so each individual appears in exactly one chunk. We don’t know the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>, but we clip its output to lie between <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, so the sensitivity of each clipped answer <span class="math notranslate nohighlight">\(f(x_i)\)</span> is <span class="math notranslate nohighlight">\(u-l\)</span>. Since we take the mean of <span class="math notranslate nohighlight">\(k\)</span> invocations of <span class="math notranslate nohighlight">\(f\)</span>, the global sensitivity of the mean is <span class="math notranslate nohighlight">\(\frac{u-l}{k}\)</span>.</p>
-<p>Note that we’re claiming a bound on the global sensitivity of a mean <em>directly</em>, rather than splitting it into sum and count queries. We weren’t able to do this for “regular” mean queries, because the number of things being averaged in a “regular” mean query depends on the dataset. In this case, however, the number of items being averaged is <em>fixed</em> by the analyst, via the choice of <span class="math notranslate nohighlight">\(k\)</span> - it’s <em>independent</em> of the dataset. Mean queries like this one - where the number of things being averaged is fixed, and can be made public - can leverage this improved bound on global sensitivity.</p>
-<p>In this simple instantiation of the sample and aggregate framework, we ask the analyst to provide the upper and lower bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span> on the <em>output</em> of each <span class="math notranslate nohighlight">\(f(x_i)\)</span>. Depending on the definition of <span class="math notranslate nohighlight">\(f\)</span>, this might be <em>extremely</em> difficult to do well. In a counting query, for example, <span class="math notranslate nohighlight">\(f\)</span>’s output will depend directly on the dataset.</p>
-<p>More advanced instantiations have been proposed (<a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim, Raskhodnikova, and Smith</a> discuss some of these) which leverage local sensitivity to avoid asking the analyst for <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>. For some functions, however, bounding <span class="math notranslate nohighlight">\(f\)</span>’s output is easy - so this framework suffices. We’ll consider our example from above - the mean of ages within a dataset - with this property. The mean age of a population is highly likely to fall between 20 and 80, so it’s reasonable to set <span class="math notranslate nohighlight">\(l=20\)</span> and <span class="math notranslate nohighlight">\(u=80\)</span>. As long as our chunks <span class="math notranslate nohighlight">\(x_i\)</span> are each representative of the population, we’re not likely to lose much information with this setting.</p>
+<p>Note that this framework satisfies pure $\epsilon$-differential privacy, and it actually works <em>without</em> the use of local sensitivity. In fact, we don’t need to know <em>anything</em> about the sensitivity of $f$ (global or local). We also don’t need to know anything about the chunks $x_i$, except that they’re disjoint. Often, they’re chosen randomly (“good” samples tend to result in higher accuracy), but they don’t need to be.</p>
+<p>The framework can be shown to satisfy differential privacy just by global sensitivity and parallel composition. We split the dataset into $k$ distinct chunks, so each individual appears in exactly one chunk. We don’t know the sensitivity of $f$, but we clip its output to lie between $u$ and $l$, so the sensitivity of each clipped answer $f(x_i)$ is $u-l$. Since we take the mean of $k$ invocations of $f$, the global sensitivity of the mean is $\frac{u-l}{k}$.</p>
+<p>Note that we’re claiming a bound on the global sensitivity of a mean <em>directly</em>, rather than splitting it into sum and count queries. We weren’t able to do this for “regular” mean queries, because the number of things being averaged in a “regular” mean query depends on the dataset. In this case, however, the number of items being averaged is <em>fixed</em> by the analyst, via the choice of $k$ - it’s <em>independent</em> of the dataset. Mean queries like this one - where the number of things being averaged is fixed, and can be made public - can leverage this improved bound on global sensitivity.</p>
+<p>In this simple instantiation of the sample and aggregate framework, we ask the analyst to provide the upper and lower bounds $u$ and $l$ on the <em>output</em> of each $f(x_i)$. Depending on the definition of $f$, this might be <em>extremely</em> difficult to do well. In a counting query, for example, $f$’s output will depend directly on the dataset.</p>
+<p>More advanced instantiations have been proposed (<a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim, Raskhodnikova, and Smith</a> discuss some of these) which leverage local sensitivity to avoid asking the analyst for $u$ and $l$. For some functions, however, bounding $f$’s output is easy - so this framework suffices. We’ll consider our example from above - the mean of ages within a dataset - with this property. The mean age of a population is highly likely to fall between 20 and 80, so it’s reasonable to set $l=20$ and $u=80$. As long as our chunks $x_i$ are each representative of the population, we’re not likely to lose much information with this setting.</p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -724,14 +719,14 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chunk size: 55
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.65370852920855
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.61617886532688
 </pre></div>
 </div>
 </div>
 </details>
 </div>
-<p>The key parameter in this framework is the number of chunks, <span class="math notranslate nohighlight">\(k\)</span>. As <span class="math notranslate nohighlight">\(k\)</span> goes up, the sensitivity of the final noisy mean goes <em>down</em> - so more chunks means less noise. On the other hand, as <span class="math notranslate nohighlight">\(k\)</span> goes up, each chunk gets <em>smaller</em>, so each answer <span class="math notranslate nohighlight">\(f(x_i)\)</span> is less likely to be close to the “true” answer <span class="math notranslate nohighlight">\(f(X)\)</span>. In our example above, we’d like the average age within each chunk to be close to the average age of the whole dataset - and this is less likely to happen if each chunk contains only a handful of people.</p>
-<p>How should we set <span class="math notranslate nohighlight">\(k\)</span>? It depends on <span class="math notranslate nohighlight">\(f\)</span> and on the dataset, which makes it tricky. Let’s try various values of <span class="math notranslate nohighlight">\(k\)</span> for our mean query.</p>
+<p>The key parameter in this framework is the number of chunks, $k$. As $k$ goes up, the sensitivity of the final noisy mean goes <em>down</em> - so more chunks means less noise. On the other hand, as $k$ goes up, each chunk gets <em>smaller</em>, so each answer $f(x_i)$ is less likely to be close to the “true” answer $f(X)$. In our example above, we’d like the average age within each chunk to be close to the average age of the whole dataset - and this is less likely to happen if each chunk contains only a handful of people.</p>
+<p>How should we set $k$? It depends on $f$ and on the dataset, which makes it tricky. Let’s try various values of $k$ for our mean query.</p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -768,7 +763,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No handles with labels found to put in legend.
 </pre></div>
 </div>
-<img alt="_images/b4edf1b650a018eabe85859ef15c525af62e35fc16b00051d10e415cd20dc5c3.png" src="_images/b4edf1b650a018eabe85859ef15c525af62e35fc16b00051d10e415cd20dc5c3.png" />
+<img alt="_images/cb4b6cf17c2a4943ec7224b1bcd33a14880aaa631816ba8df47f8164ea57c867.png" src="_images/cb4b6cf17c2a4943ec7224b1bcd33a14880aaa631816ba8df47f8164ea57c867.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -791,7 +786,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No handles with labels found to put in legend.
 </pre></div>
 </div>
-<img alt="_images/889f0b86e188b295022154b77350b397d92a44217b57ce81456cb5b753851050.png" src="_images/889f0b86e188b295022154b77350b397d92a44217b57ce81456cb5b753851050.png" />
+<img alt="_images/4dc29b76ad8f8f02ea26b981f38cf86f739bf64c4b0fc1f3e5ffdf1417cd6404.png" src="_images/4dc29b76ad8f8f02ea26b981f38cf86f739bf64c4b0fc1f3e5ffdf1417cd6404.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -814,10 +809,10 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No handles with labels found to put in legend.
 </pre></div>
 </div>
-<img alt="_images/c6dc2d0e47f481b8681a9bfd9557485b6d23c77462a5efa8dd8b1e774ae7654a.png" src="_images/c6dc2d0e47f481b8681a9bfd9557485b6d23c77462a5efa8dd8b1e774ae7654a.png" />
+<img alt="_images/c44fe3183d6aa07da7debe132a59f07173bb0b474646543605a1831ae7858d76.png" src="_images/c44fe3183d6aa07da7debe132a59f07173bb0b474646543605a1831ae7858d76.png" />
 </div>
 </div>
-<p>So - sample and aggregate isn’t able to beat our global sensitivity-based approach, but it can get pretty close if you choose the right value for <span class="math notranslate nohighlight">\(k\)</span>. The big advantage is that sample and aggregate works for <em>any</em> function <span class="math notranslate nohighlight">\(f\)</span>, regardless of its sensitivity; if <span class="math notranslate nohighlight">\(f\)</span> is well-behaved, then it’s possible to obtain good accuracy from the framework. On the other hand, using sample and aggregate requires the analyst to set the clipping bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, and the number of chunks <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>So - sample and aggregate isn’t able to beat our global sensitivity-based approach, but it can get pretty close if you choose the right value for $k$. The big advantage is that sample and aggregate works for <em>any</em> function $f$, regardless of its sensitivity; if $f$ is well-behaved, then it’s possible to obtain good accuracy from the framework. On the other hand, using sample and aggregate requires the analyst to set the clipping bounds $u$ and $l$, and the number of chunks $k$.</p>
 </section>
 </section>
 
