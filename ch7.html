@@ -401,7 +401,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-sensitivity-of-the-mean">Local Sensitivity of the Mean</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#achieving-differential-privacy-via-local-sensitivity">Achieving Differential Privacy via Local Sensitivity?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propose-test-release">Propose-test-release</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propose-test-release">Propose-Test-Release</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smooth-sensitivity">Smooth Sensitivity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-and-aggregate">Sample and Aggregate</a></li>
 </ul>
@@ -444,13 +444,13 @@ LS(f, x) = \max_{x': d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 <p>Local sensitivity allows us to place finite bounds on the sensitivity of some functions whose global sensitivity is difficult to bound. The mean function is one example. So far, we’ve calculated differentially private means by splitting the query into two queries: a differentially private sum (the numerator) and a differentially private count (the denominator). By sequential composition and post-processing, the quotient of these two results satisfies differential privacy.</p>
 <p>Why do we do it this way? Because the amount the output of a mean query might change when a row is added to or removed from the dataset <em>depends on the size of the dataset</em>. If we want to bound the global sensitivity of a mean query, we have to assume the worst: a dataset of size 1. In this case, if the data attribute values lie between upper and lower bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, the global sensitivity of the mean is just <span class="math notranslate nohighlight">\(\lvert u - l \lvert\)</span>. For large datasets, this is <em>extremely</em> pessimistic, and the “noisy sum over noisy count” approach is much better.</p>
 <p>The situation is different for local sensitivity. In the worst case, we can add a new row to the dataset which contains the maximum value (<span class="math notranslate nohighlight">\(u\)</span>). Let <span class="math notranslate nohighlight">\(n = \lvert x \rvert\)</span> (i.e. the size of the dataset). We start with the value of the mean:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ce02bf70-eb37-4909-92d0-6088d7307fe8">
-<span class="eqno">(9)<a class="headerlink" href="#equation-ce02bf70-eb37-4909-92d0-6088d7307fe8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fc5a9017-7c3e-4ca1-bb11-056031461a1b">
+<span class="eqno">(9)<a class="headerlink" href="#equation-fc5a9017-7c3e-4ca1-bb11-056031461a1b" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 \end{align}\]</div>
 <p>Now we consider what happens when we add a row:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-deca013b-3c9a-4521-a33f-2aed6581510d">
-<span class="eqno">(10)<a class="headerlink" href="#equation-deca013b-3c9a-4521-a33f-2aed6581510d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c09b528a-d674-47ef-abbc-6ba52624b09e">
+<span class="eqno">(10)<a class="headerlink" href="#equation-c09b528a-d674-47ef-abbc-6ba52624b09e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert f(x') - f(x) \rvert = &amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n} \bigg\rvert \\
 \leq&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n+1} \bigg\rvert \\
 =&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u - \sum_{i=1}^{n} x_i}{n+1}\bigg\rvert \\
@@ -461,13 +461,13 @@ f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 <section id="achieving-differential-privacy-via-local-sensitivity">
 <h2>Achieving Differential Privacy via Local Sensitivity?<a class="headerlink" href="#achieving-differential-privacy-via-local-sensitivity" title="Permalink to this heading">#</a></h2>
 <p>We have defined an alternative measure of sensitivity - but how do we use it? Can we just use the Laplace mechanism, in the same way as we did with global sensitivity? Does the following definition of <span class="math notranslate nohighlight">\(F\)</span> satisfy <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy?</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f9068040-ca4b-4855-882c-b1c1fb687e0b">
-<span class="eqno">(11)<a class="headerlink" href="#equation-f9068040-ca4b-4855-882c-b1c1fb687e0b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d818fe47-af01-4a4d-8888-23adb7a9ec30">
+<span class="eqno">(11)<a class="headerlink" href="#equation-d818fe47-af01-4a4d-8888-23adb7a9ec30" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(x) = f(x) + \mathsf{Lap}\left(\frac{LS(f,x)}{\epsilon}\right)
 \end{align}\]</div>
 <p>No! Unfortunately not. Since <span class="math notranslate nohighlight">\(LS(f, x)\)</span> itself depends on the dataset, if the analyst knows the local sensitivity of a query <em>at a particular dataset</em>, then the analyst may be able to infer some information about the dataset. It’s therefore <em>not possible</em> to use local sensitivity directly to achieve differential privacy. For example, consider the bound on local sensitivity for the mean, defined above. If we know the local sensitivity at a particular <span class="math notranslate nohighlight">\(x\)</span>, we can infer the exact size of <span class="math notranslate nohighlight">\(x\)</span> with <em>no noise</em>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-67cedb39-3e23-4f37-985a-8e9a5a4ab101">
-<span class="eqno">(12)<a class="headerlink" href="#equation-67cedb39-3e23-4f37-985a-8e9a5a4ab101" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9d327100-05a2-4756-9156-a55dabb91675">
+<span class="eqno">(12)<a class="headerlink" href="#equation-9d327100-05a2-4756-9156-a55dabb91675" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert x \rvert = \frac{b}{LS(f, x)} - 1
 \end{align}\]</div>
 <p>Moreover, keeping the local sensitivity secret from the analyst <em>doesn’t help either</em>. It’s possible to determine the scale of the noise from just a few query answers, and the analyst can use this value to infer the local sensitivity. Differential privacy is designed to protect the output of <span class="math notranslate nohighlight">\(f(x)\)</span> - <em>not</em> of the sensitivity measure used in its definition.</p>
@@ -475,12 +475,12 @@ F(x) = f(x) + \mathsf{Lap}\left(\frac{LS(f,x)}{\epsilon}\right)
 <p>With auxiliary data, this can tell us something really sensitive. What if our query is: “Average score of people named Joe in the dataset with a 98% on the exam”? Then the size of the thing being averaged is sensitive!!</p>
 </section>
 <section id="propose-test-release">
-<h2>Propose-test-release<a class="headerlink" href="#propose-test-release" title="Permalink to this heading">#</a></h2>
+<h2>Propose-Test-Release<a class="headerlink" href="#propose-test-release" title="Permalink to this heading">#</a></h2>
 <p>The primary problem with local sensitivity is that the sensitivity itself reveals something about the data. What if we make the <em>sensitivity itself</em> differentially private? This is challenging to do directly, as there’s often no finite bound on the global sensitivity of a function’s local sensitivity. However, we can ask a differentially private question that gets at this value indirectly.</p>
 <p>The <em>propose-test-release</em> framework <span id="id2">[<a class="reference internal" href="bibliography.html#id9" title="Cynthia Dwork and Jing Lei. Differential privacy and robust statistics. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 371–380. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536466, doi:10.1145/1536414.1536466.">9</a>]</span> takes this approach. The framework first asks the analyst to <em>propose</em> an upper bound on the local sensitivity of the function being applied. Then, the framework runs a differentially private <em>test</em> to check that the dataset being queried is “far from” a dataset where local sensitivity is higher than the proposed bound. If the test passes, the framework <em>releases</em> a noisy result, with the noise calibrated to the proposed bound.</p>
 <p>In order to answer the question of whether a dataset is “far from” one with high local sensitivity, we define the notion of <em>local sensitivity at distance <span class="math notranslate nohighlight">\(k\)</span></em>. We write <span class="math notranslate nohighlight">\(A(f, x, k)\)</span> to denote the maximum local sensitivity achievable for <span class="math notranslate nohighlight">\(f\)</span> by taking <span class="math notranslate nohighlight">\(k\)</span> steps away from the dataset <span class="math notranslate nohighlight">\(x\)</span>. Formally:</p>
 <div class="proof definition admonition" id="k-steps">
-<p class="admonition-title"><span class="caption-number">Definition 16 </span></p>
+<p class="admonition-title"><span class="caption-number">Definition 16 </span> (Maximum Local Sensitivity)</p>
 <section class="definition-content" id="proof-content">
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -489,7 +489,7 @@ A(f,x,k) = \max_{y: d(x,y) \leq k} LS(f, y)
 </section>
 </div><p>Now we’re ready to define a query to answer the question: “how many steps are needed to achieve a local sensitivity greater than a given upper bound <span class="math notranslate nohighlight">\(b\)</span>?”</p>
 <div class="proof definition admonition" id="argmin">
-<p class="admonition-title"><span class="caption-number">Definition 17 </span></p>
+<p class="admonition-title"><span class="caption-number">Definition 17 </span> (Minimal Steps)</p>
 <section class="definition-content" id="proof-content">
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -572,10 +572,10 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Noisy distance is 12561.529748753746 and threshold is 10.73744412245554
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Noisy distance is 12561.711859915627 and threshold is 10.73744412245554
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.76928342048699
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.77172553738761
 </pre></div>
 </div>
 </div>
@@ -613,7 +613,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.78418068754011
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.75876882298998
 </pre></div>
 </div>
 </div>
@@ -638,7 +638,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/0ac668904027d22405c0d6840bd26e1f885a48b0feef8b91cef0e4cd1838a62a.png" src="_images/0ac668904027d22405c0d6840bd26e1f885a48b0feef8b91cef0e4cd1838a62a.png" />
+<img alt="_images/859dab7d1526257ca960074ca8e16996edda302feb31da811ea2021ab936e81c.png" src="_images/859dab7d1526257ca960074ca8e16996edda302feb31da811ea2021ab936e81c.png" />
 </div>
 </div>
 <p>We might do slightly better with propose-test-release, but it’s not a huge difference. Moreover, to use propose-test-release, the analyst has to propose a bound on sensitivity - and we’ve cheated by “magically” picking a decent value (0.005). In practice, the analyst would need to perform several queries to explore which values work - which will consume additional privacy budget.</p>
@@ -752,7 +752,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chunk size: 55
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.70204591949579
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.70704634068418
 </pre></div>
 </div>
 </div>
@@ -796,7 +796,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No handles with labels found to put in legend.
 </pre></div>
 </div>
-<img alt="_images/789b392be6660799e0c4541f56fc9849138bd044298caa5a540392e88f3390fa.png" src="_images/789b392be6660799e0c4541f56fc9849138bd044298caa5a540392e88f3390fa.png" />
+<img alt="_images/90525117604ce0c01bb8061bbc6859c108bc27a54b99c1629e80265c6b3fbea8.png" src="_images/90525117604ce0c01bb8061bbc6859c108bc27a54b99c1629e80265c6b3fbea8.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -819,7 +819,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No handles with labels found to put in legend.
 </pre></div>
 </div>
-<img alt="_images/d4c996c402efaf06169932542e2a119be4a312846a67f81ffb0b650e5f634054.png" src="_images/d4c996c402efaf06169932542e2a119be4a312846a67f81ffb0b650e5f634054.png" />
+<img alt="_images/5cb139c7f21d76ec5159108d77ba985436a3a33f72b107a0014022b3294f8424.png" src="_images/5cb139c7f21d76ec5159108d77ba985436a3a33f72b107a0014022b3294f8424.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -842,7 +842,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No handles with labels found to put in legend.
 </pre></div>
 </div>
-<img alt="_images/88e46d10ab0f1499504ba6ecf2099d58cae34889f067de724affbf1bfdcdf329.png" src="_images/88e46d10ab0f1499504ba6ecf2099d58cae34889f067de724affbf1bfdcdf329.png" />
+<img alt="_images/384bd6e5c49f6b9d0e9e242ed87edad91be2bf4a4f6ea1994539f80b85a15be2.png" src="_images/384bd6e5c49f6b9d0e9e242ed87edad91be2bf4a4f6ea1994539f80b85a15be2.png" />
 </div>
 </div>
 <p>So - sample and aggregate isn’t able to beat our global sensitivity-based approach, but it can get pretty close if you choose the right value for <span class="math notranslate nohighlight">\(k\)</span>. The big advantage is that sample and aggregate works for <em>any</em> function <span class="math notranslate nohighlight">\(f\)</span>, regardless of its sensitivity; if <span class="math notranslate nohighlight">\(f\)</span> is well-behaved, then it’s possible to obtain good accuracy from the framework. On the other hand, using sample and aggregate requires the analyst to set the clipping bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, and the number of chunks <span class="math notranslate nohighlight">\(k\)</span>.</p>
@@ -914,7 +914,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-sensitivity-of-the-mean">Local Sensitivity of the Mean</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#achieving-differential-privacy-via-local-sensitivity">Achieving Differential Privacy via Local Sensitivity?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propose-test-release">Propose-test-release</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propose-test-release">Propose-Test-Release</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smooth-sensitivity">Smooth Sensitivity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-and-aggregate">Sample and Aggregate</a></li>
 </ul>
