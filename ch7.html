@@ -431,7 +431,7 @@ document.write(`
 <p>So far, we have seen only one measure of sensitivity: global sensitivity. Our definition for global sensitivity considers <em>any</em> two neighboring datasets. This seems pessimistic, since we’re going to run our differentially private mechanisms on an <em>actual</em> dataset - shouldn’t we consider neighbors of <em>that</em> dataset?</p>
 <p>This is the intuition behind <em>local sensitivity</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id8" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">8</a>]</span>: fix one of the two datasets to be the <em>actual</em> dataset being queried, and consider all of its neighbors. Formally, the local sensitivity of a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span> at <span class="math notranslate nohighlight">\(x : \mathcal{D}\)</span> is defined as:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-afc61172-07f4-4c53-b321-98ce05e7acae">
-<span class="eqno">(15)<a class="headerlink" href="#equation-afc61172-07f4-4c53-b321-98ce05e7acae" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(11)<a class="headerlink" href="#equation-afc61172-07f4-4c53-b321-98ce05e7acae" title="Permalink to this equation">#</a></span>\[\begin{align}
 LS(f, x) = \max_{x': d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>Notice that local sensitivity is a function of both the query (<span class="math notranslate nohighlight">\(f\)</span>) and the <em>actual</em> dataset (<span class="math notranslate nohighlight">\(x\)</span>). Unlike in the case of global sensitivity, we can’t talk about the local sensitivity of a function without also considering the dataset <em>at which</em> that local sensitivity occurs.</p>
@@ -441,12 +441,12 @@ LS(f, x) = \max_{x': d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 <p>Why do we do it this way? Because the amount the output of a mean query might change when a row is added to or removed from the dataset <em>depends on the size of the dataset</em>. If we want to bound the global sensitivity of a mean query, we have to assume the worst: a dataset of size 1. In this case, if the data attribute values lie between upper and lower bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, the global sensitivity of the mean is just <span class="math notranslate nohighlight">\(\lvert u - l \lvert\)</span>. For large datasets, this is <em>extremely</em> pessimistic, and the “noisy sum over noisy count” approach is much better.</p>
 <p>The situation is different for local sensitivity. In the worst case, we can add a new row to the dataset which contains the maximum value (<span class="math notranslate nohighlight">\(u\)</span>). Let <span class="math notranslate nohighlight">\(n = \lvert x \rvert\)</span> (i.e. the size of the dataset). We start with the value of the mean:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-2b65ad04-a2b3-4013-8ff0-4ccb40ef152a">
-<span class="eqno">(16)<a class="headerlink" href="#equation-2b65ad04-a2b3-4013-8ff0-4ccb40ef152a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(12)<a class="headerlink" href="#equation-2b65ad04-a2b3-4013-8ff0-4ccb40ef152a" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 \end{align}\]</div>
 <p>Now we consider what happens when we add a row:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-df1e2a6e-8058-4495-bb7f-919292ff87a2">
-<span class="eqno">(17)<a class="headerlink" href="#equation-df1e2a6e-8058-4495-bb7f-919292ff87a2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(13)<a class="headerlink" href="#equation-df1e2a6e-8058-4495-bb7f-919292ff87a2" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert f(x') - f(x) \rvert = &amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n} \bigg\rvert \\
 \leq&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n+1} \bigg\rvert \\
 =&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u - \sum_{i=1}^{n} x_i}{n+1}\bigg\rvert \\
@@ -458,12 +458,12 @@ f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 <h2>Achieving Differential Privacy via Local Sensitivity?<a class="headerlink" href="#achieving-differential-privacy-via-local-sensitivity" title="Permalink to this heading">#</a></h2>
 <p>We have defined an alternative measure of sensitivity - but how do we use it? Can we just use the Laplace mechanism, in the same way as we did with global sensitivity? Does the following definition of <span class="math notranslate nohighlight">\(F\)</span> satisfy <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy?</p>
 <div class="amsmath math notranslate nohighlight" id="equation-66877ff7-cd79-4814-9df9-5ad84ae5e745">
-<span class="eqno">(18)<a class="headerlink" href="#equation-66877ff7-cd79-4814-9df9-5ad84ae5e745" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(14)<a class="headerlink" href="#equation-66877ff7-cd79-4814-9df9-5ad84ae5e745" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(x) = f(x) + \mathsf{Lap}\left(\frac{LS(f,x)}{\epsilon}\right)
 \end{align}\]</div>
 <p>No! Unfortunately not. Since <span class="math notranslate nohighlight">\(LS(f, x)\)</span> itself depends on the dataset, if the analyst knows the local sensitivity of a query <em>at a particular dataset</em>, then the analyst may be able to infer some information about the dataset. It’s therefore <em>not possible</em> to use local sensitivity directly to achieve differential privacy. For example, consider the bound on local sensitivity for the mean, defined above. If we know the local sensitivity at a particular <span class="math notranslate nohighlight">\(x\)</span>, we can infer the exact size of <span class="math notranslate nohighlight">\(x\)</span> with <em>no noise</em>:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-0958919a-75ed-4d34-a3cf-ebf33ddad15c">
-<span class="eqno">(19)<a class="headerlink" href="#equation-0958919a-75ed-4d34-a3cf-ebf33ddad15c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(15)<a class="headerlink" href="#equation-0958919a-75ed-4d34-a3cf-ebf33ddad15c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert x \rvert = \frac{b}{LS(f, x)} - 1
 \end{align}\]</div>
 <p>Moreover, keeping the local sensitivity secret from the analyst <em>doesn’t help either</em>. It’s possible to determine the scale of the noise from just a few query answers, and the analyst can use this value to infer the local sensitivity. Differential privacy is designed to protect the output of <span class="math notranslate nohighlight">\(f(x)\)</span> - <em>not</em> of the sensitivity measure used in its definition.</p>
@@ -476,12 +476,12 @@ F(x) = f(x) + \mathsf{Lap}\left(\frac{LS(f,x)}{\epsilon}\right)
 <p>The <em>propose-test-release</em> framework <span id="id2">[<a class="reference internal" href="bibliography.html#id9" title="Cynthia Dwork and Jing Lei. Differential privacy and robust statistics. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 371–380. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536466, doi:10.1145/1536414.1536466.">9</a>]</span> takes this approach. The framework first asks the analyst to <em>propose</em> an upper bound on the local sensitivity of the function being applied. Then, the framework runs a differentially private <em>test</em> to check that the dataset being queried is “far from” a dataset where local sensitivity is higher than the proposed bound. If the test passes, the framework <em>releases</em> a noisy result, with the noise calibrated to the proposed bound.</p>
 <p>In order to answer the question of whether a dataset is “far from” one with high local sensitivity, we define the notion of <em>local sensitivity at distance <span class="math notranslate nohighlight">\(k\)</span></em>. We write <span class="math notranslate nohighlight">\(A(f, x, k)\)</span> to denote the maximum local sensitivity achievable for <span class="math notranslate nohighlight">\(f\)</span> by taking <span class="math notranslate nohighlight">\(k\)</span> steps away from the dataset <span class="math notranslate nohighlight">\(x\)</span>. Formally:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-5e1165dc-14fd-45cf-b414-222ad1fc4ab2">
-<span class="eqno">(20)<a class="headerlink" href="#equation-5e1165dc-14fd-45cf-b414-222ad1fc4ab2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(16)<a class="headerlink" href="#equation-5e1165dc-14fd-45cf-b414-222ad1fc4ab2" title="Permalink to this equation">#</a></span>\[\begin{align}
 A(f,x,k) = \max_{y: d(x,y) \leq k} LS(f, y)
 \end{align}\]</div>
 <p>Now we’re ready to define a query to answer the question: “how many steps are needed to achieve a local sensitivity greater than a given upper bound <span class="math notranslate nohighlight">\(b\)</span>?”</p>
 <div class="amsmath math notranslate nohighlight" id="equation-4437c06b-b8e7-4ec4-beaa-01ef97893b21">
-<span class="eqno">(21)<a class="headerlink" href="#equation-4437c06b-b8e7-4ec4-beaa-01ef97893b21" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(17)<a class="headerlink" href="#equation-4437c06b-b8e7-4ec4-beaa-01ef97893b21" title="Permalink to this equation">#</a></span>\[\begin{align}
 D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 \end{align}\]</div>
 <p>Finally, we define the propose-test-release framework (see <a class="reference external" href="https://arxiv.org/abs/1407.2988">Barthe et al.</a>, Figure 10), which satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy:</p>
