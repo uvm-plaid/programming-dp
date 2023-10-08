@@ -427,7 +427,7 @@ document.write(`
 <p>The fundamental mechanisms we have seen so far (Laplace and Gaussian) are focused on numerical answers, and add noise directly to the answer itself. What if we want to return a precise answer (i.e. no added noise), but still preserve differential privacy? One solution is the exponential mechanism <span id="id1">[<a class="reference internal" href="bibliography.html#id15" title="Frank McSherry and Kunal Talwar. Mechanism design via differential privacy. In 48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07), volume, 94-103. 2007. doi:10.1109/FOCS.2007.66.">12</a>]</span>, which allows selecting the “best” element from a set while preserving differential privacy.</p>
 <p>The analyst defines which element is the “best” by specifying a <em>scoring function</em> that outputs a score for each element in the set, and also defines the set of things to pick from. The mechanism provides differential privacy by <em>approximately</em> maximizing the score of the element it returns - in other words, to satisfy differential privacy, the exponential mechanism sometimes returns an element from the set which does <em>not</em> have the highest score.</p>
 <div class="proof theorem admonition" id="theorem-0">
-<p class="admonition-title"><span class="caption-number">Theorem 9 </span> (Exponential-Mechanism)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 9 </span> (Exponential Mechanism)</p>
 <section class="theorem-content" id="proof-content">
 <p>The exponential mechanism satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
 <ol class="arabic simple">
@@ -435,8 +435,8 @@ document.write(`
 <li><p>The analyst specifies a scoring function <span class="math notranslate nohighlight">\(u : \mathcal{D} \times \mathcal{R} \rightarrow \mathbb{R}\)</span> with global sensitivity <span class="math notranslate nohighlight">\(\Delta u\)</span></p></li>
 <li><p>The exponential mechanism outputs <span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span> with probability proportional to:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-b4499599-fc8f-4b5e-bf53-a33b67d1649c">
-<span class="eqno">(17)<a class="headerlink" href="#equation-b4499599-fc8f-4b5e-bf53-a33b67d1649c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b47d2245-4e37-4913-81e1-24e3aa1ad0f3">
+<span class="eqno">(17)<a class="headerlink" href="#equation-b47d2245-4e37-4913-81e1-24e3aa1ad0f3" title="Permalink to this equation">#</a></span>\[\begin{align}
 \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)
 \end{align}\]</div>
 </section>
@@ -502,10 +502,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    184
-Never-married          10
-Divorced                4
-Widowed                 2
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    173
+Never-married          26
+Divorced                1
 dtype: int64
 </pre></div>
 </div>
@@ -572,14 +571,14 @@ dtype: int64
 <h2>The Exponential Mechanism as Fundamental Mechanism for Differential Privacy<a class="headerlink" href="#the-exponential-mechanism-as-fundamental-mechanism-for-differential-privacy" title="Permalink to this heading">#</a></h2>
 <p>We’ve seen that it’s not possible to recover the exponential mechanism using the Laplace mechanism plus sequential composition, because we can’t capture the fact that the algorithm we designed doesn’t release all of the noisy scores. What about the reverse - can we recover the Laplace mechanism from the exponential mechanism? It turns out that we can!</p>
 <p>Consider a query <span class="math notranslate nohighlight">\(q(x) : \mathcal{D} \rightarrow \mathbb{R}\)</span> with sensitivity <span class="math notranslate nohighlight">\(\Delta q\)</span>. We can release an <span class="math notranslate nohighlight">\(\epsilon\)</span>-differentially private answer by adding Laplace noise: <span class="math notranslate nohighlight">\(F(x) = q(x) + \mathsf{Lap}(\Delta q / \epsilon)\)</span>. The probability density function for this differentially private version of <span class="math notranslate nohighlight">\(q\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2337cf52-8f44-4e4d-93c0-ed94b081f76f">
-<span class="eqno">(18)<a class="headerlink" href="#equation-2337cf52-8f44-4e4d-93c0-ed94b081f76f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-701403e7-76d8-4de6-af25-5cfd951a16c3">
+<span class="eqno">(18)<a class="headerlink" href="#equation-701403e7-76d8-4de6-af25-5cfd951a16c3" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp; \frac{1}{2b} \exp\Big(- \frac{\lvert r - \mu \rvert}{b}\Big)\\
 =&amp; \frac{\epsilon}{2 \Delta q} \exp\Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q}\Big)
 \end{align}\]</div>
 <p>Consider what happens when we set the scoring function for the exponential mechanism to <span class="math notranslate nohighlight">\(u(x, r) = -2 \lvert q(x) - r \rvert\)</span>. The exponential mechanism says that we should sample from the probability distribution proportional to:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7c482f8f-83a7-455c-b1e7-1d97cb011d79">
-<span class="eqno">(19)<a class="headerlink" href="#equation-7c482f8f-83a7-455c-b1e7-1d97cb011d79" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b304283f-723b-4310-a436-34c755f5a7c9">
+<span class="eqno">(19)<a class="headerlink" href="#equation-b304283f-723b-4310-a436-34c755f5a7c9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp;\; \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)\\
 &amp;= \exp \Big(\frac{\epsilon (-2 \lvert q(x) - r \rvert)}{2 \Delta q} \Big)\\
 &amp;= \exp \Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q} \Big)\\

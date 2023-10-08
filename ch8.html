@@ -468,8 +468,8 @@ document.write(`
 </div>
 <p>The two lines overlap <em>completely</em>. This means that no matter how many queries we’re running, under <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, we can’t do any better than sequential composition. That’s because sequential composition is just as good as vectorizing the query, effectively converting it to a single query without involving composition, and we can’t do any better than that.</p>
 <p>What about <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy? The story is a little different there. In the sequential composition case, we can use advanced composition; we have to be a little careful to ensure that the total privacy cost is exactly <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>. Specifically, we set <span class="math notranslate nohighlight">\(\epsilon_i = \frac{\epsilon}{2 \sqrt{2k \log(1/\delta')}}\)</span>, <span class="math notranslate nohighlight">\(\delta_i = \frac{\delta}{2k}\)</span>, and <span class="math notranslate nohighlight">\(\delta' = \frac{\delta}{2}\)</span> (splitting <span class="math notranslate nohighlight">\(\delta\)</span> to go 50% towards the queries, and 50% towards advanced composition). By advanced composition, the total privacy cost for all <span class="math notranslate nohighlight">\(k\)</span> queries is <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>. The scale of the noise, by the Gaussian mechanism, is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-15801e2b-120a-4e5b-b737-6730f57a3a71">
-<span class="eqno">(13)<a class="headerlink" href="#equation-15801e2b-120a-4e5b-b737-6730f57a3a71" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0e8eeddb-631d-4d63-b30c-606d81d3afac">
+<span class="eqno">(13)<a class="headerlink" href="#equation-0e8eeddb-631d-4d63-b30c-606d81d3afac" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sigma^2 =&amp; \frac{2 \log\left(\frac{1.25}{\delta_i}\right)}{\epsilon_i^2}\\
  =&amp; \frac{16 k \log\left(\frac{1}{\delta'}\right) \log\left(\frac{1.25}{\delta_i}\right)}{\epsilon^2}\\
  =&amp; \frac{16 k \log\left(\frac{2}{\delta}\right) \log\left(\frac{2.5 k}{\delta}\right)}{\epsilon^2}\\
@@ -513,7 +513,7 @@ document.write(`
 <h2>Max Divergence and Rényi Divergence<a class="headerlink" href="#max-divergence-and-renyi-divergence" title="Permalink to this heading">#</a></h2>
 <p>It turns out that the definition of differential privacy can be stated directly in terms of something called <em>max divergence</em>. In statistics, a <a class="reference external" href="https://en.wikipedia.org/wiki/Divergence_(statistics)"><em>divergence</em></a> is a way of measuring the distance between two probability distributions - which is exactly what we want to do for differential privacy. The <em>max divergence</em> is the worst-case analog of the <a class="reference external" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback–Leibler divergence</a>, one of the most common such measures. The max divergence between two probability distributions <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> is defined to be:</p>
 <div class="proof definition admonition" id="max-divergence">
-<p class="admonition-title"><span class="caption-number">Definition 21 </span></p>
+<p class="admonition-title"><span class="caption-number">Definition 21 </span> (Max Divergence)</p>
 <section class="definition-content" id="proof-content">
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -521,13 +521,13 @@ D_\infty(Y \Vert Z) = \max_{S \subseteq \text{Supp}(Y)} \Big[\log \frac{Pr[Y \in
 \end{align*}\]</div>
 </section>
 </div><p>This already looks a lot like the condition for <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy! In particular, it turns out that <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy if:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d6b96840-bad2-4d8a-974b-502f681b111f">
-<span class="eqno">(14)<a class="headerlink" href="#equation-d6b96840-bad2-4d8a-974b-502f681b111f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a966836d-23a4-443d-9251-9a4d090d3628">
+<span class="eqno">(14)<a class="headerlink" href="#equation-a966836d-23a4-443d-9251-9a4d090d3628" title="Permalink to this equation">#</a></span>\[\begin{align}
 D_\infty(F(x) \Vert F(x') \leq \epsilon
 \end{align}\]</div>
 <p>An interesting direction for research in differential privacy is the exploration of alternative privacy definitions in terms of other divergences. Of these, the <a class="reference external" href="https://en.wikipedia.org/wiki/R%C3%A9nyi_entropy#R%C3%A9nyi_divergence">Rényi divergence</a> is particularly interesting, since it also (like max divergence) allows us to recover the original definition of differential privacy. The Rényi divergence of order <span class="math notranslate nohighlight">\(\alpha\)</span> between probability distributions <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> is defined as (where <span class="math notranslate nohighlight">\(P(x)\)</span> and <span class="math notranslate nohighlight">\(Q(x)\)</span> denote the probability density of <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> at point <span class="math notranslate nohighlight">\(x\)</span>, respectively):</p>
 <div class="proof definition admonition" id="renyi-divergence">
-<p class="admonition-title"><span class="caption-number">Definition 22 </span></p>
+<p class="admonition-title"><span class="caption-number">Definition 22 </span> (Renyi Divergence)</p>
 <section class="definition-content" id="proof-content">
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -539,15 +539,15 @@ D_\alpha(P \Vert Q) = \frac{1}{\alpha - 1} \log E_{x \sim Q} \Big(\frac{P(x)}{Q(
 <section id="renyi-differential-privacy">
 <h2>Rényi Differential Privacy<a class="headerlink" href="#renyi-differential-privacy" title="Permalink to this heading">#</a></h2>
 <p>In 2017, Ilya Mironov proposed <a class="reference external" href="https://arxiv.org/abs/1702.07476">Rényi differential privacy (RDP)</a> <span id="id1">[<a class="reference internal" href="bibliography.html#id13" title="Ilya Mironov. Renyi differential privacy. In Computer Security Foundations Symposium (CSF), 2017 IEEE 30th, 263–275. IEEE, 2017.">10</a>]</span>. A randomized mechanism <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP if for all neighboring datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-9e83029c-c3bd-4f17-a912-1eebbdf011c1">
-<span class="eqno">(15)<a class="headerlink" href="#equation-9e83029c-c3bd-4f17-a912-1eebbdf011c1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c0b73214-f4c2-4c6c-9e3a-641d93bc331a">
+<span class="eqno">(15)<a class="headerlink" href="#equation-c0b73214-f4c2-4c6c-9e3a-641d93bc331a" title="Permalink to this equation">#</a></span>\[\begin{align}
 D_\alpha(F(x) \Vert F(x')) \leq \bar{\epsilon}
 \end{align}\]</div>
 <p>In other words, RDP requires that the Rényi divergence of order <span class="math notranslate nohighlight">\(\alpha\)</span> between <span class="math notranslate nohighlight">\(F(x)\)</span> and <span class="math notranslate nohighlight">\(F(x')\)</span> to be bounded by <span class="math notranslate nohighlight">\(\bar{\epsilon}\)</span>. Note that we’ll use <span class="math notranslate nohighlight">\(\bar{\epsilon}\)</span> to denote the <span class="math notranslate nohighlight">\(\epsilon\)</span> parameter of RDP, in order to distinguish it from the <span class="math notranslate nohighlight">\(\epsilon\)</span> in pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy and <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy.</p>
 <p>A key property of Rényi differential privacy is that a mechanism which satisfies RDP also satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy. Specifically, if <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP, then for <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span>, <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy for <span class="math notranslate nohighlight">\(\epsilon = \bar{\epsilon} + \frac{\log(1/\delta)}{\alpha - 1}\)</span>. The analyst is free to pick any value of <span class="math notranslate nohighlight">\(\delta\)</span>; a meaningful value (e.g. <span class="math notranslate nohighlight">\(\delta \leq \frac{1}{n^2}\)</span>) should be picked in practice.</p>
 <p>The basic mechanism for achieving Rényi differential privacy is the Gaussian mechanism. Specifically, for a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}^k\)</span> with <span class="math notranslate nohighlight">\(L2\)</span> sensitivity <span class="math notranslate nohighlight">\(\Delta f\)</span>, the following mechanism satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP:</p>
 <div class="proof definition admonition" id="renyi-gauss">
-<p class="admonition-title"><span class="caption-number">Definition 23 </span></p>
+<p class="admonition-title"><span class="caption-number">Definition 23 </span> (Renyi Gaussian)</p>
 <section class="definition-content" id="proof-content">
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -581,14 +581,14 @@ F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2 \
 <section id="zero-concentrated-differential-privacy">
 <h2>Zero-Concentrated Differential Privacy<a class="headerlink" href="#zero-concentrated-differential-privacy" title="Permalink to this heading">#</a></h2>
 <p>In concurrent work released in 2016, Mark Bun and Thomas Steinke proposed <a class="reference external" href="https://arxiv.org/abs/1605.02065">zero-concentrated differential privacy (zCDP)</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id14" title="Mark Bun and Thomas Steinke. Concentrated differential privacy: simplifications, extensions, and lower bounds. In Theory of Cryptography Conference, 635–658. Springer, 2016.">11</a>]</span>. Like RDP, zCDP is defined in terms of the Rényi divergence, but it includes only a single privacy parameter (<span class="math notranslate nohighlight">\(\rho\)</span>). A randomized mechanism <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP if for all neighboring datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all <span class="math notranslate nohighlight">\(\alpha \in (1, \infty)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-829a6b6c-c62a-42a9-a66b-73d1063448b5">
-<span class="eqno">(16)<a class="headerlink" href="#equation-829a6b6c-c62a-42a9-a66b-73d1063448b5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-60e9d83c-4523-4fda-b423-bf5db820bcb1">
+<span class="eqno">(16)<a class="headerlink" href="#equation-60e9d83c-4523-4fda-b423-bf5db820bcb1" title="Permalink to this equation">#</a></span>\[\begin{align}
 D_\alpha (F(x) \Vert F(x')) \leq \rho\alpha
 \end{align}\]</div>
 <p>This is a stronger requirement than RDP, because it restricts the Rényi divergence of many orders; however, the bound becomes more relaxed as <span class="math notranslate nohighlight">\(\alpha\)</span> grows. Like RDP, zCDP can be converted to <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy: if <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP, then for <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span>, <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy for <span class="math notranslate nohighlight">\(\epsilon = \rho + 2\sqrt{\rho \log(1/\delta)}\)</span>.</p>
 <p>zCDP is also similar to RDP in that the Gaussian mechanism can be used as a basic mechanism. Specifically, for a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}^k\)</span> with <span class="math notranslate nohighlight">\(L2\)</span> sensitivity <span class="math notranslate nohighlight">\(\Delta f\)</span>, the following mechanism satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP:</p>
 <div class="proof definition admonition" id="zcpd">
-<p class="admonition-title"><span class="caption-number">Definition 24 </span></p>
+<p class="admonition-title"><span class="caption-number">Definition 24 </span> (zCDP Gaussian)</p>
 <section class="definition-content" id="proof-content">
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -607,7 +607,7 @@ F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2}{
 </div>
 <p>In another similarity with RDP, zCDP’s sequential composition is also asymptotically tight for repeated applications of the Gaussian mechanism. It’s also very simple: the <span class="math notranslate nohighlight">\(\rho\)</span>s add up. Specifically:</p>
 <div class="proof theorem admonition" id="zcpd-parallel-composition">
-<p class="admonition-title"><span class="caption-number">Theorem 8 </span> (zCDP-Sequential-Composition)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 8 </span> (zCDP Sequential Composition)</p>
 <section class="theorem-content" id="proof-content">
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(F_1\)</span> satisfies <span class="math notranslate nohighlight">\(\rho_1\)</span>-zCDP</p></li>
