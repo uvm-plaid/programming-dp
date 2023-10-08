@@ -428,12 +428,16 @@ document.write(`
 <li><p>Determine when the use of parallel composition is allowed</p></li>
 </ul>
 </div>
-<p>This chapter describes three important properties of differentially private mechanisms that arise from the definition of differential privacy. These properties will help us to design useful algorithms that satisfy differential privacy, and ensure that those algorithms provide accurate answers. The three properties are:</p>
+<p>This chapter describes three important properties of differentially private mechanisms that arise from the definition of differential privacy. These properties will help us to design useful algorithms that satisfy differential privacy, and ensure that those algorithms provide accurate answers.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The three properties are:</p>
 <ul class="simple">
 <li><p>Sequential composition</p></li>
 <li><p>Parallel composition</p></li>
 <li><p>Post processing</p></li>
 </ul>
+</div>
 <section id="sequential-composition">
 <h2>Sequential Composition<a class="headerlink" href="#sequential-composition" title="Permalink to this heading">#</a></h2>
 <p>The first major property of differential privacy is <em>sequential composition</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id7" title="Cynthia Dwork, Frank McSherry, Kobbi Nissim, and Adam Smith. Calibrating noise to sensitivity in private data analysis. In Proceedings of the Third Conference on Theory of Cryptography, TCC'06, 265–284. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11681878_14, doi:10.1007/11681878_14.">4</a>, <a class="reference internal" href="bibliography.html#id5" title="Cynthia Dwork, Krishnaram Kenthapadi, Frank McSherry, Ilya Mironov, and Moni Naor. Our data, ourselves: privacy via distributed noise generation. In Serge Vaudenay, editor, Advances in Cryptology - EUROCRYPT 2006, 486–503. Berlin, Heidelberg, 2006. Springer Berlin Heidelberg.">5</a>]</span>, which bounds the total privacy cost of releasing multiple results of differentially private mechanisms on the same input data. Formally, the sequential composition theorem for differential privacy says that:</p>
@@ -493,7 +497,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/075e52cbb9de8f8144c365693356ace890604924900667f2543bb1227fd86d35.png" src="_images/075e52cbb9de8f8144c365693356ace890604924900667f2543bb1227fd86d35.png" />
+<img alt="_images/2136dd6ffadb7e2e2b2433fb501a0d845a9cdceed8a9fdffc604a7de8c680ce9.png" src="_images/2136dd6ffadb7e2e2b2433fb501a0d845a9cdceed8a9fdffc604a7de8c680ce9.png" />
 </div>
 </div>
 <p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F3</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier” than that of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, because its higher <span class="math notranslate nohighlight">\(\epsilon\)</span> implies less privacy, and therefore a smaller likelihood of getting results far from the true answer.</p>
@@ -515,7 +519,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/3bb344cba9c34213f450b462c7b855eef2d0b89ec45061d1e640f4dba4432cb9.png" src="_images/3bb344cba9c34213f450b462c7b855eef2d0b89ec45061d1e640f4dba4432cb9.png" />
+<img alt="_images/38a6b63e627329b682d6e7181336a58ace7b583323c7817bb41e313f0262773a.png" src="_images/38a6b63e627329b682d6e7181336a58ace7b583323c7817bb41e313f0262773a.png" />
 </div>
 </div>
 <p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F_combined</span></code> is pointier. This means its answers are more accurate than those of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, so it makes sense that its <span class="math notranslate nohighlight">\(\epsilon\)</span> must be higher (i.e. it yields less privacy than <code class="docutils literal notranslate"><span class="pre">F1</span></code>).</p>
@@ -537,7 +541,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/e60d77ad79dc8c25b9455f7f7ccc50303feb2d9cd881859251afde658dd22a0b.png" src="_images/e60d77ad79dc8c25b9455f7f7ccc50303feb2d9cd881859251afde658dd22a0b.png" />
+<img alt="_images/370f4d0ab6d7bfab0da83940739431323deafb2421e4764a53eff9f05d9f04fb.png" src="_images/370f4d0ab6d7bfab0da83940739431323deafb2421e4764a53eff9f05d9f04fb.png" />
 </div>
 </div>
 <p>What about <code class="docutils literal notranslate"><span class="pre">F3</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>? Recall that the <span class="math notranslate nohighlight">\(\epsilon\)</span> values for these two mechanisms are the same - both have an <span class="math notranslate nohighlight">\(\epsilon\)</span> of 2. Their output distributions should look the same.</p>
@@ -559,7 +563,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/7e48e268213e9be9a4a96507eb9efce780f4c2aa1d78dd6a60bbb612918f9330.png" src="_images/7e48e268213e9be9a4a96507eb9efce780f4c2aa1d78dd6a60bbb612918f9330.png" />
+<img alt="_images/9dba35868055b7f086082ce0251550c45510ae39ae7eef2421caa5c456fbfad4.png" src="_images/9dba35868055b7f086082ce0251550c45510ae39ae7eef2421caa5c456fbfad4.png" />
 </div>
 </div>
 <p>In fact, <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier”! Why does this happen? Remember that sequential composition yields an <em>upper</em> bound on the total <span class="math notranslate nohighlight">\(\epsilon\)</span> of several releases, the actual cumulative impact on privacy might be lower. That’s the case here - the actual privacy loss in this case appears to be somewhat lower than the upper bound <span class="math notranslate nohighlight">\(\epsilon\)</span> determined by sequential composition. Sequential composition is an extremely useful way to control total privacy cost, and we will see it used in many different ways, but keep in mind that it is not necessarily an exact bound.</p>
@@ -678,23 +682,23 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
   <tbody>
     <tr>
       <th>HS-grad</th>
-      <td>10501.687587</td>
+      <td>10502.623016</td>
     </tr>
     <tr>
       <th>Some-college</th>
-      <td>7291.155047</td>
+      <td>7292.783054</td>
     </tr>
     <tr>
       <th>Bachelors</th>
-      <td>5355.428477</td>
+      <td>5355.314859</td>
     </tr>
     <tr>
       <th>Masters</th>
-      <td>1716.508346</td>
+      <td>1724.162656</td>
     </tr>
     <tr>
       <th>Assoc-voc</th>
-      <td>1386.133323</td>
+      <td>1382.062254</td>
     </tr>
   </tbody>
 </table>
@@ -808,28 +812,28 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
   <tbody>
     <tr>
       <th>10th</th>
-      <td>296.901237</td>
-      <td>638.045138</td>
+      <td>297.315902</td>
+      <td>637.391310</td>
     </tr>
     <tr>
       <th>11th</th>
-      <td>425.876064</td>
-      <td>741.513087</td>
+      <td>433.880485</td>
+      <td>743.881159</td>
     </tr>
     <tr>
       <th>12th</th>
-      <td>143.422318</td>
-      <td>288.141393</td>
+      <td>142.954292</td>
+      <td>290.142573</td>
     </tr>
     <tr>
       <th>1st-4th</th>
-      <td>45.708936</td>
-      <td>121.543633</td>
+      <td>45.544409</td>
+      <td>121.961052</td>
     </tr>
     <tr>
       <th>5th-6th</th>
-      <td>88.945533</td>
-      <td>249.687171</td>
+      <td>84.893722</td>
+      <td>250.484257</td>
     </tr>
   </tbody>
 </table>
