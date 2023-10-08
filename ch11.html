@@ -399,7 +399,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#issues-to-consider">Issues to Consider</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-sample-and-aggregate">1. Generalized Sample and Aggregate</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics">2. Summary Statistics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heavy-hitters">3. Heavy Hitters</a></li>
@@ -423,8 +422,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="exercises-in-algorithm-design">
 <h1>Exercises in Algorithm Design<a class="headerlink" href="#exercises-in-algorithm-design" title="Permalink to this heading">#</a></h1>
-<section id="issues-to-consider">
-<h2>Issues to Consider<a class="headerlink" href="#issues-to-consider" title="Permalink to this heading">#</a></h2>
+<div class="admonition-issues-to-consider admonition">
+<p class="admonition-title">Issues to Consider</p>
 <ul class="simple">
 <li><p>How many queries are required, and what kind of composition can we use?</p>
 <ul>
@@ -439,11 +438,14 @@ document.write(`
 <li><p>Would synthetic data help?</p></li>
 <li><p>Would post-processing to “de-noise” help?</p></li>
 </ul>
-</section>
+</div>
 <section id="generalized-sample-and-aggregate">
 <h2>1. Generalized Sample and Aggregate<a class="headerlink" href="#generalized-sample-and-aggregate" title="Permalink to this heading">#</a></h2>
 <p>Design a variant of sample and aggregate which does <em>not</em> require the analyst to specify the output range of the query function <span class="math notranslate nohighlight">\(f\)</span>.</p>
-<p><strong>Ideas</strong>: use SVT to find good upper and lower bounds on <span class="math notranslate nohighlight">\(f(x)\)</span> for the whole dataset first. The result of <span class="math notranslate nohighlight">\(clip(f(x), lower, upper)\)</span> has bounded sensitivity, so we can use this query with SVT. Then use sample and aggregate with these upper and lower bounds.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use SVT to find good upper and lower bounds on <span class="math notranslate nohighlight">\(f(x)\)</span> for the whole dataset first. The result of <span class="math notranslate nohighlight">\(clip(f(x), lower, upper)\)</span> has bounded sensitivity, so we can use this query with SVT. Then use sample and aggregate with these upper and lower bounds.</p>
+</div>
 </section>
 <section id="summary-statistics">
 <h2>2. Summary Statistics<a class="headerlink" href="#summary-statistics" title="Permalink to this heading">#</a></h2>
@@ -484,7 +486,10 @@ document.write(`
 <li><p>Given a list of the 10,000 most popular web pages by traffic,</p></li>
 <li><p>Determines the top 10 most-popular home pages out of the 10,000 most popular web pages</p></li>
 </ul>
-<p><strong>Ideas</strong>: Use parallel composition and take the noisy top 10</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use parallel composition and take the noisy top 10</p>
+</div>
 </section>
 <section id="hierarchical-queries">
 <h2>4. Hierarchical Queries<a class="headerlink" href="#hierarchical-queries" title="Permalink to this heading">#</a></h2>
@@ -497,10 +502,12 @@ document.write(`
 <li><p>State</p></li>
 <li><p>USA</p></li>
 </ul>
-<p><strong>Ideas</strong>:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>Idea 1: <em>Only</em> compute the bottom level (census tract), using parallel composition. Add up all the tract counts to get the city counts, and so on up the hierarchy. Advantage: lowers privacy budget.</p>
 <p>Idea 2: Compute counts at all levels, using parallel composition for each level. Tune the budget split using real data; probably we need more accuracy for the smaller levels of the hierarchy.</p>
 <p>Idea 3: As (2), but also use post-processing to re-scale lower levels of the hierarchy based on higher ones; truncate counts to whole numbers; move negative counts to 0.</p>
+</div>
 </section>
 <section id="workloads-of-range-queries">
 <h2>5. Workloads of Range Queries<a class="headerlink" href="#workloads-of-range-queries" title="Permalink to this heading">#</a></h2>
@@ -592,7 +599,6 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#issues-to-consider">Issues to Consider</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-sample-and-aggregate">1. Generalized Sample and Aggregate</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics">2. Summary Statistics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heavy-hitters">3. Heavy Hitters</a></li>
