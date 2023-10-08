@@ -497,7 +497,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/bb4fe8e4a6c6e5a294c87108efd4b03a3f06e49876304b4450906337d29948ae.png" src="_images/bb4fe8e4a6c6e5a294c87108efd4b03a3f06e49876304b4450906337d29948ae.png" />
+<img alt="_images/4ccf4ac27cb19de666886e419c189110bf1804d52d2d8eb3a99287ffb5784167.png" src="_images/4ccf4ac27cb19de666886e419c189110bf1804d52d2d8eb3a99287ffb5784167.png" />
 </div>
 </div>
 <p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F3</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier” than that of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, because its higher <span class="math notranslate nohighlight">\(\epsilon\)</span> implies less privacy, and therefore a smaller likelihood of getting results far from the true answer.</p>
@@ -519,7 +519,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/f77f57bcb18ab58546a6988a5311bc51ae946f19b87ecd11b0a5c5c96cea0d2f.png" src="_images/f77f57bcb18ab58546a6988a5311bc51ae946f19b87ecd11b0a5c5c96cea0d2f.png" />
+<img alt="_images/601835ba83ab05ee3f3c804b1f8ace5d643e95bc13ecad3517a0893fcc4773bc.png" src="_images/601835ba83ab05ee3f3c804b1f8ace5d643e95bc13ecad3517a0893fcc4773bc.png" />
 </div>
 </div>
 <p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F_combined</span></code> is pointier. This means its answers are more accurate than those of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, so it makes sense that its <span class="math notranslate nohighlight">\(\epsilon\)</span> must be higher (i.e. it yields less privacy than <code class="docutils literal notranslate"><span class="pre">F1</span></code>).</p>
@@ -541,7 +541,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/555b054a71cbb310daf60e1671f9cd5c341c029be50401c7d072b81c4a24a95d.png" src="_images/555b054a71cbb310daf60e1671f9cd5c341c029be50401c7d072b81c4a24a95d.png" />
+<img alt="_images/2a797452da54b8784abfb60c0fdb4e29209d8f3b70305f2be47ed7cf1176d408.png" src="_images/2a797452da54b8784abfb60c0fdb4e29209d8f3b70305f2be47ed7cf1176d408.png" />
 </div>
 </div>
 <p>What about <code class="docutils literal notranslate"><span class="pre">F3</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>? Recall that the <span class="math notranslate nohighlight">\(\epsilon\)</span> values for these two mechanisms are the same - both have an <span class="math notranslate nohighlight">\(\epsilon\)</span> of 2. Their output distributions should look the same.</p>
@@ -563,7 +563,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/58c4855170d96aeebc944f8d5f328ca210e4f6637214f2d7aaa54151a6aa9958.png" src="_images/58c4855170d96aeebc944f8d5f328ca210e4f6637214f2d7aaa54151a6aa9958.png" />
+<img alt="_images/c685b4b0975287b6a179e84270629b253a9d34f95530ea55bc698b2043fa0e8f.png" src="_images/c685b4b0975287b6a179e84270629b253a9d34f95530ea55bc698b2043fa0e8f.png" />
 </div>
 </div>
 <p>In fact, <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier”! Why does this happen? Remember that sequential composition yields an <em>upper</em> bound on the total <span class="math notranslate nohighlight">\(\epsilon\)</span> of several releases, the actual cumulative impact on privacy might be lower. That’s the case here - the actual privacy loss in this case appears to be somewhat lower than the upper bound <span class="math notranslate nohighlight">\(\epsilon\)</span> determined by sequential composition. Sequential composition is an extremely useful way to control total privacy cost, and we will see it used in many different ways, but keep in mind that it is not necessarily an exact bound.</p>
@@ -682,23 +682,23 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
   <tbody>
     <tr>
       <th>HS-grad</th>
-      <td>10502.166628</td>
+      <td>10500.684787</td>
     </tr>
     <tr>
       <th>Some-college</th>
-      <td>7291.756583</td>
+      <td>7290.489480</td>
     </tr>
     <tr>
       <th>Bachelors</th>
-      <td>5353.021007</td>
+      <td>5354.851228</td>
     </tr>
     <tr>
       <th>Masters</th>
-      <td>1725.237157</td>
+      <td>1721.836212</td>
     </tr>
     <tr>
       <th>Assoc-voc</th>
-      <td>1383.187200</td>
+      <td>1381.487855</td>
     </tr>
   </tbody>
 </table>
@@ -812,28 +812,28 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
   <tbody>
     <tr>
       <th>10th</th>
-      <td>294.713100</td>
-      <td>637.507534</td>
+      <td>296.182645</td>
+      <td>637.767197</td>
     </tr>
     <tr>
       <th>11th</th>
-      <td>436.075481</td>
-      <td>743.880708</td>
+      <td>431.603047</td>
+      <td>745.174758</td>
     </tr>
     <tr>
       <th>12th</th>
-      <td>143.737182</td>
-      <td>289.613535</td>
+      <td>143.726993</td>
+      <td>289.760307</td>
     </tr>
     <tr>
       <th>1st-4th</th>
-      <td>46.891910</td>
-      <td>122.408441</td>
+      <td>45.604110</td>
+      <td>122.401198</td>
     </tr>
     <tr>
       <th>5th-6th</th>
-      <td>83.866278</td>
-      <td>246.625266</td>
+      <td>81.789469</td>
+      <td>247.632261</td>
     </tr>
   </tbody>
 </table>
@@ -857,6 +857,14 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </section>
 </div><p>The post-processing property means that it’s always safe to perform arbitrary computations on the output of a differentially private mechanism - there’s no danger of reversing the privacy protection the mechanism has provided. In particular, it’s fine to perform post-processing that might reduce the noise or improve the signal in the mechanism’s output (e.g. replacing negative results with zeros, for queries that shouldn’t return negative results). In fact, many sophisticated differentially private algorithms make use of post-processing to reduce noise and improve the accuracy of their results.</p>
 <p>The other implication of the post-processing property is that differential privacy provides resistance against privacy attacks based on auxiliary information. For example, the function <span class="math notranslate nohighlight">\(g\)</span> might contain auxiliary information about elements of the dataset, and attempt to perform a linkage attack using this information. The post-processing property says that such an attack is limited in its effectiveness by the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>, regardless of the auxiliary information contained in <span class="math notranslate nohighlight">\(g\)</span>.</p>
+<div class="admonition-summary admonition">
+<p class="admonition-title">Summary</p>
+<ul class="simple">
+<li><p>Sequential composition bounds the total privacy cost of releasing multiple results of differentially private mechanisms on the same input data.</p></li>
+<li><p>Parallel composition is based on the idea of splitting your dataset into disjoint chunks and running a differentially private mechanism on each chunk separately.</p></li>
+<li><p>The post-processing property means that it’s always safe to perform arbitrary computations on the output of a differentially private mechanism.</p></li>
+</ul>
+</div>
 </section>
 </section>
 

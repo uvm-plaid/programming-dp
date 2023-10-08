@@ -430,8 +430,8 @@ document.write(`
 <p class="admonition-title"><span class="caption-number">Definition 3 </span> (Privacy Mechanism)</p>
 <section class="definition-content" id="proof-content">
 <p>A function which satisfies differential privacy is often called a <em>mechanism</em>. We say that a <em>mechanism</em> <span class="math notranslate nohighlight">\(F\)</span> satisfies differential privacy if for all <em>neighboring datasets</em> <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all possible sets of outputs <span class="math notranslate nohighlight">\(S\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9e99ddee-2308-45fe-9243-ba92c902d037">
-<span class="eqno">(1)<a class="headerlink" href="#equation-9e99ddee-2308-45fe-9243-ba92c902d037" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c049fba9-0226-4827-94b3-81eb94c0ff46">
+<span class="eqno">(1)<a class="headerlink" href="#equation-c049fba9-0226-4827-94b3-81eb94c0ff46" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) \in S]}{\mathsf{Pr}[F(x') \in S]} \leq e^\epsilon
 \end{equation}\]</div>
 </section>
@@ -443,8 +443,8 @@ document.write(`
 <p class="admonition-title">Note</p>
 <p>Why is <span class="math notranslate nohighlight">\(S\)</span> a set, and why do we write <span class="math notranslate nohighlight">\(F(x) \in S\)</span>, instead of <span class="math notranslate nohighlight">\(F(x) = s\)</span> for a <em>single</em> output <span class="math notranslate nohighlight">\(s\)</span>? When <span class="math notranslate nohighlight">\(F\)</span> returns elements from a continuous domain (like the real numbers), then the probability <span class="math notranslate nohighlight">\(\mathsf{Pr}[F(x) = S] = 0\)</span> <em>for all <span class="math notranslate nohighlight">\(x\)</span></em> (this is a property of continuous probability distributions—<a class="reference external" href="https://www.probabilitycourse.com/chapter4/4_1_1_pdf.php">see here for a detailed explanation</a>). For the definition to make sense in the context of continuous distributions, it needs to instead consider <em>sets</em> of outputs <span class="math notranslate nohighlight">\(S\)</span>, and use set inclusion (<span class="math notranslate nohighlight">\(\in\)</span>) instead of equality.</p>
 <p>If <span class="math notranslate nohighlight">\(F\)</span> returns elements of a discrete set (e.g. 32-bit floating-point numbers), then the definition can instead consider <span class="math notranslate nohighlight">\(S\)</span> to be a single value, and use equality instead of set inclusion:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0cd495b3-69e9-4226-b211-47e5419a2d66">
-<span class="eqno">(2)<a class="headerlink" href="#equation-0cd495b3-69e9-4226-b211-47e5419a2d66" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4889debf-9d5d-40da-99a6-009c11a9bc02">
+<span class="eqno">(2)<a class="headerlink" href="#equation-4889debf-9d5d-40da-99a6-009c11a9bc02" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
 \end{equation}\]</div>
 <p>This definition might be more intuitive, especially if you have not studied probability theory.</p>
@@ -470,8 +470,8 @@ document.write(`
 <p class="admonition-title"><span class="caption-number">Definition 4 </span> (Laplace Mechanism)</p>
 <section class="definition-content" id="proof-content">
 <p>According to the Laplace mechanism, for a function <span class="math notranslate nohighlight">\(f(x)\)</span> which returns a number, the following definition of <span class="math notranslate nohighlight">\(F(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c1de5781-0d0f-43c6-9435-fe1743705195">
-<span class="eqno">(3)<a class="headerlink" href="#equation-c1de5781-0d0f-43c6-9435-fe1743705195" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-addca880-7f1b-4e99-8742-f0e32ff1980d">
+<span class="eqno">(3)<a class="headerlink" href="#equation-addca880-7f1b-4e99-8742-f0e32ff1980d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(s\)</span> is the <em>sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span> denotes sampling from the Laplace distribution with center 0 and scale <span class="math notranslate nohighlight">\(S\)</span>.</p>
@@ -488,7 +488,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17431.940440703955
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17486.915456200648
 </pre></div>
 </div>
 </div>
@@ -524,7 +524,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.291501712367966
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32.84327356075604
 </pre></div>
 </div>
 </div>
@@ -556,7 +556,16 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 <section class="definition-content" id="proof-content">
 <p>Under <em>bounded differential privacy</em>, two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are considered neighbors if <span class="math notranslate nohighlight">\(x'\)</span> can be obtained from <span class="math notranslate nohighlight">\(x\)</span> by <strong>changing</strong> one row. Under bounded differential privacy, the sizes of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are equal.</p>
 </section>
-</div></section>
+</div><div class="admonition-summary admonition">
+<p class="admonition-title">Summary</p>
+<ul class="simple">
+<li><p>Differential privacy is a property of algorithms, and not a property of data.</p></li>
+<li><p>A function which satisfies differential privacy is often called a mechanism.</p></li>
+<li><p>The easiest way to achieve differential privacy for this function is to add random noise to its answer.</p></li>
+<li><p>The unit of privacy refers to the formal definition of “neighboring” used in a differential privacy guarantee. The most common unit of privacy is “one person” - meaning the privacy guarantee protects the whole person, forever.</p></li>
+</ul>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
