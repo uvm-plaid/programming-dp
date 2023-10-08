@@ -29,7 +29,7 @@ latex:
     targetname: book.tex
 
 bibtex_bibfiles:
-    - references.bib
+  - references.bib
 
 repository:
   url: https://github.com/uvm-plaid/programming-dp
