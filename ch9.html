@@ -432,7 +432,7 @@ document.write(`
 <li><p>The exponential mechanism outputs <span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span> with probability proportional to:</p></li>
 </ol>
 <div class="amsmath math notranslate nohighlight" id="equation-47f1bb56-b525-4ca0-a315-ee0b028935bc">
-<span class="eqno">(26)<a class="headerlink" href="#equation-47f1bb56-b525-4ca0-a315-ee0b028935bc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(23)<a class="headerlink" href="#equation-47f1bb56-b525-4ca0-a315-ee0b028935bc" title="Permalink to this equation">#</a></span>\[\begin{align}
 \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)
 \end{align}\]</div>
 <p>The biggest practical difference between the exponential mechanism and the previous mechanisms we’ve seen (e.g. the Laplace mechanism) is that the output of the exponential mechanism is <em>always</em> a member of the set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>. This is extremely useful when selecting an item from a finite set, when a noisy answer would not make sense. For example, we might want to pick a date for a big meeting, which uses each participant’s personal calendar to maximize the number of participants without a conflict, while providing differential privacy for the calendars. Adding noise to a date doesn’t make much sense: it might turn a Friday into a Saturday, and <em>increase</em> the number of conflicts significantly. The exponential mechanism is perfect for problems like this one: it selects a date <em>without noise</em>.</p>
@@ -564,13 +564,13 @@ dtype: int64
 <p>We’ve seen that it’s not possible to recover the exponential mechanism using the Laplace mechanism plus sequential composition, because we can’t capture the fact that the algorithm we designed doesn’t release all of the noisy scores. What about the reverse - can we recover the Laplace mechanism from the exponential mechanism? It turns out that we can!</p>
 <p>Consider a query <span class="math notranslate nohighlight">\(q(x) : \mathcal{D} \rightarrow \mathbb{R}\)</span> with sensitivity <span class="math notranslate nohighlight">\(\Delta q\)</span>. We can release an <span class="math notranslate nohighlight">\(\epsilon\)</span>-differentially private answer by adding Laplace noise: <span class="math notranslate nohighlight">\(F(x) = q(x) + \mathsf{Lap}(\Delta q / \epsilon)\)</span>. The probability density function for this differentially private version of <span class="math notranslate nohighlight">\(q\)</span> is:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-1ec75819-0788-4140-a826-7a12be5a332d">
-<span class="eqno">(27)<a class="headerlink" href="#equation-1ec75819-0788-4140-a826-7a12be5a332d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(24)<a class="headerlink" href="#equation-1ec75819-0788-4140-a826-7a12be5a332d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp; \frac{1}{2b} \exp\Big(- \frac{\lvert r - \mu \rvert}{b}\Big)\\
 =&amp; \frac{\epsilon}{2 \Delta q} \exp\Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q}\Big)
 \end{align}\]</div>
 <p>Consider what happens when we set the scoring function for the exponential mechanism to <span class="math notranslate nohighlight">\(u(x, r) = -2 \lvert q(x) - r \rvert\)</span>. The exponential mechanism says that we should sample from the probability distribution proportional to:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-5cd1b288-4282-4af6-978b-e1422cf4582d">
-<span class="eqno">(28)<a class="headerlink" href="#equation-5cd1b288-4282-4af6-978b-e1422cf4582d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(25)<a class="headerlink" href="#equation-5cd1b288-4282-4af6-978b-e1422cf4582d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp;\; \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)\\
 &amp;= \exp \Big(\frac{\epsilon (-2 \lvert q(x) - r \rvert)}{2 \Delta q} \Big)\\
 &amp;= \exp \Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q} \Big)\\
