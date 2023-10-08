@@ -428,15 +428,16 @@ document.write(`
 </ul>
 </div>
 <p>Informally, we say that a dataset is “<span class="math notranslate nohighlight">\(k\)</span>-Anonymized” for a particular <span class="math notranslate nohighlight">\(k\)</span> if each individual in the dataset is a member of a group of size at least <span class="math notranslate nohighlight">\(k\)</span>, such that each member of the group shares the same <em>quasi-identifiers</em> (a selected subset of all the dataset’s columns) with all other members of the group. Thus, the individuals in each group “blend into” their group - it’s possible to narrow down an individual to membership in a particular group, but not to determine which group member is the target.</p>
-<div class="admonition-definition admonition">
-<p class="admonition-title">Definition</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 2 </span></p>
+<section class="definition-content" id="proof-content">
 <p>Formally, we say that a dataset <span class="math notranslate nohighlight">\(D\)</span> satisfies <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for a value of <span class="math notranslate nohighlight">\(k\)</span> if:</p>
 <ul class="simple">
 <li><p>For each row <span class="math notranslate nohighlight">\(r_1 \in D\)</span>, there exist at least <span class="math notranslate nohighlight">\(k-1\)</span> other rows <span class="math notranslate nohighlight">\(r_2 \dots r_k \in D\)</span> such that <span class="math notranslate nohighlight">\(\Pi_{qi(D)} r_1 = \Pi_{qi(D)} r_2, \dots, \Pi_{qi(D)} r_1 = \Pi_{qi(D)} r_k\)</span></p></li>
 </ul>
 <p>where <span class="math notranslate nohighlight">\(qi(D)\)</span> is the quasi-identifiers of <span class="math notranslate nohighlight">\(D\)</span>, and <span class="math notranslate nohighlight">\(\Pi_{qi(D)} r\)</span> represents the columns of <span class="math notranslate nohighlight">\(r\)</span> containing quasi-identifiers (i.e. the projection of the quasi-identifiers).</p>
-</div>
-<section id="checking-for-k-anonymity">
+</section>
+</div><section id="checking-for-k-anonymity">
 <h2>Checking for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity<a class="headerlink" href="#checking-for-k-anonymity" title="Permalink to this heading">#</a></h2>
 <p>We’ll start with a small dataset, so that we can immediately see by looking at the data whether it satisfies <span class="math notranslate nohighlight">\(k\)</span>-Anonymity or not. This dataset contains age plus two test scores; it clearly doesn’t satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k &gt; 1\)</span>. Any dataset trivially satisfies <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k = 1\)</span>, since each row can form its own group of size 1.</p>
 <div class="cell tag_hide-input docutils container">
