@@ -580,7 +580,7 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 <p>The standard sequential composition theorem says that the total privacy cost of this mechanism is <span class="math notranslate nohighlight">\(k\epsilon\)</span> (in this case, <span class="math notranslate nohighlight">\(500 \epsilon\)</span>).</p>
 <p>The advanced composition theorem says:</p>
 <div class="proof theorem admonition" id="advanced-composition">
-<p class="admonition-title"><span class="caption-number">Theorem 3 </span> (Advanced-Composition)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 4 </span> (Advanced-Composition)</p>
 <section class="theorem-content" id="proof-content">
 <ul class="simple">
 <li><p>If each mechanism <span class="math notranslate nohighlight">\(m_i\)</span> in a <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition <span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy</p></li>
@@ -651,7 +651,7 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 <h2>Advanced Composition for Approximate Differential Privacy<a class="headerlink" href="#advanced-composition-for-approximate-differential-privacy" title="Permalink to this heading">#</a></h2>
 <p>The description of advanced composition above requires the individual mechanisms being composed to satisfy pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. However, the theorem also applies if they satisfy <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy instead. The more general statement of the advanced composition theorem is as follows (<span id="id3">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">7</a>]</span>, Theorem 3.20):</p>
 <div class="proof theorem admonition" id="approximate-advanced-composition">
-<p class="admonition-title"><span class="caption-number">Theorem 4 </span> (Approximate-Advanced-Composition)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 5 </span> (Approximate-Advanced-Composition)</p>
 <section class="theorem-content" id="proof-content">
 <ul class="simple">
 <li><p>If each mechanism <span class="math notranslate nohighlight">\(m_i\)</span> in a <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition <span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy</p></li>
