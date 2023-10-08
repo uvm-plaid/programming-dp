@@ -426,7 +426,12 @@ document.write(`
 </ul>
 </div>
 <p>We’ve already seen one example of a mechanism - the exponential mechanism - which achieves a lower-than-expected privacy cost by withholding some information. Are there others?</p>
-<p>There are, and one that turns out to be extremely useful in practical algorithms is the <em>sparse vector technique</em> (SVT) <span id="id1">[<a class="reference internal" href="bibliography.html#id16" title="Cynthia Dwork, Moni Naor, Omer Reingold, Guy N. Rothblum, and Salil Vadhan. On the complexity of differentially private data release: efficient algorithms and hardness results. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 381–390. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536467, doi:10.1145/1536414.1536467.">14</a>]</span>. The sparse vector technique operates on a stream of sensitivity-1 queries over a dataset; it releases the <em>identity</em> of the first query in the stream which passes a test, and nothing else. The advantage of SVT is that it incurs a fixed total privacy cost, no matter <em>how many queries it considers</em>.</p>
+<p>There are, and one that turns out to be extremely useful in practical algorithms is the <em>sparse vector technique</em> (SVT) <span id="id1">[<a class="reference internal" href="bibliography.html#id16" title="Cynthia Dwork, Moni Naor, Omer Reingold, Guy N. Rothblum, and Salil Vadhan. On the complexity of differentially private data release: efficient algorithms and hardness results. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 381–390. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536467, doi:10.1145/1536414.1536467.">14</a>]</span>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The sparse vector technique operates on a stream of sensitivity-1 queries over a dataset; it releases the <em>identity</em> of the first query in the stream which passes a test, and nothing else.</p>
+</div>
+<p>The advantage of SVT is that it incurs a fixed total privacy cost, no matter <em>how many queries it considers</em>.</p>
 <section id="above-threshold">
 <h2>Above Threshold<a class="headerlink" href="#above-threshold" title="Permalink to this heading">#</a></h2>
 <p>The most basic instantiation of the sparse vector technique is an algorithm called <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>, Algorithm 1). The inputs to the algorithm are a stream of sensitivity-1 queries, a dataset <span class="math notranslate nohighlight">\(D\)</span>, a <em>threshold</em> <span class="math notranslate nohighlight">\(T\)</span>, and the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>; the algorithm preserves <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. A Python implementation of the algorithm appears below.</p>
@@ -524,7 +529,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>91
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>81
 </pre></div>
 </div>
 </div>
@@ -566,7 +571,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>81
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>76
 </pre></div>
 </div>
 </div>
@@ -587,7 +592,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/ab9c0a5febe8b738e8b3c9bcd8360baa5d9f8ccb4ced81c33d4fcd96d42f66a5.png" src="_images/ab9c0a5febe8b738e8b3c9bcd8360baa5d9f8ccb4ced81c33d4fcd96d42f66a5.png" />
+<img alt="_images/83dcb373bcdfd0c50e40e63be1aeef0532adf117c35c58ecf2c2151b79dcd12a.png" src="_images/83dcb373bcdfd0c50e40e63be1aeef0532adf117c35c58ecf2c2151b79dcd12a.png" />
 </div>
 </div>
 <p>We can use SVT to build an algorithm for summation queries (and using this, for average queries) that automatically computes the clipping parameter.</p>
@@ -619,7 +624,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.76793626432457
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.79739342736483
 </pre></div>
 </div>
 </div>
@@ -632,44 +637,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key, method, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2894</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2895</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2896</span>             <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-
-<span class="nn">pandas/_libs/index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
-
-<span class="nn">pandas/_libs/index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
-
-<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
-
-<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
-
-<span class="ne">KeyError</span>: &#39;Capital Gain&#39;
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">5</span><span class="n">b72967cbeb8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">auto_avg</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Capital Gain&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/frame.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2904</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">nlevels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2905</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_multilevel</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2906</span>             <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2907</span>             <span class="k">if</span> <span class="n">is_integer</span><span class="p">(</span><span class="n">indexer</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">2908</span>                 <span class="n">indexer</span> <span class="o">=</span> <span class="p">[</span><span class="n">indexer</span><span class="p">]</span>
-
-<span class="nn">/usr/local/lib/python3.9/site-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key, method, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2895</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2896</span>             <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2897</span>                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
-<span class="g g-Whitespace">   </span><span class="mi">2898</span> 
-<span class="g g-Whitespace">   </span><span class="mi">2899</span>         <span class="k">if</span> <span class="n">tolerance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="ne">KeyError</span>: &#39;Capital Gain&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1075.618230715468
 </pre></div>
 </div>
 </div>
@@ -722,7 +690,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[19, 21, 22]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[17, 18, 21]
 </pre></div>
 </div>
 </div>
@@ -752,7 +720,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[16899, 16908, 11091, 8033, 11330, 4553, 18240, 8132, 9053, 11372]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5249, 6287, 13169, 0, 8431, 11616, 1077, 485, 7397, 18393]
 </pre></div>
 </div>
 </div>
@@ -781,11 +749,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[16917.45574425689,
- 16933.282003171324,
- 11093.27636133087,
- 11324.844036991903,
- 18243.71176080326]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[13158.070091377042, 11587.807122792883, 18381.254210207004]
 </pre></div>
 </div>
 </div>
