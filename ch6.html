@@ -64,6 +64,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch6';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -419,7 +421,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="approximate-differential-privacy">
+  <section class="tex2jax_ignore mathjax_ignore" id="approximate-differential-privacy">
 <h1>Approximate Differential Privacy<a class="headerlink" href="#approximate-differential-privacy" title="Permalink to this heading">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
@@ -433,36 +435,38 @@ document.write(`
 <li><p>Apply advanced composition</p></li>
 </ul>
 </div>
-<p>Approximate differential privacy <span id="id1">[<a class="reference internal" href="bibliography.html#id5" title="Cynthia Dwork, Krishnaram Kenthapadi, Frank McSherry, Ilya Mironov, and Moni Naor. Our data, ourselves: privacy via distributed noise generation. In Serge Vaudenay, editor, Advances in Cryptology - EUROCRYPT 2006, 486–503. Berlin, Heidelberg, 2006. Springer Berlin Heidelberg.">5</a>]</span>, also called $(\epsilon, \delta)$-differential privacy, has the following definition:</p>
-<p>\begin{align}
-\mathsf{Pr}[F(x) = S] \leq e^\epsilon \mathsf{Pr}[F(x’) = s] + \delta
-\end{align}</p>
-<p>The new privacy parameter, $\delta$, represents a “failure probability” for the definition. With probability $1-\delta$, we will get the same guarantee as pure differential privacy; with probability $\delta$, we get no guarantee. In other words:</p>
+<p>Approximate differential privacy <span id="id1">[<a class="reference internal" href="bibliography.html#id5" title="Cynthia Dwork, Krishnaram Kenthapadi, Frank McSherry, Ilya Mironov, and Moni Naor. Our data, ourselves: privacy via distributed noise generation. In Serge Vaudenay, editor, Advances in Cryptology - EUROCRYPT 2006, 486–503. Berlin, Heidelberg, 2006. Springer Berlin Heidelberg.">5</a>]</span>, also called <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy, has the following definition:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e426953d-bf55-4ac0-9d97-a648bd862f1b">
+<span class="eqno">(7)<a class="headerlink" href="#equation-e426953d-bf55-4ac0-9d97-a648bd862f1b" title="Permalink to this equation">#</a></span>\[\begin{align}
+\mathsf{Pr}[F(x) = S] \leq e^\epsilon \mathsf{Pr}[F(x') = s] + \delta
+\end{align}\]</div>
+<p>The new privacy parameter, <span class="math notranslate nohighlight">\(\delta\)</span>, represents a “failure probability” for the definition. With probability <span class="math notranslate nohighlight">\(1-\delta\)</span>, we will get the same guarantee as pure differential privacy; with probability <span class="math notranslate nohighlight">\(\delta\)</span>, we get no guarantee. In other words:</p>
 <ul class="simple">
-<li><p>With probability $1-\delta$, $\frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x’) = s]} \leq e^\epsilon$</p></li>
-<li><p>With probability $\delta$, we get no guarantee at all</p></li>
+<li><p>With probability <span class="math notranslate nohighlight">\(1-\delta\)</span>, <span class="math notranslate nohighlight">\(\frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = s]} \leq e^\epsilon\)</span></p></li>
+<li><p>With probability <span class="math notranslate nohighlight">\(\delta\)</span>, we get no guarantee at all</p></li>
 </ul>
-<p>This definition should seem a little bit scary! With probability $\delta$, anything at all could happen - including a release of the entire sensitive dataset! For this reason, we typically require $\delta$ to be very small - usually $\frac{1}{n^2}$ or less, where $n$ is the size of the dataset. In addition, we’ll see that the $(\epsilon, \delta)$-differentially private mechanisms in practical use don’t fail catastrophically, as allowed by the definition - instead, they fail <em>gracefully</em>, and don’t do terrible things like releasing the entire dataset.</p>
-<p>Such mechanisms <em>are</em> possible, however, and they do satisfy the definition of $(\epsilon, \delta)$-differential privacy. We’ll see an example of such a mechanism later in this section.</p>
+<p>This definition should seem a little bit scary! With probability <span class="math notranslate nohighlight">\(\delta\)</span>, anything at all could happen - including a release of the entire sensitive dataset! For this reason, we typically require <span class="math notranslate nohighlight">\(\delta\)</span> to be very small - usually <span class="math notranslate nohighlight">\(\frac{1}{n^2}\)</span> or less, where <span class="math notranslate nohighlight">\(n\)</span> is the size of the dataset. In addition, we’ll see that the <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differentially private mechanisms in practical use don’t fail catastrophically, as allowed by the definition - instead, they fail <em>gracefully</em>, and don’t do terrible things like releasing the entire dataset.</p>
+<p>Such mechanisms <em>are</em> possible, however, and they do satisfy the definition of <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy. We’ll see an example of such a mechanism later in this section.</p>
 <section id="properties-of-approximate-differential-privacy">
 <h2>Properties of Approximate Differential Privacy<a class="headerlink" href="#properties-of-approximate-differential-privacy" title="Permalink to this heading">#</a></h2>
-<p>Approximate differential privacy has similar properties to pure $\epsilon$-differential privacy. It satisfies <strong>sequential composition</strong>:</p>
+<p>Approximate differential privacy has similar properties to pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. It satisfies <strong>sequential composition</strong>:</p>
 <ul class="simple">
-<li><p>If $F_1(x)$ satisfies $(\epsilon_1, \delta_1)$-differential privacy</p></li>
-<li><p>And $F_2(x)$ satisfies $(\epsilon_2, \delta_2)$-differential privacy</p></li>
-<li><p>Then the mechanism $G(x) = (F_1(x), F_2(x))$ which releases both results satisfies $(\epsilon_1+\epsilon_2, \delta_1 + \delta_2)$-differential privacy</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(F_1(x)\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon_1, \delta_1)\)</span>-differential privacy</p></li>
+<li><p>And <span class="math notranslate nohighlight">\(F_2(x)\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon_2, \delta_2)\)</span>-differential privacy</p></li>
+<li><p>Then the mechanism <span class="math notranslate nohighlight">\(G(x) = (F_1(x), F_2(x))\)</span> which releases both results satisfies <span class="math notranslate nohighlight">\((\epsilon_1+\epsilon_2, \delta_1 + \delta_2)\)</span>-differential privacy</p></li>
 </ul>
-<p>The only difference from the pure $\epsilon$ setting is that we add up the $\delta$s as well as the $\epsilon$s. Approximate differential privacy also satisfies post-processing and parallel composition.</p>
+<p>The only difference from the pure <span class="math notranslate nohighlight">\(\epsilon\)</span> setting is that we add up the <span class="math notranslate nohighlight">\(\delta\)</span>s as well as the <span class="math notranslate nohighlight">\(\epsilon\)</span>s. Approximate differential privacy also satisfies post-processing and parallel composition.</p>
 </section>
 <section id="the-gaussian-mechanism">
 <h2>The Gaussian Mechanism<a class="headerlink" href="#the-gaussian-mechanism" title="Permalink to this heading">#</a></h2>
-<p>The Gaussian mechanism is an alternative to the Laplace mechanism, which adds Gaussian noise instead of Laplacian noise. The Gaussian mechanism does <em>not</em> satisfy pure $\epsilon$-differential privacy, but does satisfy $(\epsilon, \delta)$-differential privacy. According to the Gaussian mechanism, for a function $f(x)$ which returns a number, the following definition of $F(x)$ satisfies $(\epsilon, \delta)$-differential privacy:</p>
-<p>\begin{align}
-F(x) = f(x) + \mathcal{N}(\sigma^2)\
+<p>The Gaussian mechanism is an alternative to the Laplace mechanism, which adds Gaussian noise instead of Laplacian noise. The Gaussian mechanism does <em>not</em> satisfy pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, but does satisfy <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy. According to the Gaussian mechanism, for a function <span class="math notranslate nohighlight">\(f(x)\)</span> which returns a number, the following definition of <span class="math notranslate nohighlight">\(F(x)\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-84176956-503d-436a-97e9-ebd4ceadfafd">
+<span class="eqno">(8)<a class="headerlink" href="#equation-84176956-503d-436a-97e9-ebd4ceadfafd" title="Permalink to this equation">#</a></span>\[\begin{align}
+F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 \text{where } \sigma^2 = \frac{2s^2 \log(1.25/\delta)}{\epsilon^2}
-\end{align}</p>
-<p>where $s$ is the sensitivity of $f$, and $\mathcal{N}(\sigma^2)$ denotes sampling from the Gaussian (normal) distribution with center 0 and variance $\sigma^2$. Note that here (and elsewhere in these notes), $\log$ denotes the natural logarithm.</p>
-<p>For real-valued functions $f : D \rightarrow \mathbb{R}$, we can use the Gaussian mechanism in exactly the same way as we do the Laplace mechanism, and it’s easy to compare what happens under both mechanisms for a given value of $\epsilon$.</p>
+\end{align}\]</div>
+<p>where <span class="math notranslate nohighlight">\(s\)</span> is the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{N}(\sigma^2)\)</span> denotes sampling from the Gaussian (normal) distribution with center 0 and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>. Note that here (and elsewhere in these notes), <span class="math notranslate nohighlight">\(\log\)</span> denotes the natural logarithm.</p>
+<p>For real-valued functions <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>, we can use the Gaussian mechanism in exactly the same way as we do the Laplace mechanism, and it’s easy to compare what happens under both mechanisms for a given value of <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -485,72 +489,76 @@ F(x) = f(x) + \mathcal{N}(\sigma^2)\
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/25ab9f2b460db48600862ef50042e3a43c86ed6032e0e2d470c32f3b83d61eaf.png" src="_images/25ab9f2b460db48600862ef50042e3a43c86ed6032e0e2d470c32f3b83d61eaf.png" />
+<img alt="_images/003565375b8e15b407398be220e1c73ae2725878a071b494e844a71901ffa289.png" src="_images/003565375b8e15b407398be220e1c73ae2725878a071b494e844a71901ffa289.png" />
 </div>
 </div>
-<p>Here, we graph the empirical probability density function of the Laplace and Gaussian mechanisms for $\epsilon = 1$, with $\delta = 10^{-5}$ for the Gaussian mechanism.</p>
+<p>Here, we graph the empirical probability density function of the Laplace and Gaussian mechanisms for <span class="math notranslate nohighlight">\(\epsilon = 1\)</span>, with <span class="math notranslate nohighlight">\(\delta = 10^{-5}\)</span> for the Gaussian mechanism.</p>
 <p>Compared to the Laplace mechanism, the plot for the Gaussian mechanism looks “squished.” Differentially private outputs which are far from the true answer are much more likely using the Gaussian mechanism than they are under the Laplace mechanism (which, by comparison, looks extremely “pointy”).</p>
-<p>So the Gaussian mechanism has two major drawbacks - it requires the use of the the relaxed $(\epsilon, \delta)$-differential privacy definition, <em>and</em> it’s less accurate than the Laplace mechanism. Why would we want to use it?</p>
+<p>So the Gaussian mechanism has two major drawbacks - it requires the use of the the relaxed <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy definition, <em>and</em> it’s less accurate than the Laplace mechanism. Why would we want to use it?</p>
 </section>
 <section id="vector-valued-functions-and-their-sensitivities">
 <h2>Vector-Valued Functions and their Sensitivities<a class="headerlink" href="#vector-valued-functions-and-their-sensitivities" title="Permalink to this heading">#</a></h2>
-<p>So far, we have only considered real-valued functions (i.e. the function’s output is always a single real number). Such functions are of the form $f : D \rightarrow \mathbb{R}$. Both the Laplace and Gaussian mechanism, however, can be extended to <em>vector-valued</em> functions of the form $f : D \rightarrow \mathbb{R}^k$, which return vectors of real numbers. We can think of histograms as vector-valued functions, which return a vector whose elements consist of histogram bin counts.</p>
+<p>So far, we have only considered real-valued functions (i.e. the function’s output is always a single real number). Such functions are of the form <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>. Both the Laplace and Gaussian mechanism, however, can be extended to <em>vector-valued</em> functions of the form <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}^k\)</span>, which return vectors of real numbers. We can think of histograms as vector-valued functions, which return a vector whose elements consist of histogram bin counts.</p>
 <p>We saw earlier that the <em>sensitivity</em> of a function is:</p>
-<p>\begin{align}
-GS(f) = \max_{d(x,x’) \leq 1} \lvert f(x) - f(x’) \rvert
-\end{align}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f73a1ceb-0978-46fd-9682-2bf3a75e24af">
+<span class="eqno">(9)<a class="headerlink" href="#equation-f73a1ceb-0978-46fd-9682-2bf3a75e24af" title="Permalink to this equation">#</a></span>\[\begin{align}
+GS(f) = \max_{d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
+\end{align}\]</div>
 <p>How do we define sensitivity for vector-valued functions?</p>
-<p>Consider the expression $f(x) - f(x’)$. If $f$ is a vector-valued function, then this expression represents the difference between two vectors, which can be computed as the difference between their corresponding elements (the difference of two length-$k$ vectors is thus a new length-$k$ vector). This new vector is the distance between $f(x)$ and $f(x’)$, represented as a vector.</p>
-<p>The magnitude of this vector is the sensitivity of $f$. There are several ways to compute the magnitude of a vector; we’ll use two of them: the $L1$ norm and the $L2$ norm.</p>
+<p>Consider the expression <span class="math notranslate nohighlight">\(f(x) - f(x')\)</span>. If <span class="math notranslate nohighlight">\(f\)</span> is a vector-valued function, then this expression represents the difference between two vectors, which can be computed as the difference between their corresponding elements (the difference of two length-<span class="math notranslate nohighlight">\(k\)</span> vectors is thus a new length-<span class="math notranslate nohighlight">\(k\)</span> vector). This new vector is the distance between <span class="math notranslate nohighlight">\(f(x)\)</span> and <span class="math notranslate nohighlight">\(f(x')\)</span>, represented as a vector.</p>
+<p>The magnitude of this vector is the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>. There are several ways to compute the magnitude of a vector; we’ll use two of them: the <span class="math notranslate nohighlight">\(L1\)</span> norm and the <span class="math notranslate nohighlight">\(L2\)</span> norm.</p>
 <section id="l1-and-l2-norms">
 <h3>L1 and L2 Norms<a class="headerlink" href="#l1-and-l2-norms" title="Permalink to this heading">#</a></h3>
-<p>The $L1$ norm of a vector $V$ of length $k$ is defined as $\lVert V \rVert_1 = \sum_{i=1}^k \lvert V_i \rvert$ (i.e. it’s the sum of the vector’s elements). In 2-dimensional space, the $L1$ norm of the difference between two vectors yields the “manhattan distance” between them.</p>
-<p>The $L2$ norm of a vector $V$ of length $k$ is defined as $\lVert V \rVert_2 = \sqrt{\sum_{i=1}^k V_i^2}$ (i.e. the square root of the sum of the squares). In 2-dimensional space, this is the “Euclidean distance”, and it’s always less than or equal to the $L1$ norm.</p>
+<p>The <span class="math notranslate nohighlight">\(L1\)</span> norm of a vector <span class="math notranslate nohighlight">\(V\)</span> of length <span class="math notranslate nohighlight">\(k\)</span> is defined as <span class="math notranslate nohighlight">\(\lVert V \rVert_1 = \sum_{i=1}^k \lvert V_i \rvert\)</span> (i.e. it’s the sum of the vector’s elements). In 2-dimensional space, the <span class="math notranslate nohighlight">\(L1\)</span> norm of the difference between two vectors yields the “manhattan distance” between them.</p>
+<p>The <span class="math notranslate nohighlight">\(L2\)</span> norm of a vector <span class="math notranslate nohighlight">\(V\)</span> of length <span class="math notranslate nohighlight">\(k\)</span> is defined as <span class="math notranslate nohighlight">\(\lVert V \rVert_2 = \sqrt{\sum_{i=1}^k V_i^2}\)</span> (i.e. the square root of the sum of the squares). In 2-dimensional space, this is the “Euclidean distance”, and it’s always less than or equal to the <span class="math notranslate nohighlight">\(L1\)</span> norm.</p>
 </section>
 <section id="l1-and-l2-sensitivities">
 <h3>L1 and L2 Sensitivities<a class="headerlink" href="#l1-and-l2-sensitivities" title="Permalink to this heading">#</a></h3>
-<p>The $L1$ sensitivity of a vector-valued function $f$ is:</p>
-<p>\begin{align}
-GS(f) = \max_{d(x,x’) \leq 1} \lVert f(x) - f(x’) \rVert_1
-\end{align}</p>
-<p>This is equal to the sum of the <em>elementwise</em> sensitivities. For example, if we define a vector-valued function $f$ that returns a length-$k$ vector of 1-sensitive results, then the $L1$ sensitivity of $f$ is $k$.</p>
-<p>Similarly, the $L2$ sensitivity of a vector-valued function $f$ is:</p>
-<p>\begin{align}
-GS_2(f) = \max_{d(x,x’) \leq 1} \lVert f(x) - f(x’) \rVert_2
-\end{align}</p>
-<p>Using the same example as above, a vector-valued function $f$ returning a length-$k$ vector of 1-sensitive results has $L2$ sensitivity of $\sqrt{k}$. For long vectors, the $L2$ sensitivity will obviously be much lower than the $L1$ sensitivity! For some applications, like machine learning algorithms (which sometimes return vectors with thousands of elements), $L2$ sensitivity is <em>significantly</em> lower than $L1$ sensitivity.</p>
+<p>The <span class="math notranslate nohighlight">\(L1\)</span> sensitivity of a vector-valued function <span class="math notranslate nohighlight">\(f\)</span> is:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7b3206c5-e402-4c35-ba06-2203b25e4a53">
+<span class="eqno">(10)<a class="headerlink" href="#equation-7b3206c5-e402-4c35-ba06-2203b25e4a53" title="Permalink to this equation">#</a></span>\[\begin{align}
+GS(f) = \max_{d(x,x') \leq 1} \lVert f(x) - f(x') \rVert_1
+\end{align}\]</div>
+<p>This is equal to the sum of the <em>elementwise</em> sensitivities. For example, if we define a vector-valued function <span class="math notranslate nohighlight">\(f\)</span> that returns a length-<span class="math notranslate nohighlight">\(k\)</span> vector of 1-sensitive results, then the <span class="math notranslate nohighlight">\(L1\)</span> sensitivity of <span class="math notranslate nohighlight">\(f\)</span> is <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>Similarly, the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of a vector-valued function <span class="math notranslate nohighlight">\(f\)</span> is:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f3ab4acc-7887-4775-9625-4583e0fec000">
+<span class="eqno">(11)<a class="headerlink" href="#equation-f3ab4acc-7887-4775-9625-4583e0fec000" title="Permalink to this equation">#</a></span>\[\begin{align}
+GS_2(f) = \max_{d(x,x') \leq 1} \lVert f(x) - f(x') \rVert_2
+\end{align}\]</div>
+<p>Using the same example as above, a vector-valued function <span class="math notranslate nohighlight">\(f\)</span> returning a length-<span class="math notranslate nohighlight">\(k\)</span> vector of 1-sensitive results has <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of <span class="math notranslate nohighlight">\(\sqrt{k}\)</span>. For long vectors, the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity will obviously be much lower than the <span class="math notranslate nohighlight">\(L1\)</span> sensitivity! For some applications, like machine learning algorithms (which sometimes return vectors with thousands of elements), <span class="math notranslate nohighlight">\(L2\)</span> sensitivity is <em>significantly</em> lower than <span class="math notranslate nohighlight">\(L1\)</span> sensitivity.</p>
 </section>
 <section id="choosing-between-l1-and-l2">
 <h3>Choosing Between L1 and L2<a class="headerlink" href="#choosing-between-l1-and-l2" title="Permalink to this heading">#</a></h3>
-<p>As mentioned earlier, both the Laplace and Gaussian mechanisms can be extended to vector-valued functions. However, there’s a key difference between these two extensions: the vector-valued Laplace mechanism <strong>requires</strong> the use of $L1$ sensitivity, while the vector-valued Gaussian mechanism allows the use of either $L1$ or $L2$ sensitivity. This is a major strength of the Gaussian mechanism. For applications in which $L2$ sensitivity is much lower than $L1$ sensitivity, the Gaussian mechanism allows adding <em>much</em> less noise.</p>
+<p>As mentioned earlier, both the Laplace and Gaussian mechanisms can be extended to vector-valued functions. However, there’s a key difference between these two extensions: the vector-valued Laplace mechanism <strong>requires</strong> the use of <span class="math notranslate nohighlight">\(L1\)</span> sensitivity, while the vector-valued Gaussian mechanism allows the use of either <span class="math notranslate nohighlight">\(L1\)</span> or <span class="math notranslate nohighlight">\(L2\)</span> sensitivity. This is a major strength of the Gaussian mechanism. For applications in which <span class="math notranslate nohighlight">\(L2\)</span> sensitivity is much lower than <span class="math notranslate nohighlight">\(L1\)</span> sensitivity, the Gaussian mechanism allows adding <em>much</em> less noise.</p>
 <ul class="simple">
-<li><p>The <strong>vector-valued Laplace mechanism</strong> releases $f(x) + (Y_1, \dots, Y_k)$, where $Y_i$ are drawn i.i.d. from the Laplace distribution with scale $\frac{s}{\epsilon}$ and $s$ is the $L1$ sensitivity of $f$</p></li>
-<li><p>The <strong>vector-valued Gaussian mechanism</strong> releases $f(x) + (Y_1, \dots, Y_k)$, where $Y_i$ are drawn i.i.d. from the Gaussian distribution with $\sigma^2 = \frac{2s^2 \log(1.25/\delta)}{\epsilon^2}$ and $s$ is the $L2$ sensitivity of $f$</p></li>
+<li><p>The <strong>vector-valued Laplace mechanism</strong> releases <span class="math notranslate nohighlight">\(f(x) + (Y_1, \dots, Y_k)\)</span>, where <span class="math notranslate nohighlight">\(Y_i\)</span> are drawn i.i.d. from the Laplace distribution with scale <span class="math notranslate nohighlight">\(\frac{s}{\epsilon}\)</span> and <span class="math notranslate nohighlight">\(s\)</span> is the <span class="math notranslate nohighlight">\(L1\)</span> sensitivity of <span class="math notranslate nohighlight">\(f\)</span></p></li>
+<li><p>The <strong>vector-valued Gaussian mechanism</strong> releases <span class="math notranslate nohighlight">\(f(x) + (Y_1, \dots, Y_k)\)</span>, where <span class="math notranslate nohighlight">\(Y_i\)</span> are drawn i.i.d. from the Gaussian distribution with <span class="math notranslate nohighlight">\(\sigma^2 = \frac{2s^2 \log(1.25/\delta)}{\epsilon^2}\)</span> and <span class="math notranslate nohighlight">\(s\)</span> is the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of <span class="math notranslate nohighlight">\(f\)</span></p></li>
 </ul>
 </section>
 </section>
 <section id="the-catastrophe-mechanism">
 <h2>The Catastrophe Mechanism<a class="headerlink" href="#the-catastrophe-mechanism" title="Permalink to this heading">#</a></h2>
-<p>The definition of $(\epsilon, \delta)$-differential privacy says that a mechanism which satisfies the definition must “behave well” with probability $1-\delta$. That means that with probability $\delta$, the mechanism can do anything at all. This “failure probability” is concerning, because mechanisms which satisfy the relaxed definition may (with low probability) result in very bad outcomes.</p>
+<p>The definition of <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy says that a mechanism which satisfies the definition must “behave well” with probability <span class="math notranslate nohighlight">\(1-\delta\)</span>. That means that with probability <span class="math notranslate nohighlight">\(\delta\)</span>, the mechanism can do anything at all. This “failure probability” is concerning, because mechanisms which satisfy the relaxed definition may (with low probability) result in very bad outcomes.</p>
 <p>Consider the following mechanism, which we will call the <em>catastrophe mechanism</em>:</p>
-<p>\begin{align}
-F(q, x) =;&amp; \text{Sample a number $r$ from the uniform distribution between 0 and 1}\
-&amp;\text{If } r &lt; \delta, \text{return } x\
-&amp;\text{Otherwise, return } q(x) + \text{Lap}(s/\epsilon), \text{where $s$ is the sensitivity of $q$}\
-\end{align}</p>
-<p>With probability $1-\delta$, the catastrophe mechanism satisfies $\epsilon$-differential privacy. With probability $\delta$, it <em>releases the whole dataset with no noise</em>. This mechanism satisfies the definition of approximate differential privacy, but we probably wouldn’t want to use it in practice.</p>
-<p>Fortunately, most $(\epsilon, \delta)$-differentially private mechanisms don’t have such a catastrophic failure mode. The Gaussian mechanism, for example, doesn’t ever release the whole dataset. Instead, with probability $\delta$, the Gaussian mechanism doesn’t <em>quite</em> satisfy $\epsilon$-differential privacy - it satisfies $c\epsilon$-differential privacy instead, for some value $c$.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ca3e14a9-96e0-40ef-8836-864320717da8">
+<span class="eqno">(12)<a class="headerlink" href="#equation-ca3e14a9-96e0-40ef-8836-864320717da8" title="Permalink to this equation">#</a></span>\[\begin{align}
+F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between 0 and 1}\\
+&amp;\text{If } r &lt; \delta, \text{return } x\\
+&amp;\text{Otherwise, return } q(x) + \text{Lap}(s/\epsilon), \text{where $s$ is the sensitivity of $q$}\\
+\end{align}\]</div>
+<p>With probability <span class="math notranslate nohighlight">\(1-\delta\)</span>, the catastrophe mechanism satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. With probability <span class="math notranslate nohighlight">\(\delta\)</span>, it <em>releases the whole dataset with no noise</em>. This mechanism satisfies the definition of approximate differential privacy, but we probably wouldn’t want to use it in practice.</p>
+<p>Fortunately, most <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differentially private mechanisms don’t have such a catastrophic failure mode. The Gaussian mechanism, for example, doesn’t ever release the whole dataset. Instead, with probability <span class="math notranslate nohighlight">\(\delta\)</span>, the Gaussian mechanism doesn’t <em>quite</em> satisfy <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy - it satisfies <span class="math notranslate nohighlight">\(c\epsilon\)</span>-differential privacy instead, for some value <span class="math notranslate nohighlight">\(c\)</span>.</p>
 <p>The Gaussian mechanism thus fails <em>gracefully</em>, rather than catastrophically, so it’s reasonable to have far more confidence in the Gaussian mechanism than in the catastrophe mechanism. Later, we will see alternative relaxations of the definition of differential privacy which distinguish between mechanisms that fail gracefully (like the Gaussian mechanism) and ones that fail catastropically (like the catastrophe mechanism).</p>
 </section>
 <section id="advanced-composition">
 <h2>Advanced Composition<a class="headerlink" href="#advanced-composition" title="Permalink to this heading">#</a></h2>
-<p>We have already seen two ways of combining differentially private mechanisms: sequential composition and parallel composition. It turns out that $(\epsilon, \delta)$-differential privacy admits a new way of analyzing the sequential composition of differentially private mechanisms, which can result in a lower privacy cost.</p>
-<p>The advanced composition theorem <span id="id2">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">7</a>]</span> is usually stated in terms of mechanisms which are instances of <em>$k$-fold adaptive composition</em>. A $k$-fold adaptive composition is a sequence of mechanisms $m_1, \dots, m_k$ such that:</p>
+<p>We have already seen two ways of combining differentially private mechanisms: sequential composition and parallel composition. It turns out that <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy admits a new way of analyzing the sequential composition of differentially private mechanisms, which can result in a lower privacy cost.</p>
+<p>The advanced composition theorem <span id="id2">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">7</a>]</span> is usually stated in terms of mechanisms which are instances of <em><span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition</em>. A <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition is a sequence of mechanisms <span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span> such that:</p>
 <ul class="simple">
-<li><p>Each mechanism $m_i$ may be chosen based on the outputs of all previous mechanisms $m_1, \dots, m_{i-1}$ (hence <em>adaptive</em>)</p></li>
-<li><p>The input to each mechanism $m_i$ is both the private dataset and all of the outputs of previous mechanisms (hence <em>composition</em>)</p></li>
+<li><p>Each mechanism <span class="math notranslate nohighlight">\(m_i\)</span> may be chosen based on the outputs of all previous mechanisms <span class="math notranslate nohighlight">\(m_1, \dots, m_{i-1}\)</span> (hence <em>adaptive</em>)</p></li>
+<li><p>The input to each mechanism <span class="math notranslate nohighlight">\(m_i\)</span> is both the private dataset and all of the outputs of previous mechanisms (hence <em>composition</em>)</p></li>
 </ul>
-<p>Iterative programs (i.e. loops or recursive functions) are nearly always instances of $k$-fold adaptive composition. A <code class="docutils literal notranslate"><span class="pre">for</span></code> loop that runs 1000 iterations, for example, is a 1000-fold adaptive composition. As a more specific example, an averaging attack is a $k$-fold adaptive composition:</p>
+<p>Iterative programs (i.e. loops or recursive functions) are nearly always instances of <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition. A <code class="docutils literal notranslate"><span class="pre">for</span></code> loop that runs 1000 iterations, for example, is a 1000-fold adaptive composition. As a more specific example, an averaging attack is a <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># works for sensitivity-1 queries</span>
@@ -563,29 +571,31 @@ F(q, x) =;&amp; \text{Sample a number $r$ from the uniform distribution between 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.085733292281677
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.038352972679368
 </pre></div>
 </div>
 </div>
 </div>
-<p>In this example, the sequence of mechanisms is fixed ahead of time (we use the same mechanism each time), and $k = 500$.</p>
-<p>The standard sequential composition theorem says that the total privacy cost of this mechanism is $k\epsilon$ (in this case, $500 \epsilon$).</p>
+<p>In this example, the sequence of mechanisms is fixed ahead of time (we use the same mechanism each time), and <span class="math notranslate nohighlight">\(k = 500\)</span>.</p>
+<p>The standard sequential composition theorem says that the total privacy cost of this mechanism is <span class="math notranslate nohighlight">\(k\epsilon\)</span> (in this case, <span class="math notranslate nohighlight">\(500 \epsilon\)</span>).</p>
 <p>The advanced composition theorem says:</p>
 <ul class="simple">
-<li><p>If each mechanism $m_i$ in a $k$-fold adaptive composition $m_1, \dots, m_k$ satisfies $\epsilon$-differential privacy</p></li>
-<li><p>Then for any $\delta’ \geq 0$, the entire $k$-fold adaptive composition satisfies $(\epsilon’, \delta’)$-differential privacy, where:</p></li>
+<li><p>If each mechanism <span class="math notranslate nohighlight">\(m_i\)</span> in a <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition <span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy</p></li>
+<li><p>Then for any <span class="math notranslate nohighlight">\(\delta' \geq 0\)</span>, the entire <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition satisfies <span class="math notranslate nohighlight">\((\epsilon', \delta')\)</span>-differential privacy, where:</p></li>
 </ul>
-<p>\begin{align}
-\epsilon’ = 2\epsilon \sqrt{2k \log(1/\delta’)}
-\end{align}</p>
-<p>Plugging in $\epsilon = 1$ from the example above, and setting $\delta’ = 10^{-5}$, we get:</p>
-<p>\begin{align}
-\epsilon’ =&amp; 2 \sqrt{1000 \log(100000)}\
+<div class="amsmath math notranslate nohighlight" id="equation-abdc46ec-db6f-46af-82d3-7a6e8d3e3046">
+<span class="eqno">(13)<a class="headerlink" href="#equation-abdc46ec-db6f-46af-82d3-7a6e8d3e3046" title="Permalink to this equation">#</a></span>\[\begin{align}
+\epsilon' = 2\epsilon \sqrt{2k \log(1/\delta')}
+\end{align}\]</div>
+<p>Plugging in <span class="math notranslate nohighlight">\(\epsilon = 1\)</span> from the example above, and setting <span class="math notranslate nohighlight">\(\delta' = 10^{-5}\)</span>, we get:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-986ea5f2-8cba-4cc3-bb3c-63ff840e1e2b">
+<span class="eqno">(14)<a class="headerlink" href="#equation-986ea5f2-8cba-4cc3-bb3c-63ff840e1e2b" title="Permalink to this equation">#</a></span>\[\begin{align}
+\epsilon' =&amp; 2 \sqrt{1000 \log(100000)}\\
 \approx&amp; 214.59
-\end{align}</p>
-<p>So advanced composition derives a much lower bound on $\epsilon’$ than sequential composition, <em>for the same mechanism</em>.  What does this mean? It means that the bounds given by sequential composition are <em>loose</em> - they don’t tightly bound the <em>actual</em> privacy cost of the computation. In fact, advanced composition also gives loose bounds - they’re just slightly <em>less</em> loose than the ones given by sequential composition.</p>
-<p>It’s important to note that the two bounds are technically incomparable, since advanced composition introduces a $\delta$. When $\delta$ is small, however, we will often compare the $\epsilon$s given by both methods.</p>
-<p>So, should we <em>always</em> use advanced composition? It turns out that we should <em>not</em>. Let’s try the experiment above for different values of $k$, and graph the <em>total privacy cost</em> under both sequential composition and advanced composition.</p>
+\end{align}\]</div>
+<p>So advanced composition derives a much lower bound on <span class="math notranslate nohighlight">\(\epsilon'\)</span> than sequential composition, <em>for the same mechanism</em>.  What does this mean? It means that the bounds given by sequential composition are <em>loose</em> - they don’t tightly bound the <em>actual</em> privacy cost of the computation. In fact, advanced composition also gives loose bounds - they’re just slightly <em>less</em> loose than the ones given by sequential composition.</p>
+<p>It’s important to note that the two bounds are technically incomparable, since advanced composition introduces a <span class="math notranslate nohighlight">\(\delta\)</span>. When <span class="math notranslate nohighlight">\(\delta\)</span> is small, however, we will often compare the <span class="math notranslate nohighlight">\(\epsilon\)</span>s given by both methods.</p>
+<p>So, should we <em>always</em> use advanced composition? It turns out that we should <em>not</em>. Let’s try the experiment above for different values of <span class="math notranslate nohighlight">\(k\)</span>, and graph the <em>total privacy cost</em> under both sequential composition and advanced composition.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -613,7 +623,7 @@ F(q, x) =;&amp; \text{Sample a number $r$ from the uniform distribution between 
 <img alt="_images/9fad4b36a5fba87d9c6fae2f0b31ec3b2fb7e4e836dd116716e6b5b67714adb8.png" src="_images/9fad4b36a5fba87d9c6fae2f0b31ec3b2fb7e4e836dd116716e6b5b67714adb8.png" />
 </div>
 </div>
-<p>Standard sequential composition, it turns out, beats advanced composition for $k$ smaller than about 70. Thus, advanced composition is only really useful when $k$ is large (e.g. more than 100). When $k$ is very large, though, advanced composition can make a <em>big</em> difference.</p>
+<p>Standard sequential composition, it turns out, beats advanced composition for <span class="math notranslate nohighlight">\(k\)</span> smaller than about 70. Thus, advanced composition is only really useful when <span class="math notranslate nohighlight">\(k\)</span> is large (e.g. more than 100). When <span class="math notranslate nohighlight">\(k\)</span> is very large, though, advanced composition can make a <em>big</em> difference.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -635,15 +645,16 @@ F(q, x) =;&amp; \text{Sample a number $r$ from the uniform distribution between 
 </section>
 <section id="advanced-composition-for-approximate-differential-privacy">
 <h2>Advanced Composition for Approximate Differential Privacy<a class="headerlink" href="#advanced-composition-for-approximate-differential-privacy" title="Permalink to this heading">#</a></h2>
-<p>The description of advanced composition above requires the individual mechanisms being composed to satisfy pure $\epsilon$-differential privacy. However, the theorem also applies if they satisfy $(\epsilon, \delta)$-differential privacy instead. The more general statement of the advanced composition theorem is as follows (<span id="id3">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">7</a>]</span>, Theorem 3.20):</p>
+<p>The description of advanced composition above requires the individual mechanisms being composed to satisfy pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. However, the theorem also applies if they satisfy <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy instead. The more general statement of the advanced composition theorem is as follows (<span id="id3">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">7</a>]</span>, Theorem 3.20):</p>
 <ul class="simple">
-<li><p>If each mechanism $m_i$ in a $k$-fold adaptive composition $m_1, \dots, m_k$ satisfies $(\epsilon, \delta)$-differential privacy</p></li>
-<li><p>Then for any $\delta’ \geq 0$, the entire $k$-fold adaptive composition satisfies $(\epsilon’, k\delta + \delta’)$-differential privacy, where:</p></li>
+<li><p>If each mechanism <span class="math notranslate nohighlight">\(m_i\)</span> in a <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition <span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy</p></li>
+<li><p>Then for any <span class="math notranslate nohighlight">\(\delta' \geq 0\)</span>, the entire <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition satisfies <span class="math notranslate nohighlight">\((\epsilon', k\delta + \delta')\)</span>-differential privacy, where:</p></li>
 </ul>
-<p>\begin{align}
-\epsilon’ = 2\epsilon \sqrt{2k \log(1/\delta’)}
-\end{align}</p>
-<p>The only difference is in the failure parameter $\delta$ for the composed mechanism, where we have an additional $k\delta$ term. When the mechanisms being composed satisfy pure $\epsilon$-differential privacy, then $\delta = k\delta = 0$, and we get the same result as the statement above.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5115a163-e400-4aa5-837a-9f7b48482b05">
+<span class="eqno">(15)<a class="headerlink" href="#equation-5115a163-e400-4aa5-837a-9f7b48482b05" title="Permalink to this equation">#</a></span>\[\begin{align}
+\epsilon' = 2\epsilon \sqrt{2k \log(1/\delta')}
+\end{align}\]</div>
+<p>The only difference is in the failure parameter <span class="math notranslate nohighlight">\(\delta\)</span> for the composed mechanism, where we have an additional <span class="math notranslate nohighlight">\(k\delta\)</span> term. When the mechanisms being composed satisfy pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, then <span class="math notranslate nohighlight">\(\delta = k\delta = 0\)</span>, and we get the same result as the statement above.</p>
 </section>
 </section>
 

@@ -64,6 +64,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch11';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -419,7 +421,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="exercises-in-algorithm-design">
+  <section class="tex2jax_ignore mathjax_ignore" id="exercises-in-algorithm-design">
 <h1>Exercises in Algorithm Design<a class="headerlink" href="#exercises-in-algorithm-design" title="Permalink to this heading">#</a></h1>
 <section id="issues-to-consider">
 <h2>Issues to Consider<a class="headerlink" href="#issues-to-consider" title="Permalink to this heading">#</a></h2>
@@ -440,16 +442,16 @@ document.write(`
 </section>
 <section id="generalized-sample-and-aggregate">
 <h2>1. Generalized Sample and Aggregate<a class="headerlink" href="#generalized-sample-and-aggregate" title="Permalink to this heading">#</a></h2>
-<p>Design a variant of sample and aggregate which does <em>not</em> require the analyst to specify the output range of the query function $f$.</p>
-<p><strong>Ideas</strong>: use SVT to find good upper and lower bounds on $f(x)$ for the whole dataset first. The result of $clip(f(x), lower, upper)$ has bounded sensitivity, so we can use this query with SVT. Then use sample and aggregate with these upper and lower bounds.</p>
+<p>Design a variant of sample and aggregate which does <em>not</em> require the analyst to specify the output range of the query function <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p><strong>Ideas</strong>: use SVT to find good upper and lower bounds on <span class="math notranslate nohighlight">\(f(x)\)</span> for the whole dataset first. The result of <span class="math notranslate nohighlight">\(clip(f(x), lower, upper)\)</span> has bounded sensitivity, so we can use this query with SVT. Then use sample and aggregate with these upper and lower bounds.</p>
 </section>
 <section id="summary-statistics">
 <h2>2. Summary Statistics<a class="headerlink" href="#summary-statistics" title="Permalink to this heading">#</a></h2>
 <p>Design an algorithm to produce differentially private versions of the following statistics:</p>
 <ul class="simple">
-<li><p>Mean: $\mu = \frac{1}{n} \sum_{i=1}^n x_i$</p></li>
-<li><p>Variance: $var = \frac{1}{n} \sum_{i=1}^n (x_i - \mu)^2$</p></li>
-<li><p>Standard deviation: $\sigma = \sqrt{\frac{1}{n} \sum_{i=1}^n (x_i - \mu)^2}$</p></li>
+<li><p>Mean: <span class="math notranslate nohighlight">\(\mu = \frac{1}{n} \sum_{i=1}^n x_i\)</span></p></li>
+<li><p>Variance: <span class="math notranslate nohighlight">\(var = \frac{1}{n} \sum_{i=1}^n (x_i - \mu)^2\)</span></p></li>
+<li><p>Standard deviation: <span class="math notranslate nohighlight">\(\sigma = \sqrt{\frac{1}{n} \sum_{i=1}^n (x_i - \mu)^2}\)</span></p></li>
 </ul>
 <p><strong>Ideas</strong>:</p>
 <p><strong>Mean</strong></p>
@@ -459,8 +461,8 @@ document.write(`
 </ol>
 <p><strong>Variance</strong></p>
 <ol class="arabic simple">
-<li><p>Split it into a count query ($\frac{1}{n}$ - we have the answer from above) and a sum query</p></li>
-<li><p>What’s the sensitivity of $\sum_{i=1}^n (x_i - \mu)^2$? It’s $b^2$; we can clip and compute $\sum_{i=1}^n (x_i - \mu)^2$, then multiply by (1) by post processing</p></li>
+<li><p>Split it into a count query (<span class="math notranslate nohighlight">\(\frac{1}{n}\)</span> - we have the answer from above) and a sum query</p></li>
+<li><p>What’s the sensitivity of <span class="math notranslate nohighlight">\(\sum_{i=1}^n (x_i - \mu)^2\)</span>? It’s <span class="math notranslate nohighlight">\(b^2\)</span>; we can clip and compute <span class="math notranslate nohighlight">\(\sum_{i=1}^n (x_i - \mu)^2\)</span>, then multiply by (1) by post processing</p></li>
 </ol>
 <p><strong>Standard Deviation</strong></p>
 <ol class="arabic simple">
@@ -502,24 +504,24 @@ document.write(`
 </section>
 <section id="workloads-of-range-queries">
 <h2>5. Workloads of Range Queries<a class="headerlink" href="#workloads-of-range-queries" title="Permalink to this heading">#</a></h2>
-<p>Design an algorithm to accurately answer a workload of <em>range queries</em>. Range queries are queries on a single table of the form: “how many rows have a value that is between $a$ and $b$?” (i.e. the count of rows which lie in a specific range).</p>
+<p>Design an algorithm to accurately answer a workload of <em>range queries</em>. Range queries are queries on a single table of the form: “how many rows have a value that is between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>?” (i.e. the count of rows which lie in a specific range).</p>
 <section id="part-1">
 <h3>Part 1<a class="headerlink" href="#part-1" title="Permalink to this heading">#</a></h3>
-<p>The whole workload is pre-specified as a finite sequence of ranges: ${(a_1, b_1), \dots, (a_k, b_k)}$, and</p>
+<p>The whole workload is pre-specified as a finite sequence of ranges: <span class="math notranslate nohighlight">\(\{(a_1, b_1), \dots, (a_k, b_k)\}\)</span>, and</p>
 </section>
 <section id="part-2">
 <h3>Part 2<a class="headerlink" href="#part-2" title="Permalink to this heading">#</a></h3>
-<p>The length of the workload $k$ is pre-specified, but queries arrive in a streaming fashion and must be answered as they arrive.</p>
+<p>The length of the workload <span class="math notranslate nohighlight">\(k\)</span> is pre-specified, but queries arrive in a streaming fashion and must be answered as they arrive.</p>
 </section>
 <section id="part-3">
 <h3>Part 3<a class="headerlink" href="#part-3" title="Permalink to this heading">#</a></h3>
 <p>The workload may be infinite.</p>
 <p><strong>Ideas</strong>:</p>
 <p>Just run each query with sequential composition.</p>
-<p>For part 1, combine them so we can use $L2$ sensitivity. When $k$ is large, this will work well with Gaussian noise.</p>
+<p>For part 1, combine them so we can use <span class="math notranslate nohighlight">\(L2\)</span> sensitivity. When <span class="math notranslate nohighlight">\(k\)</span> is large, this will work well with Gaussian noise.</p>
 <p>Or, build synthetic data:</p>
 <ul class="simple">
-<li><p>For each range $(i, i+1)$, find a count (parallel composition). This is a synthetic data representation! We can answer infinitely many queries by adding up the counts of all the segments in this histogram which are contained in the desired interval.</p></li>
+<li><p>For each range <span class="math notranslate nohighlight">\((i, i+1)\)</span>, find a count (parallel composition). This is a synthetic data representation! We can answer infinitely many queries by adding up the counts of all the segments in this histogram which are contained in the desired interval.</p></li>
 <li><p>For part 2, use SVT</p></li>
 </ul>
 <p>For SVT: for each query in the stream, ask how far the real answer is from the synthetic data answer. If it’s far, query the real answer’s range (as a histogram, using parallel composition) and update the synthetic data. Otherwise just give the synthetic data answer. This way you <em>ONLY</em> pay for updates to the synthetic data.</p>

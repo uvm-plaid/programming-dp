@@ -64,6 +64,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch4';</script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -415,7 +417,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="properties-of-differential-privacy">
+  <section class="tex2jax_ignore mathjax_ignore" id="properties-of-differential-privacy">
 <h1>Properties of Differential Privacy<a class="headerlink" href="#properties-of-differential-privacy" title="Permalink to this heading">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
@@ -439,14 +441,14 @@ document.write(`
 <p class="admonition-title"><span class="caption-number">Algorithm 1 </span> (Ford–Fulkerson)</p>
 <section class="algorithm-content" id="proof-content">
 <ul class="simple">
-<li><p>If $F_1(x)$ satisfies $\epsilon_1$-differential privacy</p></li>
-<li><p>And $F_2(x)$ satisfies $\epsilon_2$-differential privacy</p></li>
-<li><p>Then the mechanism $G(x) = (F_1(x), F_2(x))$ which releases both results satisfies $\epsilon_1+\epsilon_2$-differential privacy</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(F_1(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon_1\)</span>-differential privacy</p></li>
+<li><p>And <span class="math notranslate nohighlight">\(F_2(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon_2\)</span>-differential privacy</p></li>
+<li><p>Then the mechanism <span class="math notranslate nohighlight">\(G(x) = (F_1(x), F_2(x))\)</span> which releases both results satisfies <span class="math notranslate nohighlight">\(\epsilon_1+\epsilon_2\)</span>-differential privacy</p></li>
 </ul>
 </section>
 </div><p>Sequential composition is a vital property of differential privacy because it enables the design of algorithms that consult the data more than once. Sequential composition is also important when multiple separate analyses are performed on a single dataset, since it allows individuals to bound the <em>total</em> privacy cost they incur by participating in all of these analyses.
 The bound on privacy cost given by sequential composition is an <em>upper</em> bound - the actual privacy cost of two particular differentially private releases may be smaller than this, but never larger.</p>
-<p>The principle that the $\epsilon$s “add up” makes sense if we examine the distribution of outputs from a mechanism which averages two differentially private results together. Let’s look at some examples.</p>
+<p>The principle that the <span class="math notranslate nohighlight">\(\epsilon\)</span>s “add up” makes sense if we examine the distribution of outputs from a mechanism which averages two differentially private results together. Let’s look at some examples.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon1</span> <span class="o">=</span> <span class="mi">1</span>
@@ -491,10 +493,10 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/856dde9c33182b92f54d0d573722027867891b50cb110ed528f18a25a0c45ade.png" src="_images/856dde9c33182b92f54d0d573722027867891b50cb110ed528f18a25a0c45ade.png" />
+<img alt="_images/6377360ca197ddbe24f6ead1d53bc1283c9ac157c81162e2ce1ed73fbd1582d8.png" src="_images/6377360ca197ddbe24f6ead1d53bc1283c9ac157c81162e2ce1ed73fbd1582d8.png" />
 </div>
 </div>
-<p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F3</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier” than that of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, because its higher $\epsilon$ implies less privacy, and therefore a smaller likelihood of getting results far from the true answer.</p>
+<p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F3</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier” than that of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, because its higher <span class="math notranslate nohighlight">\(\epsilon\)</span> implies less privacy, and therefore a smaller likelihood of getting results far from the true answer.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -513,10 +515,10 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/411d81f7059e1cef72b71650bdd5a84f8619cf5abc525341101d4afa13e3ff26.png" src="_images/411d81f7059e1cef72b71650bdd5a84f8619cf5abc525341101d4afa13e3ff26.png" />
+<img alt="_images/e1827fd15ee3a0b6efc741cae080aad9ee60a0d46d79b27ebc32b896372e592a.png" src="_images/e1827fd15ee3a0b6efc741cae080aad9ee60a0d46d79b27ebc32b896372e592a.png" />
 </div>
 </div>
-<p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F_combined</span></code> is pointier. This means its answers are more accurate than those of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, so it makes sense that its $\epsilon$ must be higher (i.e. it yields less privacy than <code class="docutils literal notranslate"><span class="pre">F1</span></code>).</p>
+<p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F_combined</span></code> is pointier. This means its answers are more accurate than those of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, so it makes sense that its <span class="math notranslate nohighlight">\(\epsilon\)</span> must be higher (i.e. it yields less privacy than <code class="docutils literal notranslate"><span class="pre">F1</span></code>).</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -535,10 +537,10 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/36b4c4d032d404f0ea60f6eb6284bc1628c2fde13282c0bd581728b04c169253.png" src="_images/36b4c4d032d404f0ea60f6eb6284bc1628c2fde13282c0bd581728b04c169253.png" />
+<img alt="_images/0901b7fd8c36c3924358d0c2c4a64dad03b696ab0b13dc3f015e21811d9112bc.png" src="_images/0901b7fd8c36c3924358d0c2c4a64dad03b696ab0b13dc3f015e21811d9112bc.png" />
 </div>
 </div>
-<p>What about <code class="docutils literal notranslate"><span class="pre">F3</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>? Recall that the $\epsilon$ values for these two mechanisms are the same - both have an $\epsilon$ of 2. Their output distributions should look the same.</p>
+<p>What about <code class="docutils literal notranslate"><span class="pre">F3</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>? Recall that the <span class="math notranslate nohighlight">\(\epsilon\)</span> values for these two mechanisms are the same - both have an <span class="math notranslate nohighlight">\(\epsilon\)</span> of 2. Their output distributions should look the same.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -557,21 +559,21 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/0c3f10293127154709a0d8cf91855da3591a3a5f1cc6f961b461a5d77eb26e26.png" src="_images/0c3f10293127154709a0d8cf91855da3591a3a5f1cc6f961b461a5d77eb26e26.png" />
+<img alt="_images/d372a3807044251b583f033d7b36121c28e7579f3353c68f2fc0b22ceedd5fd0.png" src="_images/d372a3807044251b583f033d7b36121c28e7579f3353c68f2fc0b22ceedd5fd0.png" />
 </div>
 </div>
-<p>In fact, <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier”! Why does this happen? Remember that sequential composition yields an <em>upper</em> bound on the total $\epsilon$ of several releases, the actual cumulative impact on privacy might be lower. That’s the case here - the actual privacy loss in this case appears to be somewhat lower than the upper bound $\epsilon$ determined by sequential composition. Sequential composition is an extremely useful way to control total privacy cost, and we will see it used in many different ways, but keep in mind that it is not necessarily an exact bound.</p>
+<p>In fact, <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier”! Why does this happen? Remember that sequential composition yields an <em>upper</em> bound on the total <span class="math notranslate nohighlight">\(\epsilon\)</span> of several releases, the actual cumulative impact on privacy might be lower. That’s the case here - the actual privacy loss in this case appears to be somewhat lower than the upper bound <span class="math notranslate nohighlight">\(\epsilon\)</span> determined by sequential composition. Sequential composition is an extremely useful way to control total privacy cost, and we will see it used in many different ways, but keep in mind that it is not necessarily an exact bound.</p>
 </section>
 <section id="parallel-composition">
 <h2>Parallel Composition<a class="headerlink" href="#parallel-composition" title="Permalink to this heading">#</a></h2>
-<p>The second important property of differential privacy is called <em>parallel composition</em> <span id="id2">[<a class="reference internal" href="bibliography.html#id4" title="Frank D. McSherry. Privacy integrated queries: an extensible platform for privacy-preserving data analysis. In Proceedings of the 2009 ACM SIGMOD International Conference on Management of Data, SIGMOD '09, 19–30. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1559845.1559850, doi:10.1145/1559845.1559850.">6</a>]</span>. Parallel composition can be seen as an alternative to sequential composition - a second way to calculate a bound on the total privacy cost of multiple data releases. Parallel composition is based on the idea of splitting your dataset into disjoint chunks and running a differentially private mechanism on each chunk separately. Since the chunks are disjoint, each individual’s data appears in <em>exactly</em> one chunk - so even if there are $k$ chunks in total (and therefore $k$ runs of the mechanism), the mechanism runs exactly once on the data of each <em>individual</em>. Formally,</p>
+<p>The second important property of differential privacy is called <em>parallel composition</em> <span id="id2">[<a class="reference internal" href="bibliography.html#id4" title="Frank D. McSherry. Privacy integrated queries: an extensible platform for privacy-preserving data analysis. In Proceedings of the 2009 ACM SIGMOD International Conference on Management of Data, SIGMOD '09, 19–30. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1559845.1559850, doi:10.1145/1559845.1559850.">6</a>]</span>. Parallel composition can be seen as an alternative to sequential composition - a second way to calculate a bound on the total privacy cost of multiple data releases. Parallel composition is based on the idea of splitting your dataset into disjoint chunks and running a differentially private mechanism on each chunk separately. Since the chunks are disjoint, each individual’s data appears in <em>exactly</em> one chunk - so even if there are <span class="math notranslate nohighlight">\(k\)</span> chunks in total (and therefore <span class="math notranslate nohighlight">\(k\)</span> runs of the mechanism), the mechanism runs exactly once on the data of each <em>individual</em>. Formally,</p>
 <ul class="simple">
-<li><p>If $F(x)$ satisfies $\epsilon$-differential privacy</p></li>
-<li><p>And we split a dataset $X$ into $k$ disjoint chunks such that $x_1 \cup … \cup x_k = X$</p></li>
-<li><p>Then the mechanism which releases all of the results $F(x_1), …, F(x_k)$ satisfies $\epsilon$-differential privacy</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(F(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy</p></li>
+<li><p>And we split a dataset <span class="math notranslate nohighlight">\(X\)</span> into <span class="math notranslate nohighlight">\(k\)</span> disjoint chunks such that <span class="math notranslate nohighlight">\(x_1 \cup ... \cup x_k = X\)</span></p></li>
+<li><p>Then the mechanism which releases all of the results <span class="math notranslate nohighlight">\(F(x_1), ..., F(x_k)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy</p></li>
 </ul>
-<p>Note that this is a much better bound than sequential composition would give. Since we run $F$ $k$ times, sequential composition would say that this procedure satisfies $k\epsilon$-differential privacy. Parallel composition allows us to say that the total privacy cost is just $\epsilon$.</p>
-<p>The formal definition matches up with our intuition - if each participant in the dataset contributes one row to $X$, then this row will appear in <em>exactly</em> one of the chunks $x_1, …, x_k$. That means $F$ will only “see” this participant’s data <em>one time</em>, meaning a privacy cost of $\epsilon$ is appropriate for that individual. Since this property holds for all individuals, the privacy cost is $\epsilon$ for everyone.</p>
+<p>Note that this is a much better bound than sequential composition would give. Since we run <span class="math notranslate nohighlight">\(F\)</span> <span class="math notranslate nohighlight">\(k\)</span> times, sequential composition would say that this procedure satisfies <span class="math notranslate nohighlight">\(k\epsilon\)</span>-differential privacy. Parallel composition allows us to say that the total privacy cost is just <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
+<p>The formal definition matches up with our intuition - if each participant in the dataset contributes one row to <span class="math notranslate nohighlight">\(X\)</span>, then this row will appear in <em>exactly</em> one of the chunks <span class="math notranslate nohighlight">\(x_1, ..., x_k\)</span>. That means <span class="math notranslate nohighlight">\(F\)</span> will only “see” this participant’s data <em>one time</em>, meaning a privacy cost of <span class="math notranslate nohighlight">\(\epsilon\)</span> is appropriate for that individual. Since this property holds for all individuals, the privacy cost is <span class="math notranslate nohighlight">\(\epsilon\)</span> for everyone.</p>
 <section id="histograms">
 <h3>Histograms<a class="headerlink" href="#histograms" title="Permalink to this heading">#</a></h3>
 <p>In our context, a <em>histogram</em> is an analysis of a dataset which splits the dataset into “bins” based on the value of one of the data attributes, and counts the number of rows in each bin. For example, a histogram might count the number of people in the dataset who achieved a particular educational level.</p>
@@ -635,7 +637,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </table>
 </div></div></div>
 </div>
-<p>Histograms are particularly interesting for differential privacy because they automatically satisfy parallel composition. Each “bin” in a histogram is defined by a possible value for a data attribute (for example, <code class="docutils literal notranslate"><span class="pre">'Education'</span> <span class="pre">==</span> <span class="pre">'HS-grad'</span></code>). It’s impossible for a single row to have <em>two</em> values for an attribute simultaneously, so defining the bins this way <em>guarantees</em> that they will be disjoint. Thus we have satisfied the requirements for parallel composition, and we can use a differentially private mechanism to release <em>all</em> of the bin counts with a total privacy cost of just $\epsilon$.</p>
+<p>Histograms are particularly interesting for differential privacy because they automatically satisfy parallel composition. Each “bin” in a histogram is defined by a possible value for a data attribute (for example, <code class="docutils literal notranslate"><span class="pre">'Education'</span> <span class="pre">==</span> <span class="pre">'HS-grad'</span></code>). It’s impossible for a single row to have <em>two</em> values for an attribute simultaneously, so defining the bins this way <em>guarantees</em> that they will be disjoint. Thus we have satisfied the requirements for parallel composition, and we can use a differentially private mechanism to release <em>all</em> of the bin counts with a total privacy cost of just <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>
@@ -672,23 +674,23 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
   <tbody>
     <tr>
       <th>HS-grad</th>
-      <td>10501.169545</td>
+      <td>10501.270855</td>
     </tr>
     <tr>
       <th>Some-college</th>
-      <td>7292.384233</td>
+      <td>7285.971382</td>
     </tr>
     <tr>
       <th>Bachelors</th>
-      <td>5354.921762</td>
+      <td>5356.338150</td>
     </tr>
     <tr>
       <th>Masters</th>
-      <td>1722.660291</td>
+      <td>1723.543212</td>
     </tr>
     <tr>
       <th>Assoc-voc</th>
-      <td>1381.926372</td>
+      <td>1381.161494</td>
     </tr>
   </tbody>
 </table>
@@ -802,28 +804,28 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
   <tbody>
     <tr>
       <th>10th</th>
-      <td>297.746815</td>
-      <td>637.587342</td>
+      <td>295.419857</td>
+      <td>637.261787</td>
     </tr>
     <tr>
       <th>11th</th>
-      <td>432.037897</td>
-      <td>743.809070</td>
+      <td>430.795230</td>
+      <td>743.279058</td>
     </tr>
     <tr>
       <th>12th</th>
-      <td>143.075654</td>
-      <td>289.263533</td>
+      <td>144.354849</td>
+      <td>289.403367</td>
     </tr>
     <tr>
       <th>1st-4th</th>
-      <td>44.509354</td>
-      <td>120.994471</td>
+      <td>47.414618</td>
+      <td>123.312387</td>
     </tr>
     <tr>
       <th>5th-6th</th>
-      <td>86.648780</td>
-      <td>249.734769</td>
+      <td>87.915406</td>
+      <td>248.145397</td>
     </tr>
   </tbody>
 </table>
@@ -838,11 +840,11 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 <h2>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this heading">#</a></h2>
 <p>The third property of differential privacy we will discuss here is called <em>post-processing</em>. The idea is simple: it’s impossible to reverse the privacy protection provided by differential privacy by post-processing the data in some way. Formally:</p>
 <ul class="simple">
-<li><p>If $F(X)$ satisfies $\epsilon$-differential privacy</p></li>
-<li><p>Then for any (deterministic or randomized) function $g$, $g(F(X))$ satisfies $\epsilon$-differential privacy</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(F(X)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy</p></li>
+<li><p>Then for any (deterministic or randomized) function <span class="math notranslate nohighlight">\(g\)</span>, <span class="math notranslate nohighlight">\(g(F(X))\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy</p></li>
 </ul>
 <p>The post-processing property means that it’s always safe to perform arbitrary computations on the output of a differentially private mechanism - there’s no danger of reversing the privacy protection the mechanism has provided. In particular, it’s fine to perform post-processing that might reduce the noise or improve the signal in the mechanism’s output (e.g. replacing negative results with zeros, for queries that shouldn’t return negative results). In fact, many sophisticated differentially private algorithms make use of post-processing to reduce noise and improve the accuracy of their results.</p>
-<p>The other implication of the post-processing property is that differential privacy provides resistance against privacy attacks based on auxiliary information. For example, the function $g$ might contain auxiliary information about elements of the dataset, and attempt to perform a linkage attack using this information. The post-processing property says that such an attack is limited in its effectiveness by the privacy parameter $\epsilon$, regardless of the auxiliary information contained in $g$.</p>
+<p>The other implication of the post-processing property is that differential privacy provides resistance against privacy attacks based on auxiliary information. For example, the function <span class="math notranslate nohighlight">\(g\)</span> might contain auxiliary information about elements of the dataset, and attempt to perform a linkage attack using this information. The post-processing property says that such an attack is limited in its effectiveness by the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>, regardless of the auxiliary information contained in <span class="math notranslate nohighlight">\(g\)</span>.</p>
 </section>
 </section>
 
