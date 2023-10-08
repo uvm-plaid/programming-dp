@@ -435,16 +435,16 @@ document.write(`
 <section id="sequential-composition">
 <h2>Sequential Composition<a class="headerlink" href="#sequential-composition" title="Permalink to this heading">#</a></h2>
 <p>The first major property of differential privacy is <em>sequential composition</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id7" title="Cynthia Dwork, Frank McSherry, Kobbi Nissim, and Adam Smith. Calibrating noise to sensitivity in private data analysis. In Proceedings of the Third Conference on Theory of Cryptography, TCC'06, 265–284. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11681878_14, doi:10.1007/11681878_14.">4</a>, <a class="reference internal" href="bibliography.html#id5" title="Cynthia Dwork, Krishnaram Kenthapadi, Frank McSherry, Ilya Mironov, and Moni Naor. Our data, ourselves: privacy via distributed noise generation. In Serge Vaudenay, editor, Advances in Cryptology - EUROCRYPT 2006, 486–503. Berlin, Heidelberg, 2006. Springer Berlin Heidelberg.">5</a>]</span>, which bounds the total privacy cost of releasing multiple results of differentially private mechanisms on the same input data. Formally, the sequential composition theorem for differential privacy says that:</p>
-<div class="proof theorem admonition" id="theorem-0">
-<p class="admonition-title"><span class="caption-number">Theorem 1 </span></p>
-<section class="theorem-content" id="proof-content">
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Theorem</p>
 <ul class="simple">
 <li><p>If $F_1(x)$ satisfies $\epsilon_1$-differential privacy</p></li>
 <li><p>And $F_2(x)$ satisfies $\epsilon_2$-differential privacy</p></li>
 <li><p>Then the mechanism $G(x) = (F_1(x), F_2(x))$ which releases both results satisfies $\epsilon_1+\epsilon_2$-differential privacy</p></li>
 </ul>
-</section>
-</div><p>Sequential composition is a vital property of differential privacy because it enables the design of algorithms that consult the data more than once. Sequential composition is also important when multiple separate analyses are performed on a single dataset, since it allows individuals to bound the <em>total</em> privacy cost they incur by participating in all of these analyses.
+</div>
+<p>Sequential composition is a vital property of differential privacy because it enables the design of algorithms that consult the data more than once. Sequential composition is also important when multiple separate analyses are performed on a single dataset, since it allows individuals to bound the <em>total</em> privacy cost they incur by participating in all of these analyses.
 The bound on privacy cost given by sequential composition is an <em>upper</em> bound - the actual privacy cost of two particular differentially private releases may be smaller than this, but never larger.</p>
 <p>The principle that the $\epsilon$s “add up” makes sense if we examine the distribution of outputs from a mechanism which averages two differentially private results together. Let’s look at some examples.</p>
 <div class="cell docutils container">
@@ -491,7 +491,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/866076c555a1f1cc7d56b061a6312fdfc39a165f0c61b04f30bc5f788bdf55e2.png" src="_images/866076c555a1f1cc7d56b061a6312fdfc39a165f0c61b04f30bc5f788bdf55e2.png" />
+<img alt="_images/52b4e6aa55f7d6438b4b41a5ee2dbcbb3ff17001aed552c3f971c2dcb8043f31.png" src="_images/52b4e6aa55f7d6438b4b41a5ee2dbcbb3ff17001aed552c3f971c2dcb8043f31.png" />
 </div>
 </div>
 <p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F3</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier” than that of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, because its higher $\epsilon$ implies less privacy, and therefore a smaller likelihood of getting results far from the true answer.</p>
@@ -513,7 +513,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/05d2ec8eb8c361412c8a0383b4f4853c52f4912a323962e497429ffd2540e50f.png" src="_images/05d2ec8eb8c361412c8a0383b4f4853c52f4912a323962e497429ffd2540e50f.png" />
+<img alt="_images/473b8f92c5fef613ecbac40879a9de2fadca4ab37b1298f755acff666a1cb93f.png" src="_images/473b8f92c5fef613ecbac40879a9de2fadca4ab37b1298f755acff666a1cb93f.png" />
 </div>
 </div>
 <p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F_combined</span></code> is pointier. This means its answers are more accurate than those of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, so it makes sense that its $\epsilon$ must be higher (i.e. it yields less privacy than <code class="docutils literal notranslate"><span class="pre">F1</span></code>).</p>
@@ -535,7 +535,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/5f4123d6577829d60bf1d3aebe332b96452739881286731f1d367aa6a43736b3.png" src="_images/5f4123d6577829d60bf1d3aebe332b96452739881286731f1d367aa6a43736b3.png" />
+<img alt="_images/242bff3a4a61a5408e645f3a08d7cab776b1f78471268b9013637e04534d42e1.png" src="_images/242bff3a4a61a5408e645f3a08d7cab776b1f78471268b9013637e04534d42e1.png" />
 </div>
 </div>
 <p>What about <code class="docutils literal notranslate"><span class="pre">F3</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>? Recall that the $\epsilon$ values for these two mechanisms are the same - both have an $\epsilon$ of 2. Their output distributions should look the same.</p>
@@ -557,7 +557,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/4c9a9b37bd23220fe052f972d719798fd569c1d799cbb80d0ae9732383c8f18e.png" src="_images/4c9a9b37bd23220fe052f972d719798fd569c1d799cbb80d0ae9732383c8f18e.png" />
+<img alt="_images/97fbd7564d5de900205ef089cda19474c9ba5119c60235ebf79f6955ef46129a.png" src="_images/97fbd7564d5de900205ef089cda19474c9ba5119c60235ebf79f6955ef46129a.png" />
 </div>
 </div>
 <p>In fact, <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier”! Why does this happen? Remember that sequential composition yields an <em>upper</em> bound on the total $\epsilon$ of several releases, the actual cumulative impact on privacy might be lower. That’s the case here - the actual privacy loss in this case appears to be somewhat lower than the upper bound $\epsilon$ determined by sequential composition. Sequential composition is an extremely useful way to control total privacy cost, and we will see it used in many different ways, but keep in mind that it is not necessarily an exact bound.</p>
@@ -672,23 +672,23 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
   <tbody>
     <tr>
       <th>HS-grad</th>
-      <td>10502.106299</td>
+      <td>10500.734836</td>
     </tr>
     <tr>
       <th>Some-college</th>
-      <td>7291.631920</td>
+      <td>7292.352090</td>
     </tr>
     <tr>
       <th>Bachelors</th>
-      <td>5355.517929</td>
+      <td>5353.793059</td>
     </tr>
     <tr>
       <th>Masters</th>
-      <td>1722.561684</td>
+      <td>1722.596751</td>
     </tr>
     <tr>
       <th>Assoc-voc</th>
-      <td>1381.624652</td>
+      <td>1379.331290</td>
     </tr>
   </tbody>
 </table>
@@ -802,28 +802,28 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
   <tbody>
     <tr>
       <th>10th</th>
-      <td>295.124088</td>
-      <td>638.736579</td>
+      <td>294.673517</td>
+      <td>635.003674</td>
     </tr>
     <tr>
       <th>11th</th>
-      <td>429.584663</td>
-      <td>742.476150</td>
+      <td>431.692898</td>
+      <td>741.557800</td>
     </tr>
     <tr>
       <th>12th</th>
-      <td>143.417000</td>
-      <td>289.285448</td>
+      <td>144.219538</td>
+      <td>289.589668</td>
     </tr>
     <tr>
       <th>1st-4th</th>
-      <td>47.419202</td>
-      <td>121.155956</td>
+      <td>45.370415</td>
+      <td>120.904656</td>
     </tr>
     <tr>
       <th>5th-6th</th>
-      <td>82.117830</td>
-      <td>248.518478</td>
+      <td>85.085330</td>
+      <td>248.889914</td>
     </tr>
   </tbody>
 </table>
