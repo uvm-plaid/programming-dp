@@ -460,12 +460,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2c83a2a253def544accac19ce8e1c751dc898ea59c9d1cff9da810076ac57a5d.png" src="_images/2c83a2a253def544accac19ce8e1c751dc898ea59c9d1cff9da810076ac57a5d.png" />
+<img alt="_images/56fdc96eb659b27d9f74e5fec6cd96241ddc50c56862c784f2174828824784be.png" src="_images/56fdc96eb659b27d9f74e5fec6cd96241ddc50c56862c784f2174828824784be.png" />
 </div>
 </div>
 <p>With the time spent counting on the y-axis, and the list lize on the x-axis, we can see that the time complexity of differential privacy for this particular operation is essentially linear in the size of the input.</p>
 <p>The good news is that the above implementation of differentially private count is rather naive, and we can do much better using optimization techniques such as vectorization!</p>
-<p>For example, when implementing differential privacy for the machine learning operations in <a class="reference external" href="https://programming-dp.com/ch12.html">this</a> chapter, we make use of NumPy functions which are heavily optimized for vector-based operations. In this particular scenario, leveraging this strategy, we manage to incur negligible time cost for the use of differential privacy.</p>
+<p>For example, when implementing differential privacy for the machine learning operations in <a class="reference external" href="https://programming-dp.com/ch12.html">a previous</a> chapter, we make use of NumPy functions which are heavily optimized for vector-based operations. In this particular scenario, leveraging this strategy, we manage to incur negligible time cost for the use of differential privacy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>
@@ -495,7 +495,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4ae3cf1693d74612fdb1cab7197990002ca5ef02625286ac491c8ac496c8f543.png" src="_images/4ae3cf1693d74612fdb1cab7197990002ca5ef02625286ac491c8ac496c8f543.png" />
+<img alt="_images/8e9f58448f39ad8ed8c302e275edd8ad8aecdb76f3a9b97fa25b8a90d60f1bc9.png" src="_images/8e9f58448f39ad8ed8c302e275edd8ad8aecdb76f3a9b97fa25b8a90d60f1bc9.png" />
 </div>
 </div>
 <p>The graph plots generally overlap or are close in most simulations of this experiment, indicating low (constant) time inefficiency overhead incurred from utilizing private gradient descent.</p>
@@ -539,7 +539,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d2eb363234a9c824da673fd7f33d5e9210848175e9df540cc481f0840561ecbd.png" src="_images/d2eb363234a9c824da673fd7f33d5e9210848175e9df540cc481f0840561ecbd.png" />
+<img alt="_images/80a9338bd877c649bd056572819ba3ef898e7cb4baab9f3db33aca615fbe9877.png" src="_images/80a9338bd877c649bd056572819ba3ef898e7cb4baab9f3db33aca615fbe9877.png" />
 </div>
 </div>
 <p>We display every thousand memory blocks on the y-axis, against the list size on the x-axis.</p>
@@ -585,7 +585,7 @@ document.write(`
 <h2>Limitations of Random Number Generation<a class="headerlink" href="#limitations-of-random-number-generation" title="Permalink to this heading">#</a></h2>
 <p>In conclusion, while some bottlenecks may exist, there are techniques we can use to keep both the space and time cost of differential privacy generally low (constant) throughout the lifetime of program evaluation.</p>
 <p>Why do any bottlenecks exist, and why are they particular to differential privacy? In order to preserve the guarantee of differential privacy, we require high-quality entropy. This is a limited resource because it generally relies on some external source of non-deterministic environmental input. Examples of non-determinintic entropy sources can include disk/network IO, keyboard presses, and mouse movement.</p>
-<p>Usually random number generators sample entropy bytes from some <a class="reference external" href="https://en.wikipedia.org/wiki//dev/random">buffer or file</a>:</p>
+<p>Usually this entropy is stored in some special <a class="reference external" href="https://en.wikipedia.org/wiki//dev/random">buffer or file</a> to be retrieved and used later on.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/dev/random&quot;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
@@ -594,7 +594,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\xb1|m-\x98\xfb\x00\xc1&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\xc6\x9d\xbf\x90\x0bw\xaa^&#39;
 </pre></div>
 </div>
 </div>
@@ -608,7 +608,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\x1b\x01\x0f\xe3\x15\xa3[\xe6\x12\xc70\x02\xa5\xf4\xf4\x8bZtJ\xd8\x81\xa2a\x19\xebB\x17\xd8\xea-\x8f\x8d&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;b[u\xf7\xd3\xeb\x93:@v\xa4l\x11\xb6a\x8c\x87\x17\xbd7\xb3\xb3\xda\xdc\x89\xe1\x9e\xb8\xf5x\xa6\xb6&#39;
 </pre></div>
 </div>
 </div>
@@ -622,7 +622,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\xb3\xb3,\x14\x86\x040\xf0*!\x98\xe5\xe8\xfa\xca\x03\x90\x0b\xbe\xe8\x82jpQ\xb7\xf3\x06\xcf\x9ez\x8c\xac&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;6v\x88\x85\xb1\x8a\x922\xa2y\xe0M\r\x02yHb\xca\x7f\x8f{\xbbB}X\x81&lt;\x00\xf5\x99&lt;\x96&#39;
 </pre></div>
 </div>
 </div>
