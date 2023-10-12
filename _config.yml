@@ -35,3 +35,7 @@ repository:
   url: https://github.com/uvm-plaid/programming-dp
   path_to_book: notebooks
   branch: master
+
+launch_buttons:
+  notebook_interface: "classic"
+  binderhub_url: "https://mybinder.org"
