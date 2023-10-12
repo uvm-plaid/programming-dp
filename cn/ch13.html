@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>本地差分隐私 &#8212; 动手学差分隐私</title>
   
@@ -47,7 +47,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -412,7 +411,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>本地差分隐私<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<h1>本地差分隐私<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
 <p>阅读本章后，您将能够：</p>
@@ -429,7 +428,7 @@ document.write(`
 <p>不幸的是，本地模型也有明显的缺点：在相同的隐私消耗量下，对于相同的问询，本地模型问询结果的准确性通常比中心模型<em>低几个数量级</em>。这种巨大的准确性损失意味着只有较少类型的问询适用于本地差分隐私。即便如此，只有当数据量较大（即参与者数量较多时）时，差分隐私本地模型分析结果的准确率才可以满足实际要求。</p>
 <p>本章，我们将学习两种本地差分隐私机制。第一种是<em>随机应答</em>（Randomized Response），第二种是<em>一元编码</em>（Unary Encoding）。</p>
 <section id="id2">
-<h2>随机应答<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<h2>随机应答<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Randomized_response">随机应答</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id19" title="Stanley L. Warner. Randomized response: a survey technique for eliminating evasive answer bias. Journal of the American Statistical Association, 60(309):63-69, 1965. PMID: 12261830. URL: https://www.tandfonline.com/doi/abs/10.1080/01621459.1965.10480775, doi:10.1080/01621459.1965.10480775.">16</a>]</span>是一种本地差分隐私机制，<a class="reference external" href="https://www.jstor.org/stable/2283137?seq=1#metadata_info_tab_contents">S. L. Warner</a>在其1965年的论文中首次提出了这一机制。当时，该技术提出的目的是允许用户可以用错误的回复来应答调研中的敏感问题，且学者们当初也没有意识到这是一种差分隐私机制（此后40年内，学者们都尚未提出差分隐私的概念）。在提出差分隐私的概念后，统计学家们才意识到随机应答技术<em>已经</em>满足了差分隐私的定义。</p>
 <p>Dwork和Roth提出了一种随机应答变种机制。在此机制中，数据主体按下述方法用”是”或”不是”来回答一个问题：</p>
 <ol class="arabic simple">
@@ -465,8 +464,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     147
-False     53
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     150
+False     50
 dtype: int64
 </pre></div>
 </div>
@@ -488,8 +487,8 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22570
-True      9991
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22453
+True     10108
 dtype: int64
 </pre></div>
 </div>
@@ -545,7 +544,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3689.5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3573.5
 </pre></div>
 </div>
 </div>
@@ -571,7 +570,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0821917808219177
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.095890410958904
 </pre></div>
 </div>
 </div>
@@ -585,7 +584,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.08986220689841926
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.05374880006242514
 </pre></div>
 </div>
 </div>
@@ -594,7 +593,7 @@ dtype: int64
 <p>确实<em>存在</em>效果更好的本地模型算法。然而，本地模型存在天生的限制条件：必须在提交数据前增加噪声。这意味着本地模型算法的准确率<em>总是</em>比最好的中心模型算法准确率低。</p>
 </section>
 <section id="id4">
-<h2>一元编码<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<h2>一元编码<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>随机应答允许我们基于本地差分隐私回答”是或否”的问题。如何实现直方图问询呢？</p>
 <p>学者们已经提出了多种不同的算法，来解决本地差分隐私的直方图问询问题。<a class="reference external" href="https://arxiv.org/abs/1705.04421">Wang等人</a> <span id="id5">[<a class="reference internal" href="bibliography.html#id20" title="Tianhao Wang, Jeremiah Blocki, Ninghui Li, and Somesh Jha. Locally differentially private protocols for frequency estimation. In 26th USENIX Security Symposium (USENIX Security 17), 729–745. Vancouver, BC, August 2017. USENIX Association. URL: https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/wang-tianhao.">17</a>]</span>在2017年的论文中总结了一些优化方法。这里，我们介绍其中最简单的一个方法：<em>一元编码</em>。该方法是<a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42852.pdf">谷歌RAPPOR系统</a> <span id="id6">[<a class="reference internal" href="bibliography.html#id18" title="Úlfar Erlingsson, Vasyl Pihur, and Aleksandra Korolova. Rappor: randomized aggregatable privacy-preserving ordinal response. In Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security, CCS '14, 1054–1067. New York, NY, USA, 2014. Association for Computing Machinery. URL: https://doi.org/10.1145/2660267.2660348, doi:10.1145/2660267.2660348.">15</a>]</span>的基础算法（谷歌RAPPOR系统对基础算法作了大量的修改，使算法支持更大的标签数量、支持随时间推移的多次应答）。</p>
 <p>我们首先需要定义应答域，即直方图包含的标签。下述例子中，我们想要知道各个职业的从业者人数，因此应答域是所有职位所构成的集合。</p>
@@ -672,14 +671,14 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0]
 </pre></div>
 </div>
 </div>
 </div>
 <p>我们可以根据<span class="math notranslate nohighlight">\(p\)</span>和<span class="math notranslate nohighlight">\(q\)</span>计算出隐私参数<span class="math notranslate nohighlight">\(\epsilon\)</span>。如果<span class="math notranslate nohighlight">\(p=.75\)</span>，<span class="math notranslate nohighlight">\(q=.25\)</span>，则计算得到的<span class="math notranslate nohighlight">\(\epsilon\)</span>略高于2。</p>
-<div class="amsmath math notranslate nohighlight" id="equation-da512a2a-408d-4372-ba83-4f1f558c8206">
-<span class="eqno">(38)<a class="headerlink" href="#equation-da512a2a-408d-4372-ba83-4f1f558c8206" title="此公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6b9ead64-134f-4520-b456-8dcc1d56c96c">
+<span class="eqno">(38)<a class="headerlink" href="#equation-6b9ead64-134f-4520-b456-8dcc1d56c96c" title="公式的永久链接">#</a></span>\[\begin{align}
 \epsilon = \log{\left(\frac{p (1-q)}{(1-p) q}\right)}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -733,27 +732,27 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 10084),
- (&#39;Exec-managerial&#39;, 10239),
- (&#39;Handlers-cleaners&#39;, 8867),
- (&#39;Prof-specialty&#39;, 10307),
- (&#39;Other-service&#39;, 9803),
- (&#39;Sales&#39;, 9981),
- (&#39;Craft-repair&#39;, 10132),
- (&#39;Transport-moving&#39;, 8825),
- (&#39;Farming-fishing&#39;, 8378),
- (&#39;Machine-op-inspct&#39;, 9035),
- (&#39;Tech-support&#39;, 8576),
- (&#39;Protective-serv&#39;, 8470),
- (&#39;Armed-Forces&#39;, 8276),
- (&#39;Priv-house-serv&#39;, 8182)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 10152),
+ (&#39;Exec-managerial&#39;, 10225),
+ (&#39;Handlers-cleaners&#39;, 8812),
+ (&#39;Prof-specialty&#39;, 10254),
+ (&#39;Other-service&#39;, 9711),
+ (&#39;Sales&#39;, 10013),
+ (&#39;Craft-repair&#39;, 10140),
+ (&#39;Transport-moving&#39;, 8934),
+ (&#39;Farming-fishing&#39;, 8588),
+ (&#39;Machine-op-inspct&#39;, 9165),
+ (&#39;Tech-support&#39;, 8557),
+ (&#39;Protective-serv&#39;, 8427),
+ (&#39;Armed-Forces&#39;, 8277),
+ (&#39;Priv-house-serv&#39;, 8204)]
 </pre></div>
 </div>
 </div>
 </div>
 <p>一元编码算法的聚合步骤需要考虑每个标签的”假”应答数量。此步骤以<span class="math notranslate nohighlight">\(p\)</span>、<span class="math notranslate nohighlight">\(q\)</span>，以及应答数量<span class="math notranslate nohighlight">\(n\)</span>为输入，得到聚合结果：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b6a52ab1-eb66-4598-a921-bcb5a72cbc09">
-<span class="eqno">(39)<a class="headerlink" href="#equation-b6a52ab1-eb66-4598-a921-bcb5a72cbc09" title="此公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1c632176-46a2-4bc9-b963-4384e7c28560">
+<span class="eqno">(39)<a class="headerlink" href="#equation-1c632176-46a2-4bc9-b963-4384e7c28560" title="公式的永久链接">#</a></span>\[\begin{align}
 A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -779,20 +778,20 @@ A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3613.5),
- (&#39;Exec-managerial&#39;, 4073.5),
- (&#39;Handlers-cleaners&#39;, 1287.5),
- (&#39;Prof-specialty&#39;, 4181.5),
- (&#39;Other-service&#39;, 3217.5),
- (&#39;Sales&#39;, 3427.5),
- (&#39;Craft-repair&#39;, 4069.5),
- (&#39;Transport-moving&#39;, 1455.5),
- (&#39;Farming-fishing&#39;, 731.5),
- (&#39;Machine-op-inspct&#39;, 1979.5),
- (&#39;Tech-support&#39;, 1041.5),
- (&#39;Protective-serv&#39;, 749.5),
- (&#39;Armed-Forces&#39;, 27.5),
- (&#39;Priv-house-serv&#39;, 85.5)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3857.5),
+ (&#39;Exec-managerial&#39;, 4083.5),
+ (&#39;Handlers-cleaners&#39;, 1327.5),
+ (&#39;Prof-specialty&#39;, 4361.5),
+ (&#39;Other-service&#39;, 3511.5),
+ (&#39;Sales&#39;, 3843.5),
+ (&#39;Craft-repair&#39;, 3943.5),
+ (&#39;Transport-moving&#39;, 1751.5),
+ (&#39;Farming-fishing&#39;, 833.5),
+ (&#39;Machine-op-inspct&#39;, 2055.5),
+ (&#39;Tech-support&#39;, 965.5),
+ (&#39;Protective-serv&#39;, 699.5),
+ (&#39;Armed-Forces&#39;, 77.5),
+ (&#39;Priv-house-serv&#39;, 79.5)]
 </pre></div>
 </div>
 </div>

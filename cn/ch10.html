@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>稀疏向量技术 &#8212; 动手学差分隐私</title>
   
@@ -47,7 +47,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -414,7 +413,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>稀疏向量技术<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<h1>稀疏向量技术<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
 <p>阅读本章后，您将能够：</p>
@@ -427,7 +426,7 @@ document.write(`
 <p>我们已经学习了一个很有代表性的机制：指数机制。指数机制通过隐瞒一部分信息来获得低于预期的隐私消耗量。还有其他类似的方法吗？</p>
 <p>当然还有类似的方法：<em>稀疏向量技术</em>（Sparse Vector Technique，SVT）<span id="id2">[<a class="reference internal" href="bibliography.html#id17" title="Cynthia Dwork, Moni Naor, Omer Reingold, Guy N. Rothblum, and Salil Vadhan. On the complexity of differentially private data release: efficient algorithms and hardness results. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 381–390. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536467, doi:10.1145/1536414.1536467.">14</a>]</span>。实际应用已证明稀疏向量技术可以非常有效地节省隐私消耗量。稀疏向量技术适用于在数据集上执行敏感度为1的问询流。此技术只发布问询流中第一个通过测试的问询<em>索引号</em>，而不发布其他任何信息。稀疏向量技术的优势在于，<em>无论总共收到了多少问询</em>，此机制消耗的总隐私消耗量都是固定的。</p>
 <section id="id3">
-<h2>高于阈值算法<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<h2>高于阈值算法<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>稀疏向量技术最基础的实例是<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>（高于阈值）算法（详见<a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork和Roth</a> <span id="id4">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>论文中的算法1）。算法输入是敏感度为1的问询流、数据集<span class="math notranslate nohighlight">\(D\)</span>阈值<span class="math notranslate nohighlight">\(T\)</span>、以及隐私参数<span class="math notranslate nohighlight">\(\epsilon\)</span>；算法满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。算法的Python实现如下所述。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -475,7 +474,7 @@ document.write(`
 <p>为什么<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>的效果会如此好呢？正如我们在指数机制中所看到的那样，串行组合性允许<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>发布比实际所需<em>更多的信息</em>。特别地，该算法的朴素实现允许发布每一个（而不仅仅是第一个）超过阈值的问询索引号，也允许<em>额外</em>发布噪声问询回复本身。即便额外发布了这么多信息，朴素实现依然可以满足<span class="math notranslate nohighlight">\(n\epsilon\)</span>-差分隐私。<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>可以隐瞒所有这些额外的信息，从而得到更加紧致的隐私消耗量。</p>
 </section>
 <section id="id5">
-<h2>应用稀疏向量技术<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<h2>应用稀疏向量技术<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 <p>当我们想执行很多不同的问询，但我们只关心其中一个问询（或一小部分问询）的回复结果时，稀疏向量技术就有很大的用武之地了。实际上，之所以叫稀疏向量技术，正是因为此技术的适用场景：问询<em>向量</em>越<em>稀疏</em>（即大多数回复结果不会超过阈值），此技术作用最大。</p>
 <p>在前面提到的场景中，我们已经有了一个完美的适用场景：选择求和问询的裁剪边界。之前，我们实现的方法类似于<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>的朴素实现：获得多个不同的裁剪边界后，分别计算噪声裁剪边界，并选择一个尽可能低的，且不会导致最终回复结果改变太大的一个裁剪边界。</p>
 <p>我们可以通过使用稀疏向量技术获得更好的效果。考虑这样一个问询：此问询首先对数据集中每个人的年龄进行裁剪，再把裁剪结果求和：</p>
@@ -520,7 +519,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>101
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>81
 </pre></div>
 </div>
 </div>
@@ -562,7 +561,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>101
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>91
 </pre></div>
 </div>
 </div>
@@ -583,7 +582,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/3acd7bbe57eb96c947e4094370bd1bdd9e5d0bb7f049cf09f2cf73dd52069835.png" src="_images/3acd7bbe57eb96c947e4094370bd1bdd9e5d0bb7f049cf09f2cf73dd52069835.png" />
+<img alt="_images/01fa2fcfcfe05013f327bb6afc8309cde8b25170485479a0836a513a8155f2db.png" src="_images/01fa2fcfcfe05013f327bb6afc8309cde8b25170485479a0836a513a8155f2db.png" />
 </div>
 </div>
 <p>我们可以使用稀疏向量技术构建可自动计算裁剪参数的求和问询算法（也可以构建对应的均值问询算法）。</p>
@@ -615,7 +614,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.611808870757464
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.58032933605027
 </pre></div>
 </div>
 </div>
@@ -628,7 +627,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1097.547182729581
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1074.7076376917673
 </pre></div>
 </div>
 </div>
@@ -636,7 +635,7 @@ document.write(`
 <p>请注意，这需要运行非常长的时间！因为资本收益列的尺度要大得多，我们需要尝试非常多的<code class="docutils literal notranslate"><span class="pre">b</span></code>值才能找到最好的那一个。我们可以通过增加步长（我们的实现代码使用的步长是5）或利用指数尺度来构建<code class="docutils literal notranslate"><span class="pre">b</span></code>的列表，以节省计算开销。</p>
 </section>
 <section id="id6">
-<h2>返回多个问询结果<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
+<h2>返回多个问询结果<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
 <p>在上述应用场景中，我们只需要得到<em>第一个</em>超过阈值的问询索引号。但在其他的一些应用场景中，我们可能想要找到<em>所有</em>超过阈值的问询索引号。</p>
 <p>我们也可以使用稀疏向量技术实现这一点，但代价是我们必须消耗更高的隐私预算。我们可以实现<code class="docutils literal notranslate"><span class="pre">sparse</span></code>（稀疏）算法（详见<a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork和Roth论文</a> <span id="id7">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>中的算法2）来完成该任务。实现方法非常简单：</p>
 <ol class="arabic simple">
@@ -681,7 +680,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[18, 29]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[18, 21, 24]
 </pre></div>
 </div>
 </div>
@@ -689,7 +688,7 @@ document.write(`
 <p>根据串行组合性，<code class="docutils literal notranslate"><span class="pre">sparse</span></code>算法满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私（每次消耗<span class="math notranslate nohighlight">\(\epsilon_i = \frac{\epsilon}{c}\)</span>的隐私预算来调用<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>）。在Dwork和Roth的算法描述中，每次调用<code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code>都将消耗相应的隐私预算<span class="math notranslate nohighlight">\(\epsilon_i\)</span>。他们进一步使用高级组合性，使总隐私消耗量为<span class="math notranslate nohighlight">\(\epsilon\)</span>（也可以在此使用零集中差分隐私或瑞丽差分隐私的组合性）。</p>
 </section>
 <section id="id8">
-<h2>应用：范围问询<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h2>
+<h2>应用：范围问询<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
 <p><em>范围问询</em>（Range Query）要问的是：”数据集中有多少行的值落在范围<span class="math notranslate nohighlight">\((a, b)\)</span>中？”范围问询是一种计数问询，因此其敏感度为1；我们不能对一组范围问询使用并行组合性，因为满足相应问询条件的数据行可能会有重叠。</p>
 <p>考虑一组针对年龄列的范围问询（即问询形式为”有多少人的年龄在<span class="math notranslate nohighlight">\(a\)</span>和<span class="math notranslate nohighlight">\(b\)</span>之间？”）。我们可以随机生成很多这样的问询：</p>
 <div class="cell docutils container">
@@ -711,7 +710,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[18769, 6205, 2637, 3816, 8587, 0, 10130, 543, 6054, 3673]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 2903, 14408, 4345, 8372, 17629, 12919, 0, 1675, 13380]
 </pre></div>
 </div>
 </div>
@@ -740,7 +739,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[18774.251188138143, 10144.467583313886]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[14417.524053935005, 17621.35957591745, 12933.616763821363, 13382.45145929881]
 </pre></div>
 </div>
 </div>

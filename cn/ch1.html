@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>去标识 &#8212; 动手学差分隐私</title>
   
@@ -47,7 +47,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -420,7 +419,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>去标识<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<h1>去标识<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <p><em>去标识</em>（De-identification）是指从数据集中删除<em>标识信息</em>的过程。有的地方会把<em>去标识</em>这一术语与<em>匿名</em>（Anonymization）和<em>假名</em>（Pseudonymization）这两个术语看作同义词，表达相同的概念。</p>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
@@ -517,7 +516,7 @@ document.write(`
 </div>
 <p>我们将数据中一部分个体的标识信息保留了下来。我们随后将把这些保留的标识信息作为<em>辅助数据</em>（Auxiliary Data）来实施一次<em>重标识</em>（Re-identification）攻击。</p>
 <section id="id2">
-<h2>关联攻击<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<h2>关联攻击<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>假设我们想从刚刚得到的去标识数据中获取某个朋友的收入信息。去标识数据中的姓名一列已经被移除了，但我们碰巧知道能帮助我们标识出这位朋友的一些辅助信息。我们的这位朋友叫凯莉·特鲁斯洛夫（Karrie Trusslove），我们知道凯莉的出生日期和邮政编码。</p>
 <p>我们尝试攻击的数据集与我们知道的一些辅助信息之间包含一些重叠列，我们将应用这些重叠列来实施一次简单的<em>关联攻击</em>（Linkage Attack）。在本例中，两个数据集都包含出生日期和邮政编码列。我们在尝试攻击的数据集中查找出能与凯莉的出生日期和邮政编码匹配上的行。数据库领域将此类匹配操作称为<em>关联</em>（JOIN）两个数据表。我们可以使用Pandas的<code class="docutils literal notranslate"><span class="pre">merge</span></code>函数实现此操作。如果我们只能检索到唯一一行数据，我们就从尝试攻击的数据集中找到了凯莉所属的行。</p>
 <div class="cell docutils container">
@@ -596,7 +595,7 @@ document.write(`
 </div>
 <p>我们确实只找到了一行匹配上的数据。通过使用辅助数据，我们在去标识数据集中重标识出了一个个体。我们可以根据重标识攻击结果进一步推断出凯莉的收入小于5万美元。</p>
 <section id="id3">
-<h3>重标识出凯莉有多难？<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
+<h3>重标识出凯莉有多难？<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>这是一个虚构的攻击场景，但在实际场景中实施关联攻击的难度也是出乎意料的低。有多低呢？事实证明，在绝大多数情况下，只需要一个数据点作为辅助信息就足以重标识出一行数据！</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -802,7 +801,7 @@ document.write(`
 </ul>
 </section>
 <section id="id4">
-<h3>凯莉很特别吗？<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
+<h3>凯莉很特别吗？<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <p>在数据集中重标识出其他某个个体的难度有多大？重标识出凯莉这一特定的个体相对更难还是相对更简单呢？衡量此类攻击有效性的一个好方法是查看特定数据是否有较好的”筛选效果”：特定数据能否帮助我们更好地缩小目标个体所属行的范围。举个例子，数据集中拥有相同出生日期的人数多吗？</p>
 <p>在执行攻击前，我们可以先评估一下出生日期这一辅助数据会给我们带来多大的帮助。为此，我们可以查看数据集中包含”唯一”出生日期的个体数量。下面的直方图显示，<em>绝大多数</em>出生日期在数据集中仅出现了1次、2次或3次，有8个个体的出生日期信息是缺失的。这意味着出生日期的”筛选效果”相当不错。出生日期可以有效缩小个体所属行的范围。</p>
 <div class="cell tag_hide-input docutils container">
@@ -844,7 +843,7 @@ document.write(`
 </div>
 </section>
 <section id="id5">
-<h3>我们可以重标识出多少个个体？<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
+<h3>我们可以重标识出多少个个体？<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <p>我们可以在此数据集中重标识出多少个个体呢？我们可以使用我们的辅助信息来找到这个问题的答案！首先，让我们看看只有出生日期会发生什么。我们想知道辅助数据中的每个出生日期能帮助我们重标识出数据集中多少<em>可能的身份</em>。下面的直方图显示了每个可能身份的数量。在大约32000行数据中，我们可以唯一标识出近7000行数据，并将约10000行数据缩小至两个可能的身份。</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -898,9 +897,9 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barnabe Haime      2
 Antonin Chittem    2
-Alasdair Gronou    1
-Ronna Hewins       1
-Any Powys          1
+Sylvester Logue    1
+Wenonah Niblock    1
+Germana Critoph    1
 Name: Name, dtype: int64
 </pre></div>
 </div>
@@ -910,7 +909,7 @@ Name: Name, dtype: int64
 </section>
 </section>
 <section id="id7">
-<h2>聚合<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h2>
+<h2>聚合<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
 <p>另一种防止隐私信息泄露的方法是只发布<em>聚合</em>（Aggregate）数据。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -925,7 +924,7 @@ Name: Name, dtype: int64
 </div>
 </div>
 <section id="id8">
-<h3>小群组问题<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
+<h3>小群组问题<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <p>在很多情况下，我们需要将数据分组，并分别给出各个分组的聚合统计结果。举例来说，我们可能想知道取得不同学位个体的平均年龄。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1038,7 +1037,7 @@ Name: Name, dtype: int64
 <p>分组要达到多大，聚合统计结果才能隐藏个体信息呢？很难回答这个问题，因为只有当知道数据本身和具体的攻击方法时，才能回答这个问题。因此，很难确信聚合统计结果真的能达到隐私保护的目的。然而，我们接下来将会看到，即使分组足够大，也可以实施相应的攻击，从聚合结果中获得个体信息。</p>
 </section>
 <section id="id9">
-<h3>差分攻击<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h3>
+<h3>差分攻击<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
 <p>当对相同的数据发布多个聚合统计结果时，隐私泄露问题会变得棘手。例如，考虑对数据集中某个大分组执行两次求和问询（第一个是对整个数据集进行问询，第二个是对除一条记录外的所有记录进行问询）：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1085,7 +1084,7 @@ Name: Name, dtype: int64
 </section>
 </section>
 <section id="id10">
-<h2>总结<a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h2>
+<h2>总结<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><em>关联攻击</em>指的是组合使用<em>辅助数据</em>和<em>去标识数据</em>来<em>重标识</em>个体。</p></li>
 <li><p>实施关联攻击最简单的方法是：将数据集中的两个数据表<em>关联</em>起来。</p></li>

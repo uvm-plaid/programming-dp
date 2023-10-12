@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>敏感度 &#8212; 动手学差分隐私</title>
   
@@ -47,7 +47,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -418,7 +417,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>敏感度<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<h1>敏感度<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
 <p>阅读本章后，您将能够：</p>
@@ -431,24 +430,24 @@ document.write(`
 </ul>
 </div>
 <p>我们在讲解拉普拉斯机制时曾提到，使问询满足差分隐私所需的噪声量取决于问询的<em>敏感度</em>。简单来说，函数的敏感度反应了函数输入发生变化时对应输出的变化程度。回想一下，拉普拉斯机制定义了下述机制<span class="math notranslate nohighlight">\(F(x)\)</span>：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2bf840b6-4e71-4872-ae13-095cbc89c3c1">
-<span class="eqno">(3)<a class="headerlink" href="#equation-2bf840b6-4e71-4872-ae13-095cbc89c3c1" title="此公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0b8604e2-2dea-41ed-8a89-095d690c67c1">
+<span class="eqno">(3)<a class="headerlink" href="#equation-0b8604e2-2dea-41ed-8a89-095d690c67c1" title="公式的永久链接">#</a></span>\[\begin{align}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{align}\]</div>
 <p>其中<span class="math notranslate nohighlight">\(f(x)\)</span>（即问询函数）是确定性函数，<span class="math notranslate nohighlight">\(\epsilon\)</span>是隐私参数，而<span class="math notranslate nohighlight">\(s\)</span>就是<span class="math notranslate nohighlight">\(f\)</span>的敏感度。</p>
 <p>给定一个将数据集（<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>）映射为实数的函数<span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span>，<span class="math notranslate nohighlight">\(f\)</span>的<em>全局敏感度</em>（Global Sensitivity）定义如下：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-694d284e-7c7b-495f-8209-67de22a4f987">
-<span class="eqno">(4)<a class="headerlink" href="#equation-694d284e-7c7b-495f-8209-67de22a4f987" title="此公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f9ed1f43-a619-464b-8c43-389f2acd0bca">
+<span class="eqno">(4)<a class="headerlink" href="#equation-f9ed1f43-a619-464b-8c43-389f2acd0bca" title="公式的永久链接">#</a></span>\[\begin{align}
 GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 \end{align}\]</div>
 <p>其中<span class="math notranslate nohighlight">\(d(x, x')\)</span>表示两个数据集<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>之间的<em>距离</em>（Distance）。如果两个数据集之间的距离小于等于1，我们称这两个数据集是<em>临近集</em>（Neighbor）。数据集的距离定义会对隐私定义带来很大的影响。我们稍后将讨论如何度量数据集之间的距离。</p>
 <p>全局敏感度的定义告诉我们，对于<em>任意两个</em>临近数据集<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>，函数<span class="math notranslate nohighlight">\(f(x)\)</span>和<span class="math notranslate nohighlight">\(f(x')\)</span>的输出最多相差<span class="math notranslate nohighlight">\(GS(f)\)</span>。此敏感度的定义与具体问询的数据集无关（对于<em>任意</em>两个临近集<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>都成立），因此我们把这一敏感度度量方法称为”全局”敏感度。另一种敏感度度量方法将其中一个数据集固定为被问询的数据集，对应的敏感度称为<em>局部敏感度</em>（Local Sensitivity）。我们将在稍后的章节中具体讨论局部敏感度。现在，当提到”敏感度”时，我们均指全局敏感度。</p>
 <section id="id2">
-<h2>距离<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<h2>距离<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>可以用很多不同的方法来度量前面提到的距离<span class="math notranslate nohighlight">\(d(x,x')\)</span>。直观来看，如果两个数据集中只有一个个体的数据不一样，则这两个数据集之间的距离应该等于1（即这两个数据集是临近集）。很容易在某些场景下用数学语言定义距离度量方法（例如，在美国人口普查场景中，每个个体都只贡献一条自己的数据）。但在另一些场景下（如位置轨迹、社交网络、时序数据等场景），用数学语言定义距离度量方法颇具挑战。</p>
 <p>对于按行存储的数据集，通常会把距离定义为有多少行数据值不相同。当每一行仅包含单一个体的数据时，此种距离度量方法一般都是合理的。如果用数学语言描述，此距离度量方法可以由两个数据集的<em>对称差</em>（Symmetric Difference）所定义：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-861ddc1f-4644-430e-a825-2c20f756f629">
-<span class="eqno">(5)<a class="headerlink" href="#equation-861ddc1f-4644-430e-a825-2c20f756f629" title="此公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-cb354cb8-2bfe-49ed-9f22-b5e764d2e6e3">
+<span class="eqno">(5)<a class="headerlink" href="#equation-cb354cb8-2bfe-49ed-9f22-b5e764d2e6e3" title="公式的永久链接">#</a></span>\[\begin{align}
 d(x, x') = | x - x' \cup x' - x |
 \end{align}\]</div>
 <p>这个特殊定义有几个有趣且重要的含义：</p>
@@ -462,7 +461,7 @@ d(x, x') = | x - x' \cup x' - x |
 <p>现在，我们主要采用对称差临近数据集的数学定义。我们将在稍后的章节中讨论替代定义。</p>
 </section>
 <section id="id3">
-<h2>计算敏感度<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<h2>计算敏感度<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>我们如何确定特定函数的敏感度呢？对于实数域上的一些简单函数，答案是显而易见的。</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x) = x\)</span>的全局敏感度是1，因为<span class="math notranslate nohighlight">\(x\)</span>变化1，<span class="math notranslate nohighlight">\(f(x)\)</span>变化为1</p></li>
@@ -489,7 +488,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </div>
 <section id="id4">
-<h3>计数问询<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
+<h3>计数问询<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <p>计数问询（数据库SQL中的<code class="docutils literal notranslate"><span class="pre">COUNT</span></code>算子）计算数据集中满足特定属性的行数。一般来说，<strong>计数问询的敏感度总等于1</strong>。这是因为向数据集中添加一行数据最多会使问询的输出结果增加1，即当新增行满足特定属性时，计数结果加1。反之，当新增行不满足特定属性时，计数结果不变（删除行可能使计数结果减1）。</p>
 <p><strong>例子：”数据集中有多少人？”</strong>（敏感度：1，计算总行数）</p>
 <div class="cell docutils container">
@@ -545,7 +544,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </section>
 <section id="id5">
-<h3>求和问询<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
+<h3>求和问询<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <p>求和问询（数据库SQL中的<code class="docutils literal notranslate"><span class="pre">SUM</span></code>算子）计算数据集行中的<em>属性值（Attribute Values）</em> 总和。</p>
 <p><strong>例子：”受教育年数超过10年的人，其年龄总和是多少？”</strong></p>
 <div class="cell docutils container">
@@ -567,7 +566,7 @@ d(x, x') = | x - x' \cup x' - x |
 <p>一般来说，当待求和的属性值不存在上界和下界时，我们称求和问询具有<strong>无界敏感度</strong>。当存在上下界时，求和问询的敏感度等于<strong>上下界的差</strong>。在下一节，我们将介绍<em>裁剪</em>（Clipping）技术。此技术用于在边界不存在时强制划定边界，以便将无界敏感度的求和问询转化为有界敏感度的问询。</p>
 </section>
 <section id="id6">
-<h3>均值问询<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
+<h3>均值问询<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <p>均值问询（数据库SQL中的<code class="docutils literal notranslate"><span class="pre">AVG</span></code>算子）计算指定列属性值的平均值。</p>
 <p><strong>例子：”受教育年数超过10年的人，其平均年龄是多少？”</strong></p>
 <div class="cell docutils container">
@@ -599,7 +598,7 @@ d(x, x') = | x - x' \cup x' - x |
 </section>
 </section>
 <section id="id7">
-<h2>裁剪<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h2>
+<h2>裁剪<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
 <p>差分隐私的拉普拉斯机制的无法直接应用于无界敏感度问询。幸运的是，我们通常可以利用<em>裁剪</em>（Clip）技术将此类问询转换为等价的<em>有界</em>敏感度问询。</p>
 <p>裁剪技术的基本思想是，<em>强制</em>设置属性值的上界和下界。例如，125岁以上的年龄可以被”裁剪”到恰好125岁。经过裁剪后，所有年龄都肯定不超过125岁。因此，对裁剪数据执行求和问询的敏感度等于上下界的差：<span class="math notranslate nohighlight">\(上界 - 下界\)</span>。例如，以下问询的敏感度为125：</p>
 <div class="cell docutils container">
@@ -659,7 +658,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/f9b27b0b262c8c04b76abc5115ae3d5142fbfea08e082d05cf7779306183c4e9.png" src="_images/f9b27b0b262c8c04b76abc5115ae3d5142fbfea08e082d05cf7779306183c4e9.png" />
+<img alt="_images/124032f2ecba9abb481911905baee11474f07bd8824380e4b7c84c6ea3a3db49.png" src="_images/124032f2ecba9abb481911905baee11474f07bd8824380e4b7c84c6ea3a3db49.png" />
 </div>
 </div>
 <p>我们进行了100次<span class="math notranslate nohighlight">\(\epsilon_i = 0.01\)</span>的问询。因此，根据串行组合性，构建上图的总隐私消耗量为<span class="math notranslate nohighlight">\(\epsilon = 1\)</span>。显然，问询结果在<code class="docutils literal notranslate"><span class="pre">upper</span> <span class="pre">=</span> <span class="pre">80</span></code>附近趋于平稳，把80作为裁剪边界是个不错的选择。</p>
@@ -682,7 +681,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/86bd69ff1871edca864c5ac9d458d19e20558b18c7607f1065e1f21579666d45.png" src="_images/86bd69ff1871edca864c5ac9d458d19e20558b18c7607f1065e1f21579666d45.png" />
+<img alt="_images/1ca224de3a83ce33cd8508b1e2b00ae6ab71c8fb7a04f04103a8d74d21a0c68a.png" src="_images/1ca224de3a83ce33cd8508b1e2b00ae6ab71c8fb7a04f04103a8d74d21a0c68a.png" />
 </div>
 </div>
 <p>这样一来，我们通过少量问询就可以测试大量可能的裁剪边界取值，但代价是很难准确地找到完美的裁剪边界。当上界的取值变得非常大时，噪声就会开始淹没信号了。在裁剪取值达到最大时，图中年龄求和结果波动得非常剧烈！关键是要在图中找到一个相对平滑（意味着噪声小）且求和结果不再增加（意味着裁剪边界足够大）的裁剪边界取值区域。在这个例子中，上界大约为<span class="math notranslate nohighlight">\(2^8 = 256\)</span>。这个结果相对比较合理，与我们前面推导出的年龄上界已经比较接近了。</p>

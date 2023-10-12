@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>k-匿名性 &#8212; 动手学差分隐私</title>
   
@@ -47,7 +47,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -415,7 +414,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="k">
-<h1>k-匿名性<a class="headerlink" href="#k" title="此标题的永久链接">#</a></h1>
+<h1>k-匿名性<a class="headerlink" href="#k" title="Permalink to this heading">#</a></h1>
 <p><span class="math notranslate nohighlight">\(k\)</span>-匿名性（<span class="math notranslate nohighlight">\(k\)</span>-Anonymity）<span id="id1">[<a class="reference internal" href="bibliography.html#id4" title="Latanya Sweeney. K-anonymity: a model for protecting privacy. International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems, 10(05):557-570, 2002. URL: https://doi.org/10.1142/S0218488502001648, arXiv:https://doi.org/10.1142/S0218488502001648, doi:10.1142/S0218488502001648.">2</a>]</span>是一个<em>用数学语言描述的隐私定义</em>。<span class="math notranslate nohighlight">\(k\)</span>-匿名性的定义用数学描述了我们的直观想法：一部分辅助信息不应该”过多地”缩小个体所属记录的可能范围。换句话说，<span class="math notranslate nohighlight">\(k\)</span>-匿名性的目的是为了保证每个个体都能”融入人群”。</p>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
@@ -437,7 +436,7 @@ document.write(`
 <p>其中<span class="math notranslate nohighlight">\(qi(D)\)</span>是<span class="math notranslate nohighlight">\(D\)</span>的准标识，<span class="math notranslate nohighlight">\(\Pi_{qi(D)} r\)</span>表示包含准标识的列<span class="math notranslate nohighlight">\(r\)</span>（即准标识的投影），则称数据集<span class="math notranslate nohighlight">\(D\)</span>满足<span class="math notranslate nohighlight">\(k\)</span>-匿名性。</p>
 </div>
 <section id="id2">
-<h2>验证<span class="math notranslate nohighlight">\(k\)</span>-匿名性<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<h2>验证<span class="math notranslate nohighlight">\(k\)</span>-匿名性<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>我们先从一个小数据集开始。我们可以直接查看小数据集所包含的数据，从而直观判断出此数据集是否满足<span class="math notranslate nohighlight">\(k\)</span>-匿名性。这个数据集包含年龄列和两个考试分数列。很明显，对于任意<span class="math notranslate nohighlight">\(k &gt; 1\)</span>，此数据集都不满足<span class="math notranslate nohighlight">\(k\)</span>-匿名性。任何数据集都天然满足<span class="math notranslate nohighlight">\(k = 1\)</span>的<span class="math notranslate nohighlight">\(k\)</span>-匿名性，因为任意记录自身都可以构成一个大小为<span class="math notranslate nohighlight">\(1\)</span>的分组。</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -559,7 +558,7 @@ document.write(`
 </div>
 </section>
 <section id="id3">
-<h2>泛化数据以满足<span class="math notranslate nohighlight">\(k\)</span>-匿名性<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<h2>泛化数据以满足<span class="math notranslate nohighlight">\(k\)</span>-匿名性<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>一般通过<em>泛化</em>（Generalization）数据的方式对数据集进行修改，使其满足特定取值<span class="math notranslate nohighlight">\(k\)</span>下的<span class="math notranslate nohighlight">\(k\)</span>-匿名性。泛化指的是将数据修改为不那么特殊的数据，使其更可能与数据集中其他个体的数据相匹配。举例来说，精确到个位的年龄可以通过四舍五入的方式泛化为精确到十位，可以将邮政编码最右侧的数字替换为0来泛化邮政编码。很容易对数值型数据进行泛化处理。我们这里使用数据帧的<code class="docutils literal notranslate"><span class="pre">apply</span></code>函数完成数值型数据的泛化处理。在<code class="docutils literal notranslate"><span class="pre">apply</span></code>函数中传入名为<code class="docutils literal notranslate"><span class="pre">depth</span></code>的查找表，查找表中存储每一列要用0替换多少位数字。通过这种方式，我们可以灵活地对不同的列进行不同级别的泛化处理。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -732,7 +731,7 @@ document.write(`
 </div>
 </section>
 <section id="id4">
-<h2>引入更多的数据可以减小泛化的影响吗？<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<h2>引入更多的数据可以减小泛化的影响吗？<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>我们的示例数据集太小了。这个数据集中只包含5个个体，很难构建包含2个或更多具有相同属性的个体分组，因此很难让这样的数据集满足<span class="math notranslate nohighlight">\(k\)</span>-匿名性。解决这个问题的方法是引入更多的数据：在拥有更多个体的数据集中，通常需要更少的泛化处理即可使数据集满足所需<span class="math notranslate nohighlight">\(k\)</span>取值下的<span class="math notranslate nohighlight">\(k\)</span>-匿名性。</p>
 <p>让我们来试试去标识那一章中的人口普查数据。这个数据集包含超过32,000行数据，因此应该更容易满足<span class="math notranslate nohighlight">\(k\)</span>-匿名性。</p>
 <p>我们把每个个体的邮政编码、年龄、受教育年数作为准标识。我们只考虑对这三个列进行泛化处理，尝试实现<span class="math notranslate nohighlight">\(k = 2\)</span>下的<span class="math notranslate nohighlight">\(k\)</span>-匿名性。此数据集已经先天满足<span class="math notranslate nohighlight">\(k = 1\)</span>下的<span class="math notranslate nohighlight">\(k\)</span>-匿名性了。</p>
@@ -807,7 +806,7 @@ document.write(`
 </div>
 </section>
 <section id="id5">
-<h2>移除异常值<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<h2>移除异常值<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 <p>异常值问题的一个简单解决方案是将数据集中每个个体的年龄限制在一个特定的范围内，从而完全消除数据集中的异常值。这种方法也会损害数据的可用型，因为这种方法需要用假的年龄值替代真实的年龄值，但这总比泛化每一行数据要好得多。我们可以使用Numpy的<code class="docutils literal notranslate"><span class="pre">clip</span></code>（裁剪）函数来实施这一解决方案。通过<code class="docutils literal notranslate"><span class="pre">clip</span></code>函数，我们将所有年龄取值都限制在60岁及以下，且不再考虑受教育年数这一列数据（方法是通过<code class="docutils literal notranslate"><span class="pre">clip</span></code>函数把所有受教育年数值都替换成一个非常大的值）。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -831,7 +830,7 @@ document.write(`
 <p>现在，我们将数据集泛化到满足<span class="math notranslate nohighlight">\(k = 7\)</span>的<span class="math notranslate nohighlight">\(k\)</span>-匿名性了！换句话说，我们终于把数据集泛化到了合适的程度。在这一过程中，异常值为满足<span class="math notranslate nohighlight">\(k\)</span>-匿名性带来了相当多的障碍，甚至使我们很难将数据泛化到满足<span class="math notranslate nohighlight">\(k = 2\)</span>的<span class="math notranslate nohighlight">\(k\)</span>-匿名性。</p>
 </section>
 <section id="id6">
-<h2>总结<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
+<h2>总结<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(k\)</span>-匿名性是数据集所满足的一种性质，此性质要求每个个体都”融入”到至少包含<span class="math notranslate nohighlight">\(k\)</span>个人的一个分组中。</p></li>
 <li><p>检查数据集是否满足<span class="math notranslate nohighlight">\(k\)</span>-匿名性的计算开销是很大的：朴素算法的计算复杂度是<span class="math notranslate nohighlight">\(O(n^2)\)</span>，更快的算法需要占用相当大的存储空间。</p></li>

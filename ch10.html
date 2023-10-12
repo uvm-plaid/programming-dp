@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>The Sparse Vector Technique &#8212; Programming Differential Privacy</title>
   
@@ -48,7 +48,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -230,6 +229,37 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/uvm-plaid/programming-dp/blob/master/notebooks/ch10.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
 
 
 
@@ -571,7 +601,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>76
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>81
 </pre></div>
 </div>
 </div>
@@ -592,7 +622,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/83dcb373bcdfd0c50e40e63be1aeef0532adf117c35c58ecf2c2151b79dcd12a.png" src="_images/83dcb373bcdfd0c50e40e63be1aeef0532adf117c35c58ecf2c2151b79dcd12a.png" />
+<img alt="_images/c3782fc83003f9a0c5b5c8e38d995386bc0cfa360c4239690c1db3e39ee6edd5.png" src="_images/c3782fc83003f9a0c5b5c8e38d995386bc0cfa360c4239690c1db3e39ee6edd5.png" />
 </div>
 </div>
 <p>We can use SVT to build an algorithm for summation queries (and using this, for average queries) that automatically computes the clipping parameter.</p>
@@ -624,7 +654,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.79739342736483
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.77554469012242
 </pre></div>
 </div>
 </div>
@@ -637,7 +667,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1075.618230715468
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1090.4675219264236
 </pre></div>
 </div>
 </div>
@@ -690,7 +720,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[17, 18, 21]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[18, 19, 20]
 </pre></div>
 </div>
 </div>
@@ -720,7 +750,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5249, 6287, 13169, 0, 8431, 11616, 1077, 485, 7397, 18393]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2617, 13640, 14139, 13132, 12619, 6836, 13614, 3103, 10471, 3699]
 </pre></div>
 </div>
 </div>
@@ -749,7 +779,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[13158.070091377042, 11587.807122792883, 18381.254210207004]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[13642.21477538189,
+ 14144.325351165364,
+ 13128.309265827167,
+ 12616.956987628984,
+ 13617.040247690687]
 </pre></div>
 </div>
 </div>

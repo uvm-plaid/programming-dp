@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>算法设计练习 &#8212; 动手学差分隐私</title>
   
@@ -47,7 +47,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -421,9 +420,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>算法设计练习<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<h1>算法设计练习<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <section id="id2">
-<h2>需要考虑的问题<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<h2>需要考虑的问题<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>一共需要多少次问询，以及我们可以使用何种组合定理？</p>
 <ul>
@@ -440,12 +439,12 @@ document.write(`
 </ul>
 </section>
 <section id="id3">
-<h2>1. 更普适的”采样-聚合”算法<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<h2>1. 更普适的”采样-聚合”算法<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>设计一个变种”采样-聚合”算法，使其<em>不</em>需要分析者指定问询函数<span class="math notranslate nohighlight">\(f\)</span>的输出范围。</p>
 <p><strong>思想</strong>：首先，使用稀疏向量技术找到适用于整个数据集的<span class="math notranslate nohighlight">\(f(x)\)</span>上界和下界。由于<span class="math notranslate nohighlight">\(clip(f(x), lower, upper)\)</span>是一个敏感度有上界的问询，我们可以在此问询上应用稀疏向量技术。随后，基于得到的上界和下界使用”采样-聚合”算法。</p>
 </section>
 <section id="id4">
-<h2>2. 汇总统计<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<h2>2. 汇总统计<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>设计一种算法来生成满足差分隐私的下述统计数据：</p>
 <ul class="simple">
 <li><p>均值：<span class="math notranslate nohighlight">\(\mu = \frac{1}{n} \sum_{i=1}^n x_i\)</span></p></li>
@@ -477,7 +476,7 @@ document.write(`
 </ul>
 </section>
 <section id="id5">
-<h2>3. 频繁项<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<h2>3. 频繁项<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 <p>谷歌的RAPPOR系统<span id="id6">[<a class="reference internal" href="bibliography.html#id18" title="Úlfar Erlingsson, Vasyl Pihur, and Aleksandra Korolova. Rappor: randomized aggregatable privacy-preserving ordinal response. In Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security, CCS '14, 1054–1067. New York, NY, USA, 2014. Association for Computing Machinery. URL: https://doi.org/10.1145/2660267.2660348, doi:10.1145/2660267.2660348.">15</a>]</span>用于统计谷歌浏览器用户最常设置的主页是什么。请设计下述算法：</p>
 <ul class="simple">
 <li><p>给定基于流量统计得到的10,000个最受欢迎的网页列表，</p></li>
@@ -486,7 +485,7 @@ document.write(`
 <p><strong>思想</strong>：使用并行组合性，获取加噪后排名前10的主页</p>
 </section>
 <section id="id7">
-<h2>4.分层查询<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h2>
+<h2>4.分层查询<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
 <p>设计一种为美国人口普查信息生成汇总统计结果的算法。算法应该能按下述从低到高的层次输出相应的人口统计结果：</p>
 <ul class="simple">
 <li><p>人口普查区</p></li>
@@ -502,18 +501,18 @@ document.write(`
 <p>思想3：和（2）一样，但应用后处理性，基于更高层的计数结果重新缩放较低层的计数结果，将缩放后的（浮点数）结果截断为整数；将负数设置为0。</p>
 </section>
 <section id="id8">
-<h2>5. 一系列范围问询<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h2>
+<h2>5. 一系列范围问询<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
 <p>设计一种算法来准确回答一系列<em>范围问询</em>。这些范围问询都是针对某一个数据表的问询：”有多少行数据的值在<span class="math notranslate nohighlight">\(a\)</span>和<span class="math notranslate nohighlight">\(b\)</span>之间？”（即特定取值范围的数据行数）。</p>
 <section id="id9">
-<h3>第1部分<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h3>
+<h3>第1部分<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
 <p>这一系列范围问询是已经预先确定的、数量有限的、形式为： <span class="math notranslate nohighlight">\(\{(a_1, b_1), \dots, (a_k, b_k)\}\)</span>的问询序列。</p>
 </section>
 <section id="id10">
-<h3>第2部分<a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h3>
+<h3>第2部分<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
 <p>这一系列范围问询序列的长度<span class="math notranslate nohighlight">\(k\)</span>是预先确定的，但是问询以流方式执行，每一个问询必须在执行时就给出回复。</p>
 </section>
 <section id="id11">
-<h3>第3部分<a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h3>
+<h3>第3部分<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
 <p>范围问询序列可能是无限长的。</p>
 <p><strong>思想</strong>：</p>
 <p>根据串行组合性，依次执行每一个问询</p>

@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>局部敏感度 &#8212; 动手学差分隐私</title>
   
@@ -47,7 +47,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -417,7 +416,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>局部敏感度<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<h1>局部敏感度<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
 <p>阅读本章后，您将能够：</p>
@@ -431,23 +430,23 @@ document.write(`
 </div>
 <p>截至目前，我们只学习了一种敏感度指标：全局敏感度。全局敏感度定义考察的是<em>任意</em>两个临近数据集。这种定义似乎显得过于严苛了。由于我们将在<em>实际</em>数据集上执行差分隐私机制，我们难道不应该只需要考虑<em>此</em>数据集的临近数据集吗？</p>
 <p><em>局部敏感度</em>（Local Sensitivity）<span id="id2">[<a class="reference internal" href="bibliography.html#id9" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">8</a>]</span>的直观思想是：将两个数据集中的一个作为待问询的<em>实际</em>数据集，仅考虑此数据集的所有临近数据集。用更严谨的数学语言来描述，函数<span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span>在<span class="math notranslate nohighlight">\(x : \mathcal{D}\)</span>的局部敏感度定义如下：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e362d5d9-5aef-4476-983b-ced9cabf8b21">
-<span class="eqno">(15)<a class="headerlink" href="#equation-e362d5d9-5aef-4476-983b-ced9cabf8b21" title="此公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-94488b38-b7ec-4997-b7bb-d1be20e9ec15">
+<span class="eqno">(15)<a class="headerlink" href="#equation-94488b38-b7ec-4997-b7bb-d1be20e9ec15" title="公式的永久链接">#</a></span>\[\begin{align}
 LS(f, x) = \max_{x': d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>注意到，局部敏感度是以问询（<span class="math notranslate nohighlight">\(f\)</span>）和<em>实际</em>数据集（<span class="math notranslate nohighlight">\(x\)</span>）这两个输入定义的函数。与全局敏感度不同，我们不能抛开输入的数据集而单独讨论局部敏感度。反之，我们需要考虑局部敏感度<em>所依赖的</em>实际数据集是什么。</p>
 <section id="id3">
-<h2>均值问询的局部敏感度<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<h2>均值问询的局部敏感度<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>很难为一些函数设置全局敏感度的上界。此时，局部敏感度就可以被派上用场，以允许我们对这些函数设置有界的敏感度。均值函数就是一个典型的例子。截至目前，为了使均值问询满足差分隐私，我们需要将均值问询拆分为两个问询：满足差分隐私的求和问询（分子）和满足差分隐私的计数问询（分母）。应用串行组合性和后处理性，这两个问询结果的商仍然满足差分隐私。</p>
 <p>我们为什么非要通过这种方式来回复均值问询呢？因为均值问询的输出结果<em>依赖于数据集的大小</em>。从数据集中增加或删除数据行，数据集的大小将随之变化，导致均值问询的输出结果发生变化。如果我们想计算均值问询的全局敏感度上界，我们就需要假设可能出现的最糟糕情况：数据集的大小为1。如果数据属性值的上下界分别为<span class="math notranslate nohighlight">\(u\)</span>和<span class="math notranslate nohighlight">\(l\)</span>，则均值的全局敏感度为<span class="math notranslate nohighlight">\(\lvert u - l \lvert\)</span>。对于较大规模的数据集来说，此全局敏感度上界是<em>极为</em>严苛的。与之相比，”噪声求和除以噪声计数”的问询回复方法要好得多。</p>
 <p>局部敏感度定义下的情况就有所不同了。我们考虑最糟糕的情况：添加一个包含最大值（<span class="math notranslate nohighlight">\(u\)</span>）的新数据行。令<span class="math notranslate nohighlight">\(n = \lvert x \rvert\)</span>（即<span class="math notranslate nohighlight">\(n\)</span>表示数据集的大小）。我们先考虑实际数据集的均值：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-633af940-0763-44d7-ab21-34ddce56ad7f">
-<span class="eqno">(16)<a class="headerlink" href="#equation-633af940-0763-44d7-ab21-34ddce56ad7f" title="此公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e8b28630-bd34-49bc-aace-50bc516ffa01">
+<span class="eqno">(16)<a class="headerlink" href="#equation-e8b28630-bd34-49bc-aace-50bc516ffa01" title="公式的永久链接">#</a></span>\[\begin{align}
 f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 \end{align}\]</div>
 <p>现在，我们考虑添加一行后会发生什么：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d76ac4e0-1d06-47fc-bb40-4ec768192ed4">
-<span class="eqno">(17)<a class="headerlink" href="#equation-d76ac4e0-1d06-47fc-bb40-4ec768192ed4" title="此公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-54d5fdc6-9f97-4315-b434-62e3781d8257">
+<span class="eqno">(17)<a class="headerlink" href="#equation-54d5fdc6-9f97-4315-b434-62e3781d8257" title="公式的永久链接">#</a></span>\[\begin{align}
 \lvert f(x') - f(x) \rvert = &amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n} \bigg\rvert \\
 \leq&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n+1} \bigg\rvert \\
 =&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u - \sum_{i=1}^{n} x_i}{n+1}\bigg\rvert \\
@@ -456,32 +455,32 @@ f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 <p>此问询的局部敏感度依赖于实际数据集的大小，而全局敏感度的定义不可能与数据集本身相关。</p>
 </section>
 <section id="id4">
-<h2>通过局部敏感度实现差分隐私？<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<h2>通过局部敏感度实现差分隐私？<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>我们已经定义了一种新的敏感度指标，但我们该如何使用它呢？我们可以像全局敏感度那样直接使用拉普拉斯机制吗？以下对<span class="math notranslate nohighlight">\(F\)</span>的定义满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私性吗？</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d142b912-6d38-47fa-84cc-4840630f7de9">
-<span class="eqno">(18)<a class="headerlink" href="#equation-d142b912-6d38-47fa-84cc-4840630f7de9" title="此公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a438e28a-7b83-4a22-b17d-189b707ab774">
+<span class="eqno">(18)<a class="headerlink" href="#equation-a438e28a-7b83-4a22-b17d-189b707ab774" title="公式的永久链接">#</a></span>\[\begin{align}
 F(x) = f(x) + \mathsf{Lap}\left(\frac{LS(f,x)}{\epsilon}\right)
 \end{align}\]</div>
 <p>不满足！很不幸，答案是否定的。由于<span class="math notranslate nohighlight">\(LS(f, x)\)</span>本身与数据集相关，如果分析者知道某个问询在<em>特定数据集</em>下的局部敏感度，那么分析者也许能够推断出一些与数据集相关的信息。因此，<em>不可能</em>直接使用局部敏感度来满足差分隐私。举例来说，考虑前面定义的均值问询局部敏感度边界。如果我们知道特定数据集<span class="math notranslate nohighlight">\(x\)</span>的局部敏感度，我们就可以推断出<em>没有噪声</em>的情况下数据集<span class="math notranslate nohighlight">\(x\)</span>的准确行数：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f5aeddfe-3193-44aa-8010-c34bb986b45a">
-<span class="eqno">(19)<a class="headerlink" href="#equation-f5aeddfe-3193-44aa-8010-c34bb986b45a" title="此公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-443abe96-957c-42f2-9909-88d1d44c9a64">
+<span class="eqno">(19)<a class="headerlink" href="#equation-443abe96-957c-42f2-9909-88d1d44c9a64" title="公式的永久链接">#</a></span>\[\begin{align}
 \lvert x \rvert = \frac{b}{LS(f, x)} - 1
 \end{align}\]</div>
 <p>即使局部敏感度的取值对分析者保密也<em>无济于事</em>。分析者通过观察少量问询的回复就可能确定噪声尺度，从而使用该值推断出局部敏感度。差分隐私旨在保护<span class="math notranslate nohighlight">\(f(x)\)</span>的输出，但<em>并不能</em>保护差分隐私定义中所使用的敏感度指标。</p>
 <p>学者们已经提出了几种安全使用局部敏感度的方法。我们将在本章剩余部分展开讨论。</p>
 <p>辅助数据可以向我们透露出一些非常敏感的信息。试想一下，如果我们的问询是：”数据集中名叫Joe的人的平均成绩排名位于班级前2%吗？”，用于计算平均值的数据集大小就变得非常敏感了！！</p>
 <section id="id5">
-<h3>“建议-测试-发布”框架<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
+<h3>“建议-测试-发布”框架<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <p>局部敏感度的主要问题是敏感度本身会泄露数据的一些信息。如果我们让<em>敏感度本身</em>也满足差分隐私呢？直接实现这一目标很有挑战，因为一个函数局部敏感度的全局敏感度是无上界的。不过，我们可以通过提交满足差分隐私的问询来间接得到某个函数的局部敏感度。</p>
 <p>“<em>建议-测试-发布</em>”（Propose-Test-Release）框架<span id="id6">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork and Jing Lei. Differential privacy and robust statistics. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 371–380. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536466, doi:10.1145/1536414.1536466.">9</a>]</span>采用的就是此种方法。该框架首先询问数据分析者函数的<em>建议</em>（Propose）局部敏感度上界。随后，该框架执行满足差分隐私的<em>测试</em>（Test），检验所问询的数据集是否”远离”了局部敏感度高于建议边界的数据集。如果测试通过，该框架<em>发布</em>（Release）噪声结果，并将噪声量校准到建议的边界。</p>
 <p>为了回答一个数据集是否”远离”了有着更高局部敏感度数据集的问题，我们定义<span class="math notranslate nohighlight">\(k\)</span><em>距离局部敏感度</em>的概念。我们用<span class="math notranslate nohighlight">\(A(f, x, k)\)</span>表示通过从数据集<span class="math notranslate nohighlight">\(x\)</span>执行<span class="math notranslate nohighlight">\(k\)</span>步可得到<span class="math notranslate nohighlight">\(f\)</span>的最大局部敏感度。用数学语言描述，我们有：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c4921844-b2d8-4fde-a2d3-af58408ca955">
-<span class="eqno">(20)<a class="headerlink" href="#equation-c4921844-b2d8-4fde-a2d3-af58408ca955" title="此公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2c558bca-6d2c-48cb-a5cf-c9afaa3486da">
+<span class="eqno">(20)<a class="headerlink" href="#equation-2c558bca-6d2c-48cb-a5cf-c9afaa3486da" title="公式的永久链接">#</a></span>\[\begin{align}
 A(f,x,k) = \max_{y: d(x,y) \leq k} LS(f, y)
 \end{align}\]</div>
 <p>现在，我们准备定义一个问询来回答以下问题：”需要多少步才能实现比给定上界<span class="math notranslate nohighlight">\(b\)</span>更大的局部敏感度？”</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1eaaccad-97ca-43c6-8694-3b1e4b5d2063">
-<span class="eqno">(21)<a class="headerlink" href="#equation-1eaaccad-97ca-43c6-8694-3b1e4b5d2063" title="此公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1ddd1e4a-12c6-4e5c-a75e-63178f914db3">
+<span class="eqno">(21)<a class="headerlink" href="#equation-1ddd1e4a-12c6-4e5c-a75e-63178f914db3" title="公式的永久链接">#</a></span>\[\begin{align}
 D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 \end{align}\]</div>
 <p>最后，我们定义”建议-测试-发布”框架（详见<a class="reference external" href="https://arxiv.org/abs/1407.2988">Barthe等人的论文</a>，图10），其满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私性：</p>
@@ -556,10 +555,10 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>噪声距离为12561.931804829397，而门限值为10.73744412245554
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>噪声距离为12562.509072913877，而门限值为10.73744412245554
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.58458191133346
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.56939238631368
 </pre></div>
 </div>
 </div>
@@ -597,7 +596,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.5856746344973
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.592278780419505
 </pre></div>
 </div>
 </div>
@@ -622,14 +621,14 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/8f226fc2368a0d81c138093518752e1cc815914f058d4621153fdd1ccd03d05b.png" src="_images/8f226fc2368a0d81c138093518752e1cc815914f058d4621153fdd1ccd03d05b.png" />
+<img alt="_images/3bd33722f94d86915a82c956492b2fe1a214469dd3c71fa72935c3dcd965937c.png" src="_images/3bd33722f94d86915a82c956492b2fe1a214469dd3c71fa72935c3dcd965937c.png" />
 </div>
 </div>
 <p>使用”建议-测试-发布”框架的问询回复效果似乎更好一些，但实际上效果并没有太大的区别。此外，为使用”建议-测试-发布”框架，分析者必须建议一个敏感度边界。我们这里其实作了个弊，”神奇地”选择了一个非常合适的值（0.005）。事实上，分析者需要执行多次问询才能猜出可用的边界，而这一过程会消耗额外的隐私预算。</p>
 </section>
 </section>
 <section id="id7">
-<h2>平滑敏感度<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h2>
+<h2>平滑敏感度<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
 <p>第二种使用局部敏感度的方法称为<em>平滑敏感度</em>（Smooth Sensitivity），来自<a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim、Raskhodnikova和Smith的论文</a> <span id="id8">[<a class="reference internal" href="bibliography.html#id9" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">8</a>]</span>。利用拉普拉斯噪声实例化得到的<em>平滑敏感度框架</em>可提供<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私性：</p>
 <ol class="arabic simple">
 <li><p>设置<span class="math notranslate nohighlight">\(\beta = \frac{\epsilon}{2\log(2/\delta)}\)</span></p></li>
@@ -676,7 +675,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <p>这里需要注意到两个现象。第一，即使只考虑<span class="math notranslate nohighlight">\(k\)</span>小于200的情况，我们也可以清楚地看到，均值问询平滑局部敏感度随着<span class="math notranslate nohighlight">\(k\)</span>的增加而趋近于0。事实上，<span class="math notranslate nohighlight">\(k=0\)</span>时的均值问询平滑局部敏感度取得最大值。在多数情况下，平滑局部敏感度都会随着<span class="math notranslate nohighlight">\(k\)</span>的增加而降低。但是，如果想要使用平滑敏感度，我们就必须<em>证明</em>它（这里我们并没有给出证明）。第二，注意到我们增加到问询结果中的最终噪声量<em>高于</em>我们之前（在”建议-测试-发布”框架中）建议的敏感度。尽管这两个噪声量的差距不大，但这也表明使用”建议-测试-发布”得到的局部敏感度有可能低于平滑敏感度。</p>
 </section>
 <section id="id9">
-<h2>“采样-聚合”框架<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h2>
+<h2>“采样-聚合”框架<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
 <p>我们接下来考虑与局部敏感度相关的最后一个框架，即”<em>采样-聚合</em>”（Sample and Aggregate）框架（同样来自<a class="reference external" href="http://www.cse.psu.edu/~ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">Nissim、Raskhodnikova和Smith的论文</a> <span id="id10">[<a class="reference internal" href="bibliography.html#id9" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">8</a>]</span>）。对任意函数<span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>，令裁剪上界和下界分别为<span class="math notranslate nohighlight">\(u\)</span>和<span class="math notranslate nohighlight">\(l\)</span>，则下述框架满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私：</p>
 <ol class="arabic simple">
 <li><p>将数据集<span class="math notranslate nohighlight">\(X \in D\)</span>拆分为<span class="math notranslate nohighlight">\(k\)</span>个不相交的数据块<span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span></p></li>
@@ -729,7 +728,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>数据块大小: 55
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.61821831399849
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.74748083041064
 </pre></div>
 </div>
 </div>
@@ -772,7 +771,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;尝试次数&#39;)
 </pre></div>
 </div>
-<img alt="_images/e9b1a7ae9ea415b17ccb50f107e2c139fcf2ed1dfec316eb5d0965691862f1df.png" src="_images/e9b1a7ae9ea415b17ccb50f107e2c139fcf2ed1dfec316eb5d0965691862f1df.png" />
+<img alt="_images/745cb682775cf0c33588f1fb20bb11fadd962985cf4fcb3323e08fe5a11448ba.png" src="_images/745cb682775cf0c33588f1fb20bb11fadd962985cf4fcb3323e08fe5a11448ba.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -794,7 +793,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;尝试次数&#39;)
 </pre></div>
 </div>
-<img alt="_images/9e0689f986906549543f1d14029cb7e5f64c7a4923c743b27372d88fe0dd0927.png" src="_images/9e0689f986906549543f1d14029cb7e5f64c7a4923c743b27372d88fe0dd0927.png" />
+<img alt="_images/bba15042691222828fdad886c17b33ffcd4d54f2fa0df7fc3cb02e39ae1b960d.png" src="_images/bba15042691222828fdad886c17b33ffcd4d54f2fa0df7fc3cb02e39ae1b960d.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -816,7 +815,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;尝试次数&#39;)
 </pre></div>
 </div>
-<img alt="_images/4f38c83f4a32edeb53c4665ac00144a1abd44eb4deb3a7c001632ec8ec58a40b.png" src="_images/4f38c83f4a32edeb53c4665ac00144a1abd44eb4deb3a7c001632ec8ec58a40b.png" />
+<img alt="_images/787efaa42706a17dbe49bf6f976093fa759f81328b815d5f51bc4c3257b060c4.png" src="_images/787efaa42706a17dbe49bf6f976093fa759f81328b815d5f51bc4c3257b060c4.png" />
 </div>
 </div>
 <p>因此，尽管”采样-聚合”框架的准确性无法击败全局敏感度方法，但如果能选择合适的<span class="math notranslate nohighlight">\(k\)</span>，两者的回复效果也可以非常接近。”采样-聚合”框架最大的优势在于此框架适用于<em>任意</em>函数<span class="math notranslate nohighlight">\(f\)</span>。无论函数的敏感度是多少，都可以使用”采样-聚合”框架。这意味着只要<span class="math notranslate nohighlight">\(f\)</span>本身表现良好，就可以应用”采样-聚合”框架获得<span class="math notranslate nohighlight">\(f\)</span>满足差分隐私的输出，并得到较好的准确度。另一方面，”采样-聚合”框架要求分析者设置裁剪边界<span class="math notranslate nohighlight">\(u\)</span>和<span class="math notranslate nohighlight">\(l\)</span>，并设置数据块数量<span class="math notranslate nohighlight">\(k\)</span>。</p>

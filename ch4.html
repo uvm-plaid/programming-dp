@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Properties of Differential Privacy &#8212; Programming Differential Privacy</title>
   
@@ -48,7 +48,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -230,6 +229,37 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/uvm-plaid/programming-dp/blob/master/notebooks/ch4.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
 
 
 
@@ -497,7 +527,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/4ccf4ac27cb19de666886e419c189110bf1804d52d2d8eb3a99287ffb5784167.png" src="_images/4ccf4ac27cb19de666886e419c189110bf1804d52d2d8eb3a99287ffb5784167.png" />
+<img alt="_images/d588e1b05023b405ccda8aeff8b46509775f569934ee4882760aaeff29a7eb0c.png" src="_images/d588e1b05023b405ccda8aeff8b46509775f569934ee4882760aaeff29a7eb0c.png" />
 </div>
 </div>
 <p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F3</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier” than that of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, because its higher <span class="math notranslate nohighlight">\(\epsilon\)</span> implies less privacy, and therefore a smaller likelihood of getting results far from the true answer.</p>
@@ -519,7 +549,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/601835ba83ab05ee3f3c804b1f8ace5d643e95bc13ecad3517a0893fcc4773bc.png" src="_images/601835ba83ab05ee3f3c804b1f8ace5d643e95bc13ecad3517a0893fcc4773bc.png" />
+<img alt="_images/8087abbb44e2de2a1350db1f3902a279595101815587831f93731b7feaed9536.png" src="_images/8087abbb44e2de2a1350db1f3902a279595101815587831f93731b7feaed9536.png" />
 </div>
 </div>
 <p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F_combined</span></code> is pointier. This means its answers are more accurate than those of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, so it makes sense that its <span class="math notranslate nohighlight">\(\epsilon\)</span> must be higher (i.e. it yields less privacy than <code class="docutils literal notranslate"><span class="pre">F1</span></code>).</p>
@@ -541,7 +571,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/2a797452da54b8784abfb60c0fdb4e29209d8f3b70305f2be47ed7cf1176d408.png" src="_images/2a797452da54b8784abfb60c0fdb4e29209d8f3b70305f2be47ed7cf1176d408.png" />
+<img alt="_images/7872a301327c0f2ef9605970adf59d0247970d87b68b6f7507c9c795c65b71ff.png" src="_images/7872a301327c0f2ef9605970adf59d0247970d87b68b6f7507c9c795c65b71ff.png" />
 </div>
 </div>
 <p>What about <code class="docutils literal notranslate"><span class="pre">F3</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>? Recall that the <span class="math notranslate nohighlight">\(\epsilon\)</span> values for these two mechanisms are the same - both have an <span class="math notranslate nohighlight">\(\epsilon\)</span> of 2. Their output distributions should look the same.</p>
@@ -563,7 +593,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/c685b4b0975287b6a179e84270629b253a9d34f95530ea55bc698b2043fa0e8f.png" src="_images/c685b4b0975287b6a179e84270629b253a9d34f95530ea55bc698b2043fa0e8f.png" />
+<img alt="_images/9f3ba6fe0d8d3a4297933b06eaeb1a6647e00a21d821235a7b4980ad8bb48a64.png" src="_images/9f3ba6fe0d8d3a4297933b06eaeb1a6647e00a21d821235a7b4980ad8bb48a64.png" />
 </div>
 </div>
 <p>In fact, <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier”! Why does this happen? Remember that sequential composition yields an <em>upper</em> bound on the total <span class="math notranslate nohighlight">\(\epsilon\)</span> of several releases, the actual cumulative impact on privacy might be lower. That’s the case here - the actual privacy loss in this case appears to be somewhat lower than the upper bound <span class="math notranslate nohighlight">\(\epsilon\)</span> determined by sequential composition. Sequential composition is an extremely useful way to control total privacy cost, and we will see it used in many different ways, but keep in mind that it is not necessarily an exact bound.</p>
@@ -682,23 +712,23 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
   <tbody>
     <tr>
       <th>HS-grad</th>
-      <td>10500.684787</td>
+      <td>10502.052933</td>
     </tr>
     <tr>
       <th>Some-college</th>
-      <td>7290.489480</td>
+      <td>7291.038615</td>
     </tr>
     <tr>
       <th>Bachelors</th>
-      <td>5354.851228</td>
+      <td>5353.172984</td>
     </tr>
     <tr>
       <th>Masters</th>
-      <td>1721.836212</td>
+      <td>1719.328962</td>
     </tr>
     <tr>
       <th>Assoc-voc</th>
-      <td>1381.487855</td>
+      <td>1383.845293</td>
     </tr>
   </tbody>
 </table>
@@ -812,28 +842,28 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
   <tbody>
     <tr>
       <th>10th</th>
-      <td>296.182645</td>
-      <td>637.767197</td>
+      <td>293.117080</td>
+      <td>637.423587</td>
     </tr>
     <tr>
       <th>11th</th>
-      <td>431.603047</td>
-      <td>745.174758</td>
+      <td>431.188954</td>
+      <td>741.474304</td>
     </tr>
     <tr>
       <th>12th</th>
-      <td>143.726993</td>
-      <td>289.760307</td>
+      <td>145.083748</td>
+      <td>288.398813</td>
     </tr>
     <tr>
       <th>1st-4th</th>
-      <td>45.604110</td>
-      <td>122.401198</td>
+      <td>46.112392</td>
+      <td>121.029528</td>
     </tr>
     <tr>
       <th>5th-6th</th>
-      <td>81.789469</td>
-      <td>247.632261</td>
+      <td>83.872876</td>
+      <td>248.439845</td>
     </tr>
   </tbody>
 </table>

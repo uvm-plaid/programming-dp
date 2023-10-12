@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>差分隐私 &#8212; 动手学差分隐私</title>
   
@@ -47,7 +47,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -412,7 +411,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>差分隐私<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<h1>差分隐私<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
 <p>阅读本章后，您将能够：</p>
@@ -426,8 +425,8 @@ document.write(`
 <div class="admonition- admonition">
 <p class="admonition-title">定义</p>
 <p>一般将满足差分隐私的函数称为一个<em>机制</em>（Mechanism）。如果对于所有<em>临近数据集</em>（Neighboring Dataset）<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>和所有可能的输出<span class="math notranslate nohighlight">\(S\)</span>，机制<span class="math notranslate nohighlight">\(F\)</span>均满足</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e02f2ccf-dbd6-48c2-8e24-df21583d5667">
-<span class="eqno">(1)<a class="headerlink" href="#equation-e02f2ccf-dbd6-48c2-8e24-df21583d5667" title="此公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9e3f45b5-8b98-4ef6-ba24-ccd7073767eb">
+<span class="eqno">(1)<a class="headerlink" href="#equation-9e3f45b5-8b98-4ef6-ba24-ccd7073767eb" title="公式的永久链接">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
 \end{equation}\]</div>
 <p>则称机制<span class="math notranslate nohighlight">\(F\)</span>满足差分隐私。</p>
@@ -437,7 +436,7 @@ document.write(`
 <p>一般将差分隐私定义中的参数<span class="math notranslate nohighlight">\(\epsilon\)</span>称为<em>隐私参数</em>（Privacy Parameter）或<em>隐私预算</em>（Privacy Budget）。<span class="math notranslate nohighlight">\(\epsilon\)</span>提供了一个旋钮，用来调整差分隐私定义所能提供的”隐私量”。<span class="math notranslate nohighlight">\(\epsilon\)</span>较小时，意味着<span class="math notranslate nohighlight">\(F\)</span>需要为相似的输入提供<em>非常</em>相似的输出，因此提供更高等级的隐私性。较大的<span class="math notranslate nohighlight">\(\epsilon\)</span>允许<span class="math notranslate nohighlight">\(F\)</span>给出不那么相似的输出，因此提供更少的隐私性。</p>
 <p>我们在实际中应该如何设置<span class="math notranslate nohighlight">\(\epsilon\)</span>，差分隐私才能提供足够的隐私性呢？没人知道这个问题的答案。一般的共识是：将<span class="math notranslate nohighlight">\(\epsilon\)</span>设置为约等于1或者更小的值；大于10的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值意味着大概率无法提供足够的隐私性。但实际上，这个经验法则下的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值过于保守了。我们后续将会进一步展开讨论这个问题。</p>
 <section id="id3">
-<h2>拉普拉斯机制<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<h2>拉普拉斯机制<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>差分隐私一般用于回复特定的问询。我们来考虑一个针对人口普查数据的问询。我们首先不使用差分隐私。</p>
 <p>“数据集中有多少个体的年龄大于等于40岁？”</p>
 <div class="cell docutils container">
@@ -456,8 +455,8 @@ document.write(`
 <div class="admonition- admonition">
 <p class="admonition-title">定义</p>
 <p>根据拉普拉斯机制，对于可以输出一个数值型结果的函数<span class="math notranslate nohighlight">\(f(x)\)</span>，按下述方法定义的<span class="math notranslate nohighlight">\(F(x)\)</span>满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d1f5496c-6997-4270-9e25-2651a23aef5a">
-<span class="eqno">(2)<a class="headerlink" href="#equation-d1f5496c-6997-4270-9e25-2651a23aef5a" title="此公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0539c4da-d754-41cd-ac05-e0ef186cf3b4">
+<span class="eqno">(2)<a class="headerlink" href="#equation-0539c4da-d754-41cd-ac05-e0ef186cf3b4" title="公式的永久链接">#</a></span>\[\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{equation}\]</div>
 <p>其中<span class="math notranslate nohighlight">\(s\)</span>是<span class="math notranslate nohighlight">\(f\)</span>的<em>敏感度</em>（Sensitivity），<span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span>表示以均值为0、放缩系数为<span class="math notranslate nohighlight">\(S\)</span>的拉普拉斯分布采样。</p>
@@ -474,7 +473,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14239.860566619782
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14229.451851778285
 </pre></div>
 </div>
 </div>
@@ -482,7 +481,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 <p>可以试着多次运行此代码，查看噪声对问询结果造成的影响。虽然每次代码的输出结果都会发生变化，但在大多数情况下，输出的结果都与真实结果（14,235）很接近，输出结果的可用性相对较高。</p>
 </section>
 <section id="id5">
-<h2>需要多大的噪声？<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<h2>需要多大的噪声？<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 <p>我们如何知道拉普拉斯机制是否已经增加了足够的噪声，可以阻止攻击者对数据集中的个体实施重标识攻击？我们可以先尝试自己来实施攻击！我们构造一个恶意的计数问询，专门用于确定凯莉·特鲁斯洛夫的收入是否大于$50k。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -510,7 +509,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-12.536111268080347
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.328174037376989
 </pre></div>
 </div>
 </div>

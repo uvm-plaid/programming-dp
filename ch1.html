@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>De-identification &#8212; Programming Differential Privacy</title>
   
@@ -48,7 +48,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
@@ -228,6 +227,37 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/uvm-plaid/programming-dp/blob/master/notebooks/ch1.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
 
 
 
@@ -498,6 +528,8 @@ document.write(`
       <th>Country</th>
       <th>Target</th>
       <th>Age</th>
+      <th>Capital Gain</th>
+      <th>Capital Loss</th>
     </tr>
   </thead>
   <tbody>
@@ -519,6 +551,8 @@ document.write(`
       <td>United-States</td>
       <td>&lt;=50K</td>
       <td>56</td>
+      <td>2174</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>1</th>
@@ -538,6 +572,8 @@ document.write(`
       <td>United-States</td>
       <td>&lt;=50K</td>
       <td>35</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>2</th>
@@ -557,6 +593,8 @@ document.write(`
       <td>United-States</td>
       <td>&lt;=50K</td>
       <td>32</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -576,6 +614,8 @@ document.write(`
       <td>United-States</td>
       <td>&lt;=50K</td>
       <td>14</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>4</th>
@@ -595,6 +635,8 @@ document.write(`
       <td>Cuba</td>
       <td>&lt;=50K</td>
       <td>72</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -647,6 +689,8 @@ document.write(`
       <th>Country</th>
       <th>Target</th>
       <th>Age</th>
+      <th>Capital Gain</th>
+      <th>Capital Loss</th>
     </tr>
   </thead>
   <tbody>
@@ -666,6 +710,8 @@ document.write(`
       <td>United-States</td>
       <td>&lt;=50K</td>
       <td>56</td>
+      <td>2174</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -719,6 +765,8 @@ document.write(`
       <th>Country</th>
       <th>Target</th>
       <th>Age</th>
+      <th>Capital Gain</th>
+      <th>Capital Loss</th>
     </tr>
   </thead>
   <tbody>
@@ -740,6 +788,8 @@ document.write(`
       <td>United-States</td>
       <td>&lt;=50K</td>
       <td>56</td>
+      <td>2174</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -791,6 +841,8 @@ document.write(`
       <th>Country</th>
       <th>Target</th>
       <th>Age</th>
+      <th>Capital Gain</th>
+      <th>Capital Loss</th>
     </tr>
   </thead>
   <tbody>
@@ -813,6 +865,8 @@ document.write(`
       <td>United-States</td>
       <td>&lt;=50K</td>
       <td>56</td>
+      <td>2174</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -861,6 +915,8 @@ document.write(`
       <th>Country</th>
       <th>Target</th>
       <th>Age</th>
+      <th>Capital Gain</th>
+      <th>Capital Loss</th>
     </tr>
   </thead>
   <tbody>
@@ -883,6 +939,8 @@ document.write(`
       <td>United-States</td>
       <td>&lt;=50K</td>
       <td>56</td>
+      <td>2174</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>1</th>
@@ -903,6 +961,8 @@ document.write(`
       <td>United-States</td>
       <td>&lt;=50K</td>
       <td>56</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>2</th>
@@ -923,6 +983,8 @@ document.write(`
       <td>United-States</td>
       <td>&gt;50K</td>
       <td>56</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -1029,11 +1091,11 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barnabe Haime         2
-Antonin Chittem       2
-Thornton McMorran     1
-Kalindi Strangeway    1
-Letta Drable          1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Antonin Chittem     2
+Barnabe Haime       2
+Erin Guitonneau     1
+Martica Copp        1
+Juliane Gainfort    1
 Name: Name, dtype: int64
 </pre></div>
 </div>
