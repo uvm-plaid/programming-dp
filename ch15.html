@@ -456,7 +456,7 @@ document.write(`
 <section id="time-efficiency-of-differential-privacy">
 <h2>Time Efficiency of Differential Privacy<a class="headerlink" href="#time-efficiency-of-differential-privacy" title="Permalink to this heading">#</a></h2>
 <p>In a situation where the application of differential privacy is implemented as a direct loop over sensitive entities, there is a significant time cost incurred from the added burden of random number generation.</p>
-<p>We can simulate and compare the runtime performance of two versions of a counting query - one with differential privacy, and one without it.</p>
+<p>We can contrast the runtime performance of two versions of a counting query - one with differential privacy, and one without it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
@@ -490,7 +490,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0218f6f6e72bbeec76839b0bf285882c0710b958d3728b005ef5eac0aa9df552.png" src="_images/0218f6f6e72bbeec76839b0bf285882c0710b958d3728b005ef5eac0aa9df552.png" />
+<img alt="_images/c39594ebc16cd2d2a830cdeeb65321c09ae37f35cabf642c9845bf8116644a3a.png" src="_images/c39594ebc16cd2d2a830cdeeb65321c09ae37f35cabf642c9845bf8116644a3a.png" />
 </div>
 </div>
 <p>With the time spent counting on the y-axis, and the list lize on the x-axis, we can see that the time complexity of differential privacy for this particular operation is essentially linear in the size of the input.</p>
@@ -525,7 +525,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/817f66ea3a8a6aa68dd4f41537e0453f4738634c5323bdc9a5ea6c368f5e4ce3.png" src="_images/817f66ea3a8a6aa68dd4f41537e0453f4738634c5323bdc9a5ea6c368f5e4ce3.png" />
+<img alt="_images/6779a7b6a01c061482de0655e3aae9c384c9d5266ca6299feeef0fe6d876ce35.png" src="_images/6779a7b6a01c061482de0655e3aae9c384c9d5266ca6299feeef0fe6d876ce35.png" />
 </div>
 </div>
 <p>The graph plots generally overlap or are close in most simulations of this experiment, indicating low (constant) time inefficiency overhead incurred from utilizing private gradient descent.</p>
@@ -569,7 +569,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/580d3914465b0a5b1c0714843d676c5ae6b01bfdf17b6da6fc67fd18da82f221.png" src="_images/580d3914465b0a5b1c0714843d676c5ae6b01bfdf17b6da6fc67fd18da82f221.png" />
+<img alt="_images/a9d40411cf6947914dbc55740281508a5105d3b2ffb6f9c771b137f51146c2d6.png" src="_images/a9d40411cf6947914dbc55740281508a5105d3b2ffb6f9c771b137f51146c2d6.png" />
 </div>
 </div>
 <p>We display every thousand memory blocks on the y-axis, against the list size on the x-axis.</p>
@@ -624,7 +624,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\x00\x08n\x92\xed.d\x0f&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;J\xc2\x02\xc3\x15jX1&#39;
 </pre></div>
 </div>
 </div>
@@ -638,7 +638,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\x0c\x94\x04BC\x14g\rn\xf2t@\xfc\x97\x1c\xef\xc9h\xfeS\xde\x9dle\x1c\x9eD\xc4\xfd\x16\x92\xf0&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\x94x\x81\x95\x02&amp;\x83c\nS\xeb.\x84j\x06So2\x8b\x02\xeb^(]\xf7&quot;\xd0\xab\xbf\x99\\*&#39;
 </pre></div>
 </div>
 </div>
@@ -652,7 +652,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\x08\xce\xe1&lt;\x98)\x8b\xdb\x871\x15\xd7\x95/\x89m\x1f\x9b\xda\xcc\x7f\x10_\\\x0eh\x0e\xa5\x05\xf2\xc8\x8b&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;m\x8f\xc7-l\xaf\xaa\x82\x95\xd1\xd9\x85gV\xc9\x1cA\xa5\xf7\xf7\x95\x9a\xd9$\x90\x0c\xe2%=\xbd0\xc6&#39;
 </pre></div>
 </div>
 </div>
