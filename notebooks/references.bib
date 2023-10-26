@@ -235,3 +235,39 @@ url = {https://www.usenix.org/conference/usenixsecurity17/technical-sessions/pre
 publisher = {{USENIX} Association},
 month = aug,
 }
+
+@inproceedings{under2022,
+author = {Casacuberta, S\'{\i}lvia and Shoemate, Michael and Vadhan, Salil and Wagaman, Connor},
+title = {Widespread Underestimation of Sensitivity in Differentially Private Libraries and How to Fix It},
+year = {2022},
+isbn = {9781450394505},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3548606.3560708},
+doi = {10.1145/3548606.3560708},
+abstract = {We identify a new class of vulnerabilities in implementations of differential privacy. Specifically, they arise when computing basic statistics such as sums, thanks to discrepancies between the implemented arithmetic using finite data types (namely, ints or floats) and idealized arithmetic over the reals or integers. These discrepancies cause the sensitivity of the implemented statistics (i.e., how much one individual's data can affect the result) to be much larger than the sensitivity we expect. Consequently, essentially all differential privacy libraries fail to introduce enough noise to hide individual-level information as required by differential privacy, and we show that this may be exploited in realistic attacks on differentially private query systems. In addition to presenting these vulnerabilities, we also provide a number of solutions, which modify or constrain the way in which the sum is implemented in order to recover the idealized or near-idealized bounds on sensitivity.},
+booktitle = {Proceedings of the 2022 ACM SIGSAC Conference on Computer and Communications Security},
+pages = {471–484},
+numpages = {14},
+keywords = {privacy attacks, finite-precision arithmetic, floating-point numbers, differential privacy},
+location = {Los Angeles, CA, USA},
+series = {CCS '22}
+}
+
+@inproceedings{mironov2012,
+author = {Mironov, Ilya},
+title = {On Significance of the Least Significant Bits for Differential Privacy},
+year = {2012},
+isbn = {9781450316514},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2382196.2382264},
+doi = {10.1145/2382196.2382264},
+abstract = {We describe a new type of vulnerability present in many implementations of differentially private mechanisms. In particular, all four publicly available general purpose systems for differentially private computations are susceptible to our attack.The vulnerability is based on irregularities of floating-point implementations of the privacy-preserving Laplacian mechanism. Unlike its mathematical abstraction, the textbook sampling procedure results in a porous distribution over double-precision numbers that allows one to breach differential privacy with just a few queries into the mechanism.We propose a mitigating strategy and prove that it satisfies differential privacy under some mild assumptions on available implementation of floating-point arithmetic.},
+booktitle = {Proceedings of the 2012 ACM Conference on Computer and Communications Security},
+pages = {650–661},
+numpages = {12},
+keywords = {differential privacy, floating point arithmetic},
+location = {Raleigh, North Carolina, USA},
+series = {CCS '12}
+}
