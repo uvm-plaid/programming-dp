@@ -813,7 +813,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>The generalized result still does not satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=2\)</span>!</p>
+<p>The generalized result still does not satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=2\)</span>! In fact, we can perform this generalization on all ~32,000 rows and still fail to satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=2\)</span> - so adding more data does not necessarily help as much as we expected.</p>
 <p>The reason is that the dataset contains <em>outliers</em> - individuals who are very different from the rest of the population. These individuals do not fit easily into any group, even after generalization. Even considering <em>only</em> ages, we can see that adding more data is not likely to help, since very low and very high ages are poorly represented in the dataset.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -839,7 +839,7 @@ document.write(`
 </section>
 <section id="removing-outliers">
 <h2>Removing Outliers<a class="headerlink" href="#removing-outliers" title="Permalink to this heading">#</a></h2>
-<p>One solution to this problem is simply to clip the age of each individual in the dataset to lie within a specific range, eliminating outliers entirely. This can also hurt utility, since it replaces real ages with fake ones, but it can be better than generalizing each row more. We can use Numpy’s <code class="docutils literal notranslate"><span class="pre">clip</span></code> method to perform this clipping. We clip ages to be 10-60, and require an educational level of at least 5th-6th grade (represented by <span class="math notranslate nohighlight">\(3\)</span> in the dataset).</p>
+<p>One solution to this problem is simply to clip the age of each individual in the dataset to lie within a specific range, eliminating outliers entirely. This can also hurt utility, since it replaces real ages with fake ones, but it can be better than generalizing each row more. We can use Numpy’s <code class="docutils literal notranslate"><span class="pre">clip</span></code> method to perform this clipping. We clip ages to be 10-60, and require an educational level of at least 5th-6th grade (represented by the index <span class="math notranslate nohighlight">\(3\)</span> in the dataset).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># clipping away outliers</span>
