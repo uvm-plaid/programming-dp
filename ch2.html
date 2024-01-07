@@ -802,18 +802,18 @@ document.write(`
     <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="s1">&#39;edu&#39;</span><span class="p">:</span> <span class="mi">1</span>
 <span class="p">}</span>
-<span class="n">df2</span> <span class="o">=</span> <span class="n">generalize</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">depths</span><span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">generalize</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">depths</span><span class="p">)</span>
 <span class="n">isKAnonymized</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
 </pre></div>
 </div>
 </div>
 </div>
-<p>The generalized result still does not satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=2\)</span>! In fact, we can perform this generalization on all 32,000 rows and still fail to satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=2\)</span> - so adding more data does not necessarily help as much as we expected.</p>
+<p>The generalized result still does not satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=2\)</span>!</p>
 <p>The reason is that the dataset contains <em>outliers</em> - individuals who are very different from the rest of the population. These individuals do not fit easily into any group, even after generalization. Even considering <em>only</em> ages, we can see that adding more data is not likely to help, since very low and very high ages are poorly represented in the dataset.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -828,7 +828,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/ec460ac6991f17127d4211a21d73c75ca0eeb2119c176729cdc7aeb41a9a086f.png" src="_images/ec460ac6991f17127d4211a21d73c75ca0eeb2119c176729cdc7aeb41a9a086f.png" />
+<img alt="_images/c5f804bc82f36c5a648b03f523602617aac8ca859fefd435ade6a4b7fc50f1f8.png" src="_images/c5f804bc82f36c5a648b03f523602617aac8ca859fefd435ade6a4b7fc50f1f8.png" />
 </div>
 </div>
 <p>Achieving the optimal generalization for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity is very challenging in cases like this. Generalizing each row <em>more</em> would be overkill for the well-represented individuals with ages in the 20-40 range, and would hurt utility. However, more generalization is clearly needed for individuals at the upper and lower ends of the age range. This is the kind of challenge that occurs regularly in practice, and is difficult to solve automatically. In fact, optimal generalization for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity has been shown to be NP-hard.</p>
@@ -839,7 +839,7 @@ document.write(`
 </section>
 <section id="removing-outliers">
 <h2>Removing Outliers<a class="headerlink" href="#removing-outliers" title="Permalink to this heading">#</a></h2>
-<p>One solution to this problem is simply to clip the age of each individual in the dataset to lie within a specific range, eliminating outliers entirely. This can also hurt utility, since it replaces real ages with fake ones, but it can be better than generalizing each row more. We can use Numpy’s <code class="docutils literal notranslate"><span class="pre">clip</span></code> method to perform this clipping. We clip ages to be 60 or below, and leave educational levels alone (by clipping them to a very large value).</p>
+<p>One solution to this problem is simply to clip the age of each individual in the dataset to lie within a specific range, eliminating outliers entirely. This can also hurt utility, since it replaces real ages with fake ones, but it can be better than generalizing each row more. We can use Numpy’s <code class="docutils literal notranslate"><span class="pre">clip</span></code> method to perform this clipping. We clip ages to be 10-60, and require an educational level of at least 5th-6th grade (represented by <span class="math notranslate nohighlight">\(3\)</span> in the dataset).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># clipping away outliers</span>
@@ -847,7 +847,8 @@ document.write(`
     <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="s1">&#39;edu&#39;</span><span class="p">:</span> <span class="mi">1</span>
 <span class="p">}</span>
-<span class="n">dfp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10000000000000</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<span class="n">dfp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span> <span class="mi">100000000</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<span class="n">dfp</span> <span class="o">=</span> <span class="n">dfp</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
 <span class="n">df2</span> <span class="o">=</span> <span class="n">generalize</span><span class="p">(</span><span class="n">dfp</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">500</span><span class="p">),</span> <span class="n">depths</span><span class="p">)</span>
 <span class="n">isKAnonymized</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
 </pre></div>
