@@ -498,8 +498,8 @@ document.write(`
 </div>
 <p>The two lines overlap <em>completely</em>. This means that no matter how many queries we’re running, under <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, we can’t do any better than sequential composition. That’s because sequential composition is just as good as vectorizing the query, effectively converting it to a single query without involving composition, and we can’t do any better than that.</p>
 <p>What about <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy? The story is a little different there. In the sequential composition case, we can use advanced composition; we have to be a little careful to ensure that the total privacy cost is exactly <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>. Specifically, we set <span class="math notranslate nohighlight">\(\epsilon_i = \frac{\epsilon}{2 \sqrt{2k \log(1/\delta')}}\)</span>, <span class="math notranslate nohighlight">\(\delta_i = \frac{\delta}{2k}\)</span>, and <span class="math notranslate nohighlight">\(\delta' = \frac{\delta}{2}\)</span> (splitting <span class="math notranslate nohighlight">\(\delta\)</span> to go 50% towards the queries, and 50% towards advanced composition). By advanced composition, the total privacy cost for all <span class="math notranslate nohighlight">\(k\)</span> queries is <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>. The scale of the noise, by the Gaussian mechanism, is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8ac1db23-6e9c-4ba5-aa94-6ae8e439311b">
-<span class="eqno">(13)<a class="headerlink" href="#equation-8ac1db23-6e9c-4ba5-aa94-6ae8e439311b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a3b73466-1597-4df0-96d1-c34d58cb7ff1">
+<span class="eqno">(13)<a class="headerlink" href="#equation-a3b73466-1597-4df0-96d1-c34d58cb7ff1" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sigma^2 =&amp; \frac{2 \log\left(\frac{1.25}{\delta_i}\right)}{\epsilon_i^2}\\
  =&amp; \frac{16 k \log\left(\frac{1}{\delta'}\right) \log\left(\frac{1.25}{\delta_i}\right)}{\epsilon^2}\\
  =&amp; \frac{16 k \log\left(\frac{2}{\delta}\right) \log\left(\frac{2.5 k}{\delta}\right)}{\epsilon^2}\\
@@ -551,9 +551,9 @@ D_\infty(Y \Vert Z) = \max_{S \subseteq \text{Supp}(Y)} \Big[\log \frac{Pr[Y \in
 \end{align*}\]</div>
 </section>
 </div><p>This already looks a lot like the condition for <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy! In particular, it turns out that <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy if:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c71e0989-13ff-4a94-a6a5-4396aef8481d">
-<span class="eqno">(14)<a class="headerlink" href="#equation-c71e0989-13ff-4a94-a6a5-4396aef8481d" title="Permalink to this equation">#</a></span>\[\begin{align}
-D_\infty(F(x) \Vert F(x') \leq \epsilon
+<div class="amsmath math notranslate nohighlight" id="equation-7f901df3-b0ef-4892-946b-5fc720101625">
+<span class="eqno">(14)<a class="headerlink" href="#equation-7f901df3-b0ef-4892-946b-5fc720101625" title="Permalink to this equation">#</a></span>\[\begin{align}
+D_\infty(F(x) \Vert F(x')) \leq \epsilon
 \end{align}\]</div>
 <p>An interesting direction for research in differential privacy is the exploration of alternative privacy definitions in terms of other divergences. Of these, the <a class="reference external" href="https://en.wikipedia.org/wiki/R%C3%A9nyi_entropy#R%C3%A9nyi_divergence">Rényi divergence</a> is particularly interesting, since it also (like max divergence) allows us to recover the original definition of differential privacy. The Rényi divergence of order <span class="math notranslate nohighlight">\(\alpha\)</span> between probability distributions <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> is defined as (where <span class="math notranslate nohighlight">\(P(x)\)</span> and <span class="math notranslate nohighlight">\(Q(x)\)</span> denote the probability density of <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> at point <span class="math notranslate nohighlight">\(x\)</span>, respectively):</p>
 <div class="proof definition admonition" id="renyi-divergence">
@@ -568,9 +568,9 @@ D_\alpha(P \Vert Q) = \frac{1}{\alpha - 1} \log E_{x \sim Q} \Big(\frac{P(x)}{Q(
 </section>
 <section id="renyi-differential-privacy">
 <h2>Rényi Differential Privacy<a class="headerlink" href="#renyi-differential-privacy" title="Permalink to this heading">#</a></h2>
-<p>In 2017, Ilya Mironov proposed <a class="reference external" href="https://arxiv.org/abs/1702.07476">Rényi differential privacy (RDP)</a> <span id="id1">[<a class="reference internal" href="bibliography.html#id13" title="Ilya Mironov. Renyi differential privacy. In Computer Security Foundations Symposium (CSF), 2017 IEEE 30th, 263–275. IEEE, 2017.">10</a>]</span>. A randomized mechanism <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP if for all neighboring datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-c1549962-df2e-4d14-b5aa-778917c2db8e">
-<span class="eqno">(15)<a class="headerlink" href="#equation-c1549962-df2e-4d14-b5aa-778917c2db8e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<p>In 2017, Ilya Mironov proposed <a class="reference external" href="https://arxiv.org/abs/1702.07476">Rényi differential privacy (RDP)</a> <span id="id1">[<a class="reference internal" href="bibliography.html#id13" title="Ilya Mironov. Renyi differential privacy. In Computer Security Foundations Symposium (CSF), 2017 IEEE 30th, 263–275. IEEE, 2017.">12</a>]</span>. A randomized mechanism <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP if for all neighboring datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-cb0921a3-b7c2-43b0-a25d-25a9d050f6de">
+<span class="eqno">(15)<a class="headerlink" href="#equation-cb0921a3-b7c2-43b0-a25d-25a9d050f6de" title="Permalink to this equation">#</a></span>\[\begin{align}
 D_\alpha(F(x) \Vert F(x')) \leq \bar{\epsilon}
 \end{align}\]</div>
 <p>In other words, RDP requires that the Rényi divergence of order <span class="math notranslate nohighlight">\(\alpha\)</span> between <span class="math notranslate nohighlight">\(F(x)\)</span> and <span class="math notranslate nohighlight">\(F(x')\)</span> to be bounded by <span class="math notranslate nohighlight">\(\bar{\epsilon}\)</span>. Note that we’ll use <span class="math notranslate nohighlight">\(\bar{\epsilon}\)</span> to denote the <span class="math notranslate nohighlight">\(\epsilon\)</span> parameter of RDP, in order to distinguish it from the <span class="math notranslate nohighlight">\(\epsilon\)</span> in pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy and <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy.</p>
@@ -610,9 +610,9 @@ F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{\Delta f^2 \
 </section>
 <section id="zero-concentrated-differential-privacy">
 <h2>Zero-Concentrated Differential Privacy<a class="headerlink" href="#zero-concentrated-differential-privacy" title="Permalink to this heading">#</a></h2>
-<p>In concurrent work released in 2016, Mark Bun and Thomas Steinke proposed <a class="reference external" href="https://arxiv.org/abs/1605.02065">zero-concentrated differential privacy (zCDP)</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id14" title="Mark Bun and Thomas Steinke. Concentrated differential privacy: simplifications, extensions, and lower bounds. In Theory of Cryptography Conference, 635–658. Springer, 2016.">11</a>]</span>. Like RDP, zCDP is defined in terms of the Rényi divergence, but it includes only a single privacy parameter (<span class="math notranslate nohighlight">\(\rho\)</span>). A randomized mechanism <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP if for all neighboring datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all <span class="math notranslate nohighlight">\(\alpha \in (1, \infty)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26caafa6-72db-40e7-8409-3668e0aa6e2b">
-<span class="eqno">(16)<a class="headerlink" href="#equation-26caafa6-72db-40e7-8409-3668e0aa6e2b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<p>In concurrent work released in 2016, Mark Bun and Thomas Steinke proposed <a class="reference external" href="https://arxiv.org/abs/1605.02065">zero-concentrated differential privacy (zCDP)</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id14" title="Mark Bun and Thomas Steinke. Concentrated differential privacy: simplifications, extensions, and lower bounds. In Theory of Cryptography Conference, 635–658. Springer, 2016.">13</a>]</span>. Like RDP, zCDP is defined in terms of the Rényi divergence, but it includes only a single privacy parameter (<span class="math notranslate nohighlight">\(\rho\)</span>). A randomized mechanism <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP if for all neighboring datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all <span class="math notranslate nohighlight">\(\alpha \in (1, \infty)\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1bc41728-5a00-4ab2-a995-1e00f5188d2e">
+<span class="eqno">(16)<a class="headerlink" href="#equation-1bc41728-5a00-4ab2-a995-1e00f5188d2e" title="Permalink to this equation">#</a></span>\[\begin{align}
 D_\alpha (F(x) \Vert F(x')) \leq \rho\alpha
 \end{align}\]</div>
 <p>This is a stronger requirement than RDP, because it restricts the Rényi divergence of many orders; however, the bound becomes more relaxed as <span class="math notranslate nohighlight">\(\alpha\)</span> grows. Like RDP, zCDP can be converted to <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy: if <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP, then for <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span>, <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy for <span class="math notranslate nohighlight">\(\epsilon = \rho + 2\sqrt{\rho \log(1/\delta)}\)</span>.</p>
@@ -800,7 +800,7 @@ By Joseph P. Near and Chiké Abuah
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

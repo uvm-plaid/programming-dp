@@ -454,7 +454,7 @@ document.write(`
 <li><p>Describe the advantages of these mechanisms</p></li>
 </ul>
 </div>
-<p>The fundamental mechanisms we have seen so far (Laplace and Gaussian) are focused on numerical answers, and add noise directly to the answer itself. What if we want to return a precise answer (i.e. no added noise), but still preserve differential privacy? One solution is the exponential mechanism <span id="id1">[<a class="reference internal" href="bibliography.html#id15" title="Frank McSherry and Kunal Talwar. Mechanism design via differential privacy. In 48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07), volume, 94-103. 2007. doi:10.1109/FOCS.2007.66.">12</a>]</span>, which allows selecting the “best” element from a set while preserving differential privacy.</p>
+<p>The fundamental mechanisms we have seen so far (Laplace and Gaussian) are focused on numerical answers, and add noise directly to the answer itself. What if we want to return a precise answer (i.e. no added noise), but still preserve differential privacy? One solution is the exponential mechanism <span id="id1">[<a class="reference internal" href="bibliography.html#id15" title="Frank McSherry and Kunal Talwar. Mechanism design via differential privacy. In 48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07), volume, 94-103. 2007. doi:10.1109/FOCS.2007.66.">14</a>]</span>, which allows selecting the “best” element from a set while preserving differential privacy.</p>
 <p>The analyst defines which element is the “best” by specifying a <em>scoring function</em> that outputs a score for each element in the set, and also defines the set of things to pick from. The mechanism provides differential privacy by <em>approximately</em> maximizing the score of the element it returns - in other words, to satisfy differential privacy, the exponential mechanism sometimes returns an element from the set which does <em>not</em> have the highest score.</p>
 <div class="proof theorem admonition" id="theorem-0">
 <p class="admonition-title"><span class="caption-number">Theorem 9 </span> (Exponential Mechanism)</p>
@@ -552,7 +552,7 @@ dtype: int64
 <p>However, if we used the exponential mechanism, the total cost would be just <span class="math notranslate nohighlight">\(\epsilon\)</span> instead! Why is the exponential mechanism so much better? Because <em>it releases less information</em>.</p>
 <p>Our analysis of the Laplace-based approach defined above is very pessimistic. The whole set of noisy scores computed in step 1 actually satisfies <span class="math notranslate nohighlight">\(n\epsilon\)</span>-differential privacy, and we could release the whole thing. That the output in step 2 satisfies <span class="math notranslate nohighlight">\(n\epsilon\)</span>-differential privacy follows from the post-processing property.</p>
 <p>But the exponential mechanism releases <em>only</em> the identity of the element with the maximum noisy score - <em>not</em> the score itself, or the scores of any other element.</p>
-<p>The algorithm defined above is often called the <em>report noisy max</em> algorithm, and it actually satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, no matter how large the set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is - specifically because it releases <em>only</em> the identity of the element with the largest noisy count. The proof can be found in <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>, Claim 3.9.</p>
+<p>The algorithm defined above is often called the <em>report noisy max</em> algorithm, and it actually satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, no matter how large the set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is - specifically because it releases <em>only</em> the identity of the element with the largest noisy count. The proof can be found in <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">15</a>]</span>, Claim 3.9.</p>
 <p>Report noisy max is easy to implement, and it’s easy to see that it produces very similar results to our earlier implementation of the exponential mechanism for finite sets.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -708,7 +708,7 @@ By Joseph P. Near and Chiké Abuah
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

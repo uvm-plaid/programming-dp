@@ -456,7 +456,7 @@ document.write(`
 </ul>
 </div>
 <p>We’ve already seen one example of a mechanism - the exponential mechanism - which achieves a lower-than-expected privacy cost by withholding some information. Are there others?</p>
-<p>There are, and one that turns out to be extremely useful in practical algorithms is the <em>sparse vector technique</em> (SVT) <span id="id1">[<a class="reference internal" href="bibliography.html#id16" title="Cynthia Dwork, Moni Naor, Omer Reingold, Guy N. Rothblum, and Salil Vadhan. On the complexity of differentially private data release: efficient algorithms and hardness results. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 381–390. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536467, doi:10.1145/1536414.1536467.">14</a>]</span>.</p>
+<p>There are, and one that turns out to be extremely useful in practical algorithms is the <em>sparse vector technique</em> (SVT) <span id="id1">[<a class="reference internal" href="bibliography.html#id16" title="Cynthia Dwork, Moni Naor, Omer Reingold, Guy N. Rothblum, and Salil Vadhan. On the complexity of differentially private data release: efficient algorithms and hardness results. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 381–390. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536467, doi:10.1145/1536414.1536467.">16</a>]</span>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>The sparse vector technique operates on a stream of sensitivity-1 queries over a dataset; it releases the <em>identity</em> of the first query in the stream which passes a test, and nothing else.</p>
@@ -464,7 +464,7 @@ document.write(`
 <p>The advantage of SVT is that it incurs a fixed total privacy cost, no matter <em>how many queries it considers</em>.</p>
 <section id="above-threshold">
 <h2>Above Threshold<a class="headerlink" href="#above-threshold" title="Permalink to this heading">#</a></h2>
-<p>The most basic instantiation of the sparse vector technique is an algorithm called <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>, Algorithm 1). The inputs to the algorithm are a stream of sensitivity-1 queries, a dataset <span class="math notranslate nohighlight">\(D\)</span>, a <em>threshold</em> <span class="math notranslate nohighlight">\(T\)</span>, and the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>; the algorithm preserves <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. A Python implementation of the algorithm appears below.</p>
+<p>The most basic instantiation of the sparse vector technique is an algorithm called <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">15</a>]</span>, Algorithm 1). The inputs to the algorithm are a stream of sensitivity-1 queries, a dataset <span class="math notranslate nohighlight">\(D\)</span>, a <em>threshold</em> <span class="math notranslate nohighlight">\(T\)</span>, and the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>; the algorithm preserves <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. A Python implementation of the algorithm appears below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
@@ -677,7 +677,7 @@ document.write(`
 <section id="returning-multiple-values">
 <h2>Returning Multiple Values<a class="headerlink" href="#returning-multiple-values" title="Permalink to this heading">#</a></h2>
 <p>In the above application, we only needed the index of the <em>first</em> query which exceeded the threshold, but in many other applications we would like to find the indices of <em>all</em> such queries.</p>
-<p>We can use SVT to do this, but we’ll have to pay a higher privacy cost. We can implement an algorithm called <code class="docutils literal notranslate"><span class="pre">sparse</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">13</a>]</span>, Algorithm 2) to accomplish the task, using a very simple approach:</p>
+<p>We can use SVT to do this, but we’ll have to pay a higher privacy cost. We can implement an algorithm called <code class="docutils literal notranslate"><span class="pre">sparse</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">15</a>]</span>, Algorithm 2) to accomplish the task, using a very simple approach:</p>
 <ol class="arabic simple">
 <li><p>Start with a stream <span class="math notranslate nohighlight">\(qs = \{q_1, \dots, q_k\}\)</span> of queries</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> on <span class="math notranslate nohighlight">\(qs\)</span> to learn the index <span class="math notranslate nohighlight">\(i\)</span> of the first query which exceeds the threshold</p></li>
@@ -882,7 +882,7 @@ By Joseph P. Near and Chiké Abuah
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

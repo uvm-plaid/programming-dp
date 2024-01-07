@@ -607,7 +607,7 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 <section id="advanced-composition">
 <h2>Advanced Composition<a class="headerlink" href="#advanced-composition" title="Permalink to this heading">#</a></h2>
 <p>We have already seen two ways of combining differentially private mechanisms: sequential composition and parallel composition. It turns out that <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy admits a new way of analyzing the sequential composition of differentially private mechanisms, which can result in a lower privacy cost.</p>
-<p>The advanced composition theorem <span id="id2">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">7</a>]</span> is usually stated in terms of mechanisms which are instances of <em><span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition</em>.</p>
+<p>The advanced composition theorem <span id="id2">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">9</a>]</span> is usually stated in terms of mechanisms which are instances of <em><span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition</em>.</p>
 <div class="proof definition admonition" id="adaptive-composition">
 <p class="admonition-title"><span class="caption-number">Definition 14 </span> (Adaptive Composition)</p>
 <section class="definition-content" id="proof-content">
@@ -708,7 +708,7 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 </section>
 <section id="advanced-composition-for-approximate-differential-privacy">
 <h2>Advanced Composition for Approximate Differential Privacy<a class="headerlink" href="#advanced-composition-for-approximate-differential-privacy" title="Permalink to this heading">#</a></h2>
-<p>The description of advanced composition above requires the individual mechanisms being composed to satisfy pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. However, the theorem also applies if they satisfy <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy instead. The more general statement of the advanced composition theorem is as follows (<span id="id3">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">7</a>]</span>, Theorem 3.20):</p>
+<p>The description of advanced composition above requires the individual mechanisms being composed to satisfy pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. However, the theorem also applies if they satisfy <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy instead. The more general statement of the advanced composition theorem is as follows (<span id="id3">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">9</a>]</span>, Theorem 3.20):</p>
 <div class="proof theorem admonition" id="approximate-advanced-composition">
 <p class="admonition-title"><span class="caption-number">Theorem 6 </span> (Approximate Advanced Composition)</p>
 <section class="theorem-content" id="proof-content">
@@ -829,7 +829,7 @@ By Joseph P. Near and Chiké Abuah
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>
