@@ -270,4 +270,21 @@ numpages = {12},
 keywords = {differential privacy, floating point arithmetic},
 location = {Raleigh, North Carolina, USA},
 series = {CCS '12}
+} 
+
+
+@InProceedings{pmlr-v80-balle18a,
+  title = 	 {Improving the {G}aussian Mechanism for Differential Privacy: Analytical Calibration and Optimal Denoising},
+  author =       {Balle, Borja and Wang, Yu-Xiang},
+  booktitle = 	 {Proceedings of the 35th International Conference on Machine Learning},
+  pages = 	 {394--403},
+  year = 	 {2018},
+  editor = 	 {Dy, Jennifer and Krause, Andreas},
+  volume = 	 {80},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {10--15 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v80/balle18a/balle18a.pdf},
+  url = 	 {https://proceedings.mlr.press/v80/balle18a.html},
+  abstract = 	 {The Gaussian mechanism is an essential building block used in multitude of differentially private data analysis algorithms. In this paper we revisit the Gaussian mechanism and show that the original analysis has several important limitations. Our analysis reveals that the variance formula for the original mechanism is far from tight in the high privacy regime ($\varepsilon \to 0$) and it cannot be extended to the low privacy regime ($\varepsilon \to \infty$). We address these limitations by developing an optimal Gaussian mechanism whose variance is calibrated directly using the Gaussian cumulative density function instead of a tail bound approximation. We also propose to equip the Gaussian mechanism with a post-processing step based on adaptive estimation techniques by leveraging that the distribution of the perturbation is known. Our experiments show that analytical calibration removes at least a third of the variance of the noise compared to the classical Gaussian mechanism, and that denoising dramatically improves the accuracy of the Gaussian mechanism in the high-dimensional regime.}
 }
