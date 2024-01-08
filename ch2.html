@@ -433,6 +433,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-data-to-satisfy-k-anonymity">Generalizing Data to Satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-more-data-improve-generalization">Does More Data Improve Generalization?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-outliers">Removing Outliers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-homogeneity-attack">The Homogeneity Attack</a></li>
 </ul>
             </nav>
         </div>
@@ -861,6 +862,18 @@ document.write(`
 </div>
 </div>
 <p>Now, the generalized dataset satisfies <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=7\)</span>! In other words, our level of generalization was appropriate, but outliers prevented us from achieving <span class="math notranslate nohighlight">\(k\)</span>-Anonymity before, even for <span class="math notranslate nohighlight">\(k=2\)</span>.</p>
+</section>
+<section id="the-homogeneity-attack">
+<h2>The Homogeneity Attack<a class="headerlink" href="#the-homogeneity-attack" title="Permalink to this heading">#</a></h2>
+<p>The homogeneity attack represents a significant limitation to the effectiveness of <span class="math notranslate nohighlight">\(k\)</span>-Anonymity. Ordinarily, the goal of <span class="math notranslate nohighlight">\(k\)</span>-Anonymity is to protect individuals’ identities by ensuring that each individual in a dataset is indistinguishable from at least <span class="math notranslate nohighlight">\(k-1\)</span> others. These <span class="math notranslate nohighlight">\(k-1\)</span> others (in addition to the individual) are called the individual’s “group” <em>within</em> the dataset.</p>
+<p>However, the homogeneity attack leverages similarities among quasi-identifiers within a group, making it challenging to achieve true individual anonymity. In this attack, an adversary exploits the <em>uniformity</em> or <em>lack of diversity</em> among the attributes used for anonymization, enabling the de-anonymization/re-identification of individuals.</p>
+<p>This attack vector arises when the data’s quasi-identifiers exhibit a high degree of similarity, and groups have identical values for their sensitive attributes, making it easier for an attacker to infer sensitive information about specific individuals. In such cases, sensitive information regarding individuals can be inferred via determination of group membership.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is worth noting that <span class="math notranslate nohighlight">\(k\)</span>-Anonymity is also highly susceptible to attacks enabled by the availability of <em>background knowledge</em> regarding individuals. Such knowledge may aid, for example, in re-identification of individuals by simple process of elimination of other members of their group who do not fit certain criteria.</p>
+</div>
+<p>Addressing the homogeneity attack requires careful manual consideration regarding the selection of diverse quasi-identifiers, highlighting the need for more sophisticated anonymization techniques to enhance the robustness of privacy preservation in datasets.</p>
+<p>One such technique, which is also immune to the presence of background knowledge, is differential privacy.</p>
 <div class="admonition-summary admonition">
 <p class="admonition-title">Summary</p>
 <ul class="simple">
@@ -940,6 +953,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-data-to-satisfy-k-anonymity">Generalizing Data to Satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-more-data-improve-generalization">Does More Data Improve Generalization?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-outliers">Removing Outliers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-homogeneity-attack">The Homogeneity Attack</a></li>
 </ul>
   </nav></div>
 
