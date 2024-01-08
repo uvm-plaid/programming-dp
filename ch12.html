@@ -553,8 +553,8 @@ set. For this dataset, that’s a pretty decent result.</p>
 <h2>What is a Model?<a class="headerlink" href="#what-is-a-model" title="Permalink to this heading">#</a></h2>
 <p>What exactly <em>is</em> a model? How does it encode the information it uses to make predictions?</p>
 <p>There are many different kinds of models, but the ones we’ll explore here are <em>linear models</em>. For an unlabeled example with a <span class="math notranslate nohighlight">\(k\)</span>-dimensional feature vector <span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>, a linear model predicts a label by first calculating the quantity:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a43de70e-094c-482b-b03b-59d63e4c20ee">
-<span class="eqno">(20)<a class="headerlink" href="#equation-a43de70e-094c-482b-b03b-59d63e4c20ee" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-23becfb5-45f5-4c23-9869-dffae84f35ca">
+<span class="eqno">(20)<a class="headerlink" href="#equation-23becfb5-45f5-4c23-9869-dffae84f35ca" title="Permalink to this equation">#</a></span>\[\begin{align}
 w_1 x_1 + \dots + w_k x_k + bias
 \end{align}\]</div>
 <p>and then taking the sign of it (i.e. if the quantity above is negative, we predict the label -1; if it’s positive, we predict 1).</p>
@@ -917,14 +917,18 @@ Testing loss: 0.4723742456095848
 <p>We’ll start with the second approach - often called <em>gradient clipping</em> - because it’s simpler conceptually and more general in its applications.</p>
 <section id="gradient-clipping">
 <h3>Gradient Clipping<a class="headerlink" href="#gradient-clipping" title="Permalink to this heading">#</a></h3>
+<p>Gradient clipping is a technique often employed in machine learning, including differential privacy scenarios, to mitigate the risk of large gradients during training. When training a model, the gradient of the loss with respect to the model’s parameters is computed and used to update the parameters. Gradient clipping involves scaling or limiting the gradients to a specified threshold if they exceed that threshold. This helps stabilize training and prevents large updates that may lead to overshooting or divergence.</p>
+<p>In the context of differential privacy, gradient clipping is used to control the sensitivity of the model. Recall that, in the context of differential privacy, sensitivity refers to the maximum amount by which the output of a function (or the model’s parameters) can change when a single data point is added or removed from the input dataset. It is a crucial concept in differential privacy because it helps quantify how much an individual’s data can influence the overall outcome, thus providing a measure of privacy protection. The sensitivity of a model’s update is related to the maximum change in the model parameters caused by a single training example. By limiting the gradients during training, gradient clipping indirectly limits the sensitivity of the model, making it more amenable to differential privacy.</p>
+<p>To incorporate gradient clipping into a differentially private training process, the clipping is often applied to the gradients before they are used to update the model parameters. This helps ensure that individual training examples do not overly influence the model and helps maintain privacy guarantees.</p>
+<p>To sum up: sensitivity in the context of differential privacy refers to the maximum impact a single data point can have on the model’s output, and gradient clipping is a technique used to control and limit this sensitivity during the training of differentially private models.</p>
 <p>Recall that when we implemented sample and aggregate, we enforced a desired sensitivity on a function <span class="math notranslate nohighlight">\(f\)</span> with unknown sensitivity by clipping its output. The sensitivity of <span class="math notranslate nohighlight">\(f\)</span> was:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-319a3f6c-c8ea-41e9-8495-172435e350cd">
-<span class="eqno">(21)<a class="headerlink" href="#equation-319a3f6c-c8ea-41e9-8495-172435e350cd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-63a96e75-0947-466f-a3d9-617cc778a588">
+<span class="eqno">(21)<a class="headerlink" href="#equation-63a96e75-0947-466f-a3d9-617cc778a588" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>After clipping with parameter <span class="math notranslate nohighlight">\(b\)</span>, this becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8cc5fabf-10ec-4632-a0c3-27e57079659f">
-<span class="eqno">(22)<a class="headerlink" href="#equation-8cc5fabf-10ec-4632-a0c3-27e57079659f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-650ede97-d3fe-4f26-8931-bc4aa2ef0d98">
+<span class="eqno">(22)<a class="headerlink" href="#equation-650ede97-d3fe-4f26-8931-bc4aa2ef0d98" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert \mathsf{clip}(f(x), b) - \mathsf{clip}(f(x'),b) \rvert
 \end{align}\]</div>
 <p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x), b) = b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x'),b) = 0\)</span>, so the sensitivity of the clipped result is exactly <span class="math notranslate nohighlight">\(b\)</span> (the value of the clipping parameter).</p>
@@ -943,8 +947,8 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <p>Now we’re ready to analyze the sensitivity of the clipped gradient. We denote the gradient as <span class="math notranslate nohighlight">\(\nabla(\theta; X, y)\)</span> (corresponding to <code class="docutils literal notranslate"><span class="pre">gradient</span></code> in our Python code):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4287e928-ecfe-4133-b40a-19e022be43df">
-<span class="eqno">(23)<a class="headerlink" href="#equation-4287e928-ecfe-4133-b40a-19e022be43df" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a5034970-d123-40c0-b207-178f756fba12">
+<span class="eqno">(23)<a class="headerlink" href="#equation-a5034970-d123-40c0-b207-178f756fba12" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lVert \mathsf{L2\_clip}( \nabla (\theta; X, y), b) - \mathsf{L2\_clip}( \nabla (\theta; X', y), 0) \rVert_2
 \end{align}\]</div>
 <p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X, y), b)\)</span> has <span class="math notranslate nohighlight">\(L2\)</span> norm of <span class="math notranslate nohighlight">\(b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X', y))\)</span> is all zeros - so that the <span class="math notranslate nohighlight">\(L2\)</span> norm of the difference is equal to <span class="math notranslate nohighlight">\(b\)</span>. Thus, the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the clipped gradient is bounded by the clipping parameter <span class="math notranslate nohighlight">\(b\)</span>!</p>
@@ -994,7 +998,7 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7793011941618753
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7795223352498895
 </pre></div>
 </div>
 </div>
@@ -1004,8 +1008,8 @@ Testing loss: 0.4723742456095848
 <section id="sensitivity-of-the-gradient">
 <h3>Sensitivity of the Gradient<a class="headerlink" href="#sensitivity-of-the-gradient" title="Permalink to this heading">#</a></h3>
 <p>Our previous approach is very general, since it makes no assumptions about the behavior of the gradient. Sometimes, however, we <em>do</em> know something about the behavior of the gradient. In particular, a large class of useful gradient functions (including the gradient of the logistic loss, which we’re using here) are <em>Lipschitz continuous</em> - meaning they have bounded global sensitivity. Formally, it is possible to show that:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c3bf08ed-5e14-49cc-92f4-92075a27090b">
-<span class="eqno">(24)<a class="headerlink" href="#equation-c3bf08ed-5e14-49cc-92f4-92075a27090b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7f7e4d8a-4460-4d52-a330-a370fe08a212">
+<span class="eqno">(24)<a class="headerlink" href="#equation-7f7e4d8a-4460-4d52-a330-a370fe08a212" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{If}\; \lVert x_i \rVert_2 \leq b\; \text{then}\; \lVert \nabla(\theta; x_i, y_i) \rVert_2 \leq b
 \end{align}\]</div>
 <p>This fact allows us to clip the values of the <em>training examples</em> (i.e. the <em>inputs</em> to the gradient function), instead of the <em>output</em> of the gradient function, and obtain a bound on the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the gradient.</p>
@@ -1052,7 +1056,7 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7805174701459531
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7797434763379035
 </pre></div>
 </div>
 </div>
@@ -1105,7 +1109,7 @@ Testing loss: 0.4723742456095848
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/3b99aa95c44fb6c8a242d0b6725f9d7a82ee1700ceba11b529491e20e3185ddd.png" src="_images/3b99aa95c44fb6c8a242d0b6725f9d7a82ee1700ceba11b529491e20e3185ddd.png" />
+<img alt="_images/5f8dc8b4632f105196aaf8dc6f963c6322a60568f2462ef7c2eb44b1b40bd2d6.png" src="_images/5f8dc8b4632f105196aaf8dc6f963c6322a60568f2462ef7c2eb44b1b40bd2d6.png" />
 </div>
 </div>
 <p>The plot shows that very small values of <span class="math notranslate nohighlight">\(\epsilon\)</span> result in far less accurate models. Keep in mind that the <span class="math notranslate nohighlight">\(\epsilon\)</span> we specify in the plot is a <em>per-iteration</em> <span class="math notranslate nohighlight">\(\epsilon\)</span>, so the privacy cost is much higher after composition.</p>
