@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Exercises in Algorithm Design &#8212; Programming Differential Privacy</title>
+    <title>Design and Deployment &#8212; Programming Differential Privacy</title>
   
   
   
@@ -182,7 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch8.html">Variants of Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch9.html">The Exponential Mechanism</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch10.html">The Sparse Vector Technique</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Exercises in Algorithm Design</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Design and Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
@@ -419,7 +419,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Exercises in Algorithm Design</h1>
+    <h1>Design and Deployment</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -429,6 +429,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-in-algorithm-design">Exercises in Algorithm Design</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-sample-and-aggregate">1. Generalized Sample and Aggregate</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics">2. Summary Statistics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heavy-hitters">3. Heavy Hitters</a></li>
@@ -439,6 +440,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-for-privacy-deployment">Checklist for Privacy Deployment</a></li>
 </ul>
             </nav>
         </div>
@@ -450,8 +452,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="exercises-in-algorithm-design">
-<h1>Exercises in Algorithm Design<a class="headerlink" href="#exercises-in-algorithm-design" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="design-and-deployment">
+<h1>Design and Deployment<a class="headerlink" href="#design-and-deployment" title="Permalink to this heading">#</a></h1>
+<section id="exercises-in-algorithm-design">
+<h2>Exercises in Algorithm Design<a class="headerlink" href="#exercises-in-algorithm-design" title="Permalink to this heading">#</a></h2>
 <div class="admonition-issues-to-consider admonition">
 <p class="admonition-title">Issues to Consider</p>
 <ul class="simple">
@@ -469,6 +473,7 @@ document.write(`
 <li><p>Would post-processing to “de-noise” help?</p></li>
 </ul>
 </div>
+</section>
 <section id="generalized-sample-and-aggregate">
 <h2>1. Generalized Sample and Aggregate<a class="headerlink" href="#generalized-sample-and-aggregate" title="Permalink to this heading">#</a></h2>
 <p>Design a variant of sample and aggregate which does <em>not</em> require the analyst to specify the output range of the query function <span class="math notranslate nohighlight">\(f\)</span>.</p>
@@ -511,7 +516,7 @@ document.write(`
 </section>
 <section id="heavy-hitters">
 <h2>3. Heavy Hitters<a class="headerlink" href="#heavy-hitters" title="Permalink to this heading">#</a></h2>
-<p>Google’s RAPPOR system <span id="id1">[<a class="reference internal" href="bibliography.html#id17" title="Úlfar Erlingsson, Vasyl Pihur, and Aleksandra Korolova. Rappor: randomized aggregatable privacy-preserving ordinal response. In Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security, CCS '14, 1054–1067. New York, NY, USA, 2014. Association for Computing Machinery. URL: https://doi.org/10.1145/2660267.2660348, doi:10.1145/2660267.2660348.">17</a>]</span> is designed to find the most popular settings for Chrome’s home page. Design an algorithm which:</p>
+<p>Google’s RAPPOR system <span id="id1">[<a class="reference internal" href="bibliography.html#id17" title="Úlfar Erlingsson, Vasyl Pihur, and Aleksandra Korolova. Rappor: randomized aggregatable privacy-preserving ordinal response. In Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security, CCS '14, 1054–1067. New York, NY, USA, 2014. Association for Computing Machinery. URL: https://doi.org/10.1145/2660267.2660348, doi:10.1145/2660267.2660348.">18</a>]</span> is designed to find the most popular settings for Chrome’s home page. Design an algorithm which:</p>
 <ul class="simple">
 <li><p>Given a list of the 10,000 most popular web pages by traffic,</p></li>
 <li><p>Determines the top 10 most-popular home pages out of the 10,000 most popular web pages</p></li>
@@ -563,6 +568,25 @@ document.write(`
 </ul>
 <p>For SVT: for each query in the stream, ask how far the real answer is from the synthetic data answer. If it’s far, query the real answer’s range (as a histogram, using parallel composition) and update the synthetic data. Otherwise just give the synthetic data answer. This way you <em>ONLY</em> pay for updates to the synthetic data.</p>
 </section>
+</section>
+<section id="checklist-for-privacy-deployment">
+<h2>Checklist for Privacy Deployment<a class="headerlink" href="#checklist-for-privacy-deployment" title="Permalink to this heading">#</a></h2>
+<p>Deployment of differential privacy involves several steps to ensure the protection of sensitive data while still allowing useful analysis. Here’s a checklist for deploying a system with differential privacy:</p>
+<ol class="arabic simple">
+<li><p><strong>Data Classification</strong>: Identify and classify sensitive data that needs protection. Understand the sensitivity levels and potential risks associated with each class of data.</p></li>
+<li><p><strong>Data Preparation</strong>: Preprocess the data to remove personally identifiable information (PII) and other sensitive attributes that are not relevant to the analysis.</p></li>
+<li><p><strong>Define Privacy Budget</strong>: Determine acceptable levels of utility or privacy risk for your deployment. This will govern the amount of noise added to the data to achieve differential privacy.</p></li>
+<li><p><strong>Data Analysis Requirements</strong>: Clearly outline the data analysis goals, as well as specific transformations and queries that need to be supported while maintaining privacy. Ensure that the chosen privacy mechanisms and privacy unit can accommodate these requirements.</p></li>
+<li><p><strong>Implement Differential Privacy</strong>: Choose appropriate differential privacy mechanisms such as Laplace mechanism, Gaussian mechanism, or other advanced techniques based on the analysis requirements. Implement these mechanisms into the data processing pipeline. Identify a strategy for privacy composition if applicable.</p></li>
+<li><p><strong>Noise Generation</strong>: Generate and introduce high-quality entropy to the data in accordance with the chosen differential privacy mechanism. Ensure that the randomness level is calibrated to achieve the desired privacy guarantee.</p></li>
+<li><p><strong>Testing and Verification</strong>: Conduct thorough testing to validate the effectiveness of the deployed differential privacy mechanisms. Test the system with a variety of queries and scenarios to ensure that privacy is preserved while maintaining data utility. Ideally, conduct tests on public or synthetic data.</p></li>
+<li><p><strong>Performance Evaluation</strong>: Evaluate the performance overhead introduced by the time and storage cost of differential privacy mechanisms. Monitor system metrics such as latency, throughput, and compute resource utilization to ensure acceptable levels of efficiency.</p></li>
+<li><p><strong>Documentation and Compliance</strong>: Document the deployment process, including the differential privacy mechanisms used, privacy parameters chosen, and any other relevant details. Ensure compliance with relevant privacy laws, regulations and standards.</p></li>
+<li><p><strong>Additional Security Measures</strong>: Implement all necessary security measures to protect against potential attacks or vulnerabilities. This may include encryption of data in transit and at rest, access controls, and auditing mechanisms. This may also include safeguards against side channel attacks such as isolated compute environments.</p></li>
+<li><p><strong>User Education and Training</strong>: Educate users and stakeholders about the principles of differential privacy, its implications, and the importance of preserving privacy while conducting data analysis.</p></li>
+<li><p><strong>Continuous Monitoring and Maintenance</strong>: Establish a process for ongoing monitoring and maintenance of the deployed system. Regularly review privacy parameters and update mechanisms as needed to adapt to evolving privacy requirements and threats.</p></li>
+</ol>
+<p>By following this checklist, you can effectively deploy a system with differential privacy to protect sensitive data while enabling valuable analysis and insights!</p>
 </section>
 </section>
 
@@ -629,6 +653,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-in-algorithm-design">Exercises in Algorithm Design</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-sample-and-aggregate">1. Generalized Sample and Aggregate</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics">2. Summary Statistics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heavy-hitters">3. Heavy Hitters</a></li>
@@ -639,6 +664,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-for-privacy-deployment">Checklist for Privacy Deployment</a></li>
 </ul>
   </nav></div>
 
