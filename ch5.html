@@ -182,7 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch8.html">Variants of Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch9.html">The Exponential Mechanism</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch10.html">The Sparse Vector Technique</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch11.html">Exercises in Algorithm Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">Design and Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
@@ -463,8 +463,8 @@ document.write(`
 </ul>
 </div>
 <p>As we mentioned when we discussed the Laplace mechanism, the amount of noise necessary to ensure differential privacy for a given query depends on the <em>sensitivity</em> of the query. Roughly speaking, the sensitivity of a function reflects the amount the function’s output will change when its input changes. Recall that the Laplace mechanism defines a mechanism <span class="math notranslate nohighlight">\(F(x)\)</span> as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-548c0219-7225-4a55-bfc3-928173eb9a86">
-<span class="eqno">(4)<a class="headerlink" href="#equation-548c0219-7225-4a55-bfc3-928173eb9a86" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-832c4cfc-61e1-4fdf-9ea7-7a96b64f6131">
+<span class="eqno">(4)<a class="headerlink" href="#equation-832c4cfc-61e1-4fdf-9ea7-7a96b64f6131" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(x)\)</span> is a deterministic function (the query), <span class="math notranslate nohighlight">\(\epsilon\)</span> is the privacy parameter, and <span class="math notranslate nohighlight">\(s\)</span> is the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>.</p>
@@ -522,7 +522,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32561
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32563
 </pre></div>
 </div>
 </div>
@@ -535,7 +535,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10516
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10517
 </pre></div>
 </div>
 </div>
@@ -548,7 +548,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22045
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22046
 </pre></div>
 </div>
 </div>
@@ -578,7 +578,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>441338
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>441431
 </pre></div>
 </div>
 </div>
@@ -600,7 +600,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.96823887409661
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.973091185699346
 </pre></div>
 </div>
 </div>
@@ -613,7 +613,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.96823887409661
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.973091185699346
 </pre></div>
 </div>
 </div>
@@ -632,7 +632,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1360144
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1360238
 </pre></div>
 </div>
 </div>
@@ -656,7 +656,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/10dad059c9215512de9d68850eb2d787010ba57f1aaf351d15266b236d2f56de.png" src="_images/10dad059c9215512de9d68850eb2d787010ba57f1aaf351d15266b236d2f56de.png" />
+<img alt="_images/74e62aefb8d0e0d12b7b223c9a0f1b4c94d95dd5ef7a7bb67d4b24590d884fe7.png" src="_images/74e62aefb8d0e0d12b7b223c9a0f1b4c94d95dd5ef7a7bb67d4b24590d884fe7.png" />
 </div>
 </div>
 <p>It’s clear from this histogram that nobody in this particular dataset is over 90, so an upper bound of 90 would suffice.</p>
@@ -682,7 +682,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/418d237863bdc25a4fa51180aebdc2b4effcc9ca98454617eb73ae5b9b739029.png" src="_images/418d237863bdc25a4fa51180aebdc2b4effcc9ca98454617eb73ae5b9b739029.png" />
+<img alt="_images/8920c1127451653dc87444b0c15ae4ce79481cba968e0fc2b269d64e4884882f.png" src="_images/8920c1127451653dc87444b0c15ae4ce79481cba968e0fc2b269d64e4884882f.png" />
 </div>
 </div>
 <p>The total privacy cost for building this plot is <span class="math notranslate nohighlight">\(\epsilon = 1\)</span> by sequential composition, since we do 100 queries each with <span class="math notranslate nohighlight">\(\epsilon_i = 0.01\)</span>. It’s clear that the results level off around a value of <code class="docutils literal notranslate"><span class="pre">upper</span> <span class="pre">=</span> <span class="pre">80</span></code>, so this is a good choice for the clipping bound.</p>
@@ -705,7 +705,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/cca45365b734e34e20b6793a5dfbb64dfe59d6744ad40d5f8f83a615a8c84a52.png" src="_images/cca45365b734e34e20b6793a5dfbb64dfe59d6744ad40d5f8f83a615a8c84a52.png" />
+<img alt="_images/5942a143f3e673e42b73ad6b6dfc3fd4b09a457f2b148a98a2c0361f81f8eb69.png" src="_images/5942a143f3e673e42b73ad6b6dfc3fd4b09a457f2b148a98a2c0361f81f8eb69.png" />
 </div>
 </div>
 <p>This approach allows us to test a huge range of possible bounds with a small number of queries, but at the expense of less precision in determining the perfect bound. As the upper bound gets really large, the noise will start to overwhelm the signal - notice how the sum fluctuates wildly for the largest clipping parameters! The key is to look for a region of the graph which is relatively smooth (meaning low noise) and also not increasing (meaning the clipping bound is sufficient). Here, this occurs at roughly <span class="math notranslate nohighlight">\(2^8 = 256\)</span>, which is a reasonable approximation of the upper bound we derived earlier.</p>
@@ -749,7 +749,7 @@ d(x, x') = | x - x' \cup x' - x |
 <p class="admonition-title">Tip</p>
 <p>In Python3 integers have arbitrary size which is <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#OverflowError">only limited by available memory</a>. This means that we don’t normally need to worry about integer overflow affecting the correctness of our sensitivity analysis.</p>
 </div>
-<p>Sensitivity underestimation may break the differental privacy guarantee, while sensitivity overestimation leads to unnecessary inaccuracy in the private analysis.</p>
+<p>Sensitivity underestimation may break the differential privacy guarantee, while sensitivity overestimation leads to unnecessary inaccuracy in the private analysis.</p>
 <div class="admonition-summary admonition">
 <p class="admonition-title">Summary</p>
 <ul class="simple">
@@ -759,7 +759,7 @@ d(x, x') = | x - x' \cup x' - x |
 <li><p>Queries with unbounded sensitivity cannot be directly answered with differential privacy using the Laplace mechanism.</p></li>
 <li><p>Fortunately, we can often transform such queries into equivalent queries with bounded sensitivity, via a process called clipping.</p></li>
 <li><p>In order to correctly predict the sensitivity of our queries and tranformations, we rely on mathematical reasoning around numeric functions.</p></li>
-<li><p>Sensitivity underestimation may break the differental privacy guarantee, while sensitivity overestimation leads to unnecessary inaccuracy in the private analysis.</p></li>
+<li><p>Sensitivity underestimation may break the differential privacy guarantee, while sensitivity overestimation leads to unnecessary inaccuracy in the private analysis.</p></li>
 </ul>
 </div>
 </section>
