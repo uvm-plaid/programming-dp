@@ -486,7 +486,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/dff4974ef7584ee6db5845111616be4d20e8913d422e5e0c6d686215d556e5f2.png" src="_images/dff4974ef7584ee6db5845111616be4d20e8913d422e5e0c6d686215d556e5f2.png" />
+<img alt="_images/efcbfe81c05f80bf824fa550a4708f363a464d0ce95fa9b9b9a4628d23eba1ab.png" src="_images/efcbfe81c05f80bf824fa550a4708f363a464d0ce95fa9b9b9a4628d23eba1ab.png" />
 </div>
 </div>
 <p>我们绘制出<code class="docutils literal notranslate"><span class="pre">F1</span></code>和<code class="docutils literal notranslate"><span class="pre">F3</span></code>的输出概率分布图。可以看出，<code class="docutils literal notranslate"><span class="pre">F3</span></code>的输出概率分布看起来比<code class="docutils literal notranslate"><span class="pre">F1</span></code>的更”尖”，这是因为<span class="math notranslate nohighlight">\(\epsilon\)</span>取值越大意味着隐私保护程度越低，因此输出结果远离真实结果的可能性也就越小。</p>
@@ -508,10 +508,10 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/406ad0ec5937990e2b2345ade552b4fc32d8ef510c23cdb11c027e12b7324a9e.png" src="_images/406ad0ec5937990e2b2345ade552b4fc32d8ef510c23cdb11c027e12b7324a9e.png" />
+<img alt="_images/70de6a17781159d0d8754041c8f13d762808514aa28f48d233c0cfe243968327.png" src="_images/70de6a17781159d0d8754041c8f13d762808514aa28f48d233c0cfe243968327.png" />
 </div>
 </div>
-<p>我们再绘制出<code class="docutils literal notranslate"><span class="pre">F</span></code>和<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出概率分布图。可以看出，<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出概率分布图更尖。这意味着<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出结果比<code class="docutils literal notranslate"><span class="pre">F1</span></code>的输出结果更准确，对应的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值一定更大（即<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的隐私保护程度比<code class="docutils literal notranslate"><span class="pre">F1</span></code>更低）。</p>
+<p>我们再绘制出<code class="docutils literal notranslate"><span class="pre">F1</span></code>和<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出概率分布图。可以看出，<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出概率分布图更尖。这意味着<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出结果比<code class="docutils literal notranslate"><span class="pre">F1</span></code>的输出结果更准确，对应的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值一定更大（即<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的隐私保护程度比<code class="docutils literal notranslate"><span class="pre">F1</span></code>更低）。</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -530,7 +530,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/ea5b9fbca3e97adde2e4725519e3c85186537e9fa59849773292a28b3bc87426.png" src="_images/ea5b9fbca3e97adde2e4725519e3c85186537e9fa59849773292a28b3bc87426.png" />
+<img alt="_images/37eed101185da62dbb6b2c7cc121fd4c68dd9116c87d6c9aedb00d8d925939b7.png" src="_images/37eed101185da62dbb6b2c7cc121fd4c68dd9116c87d6c9aedb00d8d925939b7.png" />
 </div>
 </div>
 <p>那<code class="docutils literal notranslate"><span class="pre">F3</span></code>和<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>呢？回想一下，这两种机制的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值相等，<span class="math notranslate nohighlight">\(\epsilon\)</span>都等于2。他们的输出概率分布看起来应该也相同才对。</p>
@@ -552,10 +552,10 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/b6ba9515df9abfb62235352a39a17dd378a5f5fe31e492c117ae56569afd379f.png" src="_images/b6ba9515df9abfb62235352a39a17dd378a5f5fe31e492c117ae56569afd379f.png" />
+<img alt="_images/de1105009992bf967c8ff2402e1f910f4d98b6479f8268466b8b146060ef9635.png" src="_images/de1105009992bf967c8ff2402e1f910f4d98b6479f8268466b8b146060ef9635.png" />
 </div>
 </div>
-<p>实际上，<code class="docutils literal notranslate"><span class="pre">F3</span></code>看起来更”尖”！为什么会这样呢？请记住，串行组合性给出了多次发布后总<span class="math notranslate nohighlight">\(\epsilon\)</span>的<em>上界</em>，实际发布的累积隐私消耗量可能会更低一些。这也是<code class="docutils literal notranslate"><span class="pre">F_3</span></code>看起来更”尖”，而<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>看起来更”平”的原因：实际隐私消耗量似乎比串行组合性给出的<span class="math notranslate nohighlight">\(\epsilon\)</span>上界要低一些。当控制总隐私消耗量时，串行组合性是一个极为有用的方法。我们后面将会通过各种不同的方式应用串行组合性。但请特别注意，串行组合性给出的隐私消耗量不一定是严格准确的，而是一个上界。</p>
+<p>实际上，<code class="docutils literal notranslate"><span class="pre">F3</span></code>看起来更”尖”！为什么会这样呢？请记住，串行组合性给出了多次发布后总<span class="math notranslate nohighlight">\(\epsilon\)</span>的<em>上界</em>，实际发布的累积隐私消耗量可能会更低一些。这也是<code class="docutils literal notranslate"><span class="pre">F3</span></code>看起来更”尖”，而<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>看起来更”平”的原因：实际隐私消耗量似乎比串行组合性给出的<span class="math notranslate nohighlight">\(\epsilon\)</span>上界要低一些。当控制总隐私消耗量时，串行组合性是一个极为有用的方法。我们后面将会通过各种不同的方式应用串行组合性。但请特别注意，串行组合性给出的隐私消耗量不一定是严格准确的，而是一个上界。</p>
 </section>
 <section id="id4">
 <h2>并行组合性<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
@@ -667,23 +667,23 @@ document.write(`
   <tbody>
     <tr>
       <th>HS-grad</th>
-      <td>10502.210855</td>
+      <td>10502.810524</td>
     </tr>
     <tr>
       <th>Some-college</th>
-      <td>7293.379443</td>
+      <td>7291.822176</td>
     </tr>
     <tr>
       <th>Bachelors</th>
-      <td>5351.934350</td>
+      <td>5355.113511</td>
     </tr>
     <tr>
       <th>Masters</th>
-      <td>1724.516658</td>
+      <td>1720.292651</td>
     </tr>
     <tr>
       <th>Assoc-voc</th>
-      <td>1381.934871</td>
+      <td>1381.481638</td>
     </tr>
   </tbody>
 </table>
@@ -797,28 +797,28 @@ document.write(`
   <tbody>
     <tr>
       <th>10th</th>
-      <td>296.584995</td>
-      <td>636.642161</td>
+      <td>295.143656</td>
+      <td>639.105460</td>
     </tr>
     <tr>
       <th>11th</th>
-      <td>430.576000</td>
-      <td>743.519817</td>
+      <td>431.911675</td>
+      <td>742.762960</td>
     </tr>
     <tr>
       <th>12th</th>
-      <td>143.966156</td>
-      <td>286.842839</td>
+      <td>143.897874</td>
+      <td>288.788142</td>
     </tr>
     <tr>
       <th>1st-4th</th>
-      <td>45.768571</td>
-      <td>123.252279</td>
+      <td>46.650903</td>
+      <td>120.352085</td>
     </tr>
     <tr>
       <th>5th-6th</th>
-      <td>84.715734</td>
-      <td>249.030287</td>
+      <td>83.985726</td>
+      <td>251.136411</td>
     </tr>
   </tbody>
 </table>

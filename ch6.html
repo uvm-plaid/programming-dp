@@ -182,7 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch8.html">Variants of Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch9.html">The Exponential Mechanism</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch10.html">The Sparse Vector Technique</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch11.html">Exercises in Algorithm Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">Design and Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
@@ -532,7 +532,7 @@ F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/3022199fd49e470e2f86adb6c633df9f586459106067366915cd578cd7e05a5d.png" src="_images/3022199fd49e470e2f86adb6c633df9f586459106067366915cd578cd7e05a5d.png" />
+<img alt="_images/a6cca52889801037587d76f69f1cc57ed94b35bdc60ad6690c6b93b2d14f65d5.png" src="_images/a6cca52889801037587d76f69f1cc57ed94b35bdc60ad6690c6b93b2d14f65d5.png" />
 </div>
 </div>
 <p>Here, we graph the empirical probability density function of the Laplace and Gaussian mechanisms for <span class="math notranslate nohighlight">\(\epsilon = 1\)</span>, with <span class="math notranslate nohighlight">\(\delta = 10^{-5}\)</span> for the Gaussian mechanism.</p>
@@ -543,8 +543,8 @@ F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 <h2>Vector-Valued Functions and their Sensitivities<a class="headerlink" href="#vector-valued-functions-and-their-sensitivities" title="Permalink to this heading">#</a></h2>
 <p>So far, we have only considered real-valued functions (i.e. the function’s output is always a single real number). Such functions are of the form <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>. Both the Laplace and Gaussian mechanism, however, can be extended to <em>vector-valued</em> functions of the form <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}^k\)</span>, which return vectors of real numbers. We can think of histograms as vector-valued functions, which return a vector whose elements consist of histogram bin counts.</p>
 <p>We saw earlier that the <em>sensitivity</em> of a function is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bd01c518-3b62-4239-bdd5-bed4e93d8ac8">
-<span class="eqno">(5)<a class="headerlink" href="#equation-bd01c518-3b62-4239-bdd5-bed4e93d8ac8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0cad6ed9-2990-4fe2-8920-1132ad20100e">
+<span class="eqno">(5)<a class="headerlink" href="#equation-0cad6ed9-2990-4fe2-8920-1132ad20100e" title="Permalink to this equation">#</a></span>\[\begin{align}
 GS(f) = \max_{d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>How do we define sensitivity for vector-valued functions?</p>
@@ -631,7 +631,7 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.018943298025437
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.035959112265063
 </pre></div>
 </div>
 </div>
@@ -646,16 +646,16 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 <li><p>If each mechanism <span class="math notranslate nohighlight">\(m_i\)</span> in a <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition <span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy</p></li>
 <li><p>Then for any <span class="math notranslate nohighlight">\(\delta' \geq 0\)</span>, the entire <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition satisfies <span class="math notranslate nohighlight">\((\epsilon', \delta')\)</span>-differential privacy, where:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-a514d8ee-2976-4eaf-a863-d5f34be3b8ad">
-<span class="eqno">(6)<a class="headerlink" href="#equation-a514d8ee-2976-4eaf-a863-d5f34be3b8ad" title="Permalink to this equation">#</a></span>\[\begin{align}
-\epsilon' = 2\epsilon \sqrt{2k \log(1/\delta')}
+<div class="amsmath math notranslate nohighlight" id="equation-4485d021-5740-46cf-8786-97a1e8964ebb">
+<span class="eqno">(6)<a class="headerlink" href="#equation-4485d021-5740-46cf-8786-97a1e8964ebb" title="Permalink to this equation">#</a></span>\[\begin{align}
+\epsilon' = \epsilon \sqrt{2k \ln(1/\delta')} + k \epsilon (e^{\epsilon} - 1)
 \end{align}\]</div>
 </section>
 </div><p>Plugging in <span class="math notranslate nohighlight">\(\epsilon = 1\)</span> from the example above, and setting <span class="math notranslate nohighlight">\(\delta' = 10^{-5}\)</span>, we get:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e0c6b5a-8f06-456d-9822-ad00d5b43c70">
-<span class="eqno">(7)<a class="headerlink" href="#equation-7e0c6b5a-8f06-456d-9822-ad00d5b43c70" title="Permalink to this equation">#</a></span>\[\begin{align}
-\epsilon' =&amp; 2 \sqrt{1000 \log(100000)}\\
-\approx&amp; 214.59
+<div class="amsmath math notranslate nohighlight" id="equation-86bc83ac-bd2b-4e0d-ab9f-0fcdce917b0f">
+<span class="eqno">(7)<a class="headerlink" href="#equation-86bc83ac-bd2b-4e0d-ab9f-0fcdce917b0f" title="Permalink to this equation">#</a></span>\[\begin{align}
+\epsilon' =&amp; \sqrt{1000 \ln(100000)} + 500 \times (e - 1)\\
+\approx&amp; 966.44
 \end{align}\]</div>
 <p>So advanced composition derives a much lower bound on <span class="math notranslate nohighlight">\(\epsilon'\)</span> than sequential composition, <em>for the same mechanism</em>.  What does this mean? It means that the bounds given by sequential composition are <em>loose</em> - they don’t tightly bound the <em>actual</em> privacy cost of the computation. In fact, advanced composition also gives loose bounds - they’re just slightly <em>less</em> loose than the ones given by sequential composition.</p>
 <p>It’s important to note that the two bounds are technically incomparable, since advanced composition introduces a <span class="math notranslate nohighlight">\(\delta\)</span>. When <span class="math notranslate nohighlight">\(\delta\)</span> is small, however, we will often compare the <span class="math notranslate nohighlight">\(\epsilon\)</span>s given by both methods.</p>
@@ -717,9 +717,9 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 <li><p>If each mechanism <span class="math notranslate nohighlight">\(m_i\)</span> in a <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition <span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy</p></li>
 <li><p>Then for any <span class="math notranslate nohighlight">\(\delta' \geq 0\)</span>, the entire <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition satisfies <span class="math notranslate nohighlight">\((\epsilon', k\delta + \delta')\)</span>-differential privacy, where:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-919071e3-c46f-40bc-884b-fdab18f4d818">
-<span class="eqno">(8)<a class="headerlink" href="#equation-919071e3-c46f-40bc-884b-fdab18f4d818" title="Permalink to this equation">#</a></span>\[\begin{align}
-\epsilon' = 2\epsilon \sqrt{2k \log(1/\delta')}
+<div class="amsmath math notranslate nohighlight" id="equation-02b23eb9-41e5-417b-986b-dc64e719bf9e">
+<span class="eqno">(8)<a class="headerlink" href="#equation-02b23eb9-41e5-417b-986b-dc64e719bf9e" title="Permalink to this equation">#</a></span>\[\begin{align}
+\epsilon' = \epsilon \sqrt{2k \ln(1/\delta')} + k \epsilon (e^{\epsilon} - 1)
 \end{align}\]</div>
 </section>
 </div><p>The only difference is in the failure parameter <span class="math notranslate nohighlight">\(\delta\)</span> for the composed mechanism, where we have an additional <span class="math notranslate nohighlight">\(k\delta\)</span> term. When the mechanisms being composed satisfy pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, then <span class="math notranslate nohighlight">\(\delta = k\delta = 0\)</span>, and we get the same result as the statement above.</p>
