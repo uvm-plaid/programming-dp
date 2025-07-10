@@ -427,8 +427,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-resources-discrete-mathematics-and-probability">📚 Background Resources: Discrete Mathematics and Probability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-mathematics">Discrete Mathematics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability">Probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-on-prerequisites">A Note on Prerequisites</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminaries">Preliminaries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">De-identification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">De-identification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linkage-attacks">Linkage Attacks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-hard-is-it-to-re-identify-karrie">How Hard is it to Re-Identify Karrie?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#is-karrie-special">Is Karrie Special?</a></li>
@@ -473,6 +479,48 @@ document.write(`
 <li><p>Explain the limitations of aggregate statistics</p></li>
 </ul>
 </div>
+<section id="background-resources-discrete-mathematics-and-probability">
+<h2>📚 Background Resources: Discrete Mathematics and Probability<a class="headerlink" href="#background-resources-discrete-mathematics-and-probability" title="Permalink to this heading">#</a></h2>
+<p>This book assumes some familiarity with basic concepts from <strong>discrete mathematics</strong> and <strong>probability theory</strong>. If it’s been a while since you’ve encountered these topics, or if you’re new to them, the following resources offer excellent introductions and refreshers. While not exhaustive, this list emphasizes texts and courses that are widely used, accessible to programmers, and well-aligned with the material in this book.</p>
+<section id="discrete-mathematics">
+<h3>Discrete Mathematics<a class="headerlink" href="#discrete-mathematics" title="Permalink to this heading">#</a></h3>
+<p>Many of the privacy techniques we’ll explore involve reasoning about sets, functions, relations, and graphs. You’ll also encounter formal logic and proofs, especially when we define privacy guarantees precisely. To build or reinforce your foundations, we recommend:</p>
+<ul class="simple">
+<li><p><strong>Discrete Mathematics and Its Applications</strong>, <em>Kenneth H. Rosen</em><br />
+A comprehensive and widely used textbook. Covers all the essentials: logic, proof techniques, set theory, combinatorics, and graph theory. Suitable for self-study or classroom use. <span id="id1">[<a class="reference internal" href="bibliography.html#id2" title="Kenneth H. Rosen. Discrete Mathematics and Its Applications. McGraw-Hill Education, 7th edition, 2011. ISBN 9780073383095.">1</a>]</span><br />
+📘 ISBN: 9780073383095</p></li>
+<li><p><strong>Mathematics for Computer Science</strong>, <em>Eric Lehman, Tom Leighton, and Albert R. Meyer</em> (MIT)<br />
+A free textbook developed for MIT’s introductory discrete math course. It blends theoretical depth with clarity. Great for students with programming experience. <span id="id2">[<a class="reference internal" href="bibliography.html#id3">2</a>]</span>
+🔗 <a class="reference external" href="https://courses.csail.mit.edu/6.042/spring17/mcs.pdf">Download PDF</a></p></li>
+<li><p><strong>Discrete Mathematics: An Open Introduction</strong>, <em>Oscar Levin</em><br />
+A free and open-source text that offers an intuitive and example-driven approach to logic, induction, and modular arithmetic. <span id="id3">[<a class="reference internal" href="bibliography.html#id4">3</a>]</span>
+🔗 <a class="reference external" href="https://discrete.openmathbooks.org/">Online book</a></p></li>
+</ul>
+</section>
+<section id="probability">
+<h3>Probability<a class="headerlink" href="#probability" title="Permalink to this heading">#</a></h3>
+<p>Privacy techniques like the Laplace and Gaussian mechanisms rely on <strong>randomized algorithms</strong>, and a firm understanding of probability will help you make sense of how (and why) these methods work.</p>
+<ul class="simple">
+<li><p><strong>A First Course in Probability</strong>, <em>Sheldon Ross</em><br />
+A classic introduction. Covers the fundamentals with clear explanations and many examples. Particularly strong on discrete random variables and distributions. <span id="id4">[<a class="reference internal" href="bibliography.html#id5" title="Sheldon M. Ross. A First Course in Probability. Pearson, 10th edition, 2019. ISBN 9780134753119.">4</a>]</span>
+📘 ISBN: 9780134753119</p></li>
+<li><p><strong>Introduction to Probability</strong>, <em>Dimitri P. Bertsekas and John N. Tsitsiklis</em><br />
+Used in MIT courses, this book emphasizes intuition alongside rigorous analysis. Excellent for learning both theory and applications. <span id="id5">[<a class="reference internal" href="bibliography.html#id6" title="Dimitri P. Bertsekas and John N. Tsitsiklis. Introduction to Probability. Athena Scientific, 2002. ISBN 9781886529236.">5</a>]</span>
+🔗 <a class="reference external" href="https://www.athenasc.com/probbook.html">Book info</a></p></li>
+<li><p><strong>Introduction to Probability</strong>, <em>Charles Grinstead and J. Laurie Snell</em><br />
+A highly readable and freely available textbook. Especially good for beginners or those looking to brush up. <span id="id6">[<a class="reference internal" href="bibliography.html#id7">6</a>]</span>
+🔗 <a class="reference external" href="https://math.dartmouth.edu/~prob/prob/prob.pdf">Download PDF</a></p></li>
+<li><p><strong>Khan Academy</strong> — <em>Discrete Math &amp; Probability Modules</em><br />
+If you prefer learning by video, Khan Academy offers beginner-friendly lessons and practice problems.<br />
+🔗 <a class="reference external" href="https://www.khanacademy.org/computing/computer-science/cryptography">Discrete Math</a><br />
+🔗 <a class="reference external" href="https://www.khanacademy.org/math/statistics-probability">Probability &amp; Statistics</a></p></li>
+</ul>
+</section>
+<section id="a-note-on-prerequisites">
+<h3>A Note on Prerequisites<a class="headerlink" href="#a-note-on-prerequisites" title="Permalink to this heading">#</a></h3>
+<p>You don’t need to be a mathematician to understand differential privacy — but a bit of mathematical thinking will go a long way. If you’re already comfortable with Python, NumPy, and pandas (as this book assumes), you’re more than capable of picking up any background math you need along the way.</p>
+</section>
+</section>
 <section id="preliminaries">
 <h2>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this heading">#</a></h2>
 <p>Download the dataset by clicking <a class="reference external" href="https://github.com/uvm-plaid/programming-dp/raw/master/notebooks/adult_with_pii.csv">here</a> and placing them in the same directory as this notebook.</p>
@@ -643,8 +691,8 @@ document.write(`
 </div></div></div>
 </div>
 </section>
-<section id="id1">
-<h2>De-identification<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<section id="id7">
+<h2>De-identification<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
 <p><em>De-identification</em> is the process of removing <em>identifying information</em> from a dataset. The term <em>de-identification</em> is sometimes used synonymously with the terms <em>anonymization</em> and <em>pseudonymization</em>.</p>
 <p>Identifying information has no formal definition. It is usually understood to be information which would be used to identify us uniquely in the course of daily life - name, address, phone number, e-mail address, etc. As we will see later, it’s <em>impossible</em> to formalize the concept of identifying information, because <em>all</em> information is identifying. The term <em>personally identifiable information (PII)</em> is often used synonymously with identifying information.</p>
 <p>How do we de-identify information? Easy - we just remove the columns that contain identifying information!</p>
@@ -1076,7 +1124,7 @@ document.write(`
 <img alt="_images/3d22936c54fbd85b06b7437d2a3f3b9a5eaef74042210682769b2e5f269aefb3.png" src="_images/3d22936c54fbd85b06b7437d2a3f3b9a5eaef74042210682769b2e5f269aefb3.png" />
 </div>
 </div>
-<p>When we use both pieces of information, we can re-identify <strong>essentially everyone</strong>. This is a surprising result, since we generally assume that many people share the same birthday, and many people live in the same ZIP code. It turns out that the <em>combination</em> of these factors is <strong>extremely</strong> selective. According to Latanya Sweeney’s work <span id="id2">[<a class="reference internal" href="bibliography.html#id2" title="Latanya Sweeney. Simple demographics often identify people uniquely. URL: https://dataprivacylab.org/projects/identifiability/.">1</a>]</span>, 87% of people in the US can be uniquely re-identified by the combination of date of birth, gender, and ZIP code.</p>
+<p>When we use both pieces of information, we can re-identify <strong>essentially everyone</strong>. This is a surprising result, since we generally assume that many people share the same birthday, and many people live in the same ZIP code. It turns out that the <em>combination</em> of these factors is <strong>extremely</strong> selective. According to Latanya Sweeney’s work <span id="id8">[<a class="reference internal" href="bibliography.html#id8" title="Latanya Sweeney. Simple demographics often identify people uniquely. URL: https://dataprivacylab.org/projects/identifiability/.">7</a>]</span>, 87% of people in the US can be uniquely re-identified by the combination of date of birth, gender, and ZIP code.</p>
 <p>Let’s just check that we’ve actually re-identified <em>everyone</em>, by printing out the number of possible data records for each identity:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1091,11 +1139,11 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Antonin Chittem    2
-Barnabe Haime      2
-Candida Nabbs      1
-Brannon Everly     1
-Dorie Lopes        1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Antonin Chittem     2
+Barnabe Haime       2
+Gerhard Gallegos    1
+Luigi Aspel         1
+Silva Awton         1
 Name: Name, dtype: int64
 </pre></div>
 </div>
@@ -1361,8 +1409,14 @@ Name: Name, dtype: int64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-resources-discrete-mathematics-and-probability">📚 Background Resources: Discrete Mathematics and Probability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-mathematics">Discrete Mathematics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability">Probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-on-prerequisites">A Note on Prerequisites</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminaries">Preliminaries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">De-identification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">De-identification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linkage-attacks">Linkage Attacks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-hard-is-it-to-re-identify-karrie">How Hard is it to Re-Identify Karrie?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#is-karrie-special">Is Karrie Special?</a></li>
