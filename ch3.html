@@ -182,11 +182,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch8.html">Variants of Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch9.html">The Exponential Mechanism</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch10.html">The Sparse Vector Technique</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch11.html">Design and Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">Design &amp; Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency &amp; Limitations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -461,8 +461,8 @@ document.write(`
 <p class="admonition-title"><span class="caption-number">Definition 3 </span> (Privacy Mechanism)</p>
 <section class="definition-content" id="proof-content">
 <p>A function which satisfies differential privacy is often called a <em>mechanism</em>. We say that a <em>mechanism</em> <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy if for all <em>neighboring datasets</em> <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all possible sets of outputs <span class="math notranslate nohighlight">\(S\)</span> (where <span class="math notranslate nohighlight">\(S\)</span> refers to “sets <span class="math notranslate nohighlight">\(S\)</span> of outputs of the mechanism.”)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee368101-793b-4e88-8f06-928314c39820">
-<span class="eqno">(1)<a class="headerlink" href="#equation-ee368101-793b-4e88-8f06-928314c39820" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-107456fd-5ebd-45a5-ba15-eeeb58d96d86">
+<span class="eqno">(1)<a class="headerlink" href="#equation-107456fd-5ebd-45a5-ba15-eeeb58d96d86" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) \in S]}{\mathsf{Pr}[F(x') \in S]} \leq e^\epsilon
 \end{equation}\]</div>
 <p>The <span class="math notranslate nohighlight">\(\epsilon\)</span> parameter in the definition is called the <em>privacy parameter</em> or the <em>privacy budget</em>. <span class="math notranslate nohighlight">\(\epsilon\)</span> provides a knob to tune the “amount of privacy” the definition provides. Small values of <span class="math notranslate nohighlight">\(\epsilon\)</span> require <span class="math notranslate nohighlight">\(F\)</span> to provide <em>very</em> similar outputs when given similar inputs, and therefore provide higher levels of privacy; large values of <span class="math notranslate nohighlight">\(\epsilon\)</span> allow less similarity in the outputs, and therefore provide less privacy.</p>
@@ -475,8 +475,8 @@ document.write(`
 <p class="admonition-title">Note</p>
 <p>Why is <span class="math notranslate nohighlight">\(S\)</span> a set, and why do we write <span class="math notranslate nohighlight">\(F(x) \in S\)</span>, instead of <span class="math notranslate nohighlight">\(F(x) = s\)</span> for a <em>single</em> output <span class="math notranslate nohighlight">\(s\)</span>? When <span class="math notranslate nohighlight">\(F\)</span> returns elements from a continuous domain (like the real numbers), then the probability <span class="math notranslate nohighlight">\(\mathsf{Pr}[F(x) = S] = 0\)</span> <em>for all <span class="math notranslate nohighlight">\(x\)</span></em> (this is a property of continuous probability distributions—<a class="reference external" href="https://www.probabilitycourse.com/chapter4/4_1_1_pdf.php">see here for a detailed explanation</a>). For the definition to make sense in the context of continuous distributions, it needs to instead consider <em>sets</em> of outputs <span class="math notranslate nohighlight">\(S\)</span>, and use set inclusion (<span class="math notranslate nohighlight">\(\in\)</span>) instead of equality.</p>
 <p>If <span class="math notranslate nohighlight">\(F\)</span> returns elements of a discrete set (e.g. 32-bit floating-point numbers), then the definition can instead consider <span class="math notranslate nohighlight">\(S\)</span> to be a single value, and use equality instead of set inclusion:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0dca899d-fcab-4af6-a7d0-3b6596144675">
-<span class="eqno">(2)<a class="headerlink" href="#equation-0dca899d-fcab-4af6-a7d0-3b6596144675" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1b3277c0-8d70-4aff-a95a-217b72059a68">
+<span class="eqno">(2)<a class="headerlink" href="#equation-1b3277c0-8d70-4aff-a95a-217b72059a68" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
 \end{equation}\]</div>
 <p>This definition might be more intuitive, especially if you have not studied probability theory.</p>
@@ -502,14 +502,14 @@ document.write(`
 <p class="admonition-title"><span class="caption-number">Definition 4 </span> (Laplace Mechanism)</p>
 <section class="definition-content" id="proof-content">
 <p>According to the Laplace mechanism, for a function <span class="math notranslate nohighlight">\(f(x)\)</span> which returns a number, the following definition of <span class="math notranslate nohighlight">\(F(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ed270b72-b78e-421e-9a20-a6137e3682a7">
-<span class="eqno">(3)<a class="headerlink" href="#equation-ed270b72-b78e-421e-9a20-a6137e3682a7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4e08bea4-c07a-4d66-a934-e4ce45cd5487">
+<span class="eqno">(3)<a class="headerlink" href="#equation-4e08bea4-c07a-4d66-a934-e4ce45cd5487" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(s\)</span> is the <em>sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span> denotes sampling from the Laplace distribution with center 0 and scale <span class="math notranslate nohighlight">\(S\)</span>.</p>
 <p>The probability density function (PDF) of the Laplace distribution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3cfd572f-1e25-4026-9703-4725dbbfab9b">
-<span class="eqno">(4)<a class="headerlink" href="#equation-3cfd572f-1e25-4026-9703-4725dbbfab9b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4df0bcfb-60c4-4434-ae9e-44841e1b0142">
+<span class="eqno">(4)<a class="headerlink" href="#equation-4df0bcfb-60c4-4434-ae9e-44841e1b0142" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \frac{1}{2S} \exp\left(-\frac{|x|}{S}\right)
 \end{equation}\]</div>
 </section>
@@ -529,7 +529,7 @@ f(x) = \frac{1}{2S} \exp\left(-\frac{|x|}{S}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17453.885455919095
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17445.329414586744
 </pre></div>
 </div>
 </div>
@@ -565,7 +565,7 @@ f(x) = \frac{1}{2S} \exp\left(-\frac{|x|}{S}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.1504172191963997
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-9.207324103285984
 </pre></div>
 </div>
 </div>
@@ -611,6 +611,14 @@ f(x) = \frac{1}{2S} \exp\left(-\frac{|x|}{S}\right)
 <li><p>A function which satisfies differential privacy is often called a mechanism.</p></li>
 <li><p>The easiest way to achieve differential privacy for this function is to add random noise to its answer.</p></li>
 <li><p>The unit of privacy refers to the formal definition of “neighboring” used in a differential privacy guarantee. The most common unit of privacy is “one person” - meaning the privacy guarantee protects the whole person, forever.</p></li>
+</ul>
+</div>
+<div class="admonition-glossary admonition">
+<p class="admonition-title">Glossary</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Laplace_distribution">Laplace Distribution — Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Differential_privacy#Mechanisms">Laplace Mechanism — Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.laplace.html"><code class="docutils literal notranslate"><span class="pre">numpy.random.laplace()</span></code></a>: Draw samples from the Laplace distribution.</p></li>
 </ul>
 </div>
 </section>

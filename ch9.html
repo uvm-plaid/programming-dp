@@ -465,8 +465,8 @@ document.write(`
 <li><p>The analyst specifies a scoring function <span class="math notranslate nohighlight">\(u : \mathcal{D} \times \mathcal{R} \rightarrow \mathbb{R}\)</span> with global sensitivity <span class="math notranslate nohighlight">\(\Delta u\)</span></p></li>
 <li><p>The exponential mechanism outputs <span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span> with probability proportional to:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-701b8cdb-32b8-41df-a07c-d9f66619b9ac">
-<span class="eqno">(16)<a class="headerlink" href="#equation-701b8cdb-32b8-41df-a07c-d9f66619b9ac" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c9332a0d-ec21-47fc-8665-99c83e9ef4c6">
+<span class="eqno">(16)<a class="headerlink" href="#equation-c9332a0d-ec21-47fc-8665-99c83e9ef4c6" title="Permalink to this equation">#</a></span>\[\begin{align}
 \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)
 \end{align}\]</div>
 </section>
@@ -532,10 +532,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse       174
-Never-married             24
-Divorced                   1
-Married-spouse-absent      1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    180
+Never-married          19
+Divorced                1
 dtype: int64
 </pre></div>
 </div>
@@ -588,8 +587,8 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    194
-Never-married           6
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    197
+Never-married           3
 dtype: int64
 </pre></div>
 </div>
@@ -602,14 +601,14 @@ dtype: int64
 <h2>The Exponential Mechanism as Fundamental Mechanism for Differential Privacy<a class="headerlink" href="#the-exponential-mechanism-as-fundamental-mechanism-for-differential-privacy" title="Permalink to this heading">#</a></h2>
 <p>We’ve seen that it’s not possible to recover the exponential mechanism using the Laplace mechanism plus sequential composition, because we can’t capture the fact that the algorithm we designed doesn’t release all of the noisy scores. What about the reverse - can we recover the Laplace mechanism from the exponential mechanism? It turns out that we can!</p>
 <p>Consider a query <span class="math notranslate nohighlight">\(q(x) : \mathcal{D} \rightarrow \mathbb{R}\)</span> with sensitivity <span class="math notranslate nohighlight">\(\Delta q\)</span>. We can release an <span class="math notranslate nohighlight">\(\epsilon\)</span>-differentially private answer by adding Laplace noise: <span class="math notranslate nohighlight">\(F(x) = q(x) + \mathsf{Lap}(\Delta q / \epsilon)\)</span>. The probability density function for this differentially private version of <span class="math notranslate nohighlight">\(q\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8e9f5ece-1a7e-4a29-8ea7-423ff5d44ddc">
-<span class="eqno">(17)<a class="headerlink" href="#equation-8e9f5ece-1a7e-4a29-8ea7-423ff5d44ddc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2aceb6fa-34db-40ec-bbc5-5e7d40675aa0">
+<span class="eqno">(17)<a class="headerlink" href="#equation-2aceb6fa-34db-40ec-bbc5-5e7d40675aa0" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp; \frac{1}{2b} \exp\Big(- \frac{\lvert r - \mu \rvert}{b}\Big)\\
 =&amp; \frac{\epsilon}{2 \Delta q} \exp\Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q}\Big)
 \end{align}\]</div>
 <p>Consider what happens when we set the scoring function for the exponential mechanism to <span class="math notranslate nohighlight">\(u(x, r) = -2 \lvert q(x) - r \rvert\)</span>. The exponential mechanism says that we should sample from the probability distribution proportional to:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8ddf4e3a-11e7-4cfa-b2cc-f3f89ea635c3">
-<span class="eqno">(18)<a class="headerlink" href="#equation-8ddf4e3a-11e7-4cfa-b2cc-f3f89ea635c3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e676db98-ab77-4c46-b588-54df476f6158">
+<span class="eqno">(18)<a class="headerlink" href="#equation-e676db98-ab77-4c46-b588-54df476f6158" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp;\; \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)\\
 &amp;= \exp \Big(\frac{\epsilon (-2 \lvert q(x) - r \rvert)}{2 \Delta q} \Big)\\
 &amp;= \exp \Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q} \Big)\\
@@ -652,6 +651,14 @@ dtype: int64
 <p>This code visually demonstrates the <strong>faster decay</strong> of the Laplace mechanism’s tail, and the <strong>constant-factor gap</strong> compared to the Exponential mechanism.</p>
 <p>The exponential mechanism is extremely general - it’s generally possible to re-define any <span class="math notranslate nohighlight">\(\epsilon\)</span>-differentially private mechanism in terms of a carefully chosen definition of the scoring function <span class="math notranslate nohighlight">\(u\)</span>. If we can analyze the sensitivity of this scoring function, then the proof of differential privacy comes for free.</p>
 <p>On the other hand, applying the general analysis of the exponential mechanism sometimes comes at the cost of looser bounds (as in the Laplace example above), and mechanisms defined in terms of the exponential mechanism are often very difficult to implement. The exponential mechanism is often used to prove theoretical lower bounds (by showing that a differentially private algorithm <em>exists</em>), but practical algorithms often replicate the same behavior using some other approach (as in the case of report noisy max above).</p>
+<div class="admonition-glossary admonition">
+<p class="admonition-title">Glossary</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Differential_privacy#Exponential_mechanism">Exponential Mechanism — Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Utility">Utility Function — Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.choice.html"><code class="docutils literal notranslate"><span class="pre">numpy.random.choice()</span></code></a>: Randomly sample from a list, optionally with weights.</p></li>
+</ul>
+</div>
 </section>
 </section>
 
