@@ -460,8 +460,8 @@ document.write(`
 <p class="admonition-title"><span class="caption-number">Definition 3 </span> (Privacy Mechanism)</p>
 <section class="definition-content" id="proof-content">
 <p>A function which satisfies differential privacy is often called a <em>mechanism</em>. We say that a <em>mechanism</em> <span class="math notranslate nohighlight">\(F\)</span> satisfies differential privacy if for all <em>neighboring datasets</em> <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all possible sets of outputs <span class="math notranslate nohighlight">\(S\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7b99dc92-76dd-4bae-8c7e-d25ed0af96be">
-<span class="eqno">(1)<a class="headerlink" href="#equation-7b99dc92-76dd-4bae-8c7e-d25ed0af96be" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7843b923-4921-44d3-be90-f9c289d22713">
+<span class="eqno">(1)<a class="headerlink" href="#equation-7843b923-4921-44d3-be90-f9c289d22713" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) \in S]}{\mathsf{Pr}[F(x') \in S]} \leq e^\epsilon
 \end{equation}\]</div>
 </section>
@@ -473,8 +473,8 @@ document.write(`
 <p class="admonition-title">Note</p>
 <p>Why is <span class="math notranslate nohighlight">\(S\)</span> a set, and why do we write <span class="math notranslate nohighlight">\(F(x) \in S\)</span>, instead of <span class="math notranslate nohighlight">\(F(x) = s\)</span> for a <em>single</em> output <span class="math notranslate nohighlight">\(s\)</span>? When <span class="math notranslate nohighlight">\(F\)</span> returns elements from a continuous domain (like the real numbers), then the probability <span class="math notranslate nohighlight">\(\mathsf{Pr}[F(x) = S] = 0\)</span> <em>for all <span class="math notranslate nohighlight">\(x\)</span></em> (this is a property of continuous probability distributions—<a class="reference external" href="https://www.probabilitycourse.com/chapter4/4_1_1_pdf.php">see here for a detailed explanation</a>). For the definition to make sense in the context of continuous distributions, it needs to instead consider <em>sets</em> of outputs <span class="math notranslate nohighlight">\(S\)</span>, and use set inclusion (<span class="math notranslate nohighlight">\(\in\)</span>) instead of equality.</p>
 <p>If <span class="math notranslate nohighlight">\(F\)</span> returns elements of a discrete set (e.g. 32-bit floating-point numbers), then the definition can instead consider <span class="math notranslate nohighlight">\(S\)</span> to be a single value, and use equality instead of set inclusion:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-14b99d43-98ee-4806-bbe1-c1a47894fa1b">
-<span class="eqno">(2)<a class="headerlink" href="#equation-14b99d43-98ee-4806-bbe1-c1a47894fa1b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ec8c223d-fe69-4eea-b7f9-43d21d4da333">
+<span class="eqno">(2)<a class="headerlink" href="#equation-ec8c223d-fe69-4eea-b7f9-43d21d4da333" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
 \end{equation}\]</div>
 <p>This definition might be more intuitive, especially if you have not studied probability theory.</p>
@@ -500,15 +500,16 @@ document.write(`
 <p class="admonition-title"><span class="caption-number">Definition 4 </span> (Laplace Mechanism)</p>
 <section class="definition-content" id="proof-content">
 <p>According to the Laplace mechanism, for a function <span class="math notranslate nohighlight">\(f(x)\)</span> which returns a number, the following definition of <span class="math notranslate nohighlight">\(F(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49ed70d1-b266-4f52-a5e2-0836a10c5901">
-<span class="eqno">(3)<a class="headerlink" href="#equation-49ed70d1-b266-4f52-a5e2-0836a10c5901" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fd3e4577-6fa4-4d60-9d7b-16c77959eb27">
+<span class="eqno">(3)<a class="headerlink" href="#equation-fd3e4577-6fa4-4d60-9d7b-16c77959eb27" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(s\)</span> is the <em>sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span> denotes sampling from the Laplace distribution with center 0 and scale <span class="math notranslate nohighlight">\(S\)</span>.</p>
 <p>The probability density function (PDF) of the Laplace distribution is</p>
-<p>[
+<div class="amsmath math notranslate nohighlight" id="equation-a2e845a6-933e-44c5-bb65-632e0fb1cb01">
+<span class="eqno">(4)<a class="headerlink" href="#equation-a2e845a6-933e-44c5-bb65-632e0fb1cb01" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \frac{1}{2S} \exp\left(-\frac{|x|}{S}\right)
-]</p>
+\end{equation}\]</div>
 </section>
 </div><p>The <em>sensitivity</em> of a function <span class="math notranslate nohighlight">\(f\)</span> is the amount <span class="math notranslate nohighlight">\(f\)</span>’s output changes when its input changes by 1. Sensitivity is a complex topic, and an integral part of designing differentially private algorithms; we will have much more to say about it later. For now, we will just point out that <em>counting queries</em> always have a sensitivity of 1: if a query counts the number of rows in the dataset with a particular property, and then we modify exactly one row of the dataset, then the query’s output can change by at most 1.</p>
 <p>Thus we can achieve differential privacy for our example query by using the Laplace mechanism with sensitivity 1 and an <span class="math notranslate nohighlight">\(\epsilon\)</span> of our choosing. For now, let’s pick <span class="math notranslate nohighlight">\(\epsilon = 0.1\)</span>. We can sample from the Laplace distribution using Numpy’s <code class="docutils literal notranslate"><span class="pre">random.laplace</span></code>.</p>
@@ -522,7 +523,7 @@ f(x) = \frac{1}{2S} \exp\left(-\frac{|x|}{S}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17441.490993909436
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17417.941424889927
 </pre></div>
 </div>
 </div>
@@ -558,7 +559,7 @@ f(x) = \frac{1}{2S} \exp\left(-\frac{|x|}{S}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-5.785027344224469
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.6273234742090965
 </pre></div>
 </div>
 </div>

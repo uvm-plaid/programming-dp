@@ -465,7 +465,7 @@ document.write(`
 <li><p>Apply advanced composition</p></li>
 </ul>
 </div>
-<p>Approximate differential privacy <span id="id1">[<a class="reference internal" href="bibliography.html#id5" title="Cynthia Dwork, Krishnaram Kenthapadi, Frank McSherry, Ilya Mironov, and Moni Naor. Our data, ourselves: privacy via distributed noise generation. In Serge Vaudenay, editor, Advances in Cryptology - EUROCRYPT 2006, 486–503. Berlin, Heidelberg, 2006. Springer Berlin Heidelberg.">5</a>]</span>, also called <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy, has the following definition:</p>
+<p>Approximate differential privacy <span id="id1">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Krishnaram Kenthapadi, Frank McSherry, Ilya Mironov, and Moni Naor. Our data, ourselves: privacy via distributed noise generation. In Serge Vaudenay, editor, Advances in Cryptology - EUROCRYPT 2006, 486–503. Berlin, Heidelberg, 2006. Springer Berlin Heidelberg.">11</a>]</span>, also called <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy, has the following definition:</p>
 <div class="proof definition admonition" id="approximate-dp">
 <p class="admonition-title"><span class="caption-number">Definition 9 </span> (Approximate Differential Privacy)</p>
 <section class="definition-content" id="proof-content">
@@ -508,7 +508,7 @@ F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 \end{align*}\]</div>
 </section>
 </div><p>where <span class="math notranslate nohighlight">\(s\)</span> is the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{N}(\sigma^2)\)</span> denotes sampling from the Gaussian (normal) distribution with center 0 and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>. Note that here (and elsewhere in these notes), <span class="math notranslate nohighlight">\(\log\)</span> denotes the natural logarithm.</p>
-<p>For real-valued functions <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>, we can use the classic Gaussian mechanism with values of <span class="math notranslate nohighlight">\(\epsilon\)</span> equal to or less than <span class="math notranslate nohighlight">\(1\)</span>, a range called “high privacy”<span id="id2">[<a class="reference internal" href="bibliography.html#id22" title="Borja Balle and Yu-Xiang Wang. Improving the Gaussian mechanism for differential privacy: analytical calibration and optimal denoising. In Jennifer Dy and Andreas Krause, editors, Proceedings of the 35th International Conference on Machine Learning, volume 80 of Proceedings of Machine Learning Research, 394–403. PMLR, 10–15 Jul 2018. URL: https://proceedings.mlr.press/v80/balle18a.html.">9</a>]</span>. This is in contrast to the Laplace mechanism, which can be used in any privacy regime, high or low.</p>
+<p>For real-valued functions <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>, we can use the classic Gaussian mechanism with values of <span class="math notranslate nohighlight">\(\epsilon\)</span> equal to or less than <span class="math notranslate nohighlight">\(1\)</span>, a range called “high privacy”<span id="id2">[<a class="reference internal" href="bibliography.html#id28" title="Borja Balle and Yu-Xiang Wang. Improving the Gaussian mechanism for differential privacy: analytical calibration and optimal denoising. In Jennifer Dy and Andreas Krause, editors, Proceedings of the 35th International Conference on Machine Learning, volume 80 of Proceedings of Machine Learning Research, 394–403. PMLR, 10–15 Jul 2018. URL: https://proceedings.mlr.press/v80/balle18a.html.">15</a>]</span>. This is in contrast to the Laplace mechanism, which can be used in any privacy regime, high or low.</p>
 <p>It’s easy to compare what happens under both mechanisms for a given value of <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -544,7 +544,7 @@ F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 <p>So far, we have only considered real-valued functions (i.e. the function’s output is always a single real number). Such functions are of the form <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>. Both the Laplace and Gaussian mechanism, however, can be extended to <em>vector-valued</em> functions of the form <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}^k\)</span>, which return vectors of real numbers. We can think of histograms as vector-valued functions, which return a vector whose elements consist of histogram bin counts.</p>
 <p>We saw earlier that the <em>sensitivity</em> of a function is:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-0cad6ed9-2990-4fe2-8920-1132ad20100e">
-<span class="eqno">(5)<a class="headerlink" href="#equation-0cad6ed9-2990-4fe2-8920-1132ad20100e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(6)<a class="headerlink" href="#equation-0cad6ed9-2990-4fe2-8920-1132ad20100e" title="Permalink to this equation">#</a></span>\[\begin{align}
 GS(f) = \max_{d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>How do we define sensitivity for vector-valued functions?</p>
@@ -608,7 +608,7 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 <section id="advanced-composition">
 <h2>Advanced Composition<a class="headerlink" href="#advanced-composition" title="Permalink to this heading">#</a></h2>
 <p>We have already seen two ways of combining differentially private mechanisms: sequential composition and parallel composition. It turns out that <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy admits a new way of analyzing the sequential composition of differentially private mechanisms, which can result in a lower privacy cost.</p>
-<p>The advanced composition theorem <span id="id3">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">10</a>]</span> is usually stated in terms of mechanisms which are instances of <em><span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition</em>.</p>
+<p>The advanced composition theorem <span id="id3">[<a class="reference internal" href="bibliography.html#id17" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">16</a>]</span> is usually stated in terms of mechanisms which are instances of <em><span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition</em>.</p>
 <div class="proof definition admonition" id="adaptive-composition">
 <p class="admonition-title"><span class="caption-number">Definition 14 </span> (Adaptive Composition)</p>
 <section class="definition-content" id="proof-content">
@@ -647,13 +647,13 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 <li><p>Then for any <span class="math notranslate nohighlight">\(\delta' \geq 0\)</span>, the entire <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition satisfies <span class="math notranslate nohighlight">\((\epsilon', \delta')\)</span>-differential privacy, where:</p></li>
 </ul>
 <div class="amsmath math notranslate nohighlight" id="equation-4485d021-5740-46cf-8786-97a1e8964ebb">
-<span class="eqno">(6)<a class="headerlink" href="#equation-4485d021-5740-46cf-8786-97a1e8964ebb" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(7)<a class="headerlink" href="#equation-4485d021-5740-46cf-8786-97a1e8964ebb" title="Permalink to this equation">#</a></span>\[\begin{align}
 \epsilon' = \epsilon \sqrt{2k \ln(1/\delta')} + k \epsilon (e^{\epsilon} - 1)
 \end{align}\]</div>
 </section>
 </div><p>Plugging in <span class="math notranslate nohighlight">\(\epsilon = 1\)</span> from the example above, and setting <span class="math notranslate nohighlight">\(\delta' = 10^{-5}\)</span>, we get:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-86bc83ac-bd2b-4e0d-ab9f-0fcdce917b0f">
-<span class="eqno">(7)<a class="headerlink" href="#equation-86bc83ac-bd2b-4e0d-ab9f-0fcdce917b0f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(8)<a class="headerlink" href="#equation-86bc83ac-bd2b-4e0d-ab9f-0fcdce917b0f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \epsilon' =&amp; \sqrt{1000 \ln(100000)} + 500 \times (e - 1)\\
 \approx&amp; 966.44
 \end{align}\]</div>
@@ -709,7 +709,7 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 </section>
 <section id="advanced-composition-for-approximate-differential-privacy">
 <h2>Advanced Composition for Approximate Differential Privacy<a class="headerlink" href="#advanced-composition-for-approximate-differential-privacy" title="Permalink to this heading">#</a></h2>
-<p>The description of advanced composition above requires the individual mechanisms being composed to satisfy pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. However, the theorem also applies if they satisfy <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy instead. The more general statement of the advanced composition theorem is as follows (<span id="id4">[<a class="reference internal" href="bibliography.html#id11" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">10</a>]</span>, Theorem 3.20):</p>
+<p>The description of advanced composition above requires the individual mechanisms being composed to satisfy pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. However, the theorem also applies if they satisfy <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy instead. The more general statement of the advanced composition theorem is as follows (<span id="id4">[<a class="reference internal" href="bibliography.html#id17" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">16</a>]</span>, Theorem 3.20):</p>
 <div class="proof theorem admonition" id="approximate-advanced-composition">
 <p class="admonition-title"><span class="caption-number">Theorem 6 </span> (Approximate Advanced Composition)</p>
 <section class="theorem-content" id="proof-content">
@@ -718,7 +718,7 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 <li><p>Then for any <span class="math notranslate nohighlight">\(\delta' \geq 0\)</span>, the entire <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition satisfies <span class="math notranslate nohighlight">\((\epsilon', k\delta + \delta')\)</span>-differential privacy, where:</p></li>
 </ul>
 <div class="amsmath math notranslate nohighlight" id="equation-02b23eb9-41e5-417b-986b-dc64e719bf9e">
-<span class="eqno">(8)<a class="headerlink" href="#equation-02b23eb9-41e5-417b-986b-dc64e719bf9e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(9)<a class="headerlink" href="#equation-02b23eb9-41e5-417b-986b-dc64e719bf9e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \epsilon' = \epsilon \sqrt{2k \ln(1/\delta')} + k \epsilon (e^{\epsilon} - 1)
 \end{align}\]</div>
 </section>
