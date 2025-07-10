@@ -474,13 +474,13 @@ LS(f, x) = \max_{x': d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 <p>Local sensitivity allows us to place finite bounds on the sensitivity of some functions whose global sensitivity is difficult to bound. The mean function is one example. So far, we’ve calculated differentially private means by splitting the query into two queries: a differentially private sum (the numerator) and a differentially private count (the denominator). By sequential composition and post-processing, the quotient of these two results satisfies differential privacy.</p>
 <p>Why do we do it this way? Because the amount the output of a mean query might change when a row is added to or removed from the dataset <em>depends on the size of the dataset</em>. If we want to bound the global sensitivity of a mean query, we have to assume the worst: a dataset of size 1. In this case, if the data attribute values lie between upper and lower bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, the global sensitivity of the mean is just <span class="math notranslate nohighlight">\(\lvert u - l \lvert\)</span>. For large datasets, this is <em>extremely</em> pessimistic, and the “noisy sum over noisy count” approach is much better.</p>
 <p>The situation is different for local sensitivity. In the worst case, we can add a new row to the dataset which contains the maximum value (<span class="math notranslate nohighlight">\(u\)</span>). Let <span class="math notranslate nohighlight">\(n = \lvert x \rvert\)</span> (i.e. the size of the dataset). We start with the value of the mean:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b20bb643-7867-4ed1-ab55-fcd746285ac2">
-<span class="eqno">(8)<a class="headerlink" href="#equation-b20bb643-7867-4ed1-ab55-fcd746285ac2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a870671a-7fd8-48e7-a90a-2fea85c6f54d">
+<span class="eqno">(8)<a class="headerlink" href="#equation-a870671a-7fd8-48e7-a90a-2fea85c6f54d" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 \end{align}\]</div>
 <p>Now we consider what happens when we add a row:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3814e1e0-b7ca-4986-8ded-9a517c6d72bb">
-<span class="eqno">(9)<a class="headerlink" href="#equation-3814e1e0-b7ca-4986-8ded-9a517c6d72bb" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-76f39687-0ed9-4976-9e77-73c37e17e285">
+<span class="eqno">(9)<a class="headerlink" href="#equation-76f39687-0ed9-4976-9e77-73c37e17e285" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert f(x') - f(x) \rvert = &amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n} \bigg\rvert \\
 \leq&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n+1} \bigg\rvert \\
 =&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u - \sum_{i=1}^{n} x_i}{n+1}\bigg\rvert \\
@@ -491,15 +491,15 @@ f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 <section id="achieving-differential-privacy-via-local-sensitivity">
 <h2>Achieving Differential Privacy via Local Sensitivity?<a class="headerlink" href="#achieving-differential-privacy-via-local-sensitivity" title="Permalink to this heading">#</a></h2>
 <p>We have defined an alternative measure of sensitivity - but how do we use it? Can we just use the Laplace mechanism, in the same way as we did with global sensitivity? Does the following definition of <span class="math notranslate nohighlight">\(F\)</span> satisfy <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy?</p>
-<div class="amsmath math notranslate nohighlight" id="equation-56b27b6c-5e19-4731-85e1-26a823f699fb">
-<span class="eqno">(10)<a class="headerlink" href="#equation-56b27b6c-5e19-4731-85e1-26a823f699fb" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ca832169-d390-4966-a422-b86341e19651">
+<span class="eqno">(10)<a class="headerlink" href="#equation-ca832169-d390-4966-a422-b86341e19651" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(x) = f(x) + \mathsf{Lap}\left(\frac{LS(f,x)}{\epsilon}\right)
 \end{align}\]</div>
 <p>No! Unfortunately not. Since <span class="math notranslate nohighlight">\(LS(f, x)\)</span> itself depends on the dataset, if the analyst knows the local sensitivity of a query <em>at a particular dataset</em>, then the analyst may be able to infer some information about the dataset. It’s therefore <em>not possible</em> to use local sensitivity directly to achieve differential privacy.</p>
 <p>For example, consider the bound on local sensitivity for the mean, defined above. If we know the local sensitivity at a particular <span class="math notranslate nohighlight">\(x\)</span>, we can infer the exact size of <span class="math notranslate nohighlight">\(x\)</span> with <em>no noise</em>. Where the parameter
 <span class="math notranslate nohighlight">\(b\)</span> represents the scale of the Laplace distribution used in the Laplace mechanism:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e35ea609-c51f-4287-9963-c3ecb9e2cb3e">
-<span class="eqno">(11)<a class="headerlink" href="#equation-e35ea609-c51f-4287-9963-c3ecb9e2cb3e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a0f72e5a-a6fb-457d-b60c-234403045265">
+<span class="eqno">(11)<a class="headerlink" href="#equation-a0f72e5a-a6fb-457d-b60c-234403045265" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert x \rvert = \frac{b}{LS(f, x)} - 1
 \end{align}\]</div>
 <p>Moreover, keeping the local sensitivity secret from the analyst <em>doesn’t help either</em>. It’s possible to determine the scale of the noise from just a few query answers, and the analyst can use this value to infer the local sensitivity. Differential privacy is designed to protect the output of <span class="math notranslate nohighlight">\(f(x)\)</span> - <em>not</em> of the sensitivity measure used in its definition.</p>
@@ -883,7 +883,6 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </ul>
 <p>SAA offers broad flexibility, but its accuracy depends on the <strong>number and size of partitions</strong>. It is particularly useful when applying non-differentially private procedures (like training a model) privately by aggregating across partitions. However, the method may degrade when sample sizes are small or outputs are highly variable across groups.</p>
 <hr class="docutils" />
-<p>In summary:</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Method</p></th>
