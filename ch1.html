@@ -530,7 +530,7 @@ A highly readable and freely available textbook. Especially good for beginners o
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;adult_with_pii.csv&quot;</span><span class="p">)</span>
-<span class="n">adult</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">adult</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="c1"># Display the first 6 columns of the DataFrame</span>
 </pre></div>
 </div>
 </div>
@@ -662,9 +662,9 @@ A highly readable and freely available textbook. Especially good for beginners o
 <p>How do we de-identify information? Easy - we just remove the columns that contain identifying information!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult_data</span> <span class="o">=</span> <span class="n">adult</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;SSN&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult_sans_pii</span> <span class="o">=</span> <span class="n">adult</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;SSN&#39;</span><span class="p">])</span>
 <span class="n">adult_pii</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;SSN&#39;</span><span class="p">,</span> <span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">]]</span>
-<span class="n">adult_pii</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">adult_sans_pii</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">5</span><span class="p">]</span> 
 </pre></div>
 </div>
 </div>
@@ -687,19 +687,21 @@ A highly readable and freely available textbook. Especially good for beginners o
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Name</th>
-      <th>SSN</th>
       <th>DOB</th>
       <th>Zip</th>
+      <th>Workclass</th>
+      <th>Education</th>
+      <th>Education-Num</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Karrie Trusslove</td>
-      <td>732-14-6110</td>
       <td>9/7/1967</td>
       <td>64152</td>
+      <td>State-gov</td>
+      <td>Bachelors</td>
+      <td>13</td>
     </tr>
   </tbody>
 </table>
@@ -720,8 +722,14 @@ A highly readable and freely available textbook. Especially good for beginners o
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    &lt;=50K
-Name: Target, dtype: object
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">4</span><span class="o">-</span><span class="mf">292e9685</span><span class="n">f0df</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">karries_row</span> <span class="o">=</span> <span class="n">adult_pii</span><span class="p">[</span><span class="n">adult_pii</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Karrie Trusslove&#39;</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">r</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span>
+
+<span class="ne">NameError</span>: name &#39;adult_data&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -732,7 +740,7 @@ Name: Target, dtype: object
 <p>This scenario is made up, but linkage attacks are surprisingly easy to perform in practice. How easy? It turns out that in many cases, just one data point is sufficient to pinpoint a row!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_sans_pii</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -776,7 +784,7 @@ Name: Target, dtype: object
 <p>So ZIP code is sufficient <strong>by itself</strong> to allow us to re-identify Karrie. What about date of birth?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_sans_pii</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">])</span>
 <span class="n">r</span><span class="p">[[</span><span class="s1">&#39;Target&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Occupation&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
@@ -853,7 +861,7 @@ Name: Target, dtype: object
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/2f362ca96353a7ff2fa5da7beb5b6ede32418b02dafa3cae6fcd45f71216f12c.png" src="_images/2f362ca96353a7ff2fa5da7beb5b6ede32418b02dafa3cae6fcd45f71216f12c.png" />
+<img alt="_images/da5ecb1a9d1c12767f090b2e6c7b4d1ce4a13ee289745ebd6f635f9fc75137ce.png" src="_images/da5ecb1a9d1c12767f090b2e6c7b4d1ce4a13ee289745ebd6f635f9fc75137ce.png" />
 </div>
 </div>
 <p>We can do the same thing with ZIP codes, and the results are even worse - ZIP code happens to be <em>very</em> selective in this dataset. Nearly all the ZIP codes occur only once.</p>
@@ -886,7 +894,7 @@ Name: Target, dtype: object
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attack</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">adult_pii</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attack</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">adult_pii</span><span class="p">,</span> <span class="n">adult_sans_pii</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">])</span>
 <span class="n">attack</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -904,7 +912,7 @@ Name: Target, dtype: object
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attack</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">adult_pii</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attack</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">adult_pii</span><span class="p">,</span> <span class="n">adult_sans_pii</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">])</span>
 <span class="n">attack</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -929,11 +937,11 @@ Name: Target, dtype: object
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barnabe Haime       2
-Antonin Chittem     2
-Noland Junkin       1
-Barret Botwright    1
-Quintus Bennen      1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Antonin Chittem    2
+Barnabe Haime      2
+Gwenny Penley      1
+Marvin Daubney     1
+Ursola Walasik     1
 Name: Name, dtype: int64
 </pre></div>
 </div>
@@ -952,7 +960,7 @@ Name: Name, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.77250253355035
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.772181444058845
 </pre></div>
 </div>
 </div>
@@ -1082,7 +1090,7 @@ Name: Name, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1360238
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1360144
 </pre></div>
 </div>
 </div>
@@ -1094,7 +1102,7 @@ Name: Name, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1360182
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1360088
 </pre></div>
 </div>
 </div>
