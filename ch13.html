@@ -499,8 +499,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     159
-False     41
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     155
+False     45
 dtype: int64
 </pre></div>
 </div>
@@ -522,8 +522,8 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22664
-True      9899
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22474
+True     10089
 dtype: int64
 </pre></div>
 </div>
@@ -579,7 +579,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3664.5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3606.5
 </pre></div>
 </div>
 </div>
@@ -605,7 +605,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3972602739726027
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1917808219178083
 </pre></div>
 </div>
 </div>
@@ -619,7 +619,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01858973812567742
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.12575142123962793
 </pre></div>
 </div>
 </div>
@@ -706,14 +706,14 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
 </pre></div>
 </div>
 </div>
 </div>
 <p>Based on the values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, we can calculate the value of the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>. For <span class="math notranslate nohighlight">\(p=.75\)</span> and <span class="math notranslate nohighlight">\(q=.25\)</span>, we will see an <span class="math notranslate nohighlight">\(\epsilon\)</span> of slightly more than 2.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-418ffe18-82ab-4128-b6b9-f143e8c26576">
-<span class="eqno">(27)<a class="headerlink" href="#equation-418ffe18-82ab-4128-b6b9-f143e8c26576" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-709fd03e-e081-4e0d-9413-5c5e14348904">
+<span class="eqno">(27)<a class="headerlink" href="#equation-709fd03e-e081-4e0d-9413-5c5e14348904" title="Permalink to this equation">#</a></span>\[\begin{align}
 \epsilon = \log{\left(\frac{p (1-q)}{(1-p) q}\right)}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -735,33 +735,19 @@ dtype: int64
 <p class="admonition-title">Note</p>
 <p>You may be wondering at this point if <span class="math notranslate nohighlight">\( p + q = 1 \)</span> by necessity. The answer is <strong>no</strong>. In general, <span class="math notranslate nohighlight">\(p + q \neq 1\)</span> unless the mechanism is specifically designed to enforce that relationship.</p>
 <p>In the \textbf{binary randomized response} setting, where:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b91e4522-abb9-4bd4-b4cb-e8777aac2e75">
-<span class="eqno">(28)<a class="headerlink" href="#equation-b91e4522-abb9-4bd4-b4cb-e8777aac2e75" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1128af52-d091-410d-9a10-c756bfe5cac0">
+<span class="eqno">(28)<a class="headerlink" href="#equation-1128af52-d091-410d-9a10-c756bfe5cac0" title="Permalink to this equation">#</a></span>\[\begin{align}
   1. The true value is either 0 or 1,
   2. The reported value may be flipped with some probability,
 \end{align}\]</div>
 <p>we typically define:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-60b17918-d4b1-4452-ab62-022fa1bd2175">
-<span class="eqno">(29)<a class="headerlink" href="#equation-60b17918-d4b1-4452-ab62-022fa1bd2175" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7eabc4b5-b33b-44ef-b43e-ce6feedd68d5">
+<span class="eqno">(29)<a class="headerlink" href="#equation-7eabc4b5-b33b-44ef-b43e-ce6feedd68d5" title="Permalink to this equation">#</a></span>\[\begin{align}
   1. $p = \Pr[\text{report 1} \mid \text{true} = 1]$
   2. $q = \Pr[\text{report 1} \mid \text{true} = 0]$
 \end{align}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(p\)</span> is the probability of truthfully reporting a 1 when the true value is 1, and <span class="math notranslate nohighlight">\(q\)</span> is the probability of reporting a 1 even when the true value is 0 (i.e., the false positive rate).</p>
 <p>The sum <span class="math notranslate nohighlight">\(p + q\)</span> has no special constraint unless the mechanism is \textit{symmetric}. In fact:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-367e1a5d-7380-4965-8f76-51ddab687d29">
-<span class="eqno">(30)<a class="headerlink" href="#equation-367e1a5d-7380-4965-8f76-51ddab687d29" title="Permalink to this equation">#</a></span>\[\begin{align}
-  1. In the \textbf{classic symmetric randomized response}, we have:
-  \[
-  p = \frac{e^\epsilon}{e^\epsilon + 1}, \quad q = \frac{1}{e^\epsilon + 1}
-  \]
-  In this case, $p + q = 1$, because we flip or keep the bit with complementary probabilities.
-  
-  2. In the \textbf{general binary randomized response}, $p$ and $q$ are chosen independently to satisfy $\epsilon$-differential privacy. The constraint comes from the privacy condition:
-  \[
-  \frac{p}{q} \leq e^\epsilon \quad \text{and} \quad \frac{1 - p}{1 - q} \leq e^\epsilon
-  \]
-  These inequalities define the feasible range of $p$ and $q$ values under the privacy budget $\epsilon$, and they do not require that $p + q = 1$.
-\end{align}\]</div>
 </div>
 <p>The final piece is aggregation. If we hadn’t done any perturbation, then we could simply take the set of response vectors and add them element-wise to get counts for each element in the domain:</p>
 <div class="cell docutils container">
@@ -800,28 +786,28 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 10100),
- (&#39;Exec-managerial&#39;, 10167),
- (&#39;Handlers-cleaners&#39;, 8822),
- (&#39;Prof-specialty&#39;, 10206),
- (&#39;Other-service&#39;, 9830),
- (&#39;Sales&#39;, 10119),
- (&#39;Craft-repair&#39;, 10137),
- (&#39;Transport-moving&#39;, 8988),
- (&#39;Farming-fishing&#39;, 8475),
- (&#39;Machine-op-inspct&#39;, 9069),
- (&#39;Tech-support&#39;, 8630),
- (&#39;Protective-serv&#39;, 8469),
- (&#39;Baby&#39;, 8142),
- (&#39;Armed-Forces&#39;, 8042),
- (&#39;Priv-house-serv&#39;, 8060)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 10057),
+ (&#39;Exec-managerial&#39;, 9960),
+ (&#39;Handlers-cleaners&#39;, 8806),
+ (&#39;Prof-specialty&#39;, 10234),
+ (&#39;Other-service&#39;, 9759),
+ (&#39;Sales&#39;, 9960),
+ (&#39;Craft-repair&#39;, 10171),
+ (&#39;Transport-moving&#39;, 8872),
+ (&#39;Farming-fishing&#39;, 8675),
+ (&#39;Machine-op-inspct&#39;, 9280),
+ (&#39;Tech-support&#39;, 8625),
+ (&#39;Protective-serv&#39;, 8396),
+ (&#39;Baby&#39;, 8190),
+ (&#39;Armed-Forces&#39;, 8095),
+ (&#39;Priv-house-serv&#39;, 8306)]
 </pre></div>
 </div>
 </div>
 </div>
 <p>The aggregate step of the unary encoding algorithm takes into account the number of “fake” responses in each category, which is a function of both <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, and the number of responses <span class="math notranslate nohighlight">\(n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ae3e0da2-070c-45e1-a59b-21482e525464">
-<span class="eqno">(31)<a class="headerlink" href="#equation-ae3e0da2-070c-45e1-a59b-21482e525464" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4f2b17d1-ede4-451f-a0f1-655cbc71ea74">
+<span class="eqno">(30)<a class="headerlink" href="#equation-4f2b17d1-ede4-451f-a0f1-655cbc71ea74" title="Permalink to this equation">#</a></span>\[\begin{align}
 A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -847,21 +833,21 @@ A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3886.5),
- (&#39;Exec-managerial&#39;, 3840.5),
- (&#39;Handlers-cleaners&#39;, 1342.5),
- (&#39;Prof-specialty&#39;, 4298.5),
- (&#39;Other-service&#39;, 3358.5),
- (&#39;Sales&#39;, 3618.5),
- (&#39;Craft-repair&#39;, 4130.5),
- (&#39;Transport-moving&#39;, 1588.5),
- (&#39;Farming-fishing&#39;, 1100.5),
- (&#39;Machine-op-inspct&#39;, 2032.5),
- (&#39;Tech-support&#39;, 914.5),
- (&#39;Protective-serv&#39;, 690.5),
- (&#39;Baby&#39;, 88.5),
- (&#39;Armed-Forces&#39;, -89.5),
- (&#39;Priv-house-serv&#39;, 278.5)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3940.5),
+ (&#39;Exec-managerial&#39;, 3894.5),
+ (&#39;Handlers-cleaners&#39;, 1330.5),
+ (&#39;Prof-specialty&#39;, 4092.5),
+ (&#39;Other-service&#39;, 3208.5),
+ (&#39;Sales&#39;, 3730.5),
+ (&#39;Craft-repair&#39;, 4276.5),
+ (&#39;Transport-moving&#39;, 1788.5),
+ (&#39;Farming-fishing&#39;, 564.5),
+ (&#39;Machine-op-inspct&#39;, 1972.5),
+ (&#39;Tech-support&#39;, 834.5),
+ (&#39;Protective-serv&#39;, 780.5),
+ (&#39;Baby&#39;, 82.5),
+ (&#39;Armed-Forces&#39;, -229.5),
+ (&#39;Priv-house-serv&#39;, -27.5)]
 </pre></div>
 </div>
 </div>
