@@ -432,7 +432,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-laplace-mechanism">The Laplace Mechanism</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-much-noise-is-enough">How Much Noise is Enough?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-unit-of-privacy">The Unit of Privacy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bounded-and-unbounded-differential-privacy">Bounded and Unbounded Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#substitution-and-add-remove-adjacency">Substitution and Add-Remove Adjacency</a></li>
 </ul>
             </nav>
         </div>
@@ -455,13 +455,13 @@ document.write(`
 <li><p>Use the Laplace mechanism to enforce differential privacy for counting queries</p></li>
 </ul>
 </div>
-<p>Like <span class="math notranslate nohighlight">\(k\)</span>-Anonymity, <em>differential privacy</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id13" title="Cynthia Dwork. Differential privacy. In Proceedings of the 33rd International Conference on Automata, Languages and Programming - Volume Part II, ICALP'06, 1–12. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11787006_1, doi:10.1007/11787006_1.">9</a>, <a class="reference internal" href="bibliography.html#id14" title="Cynthia Dwork, Frank McSherry, Kobbi Nissim, and Adam Smith. Calibrating noise to sensitivity in private data analysis. In Proceedings of the Third Conference on Theory of Cryptography, TCC'06, 265–284. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11681878_14, doi:10.1007/11681878_14.">10</a>]</span> is a formal notion of privacy (i.e. it’s possible to prove that a data release has the property). Unlike <span class="math notranslate nohighlight">\(k\)</span>-Anonymity, however, differential privacy is a property of <em>algorithms</em>, and not a property of <em>data</em>. That is, we can prove that an <em>algorithm</em> satisfies differential privacy; to show that a <em>dataset</em> satisfies differential privacy, we must show that the algorithm which produced it satisfies differential privacy.</p>
+<p>Like <span class="math notranslate nohighlight">\(k\)</span>-Anonymity, <em>differential privacy</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id12" title="Cynthia Dwork. Differential privacy. In Proceedings of the 33rd International Conference on Automata, Languages and Programming - Volume Part II, ICALP'06, 1–12. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11787006_1, doi:10.1007/11787006_1.">9</a>, <a class="reference internal" href="bibliography.html#id13" title="Cynthia Dwork, Frank McSherry, Kobbi Nissim, and Adam Smith. Calibrating noise to sensitivity in private data analysis. In Proceedings of the Third Conference on Theory of Cryptography, TCC'06, 265–284. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11681878_14, doi:10.1007/11681878_14.">10</a>]</span> is a formal notion of privacy (i.e. it’s possible to prove that a data release has the property). Unlike <span class="math notranslate nohighlight">\(k\)</span>-Anonymity, however, differential privacy is a property of <em>algorithms</em>, and not a property of <em>data</em>. That is, we can prove that an <em>algorithm</em> satisfies differential privacy; to show that a <em>dataset</em> satisfies differential privacy, we must show that the algorithm which produced it satisfies differential privacy.</p>
 <div class="proof definition admonition" id="mechanism">
 <p class="admonition-title"><span class="caption-number">Definition 3 </span> (Privacy Mechanism)</p>
 <section class="definition-content" id="proof-content">
 <p>A function which satisfies differential privacy is often called a <em>mechanism</em>. We say that a <em>mechanism</em> <span class="math notranslate nohighlight">\(F\)</span> satisfies differential privacy if for all <em>neighboring datasets</em> <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all possible sets of outputs <span class="math notranslate nohighlight">\(S\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-30e86a37-79fd-45f3-b664-dedab247d493">
-<span class="eqno">(1)<a class="headerlink" href="#equation-30e86a37-79fd-45f3-b664-dedab247d493" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a485847c-7fe0-4a15-aeed-7c63e3e02003">
+<span class="eqno">(1)<a class="headerlink" href="#equation-a485847c-7fe0-4a15-aeed-7c63e3e02003" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) \in S]}{\mathsf{Pr}[F(x') \in S]} \leq e^\epsilon
 \end{equation}\]</div>
 </section>
@@ -473,8 +473,8 @@ document.write(`
 <p class="admonition-title">Note</p>
 <p>Why is <span class="math notranslate nohighlight">\(S\)</span> a set, and why do we write <span class="math notranslate nohighlight">\(F(x) \in S\)</span>, instead of <span class="math notranslate nohighlight">\(F(x) = s\)</span> for a <em>single</em> output <span class="math notranslate nohighlight">\(s\)</span>? When <span class="math notranslate nohighlight">\(F\)</span> returns elements from a continuous domain (like the real numbers), then the probability <span class="math notranslate nohighlight">\(\mathsf{Pr}[F(x) = S] = 0\)</span> <em>for all <span class="math notranslate nohighlight">\(x\)</span></em> (this is a property of continuous probability distributions—<a class="reference external" href="https://www.probabilitycourse.com/chapter4/4_1_1_pdf.php">see here for a detailed explanation</a>). For the definition to make sense in the context of continuous distributions, it needs to instead consider <em>sets</em> of outputs <span class="math notranslate nohighlight">\(S\)</span>, and use set inclusion (<span class="math notranslate nohighlight">\(\in\)</span>) instead of equality.</p>
 <p>If <span class="math notranslate nohighlight">\(F\)</span> returns elements of a discrete set (e.g. 32-bit floating-point numbers), then the definition can instead consider <span class="math notranslate nohighlight">\(S\)</span> to be a single value, and use equality instead of set inclusion:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-86085b11-d9bd-4b88-94c3-8dfe6efd5cf2">
-<span class="eqno">(2)<a class="headerlink" href="#equation-86085b11-d9bd-4b88-94c3-8dfe6efd5cf2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d92bd5e3-7932-48b9-b2b5-0b482203001d">
+<span class="eqno">(2)<a class="headerlink" href="#equation-d92bd5e3-7932-48b9-b2b5-0b482203001d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
 \end{equation}\]</div>
 <p>This definition might be more intuitive, especially if you have not studied probability theory.</p>
@@ -495,13 +495,13 @@ document.write(`
 </div>
 </div>
 </div>
-<p>The easiest way to achieve differential privacy for this query is to add random noise to its answer. The key challenge is to add enough noise to satisfy the definition of differential privacy, but not so much that the answer becomes too noisy to be useful. To make this process easier, some basic <em>mechanisms</em> have been developed in the field of differential privacy, which describe exactly what kind of - and how much - noise to use. One of these is called the <em>Laplace mechanism</em> <span id="id2">[<a class="reference internal" href="bibliography.html#id14" title="Cynthia Dwork, Frank McSherry, Kobbi Nissim, and Adam Smith. Calibrating noise to sensitivity in private data analysis. In Proceedings of the Third Conference on Theory of Cryptography, TCC'06, 265–284. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11681878_14, doi:10.1007/11681878_14.">10</a>]</span>.</p>
+<p>The easiest way to achieve differential privacy for this query is to add random noise to its answer. The key challenge is to add enough noise to satisfy the definition of differential privacy, but not so much that the answer becomes too noisy to be useful. To make this process easier, some basic <em>mechanisms</em> have been developed in the field of differential privacy, which describe exactly what kind of - and how much - noise to use. One of these is called the <em>Laplace mechanism</em> <span id="id2">[<a class="reference internal" href="bibliography.html#id13" title="Cynthia Dwork, Frank McSherry, Kobbi Nissim, and Adam Smith. Calibrating noise to sensitivity in private data analysis. In Proceedings of the Third Conference on Theory of Cryptography, TCC'06, 265–284. Berlin, Heidelberg, 2006. Springer-Verlag. URL: https://doi.org/10.1007/11681878_14, doi:10.1007/11681878_14.">10</a>]</span>.</p>
 <div class="proof definition admonition" id="laplace">
 <p class="admonition-title"><span class="caption-number">Definition 4 </span> (Laplace Mechanism)</p>
 <section class="definition-content" id="proof-content">
 <p>According to the Laplace mechanism, for a function <span class="math notranslate nohighlight">\(f(x)\)</span> which returns a number, the following definition of <span class="math notranslate nohighlight">\(F(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f06eeeaf-fd98-45a8-8206-13c1f79149ac">
-<span class="eqno">(3)<a class="headerlink" href="#equation-f06eeeaf-fd98-45a8-8206-13c1f79149ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c94151c3-8f74-4e79-a50c-e6a33a10a2e9">
+<span class="eqno">(3)<a class="headerlink" href="#equation-c94151c3-8f74-4e79-a50c-e6a33a10a2e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(s\)</span> is the <em>sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span> denotes sampling from the Laplace distribution with center 0 and scale <span class="math notranslate nohighlight">\(S\)</span>.</p>
@@ -518,7 +518,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17455.639054599338
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17439.21951035104
 </pre></div>
 </div>
 </div>
@@ -554,12 +554,18 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-4.632024332617911
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.711679034485532
 </pre></div>
 </div>
 </div>
 </div>
 <p>Is the true answer 0 or 1? There’s too much noise to be able to reliably tell. This is how differential privacy is <em>intended</em> to work - the approach does not <em>reject</em> queries which are determined to be malicious; instead, it adds enough noise that the results of a malicious query will be useless to the adversary.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Randomness and Replicability</strong></p>
+<p>Some examples in this book use randomized algorithms, particularly when demonstrating differentially private mechanisms that add noise to data or model updates. Because we do not fix a random seed, the exact output of these examples will vary from one run to another. This variability is expected and is a natural consequence of differential privacy, which depends on randomness to provide protection.</p>
+<p>If your results differ slightly from those shown in the book, that’s not a bug—it’s a feature. The underlying behavior of the algorithm should remain consistent, even if the exact numbers vary. If you need to replicate results exactly (for testing or debugging), you can set a fixed seed using tools like <code class="docutils literal notranslate"><span class="pre">np.random.seed()</span></code> or <code class="docutils literal notranslate"><span class="pre">random.seed()</span></code> in Python. For instructional purposes, however, we choose not to fix seeds so that the examples reflect the true behavior of private algorithms in practice.</p>
+</div>
 </section>
 <section id="the-unit-of-privacy">
 <h2>The Unit of Privacy<a class="headerlink" href="#the-unit-of-privacy" title="Permalink to this heading">#</a></h2>
@@ -574,18 +580,18 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 </ul>
 <p>If this assumption is true, then it’s possible to define neighboring datasets formally, in terms of the format of the data (see below), and retain the desired “one person” unit of privacy. When it’s not true, the best solution is to transform the data and queries in order to achieve the “one person” unit of privacy. It’s best to avoid using a different unit of privacy whenever possible.</p>
 </section>
-<section id="bounded-and-unbounded-differential-privacy">
-<h2>Bounded and Unbounded Differential Privacy<a class="headerlink" href="#bounded-and-unbounded-differential-privacy" title="Permalink to this heading">#</a></h2>
+<section id="substitution-and-add-remove-adjacency">
+<h2>Substitution and Add-Remove Adjacency<a class="headerlink" href="#substitution-and-add-remove-adjacency" title="Permalink to this heading">#</a></h2>
 <p>Under the “one person = one row” simplification, neighboring datasets differ in <em>one row</em>. What does “differ” mean? There are two ways to define that, too! Here are the two formal definitions:</p>
-<div class="proof definition admonition" id="unbounded-dp">
-<p class="admonition-title"><span class="caption-number">Definition 5 </span> (Unbounded Differential Privacy)</p>
+<div class="proof definition admonition" id="bounded-dp">
+<p class="admonition-title"><span class="caption-number">Definition 5 </span> (Substitution Adjacency)</p>
 <section class="definition-content" id="proof-content">
-<p>Under <em>unbounded differential privacy</em>, two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are considered neighbors if <span class="math notranslate nohighlight">\(x'\)</span> can be obtained from <span class="math notranslate nohighlight">\(x\)</span> by <strong>adding or removing</strong> one row. Under unbounded differential privacy, the sizes of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are different (by one row).</p>
+<p>Under <em>substitution adjacency</em>, two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are considered neighbors if <span class="math notranslate nohighlight">\(x'\)</span> can be obtained from <span class="math notranslate nohighlight">\(x\)</span> by <strong>changing</strong> one row. Under substitution adjacency, the sizes of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are equal.</p>
 </section>
-</div><div class="proof definition admonition" id="bounded-dp">
-<p class="admonition-title"><span class="caption-number">Definition 6 </span> (Bounded Differential Privacy)</p>
+</div><div class="proof definition admonition" id="unbounded-dp">
+<p class="admonition-title"><span class="caption-number">Definition 6 </span> (Add-Remove Adjacency)</p>
 <section class="definition-content" id="proof-content">
-<p>Under <em>bounded differential privacy</em>, two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are considered neighbors if <span class="math notranslate nohighlight">\(x'\)</span> can be obtained from <span class="math notranslate nohighlight">\(x\)</span> by <strong>changing</strong> one row. Under bounded differential privacy, the sizes of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are equal.</p>
+<p>Under <em>add-remove adjacency</em>, two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are considered neighbors if <span class="math notranslate nohighlight">\(x'\)</span> can be obtained from <span class="math notranslate nohighlight">\(x\)</span> by <strong>adding or removing</strong> one row. Under add-remove adjacency, the sizes of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> are different (by one row).</p>
 </section>
 </div><div class="admonition-summary admonition">
 <p class="admonition-title">Summary</p>
@@ -665,7 +671,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-laplace-mechanism">The Laplace Mechanism</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-much-noise-is-enough">How Much Noise is Enough?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-unit-of-privacy">The Unit of Privacy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bounded-and-unbounded-differential-privacy">Bounded and Unbounded Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#substitution-and-add-remove-adjacency">Substitution and Add-Remove Adjacency</a></li>
 </ul>
   </nav></div>
 
