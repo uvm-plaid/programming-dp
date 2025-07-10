@@ -463,8 +463,8 @@ document.write(`
 </ul>
 </div>
 <p>As we mentioned when we discussed the Laplace mechanism, the amount of noise necessary to ensure differential privacy for a given query depends on the <em>sensitivity</em> of the query. Roughly speaking, the sensitivity of a function reflects the amount the function’s output will change when its input changes. Recall that the Laplace mechanism defines a mechanism <span class="math notranslate nohighlight">\(F(x)\)</span> as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-832c4cfc-61e1-4fdf-9ea7-7a96b64f6131">
-<span class="eqno">(4)<a class="headerlink" href="#equation-832c4cfc-61e1-4fdf-9ea7-7a96b64f6131" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7fc3b149-3454-462e-a529-8674e782b9aa">
+<span class="eqno">(4)<a class="headerlink" href="#equation-7fc3b149-3454-462e-a529-8674e782b9aa" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(x)\)</span> is a deterministic function (the query), <span class="math notranslate nohighlight">\(\epsilon\)</span> is the privacy parameter, and <span class="math notranslate nohighlight">\(s\)</span> is the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>.</p>
@@ -474,7 +474,7 @@ F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 <section class="definition-content" id="proof-content">
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
+GS(f) = \max_{x, x': d(x,x') \leq 1} |f(x) - f(x')|
 \end{align*}\]</div>
 </section>
 </div><p>Here, <span class="math notranslate nohighlight">\(d(x, x')\)</span> represents the <em>distance</em> between two datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and we say that two datasets are <em>neighbors</em> if their distance is 1 or less. How this distance is defined has a huge effect on the definition of privacy we obtain, and we’ll discuss the distance metric on datasets in detail later on.</p>
@@ -682,7 +682,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/8920c1127451653dc87444b0c15ae4ce79481cba968e0fc2b269d64e4884882f.png" src="_images/8920c1127451653dc87444b0c15ae4ce79481cba968e0fc2b269d64e4884882f.png" />
+<img alt="_images/5b82c0120cc0c26049697cc9ca9bdeb065e7c9f7551600340376ed9f662f9ef1.png" src="_images/5b82c0120cc0c26049697cc9ca9bdeb065e7c9f7551600340376ed9f662f9ef1.png" />
 </div>
 </div>
 <p>The total privacy cost for building this plot is <span class="math notranslate nohighlight">\(\epsilon = 1\)</span> by sequential composition, since we do 100 queries each with <span class="math notranslate nohighlight">\(\epsilon_i = 0.01\)</span>. It’s clear that the results level off around a value of <code class="docutils literal notranslate"><span class="pre">upper</span> <span class="pre">=</span> <span class="pre">80</span></code>, so this is a good choice for the clipping bound.</p>
@@ -705,7 +705,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/5942a143f3e673e42b73ad6b6dfc3fd4b09a457f2b148a98a2c0361f81f8eb69.png" src="_images/5942a143f3e673e42b73ad6b6dfc3fd4b09a457f2b148a98a2c0361f81f8eb69.png" />
+<img alt="_images/d1f6e45f5561259047dd869dfe2cabe0cd10ef28197fb85b2facb8cbaae4111e.png" src="_images/d1f6e45f5561259047dd869dfe2cabe0cd10ef28197fb85b2facb8cbaae4111e.png" />
 </div>
 </div>
 <p>This approach allows us to test a huge range of possible bounds with a small number of queries, but at the expense of less precision in determining the perfect bound. As the upper bound gets really large, the noise will start to overwhelm the signal - notice how the sum fluctuates wildly for the largest clipping parameters! The key is to look for a region of the graph which is relatively smooth (meaning low noise) and also not increasing (meaning the clipping bound is sufficient). Here, this occurs at roughly <span class="math notranslate nohighlight">\(2^8 = 256\)</span>, which is a reasonable approximation of the upper bound we derived earlier.</p>
@@ -713,7 +713,7 @@ d(x, x') = | x - x' \cup x' - x |
 <section id="avoiding-sensitivity-underestimation">
 <h2>Avoiding Sensitivity Underestimation<a class="headerlink" href="#avoiding-sensitivity-underestimation" title="Permalink to this heading">#</a></h2>
 <p>In order to correctly predict the sensitivity of our queries and tranformations, we rely on mathematical reasoning around numeric functions such as arithmetic operators.</p>
-<p>If for some reason our numeric functions failed to properly work as anticipated, this would throw off our sensitivity analysis. This could happen, for example, when integer overflow or floating-point representation error occur <span id="id1">[<a class="reference internal" href="bibliography.html#id21" title="Ilya Mironov. On significance of the least significant bits for differential privacy. In Proceedings of the 2012 ACM Conference on Computer and Communications Security, CCS '12, 650–661. New York, NY, USA, 2012. Association for Computing Machinery. URL: https://doi.org/10.1145/2382196.2382264, doi:10.1145/2382196.2382264.">7</a>, <a class="reference internal" href="bibliography.html#id20" title="Sílvia Casacuberta, Michael Shoemate, Salil Vadhan, and Connor Wagaman. Widespread underestimation of sensitivity in differentially private libraries and how to fix it. In Proceedings of the 2022 ACM SIGSAC Conference on Computer and Communications Security, CCS '22, 471–484. New York, NY, USA, 2022. Association for Computing Machinery. URL: https://doi.org/10.1145/3548606.3560708, doi:10.1145/3548606.3560708.">8</a>]</span>.</p>
+<p>If for some reason our numeric functions failed to properly work as anticipated, this would throw off our sensitivity analysis. This could happen, for example, when integer overflow or floating-point representation error occur <span id="id1">[<a class="reference internal" href="bibliography.html#id27" title="Ilya Mironov. On significance of the least significant bits for differential privacy. In Proceedings of the 2012 ACM Conference on Computer and Communications Security, CCS '12, 650–661. New York, NY, USA, 2012. Association for Computing Machinery. URL: https://doi.org/10.1145/2382196.2382264, doi:10.1145/2382196.2382264.">13</a>, <a class="reference internal" href="bibliography.html#id26" title="Sílvia Casacuberta, Michael Shoemate, Salil Vadhan, and Connor Wagaman. Widespread underestimation of sensitivity in differentially private libraries and how to fix it. In Proceedings of the 2022 ACM SIGSAC Conference on Computer and Communications Security, CCS '22, 471–484. New York, NY, USA, 2022. Association for Computing Machinery. URL: https://doi.org/10.1145/3548606.3560708, doi:10.1145/3548606.3560708.">14</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span>
