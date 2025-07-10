@@ -530,7 +530,7 @@ A highly readable and freely available textbook. Especially good for beginners o
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;adult_with_pii.csv&quot;</span><span class="p">)</span>
-<span class="n">adult</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">adult</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -558,19 +558,6 @@ A highly readable and freely available textbook. Especially good for beginners o
       <th>SSN</th>
       <th>Zip</th>
       <th>Workclass</th>
-      <th>Education</th>
-      <th>Education-Num</th>
-      <th>Marital Status</th>
-      <th>Occupation</th>
-      <th>Relationship</th>
-      <th>Race</th>
-      <th>Sex</th>
-      <th>Hours per week</th>
-      <th>Country</th>
-      <th>Target</th>
-      <th>Age</th>
-      <th>Capital Gain</th>
-      <th>Capital Loss</th>
     </tr>
   </thead>
   <tbody>
@@ -581,19 +568,6 @@ A highly readable and freely available textbook. Especially good for beginners o
       <td>732-14-6110</td>
       <td>64152</td>
       <td>State-gov</td>
-      <td>Bachelors</td>
-      <td>13</td>
-      <td>Never-married</td>
-      <td>Adm-clerical</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>40</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-      <td>56</td>
-      <td>2174</td>
-      <td>0</td>
     </tr>
     <tr>
       <th>1</th>
@@ -602,19 +576,6 @@ A highly readable and freely available textbook. Especially good for beginners o
       <td>150-19-2766</td>
       <td>61523</td>
       <td>Self-emp-not-inc</td>
-      <td>Bachelors</td>
-      <td>13</td>
-      <td>Married-civ-spouse</td>
-      <td>Exec-managerial</td>
-      <td>Husband</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>13</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-      <td>35</td>
-      <td>0</td>
-      <td>0</td>
     </tr>
     <tr>
       <th>2</th>
@@ -623,19 +584,6 @@ A highly readable and freely available textbook. Especially good for beginners o
       <td>725-59-9860</td>
       <td>95668</td>
       <td>Private</td>
-      <td>HS-grad</td>
-      <td>9</td>
-      <td>Divorced</td>
-      <td>Handlers-cleaners</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>40</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-      <td>32</td>
-      <td>0</td>
-      <td>0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -644,19 +592,6 @@ A highly readable and freely available textbook. Especially good for beginners o
       <td>659-57-4974</td>
       <td>25503</td>
       <td>Private</td>
-      <td>11th</td>
-      <td>7</td>
-      <td>Married-civ-spouse</td>
-      <td>Handlers-cleaners</td>
-      <td>Husband</td>
-      <td>Black</td>
-      <td>Male</td>
-      <td>40</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-      <td>14</td>
-      <td>0</td>
-      <td>0</td>
     </tr>
     <tr>
       <th>4</th>
@@ -665,22 +600,58 @@ A highly readable and freely available textbook. Especially good for beginners o
       <td>220-93-3811</td>
       <td>75387</td>
       <td>Private</td>
-      <td>Bachelors</td>
-      <td>13</td>
-      <td>Married-civ-spouse</td>
-      <td>Prof-specialty</td>
-      <td>Wife</td>
-      <td>Black</td>
-      <td>Female</td>
-      <td>40</td>
-      <td>Cuba</td>
-      <td>&lt;=50K</td>
-      <td>72</td>
-      <td>0</td>
-      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>32558</th>
+      <td>Ardyce Golby</td>
+      <td>10/29/1961</td>
+      <td>212-61-8338</td>
+      <td>41328</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>32559</th>
+      <td>Jean O'Connor</td>
+      <td>6/28/1952</td>
+      <td>737-32-2919</td>
+      <td>94735</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>32560</th>
+      <td>Reuben Skrzynski</td>
+      <td>8/9/1966</td>
+      <td>314-48-0219</td>
+      <td>49628</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>32561</th>
+      <td>Caye Biddle</td>
+      <td>5/19/1978</td>
+      <td>647-75-3550</td>
+      <td>8213</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>32562</th>
+      <td>Hortense Hardesty</td>
+      <td>5/11/2012</td>
+      <td>690-42-5638</td>
+      <td>86153</td>
+      <td>Self-emp-inc</td>
     </tr>
   </tbody>
 </table>
+<p>32563 rows × 5 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -693,7 +664,7 @@ A highly readable and freely available textbook. Especially good for beginners o
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult_data</span> <span class="o">=</span> <span class="n">adult</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;SSN&#39;</span><span class="p">])</span>
 <span class="n">adult_pii</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;SSN&#39;</span><span class="p">,</span> <span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">]]</span>
-<span class="n">adult_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">adult_pii</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -716,43 +687,19 @@ A highly readable and freely available textbook. Especially good for beginners o
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Name</th>
+      <th>SSN</th>
       <th>DOB</th>
       <th>Zip</th>
-      <th>Workclass</th>
-      <th>Education</th>
-      <th>Education-Num</th>
-      <th>Marital Status</th>
-      <th>Occupation</th>
-      <th>Relationship</th>
-      <th>Race</th>
-      <th>Sex</th>
-      <th>Hours per week</th>
-      <th>Country</th>
-      <th>Target</th>
-      <th>Age</th>
-      <th>Capital Gain</th>
-      <th>Capital Loss</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>Karrie Trusslove</td>
+      <td>732-14-6110</td>
       <td>9/7/1967</td>
       <td>64152</td>
-      <td>State-gov</td>
-      <td>Bachelors</td>
-      <td>13</td>
-      <td>Never-married</td>
-      <td>Adm-clerical</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>40</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-      <td>56</td>
-      <td>2174</td>
-      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -767,74 +714,17 @@ A highly readable and freely available textbook. Especially good for beginners o
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">karries_row</span> <span class="o">=</span> <span class="n">adult_pii</span><span class="p">[</span><span class="n">adult_pii</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Karrie Trusslove&#39;</span><span class="p">]</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">])</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">])</span>
+<span class="n">r</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>SSN</th>
-      <th>DOB</th>
-      <th>Zip</th>
-      <th>Workclass</th>
-      <th>Education</th>
-      <th>Education-Num</th>
-      <th>Marital Status</th>
-      <th>Occupation</th>
-      <th>Relationship</th>
-      <th>Race</th>
-      <th>Sex</th>
-      <th>Hours per week</th>
-      <th>Country</th>
-      <th>Target</th>
-      <th>Age</th>
-      <th>Capital Gain</th>
-      <th>Capital Loss</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Karrie Trusslove</td>
-      <td>732-14-6110</td>
-      <td>9/7/1967</td>
-      <td>64152</td>
-      <td>State-gov</td>
-      <td>Bachelors</td>
-      <td>13</td>
-      <td>Never-married</td>
-      <td>Adm-clerical</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>40</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-      <td>56</td>
-      <td>2174</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    &lt;=50K
+Name: Target, dtype: object
+</pre></div>
+</div>
+</div>
 </div>
 <p>Indeed, there is only one row that matches. We have used auxiliary data to re-identify an individual in a de-identified dataset, and we’re able to infer that Karrie’s income is less than $50k.</p>
 <section id="how-hard-is-it-to-re-identify-karrie">
@@ -842,7 +732,7 @@ A highly readable and freely available textbook. Especially good for beginners o
 <p>This scenario is made up, but linkage attacks are surprisingly easy to perform in practice. How easy? It turns out that in many cases, just one data point is sufficient to pinpoint a row!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -869,21 +759,6 @@ A highly readable and freely available textbook. Especially good for beginners o
       <th>SSN</th>
       <th>DOB_x</th>
       <th>Zip</th>
-      <th>DOB_y</th>
-      <th>Workclass</th>
-      <th>Education</th>
-      <th>Education-Num</th>
-      <th>Marital Status</th>
-      <th>Occupation</th>
-      <th>Relationship</th>
-      <th>Race</th>
-      <th>Sex</th>
-      <th>Hours per week</th>
-      <th>Country</th>
-      <th>Target</th>
-      <th>Age</th>
-      <th>Capital Gain</th>
-      <th>Capital Loss</th>
     </tr>
   </thead>
   <tbody>
@@ -893,21 +768,6 @@ A highly readable and freely available textbook. Especially good for beginners o
       <td>732-14-6110</td>
       <td>9/7/1967</td>
       <td>64152</td>
-      <td>9/7/1967</td>
-      <td>State-gov</td>
-      <td>Bachelors</td>
-      <td>13</td>
-      <td>Never-married</td>
-      <td>Adm-clerical</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>40</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-      <td>56</td>
-      <td>2174</td>
-      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -916,7 +776,8 @@ A highly readable and freely available textbook. Especially good for beginners o
 <p>So ZIP code is sufficient <strong>by itself</strong> to allow us to re-identify Karrie. What about date of birth?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">])</span>
+<span class="n">r</span><span class="p">[[</span><span class="s1">&#39;Target&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Occupation&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -939,93 +800,29 @@ A highly readable and freely available textbook. Especially good for beginners o
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Name</th>
-      <th>SSN</th>
-      <th>DOB</th>
-      <th>Zip_x</th>
-      <th>Zip_y</th>
-      <th>Workclass</th>
-      <th>Education</th>
-      <th>Education-Num</th>
-      <th>Marital Status</th>
-      <th>Occupation</th>
-      <th>Relationship</th>
-      <th>Race</th>
-      <th>Sex</th>
-      <th>Hours per week</th>
-      <th>Country</th>
       <th>Target</th>
-      <th>Age</th>
-      <th>Capital Gain</th>
-      <th>Capital Loss</th>
+      <th>Sex</th>
+      <th>Occupation</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Karrie Trusslove</td>
-      <td>732-14-6110</td>
-      <td>9/7/1967</td>
-      <td>64152</td>
-      <td>64152</td>
-      <td>State-gov</td>
-      <td>Bachelors</td>
-      <td>13</td>
-      <td>Never-married</td>
-      <td>Adm-clerical</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>40</td>
-      <td>United-States</td>
       <td>&lt;=50K</td>
-      <td>56</td>
-      <td>2174</td>
-      <td>0</td>
+      <td>Male</td>
+      <td>Adm-clerical</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Karrie Trusslove</td>
-      <td>732-14-6110</td>
-      <td>9/7/1967</td>
-      <td>64152</td>
-      <td>67306</td>
-      <td>Private</td>
-      <td>11th</td>
-      <td>7</td>
-      <td>Widowed</td>
-      <td>Farming-fishing</td>
-      <td>Unmarried</td>
-      <td>White</td>
-      <td>Female</td>
-      <td>40</td>
-      <td>United-States</td>
       <td>&lt;=50K</td>
-      <td>56</td>
-      <td>0</td>
-      <td>0</td>
+      <td>Female</td>
+      <td>Farming-fishing</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Karrie Trusslove</td>
-      <td>732-14-6110</td>
-      <td>9/7/1967</td>
-      <td>64152</td>
-      <td>62254</td>
-      <td>Self-emp-not-inc</td>
-      <td>Masters</td>
-      <td>14</td>
-      <td>Married-civ-spouse</td>
-      <td>Exec-managerial</td>
-      <td>Husband</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>50</td>
-      <td>United-States</td>
       <td>&gt;50K</td>
-      <td>56</td>
-      <td>0</td>
-      <td>0</td>
+      <td>Male</td>
+      <td>Exec-managerial</td>
     </tr>
   </tbody>
 </table>
@@ -1132,11 +929,11 @@ A highly readable and freely available textbook. Especially good for beginners o
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barnabe Haime      2
-Antonin Chittem    2
-Netti Sigmund      1
-Clemmie Bauduin    1
-Brant Saywell      1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barnabe Haime       2
+Antonin Chittem     2
+Noland Junkin       1
+Barret Botwright    1
+Quintus Bennen      1
 Name: Name, dtype: int64
 </pre></div>
 </div>
