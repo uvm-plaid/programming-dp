@@ -69,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Exercises in Algorithm Design" href="ch11.html" />
+    <link rel="next" title="Design &amp; Deployment" href="ch11.html" />
     <link rel="prev" title="The Exponential Mechanism" href="ch9.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -182,11 +182,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch8.html">Variants of Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch9.html">The Exponential Mechanism</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">The Sparse Vector Technique</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch11.html">Exercises in Algorithm Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">Design &amp; Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency &amp; Limitations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -456,7 +456,7 @@ document.write(`
 </ul>
 </div>
 <p>We’ve already seen one example of a mechanism - the exponential mechanism - which achieves a lower-than-expected privacy cost by withholding some information. Are there others?</p>
-<p>There are, and one that turns out to be extremely useful in practical algorithms is the <em>sparse vector technique</em> (SVT) <span id="id1">[<a class="reference internal" href="bibliography.html#id16" title="Cynthia Dwork, Moni Naor, Omer Reingold, Guy N. Rothblum, and Salil Vadhan. On the complexity of differentially private data release: efficient algorithms and hardness results. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 381–390. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536467, doi:10.1145/1536414.1536467.">16</a>]</span>.</p>
+<p>There are, and one that turns out to be extremely useful in practical algorithms is the <em>sparse vector technique</em> (SVT) <span id="id1">[<a class="reference internal" href="bibliography.html#id23" title="Cynthia Dwork, Moni Naor, Omer Reingold, Guy N. Rothblum, and Salil Vadhan. On the complexity of differentially private data release: efficient algorithms and hardness results. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 381–390. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536467, doi:10.1145/1536414.1536467.">24</a>]</span>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>The sparse vector technique operates on a stream of sensitivity-1 queries over a dataset; it releases the <em>identity</em> of the first query in the stream which passes a test, and nothing else.</p>
@@ -464,32 +464,27 @@ document.write(`
 <p>The advantage of SVT is that it incurs a fixed total privacy cost, no matter <em>how many queries it considers</em>.</p>
 <section id="above-threshold">
 <h2>Above Threshold<a class="headerlink" href="#above-threshold" title="Permalink to this heading">#</a></h2>
-<p>The most basic instantiation of the sparse vector technique is an algorithm called <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">15</a>]</span>, Algorithm 1). The inputs to the algorithm are a stream of sensitivity-1 queries, a dataset <span class="math notranslate nohighlight">\(D\)</span>, a <em>threshold</em> <span class="math notranslate nohighlight">\(T\)</span>, and the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>; the algorithm preserves <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. A Python implementation of the algorithm appears below.</p>
+<p>The most basic instantiation of the sparse vector technique is an algorithm called <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id17" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">23</a>]</span>, Algorithm 1). The inputs to the algorithm are a stream of sensitivity-1 queries, a dataset <span class="math notranslate nohighlight">\(D\)</span>, a <em>threshold</em> <span class="math notranslate nohighlight">\(T\)</span>, and the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>; the algorithm preserves <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. A Python implementation of the algorithm appears below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 
 <span class="c1"># preserves epsilon-differential privacy</span>
-<span class="k">def</span> <span class="nf">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span><span class="n">on_fail</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">):</span>
     <span class="n">T_hat</span> <span class="o">=</span> <span class="n">T</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>   
     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
         <span class="n">nu_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">q</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="n">nu_i</span> <span class="o">&gt;=</span> <span class="n">T_hat</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">idx</span>
-    <span class="c1"># if the algorithm &quot;fails&quot;, return a random index </span>
-    <span class="c1"># more convenient in certain use cases    </span>
-    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">above_threshold_fail_signal</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
-    <span class="n">T_hat</span> <span class="o">=</span> <span class="n">T</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>   
-    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
-        <span class="n">nu_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">q</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="n">nu_i</span> <span class="o">&gt;=</span> <span class="n">T_hat</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">idx</span>
-    <span class="c1"># return an invalid index as the special &quot;fail&quot; signal</span>
-    <span class="c1"># this is convenient for implementing the sparse algorithm</span>
-    <span class="k">return</span> <span class="kc">None</span> 
-                                  
+        
+    <span class="c1"># Handle failure case</span>
+    <span class="k">if</span> <span class="n">on_fail</span> <span class="o">==</span> <span class="s2">&quot;random&quot;</span><span class="p">:</span>
+        <span class="c1"># if the algorithm &quot;fails&quot;, return a random index </span>
+        <span class="c1"># more convenient in certain use cases</span>
+        <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+                                          
 </pre></div>
 </div>
 </div>
@@ -528,7 +523,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>879617
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(879648)
 </pre></div>
 </div>
 </div>
@@ -559,7 +554,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>81
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>91
 </pre></div>
 </div>
 </div>
@@ -583,7 +578,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/a93451881d8445824e0ebbdcf98078ec1d255551760e4790693b23ee1ae9c9a1.png" src="_images/a93451881d8445824e0ebbdcf98078ec1d255551760e4790693b23ee1ae9c9a1.png" />
+<img alt="_images/31d40dd216e3db2e4321739319b446c9290faf0cc5c2c822c46c418e56a2b0fe.png" src="_images/31d40dd216e3db2e4321739319b446c9290faf0cc5c2c822c46c418e56a2b0fe.png" />
 </div>
 </div>
 <p>Let’s define a stream of difference queries, and use <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> to determine the index of the best value of <code class="docutils literal notranslate"><span class="pre">b</span></code> using the sparse vector technique.</p>
@@ -601,7 +596,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>81
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111
 </pre></div>
 </div>
 </div>
@@ -622,7 +617,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/c3782fc83003f9a0c5b5c8e38d995386bc0cfa360c4239690c1db3e39ee6edd5.png" src="_images/c3782fc83003f9a0c5b5c8e38d995386bc0cfa360c4239690c1db3e39ee6edd5.png" />
+<img alt="_images/bf6d8bd37f8bb6ffd89ea0b9f253d9d5f74eececaa24a822b9cb527561c71bc6.png" src="_images/bf6d8bd37f8bb6ffd89ea0b9f253d9d5f74eececaa24a822b9cb527561c71bc6.png" />
 </div>
 </div>
 <p>We can use SVT to build an algorithm for summation queries (and using this, for average queries) that automatically computes the clipping parameter.</p>
@@ -654,7 +649,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.77554469012242
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(41.76763109982805)
 </pre></div>
 </div>
 </div>
@@ -667,7 +662,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1090.4675219264236
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1090.459169221535)
 </pre></div>
 </div>
 </div>
@@ -677,7 +672,7 @@ document.write(`
 <section id="returning-multiple-values">
 <h2>Returning Multiple Values<a class="headerlink" href="#returning-multiple-values" title="Permalink to this heading">#</a></h2>
 <p>In the above application, we only needed the index of the <em>first</em> query which exceeded the threshold, but in many other applications we would like to find the indices of <em>all</em> such queries.</p>
-<p>We can use SVT to do this, but we’ll have to pay a higher privacy cost. We can implement an algorithm called <code class="docutils literal notranslate"><span class="pre">sparse</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id10" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">15</a>]</span>, Algorithm 2) to accomplish the task, using a very simple approach:</p>
+<p>We can use SVT to do this, but we’ll have to pay a higher privacy cost. We can implement an algorithm called <code class="docutils literal notranslate"><span class="pre">sparse</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id17" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">23</a>]</span>, Algorithm 2) to accomplish the task, using a very simple approach:</p>
 <ol class="arabic simple">
 <li><p>Start with a stream <span class="math notranslate nohighlight">\(qs = \{q_1, \dots, q_k\}\)</span> of queries</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> on <span class="math notranslate nohighlight">\(qs\)</span> to learn the index <span class="math notranslate nohighlight">\(i\)</span> of the first query which exceeds the threshold</p></li>
@@ -694,7 +689,7 @@ document.write(`
     <span class="c1"># stop if we reach the end of the stream of queries, or if we find c queries above the threshold</span>
     <span class="k">while</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">c</span><span class="p">:</span>
         <span class="c1"># run AboveThreshold to find the next query above the threshold</span>
-        <span class="n">next_idx</span> <span class="o">=</span> <span class="n">above_threshold_fail_signal</span><span class="p">(</span><span class="n">queries</span><span class="p">[</span><span class="n">pos</span><span class="p">:],</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon_i</span><span class="p">)</span>
+        <span class="n">next_idx</span> <span class="o">=</span> <span class="n">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">[</span><span class="n">pos</span><span class="p">:],</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon_i</span><span class="p">,</span> <span class="n">on_fail</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
         
         <span class="c1"># if AboveThreshold reaches the end, return</span>
         <span class="k">if</span> <span class="n">next_idx</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
@@ -720,7 +715,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[18, 19, 20]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[15, 16, 17]
 </pre></div>
 </div>
 </div>
@@ -750,7 +745,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2617, 13640, 14139, 13132, 12619, 6836, 13614, 3103, 10471, 3699]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[16899, 16908, 11091, 8033, 11330, 4553, 18240, 8132, 9053, 11372]
 </pre></div>
 </div>
 </div>
@@ -779,11 +774,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[13642.21477538189,
- 14144.325351165364,
- 13128.309265827167,
- 12616.956987628984,
- 13617.040247690687]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[16917.45574425689,
+ 16933.282003171324,
+ 11093.27636133087,
+ 11324.844036991903,
+ 18243.71176080326]
 </pre></div>
 </div>
 </div>
@@ -836,7 +831,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Exercises in Algorithm Design</p>
+        <p class="prev-next-title">Design &amp; Deployment</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
