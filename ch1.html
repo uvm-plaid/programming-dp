@@ -180,11 +180,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch8.html">Variants of Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch9.html">The Exponential Mechanism</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch10.html">The Sparse Vector Technique</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch11.html">Design and Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">Design &amp; Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency &amp; Limitations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -713,7 +713,7 @@ A highly readable and freely available textbook. Especially good for beginners o
 <section id="linkage-attacks">
 <h2>Linkage Attacks<a class="headerlink" href="#linkage-attacks" title="Permalink to this heading">#</a></h2>
 <p>Imagine we want to determine the income of a friend from our de-identified data. Names have been removed, but we happen to know some auxiliary information about our friend. Our friend’s name is Karrie Trusslove, and we know Karrie’s date of birth and zip code.</p>
-<p>To perform a simple <em>linkage attack</em>, we look at the overlapping columns between the dataset we’re trying to attack, and the auxiliary data we know. In this case, both datasets have dates of birth and zip codes. We look for rows in the dataset we’re attacking with dates of birth and zip codes that match Karrie’s date of birth and zip code. In databases, this is called a <em>join</em> of two tables, and we can do it in Pandas using <code class="docutils literal notranslate"><span class="pre">merge</span></code>. If there is only one such row, we’ve found Karrie’s row in the dataset we’re attacking.</p>
+<p>To perform a simple <em>linkage attack</em>, we look at the overlapping columns between the dataset we’re trying to attack, and the auxiliary data we know. In this case, both datasets have dates of birth and zip codes. We look for rows in the dataset we’re attacking with dates of birth and zip codes that match Karrie’s date of birth and zip code. In databases, this is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Join_(SQL)">join</a> of two tables, and we can do it in Pandas using <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.merge.html">merge</a>. If there is only one such row, we’ve found Karrie’s row in the dataset we’re attacking.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">karries_row</span> <span class="o">=</span> <span class="n">adult_pii</span><span class="p">[</span><span class="n">adult_pii</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Karrie Trusslove&#39;</span><span class="p">]</span>
@@ -932,11 +932,11 @@ Name: Target, dtype: object
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Antonin Chittem    2
-Barnabe Haime      2
-Philis Peeke       1
-Drud Jeffryes      1
-Caryl Winkless     1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barnabe Haime         2
+Antonin Chittem       2
+Jessalin Gleadhall    1
+Lenka Parnaby         1
+Ingmar Allchorn       1
 Name: Name, dtype: int64
 </pre></div>
 </div>
