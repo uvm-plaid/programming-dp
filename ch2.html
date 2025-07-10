@@ -182,11 +182,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch8.html">Variants of Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch9.html">The Exponential Mechanism</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch10.html">The Sparse Vector Technique</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch11.html">Design and Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">Design &amp; Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency &amp; Limitations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -866,6 +866,7 @@ document.write(`
 </div>
 </div>
 <p>Now, the generalized dataset satisfies <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=7\)</span>! In other words, our level of generalization was appropriate, but outliers prevented us from achieving <span class="math notranslate nohighlight">\(k\)</span>-Anonymity before, even for <span class="math notranslate nohighlight">\(k=2\)</span>.</p>
+<p>We will also discuss clipping later on in the context of bounding function sensitivity.</p>
 </section>
 <section id="the-homogeneity-attack">
 <h2>The Homogeneity Attack<a class="headerlink" href="#the-homogeneity-attack" title="Permalink to this heading">#</a></h2>
@@ -878,6 +879,45 @@ document.write(`
 </div>
 <p>Addressing the homogeneity attack requires careful manual consideration regarding the selection of diverse quasi-identifiers, highlighting the need for more sophisticated anonymization techniques to enhance the robustness of privacy preservation in datasets.</p>
 <p>One such technique, which is also immune to the presence of background knowledge, is differential privacy.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p class="rubric">The Homogeneity Attack: A Closer Look</p>
+<p>The <strong>homogeneity attack</strong> exploits situations where all—or nearly all—records in a group share the same sensitive attribute. Even if explicit identifiers are removed, this can allow an adversary to confidently infer sensitive information.</p>
+<p>Let’s make this concrete by applying it to our running example, which involves a medical dataset with attributes like <code class="docutils literal notranslate"><span class="pre">Zip</span> <span class="pre">Code</span></code>, <code class="docutils literal notranslate"><span class="pre">Age</span></code>, <code class="docutils literal notranslate"><span class="pre">Gender</span></code>, and an added sensitive attribute <code class="docutils literal notranslate"><span class="pre">Diagnosis</span></code>.</p>
+<p>Suppose the data has been anonymized using <strong><span class="math notranslate nohighlight">\(k\)</span>-anonymity</strong>, and the following generalized record group appears in the released dataset:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Zip Code</p></th>
+<th class="head"><p>Age</p></th>
+<th class="head"><p>Gender</p></th>
+<th class="head"><p>Diagnosis</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>02138</p></td>
+<td><p>30–40</p></td>
+<td><p>Male</p></td>
+<td><p>Cancer</p></td>
+</tr>
+<tr class="row-odd"><td><p>02138</p></td>
+<td><p>30–40</p></td>
+<td><p>Male</p></td>
+<td><p>Cancer</p></td>
+</tr>
+<tr class="row-even"><td><p>02138</p></td>
+<td><p>30–40</p></td>
+<td><p>Male</p></td>
+<td><p>Cancer</p></td>
+</tr>
+</tbody>
+</table>
+<p>This group satisfies <strong>3-anonymity</strong>, as there are three indistinguishable records. However, all of them share the same diagnosis: <strong>Cancer</strong>. If an attacker knows that someone named Alex is a 35-year-old male living in 02138, they can confidently link Alex to this group. Even though they cannot pinpoint which record is his, the lack of diversity in the sensitive attribute allows them to infer his diagnosis.</p>
+<p>This is the essence of the <strong>homogeneity attack</strong>: the anonymity set is large enough, but it’s <strong>not diverse enough</strong> in the sensitive attribute.</p>
+<p class="rubric">Why This Matters</p>
+<p><span class="math notranslate nohighlight">\(k\)</span>-anonymity guarantees that an individual is indistinguishable from at least <span class="math notranslate nohighlight">\(k - 1\)</span> others, but it does <strong>not</strong> guarantee that those others don’t all share the same sensitive value. As a result, <strong>privacy is not preserved</strong> if the sensitive attribute lacks variability within the group.</p>
+<p>To mitigate this, techniques like <strong><span class="math notranslate nohighlight">\(\ell\)</span>-diversity</strong> and <strong><span class="math notranslate nohighlight">\(t\)</span>-closeness</strong> were introduced. These methods aim to ensure that, within each anonymity group, the distribution of the sensitive attribute remains varied and resembles the overall distribution.</p>
+<p>However, even these refinements have limitations—especially in high-dimensional datasets or under strong auxiliary knowledge. This is one of the motivations for adopting differential privacy, which does not rely on grouping records or assumptions about adversary knowledge.</p>
+</div>
 <div class="admonition-summary admonition">
 <p class="admonition-title">Summary</p>
 <ul class="simple">
