@@ -710,7 +710,7 @@ dtype: int64
 </div>
 <p>Based on the values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, we can calculate the value of the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>. For <span class="math notranslate nohighlight">\(p=.75\)</span> and <span class="math notranslate nohighlight">\(q=.25\)</span>, we will see an <span class="math notranslate nohighlight">\(\epsilon\)</span> of slightly more than 2.</p>
 <div class="amsmath math notranslate nohighlight" id="equation-927210de-14b5-40cd-a928-84901d4f508a">
-<span class="eqno">(29)<a class="headerlink" href="#equation-927210de-14b5-40cd-a928-84901d4f508a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(27)<a class="headerlink" href="#equation-927210de-14b5-40cd-a928-84901d4f508a" title="Permalink to this equation">#</a></span>\[\begin{align}
 \epsilon = \log{\left(\frac{p (1-q)}{(1-p) q}\right)}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -784,7 +784,7 @@ dtype: int64
 </div>
 <p>The aggregate step of the unary encoding algorithm takes into account the number of “fake” responses in each category, which is a function of both <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, and the number of responses <span class="math notranslate nohighlight">\(n\)</span>:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-b12f3f5a-7985-4ea2-82d3-d2b41cc6ab1c">
-<span class="eqno">(30)<a class="headerlink" href="#equation-b12f3f5a-7985-4ea2-82d3-d2b41cc6ab1c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(28)<a class="headerlink" href="#equation-b12f3f5a-7985-4ea2-82d3-d2b41cc6ab1c" title="Permalink to this equation">#</a></span>\[\begin{align}
 A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 \end{align}\]</div>
 <div class="cell docutils container">

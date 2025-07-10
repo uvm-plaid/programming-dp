@@ -537,7 +537,7 @@ F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/211c8586b7d9de2bf3a60c893f98233f0c371f7f57d620ea970e315237501891.png" src="_images/211c8586b7d9de2bf3a60c893f98233f0c371f7f57d620ea970e315237501891.png" />
+<img alt="_images/7304a427aa62770617b03170f6db138c9097a25c76e5c0fe8e8cc9cbc1daaaf7.png" src="_images/7304a427aa62770617b03170f6db138c9097a25c76e5c0fe8e8cc9cbc1daaaf7.png" />
 </div>
 </div>
 <p>Here, we graph the empirical probability density function of the Laplace and Gaussian mechanisms for <span class="math notranslate nohighlight">\(\epsilon = 1\)</span>, with <span class="math notranslate nohighlight">\(\delta = 10^{-5}\)</span> for the Gaussian mechanism.</p>
@@ -548,8 +548,8 @@ F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 <h2>Vector-Valued Functions and their Sensitivities<a class="headerlink" href="#vector-valued-functions-and-their-sensitivities" title="Permalink to this heading">#</a></h2>
 <p>So far, we have only considered real-valued functions (i.e. the function’s output is always a single real number). Such functions are of the form <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>. Both the Laplace and Gaussian mechanism, however, can be extended to <em>vector-valued</em> functions of the form <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}^k\)</span>, which return vectors of real numbers. We can think of histograms as vector-valued functions, which return a vector whose elements consist of histogram bin counts.</p>
 <p>We saw earlier that the <em>sensitivity</em> of a function is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ba41d797-fd6a-43ed-a33b-34bcbb795402">
-<span class="eqno">(6)<a class="headerlink" href="#equation-ba41d797-fd6a-43ed-a33b-34bcbb795402" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e4f2b1a7-3f33-4df5-822e-fa59e4a24e83">
+<span class="eqno">(6)<a class="headerlink" href="#equation-e4f2b1a7-3f33-4df5-822e-fa59e4a24e83" title="Permalink to this equation">#</a></span>\[\begin{align}
 GS(f) = \max_{d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>How do we define sensitivity for vector-valued functions?</p>
@@ -636,7 +636,7 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.91696122803839
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.941494585242767
 </pre></div>
 </div>
 </div>
@@ -647,70 +647,74 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 <div class="proof theorem admonition" id="advanced-composition-def">
 <p class="admonition-title"><span class="caption-number">Theorem 5 </span> (Advanced Composition)</p>
 <section class="theorem-content" id="proof-content">
-<ul class="simple">
-<li><p>If each mechanism <span class="math notranslate nohighlight">\(m_i\)</span> in a <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition <span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy</p></li>
-<li><p>Then for any <span class="math notranslate nohighlight">\(\delta' \geq 0\)</span>, the entire <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition satisfies <span class="math notranslate nohighlight">\((\epsilon', \delta')\)</span>-differential privacy, where:</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight" id="equation-2ef0b622-5a2f-412c-82e7-0889d8c8ad04">
-<span class="eqno">(7)<a class="headerlink" href="#equation-2ef0b622-5a2f-412c-82e7-0889d8c8ad04" title="Permalink to this equation">#</a></span>\[\begin{align}
-\epsilon' = \epsilon \sqrt{2k \ln(1/\delta')} + k \epsilon (e^{\epsilon} - 1)
-\end{align}\]</div>
+<p class="rubric">Advanced Composition Theorem</p>
+<p>The <strong>Advanced Composition Theorem</strong> quantifies how privacy degrades when multiple differentially private mechanisms are applied to the same dataset. Specifically, it provides a tighter bound on the cumulative privacy loss than simple (linear) composition.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{A}_1, \dots, \mathcal{A}_k\)</span> be randomized mechanisms, each satisfying <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy. Then, for any <span class="math notranslate nohighlight">\(\delta' &gt; 0\)</span>, the mechanism that applies all <span class="math notranslate nohighlight">\(k\)</span> of these mechanisms (possibly adaptively) satisfies:</p>
+<div class="math notranslate nohighlight">
+\[
+\left( \epsilon', k \delta + \delta' \right)\text{-differential privacy}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+\epsilon' = \sqrt{2k \ln(1/\delta')} \cdot \epsilon + k\epsilon(e^\epsilon - 1)
+\]</div>
+<p>In the special case where <span class="math notranslate nohighlight">\(\epsilon\)</span> is small (e.g., <span class="math notranslate nohighlight">\(\epsilon &lt; 1\)</span>), the expression simplifies and is often approximated as:</p>
+<div class="math notranslate nohighlight">
+\[
+\epsilon' \approx \sqrt{2k \ln(1/\delta')} \cdot \epsilon
+\]</div>
+<p>This theorem demonstrates that the cumulative privacy loss grows sublinearly in <span class="math notranslate nohighlight">\(k\)</span>, meaning that running more private computations doesn’t degrade privacy as quickly as naive summation would suggest. However, <span class="math notranslate nohighlight">\(\delta\)</span> does grow linearly, which still imposes practical limits on repeated use of private mechanisms.</p>
 </section>
-</div><p>Plugging in <span class="math notranslate nohighlight">\(\epsilon = 1\)</span> from the example above, and setting <span class="math notranslate nohighlight">\(\delta' = 10^{-5}\)</span>, we get:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-56c5ea83-a5e9-42f7-b408-351506a81141">
-<span class="eqno">(8)<a class="headerlink" href="#equation-56c5ea83-a5e9-42f7-b408-351506a81141" title="Permalink to this equation">#</a></span>\[\begin{align}
-\epsilon' =&amp; \sqrt{1000 \ln(100000)} + 500 \times (e - 1)\\
-\approx&amp; 966.44
-\end{align}\]</div>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Fixed parameters</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.1</span>          <span class="c1"># base epsilon</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>           <span class="c1"># base delta for each mechanism</span>
+<span class="n">delta_prime</span> <span class="o">=</span> <span class="mf">1e-6</span>     <span class="c1"># additional delta for advanced composition</span>
+
+<span class="c1"># Range of composition depths</span>
+<span class="n">k_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
+
+<span class="c1"># Advanced composition epsilon&#39;</span>
+<span class="k">def</span> <span class="nf">advanced_composition</span><span class="p">(</span><span class="n">eps</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">delta_prime</span><span class="p">):</span>
+    <span class="n">term1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">k</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">delta_prime</span><span class="p">))</span> <span class="o">*</span> <span class="n">eps</span>
+    <span class="n">term2</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">eps</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">term1</span> <span class="o">+</span> <span class="n">term2</span>
+
+<span class="n">eps_advanced</span> <span class="o">=</span> <span class="n">advanced_composition</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">k_values</span><span class="p">,</span> <span class="n">delta_prime</span><span class="p">)</span>
+
+<span class="c1"># Naive composition epsilon&#39;</span>
+<span class="n">eps_naive</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">k_values</span>
+
+<span class="c1"># Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_values</span><span class="p">,</span> <span class="n">eps_advanced</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Advanced Composition&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_values</span><span class="p">,</span> <span class="n">eps_naive</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Naive Composition&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Compositions $k$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Composed Privacy Budget $\epsilon^\prime$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Naive vs. Advanced Composition $(\epsilon=0.1, \delta=10^{-5})$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9a8d67436db1f4c85495b4a5bdb5e0c0fb809f7427b4c2aad3343c3222ea3256.png" src="_images/9a8d67436db1f4c85495b4a5bdb5e0c0fb809f7427b4c2aad3343c3222ea3256.png" />
+</div>
+</div>
+<p>The red dashed line (naive composition) shows linear growth.
+The blue curve (advanced composition) grows more slowly due to sublinear behavior of the square root term.
+This demonstrates how advanced composition can significantly improve privacy accounting in multi-query settings.</p>
 <p>So advanced composition derives a much lower bound on <span class="math notranslate nohighlight">\(\epsilon'\)</span> than sequential composition, <em>for the same mechanism</em>.  What does this mean? It means that the bounds given by sequential composition are <em>loose</em> - they don’t tightly bound the <em>actual</em> privacy cost of the computation. In fact, advanced composition also gives loose bounds - they’re just slightly <em>less</em> loose than the ones given by sequential composition.</p>
 <p>It’s important to note that the two bounds are technically incomparable, since advanced composition introduces a <span class="math notranslate nohighlight">\(\delta\)</span>. When <span class="math notranslate nohighlight">\(\delta\)</span> is small, however, we will often compare the <span class="math notranslate nohighlight">\(\epsilon\)</span>s given by both methods.</p>
-<p>So, should we <em>always</em> use advanced composition? It turns out that we should <em>not</em>. Let’s try the experiment above for different values of <span class="math notranslate nohighlight">\(k\)</span>, and graph the <em>total privacy cost</em> under both sequential composition and advanced composition.</p>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">delta</span> <span class="o">=</span> <span class="mf">10e-5</span>
-
-<span class="k">def</span> <span class="nf">adv_comp</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">epsilon</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">delta</span><span class="p">))</span>
-
-<span class="k">def</span> <span class="nf">seq_comp</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">k</span><span class="o">*</span><span class="n">epsilon</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">seq_comp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sequential Composition&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">adv_comp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Advanced Composition&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-</details>
-<div class="cell_output docutils container">
-<img alt="_images/9fad4b36a5fba87d9c6fae2f0b31ec3b2fb7e4e836dd116716e6b5b67714adb8.png" src="_images/9fad4b36a5fba87d9c6fae2f0b31ec3b2fb7e4e836dd116716e6b5b67714adb8.png" />
-</div>
-</div>
-<p>Standard sequential composition, it turns out, beats advanced composition for <span class="math notranslate nohighlight">\(k\)</span> smaller than about 70. Thus, advanced composition is only really useful when <span class="math notranslate nohighlight">\(k\)</span> is large (e.g. more than 100). When <span class="math notranslate nohighlight">\(k\)</span> is very large, though, advanced composition can make a <em>big</em> difference.</p>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">seq_comp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sequential Composition&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">adv_comp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Advanced Composition&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-</details>
-<div class="cell_output docutils container">
-<img alt="_images/c8fd207f61c503a9fc9906babcd7941bf9d2a2893a21c4c9afeb1c6b2beece12.png" src="_images/c8fd207f61c503a9fc9906babcd7941bf9d2a2893a21c4c9afeb1c6b2beece12.png" />
-</div>
-</div>
+<p>Standard sequential composition, it turns out, beats advanced composition for <span class="math notranslate nohighlight">\(k\)</span> smaller than about 37. Thus, advanced composition is only really useful when <span class="math notranslate nohighlight">\(k\)</span> is large (e.g. more than 100). When <span class="math notranslate nohighlight">\(k\)</span> is very large, though, advanced composition can make a <strong>big</strong> difference!</p>
 </section>
 <section id="advanced-composition-for-approximate-differential-privacy">
 <h2>Advanced Composition for Approximate Differential Privacy<a class="headerlink" href="#advanced-composition-for-approximate-differential-privacy" title="Permalink to this heading">#</a></h2>
@@ -722,8 +726,8 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 <li><p>If each mechanism <span class="math notranslate nohighlight">\(m_i\)</span> in a <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition <span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy</p></li>
 <li><p>Then for any <span class="math notranslate nohighlight">\(\delta' \geq 0\)</span>, the entire <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition satisfies <span class="math notranslate nohighlight">\((\epsilon', k\delta + \delta')\)</span>-differential privacy, where:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-6c96f442-50ae-4844-972d-2b6ddccff56d">
-<span class="eqno">(9)<a class="headerlink" href="#equation-6c96f442-50ae-4844-972d-2b6ddccff56d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2ed651dd-3f39-4c13-b16b-b23deeaa88b5">
+<span class="eqno">(7)<a class="headerlink" href="#equation-2ed651dd-3f39-4c13-b16b-b23deeaa88b5" title="Permalink to this equation">#</a></span>\[\begin{align}
 \epsilon' = \epsilon \sqrt{2k \ln(1/\delta')} + k \epsilon (e^{\epsilon} - 1)
 \end{align}\]</div>
 </section>
