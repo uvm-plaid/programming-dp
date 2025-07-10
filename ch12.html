@@ -1229,8 +1229,8 @@ set. For this dataset, that’s a pretty decent result.</p>
 <h2>What is a Model?<a class="headerlink" href="#what-is-a-model" title="Permalink to this heading">#</a></h2>
 <p>What exactly <em>is</em> a model? How does it encode the information it uses to make predictions?</p>
 <p>There are many different kinds of models, but the ones we’ll explore here are <em>linear models</em>. For an unlabeled example with a <span class="math notranslate nohighlight">\(k\)</span>-dimensional feature vector <span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>, a linear model predicts a label by first calculating the quantity:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9cc5cb03-83a0-494d-a596-7cf860421fd6">
-<span class="eqno">(21)<a class="headerlink" href="#equation-9cc5cb03-83a0-494d-a596-7cf860421fd6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ac061143-a6d6-4fe7-9937-3123c1688fa8">
+<span class="eqno">(21)<a class="headerlink" href="#equation-ac061143-a6d6-4fe7-9937-3123c1688fa8" title="Permalink to this equation">#</a></span>\[\begin{align}
 w_1 x_1 + \dots + w_k x_k + bias
 \end{align}\]</div>
 <p>and then taking the sign of it (i.e. if the quantity above is negative, we predict the label -1; if it’s positive, we predict 1).</p>
@@ -1389,25 +1389,23 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 </div>
-<p>Let:</p>
-<p>\begin{itemize}
-\item ( x \in \mathbb{R}^d ) be the feature vector,
-\item ( y \in {0, 1} ) be the binary label,
-\item ( w \in \mathbb{R}^d ) be the weight vector.
-\end{itemize}</p>
+<p>Formally, let:</p>
+<p><span class="math notranslate nohighlight">\( x \in \mathbb{R}^d \)</span> be the feature vector,
+<span class="math notranslate nohighlight">\( y \in \{0, 1\} \)</span> be the binary label, and
+<span class="math notranslate nohighlight">\( w \in \mathbb{R}^d \)</span> be the weight vector:</p>
 <p>The logistic (cross-entropy) loss for a single training example is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a97bf1f-a5be-4c10-8e55-9975131cd71e">
-<span class="eqno">(22)<a class="headerlink" href="#equation-4a97bf1f-a5be-4c10-8e55-9975131cd71e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c3e9f9f5-4ff5-431e-9822-a52a140cf797">
+<span class="eqno">(22)<a class="headerlink" href="#equation-c3e9f9f5-4ff5-431e-9822-a52a140cf797" title="Permalink to this equation">#</a></span>\[\begin{align}
 \ell(w; x, y) = -y \log(\sigma(w^\top x)) - (1 - y) \log(1 - \sigma(w^\top x))
 \end{align}\]</div>
 <p>where the logistic function ( \sigma(z) ) is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49f01791-73ca-4f3e-b619-6d90a81a5b1f">
-<span class="eqno">(23)<a class="headerlink" href="#equation-49f01791-73ca-4f3e-b619-6d90a81a5b1f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5d346e30-3249-4731-8174-482a172bfa79">
+<span class="eqno">(23)<a class="headerlink" href="#equation-5d346e30-3249-4731-8174-482a172bfa79" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sigma(z) = \frac{1}{1 + e^{-z}}
 \end{align}\]</div>
 <p>The gradient of the logistic loss with respect to the weights ( w ) is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-02c9c8fd-647e-44b3-b8d3-5c9b4a976dea">
-<span class="eqno">(24)<a class="headerlink" href="#equation-02c9c8fd-647e-44b3-b8d3-5c9b4a976dea" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-49ec88f6-a095-4dfb-9949-157f4d8f889e">
+<span class="eqno">(24)<a class="headerlink" href="#equation-49ec88f6-a095-4dfb-9949-157f4d8f889e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \nabla_w \ell(w; x, y) = (\sigma(w^\top x) - y) x
 \end{align}\]</div>
 <p>This gradient points in the direction that increases the probability assigned to the correct label and decreases it for the incorrect one, scaled by the input vector <span class="math notranslate nohighlight">\(x\)</span>.</p>
@@ -1646,13 +1644,13 @@ Testing loss: 0.4723742456095848
 <p>To incorporate gradient clipping into a differentially private training process, the clipping is often applied to the gradients before they are used to update the model parameters. This helps ensure that individual training examples do not overly influence the model and helps maintain privacy guarantees.</p>
 <p>To sum up: sensitivity in the context of differential privacy refers to the maximum impact a single data point can have on the model’s output, and gradient clipping is a technique used to control and limit this sensitivity during the training of differentially private models.</p>
 <p>Recall that when we implemented sample and aggregate, we enforced a desired sensitivity on a function <span class="math notranslate nohighlight">\(f\)</span> with unknown sensitivity by clipping its output. The sensitivity of <span class="math notranslate nohighlight">\(f\)</span> was:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1ebab719-4875-465b-ad39-37059e1231b4">
-<span class="eqno">(25)<a class="headerlink" href="#equation-1ebab719-4875-465b-ad39-37059e1231b4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4c8db409-17ae-4c40-a74c-fd270ab2e014">
+<span class="eqno">(25)<a class="headerlink" href="#equation-4c8db409-17ae-4c40-a74c-fd270ab2e014" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>After clipping with parameter <span class="math notranslate nohighlight">\(b\)</span>, this becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-754b831b-fd54-4ec0-acef-1747d5379563">
-<span class="eqno">(26)<a class="headerlink" href="#equation-754b831b-fd54-4ec0-acef-1747d5379563" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d56e57f3-7353-4bfc-b60e-48a9ababb149">
+<span class="eqno">(26)<a class="headerlink" href="#equation-d56e57f3-7353-4bfc-b60e-48a9ababb149" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert \mathsf{clip}(f(x), b) - \mathsf{clip}(f(x'),b) \rvert
 \end{align}\]</div>
 <p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x), b) = b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{clip}(f(x'),b) = 0\)</span> (or vice versa), so the sensitivity of the clipped result is exactly <span class="math notranslate nohighlight">\(b\)</span> (the value of the clipping parameter).</p>
@@ -1671,8 +1669,8 @@ Testing loss: 0.4723742456095848
 </div>
 </div>
 <p>Now we’re ready to analyze the sensitivity of the clipped gradient. We denote the gradient as <span class="math notranslate nohighlight">\(\nabla(\theta; X, y)\)</span> (corresponding to <code class="docutils literal notranslate"><span class="pre">gradient</span></code> in our Python code):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06eac88b-5816-4247-8a7f-eea835376a1b">
-<span class="eqno">(27)<a class="headerlink" href="#equation-06eac88b-5816-4247-8a7f-eea835376a1b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-269cfd21-e560-4c32-ad6d-ac6bd7bbf7ad">
+<span class="eqno">(27)<a class="headerlink" href="#equation-269cfd21-e560-4c32-ad6d-ac6bd7bbf7ad" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lVert \mathsf{L2\_clip}( \nabla (\theta; X, y), b) - \mathsf{L2\_clip}( \nabla (\theta; X', y), 0) \rVert_2
 \end{align}\]</div>
 <p>In the worst case, <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X, y), b)\)</span> has <span class="math notranslate nohighlight">\(L2\)</span> norm of <span class="math notranslate nohighlight">\(b\)</span>, and <span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X', y))\)</span> is all zeros - so that the <span class="math notranslate nohighlight">\(L2\)</span> norm of the difference is equal to <span class="math notranslate nohighlight">\(b\)</span>. Thus, the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the clipped gradient is bounded by the clipping parameter <span class="math notranslate nohighlight">\(b\)</span>!</p>
@@ -1744,8 +1742,8 @@ Testing loss: 0.4723742456095848
 <section id="sensitivity-of-the-gradient">
 <h3>Sensitivity of the Gradient<a class="headerlink" href="#sensitivity-of-the-gradient" title="Permalink to this heading">#</a></h3>
 <p>Our previous approach is very general, since it makes no assumptions about the behavior of the gradient. Sometimes, however, we <em>do</em> know something about the behavior of the gradient. In particular, a large class of useful gradient functions (including the gradient of the logistic loss, which we’re using here) are <em>Lipschitz continuous</em> - meaning they have bounded global sensitivity. Formally, it is possible to show that:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-75280190-f779-499c-88a2-60bb0833183e">
-<span class="eqno">(28)<a class="headerlink" href="#equation-75280190-f779-499c-88a2-60bb0833183e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c16adcd8-4bb5-4040-bc0f-433bdd35e07f">
+<span class="eqno">(28)<a class="headerlink" href="#equation-c16adcd8-4bb5-4040-bc0f-433bdd35e07f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{If}\; \lVert x_i \rVert_2 \leq b\; \text{then}\; \lVert \nabla(\theta; x_i, y_i) \rVert_2 \leq b
 \end{align}\]</div>
 <p>This fact allows us to clip the values of the <em>training examples</em> (i.e. the <em>inputs</em> to the gradient function), instead of the <em>output</em> of the gradient function, and obtain a bound on the <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of the gradient.</p>
