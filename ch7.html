@@ -182,7 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch8.html">Variants of Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch9.html">The Exponential Mechanism</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch10.html">The Sparse Vector Technique</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch11.html">Design and Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">Design &amp; Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
@@ -474,13 +474,13 @@ LS(f, x) = \max_{x': d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 <p>Local sensitivity allows us to place finite bounds on the sensitivity of some functions whose global sensitivity is difficult to bound. The mean function is one example. So far, we’ve calculated differentially private means by splitting the query into two queries: a differentially private sum (the numerator) and a differentially private count (the denominator). By sequential composition and post-processing, the quotient of these two results satisfies differential privacy.</p>
 <p>Why do we do it this way? Because the amount the output of a mean query might change when a row is added to or removed from the dataset <em>depends on the size of the dataset</em>. If we want to bound the global sensitivity of a mean query, we have to assume the worst: a dataset of size 1. In this case, if the data attribute values lie between upper and lower bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, the global sensitivity of the mean is just <span class="math notranslate nohighlight">\(\lvert u - l \lvert\)</span>. For large datasets, this is <em>extremely</em> pessimistic, and the “noisy sum over noisy count” approach is much better.</p>
 <p>The situation is different for local sensitivity. In the worst case, we can add a new row to the dataset which contains the maximum value (<span class="math notranslate nohighlight">\(u\)</span>). Let <span class="math notranslate nohighlight">\(n = \lvert x \rvert\)</span> (i.e. the size of the dataset). We start with the value of the mean:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-67eed28b-776f-4d98-8fc4-ecd7b5e1f2e9">
-<span class="eqno">(8)<a class="headerlink" href="#equation-67eed28b-776f-4d98-8fc4-ecd7b5e1f2e9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0c45a860-34c3-4a67-83cb-589a9cfdc803">
+<span class="eqno">(8)<a class="headerlink" href="#equation-0c45a860-34c3-4a67-83cb-589a9cfdc803" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 \end{align}\]</div>
 <p>Now we consider what happens when we add a row:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6b4a5a17-8049-473a-93e2-c0676086428a">
-<span class="eqno">(9)<a class="headerlink" href="#equation-6b4a5a17-8049-473a-93e2-c0676086428a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-995cfbf1-ebc6-43bc-a123-4df02834a02e">
+<span class="eqno">(9)<a class="headerlink" href="#equation-995cfbf1-ebc6-43bc-a123-4df02834a02e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert f(x') - f(x) \rvert = &amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n} \bigg\rvert \\
 \leq&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n+1} \bigg\rvert \\
 =&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u - \sum_{i=1}^{n} x_i}{n+1}\bigg\rvert \\
@@ -491,13 +491,13 @@ f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 <section id="achieving-differential-privacy-via-local-sensitivity">
 <h2>Achieving Differential Privacy via Local Sensitivity?<a class="headerlink" href="#achieving-differential-privacy-via-local-sensitivity" title="Permalink to this heading">#</a></h2>
 <p>We have defined an alternative measure of sensitivity - but how do we use it? Can we just use the Laplace mechanism, in the same way as we did with global sensitivity? Does the following definition of <span class="math notranslate nohighlight">\(F\)</span> satisfy <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy?</p>
-<div class="amsmath math notranslate nohighlight" id="equation-162dcbf9-82db-4e80-8fc5-b454160c9578">
-<span class="eqno">(10)<a class="headerlink" href="#equation-162dcbf9-82db-4e80-8fc5-b454160c9578" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1a9a54fc-618b-47e3-84db-308802bc1934">
+<span class="eqno">(10)<a class="headerlink" href="#equation-1a9a54fc-618b-47e3-84db-308802bc1934" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(x) = f(x) + \mathsf{Lap}\left(\frac{LS(f,x)}{\epsilon}\right)
 \end{align}\]</div>
 <p>No! Unfortunately not. Since <span class="math notranslate nohighlight">\(LS(f, x)\)</span> itself depends on the dataset, if the analyst knows the local sensitivity of a query <em>at a particular dataset</em>, then the analyst may be able to infer some information about the dataset. It’s therefore <em>not possible</em> to use local sensitivity directly to achieve differential privacy. For example, consider the bound on local sensitivity for the mean, defined above. If we know the local sensitivity at a particular <span class="math notranslate nohighlight">\(x\)</span>, we can infer the exact size of <span class="math notranslate nohighlight">\(x\)</span> with <em>no noise</em>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2e359633-5d90-4905-9a6e-d9ce44b88f07">
-<span class="eqno">(11)<a class="headerlink" href="#equation-2e359633-5d90-4905-9a6e-d9ce44b88f07" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c973636a-e3a2-4622-8c09-26ce589289a3">
+<span class="eqno">(11)<a class="headerlink" href="#equation-c973636a-e3a2-4622-8c09-26ce589289a3" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert x \rvert = \frac{b}{LS(f, x)} - 1
 \end{align}\]</div>
 <p>Moreover, keeping the local sensitivity secret from the analyst <em>doesn’t help either</em>. It’s possible to determine the scale of the noise from just a few query answers, and the analyst can use this value to infer the local sensitivity. Differential privacy is designed to protect the output of <span class="math notranslate nohighlight">\(f(x)\)</span> - <em>not</em> of the sensitivity measure used in its definition.</p>
@@ -789,7 +789,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </details>
 </div>
 <p>The key parameter in this framework is the number of chunks, <span class="math notranslate nohighlight">\(k\)</span>. As <span class="math notranslate nohighlight">\(k\)</span> goes up, the sensitivity of the final noisy mean goes <em>down</em> - so more chunks means less noise. On the other hand, as <span class="math notranslate nohighlight">\(k\)</span> goes up, each chunk gets <em>smaller</em>, so each answer <span class="math notranslate nohighlight">\(f(x_i)\)</span> is less likely to be close to the “true” answer <span class="math notranslate nohighlight">\(f(X)\)</span>. In our example above, we’d like the average age within each chunk to be close to the average age of the whole dataset - and this is less likely to happen if each chunk contains only a handful of people.</p>
-<p>How should we set <span class="math notranslate nohighlight">\(k\)</span>? It depends on <span class="math notranslate nohighlight">\(f\)</span> and on the dataset, which makes it tricky. Let’s try various values of <span class="math notranslate nohighlight">\(k\)</span> for our mean query.</p>
+<p>How should we set <span class="math notranslate nohighlight">\(k\)</span>? It depends on <span class="math notranslate nohighlight">\(f\)</span> and on the dataset, which makes it tricky. Let’s try various values of <span class="math notranslate nohighlight">\(k\)</span> for our mean query over the <span class="math notranslate nohighlight">\(Age\)</span> feature.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_results</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
@@ -849,6 +849,63 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </div>
 <p>So - sample and aggregate isn’t able to beat our global sensitivity-based approach, but it can get pretty close if you choose the right value for <span class="math notranslate nohighlight">\(k\)</span>. The big advantage is that sample and aggregate works for <em>any</em> function <span class="math notranslate nohighlight">\(f\)</span>, regardless of its sensitivity; if <span class="math notranslate nohighlight">\(f\)</span> is well-behaved, then it’s possible to obtain good accuracy from the framework. On the other hand, using sample and aggregate requires the analyst to set the clipping bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, and the number of chunks <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p class="rubric">Choosing Between PTR, Smooth Sensitivity, and Sample-and-Aggregate</p>
+<p>Several advanced techniques exist for releasing statistics under differential privacy when global sensitivity is too high or poorly behaved. These include <strong>Propose-Test-Release</strong>, <strong>Smooth Sensitivity</strong>, and <strong>Sample-and-Aggregate</strong>. Each method provides a way to adapt to local characteristics of the data, but they differ in applicability, complexity, and robustness. This section offers practical guidance on when to use each.</p>
+<p class="rubric">Propose-Test-Release (PTR)</p>
+<p>Use PTR when:</p>
+<ul class="simple">
+<li><p>You are working with a <strong>bounded, well-behaved statistic</strong>, like a median or mode.</p></li>
+<li><p>You expect the statistic to be <strong>stable</strong> on the dataset (i.e., unlikely to change much if a single row is added or removed).</p></li>
+<li><p>You can define a <strong>testable notion of stability</strong>, such as a small local sensitivity.</p></li>
+<li><p>It’s acceptable to <strong>occasionally suppress output</strong> if the stability test fails.</p></li>
+</ul>
+<p>PTR is conceptually simple and efficient, but it <strong>may fail to release an output</strong> on unstable datasets. This makes it ideal for use cases like releasing a median salary from a large population, but less suitable in adversarial or highly variable data settings.</p>
+<p class="rubric">Smooth Sensitivity</p>
+<p>Use Smooth Sensitivity when:</p>
+<ul class="simple">
+<li><p>You need to release a <strong>scalar statistic</strong>, like the median or interquartile range.</p></li>
+<li><p>The <strong>local sensitivity varies widely</strong>, and a tighter bound is needed than global sensitivity.</p></li>
+<li><p>You want <strong>graceful degradation</strong>: when the data is stable, you get low noise; when it’s unstable, you still get a private result (with higher noise).</p></li>
+<li><p>You can <strong>compute or bound the smooth sensitivity efficiently</strong> (e.g., with closed-form expressions or approximations).</p></li>
+</ul>
+<p>Smooth sensitivity is powerful but can be <strong>mathematically and computationally involved</strong>, especially when estimating the maximum local sensitivity over nearby datasets. It is preferred when accuracy is critical and the statistic is inherently unstable (e.g., publishing the median of a skewed dataset).</p>
+<p class="rubric">Sample-and-Aggregate (SAA)</p>
+<p>Use SAA when:</p>
+<ul class="simple">
+<li><p>You want to release an <strong>arbitrary statistic</strong>, including complex or non-numeric outputs (e.g., model parameters, clustering results).</p></li>
+<li><p>The statistic is not globally stable, but becomes stable when computed on <strong>smaller subsamples</strong>.</p></li>
+<li><p>You are able to <strong>partition the dataset</strong> into sufficiently many disjoint chunks of similar size.</p></li>
+<li><p>You can define a <strong>private aggregator</strong>, such as the noisy median or mode of subsample outputs.</p></li>
+</ul>
+<p>SAA offers broad flexibility, but its accuracy depends on the <strong>number and size of partitions</strong>. It is particularly useful when applying non-differentially private procedures (like training a model) privately by aggregating across partitions. However, the method may degrade when sample sizes are small or outputs are highly variable across groups.</p>
+<hr class="docutils" />
+<p>In summary:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Use When…</p></th>
+<th class="head"><p>Caution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>PTR</strong></p></td>
+<td><p>Statistic is stable and you can test it</p></td>
+<td><p>May suppress output on unstable data</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Smooth Sensitivity</strong></p></td>
+<td><p>Need high accuracy for scalar statistics</p></td>
+<td><p>Harder to compute; less scalable</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Sample-and-Aggregate</strong></p></td>
+<td><p>Statistic is complex or arbitrary</p></td>
+<td><p>Depends on effective partitioning and noise</p></td>
+</tr>
+</tbody>
+</table>
+<p>Each of these tools allows you to work beyond global sensitivity, which is often too conservative. Choosing the right method depends on the data distribution, your tolerance for failure or noise, and the type of statistic you’re trying to release.</p>
+</div>
 </section>
 </section>
 
