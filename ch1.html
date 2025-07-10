@@ -444,6 +444,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation">Aggregation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-of-small-groups">Problem of Small Groups</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#differencing-attacks">Differencing Attacks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-malicious-queries">On Malicious Queries</a></li>
 </ul>
 </li>
 </ul>
@@ -1120,11 +1121,14 @@ Name: Name, dtype: int64
 </div>
 </div>
 </div>
-<p>This is a recurring theme.</p>
-<ul class="simple">
-<li><p>Releasing <em>data</em> that is useful makes ensuring <em>privacy</em> very difficult</p></li>
-<li><p>Distinguishing between <em>malicious</em> and <em>non-malicious</em> queries is not possible</p></li>
-</ul>
+</section>
+<section id="on-malicious-queries">
+<h3>On Malicious Queries<a class="headerlink" href="#on-malicious-queries" title="Permalink to this heading">#</a></h3>
+<p>A recurring theme in privacy-preserving data analysis is that <strong>distinguishing between malicious and non-malicious queries is not possible</strong>. This limitation is especially important in the context of de-identified or aggregated data, where we might be tempted to assume that certain queries are “safe” simply because they appear innocuous on the surface.</p>
+<p>The problem is that an attacker doesn’t need to issue obviously suspicious queries to violate privacy. Often, the danger lies in combinations of seemingly benign queries whose results can be synthesized to extract sensitive information. For example, asking for the sum of all ages in a dataset and then asking for the sum with a single individual removed can allow an attacker to learn that individual’s exact age via differencing—even though neither query, by itself, looks malicious.</p>
+<p>From the system’s point of view, there is no inherent difference between a privacy-respecting query and an attack. The queries themselves are just instructions for computation. Their intent is not part of the query syntax, and there is no reliable way to detect whether a query is part of a larger strategy to extract sensitive information. In fact, even if we were to limit access to queries that were pre-approved or whitelisted, this wouldn’t prevent clever users from chaining together allowable queries to infer private values.</p>
+<p>This <em>indistinguishability</em> is part of why ad hoc approaches to privacy, like de-identification or aggregation alone, tend to fail. They rely on implicit assumptions about how the data will be used and who is asking the questions. But in practice, we cannot guarantee those assumptions hold, especially once data is released or exposed to external users.</p>
+<p>Differential privacy was designed to address exactly this challenge. It provides formal guarantees that hold regardless of what queries are asked or what auxiliary information the adversary possesses. Under differential privacy, <strong>all queries—malicious or not—are treated uniformly</strong>, and privacy is maintained by controlling the output distributions themselves, not by attempting to guess the user’s intent.</p>
 <div class="admonition-summary admonition">
 <p class="admonition-title">Summary</p>
 <ul class="simple">
@@ -1138,6 +1142,8 @@ Name: Name, dtype: int64
 <li><p>Three data points (gender, ZIP code, date of birth) uniquely identify 87% of people in the US</p></li>
 </ul>
 </li>
+<li><p>Releasing <em>data</em> that is useful makes ensuring <em>privacy</em> very difficult</p></li>
+<li><p>Distinguishing between <em>malicious</em> and <em>non-malicious</em> queries is not possible</p></li>
 </ul>
 </div>
 </section>
@@ -1224,6 +1230,7 @@ Name: Name, dtype: int64
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation">Aggregation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-of-small-groups">Problem of Small Groups</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#differencing-attacks">Differencing Attacks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-malicious-queries">On Malicious Queries</a></li>
 </ul>
 </li>
 </ul>
