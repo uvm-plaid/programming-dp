@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Efficiency &#8212; Programming Differential Privacy</title>
+    <title>Efficiency &amp; Limitations &#8212; Programming Differential Privacy</title>
   
   
   
@@ -184,7 +184,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Efficiency</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Efficiency &amp; Limitations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -417,7 +417,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Efficiency</h1>
+    <h1>Efficiency & Limitations</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -446,8 +446,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="efficiency">
-<h1>Efficiency<a class="headerlink" href="#efficiency" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="efficiency-limitations">
+<h1>Efficiency &amp; Limitations<a class="headerlink" href="#efficiency-limitations" title="Permalink to this heading">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <p>After reading this chapter, you will be able to:</p>
@@ -456,6 +456,7 @@ document.write(`
 <li><p>Consider tradeoffs between space and time efficiency</p></li>
 <li><p>Consider techniques for optimization</p></li>
 <li><p>Describe the efficiency bottlenecks in differentially private algorithms</p></li>
+<li><p>Describe limitations of differential privacy</p></li>
 </ul>
 </div>
 <section id="time-efficiency-of-differential-privacy">
@@ -497,7 +498,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fa3461c1a56aeecf2e7acc29a8bef68c2c86c36db743d05dcd6b3f9d3a9a64c8.png" src="_images/fa3461c1a56aeecf2e7acc29a8bef68c2c86c36db743d05dcd6b3f9d3a9a64c8.png" />
+<img alt="_images/c84bdbf705539d9da40eda0425d3cff9a07680f7b1dd2b6472ae4c8125a559d0.png" src="_images/c84bdbf705539d9da40eda0425d3cff9a07680f7b1dd2b6472ae4c8125a559d0.png" />
 </div>
 </div>
 <p>With the time spent counting on the y-axis, and the list lize on the x-axis, we can see that the time complexity of differential privacy for this particular operation is essentially linear in the size of the input.</p>
@@ -534,7 +535,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5330816aff0554b92145d3829a0d2d3c67d27f8ebebc2305101c9b493b677135.png" src="_images/5330816aff0554b92145d3829a0d2d3c67d27f8ebebc2305101c9b493b677135.png" />
+<img alt="_images/6bff0c09905659b82c1babee387d935cfa69d5bc6dd94cec041810a5390a72d2.png" src="_images/6bff0c09905659b82c1babee387d935cfa69d5bc6dd94cec041810a5390a72d2.png" />
 </div>
 </div>
 <p>The graph plots generally overlap or are close in most simulations of this experiment, indicating low (constant) time inefficiency overhead incurred from utilizing private gradient descent.</p>
@@ -587,7 +588,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a45b28a1959277c7b718d5e0b56a794bbc28e49aa67d31ea673ab372a4e1e7fd.png" src="_images/a45b28a1959277c7b718d5e0b56a794bbc28e49aa67d31ea673ab372a4e1e7fd.png" />
+<img alt="_images/0ef1f932c9c0ec020b80b8f324f9778b43dc9e7fb31ad28cf9442756504960aa.png" src="_images/0ef1f932c9c0ec020b80b8f324f9778b43dc9e7fb31ad28cf9442756504960aa.png" />
 </div>
 </div>
 <p>We display every thousand memory blocks on the y-axis, against the list size on the x-axis.</p>
@@ -625,7 +626,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b4926ca99bee7fcc3507168c3d76e00d7a26b260d7d7a798ff32a2519cd5563d.png" src="_images/b4926ca99bee7fcc3507168c3d76e00d7a26b260d7d7a798ff32a2519cd5563d.png" />
+<img alt="_images/88cd014c8fefe25a5c9433d52ec9112474f21ab3fbc3f6882fb3344e1ae12099.png" src="_images/88cd014c8fefe25a5c9433d52ec9112474f21ab3fbc3f6882fb3344e1ae12099.png" />
 </div>
 </div>
 <p>In this case, since we are performing gradient descent, the memory allocation is generally much larger - as expected - so we graph against every millionth allocated memory block.</p>
@@ -644,7 +645,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;cA3\xfa\xc5\x0e\x93\x9e&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;:e\xe3\xc4\x14\xfd\x8c\xcf&#39;
 </pre></div>
 </div>
 </div>
@@ -658,7 +659,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Q\xe6^r\xb4\xa7\xfb\xef%\x8b}c4\xde\xb4\x99?\xe7eN\xfdI\xdbE\xcf \x95-iW\xe8\xd8&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\xcd\xe5\x86\x98w\x04\x8f\xae\x02z{5S\xec\xc5\xa0o\xe9g\xaa\xfb(h\x9d\x88\x15\xa2\x96\xbf\xed|\x8c&#39;
 </pre></div>
 </div>
 </div>
@@ -672,7 +673,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;t\x0b.\xf5\xea\xd0\x88k\xba\x80\xb6\x12C\xf9\x0f&quot;\x16\xc5\xdcQv\xef\x19\xbf/\x9cs\xa5^\xab.\x9d&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&quot;B\xa4jx\x17 \xef\xa3P\xad\xa1\xbe\x9e\x91&#39;\xbc\xb9\xd2\xdb\x04\xb6\xba\xd9\x13\x82g5,\xd6,\xdd\xc2&quot;
 </pre></div>
 </div>
 </div>
@@ -683,7 +684,7 @@ document.write(`
 <h2>Real Numbers and Random Noise<a class="headerlink" href="#real-numbers-and-random-noise" title="Permalink to this heading">#</a></h2>
 <p>Differential privacy relies on randomized mechanisms that add noise drawn from continuous distributions — most commonly, the <strong>Laplace</strong> or <strong>Gaussian</strong> distributions. These distributions are defined over the real numbers, but real numbers cannot be represented exactly on a computer. Instead, we use <strong>floating-point approximations</strong>, which can introduce subtle but significant issues.</p>
 <p>In practice, when we generate random noise (e.g., using <code class="docutils literal notranslate"><span class="pre">np.random.laplace()</span></code> in NumPy), we’re relying on finite-precision arithmetic. While this generally works well enough for most use cases, it opens the door to <strong>deterministic behavior at the tails</strong> of the distribution, or small variations that can be exploited in attacks.</p>
-<p>In a landmark paper, <strong>Ilya Mironov</strong> showed that the naive implementation of the Laplace mechanism using floating-point arithmetic can <strong>leak private information</strong> through subtle artifacts in the generated noise values — particularly due to non-uniform spacing of representable floats. These artifacts can produce <strong>discontinuities or patterns</strong> in the output distribution that a clever adversary can detect and exploit <span id="id1">[<a class="reference internal" href="bibliography.html#id27" title="Ilya Mironov. On significance of the least significant bits for differential privacy. In Proceedings of the 2012 ACM Conference on Computer and Communications Security, CCS '12, 650–661. New York, NY, USA, 2012. Association for Computing Machinery. URL: https://doi.org/10.1145/2382196.2382264, doi:10.1145/2382196.2382264.">13</a>]</span>.</p>
+<p>In a landmark paper, <strong>Ilya Mironov</strong> showed that the naive implementation of the Laplace mechanism using floating-point arithmetic can <strong>leak private information</strong> through subtle artifacts in the generated noise values — particularly due to non-uniform spacing of representable floats. These artifacts can produce <strong>discontinuities or patterns</strong> in the output distribution that a clever adversary can detect and exploit <span id="id1">[<a class="reference internal" href="bibliography.html#id28" title="Ilya Mironov. On significance of the least significant bits for differential privacy. In Proceedings of the 2012 ACM Conference on Computer and Communications Security, CCS '12, 650–661. New York, NY, USA, 2012. Association for Computing Machinery. URL: https://doi.org/10.1145/2382196.2382264, doi:10.1145/2382196.2382264.">14</a>]</span>.</p>
 <p>To mitigate these risks, several strategies have been proposed:</p>
 <ul class="simple">
 <li><p><strong>Carefully engineered sampling algorithms</strong>, such as Mironov’s <em>Snapping Mechanism</em>, which aligns output to a uniform floating-point grid while preserving differential privacy.</p></li>
