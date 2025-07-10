@@ -467,6 +467,7 @@ document.write(`
 <li><p>For each row <span class="math notranslate nohighlight">\(r_1 \in D\)</span>, there exist at least <span class="math notranslate nohighlight">\(k-1\)</span> other rows <span class="math notranslate nohighlight">\(r_2 \dots r_k \in D\)</span> such that <span class="math notranslate nohighlight">\(\Pi_{qi(D)} r_1 = \Pi_{qi(D)} r_2, \dots, \Pi_{qi(D)} r_1 = \Pi_{qi(D)} r_k\)</span></p></li>
 </ul>
 <p>where <span class="math notranslate nohighlight">\(qi(D)\)</span> is the quasi-identifiers of <span class="math notranslate nohighlight">\(D\)</span>, and <span class="math notranslate nohighlight">\(\Pi_{qi(D)} r\)</span> represents the columns of <span class="math notranslate nohighlight">\(r\)</span> containing quasi-identifiers (i.e. the projection of the quasi-identifiers).</p>
+<p>and the quasi-identifier <span class="math notranslate nohighlight">\(\mathit{qi}\)</span> is assumed to be <strong>fixed a priori</strong>—that is, known and specified before any anonymization is performed. This reflects the attacker model: we assume the adversary can use <span class="math notranslate nohighlight">\(\mathit{qi}\)</span> attributes to perform linkage attacks.</p>
 </section>
 </div><section id="checking-for-k-anonymity">
 <h2>Checking for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity<a class="headerlink" href="#checking-for-k-anonymity" title="Permalink to this heading">#</a></h2>
@@ -866,7 +867,14 @@ document.write(`
 </div>
 </div>
 <p>Now, the generalized dataset satisfies <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=7\)</span>! In other words, our level of generalization was appropriate, but outliers prevented us from achieving <span class="math notranslate nohighlight">\(k\)</span>-Anonymity before, even for <span class="math notranslate nohighlight">\(k=2\)</span>.</p>
-<p>We will also discuss clipping later on in the context of bounding function sensitivity.</p>
+<p>We will also discuss clipping later on in the context of bounding function sensitivity in order to achieve differential privacy.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p class="rubric">Clipping Vs. Bucketing</p>
+<p>While both clipping and bucketing reduce the granularity of data, they serve different purposes. <strong>Clipping</strong> is useful for dealing with unwanted extremes —for example— truncating unusually high ages to limit outliers’ influence on statistical queries.</p>
+<p><strong>Bucketing</strong>, on the other hand, is used to create meaningful categories—such as age groups—for classification, comparison, or generalization.</p>
+<p>In short, clipping is a tool for bounding (sensitivity), while bucketing helps structure the data for analysis or anonymization!</p>
+</div>
 </section>
 <section id="the-homogeneity-attack">
 <h2>The Homogeneity Attack<a class="headerlink" href="#the-homogeneity-attack" title="Permalink to this heading">#</a></h2>
