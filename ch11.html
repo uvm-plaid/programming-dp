@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Design and Deployment &#8212; Programming Differential Privacy</title>
+    <title>Design &amp; Deployment &#8212; Programming Differential Privacy</title>
   
   
   
@@ -182,7 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch8.html">Variants of Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch9.html">The Exponential Mechanism</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch10.html">The Sparse Vector Technique</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Design and Deployment</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Design &amp; Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
@@ -419,7 +419,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Design and Deployment</h1>
+    <h1>Design & Deployment</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -452,8 +452,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="design-and-deployment">
-<h1>Design and Deployment<a class="headerlink" href="#design-and-deployment" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="design-deployment">
+<h1>Design &amp; Deployment<a class="headerlink" href="#design-deployment" title="Permalink to this heading">#</a></h1>
 <section id="exercises-in-algorithm-design">
 <h2>Exercises in Algorithm Design<a class="headerlink" href="#exercises-in-algorithm-design" title="Permalink to this heading">#</a></h2>
 <div class="admonition-issues-to-consider admonition">
@@ -577,7 +577,7 @@ document.write(`
 <h2>Checklist for Privacy Deployment<a class="headerlink" href="#checklist-for-privacy-deployment" title="Permalink to this heading">#</a></h2>
 <p>Deployment of differential privacy involves several steps to ensure the protection of sensitive data while still allowing useful analysis. Here’s a checklist for deploying a system with differential privacy:</p>
 <ol class="arabic simple">
-<li><p><strong>Data Classification</strong>: Identify and classify sensitive data that needs protection. Understand the sensitivity levels and potential risks associated with each class of data.</p></li>
+<li><p><strong>Data Classification</strong>: Identify and classify sensitive data that needs protection. Understand the sensitivity levels and potential risks associated with each class of data. This should include determination of the <a class="reference external" href="https://programming-dp.com/ch3.html#the-unit-of-privacy">Unit of Privacy</a> as we previously discussed.</p></li>
 <li><p><strong>Data Preparation</strong>: Preprocess the data to remove personally identifiable information (PII) and other sensitive attributes that are not relevant to the analysis.</p></li>
 <li><p><strong>Define Privacy Budget</strong>: Determine acceptable levels of utility or privacy risk for your deployment. This will govern the amount of noise added to the data to achieve differential privacy.</p></li>
 <li><p><strong>Data Analysis Requirements</strong>: Clearly outline the data analysis goals, as well as specific transformations and queries that need to be supported while maintaining privacy. Ensure that the chosen privacy mechanisms and privacy unit can accommodate these requirements.</p></li>
