@@ -717,20 +717,14 @@ A highly readable and freely available textbook. Especially good for beginners o
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">karries_row</span> <span class="o">=</span> <span class="n">adult_pii</span><span class="p">[</span><span class="n">adult_pii</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Karrie Trusslove&#39;</span><span class="p">]</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">])</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_sans_pii</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">])</span>
 <span class="n">r</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">4</span><span class="o">-</span><span class="mf">292e9685</span><span class="n">f0df</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">karries_row</span> <span class="o">=</span> <span class="n">adult_pii</span><span class="p">[</span><span class="n">adult_pii</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Karrie Trusslove&#39;</span><span class="p">]</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">r</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span>
-
-<span class="ne">NameError</span>: name &#39;adult_data&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    &lt;=50K
+Name: Target, dtype: object
 </pre></div>
 </div>
 </div>
@@ -862,7 +856,7 @@ A highly readable and freely available textbook. Especially good for beginners o
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/da5ecb1a9d1c12767f090b2e6c7b4d1ce4a13ee289745ebd6f635f9fc75137ce.png" src="_images/da5ecb1a9d1c12767f090b2e6c7b4d1ce4a13ee289745ebd6f635f9fc75137ce.png" />
+<img alt="_images/2f362ca96353a7ff2fa5da7beb5b6ede32418b02dafa3cae6fcd45f71216f12c.png" src="_images/2f362ca96353a7ff2fa5da7beb5b6ede32418b02dafa3cae6fcd45f71216f12c.png" />
 </div>
 </div>
 <p>We can do the same thing with ZIP codes, and the results are even worse - ZIP code happens to be <em>very</em> selective in this dataset. Nearly all the ZIP codes occur only once.</p>
@@ -938,11 +932,11 @@ A highly readable and freely available textbook. Especially good for beginners o
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Antonin Chittem    2
-Barnabe Haime      2
-Gwenny Penley      1
-Marvin Daubney     1
-Ursola Walasik     1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barnabe Haime          2
+Antonin Chittem        2
+Estele McGragh         1
+Kerrie Malcolm         1
+Florenza Jacobovitz    1
 Name: Name, dtype: int64
 </pre></div>
 </div>
@@ -961,7 +955,7 @@ Name: Name, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.772181444058845
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.77250253355035
 </pre></div>
 </div>
 </div>
@@ -1091,7 +1085,7 @@ Name: Name, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1360144
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1360238
 </pre></div>
 </div>
 </div>
@@ -1103,7 +1097,7 @@ Name: Name, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1360088
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1360182
 </pre></div>
 </div>
 </div>
