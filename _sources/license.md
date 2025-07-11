@@ -1,6 +1,6 @@
 # License
 
-## 📖 Book Text
+## Book Text
 
 © 2025 Joseph P. Near and Chiké Abuah.  
 This book is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
@@ -16,7 +16,7 @@ Under the following terms:
 - **NonCommercial** — You may not use the material for commercial purposes.
 - **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your contributions under the same license.
 
-## 🧑‍💻 Code Examples
+## Code Examples
 
 All code in this book is released under the [MIT License](https://opensource.org/licenses/MIT):
 
