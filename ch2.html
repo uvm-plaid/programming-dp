@@ -188,6 +188,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Synthetic Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Efficiency &amp; Limitations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
     </div>
@@ -905,21 +906,21 @@ document.write(`
 <tr class="row-even"><td><p>02138</p></td>
 <td><p>30–40</p></td>
 <td><p>Male</p></td>
-<td><p>Cancer</p></td>
+<td><p>Flu</p></td>
 </tr>
 <tr class="row-odd"><td><p>02138</p></td>
 <td><p>30–40</p></td>
 <td><p>Male</p></td>
-<td><p>Cancer</p></td>
+<td><p>Flu</p></td>
 </tr>
 <tr class="row-even"><td><p>02138</p></td>
 <td><p>30–40</p></td>
 <td><p>Male</p></td>
-<td><p>Cancer</p></td>
+<td><p>Flu</p></td>
 </tr>
 </tbody>
 </table>
-<p>This group satisfies <strong>3-anonymity</strong>, as there are three indistinguishable records. However, all of them share the same diagnosis: <strong>Cancer</strong>. If an attacker knows that someone named Alex is a 35-year-old male living in 02138, they can confidently link Alex to this group. Even though they cannot pinpoint which record is his, the lack of diversity in the sensitive attribute allows them to infer his diagnosis.</p>
+<p>This group satisfies <strong>3-anonymity</strong>, as there are three indistinguishable records. However, all of them share the same diagnosis: <strong>Flu</strong>. If an attacker knows that someone named Alex is a 35-year-old male living in 02138, they can confidently link Alex to this group. Even though they cannot pinpoint which record is his, the lack of diversity in the sensitive attribute allows them to infer his diagnosis.</p>
 <p>This is the essence of the <strong>homogeneity attack</strong>: the anonymity set is large enough, but it’s <strong>not diverse enough</strong> in the sensitive attribute.</p>
 <p class="rubric">Why This Matters</p>
 <p><span class="math notranslate nohighlight">\(k\)</span>-anonymity guarantees that an individual is indistinguishable from at least <span class="math notranslate nohighlight">\(k - 1\)</span> others, but it does <strong>not</strong> guarantee that those others don’t all share the same sensitive value. As a result, <strong>privacy is not preserved</strong> if the sensitive attribute lacks variability within the group.</p>
