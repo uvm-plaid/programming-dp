@@ -635,7 +635,7 @@ document.write(`
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p class="rubric">Ghost Clipping in Differential Privacy</p>
-<p><strong>Ghost clipping</strong> is a technique introduced to improve both time and space efficiency when training differentially private models—especially in deep learning with <strong>Large Language Models (LLMs)</strong>.</p>
+<p><strong>Ghost clipping</strong> is a technique introduced to improve both time and space efficiency when training differentially private models—especially in private deep learning with <strong>private Large Language Models (LLMs)</strong>.</p>
 <p>Rather than instantiating and modifying per-sample gradients directly during training, Ghost Clipping works directly from per-sample activation gradients and per-sample activations, avoiding the need for gradient instantiation.</p>
 <p>This technique is used in tools like <strong>Opacus</strong> (Meta/Facebook) and <strong>TensorFlow Privacy</strong> by Google.</p>
 <p>You can read more about ghost clipping <a class="reference external" href="https://arxiv.org/pdf/2110.05679">here as described in the academic paper</a> and <a class="reference external" href="https://pytorch.org/blog/clipping-in-opacus/">here in the Pytorch/Opacus blog</a>.</p>
