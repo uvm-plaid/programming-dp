@@ -632,6 +632,14 @@ document.write(`
 </div>
 <p>In this case, since we are performing gradient descent, the memory allocation is generally much larger - as expected - so we graph against every millionth allocated memory block.</p>
 <p>We also observe generally constant space overhead during private gradient descent. However the space overhead is much larger here since we leverage extra space for vectorization and concurrency to improve time efficiency.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p class="rubric">Ghost Clipping in Differential Privacy</p>
+<p><strong>Ghost clipping</strong> is a technique introduced to improve both time and space efficiency when training differentially private models—especially in deep learning with <strong>Large Language Models (LLMs)</strong>.</p>
+<p>Rather than instantiating and modifying per-sample gradients directly during training, Ghost Clipping works directly from per-sample activation gradients and per-sample activations, avoiding the need for gradient instantiation.</p>
+<p>This technique is used in tools like <strong>Opacus</strong> (Meta/Facebook) and <strong>TensorFlow Privacy</strong> by Google.</p>
+<p>You can read more about ghost clipping <a class="reference external" href="https://arxiv.org/pdf/2110.05679">here as described in the academic paper</a> and <a class="reference external" href="https://pytorch.org/blog/clipping-in-opacus/">here in the Pytorch/Opacus blog</a>.</p>
+</div>
 </section>
 <section id="limitations-of-random-number-generation">
 <h2>Limitations of Random Number Generation<a class="headerlink" href="#limitations-of-random-number-generation" title="Permalink to this heading">#</a></h2>
@@ -680,14 +688,6 @@ document.write(`
 </div>
 </div>
 <p>In general, in different programming languages and operating systems, there are several options for random number and seed generation, with varying applicability for use cases such as: modeling, simulation, or production of cryptographically strong random bytes suitable for managing sensitive user data at scale.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p class="rubric">Ghost Clipping in Differential Privacy</p>
-<p><strong>Ghost clipping</strong> is a technique introduced to improve both time and space efficiency when training differentially private models—especially in deep learning with <strong>Large Language Models (LLMs)</strong>.</p>
-<p>Rather than instantiating and modifying per-sample gradients directly during training, Ghost Clipping works directly from per-sample activation gradients and per-sample activations, avoiding the need for gradient instantiation.</p>
-<p>This technique is used in tools like <strong>Opacus</strong> (Meta/Facebook) and <strong>TensorFlow Privacy</strong> by Google.</p>
-<p>You can read more about ghost clipping <a class="reference external" href="https://arxiv.org/pdf/2110.05679">here as described in the academic paper</a> and <a class="reference external" href="https://pytorch.org/blog/clipping-in-opacus/">here in the Pytorch/Opacus blog</a>.</p>
-</div>
 </section>
 <section id="real-numbers-and-random-noise">
 <h2>Real Numbers and Random Noise<a class="headerlink" href="#real-numbers-and-random-noise" title="Permalink to this heading">#</a></h2>
