@@ -1,0 +1,1249 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>De-identification &#8212; Programming Differential Privacy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter1';</script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="k-Anonymity" href="chapter2.html" />
+    <link rel="prev" title="Introduction" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="cover.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover.html">
+                    Cover
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="front.html">Front Matter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">De-identification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter2.html">k-Anonymity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter4.html">Properties of Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter5.html">Sensitivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter6.html">Approximate Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter7.html">Local Sensitivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter8.html">Variants of Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter9.html">The Exponential Mechanism</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter10.html">The Sparse Vector Technique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter11.html">Design &amp; Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter12.html">Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter13.html">Local Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter14.html">Synthetic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter15.html">Efficiency &amp; Limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/chapter1.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp/edit/master/notebooks/chapter1.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp/issues/new?title=Issue%20on%20page%20%2Fchapter1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>De-identification</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminaries">Preliminaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">De-identification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linkage-attacks">Linkage Attacks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-hard-is-it-to-re-identify-karrie">How Hard is it to Re-Identify Karrie?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#is-karrie-special">Is Karrie Special?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-people-can-we-re-identify">How Many People can we Re-Identify?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation">Aggregation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-of-small-groups">Problem of Small Groups</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#differencing-attacks">Differencing Attacks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-malicious-queries">On Malicious Queries</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="de-identification">
+<h1>De-identification<a class="headerlink" href="#de-identification" title="Permalink to this heading">#</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p>Define the following concepts:</p>
+<ul>
+<li><p>De-identification</p></li>
+<li><p>Re-identification</p></li>
+<li><p>Identifying information / personally identifying information</p></li>
+<li><p>Linkage attacks</p></li>
+<li><p>Aggregation and aggregate statistics</p></li>
+<li><p>Differencing attacks</p></li>
+</ul>
+</li>
+<li><p>Perform a linkage attack</p></li>
+<li><p>Perform a differencing attack</p></li>
+<li><p>Explain the limitations of de-identification techniques</p></li>
+<li><p>Explain the limitations of aggregate statistics</p></li>
+</ul>
+</div>
+<section id="preliminaries">
+<h2>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this heading">#</a></h2>
+<p>Download the dataset by clicking <a class="reference external" href="https://github.com/uvm-plaid/programming-dp/raw/master/notebooks/adult_with_pii.csv">here</a> and placing them in the same directory as this notebook.</p>
+<p>The dataset is based on census data. The personally identifiable information (PII) is made up.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;adult_with_pii.csv&quot;</span><span class="p">)</span>
+<span class="n">adult</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="c1"># Display the first 6 columns of the DataFrame</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>DOB</th>
+      <th>SSN</th>
+      <th>Zip</th>
+      <th>Workclass</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Karrie Trusslove</td>
+      <td>9/7/1967</td>
+      <td>732-14-6110</td>
+      <td>64152</td>
+      <td>State-gov</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Brandise Tripony</td>
+      <td>6/7/1988</td>
+      <td>150-19-2766</td>
+      <td>61523</td>
+      <td>Self-emp-not-inc</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Brenn McNeely</td>
+      <td>8/6/1991</td>
+      <td>725-59-9860</td>
+      <td>95668</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Dorry Poter</td>
+      <td>4/6/2009</td>
+      <td>659-57-4974</td>
+      <td>25503</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Dick Honnan</td>
+      <td>9/16/1951</td>
+      <td>220-93-3811</td>
+      <td>75387</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>32558</th>
+      <td>Ardyce Golby</td>
+      <td>10/29/1961</td>
+      <td>212-61-8338</td>
+      <td>41328</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>32559</th>
+      <td>Jean O'Connor</td>
+      <td>6/28/1952</td>
+      <td>737-32-2919</td>
+      <td>94735</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>32560</th>
+      <td>Reuben Skrzynski</td>
+      <td>8/9/1966</td>
+      <td>314-48-0219</td>
+      <td>49628</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>32561</th>
+      <td>Caye Biddle</td>
+      <td>5/19/1978</td>
+      <td>647-75-3550</td>
+      <td>8213</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>32562</th>
+      <td>Hortense Hardesty</td>
+      <td>5/11/2012</td>
+      <td>690-42-5638</td>
+      <td>86153</td>
+      <td>Self-emp-inc</td>
+    </tr>
+  </tbody>
+</table>
+<p>32563 rows × 5 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id1">
+<h2>De-identification<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p><em>De-identification</em> is the process of removing <em>identifying information</em> from a dataset. The term <em>de-identification</em> is sometimes used synonymously with the terms <em>anonymization</em> and <em>pseudonymization</em>.</p>
+<p>Identifying information has no formal definition. It is usually understood to be information which would be used to identify us uniquely in the course of daily life - name, address, phone number, e-mail address, etc. As we will see later, it’s <em>impossible</em> to formalize the concept of identifying information, because <em>all</em> information is identifying. The term <em>personally identifiable information (PII)</em> is often used synonymously with identifying information.</p>
+<p>How do we de-identify information? Easy - we just remove the columns that contain identifying information!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult_sans_pii</span> <span class="o">=</span> <span class="n">adult</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;SSN&#39;</span><span class="p">])</span>
+<span class="n">adult_pii</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;SSN&#39;</span><span class="p">,</span> <span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">]]</span>
+<span class="n">adult_sans_pii</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">5</span><span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DOB</th>
+      <th>Zip</th>
+      <th>Workclass</th>
+      <th>Education</th>
+      <th>Education-Num</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>9/7/1967</td>
+      <td>64152</td>
+      <td>State-gov</td>
+      <td>Bachelors</td>
+      <td>13</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We’ll save some of the identifying information for later, when we’ll use it as <em>auxiliary data</em> to perform a <em>re-identification</em> attack.</p>
+</section>
+<section id="linkage-attacks">
+<h2>Linkage Attacks<a class="headerlink" href="#linkage-attacks" title="Permalink to this heading">#</a></h2>
+<p>Imagine we want to determine the income of a friend from our de-identified data. Names have been removed, but we happen to know some auxiliary information about our friend. Our friend’s name is Karrie Trusslove, and we know Karrie’s date of birth and zip code.</p>
+<p>To perform a simple <em>linkage attack</em>, we look at the overlapping columns between the dataset we’re trying to attack, and the auxiliary data we know. In this case, both datasets have dates of birth and zip codes. We look for rows in the dataset we’re attacking with dates of birth and zip codes that match Karrie’s date of birth and zip code. In databases, this is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Join_(SQL)">join</a> of two tables, and we can do it in Pandas using <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.merge.html">merge</a>. If there is only one such row, we’ve found Karrie’s row in the dataset we’re attacking.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">karries_row</span> <span class="o">=</span> <span class="n">adult_pii</span><span class="p">[</span><span class="n">adult_pii</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Karrie Trusslove&#39;</span><span class="p">]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_sans_pii</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">])</span>
+<span class="n">r</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    &lt;=50K
+Name: Target, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Indeed, there is only one row that matches. We have used auxiliary data to re-identify an individual in a de-identified dataset, and we’re able to infer that Karrie’s income is less than $50k.</p>
+<section id="how-hard-is-it-to-re-identify-karrie">
+<h3>How Hard is it to Re-Identify Karrie?<a class="headerlink" href="#how-hard-is-it-to-re-identify-karrie" title="Permalink to this heading">#</a></h3>
+<p>This scenario is made up, but linkage attacks are surprisingly easy to perform in practice. How easy? It turns out that in many cases, just one data point is sufficient to pinpoint a row!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_sans_pii</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>SSN</th>
+      <th>DOB_x</th>
+      <th>Zip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Karrie Trusslove</td>
+      <td>732-14-6110</td>
+      <td>9/7/1967</td>
+      <td>64152</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>So ZIP code is sufficient <strong>by itself</strong> to allow us to re-identify Karrie. What about date of birth?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">karries_row</span><span class="p">,</span> <span class="n">adult_sans_pii</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">])</span>
+<span class="n">r</span><span class="p">[[</span><span class="s1">&#39;Target&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Occupation&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Target</th>
+      <th>Sex</th>
+      <th>Occupation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>&lt;=50K</td>
+      <td>Male</td>
+      <td>Adm-clerical</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>&lt;=50K</td>
+      <td>Female</td>
+      <td>Farming-fishing</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>&gt;50K</td>
+      <td>Male</td>
+      <td>Exec-managerial</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This time, there are three rows returned - and we don’t know which one is the real Karrie. But we’ve still learned a lot!</p>
+<ul class="simple">
+<li><p>We know that there’s a 2/3 chance that Karrie’s income is less than $50k</p></li>
+<li><p>We can look at the differences between the rows to determine what additional auxiliary information would <em>help</em> us to distinguish them (e.g. sex, occupation, marital status)</p></li>
+</ul>
+</section>
+<section id="is-karrie-special">
+<h3>Is Karrie Special?<a class="headerlink" href="#is-karrie-special" title="Permalink to this heading">#</a></h3>
+<p>How hard is it to re-identify others in the dataset? Is Karrie especially easy or especially difficult to re-identify? A good way to gauge the effectiveness of this type of attack is to look at how “selective” certain pieces of data are - how good they are at narrowing down the set of potential rows which may belong to the target individual. For example, is it common for birthdates to occur more than once?</p>
+<p>We’d like to get an idea of how many dates of birth are likely to be useful in performing an attack, which we can do by looking at how common “unique” dates of birth are in the dataset. The histogram below shows that <em>the vast majority</em> of dates of birth occur 1, 2, or 3 times in the dataset, and <em>no date of birth</em> occurs more than 8 times. This means that date of birth is fairly <em>selective</em> - it’s effective in narrowing down the possible records for an individual.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult_pii</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span> <span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Dates of Birth&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Occurrences&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/2f362ca96353a7ff2fa5da7beb5b6ede32418b02dafa3cae6fcd45f71216f12c.png" src="_images/2f362ca96353a7ff2fa5da7beb5b6ede32418b02dafa3cae6fcd45f71216f12c.png" />
+</div>
+</div>
+<p>We can do the same thing with ZIP codes, and the results are even worse - ZIP code happens to be <em>very</em> selective in this dataset. Nearly all the ZIP codes occur only once.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult_pii</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of ZIP Codes&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Occurrences&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/098066e368c81a958c2f22c9d8aab6a616b894a5a995ff907c146bd12a69509d.png" src="_images/098066e368c81a958c2f22c9d8aab6a616b894a5a995ff907c146bd12a69509d.png" />
+</div>
+</div>
+</section>
+<section id="how-many-people-can-we-re-identify">
+<h3>How Many People can we Re-Identify?<a class="headerlink" href="#how-many-people-can-we-re-identify" title="Permalink to this heading">#</a></h3>
+<p>In this dataset, how many people can we re-identify uniquely? We can use our auxiliary information to find out! First, let’s see what happens with just dates of birth. We want to know how many <em>possible identities</em> are returned for each data record in the dataset. The following histogram shows the number of records with each number of possible identities. The results show that we can uniquely identify almost 7,000 of the data records (out of about 32,000), and an additional 10,000 data records are narrowed down to two possible identities.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attack</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">adult_pii</span><span class="p">,</span> <span class="n">adult_sans_pii</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">])</span>
+<span class="n">attack</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/eda3f4a15a10db748e143519122a1f63b858f221aa03acbf07644475ea637cfa.png" src="_images/eda3f4a15a10db748e143519122a1f63b858f221aa03acbf07644475ea637cfa.png" />
+</div>
+</div>
+<p>So it’s not possible to re-identify a majority of individuals using <em>just</em> date of birth. What if we collect more information, to narrow things down further? If we use both date of birth and ZIP, we’re able to do much better. In fact, we’re able to uniquely re-identify basically the whole dataset.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attack</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">adult_pii</span><span class="p">,</span> <span class="n">adult_sans_pii</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">])</span>
+<span class="n">attack</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/3d22936c54fbd85b06b7437d2a3f3b9a5eaef74042210682769b2e5f269aefb3.png" src="_images/3d22936c54fbd85b06b7437d2a3f3b9a5eaef74042210682769b2e5f269aefb3.png" />
+</div>
+</div>
+<p>When we use both pieces of information, we can re-identify <strong>essentially everyone</strong>. This is a surprising result, since we generally assume that many people share the same birthday, and many people live in the same ZIP code. It turns out that the <em>combination</em> of these factors is <strong>extremely</strong> selective. According to Latanya Sweeney’s work <span id="id2">[<a class="reference internal" href="bibliography.html#id9" title="Latanya Sweeney. Simple demographics often identify people uniquely. URL: https://dataprivacylab.org/projects/identifiability/.">7</a>]</span>, 87% of people in the US can be uniquely re-identified by the combination of date of birth, gender, and ZIP code.</p>
+<p>Let’s just check that we’ve actually re-identified <em>everyone</em>, by printing out the number of possible data records for each identity:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attack</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barnabe Haime      2
+Antonin Chittem    2
+Inger Bachura      1
+Adolph Armfirld    1
+Reamonn Gurnay     1
+Name: Name, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looks like we missed two people! In other words, in this dataset, only <strong>two people</strong> share a combination of ZIP code and date of birth.</p>
+</section>
+</section>
+<section id="aggregation">
+<h2>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this heading">#</a></h2>
+<p>Another way to prevent the release of private information is to release only <em>aggregate</em> data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.77250253355035
+</pre></div>
+</div>
+</div>
+</div>
+<section id="problem-of-small-groups">
+<h3>Problem of Small Groups<a class="headerlink" href="#problem-of-small-groups" title="Permalink to this heading">#</a></h3>
+<p>In many cases, aggregate statistics are broken down into smaller groups. For example, we might want to know the average age of people with a particular education level.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[[</span><span class="s1">&#39;Education&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Education&#39;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Education</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10th</td>
+      <td>42.032154</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>11th</td>
+      <td>42.057021</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>12th</td>
+      <td>41.879908</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Aggregation is supposed to improve privacy because it’s hard to identify the contribution of a particular individual to the aggregate statistic. But what if we aggregate over a group with just <em>one person</em> in it? In that case, the aggregate statistic reveals one person’s age <em>exactly</em>, and provides no privacy protection at all! In our dataset, most individuals have a unique ZIP code - so if we compute the average age by ZIP code, then most of the “averages” actually reveal an individual’s exact age.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[[</span><span class="s1">&#39;Zip&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Zip&#39;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Zip</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4</td>
+      <td>72.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>12</td>
+      <td>46.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>16</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>17</td>
+      <td>31.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>18</td>
+      <td>40.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The US Census Bureau, for example, releases aggregate statistics at the <a class="reference external" href="https://www.census.gov/newsroom/blogs/random-samplings/2011/07/what-are-census-blocks.html"><em>block level</em></a>. Some census blocks have large populations, but some have a population of zero! The situation above, where small groups prevent aggregation from hiding information about individuals, turns out to be quite common.</p>
+<p>How big a group is “big enough” for aggregate statistics to help? It’s hard to say - it depends on the data and on the attack - so it’s challenging to build confidence that aggregate statistics are really privacy-preserving. However, even very large groups do not make aggregation completely robust against attacks, as we will see next.</p>
+</section>
+<section id="differencing-attacks">
+<h3>Differencing Attacks<a class="headerlink" href="#differencing-attacks" title="Permalink to this heading">#</a></h3>
+<p>The problems with aggregation get even worse when you release multiple aggregate statistics over the same data. For example, consider the following two summation queries over large groups in our dataset (the first over the whole dataset, and the second over all records except one):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1360238
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;Karrie Trusslove&#39;</span><span class="p">][</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1360182
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we know both answers, we can simply take the difference and determine Karrie’s age completely! This kind of attack can proceed even if the aggregate statistics are over <em>very large groups</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">adult</span><span class="p">[</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;Karrie Trusslove&#39;</span><span class="p">][</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>56
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="on-malicious-queries">
+<h3>On Malicious Queries<a class="headerlink" href="#on-malicious-queries" title="Permalink to this heading">#</a></h3>
+<p>A recurring theme in privacy-preserving data analysis is that <strong>distinguishing between malicious and non-malicious queries is not possible</strong>. This limitation is especially important in the context of de-identified or aggregated data, where we might be tempted to assume that certain queries are “safe” simply because they appear innocuous on the surface.</p>
+<p>The problem is that an attacker doesn’t need to issue obviously suspicious queries to violate privacy. Often, the danger lies in combinations of seemingly benign queries whose results can be synthesized to extract sensitive information. For example, asking for the sum of all ages in a dataset and then asking for the sum with a single individual removed can allow an attacker to learn that individual’s exact age via differencing—even though neither query, by itself, looks malicious.</p>
+<p>From the system’s point of view, there is no inherent difference between a privacy-respecting query and an attack. The queries themselves are just instructions for computation. Their intent is not part of the query syntax, and there is no reliable way to detect whether a query is part of a larger strategy to extract sensitive information. In fact, even if we were to limit access to queries that were pre-approved or whitelisted, this wouldn’t prevent clever users from chaining together allowable queries to infer private values.</p>
+<p>This <em>indistinguishability</em> is part of why ad hoc approaches to privacy, like de-identification or aggregation alone, tend to fail. They rely on implicit assumptions about how the data will be used and who is asking the questions. But in practice, we cannot guarantee those assumptions hold, especially once data is released or exposed to external users.</p>
+<p>Differential privacy was designed to address exactly this challenge. It provides formal guarantees that hold regardless of what queries are asked or what auxiliary information the adversary possesses. Under differential privacy, <strong>all queries—malicious or not—are treated uniformly</strong>, and privacy is maintained by controlling the output distributions themselves, not by attempting to guess the user’s intent.</p>
+<div class="admonition-summary admonition">
+<p class="admonition-title">Summary</p>
+<ul class="simple">
+<li><p>A <em>linkage attack</em> involves combining <em>auxiliary data</em> with <em>de-identified data</em> to <em>re-identify</em> individuals.</p></li>
+<li><p>In the simplest case, a linkage attack can be performed via a <em>join</em> of two tables containing these datasets.</p></li>
+<li><p>Simple linking attacks are surprisingly effective:</p>
+<ul>
+<li><p>Just a single data point is sufficient to narrow things down to a few records.</p></li>
+<li><p>The narrowed-down set of records helps suggest additional auxiliary data which might be helpful.</p></li>
+<li><p>Two data points are often good enough to re-identify a huge fraction of the population in a particular dataset.</p></li>
+<li><p>Three data points (gender, ZIP code, date of birth) uniquely identify 87% of people in the US.</p></li>
+</ul>
+</li>
+<li><p>Releasing <em>data</em> that is useful makes ensuring <em>privacy</em> very difficult.</p></li>
+<li><p>Distinguishing between <em>malicious</em> and <em>non-malicious</em> queries is not possible.</p></li>
+</ul>
+</div>
+<div class="admonition-glossary admonition">
+<p class="admonition-title">Glossary</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Join_(SQL)">Join (SQL) — Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Select_(SQL)#GROUP_BY">Group by (SQL) — Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Census_block">Census block — Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.merge.html"><code class="docutils literal notranslate"><span class="pre">pandas.merge()</span></code></a>: Perform SQL-style joins in <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.groupby()</span></code></a>: Split data into groups based on values in columns.</p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html"><code class="docutils literal notranslate"><span class="pre">pandas.read_csv()</span></code></a>: Read a CSV file into a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chapter2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">k-Anonymity</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminaries">Preliminaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">De-identification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linkage-attacks">Linkage Attacks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-hard-is-it-to-re-identify-karrie">How Hard is it to Re-Identify Karrie?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#is-karrie-special">Is Karrie Special?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-people-can-we-re-identify">How Many People can we Re-Identify?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation">Aggregation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-of-small-groups">Problem of Small Groups</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#differencing-attacks">Differencing Attacks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-malicious-queries">On Malicious Queries</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Joseph P. Near and Chiké Abuah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright © 2025 Joseph P. Near and Chiké Abuah.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -486,7 +486,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/efcbfe81c05f80bf824fa550a4708f363a464d0ce95fa9b9b9a4628d23eba1ab.png" src="_images/efcbfe81c05f80bf824fa550a4708f363a464d0ce95fa9b9b9a4628d23eba1ab.png" />
+<img alt="_images/9105dae48278ca5b1f842cf73cad6dc1cfa8ddd2da91a73803d0daec73925e0d.png" src="_images/9105dae48278ca5b1f842cf73cad6dc1cfa8ddd2da91a73803d0daec73925e0d.png" />
 </div>
 </div>
 <p>我们绘制出<code class="docutils literal notranslate"><span class="pre">F1</span></code>和<code class="docutils literal notranslate"><span class="pre">F3</span></code>的输出概率分布图。可以看出，<code class="docutils literal notranslate"><span class="pre">F3</span></code>的输出概率分布看起来比<code class="docutils literal notranslate"><span class="pre">F1</span></code>的更”尖”，这是因为<span class="math notranslate nohighlight">\(\epsilon\)</span>取值越大意味着隐私保护程度越低，因此输出结果远离真实结果的可能性也就越小。</p>
@@ -508,7 +508,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/70de6a17781159d0d8754041c8f13d762808514aa28f48d233c0cfe243968327.png" src="_images/70de6a17781159d0d8754041c8f13d762808514aa28f48d233c0cfe243968327.png" />
+<img alt="_images/07df1c25f12f383719a6d98a9f45223745776ad8b4c41e91bbf7afbc44c0c79f.png" src="_images/07df1c25f12f383719a6d98a9f45223745776ad8b4c41e91bbf7afbc44c0c79f.png" />
 </div>
 </div>
 <p>我们再绘制出<code class="docutils literal notranslate"><span class="pre">F1</span></code>和<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出概率分布图。可以看出，<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出概率分布图更尖。这意味着<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的输出结果比<code class="docutils literal notranslate"><span class="pre">F1</span></code>的输出结果更准确，对应的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值一定更大（即<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>的隐私保护程度比<code class="docutils literal notranslate"><span class="pre">F1</span></code>更低）。</p>
@@ -530,7 +530,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/37eed101185da62dbb6b2c7cc121fd4c68dd9116c87d6c9aedb00d8d925939b7.png" src="_images/37eed101185da62dbb6b2c7cc121fd4c68dd9116c87d6c9aedb00d8d925939b7.png" />
+<img alt="_images/0c6918849d7b742074b06b5c6bc6a52fa678395c62b86eb319f1659d190edd57.png" src="_images/0c6918849d7b742074b06b5c6bc6a52fa678395c62b86eb319f1659d190edd57.png" />
 </div>
 </div>
 <p>那<code class="docutils literal notranslate"><span class="pre">F3</span></code>和<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>呢？回想一下，这两种机制的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值相等，<span class="math notranslate nohighlight">\(\epsilon\)</span>都等于2。他们的输出概率分布看起来应该也相同才对。</p>
@@ -552,7 +552,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/de1105009992bf967c8ff2402e1f910f4d98b6479f8268466b8b146060ef9635.png" src="_images/de1105009992bf967c8ff2402e1f910f4d98b6479f8268466b8b146060ef9635.png" />
+<img alt="_images/985f2cdded185658daf0ef3e047bf04b192ce96de57025bea521c22078e69d20.png" src="_images/985f2cdded185658daf0ef3e047bf04b192ce96de57025bea521c22078e69d20.png" />
 </div>
 </div>
 <p>实际上，<code class="docutils literal notranslate"><span class="pre">F3</span></code>看起来更”尖”！为什么会这样呢？请记住，串行组合性给出了多次发布后总<span class="math notranslate nohighlight">\(\epsilon\)</span>的<em>上界</em>，实际发布的累积隐私消耗量可能会更低一些。这也是<code class="docutils literal notranslate"><span class="pre">F3</span></code>看起来更”尖”，而<code class="docutils literal notranslate"><span class="pre">F_combined</span></code>看起来更”平”的原因：实际隐私消耗量似乎比串行组合性给出的<span class="math notranslate nohighlight">\(\epsilon\)</span>上界要低一些。当控制总隐私消耗量时，串行组合性是一个极为有用的方法。我们后面将会通过各种不同的方式应用串行组合性。但请特别注意，串行组合性给出的隐私消耗量不一定是严格准确的，而是一个上界。</p>
@@ -667,23 +667,23 @@ document.write(`
   <tbody>
     <tr>
       <th>HS-grad</th>
-      <td>10502.810524</td>
+      <td>10501.268002</td>
     </tr>
     <tr>
       <th>Some-college</th>
-      <td>7291.822176</td>
+      <td>7292.076401</td>
     </tr>
     <tr>
       <th>Bachelors</th>
-      <td>5355.113511</td>
+      <td>5354.683705</td>
     </tr>
     <tr>
       <th>Masters</th>
-      <td>1720.292651</td>
+      <td>1723.017845</td>
     </tr>
     <tr>
       <th>Assoc-voc</th>
-      <td>1381.481638</td>
+      <td>1380.117712</td>
     </tr>
   </tbody>
 </table>
@@ -797,28 +797,28 @@ document.write(`
   <tbody>
     <tr>
       <th>10th</th>
-      <td>295.143656</td>
-      <td>639.105460</td>
+      <td>294.514425</td>
+      <td>640.567572</td>
     </tr>
     <tr>
       <th>11th</th>
-      <td>431.911675</td>
-      <td>742.762960</td>
+      <td>432.039845</td>
+      <td>742.209002</td>
     </tr>
     <tr>
       <th>12th</th>
-      <td>143.897874</td>
-      <td>288.788142</td>
+      <td>145.582818</td>
+      <td>289.241496</td>
     </tr>
     <tr>
       <th>1st-4th</th>
-      <td>46.650903</td>
-      <td>120.352085</td>
+      <td>46.596091</td>
+      <td>119.188428</td>
     </tr>
     <tr>
       <th>5th-6th</th>
-      <td>83.985726</td>
-      <td>251.136411</td>
+      <td>83.659549</td>
+      <td>245.911577</td>
     </tr>
   </tbody>
 </table>

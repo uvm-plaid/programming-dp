@@ -508,7 +508,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9883.848974056036
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9875.323088468622
 </pre></div>
 </div>
 </div>
@@ -529,8 +529,8 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>合成表示误差率：0.008117906427818183
-拉普拉斯机制误差率：0.06905086057494374
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>合成表示误差率：0.13856418899407297
+拉普拉斯机制误差率：0.19531531759608722
 </pre></div>
 </div>
 </div>
@@ -551,8 +551,8 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>合成表示误差率：0.0717988682238144
-拉普拉斯机制误差率：0.006927764897509157
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>合成表示误差率：0.09360393133632365
+拉普拉斯机制误差率：0.000484186721211293
 </pre></div>
 </div>
 </div>
@@ -593,7 +593,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/1dde65f1c4ff9a46206d82bb0a5e5c35c4c260c77e0dd3da4b5a43fa047b8920.png" src="_images/1dde65f1c4ff9a46206d82bb0a5e5c35c4c260c77e0dd3da4b5a43fa047b8920.png" />
+<img alt="_images/6fed75175b555cafbe880a1333f6555520155333eebf91ea9ada9979e5585788.png" src="_images/6fed75175b555cafbe880a1333f6555520155333eebf91ea9ada9979e5585788.png" />
 </div>
 </div>
 <p>最后一步是基于这些概率值生成新的样本。我们可以使用<code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code>函数，其第一个输入参数（对应参数<code class="docutils literal notranslate"><span class="pre">p</span></code>）可以为表示各个属性值采样概率的概率列表。此函数实现的就是我们采样任务所需的加权采样功能。因为获得计数值的过程已经满足差分隐私，我们可以在无需额外隐私预算的条件下生成任意数量的样本。</p>
@@ -632,23 +632,23 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>34</td>
+      <td>52</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>55</td>
+      <td>25</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>36</td>
+      <td>28</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>23</td>
+      <td>65</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>22</td>
+      <td>41</td>
     </tr>
   </tbody>
 </table>
@@ -671,7 +671,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/4086358aebf94088c878b1296eba408f068f42b9816344c00520e92464e761e3.png" src="_images/4086358aebf94088c878b1296eba408f068f42b9816344c00520e92464e761e3.png" />
+<img alt="_images/2bc5858e5696098e565087a7af00f3c001538d546236692302ec76e157612c9d.png" src="_images/2bc5858e5696098e565087a7af00f3c001538d546236692302ec76e157612c9d.png" />
 </div>
 </div>
 <p>我们现在可以回答均值问询、范围问询等等之前看到的一些问询了：</p>
@@ -690,9 +690,9 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄均值，合成结果：38.508
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄均值，合成结果：38.5645
 年龄均值，真实结果：38.58164675532078
-误差率：0.19125053318993518
+误差率：0.04446253762081829
 </pre></div>
 </div>
 </div>
@@ -712,9 +712,9 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄范围问询，合成结果：9079
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄范围问询，合成结果：9114
 年龄范围问询，真实结果：29568
-误差率：69.29450757575758
+误差率：69.17613636363636
 </pre></div>
 </div>
 </div>
@@ -738,9 +738,9 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄范围问询，合成结果：29511
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄范围问询，合成结果：29561
 年龄范围问询，真实结果：29568
-误差率：0.19277597402597402
+误差率：0.023674242424242424
 </pre></div>
 </div>
 </div>
@@ -920,7 +920,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.0007810211899658743)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.0007598557617830011)
 </pre></div>
 </div>
 </div>
@@ -964,28 +964,28 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>47</td>
+      <td>35</td>
       <td>Exec-managerial</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>25</td>
-      <td>Exec-managerial</td>
+      <td>23</td>
+      <td>Craft-repair</td>
     </tr>
     <tr>
       <th>2</th>
       <td>27</td>
-      <td>Sales</td>
+      <td>Adm-clerical</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>35</td>
-      <td>Craft-repair</td>
+      <td>29</td>
+      <td>Adm-clerical</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>51</td>
-      <td>Prof-specialty</td>
+      <td>40</td>
+      <td>Adm-clerical</td>
     </tr>
   </tbody>
 </table>
@@ -1007,7 +1007,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/642e4db877c7240c824daeec23d8bacd6fd4f41a59f8895464dbb33b62ae4d15.png" src="_images/642e4db877c7240c824daeec23d8bacd6fd4f41a59f8895464dbb33b62ae4d15.png" />
+<img alt="_images/8c9e3e184d6c04ebe4dd516620e22f836260c5599aafe2eedf006b8e4cf68bc9.png" src="_images/8c9e3e184d6c04ebe4dd516620e22f836260c5599aafe2eedf006b8e4cf68bc9.png" />
 </div>
 </div>
 <p>当我们只对年龄列进行问询时，会看到相同的准确度损失问题：</p>
@@ -1026,7 +1026,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>使用合成数据的误差率： 1.8996771790414702
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>使用合成数据的误差率： 1.9369257511795381
 </pre></div>
 </div>
 </div>

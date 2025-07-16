@@ -430,14 +430,14 @@ document.write(`
 </ul>
 </div>
 <p>我们在讲解拉普拉斯机制时曾提到，使问询满足差分隐私所需的噪声量取决于问询的<em>敏感度</em>。简单来说，函数的敏感度反应了函数输入发生变化时对应输出的变化程度。回想一下，拉普拉斯机制定义了下述机制<span class="math notranslate nohighlight">\(F(x)\)</span>：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0b8604e2-2dea-41ed-8a89-095d690c67c1">
-<span class="eqno">(3)<a class="headerlink" href="#equation-0b8604e2-2dea-41ed-8a89-095d690c67c1" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8a41f8ae-ac3d-430c-800d-3ca8d65475b8">
+<span class="eqno">(3)<a class="headerlink" href="#equation-8a41f8ae-ac3d-430c-800d-3ca8d65475b8" title="公式的永久链接">#</a></span>\[\begin{align}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{align}\]</div>
 <p>其中<span class="math notranslate nohighlight">\(f(x)\)</span>（即问询函数）是确定性函数，<span class="math notranslate nohighlight">\(\epsilon\)</span>是隐私参数，而<span class="math notranslate nohighlight">\(s\)</span>就是<span class="math notranslate nohighlight">\(f\)</span>的敏感度。</p>
 <p>给定一个将数据集（<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>）映射为实数的函数<span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span>，<span class="math notranslate nohighlight">\(f\)</span>的<em>全局敏感度</em>（Global Sensitivity）定义如下：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f9ed1f43-a619-464b-8c43-389f2acd0bca">
-<span class="eqno">(4)<a class="headerlink" href="#equation-f9ed1f43-a619-464b-8c43-389f2acd0bca" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fff23157-f7f6-4443-9330-92a7852bb5b2">
+<span class="eqno">(4)<a class="headerlink" href="#equation-fff23157-f7f6-4443-9330-92a7852bb5b2" title="公式的永久链接">#</a></span>\[\begin{align}
 GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 \end{align}\]</div>
 <p>其中<span class="math notranslate nohighlight">\(d(x, x')\)</span>表示两个数据集<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(x'\)</span>之间的<em>距离</em>（Distance）。如果两个数据集之间的距离小于等于1，我们称这两个数据集是<em>临近集</em>（Neighbor）。数据集的距离定义会对隐私定义带来很大的影响。我们稍后将讨论如何度量数据集之间的距离。</p>
@@ -446,8 +446,8 @@ GS(f) = \max_{x, x': d(x,x') &lt;= 1} |f(x) - f(x')|
 <h2>距离<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>可以用很多不同的方法来度量前面提到的距离<span class="math notranslate nohighlight">\(d(x,x')\)</span>。直观来看，如果两个数据集中只有一个个体的数据不一样，则这两个数据集之间的距离应该等于1（即这两个数据集是临近集）。很容易在某些场景下用数学语言定义距离度量方法（例如，在美国人口普查场景中，每个个体都只贡献一条自己的数据）。但在另一些场景下（如位置轨迹、社交网络、时序数据等场景），用数学语言定义距离度量方法颇具挑战。</p>
 <p>对于按行存储的数据集，通常会把距离定义为有多少行数据值不相同。当每一行仅包含单一个体的数据时，此种距离度量方法一般都是合理的。如果用数学语言描述，此距离度量方法可以由两个数据集的<em>对称差</em>（Symmetric Difference）所定义：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cb354cb8-2bfe-49ed-9f22-b5e764d2e6e3">
-<span class="eqno">(5)<a class="headerlink" href="#equation-cb354cb8-2bfe-49ed-9f22-b5e764d2e6e3" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-54b11ad3-ef4f-40ef-8333-3c60c294734a">
+<span class="eqno">(5)<a class="headerlink" href="#equation-54b11ad3-ef4f-40ef-8333-3c60c294734a" title="公式的永久链接">#</a></span>\[\begin{align}
 d(x, x') = | x - x' \cup x' - x |
 \end{align}\]</div>
 <p>这个特殊定义有几个有趣且重要的含义：</p>
@@ -479,7 +479,7 @@ d(x, x') = | x - x' \cup x' - x |
 <span class="kn">from</span> <span class="nn">mplfonts</span> <span class="kn">import</span> <span class="n">use_font</span>
 <span class="n">use_font</span><span class="p">(</span><span class="s1">&#39;SimHei&#39;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="c1"># plt.style.use(&#39;seaborn-whitegrid&#39;)</span>
+<span class="c1"># plt.style.use(&#39;seaborn-v0_8-whitegrid&#39;)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
 
 <span class="n">adult</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;adult_with_pii.csv&quot;</span><span class="p">)</span>
@@ -658,7 +658,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/124032f2ecba9abb481911905baee11474f07bd8824380e4b7c84c6ea3a3db49.png" src="_images/124032f2ecba9abb481911905baee11474f07bd8824380e4b7c84c6ea3a3db49.png" />
+<img alt="_images/83eabb89b6acb552c2e5984a4df21f4d9829221cf44a5f20658f7defdbe40dcd.png" src="_images/83eabb89b6acb552c2e5984a4df21f4d9829221cf44a5f20658f7defdbe40dcd.png" />
 </div>
 </div>
 <p>我们进行了100次<span class="math notranslate nohighlight">\(\epsilon_i = 0.01\)</span>的问询。因此，根据串行组合性，构建上图的总隐私消耗量为<span class="math notranslate nohighlight">\(\epsilon = 1\)</span>。显然，问询结果在<code class="docutils literal notranslate"><span class="pre">upper</span> <span class="pre">=</span> <span class="pre">80</span></code>附近趋于平稳，把80作为裁剪边界是个不错的选择。</p>
@@ -681,7 +681,7 @@ d(x, x') = | x - x' \cup x' - x |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/1ca224de3a83ce33cd8508b1e2b00ae6ab71c8fb7a04f04103a8d74d21a0c68a.png" src="_images/1ca224de3a83ce33cd8508b1e2b00ae6ab71c8fb7a04f04103a8d74d21a0c68a.png" />
+<img alt="_images/e3923967d8f3cc8ec9ad0366eb42c7df87c4ff30226932d4ab0c1a7a4d7d538c.png" src="_images/e3923967d8f3cc8ec9ad0366eb42c7df87c4ff30226932d4ab0c1a7a4d7d538c.png" />
 </div>
 </div>
 <p>这样一来，我们通过少量问询就可以测试大量可能的裁剪边界取值，但代价是很难准确地找到完美的裁剪边界。当上界的取值变得非常大时，噪声就会开始淹没信号了。在裁剪取值达到最大时，图中年龄求和结果波动得非常剧烈！关键是要在图中找到一个相对平滑（意味着噪声小）且求和结果不再增加（意味着裁剪边界足够大）的裁剪边界取值区域。在这个例子中，上界大约为<span class="math notranslate nohighlight">\(2^8 = 256\)</span>。这个结果相对比较合理，与我们前面推导出的年龄上界已经比较接近了。</p>

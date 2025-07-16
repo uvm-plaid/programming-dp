@@ -511,8 +511,8 @@ document.write(`
 <h2>模型是什么？<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>模型到底<em>是</em>什么？它是如何编码预测所用信息的？</p>
 <p>有很多种不同类型的模型。这里我们要探讨的是<em>线性模型（Linear Model）</em>。给定一个包含<span class="math notranslate nohighlight">\(k\)</span>-维特征向量<span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>的无标签样本，线性模型预测此样本的标签时，将计算下述值：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e3e88d69-83ce-492c-b21c-41a64ae1f718">
-<span class="eqno">(33)<a class="headerlink" href="#equation-e3e88d69-83ce-492c-b21c-41a64ae1f718" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4d69c04a-2e22-4141-bece-5284a39dc08e">
+<span class="eqno">(33)<a class="headerlink" href="#equation-4d69c04a-2e22-4141-bece-5284a39dc08e" title="公式的永久链接">#</a></span>\[\begin{align}
 w_1 x_1 + \dots + w_k x_k + bias
 \end{align}\]</div>
 <p>并用此值的符号作为预测标签（如果此值为负数，则预测结果为-1；如果此值为正数，则预测结果为1）。</p>
@@ -876,13 +876,13 @@ w_1 x_1 + \dots + w_k x_k + bias
 <section id="id7">
 <h3>梯度裁剪<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
 <p>回想一下，在实现”采样-聚合”框架时，我们裁剪未知敏感度函数<span class="math notranslate nohighlight">\(f\)</span>的输出，强制限定<span class="math notranslate nohighlight">\(f\)</span>的敏感度上界。<span class="math notranslate nohighlight">\(f\)</span>的敏感度为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2fbdb675-2cfc-4706-a52f-c79ef80a29ab">
-<span class="eqno">(34)<a class="headerlink" href="#equation-2fbdb675-2cfc-4706-a52f-c79ef80a29ab" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dd42dfc3-63b4-4be4-9a23-9ccd04e2acec">
+<span class="eqno">(34)<a class="headerlink" href="#equation-dd42dfc3-63b4-4be4-9a23-9ccd04e2acec" title="公式的永久链接">#</a></span>\[\begin{align}
 \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>使用参数<span class="math notranslate nohighlight">\(b\)</span>裁剪后，上述表达式变为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2844344e-ef85-4cc5-a921-8c0e1bc2c3e7">
-<span class="eqno">(35)<a class="headerlink" href="#equation-2844344e-ef85-4cc5-a921-8c0e1bc2c3e7" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8c582803-cb89-402a-b975-f0a4c9b53f9b">
+<span class="eqno">(35)<a class="headerlink" href="#equation-8c582803-cb89-402a-b975-f0a4c9b53f9b" title="公式的永久链接">#</a></span>\[\begin{align}
 \lvert \mathsf{clip}(f(x), b) - \mathsf{clip}(f(x'),b) \rvert
 \end{align}\]</div>
 <p>最差情况下，<span class="math notranslate nohighlight">\(\mathsf{clip}(f(x), b) = b\)</span>，且<span class="math notranslate nohighlight">\(\mathsf{clip}(f(x'),b) = 0\)</span>，因此裁剪结果的敏感度为<span class="math notranslate nohighlight">\(b\)</span>（即敏感度等于裁剪参数）。</p>
@@ -901,8 +901,8 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <p>现在，我们可以开始分析裁剪梯度的敏感度了。我们将梯度表示为<span class="math notranslate nohighlight">\(\nabla(\theta; X, y)\)</span>（对应我们Python代码中的<code class="docutils literal notranslate"><span class="pre">gradient</span></code>）：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6714e19b-21e7-44b7-9c26-fac62748675b">
-<span class="eqno">(36)<a class="headerlink" href="#equation-6714e19b-21e7-44b7-9c26-fac62748675b" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3ca40ddf-c11a-4677-94e5-481cb98a76e3">
+<span class="eqno">(36)<a class="headerlink" href="#equation-3ca40ddf-c11a-4677-94e5-481cb98a76e3" title="公式的永久链接">#</a></span>\[\begin{align}
 \lVert \mathsf{L2\_clip}( \nabla (\theta; X, y), b) - \mathsf{L2\_clip}( \nabla (\theta; X', y), 0) \rVert_2
 \end{align}\]</div>
 <p>最差情况下，<span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X, y), b)\)</span>的<span class="math notranslate nohighlight">\(L2\)</span>范数为<span class="math notranslate nohighlight">\(b\)</span>，且<span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X', y))\)</span>全为0。此时，两者的<span class="math notranslate nohighlight">\(L2\)</span>范数差等于<span class="math notranslate nohighlight">\(b\)</span>。这样一来，我们成功用裁剪参数<span class="math notranslate nohighlight">\(b\)</span>限定了梯度的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界！</p>
@@ -952,7 +952,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7791906236178682
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7797434763379035
 </pre></div>
 </div>
 </div>
@@ -962,8 +962,8 @@ w_1 x_1 + \dots + w_k x_k + bias
 <section id="id8">
 <h3>梯度的敏感度<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <p>前面所述方法的普适性很高，因为此方法不需要假设梯度函数满足什么特定的要求。但是，我们有时<em>的确</em>对梯度函数有所了解。特别地，一大类常用的梯度函数（包括本章用到的对率损失梯度）是<em>利普希茨连续</em>（Lipschitz Continuous）的。这意味着这些梯度函数的全局敏感度是有界的。用数学语言描述，我们可以证明：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8902fcc6-e54d-44b8-9630-150511e4e8ca">
-<span class="eqno">(37)<a class="headerlink" href="#equation-8902fcc6-e54d-44b8-9630-150511e4e8ca" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a0cd1bde-ac44-4aab-b414-45829c156a8b">
+<span class="eqno">(37)<a class="headerlink" href="#equation-a0cd1bde-ac44-4aab-b414-45829c156a8b" title="公式的永久链接">#</a></span>\[\begin{align}
 \text{If}\; \lVert x_i \rVert_2 \leq b\; \text{then}\; \lVert \nabla(\theta; x_i, y_i) \rVert_2 \leq b
 \end{align}\]</div>
 <p>这一结论允许我们通过裁剪<em>训练样本</em>（即梯度函数的<em>输入</em>）来获得梯度函数的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界。这样，我们就不再需要裁剪梯度函数的<em>输出</em>了。</p>
@@ -1010,7 +1010,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7777532065457762
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7785272003538257
 </pre></div>
 </div>
 </div>
@@ -1063,7 +1063,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/fdad60b803679ba839b3ed49b7f8b782577abeb55e749ce680109c77839a55de.png" src="_images/fdad60b803679ba839b3ed49b7f8b782577abeb55e749ce680109c77839a55de.png" />
+<img alt="_images/5780e89552c1f10e9c8f7763702c9beabaaaea0057a47af5c99389aa25cb0025.png" src="_images/5780e89552c1f10e9c8f7763702c9beabaaaea0057a47af5c99389aa25cb0025.png" />
 </div>
 </div>
 <p>从上图可以看出，<span class="math notranslate nohighlight">\(\epsilon\)</span>非常小时会产生准确率非常低的模型。请记住，我们在图中指定的<span class="math notranslate nohighlight">\(\epsilon\)</span>是每轮迭代时使用的<span class="math notranslate nohighlight">\(\epsilon\)</span>，因此组合后的总隐私消耗量还要大得多。</p>
