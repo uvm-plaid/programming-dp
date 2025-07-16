@@ -1,0 +1,1091 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>k-Anonymity &#8212; Programming Differential Privacy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter2';</script>
+    <link rel="icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Differential Privacy" href="chapter3.html" />
+    <link rel="prev" title="De-identification" href="chapter1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="cover.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Programming Differential Privacy - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Programming Differential Privacy - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover.html">
+                    Cover
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="front.html">Front Matter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter1.html">De-identification</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">k-Anonymity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter4.html">Properties of Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter5.html">Sensitivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter6.html">Approximate Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter7.html">Local Sensitivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter8.html">Variants of Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter9.html">The Exponential Mechanism</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter10.html">The Sparse Vector Technique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter11.html">Design &amp; Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter12.html">Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter13.html">Local Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter14.html">Synthetic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter15.html">Efficiency &amp; Limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further.html">Further Reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/chapter2.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp/edit/master/notebooks/chapter2.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp/issues/new?title=Issue%20on%20page%20%2Fchapter2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>k-Anonymity</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-for-k-anonymity">Checking for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-data-to-satisfy-k-anonymity">Generalizing Data to Satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-more-data-improve-generalization">Does More Data Improve Generalization?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-outliers">Removing Outliers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-homogeneity-attack">The Homogeneity Attack</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="k-anonymity">
+<h1>k-Anonymity<a class="headerlink" href="#k-anonymity" title="Permalink to this heading">#</a></h1>
+<p><span class="math notranslate nohighlight">\(k\)</span>-Anonymity <span id="id1">[<a class="reference internal" href="further.html#id45" title="Latanya Sweeney. K-anonymity: a model for protecting privacy. International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems, 10(05):557-570, 2002. URL: https://doi.org/10.1142/S0218488502001648, arXiv:https://doi.org/10.1142/S0218488502001648, doi:10.1142/S0218488502001648.">8</a>]</span> is a <em>formal privacy definition</em>. The definition of <span class="math notranslate nohighlight">\(k\)</span>-Anonymity is designed to formalize our intuition that a piece of auxiliary information should not narrow down the set of possible records for an individual “too much.” Stated another way, <span class="math notranslate nohighlight">\(k\)</span>-Anonymity is designed to ensure that each individual can “blend into the crowd.”</p>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will understand:</p>
+<ul class="simple">
+<li><p>The definition of <span class="math notranslate nohighlight">\(k\)</span>-Anonymity</p></li>
+<li><p>How to check for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity</p></li>
+<li><p>How to generalize data to enforce <span class="math notranslate nohighlight">\(k\)</span>-Anonymity</p></li>
+<li><p>The limitations of <span class="math notranslate nohighlight">\(k\)</span>-Anonymity</p></li>
+</ul>
+</div>
+<p>Informally, we say that a dataset is “<span class="math notranslate nohighlight">\(k\)</span>-Anonymized” for a particular <span class="math notranslate nohighlight">\(k\)</span> if each individual in the dataset is a member of a group of size at least <span class="math notranslate nohighlight">\(k\)</span>, such that each member of the group shares the same <em>quasi-identifiers</em> (a selected subset of all the dataset’s columns) with all other members of the group. Thus, the individuals in each group “blend into” their group - it’s possible to narrow down an individual to membership in a particular group, but not to determine which group member is the target.</p>
+<div class="proof definition admonition" id="k-anonymity-def">
+<p class="admonition-title"><span class="caption-number">Definition 2 </span> (K-Anonymity)</p>
+<section class="definition-content" id="proof-content">
+<p>Formally, we say that a dataset <span class="math notranslate nohighlight">\(D\)</span> satisfies <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for a value of <span class="math notranslate nohighlight">\(k\)</span> if:</p>
+<ul class="simple">
+<li><p>For each row <span class="math notranslate nohighlight">\(r_1 \in D\)</span>, there exist at least <span class="math notranslate nohighlight">\(k-1\)</span> other rows <span class="math notranslate nohighlight">\(r_2 \dots r_k \in D\)</span> such that <span class="math notranslate nohighlight">\(\Pi_{qi(D)} r_1 = \Pi_{qi(D)} r_2, \dots, \Pi_{qi(D)} r_1 = \Pi_{qi(D)} r_k\)</span></p></li>
+</ul>
+<p>where <span class="math notranslate nohighlight">\(qi(D)\)</span> is the quasi-identifiers of <span class="math notranslate nohighlight">\(D\)</span>, and <span class="math notranslate nohighlight">\(\Pi_{qi(D)} r\)</span> represents the columns of <span class="math notranslate nohighlight">\(r\)</span> containing quasi-identifiers (i.e. the projection of the quasi-identifiers).</p>
+<p>and the quasi-identifier <span class="math notranslate nohighlight">\(\mathit{qi}\)</span> is assumed to be <strong>fixed a priori</strong>—that is, known and specified before any anonymization is performed. This reflects the attacker model: we assume the adversary can use <span class="math notranslate nohighlight">\(\mathit{qi}\)</span> attributes to perform linkage attacks.</p>
+</section>
+</div><section id="checking-for-k-anonymity">
+<h2>Checking for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity<a class="headerlink" href="#checking-for-k-anonymity" title="Permalink to this heading">#</a></h2>
+<p>We’ll start with a small dataset, so that we can immediately see by looking at the data whether it satisfies <span class="math notranslate nohighlight">\(k\)</span>-Anonymity or not. This dataset contains age plus two test scores; it clearly doesn’t satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k &gt; 1\)</span>. Any dataset trivially satisfies <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k = 1\)</span>, since each row can form its own group of size 1.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Jason&#39;</span><span class="p">,</span> <span class="s1">&#39;Molly&#39;</span><span class="p">,</span> <span class="s1">&#39;Tina&#39;</span><span class="p">,</span> <span class="s1">&#39;Jake&#39;</span><span class="p">,</span> <span class="s1">&#39;Amy&#39;</span><span class="p">],</span> 
+    <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Miller&#39;</span><span class="p">,</span> <span class="s1">&#39;Jacobson&#39;</span><span class="p">,</span> <span class="s1">&#39;Ali&#39;</span><span class="p">,</span> <span class="s1">&#39;Milner&#39;</span><span class="p">,</span> <span class="s1">&#39;Cooze&#39;</span><span class="p">],</span> 
+    <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">73</span><span class="p">],</span> 
+    <span class="s1">&#39;preTestScore&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="s1">&#39;postTestScore&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">70</span><span class="p">]}</span>
+<span class="c1">#df = pd.DataFrame(raw_data, columns = [&#39;first_name&#39;, &#39;last_name&#39;, &#39;age&#39;, &#39;preTestScore&#39;, &#39;postTestScore&#39;])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;preTestScore&#39;</span><span class="p">,</span> <span class="s1">&#39;postTestScore&#39;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>preTestScore</th>
+      <th>postTestScore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>42</td>
+      <td>4</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>52</td>
+      <td>24</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>36</td>
+      <td>31</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>24</td>
+      <td>2</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>73</td>
+      <td>3</td>
+      <td>70</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To implement a function to check whether a dataframe satisfies <span class="math notranslate nohighlight">\(k\)</span>-Anonymity, we loop over the rows; for each row, we query the dataframe to see how many rows match its values for the quasi-identifiers. If the number of rows in any group is less than <span class="math notranslate nohighlight">\(k\)</span>, the dataframe does not satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for that value of <span class="math notranslate nohighlight">\(k\)</span>, and we return False. Note that in this simple definition, we consider <em>all</em> columns to contain quasi-identifiers; to limit our check to a subset of all columns, we would need to replace the <code class="docutils literal notranslate"><span class="pre">df.columns</span></code> expression with something else.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">isKAnonymized</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39; &amp; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1"> == </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rows</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, our example dataframe does <em>not</em> satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k = 2\)</span>, but it does satisfy the property for <span class="math notranslate nohighlight">\(k=1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isKAnonymized</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isKAnonymized</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generalizing-data-to-satisfy-k-anonymity">
+<h2>Generalizing Data to Satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity<a class="headerlink" href="#generalizing-data-to-satisfy-k-anonymity" title="Permalink to this heading">#</a></h2>
+<p>The process of modifying a dataset so that it satisfies <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for a desired <span class="math notranslate nohighlight">\(k\)</span> is generally accomplished by <em>generalizing</em> the data - modifying values to be less specific, and therefore more likely to match the values of other individuals in the dataset. For example, an age which is accurate to a year may be generalized by rounding to the nearest 10 years, or a ZIP code might have its rightmost digits replaced by zeros. For numeric values, this is easy to implement. We’ll use the <code class="docutils literal notranslate"><span class="pre">apply</span></code> method of dataframes, and pass in a dictionary named <code class="docutils literal notranslate"><span class="pre">depths</span></code> which specifies how many digits to replace by zeros for each column. This gives us the flexibility to experiment with different levels of generalization for different columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generalize</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">depths</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="n">depths</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">]))</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="n">depths</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">]))))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can generalize our example dataframe. First, we’ll try generalizing each column by one “level” - i.e. rounding to the nearest 10.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">depths</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;preTestScore&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;postTestScore&#39;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">generalize</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">depths</span><span class="p">)</span>
+<span class="n">df2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>preTestScore</th>
+      <th>postTestScore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>40</td>
+      <td>0</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>50</td>
+      <td>20</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>30</td>
+      <td>30</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>20</td>
+      <td>0</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>70</td>
+      <td>0</td>
+      <td>70</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Notice that even after generalization, our example data <em>still</em> does not satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isKAnonymized</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can try generalizing more - but then we’ll end up removing <em>all</em> of the data!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">depths</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;preTestScore&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;postTestScore&#39;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+<span class="n">generalize</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">depths</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>preTestScore</th>
+      <th>postTestScore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This example illustrates one of the key challenges of achieving <span class="math notranslate nohighlight">\(k\)</span>-Anonymity:</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Achieving <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for meaningful values of <span class="math notranslate nohighlight">\(k\)</span> often requires removing quite a lot of information from the data.</p>
+</div>
+</section>
+<section id="does-more-data-improve-generalization">
+<h2>Does More Data Improve Generalization?<a class="headerlink" href="#does-more-data-improve-generalization" title="Permalink to this heading">#</a></h2>
+<p>Our example dataset is too small for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity to work well. Because there are only 5 individuals in the dataset, building groups of 2 or more individuals who share the same properties is difficult. The solution to this problem is more data: in a dataset with more individuals, less generalization will typically be needed to satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for a desired <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>Let’s try the same census data we examined for de-identification. This dataset contains more than 32,000 rows, so it should be easier to achieve <span class="math notranslate nohighlight">\(k\)</span>-Anonymity.</p>
+<p>We’ll consider the age and educational achievement of each individual to be the quasi-identifiers. We’ll project just those columns, and try to achieve <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=2\)</span>. The data is already <span class="math notranslate nohighlight">\(k\)</span>-Anonymous for <span class="math notranslate nohighlight">\(k=1\)</span>.</p>
+<p>Notice that we take just the first 100 rows from the dataset for this check - try running <code class="docutils literal notranslate"><span class="pre">isKAnonymized</span></code> on a larger subset of the data, and you’ll find that it takes a very long time (for example, running the <span class="math notranslate nohighlight">\(k=1\)</span> check on 5000 rows takes about 20 seconds on our laptop). For <span class="math notranslate nohighlight">\(k=2\)</span>, our algorithm finds a failing row quickly and finishes fast.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">adult_data</span><span class="p">[[</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Education-Num&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;edu&#39;</span><span class="p">]</span>
+<span class="n">isKAnonymized</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isKAnonymized</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we’ll try to generalize to achieve <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=2\)</span>. We’ll start with generalizing both age and educational attainment to the nearest 10.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># outliers are a real problem!</span>
+<span class="n">depths</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;edu&#39;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">generalize</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">depths</span><span class="p">)</span>
+<span class="n">isKAnonymized</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>The generalized result still does not satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=2\)</span>! In fact, we can perform this generalization on all ~32,000 rows and still fail to satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=2\)</span> - so adding more data does not necessarily help as much as we expected.</p>
+<p>The reason is that the dataset contains <em>outliers</em> - individuals who are very different from the rest of the population. These individuals do not fit easily into any group, even after generalization. Even considering <em>only</em> ages, we can see that adding more data is not likely to help, since very low and very high ages are poorly represented in the dataset.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/d7d77a736a2d400605dc5db1891199b8bc7b641822b42d9c0ce91e697f236fc0.png" src="_images/d7d77a736a2d400605dc5db1891199b8bc7b641822b42d9c0ce91e697f236fc0.png" />
+</div>
+</div>
+<p>Achieving the optimal generalization for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity is very challenging in cases like this. Generalizing each row <em>more</em> would be overkill for the well-represented individuals with ages in the 20-40 range, and would hurt utility. However, more generalization is clearly needed for individuals at the upper and lower ends of the age range. This is the kind of challenge that occurs regularly in practice, and is difficult to solve automatically. In fact, optimal generalization for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity has been shown to be NP-hard.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In their 2004 paper <span id="id2">[<a class="reference internal" href="further.html#id37" title="Adam Meyerson and Ryan Williams. On the complexity of optimal k-anonymity. In Proceedings of the 23rd ACM SIGMOD-SIGACT-SIGART Symposium on Principles of Database Systems (PODS), 223–228. ACM, 2004. URL: https://doi.org/10.1145/1055558.1055591, doi:10.1145/1055558.1055591.">9</a>]</span> , On the Complexity of Optimal <span class="math notranslate nohighlight">\(k\)</span>-Anonymity, Meyerson and Williams proved that the problem of finding an optimal generalization of a dataset to satisfy <span class="math notranslate nohighlight">\(k\)</span>-anonymity, while minimizing information loss, is NP-hard. This result underscores the difficulty of automating <span class="math notranslate nohighlight">\(k\)</span>-anonymity in practice: even for modest dataset sizes or values of <span class="math notranslate nohighlight">\(k\)</span>, it may be computationally infeasible to find the best generalization.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Outliers make achieving <span class="math notranslate nohighlight">\(k\)</span>-Anonymity very challenging, even for large datasets. Optimal generalization for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity is NP-hard.</p>
+</div>
+</section>
+<section id="removing-outliers">
+<h2>Removing Outliers<a class="headerlink" href="#removing-outliers" title="Permalink to this heading">#</a></h2>
+<p>One solution to this problem is simply to clip the age of each individual in the dataset to lie within a specific range, eliminating outliers entirely. This can also hurt utility, since it replaces real ages with fake ones, but it can be better than generalizing each row more. We can use Numpy’s <code class="docutils literal notranslate"><span class="pre">clip</span></code> method to perform this clipping. We clip ages to be 10-60, and require an educational level of at least 5th-6th grade (represented by the index <span class="math notranslate nohighlight">\(3\)</span> in the dataset).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># clipping away outliers</span>
+<span class="n">depths</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;edu&#39;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+<span class="n">dfp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span> <span class="mi">100000000</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<span class="n">dfp</span> <span class="o">=</span> <span class="n">dfp</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">generalize</span><span class="p">(</span><span class="n">dfp</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">500</span><span class="p">),</span> <span class="n">depths</span><span class="p">)</span>
+<span class="n">isKAnonymized</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, the generalized dataset satisfies <span class="math notranslate nohighlight">\(k\)</span>-Anonymity for <span class="math notranslate nohighlight">\(k=7\)</span>! In other words, our level of generalization was appropriate, but outliers prevented us from achieving <span class="math notranslate nohighlight">\(k\)</span>-Anonymity before, even for <span class="math notranslate nohighlight">\(k=2\)</span>.</p>
+<p>We will also discuss clipping later on in the context of bounding function sensitivity in order to achieve differential privacy.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<h3 class="rubric" id="clipping-vs-bucketing">Clipping Vs. Bucketing</h3>
+<p>While both clipping and bucketing reduce the granularity of data, they serve different purposes. <strong>Clipping</strong> is useful for dealing with unwanted extremes —for example— truncating unusually high ages to limit outliers’ influence on statistical queries.</p>
+<p><strong>Bucketing</strong>, on the other hand, is used to create meaningful categories—such as age groups—for classification, comparison, or generalization.</p>
+<p>In short, clipping is a tool for bounding (sensitivity), while bucketing helps structure the data for analysis or anonymization!</p>
+</div>
+</section>
+<section id="the-homogeneity-attack">
+<h2>The Homogeneity Attack<a class="headerlink" href="#the-homogeneity-attack" title="Permalink to this heading">#</a></h2>
+<p>The homogeneity attack represents a significant limitation to the effectiveness of <span class="math notranslate nohighlight">\(k\)</span>-Anonymity. Ordinarily, the goal of <span class="math notranslate nohighlight">\(k\)</span>-Anonymity is to protect individuals’ identities by ensuring that each individual in a dataset is indistinguishable from at least <span class="math notranslate nohighlight">\(k-1\)</span> others. These <span class="math notranslate nohighlight">\(k-1\)</span> others (in addition to the individual) are called the individual’s “group” <em>within</em> the dataset.</p>
+<p>However, the homogeneity attack leverages similarities among quasi-identifiers within a group, making it challenging to achieve true individual anonymity. In this attack, an adversary exploits the <em>uniformity</em> or <em>lack of diversity</em> among the attributes used for anonymization, enabling the de-anonymization/re-identification of individuals.</p>
+<p>This attack vector arises when the data’s quasi-identifiers exhibit a high degree of similarity, and groups have identical values for their sensitive attributes, making it easier for an attacker to infer sensitive information about specific individuals. In such cases, sensitive information regarding individuals can be inferred via determination of group membership.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is worth noting that <span class="math notranslate nohighlight">\(k\)</span>-Anonymity is also highly susceptible to attacks enabled by the availability of <em>background knowledge</em> regarding individuals. Such knowledge may aid, for example, in re-identification of individuals by simple process of elimination of other members of their group who do not fit certain criteria.</p>
+</div>
+<p>Addressing the homogeneity attack requires careful manual consideration regarding the selection of diverse quasi-identifiers, highlighting the need for more sophisticated anonymization techniques to enhance the robustness of privacy preservation in datasets.</p>
+<p>One such technique, which is also immune to the presence of background knowledge, is differential privacy.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<h3 class="rubric" id="the-homogeneity-attack-a-closer-look">The Homogeneity Attack: A Closer Look</h3>
+<p>The <strong>homogeneity attack</strong> exploits situations where all—or nearly all—records in a group share the same sensitive attribute. Even if explicit identifiers are removed, this can allow an adversary to confidently infer sensitive information.</p>
+<p>Let’s make this concrete by applying it to our running example, which involves a medical dataset with attributes like <code class="docutils literal notranslate"><span class="pre">Zip</span> <span class="pre">Code</span></code>, <code class="docutils literal notranslate"><span class="pre">Age</span></code>, <code class="docutils literal notranslate"><span class="pre">Gender</span></code>, and an added sensitive attribute <code class="docutils literal notranslate"><span class="pre">Diagnosis</span></code>.</p>
+<p>Suppose the data has been anonymized using <strong><span class="math notranslate nohighlight">\(k\)</span>-anonymity</strong>, and the following generalized record group appears in the released dataset:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Zip Code</p></th>
+<th class="head"><p>Age</p></th>
+<th class="head"><p>Gender</p></th>
+<th class="head"><p>Diagnosis</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>02138</p></td>
+<td><p>30–40</p></td>
+<td><p>Male</p></td>
+<td><p>Flu</p></td>
+</tr>
+<tr class="row-odd"><td><p>02138</p></td>
+<td><p>30–40</p></td>
+<td><p>Male</p></td>
+<td><p>Flu</p></td>
+</tr>
+<tr class="row-even"><td><p>02138</p></td>
+<td><p>30–40</p></td>
+<td><p>Male</p></td>
+<td><p>Flu</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This group satisfies <strong>3-anonymity</strong>, as there are three indistinguishable records. However, all of them share the same diagnosis: <strong>Flu</strong>. If an attacker knows that someone named Alex is a 35-year-old male living in 02138, they can confidently link Alex to this group. Even though they cannot pinpoint which record is his, the lack of diversity in the sensitive attribute allows them to infer his diagnosis.</p>
+<p>This is the essence of the <strong>homogeneity attack</strong>: the anonymity set is large enough, but it’s <strong>not diverse enough</strong> in the sensitive attribute.</p>
+<h3 class="rubric" id="why-this-matters">Why This Matters</h3>
+<p><span class="math notranslate nohighlight">\(k\)</span>-anonymity guarantees that an individual is indistinguishable from at least <span class="math notranslate nohighlight">\(k - 1\)</span> others, but it does <strong>not</strong> guarantee that those others don’t all share the same sensitive value. As a result, <strong>privacy is not preserved</strong> if the sensitive attribute lacks variability within the group.</p>
+<p>To mitigate this, techniques like <strong><span class="math notranslate nohighlight">\(\ell\)</span>-diversity</strong> and <strong><span class="math notranslate nohighlight">\(t\)</span>-closeness</strong> were introduced. These methods aim to ensure that, within each anonymity group, the distribution of the sensitive attribute remains varied and resembles the overall distribution.</p>
+<p>However, even these refinements have limitations—especially in high-dimensional datasets or under strong auxiliary knowledge. This is one of the motivations for adopting differential privacy, which does not rely on grouping records or assumptions about adversary knowledge.</p>
+</div>
+<div class="admonition-summary admonition">
+<p class="admonition-title">Summary</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k\)</span>-Anonymity is a property of data, which ensures that each individual “blends in” with a group of at least <span class="math notranslate nohighlight">\(k\)</span> individuals.</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span>-Anonymity is computationally expensive even to check: the naive algorithm is <span class="math notranslate nohighlight">\(O(n^2)\)</span>, and faster algorithms take considerable space.</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span>-Anonymity can be achieved by modifying a dataset by <em>generalizing</em> it, so that particular values become more common and groups are easier to form.</p></li>
+<li><p>Optimal generalization is extremely difficult, and outliers can make it even more challenging. Solving this problem automatically is NP-hard.</p></li>
+</ul>
+</div>
+<div class="admonition-glossary admonition">
+<p class="admonition-title">Glossary</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/K-anonymity">k-Anonymity — Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Quasi-identifier">Quasi-Identifier — Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/L-diversity">l-Diversity — Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Data_anonymization#Generalization">Generalization (Data) — Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Data_anonymization#Suppression">Suppression (Privacy) — Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/K-anonymity#Homogeneity_attack">Homogeneity Attack — Wikipedia</a></p></li>
+</ul>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">De-identification</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chapter3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Differential Privacy</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-for-k-anonymity">Checking for <span class="math notranslate nohighlight">\(k\)</span>-Anonymity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-data-to-satisfy-k-anonymity">Generalizing Data to Satisfy <span class="math notranslate nohighlight">\(k\)</span>-Anonymity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-more-data-improve-generalization">Does More Data Improve Generalization?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-outliers">Removing Outliers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-homogeneity-attack">The Homogeneity Attack</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Joseph P. Near and Chiké Abuah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright © 2025 Joseph P. Near and Chiké Abuah.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

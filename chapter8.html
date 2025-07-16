@@ -1,0 +1,850 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Variants of Differential Privacy &#8212; Programming Differential Privacy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter8';</script>
+    <link rel="icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Exponential Mechanism" href="chapter9.html" />
+    <link rel="prev" title="Local Sensitivity" href="chapter7.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="cover.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Programming Differential Privacy - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Programming Differential Privacy - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover.html">
+                    Cover
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="front.html">Front Matter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter1.html">De-identification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter2.html">k-Anonymity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter4.html">Properties of Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter5.html">Sensitivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter6.html">Approximate Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter7.html">Local Sensitivity</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Variants of Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter9.html">The Exponential Mechanism</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter10.html">The Sparse Vector Technique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter11.html">Design &amp; Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter12.html">Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter13.html">Local Differential Privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter14.html">Synthetic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter15.html">Efficiency &amp; Limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further.html">Further Reading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/chapter8.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp/edit/master/notebooks/chapter8.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uvm-plaid/programming-dp/issues/new?title=Issue%20on%20page%20%2Fchapter8.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter8.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Variants of Differential Privacy</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#max-divergence-and-renyi-divergence">Max Divergence and Rényi Divergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#renyi-differential-privacy">Rényi Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-concentrated-differential-privacy">Zero-Concentrated Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composition-under-variants-of-differential-privacy">Composition under Variants of Differential Privacy</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="variants-of-differential-privacy">
+<h1>Variants of Differential Privacy<a class="headerlink" href="#variants-of-differential-privacy" title="Permalink to this heading">#</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After reading this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p>Define Rényi differential privacy and zero-concentrated differential privacy</p></li>
+<li><p>Describe the advantages of these variants over <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy</p></li>
+<li><p>Convert privacy costs from these variants into <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy</p></li>
+</ul>
+</div>
+<p>Recall that most of the bounds on privacy cost we have shown are <em>upper</em> bounds, but they sometimes represent very loose upper bounds - the true privacy cost is much less than the upper bound says. The primary motivation in developing new variants of differential privacy is to enable tighter bounds on privacy cost - especially for iterative algorithms - while maintaining privacy definitions which are useful in practice. For example, the catastrophic failure mode of <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy is not desirable; the variants we’ll see in this section enable even tighter composition for some kinds of queries, while at the same time <em>eliminating</em> the catastrophic failure mode.</p>
+<p>Let’s take a quick look at the tools we have already seen; we’ll look first at (non-adaptive) sequential composition for <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. It turns out that sequential composition for <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy is <em>tight</em>. What does that mean? It means there’s a counterexample that would fail to satisfy any lower bound:</p>
+<ul class="simple">
+<li><p>A mechanism <span class="math notranslate nohighlight">\(F\)</span> exists which satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy</p></li>
+<li><p>When composed <span class="math notranslate nohighlight">\(k\)</span> times, <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(k\epsilon\)</span>-differential privacy</p></li>
+<li><p>But <span class="math notranslate nohighlight">\(F\)</span> does <em>not</em> satisfy <span class="math notranslate nohighlight">\(c\epsilon\)</span>-differential privacy for any <span class="math notranslate nohighlight">\(c &lt; k\)</span></p></li>
+</ul>
+<p>A neat way to visualize this is to look at what happens to privacy cost when we “vectorize” a query: that is, we merge lots of queries into a single query which returns a vector of the individual answers. Because the answer is a vector, we can use the vector-valued Laplace mechanism just once, and avoid composition altogether. Below, we’ll graph how much noise is needed for <span class="math notranslate nohighlight">\(k\)</span> queries, first under sequential composition, and then using the “vectorized” form. In the sequential composition case, each query has a sensitivity of 1, so the scale of the noise for each one is <span class="math notranslate nohighlight">\(\frac{1}{\epsilon_i}\)</span>. If we want a total privacy cost of <span class="math notranslate nohighlight">\(\epsilon\)</span>, then the <span class="math notranslate nohighlight">\(\epsilon_i\)</span>s must add up to <span class="math notranslate nohighlight">\(\epsilon\)</span>, so <span class="math notranslate nohighlight">\(\epsilon_i = \frac{\epsilon}{k}\)</span>. This means that each query gets Laplace noise with scale <span class="math notranslate nohighlight">\(\frac{k}{\epsilon}\)</span>. In the “vectorized” case, there’s just one query, but it has an <span class="math notranslate nohighlight">\(L1\)</span> sensitivity of <span class="math notranslate nohighlight">\(\sum_{i=1}^k 1 = k\)</span>, so the scale of the noise is <span class="math notranslate nohighlight">\(\frac{k}{\epsilon}\)</span> in this case too.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">.1</span>
+
+<span class="c1"># L1 sensitivity of each query: 1</span>
+<span class="c1"># noise per query: 1/epsilon</span>
+<span class="c1"># number of queries: k</span>
+<span class="n">noises_seq</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ks</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="n">noises_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sequential Composition&#39;</span><span class="p">)</span>
+
+<span class="c1"># number of queries: 1</span>
+<span class="c1"># L1 sensitivity of each query: k</span>
+<span class="c1"># noise per query: k / epsilon</span>
+<span class="n">noises_l1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ks</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="n">noises_l1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Vectorized&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Laplace Mechanism: Vectorized vs. Composition&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Queries&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Scale of Noise&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/ee286506547356912e21201af9c4ee05e9f7f1d353d54d7398398535b9dadbf0.png" src="_images/ee286506547356912e21201af9c4ee05e9f7f1d353d54d7398398535b9dadbf0.png" />
+</div>
+</div>
+<p>The two lines overlap <em>completely</em>. This means that no matter how many queries we’re running, under <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, we can’t do any better than sequential composition. That’s because sequential composition is just as good as vectorizing the query, effectively converting it to a single query without involving composition, and we can’t do any better than that.</p>
+<p>What about <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy? The story is a little different there. In the sequential composition case, we can use advanced composition; we have to be a little careful to ensure that the total privacy cost is exactly <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>. Specifically, we set <span class="math notranslate nohighlight">\(\epsilon_i = \frac{\epsilon}{2 \sqrt{2k \log(1/\delta')}}\)</span>, <span class="math notranslate nohighlight">\(\delta_i = \frac{\delta}{2k}\)</span>, and <span class="math notranslate nohighlight">\(\delta' = \frac{\delta}{2}\)</span> (splitting <span class="math notranslate nohighlight">\(\delta\)</span> to go 50% towards the queries, and 50% towards advanced composition). By advanced composition, the total privacy cost for all <span class="math notranslate nohighlight">\(k\)</span> queries is <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>. The scale of the noise, by the Gaussian mechanism, is:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-20659e07-d249-4ea3-bdc1-30b826cca7fc">
+<span class="eqno">(12)<a class="headerlink" href="#equation-20659e07-d249-4ea3-bdc1-30b826cca7fc" title="Permalink to this equation">#</a></span>\[\begin{align}
+\sigma^2 =&amp; \frac{2 \log\left(\frac{1.25}{\delta_i}\right)}{\epsilon_i^2}\\
+ =&amp; \frac{16 k \log\left(\frac{1}{\delta'}\right) \log\left(\frac{1.25}{\delta_i}\right)}{\epsilon^2}\\
+ =&amp; \frac{16 k \log\left(\frac{2}{\delta}\right) \log\left(\frac{2.5 k}{\delta}\right)}{\epsilon^2}\\
+\end{align}\]</div>
+<p>In the “vectorized” case, we have just one query, with an <span class="math notranslate nohighlight">\(L2\)</span> sensitivity of <span class="math notranslate nohighlight">\(\sqrt{k}\)</span>. The scale of the noise, by the Gaussian mechanism, is <span class="math notranslate nohighlight">\(\sigma^2 = \frac{2 k \log(1.25/\delta)}{\epsilon^2}\)</span>.</p>
+<p>What does this difference mean in practice? The two behave the same asymptotically in <span class="math notranslate nohighlight">\(k\)</span>, but have different constants, and the advanced composition case has an additional logarithmic factor in <span class="math notranslate nohighlight">\(\delta\)</span>. All this adds up to a much looser bound in the case of advanced composition. Let’s graph the two as we did before.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">.1</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>
+
+<span class="c1"># L2 sensitivity of each query: 1</span>
+<span class="c1"># number of queries: k</span>
+<span class="n">noises_seq</span> <span class="o">=</span> <span class="p">[</span><span class="mi">16</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mf">2.5</span><span class="o">*</span><span class="n">k</span><span class="p">)</span><span class="o">/</span><span class="n">delta</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">delta</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">epsilon</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ks</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="n">noises_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Advanced Composition&#39;</span><span class="p">)</span>
+
+<span class="c1"># number of queries: 1</span>
+<span class="c1"># L2 sensitivity of each query: sqrt(k)</span>
+<span class="n">noises_l1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.25</span><span class="o">/</span><span class="n">delta</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">epsilon</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ks</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gaussian Mechanism: Vectorized vs. Composition&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Queries&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Scale of Noise&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="n">noises_l1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Vectorized&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/ead2d74e58d63d0bb8bf32bb99f00f6339389f098a6d121e55d71acf2ef73405.png" src="_images/ead2d74e58d63d0bb8bf32bb99f00f6339389f098a6d121e55d71acf2ef73405.png" />
+</div>
+</div>
+<p>It’s not even close - the “vectorized” version grows <em>much</em> slower. What does this mean? We should be able to do <em>much</em> better for sequential composition!</p>
+<section id="max-divergence-and-renyi-divergence">
+<h2>Max Divergence and Rényi Divergence<a class="headerlink" href="#max-divergence-and-renyi-divergence" title="Permalink to this heading">#</a></h2>
+<p>It turns out that the definition of differential privacy can be stated directly in terms of something called <em>max divergence</em>. In statistics, a <a class="reference external" href="https://en.wikipedia.org/wiki/Divergence_(statistics)"><em>divergence</em></a> is a way of measuring the distance between two probability distributions - which is exactly what we want to do for differential privacy. The <em>max divergence</em> is the worst-case analog of the <a class="reference external" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback–Leibler divergence</a>, one of the most common such measures. The max divergence between two probability distributions <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> is defined to be:</p>
+<div class="proof definition admonition" id="max-divergence">
+<p class="admonition-title"><span class="caption-number">Definition 21 </span> (Max Divergence)</p>
+<section class="definition-content" id="proof-content">
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+D_\infty(Y \Vert Z) = \max_{S \subseteq \text{Supp}(Y)} \Big[\log \frac{Pr[Y \in S]}{Pr[Z \in S]} \Big]
+\end{align*}\]</div>
+</section>
+</div><p>This already looks a lot like the condition for <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy! In particular, it turns out that <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy if:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f5093933-2377-4152-967d-61dc5ad14e8c">
+<span class="eqno">(13)<a class="headerlink" href="#equation-f5093933-2377-4152-967d-61dc5ad14e8c" title="Permalink to this equation">#</a></span>\[\begin{align}
+D_\infty(F(x) \Vert F(x')) \leq \epsilon
+\end{align}\]</div>
+<p>An interesting direction for research in differential privacy is the exploration of alternative privacy definitions in terms of other divergences. Of these, the <a class="reference external" href="https://en.wikipedia.org/wiki/R%C3%A9nyi_entropy#R%C3%A9nyi_divergence">Rényi divergence</a> is particularly interesting, since it also (like max divergence) allows us to recover the original definition of differential privacy. The Rényi divergence of order <span class="math notranslate nohighlight">\(\alpha\)</span> between probability distributions <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> is defined as (where <span class="math notranslate nohighlight">\(P(x)\)</span> and <span class="math notranslate nohighlight">\(Q(x)\)</span> denote the probability density of <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> at point <span class="math notranslate nohighlight">\(x\)</span>, respectively):</p>
+<div class="proof definition admonition" id="renyi-divergence">
+<p class="admonition-title"><span class="caption-number">Definition 22 </span> (Renyi Divergence)</p>
+<section class="definition-content" id="proof-content">
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+D_\alpha(P \Vert Q) = \frac{1}{\alpha - 1} \log E_{x \sim Q} \Big(\frac{P(x)}{Q(x)}\Big)^\alpha
+\end{align*}\]</div>
+</section>
+</div><p>If we set <span class="math notranslate nohighlight">\(\alpha = \infty\)</span>, then we immediately recover the definition of <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy! The obvious question arises: what happens if we set <span class="math notranslate nohighlight">\(\alpha\)</span> to something else? As we’ll see, it’s possible to use the Rényi divergence to derive really interesting relaxations of differential privacy that allow better composition theorems while at the same time avoiding the possibility of “catastrophe” which is possible under <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy.</p>
+</section>
+<section id="renyi-differential-privacy">
+<h2>Rényi Differential Privacy<a class="headerlink" href="#renyi-differential-privacy" title="Permalink to this heading">#</a></h2>
+<p>In 2017, Ilya Mironov proposed <a class="reference external" href="https://arxiv.org/abs/1702.07476">Rényi differential privacy (RDP)</a> <span id="id1">[<a class="reference internal" href="further.html#id55" title="Ilya Mironov. Renyi differential privacy. In Computer Security Foundations Symposium (CSF), 2017 IEEE 30th, 263–275. IEEE, 2017.">20</a>]</span>. A randomized mechanism <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP if for all neighboring datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-d973d835-ecf9-4bcd-bbbd-6bc2a2c35c37">
+<span class="eqno">(14)<a class="headerlink" href="#equation-d973d835-ecf9-4bcd-bbbd-6bc2a2c35c37" title="Permalink to this equation">#</a></span>\[\begin{align}
+D_\alpha(F(x) \Vert F(x')) \leq \bar{\epsilon}
+\end{align}\]</div>
+<p>In other words, RDP requires that the Rényi divergence of order <span class="math notranslate nohighlight">\(\alpha\)</span> between <span class="math notranslate nohighlight">\(F(x)\)</span> and <span class="math notranslate nohighlight">\(F(x')\)</span> to be bounded by <span class="math notranslate nohighlight">\(\bar{\epsilon}\)</span>. Note that we’ll use <span class="math notranslate nohighlight">\(\bar{\epsilon}\)</span> to denote the <span class="math notranslate nohighlight">\(\epsilon\)</span> parameter of RDP, in order to distinguish it from the <span class="math notranslate nohighlight">\(\epsilon\)</span> in pure <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy and <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy.</p>
+<p>A key property of Rényi differential privacy is that a mechanism which satisfies RDP also satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy. Specifically, if <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP, then for <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span>, <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy for <span class="math notranslate nohighlight">\(\epsilon = \bar{\epsilon} + \frac{\log(1/\delta)}{\alpha - 1}\)</span>. The analyst is free to pick any value of <span class="math notranslate nohighlight">\(\delta\)</span>; a meaningful value (e.g. <span class="math notranslate nohighlight">\(\delta \leq \frac{1}{n^2}\)</span>) should be picked in practice.</p>
+<p>The basic mechanism for achieving Rényi differential privacy is the Gaussian mechanism. Specifically, for a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}^k\)</span> with <span class="math notranslate nohighlight">\(L2\)</span> sensitivity <span class="math notranslate nohighlight">\(\Delta f\)</span>, the following mechanism satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP:</p>
+<div class="proof definition admonition" id="renyi-gauss">
+<p class="admonition-title"><span class="caption-number">Definition 23 </span> (Renyi Gaussian)</p>
+<section class="definition-content" id="proof-content">
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{(\Delta f)^2 \alpha}{2\bar{\epsilon}}
+\end{align*}\]</div>
+</section>
+</div><p>We can implement the Gaussian mechanism for Rényi differential privacy as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gaussian_mech_RDP_vec</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">epsilon_bar</span><span class="p">):</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">sensitivity</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">epsilon_bar</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vec</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The major advantage of Rényi differential privacy is <em>tight composition</em> for the Gaussian mechanism - and this advantage in composition comes without the need for a special advanced composition theorem. The sequential composition theorem of Rényi differential privacy states that:</p>
+<div class="proof theorem admonition" id="renyi-sequential-composition">
+<p class="admonition-title"><span class="caption-number">Theorem 7 </span> (Renyi-Sequential-Composition)</p>
+<section class="theorem-content" id="proof-content">
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(F_1\)</span> satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon_1})\)</span>-RDP</p></li>
+<li><p>And <span class="math notranslate nohighlight">\(F_2\)</span> satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon_2})\)</span>-RDP</p></li>
+<li><p>Then their composition satisfies <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon_1} + \bar{\epsilon_2})\)</span>-RDP</p></li>
+</ul>
+</section>
+</div><p>Based on this sequential composition theorem, running an <span class="math notranslate nohighlight">\((\alpha, \bar{\epsilon})\)</span>-RDP mechanism <span class="math notranslate nohighlight">\(k\)</span> times results in <span class="math notranslate nohighlight">\((\alpha, k\bar{\epsilon})\)</span>-RDP. For a given level of noise (i.e. a given value for <span class="math notranslate nohighlight">\(\sigma^2\)</span>), bounding the privacy cost of repeated applications of the Gaussian mechanism using RDP’s sequential composition, and <em>then</em> converting to <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy, will usually yield a <em>much</em> lower privacy cost than performing the composition directly in <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span> world (even with advanced composition). We will see a visualization which demonstrates this in the section after next.</p>
+<p>As a result, the ideas behind Rényi differential privacy have been used to greatly improve the privacy cost accounting in a number of recent iterative algorithms, including Google’s <a class="reference external" href="https://github.com/tensorflow/privacy">differentially private version of Tensorflow</a>.</p>
+<p>Finally, like other variants of differential privacy, RDP provides a post-processing property.</p>
+</section>
+<section id="zero-concentrated-differential-privacy">
+<h2>Zero-Concentrated Differential Privacy<a class="headerlink" href="#zero-concentrated-differential-privacy" title="Permalink to this heading">#</a></h2>
+<p>In concurrent work released in 2016, Mark Bun and Thomas Steinke proposed <a class="reference external" href="https://arxiv.org/abs/1605.02065">zero-concentrated differential privacy (zCDP)</a> <span id="id2">[<a class="reference internal" href="further.html#id56" title="Mark Bun and Thomas Steinke. Concentrated differential privacy: simplifications, extensions, and lower bounds. In Theory of Cryptography Conference, 635–658. Springer, 2016.">21</a>]</span>. Like RDP, zCDP is defined in terms of the Rényi divergence, but it includes only a single privacy parameter (<span class="math notranslate nohighlight">\(\rho\)</span>). A randomized mechanism <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP if for all neighboring datasets <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all <span class="math notranslate nohighlight">\(\alpha \in (1, \infty)\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a59fdf71-dc7e-4f0d-86ee-951bb2320c6d">
+<span class="eqno">(15)<a class="headerlink" href="#equation-a59fdf71-dc7e-4f0d-86ee-951bb2320c6d" title="Permalink to this equation">#</a></span>\[\begin{align}
+D_\alpha (F(x) \Vert F(x')) \leq \rho\alpha
+\end{align}\]</div>
+<p>This is a stronger requirement than RDP, because it restricts the Rényi divergence of many orders; however, the bound becomes more relaxed as <span class="math notranslate nohighlight">\(\alpha\)</span> grows. Like RDP, zCDP can be converted to <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy: if <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP, then for <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span>, <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy for <span class="math notranslate nohighlight">\(\epsilon = \rho + 2\sqrt{\rho \log(1/\delta)}\)</span>.</p>
+<p>zCDP is also similar to RDP in that the Gaussian mechanism can be used as a basic mechanism. Specifically, for a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}^k\)</span> with <span class="math notranslate nohighlight">\(L2\)</span> sensitivity <span class="math notranslate nohighlight">\(\Delta f\)</span>, the following mechanism satisfies <span class="math notranslate nohighlight">\(\rho\)</span>-zCDP:</p>
+<div class="proof definition admonition" id="zcpd">
+<p class="admonition-title"><span class="caption-number">Definition 24 </span> (zCDP Gaussian)</p>
+<section class="definition-content" id="proof-content">
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+F(x) = f(x) + \mathcal{N}(\sigma^2) \text{ where } \sigma^2 = \frac{(\Delta f)^2}{2\rho}
+\end{align*}\]</div>
+</section>
+</div><p>As with RDP, this mechanism is easy to implement:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gaussian_mech_zCDP_vec</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">rho</span><span class="p">):</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">sensitivity</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">rho</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vec</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In another similarity with RDP, zCDP’s sequential composition is also asymptotically tight for repeated applications of the Gaussian mechanism. It’s also very simple: the <span class="math notranslate nohighlight">\(\rho\)</span>s add up. Specifically:</p>
+<div class="proof theorem admonition" id="zcpd-parallel-composition">
+<p class="admonition-title"><span class="caption-number">Theorem 8 </span> (zCDP Sequential Composition)</p>
+<section class="theorem-content" id="proof-content">
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(F_1\)</span> satisfies <span class="math notranslate nohighlight">\(\rho_1\)</span>-zCDP</p></li>
+<li><p>And <span class="math notranslate nohighlight">\(F_2\)</span> satisfies <span class="math notranslate nohighlight">\(\rho_2\)</span>-zCDP</p></li>
+<li><p>Then their composition satisfies <span class="math notranslate nohighlight">\(\rho_1+\rho_2\)</span>-zCDP</p></li>
+</ul>
+</section>
+</div><p>Finally, zCDP also provides a post-processing property.</p>
+</section>
+<section id="composition-under-variants-of-differential-privacy">
+<h2>Composition under Variants of Differential Privacy<a class="headerlink" href="#composition-under-variants-of-differential-privacy" title="Permalink to this heading">#</a></h2>
+<p>Which variant should we use, and when?</p>
+<p>The recently-developed variants will yield <em>significantly</em> tighter bounds on privacy cost when:</p>
+<ul class="simple">
+<li><p>The Gaussian mechanism is used (especially on high-dimensional vectors)</p></li>
+<li><p>The algorithm in question applies the mechanism many times (e.g. hundreds or thousands of times)</p></li>
+</ul>
+<p>To use RDP and zCDP, we typically implement an algorithm in terms of the variant we want to use, and then convert the total privacy cost of running the algorithm back to <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy so that we can compare it to other algorithms.</p>
+<p>To see the effect of this strategy, let’s imagine an algorithm that applies the Gaussian mechanism <span class="math notranslate nohighlight">\(k\)</span> times. We’ll fix values for <span class="math notranslate nohighlight">\(\sigma\)</span> (i.e. the amount of noise added with the Gaussian mechanism in each of the <span class="math notranslate nohighlight">\(k\)</span> iterations) and <span class="math notranslate nohighlight">\(\delta\)</span>, and then compare the final <span class="math notranslate nohighlight">\(\epsilon\)</span>s achieved for each variant.</p>
+<p>We’ll see that composition under RDP and zCDP result in <em>smaller values of <span class="math notranslate nohighlight">\(\epsilon\)</span> for the same amount of noise added</em>. The algorithm is identical under all variants (i.e. it adds the same amount of noise in each case) - so this means that RDP and zCDP are providing <em>significantly tighter bounds on privacy cost</em> for the <em>same algorithm</em>.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span> <span class="o">=</span> <span class="mf">200.0</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>
+<span class="n">lap_eps</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">gauss_eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.25</span><span class="o">/</span><span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ys_gauss_adv</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">gauss_eps</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">delta</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="n">rho</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ys_gauss_zcdp</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="o">*</span><span class="n">rho</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x</span><span class="o">*</span><span class="n">rho</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">delta</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">rdp_eps</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ys_gauss_rdp</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="o">*</span><span class="n">rdp_eps</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">delta</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="n">ys_moments</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">delta</span><span class="p">))</span><span class="o">/</span><span class="n">sigma</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys_gauss_adv</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Gaussian+Adv. Comp.&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys_gauss_zcdp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Gaussian+zCDP&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys_gauss_rdp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Gaussian+RDP&quot;</span><span class="p">)</span>
+<span class="c1">#plt.plot(xs, ys_moments, label=&quot;Moments Accountant&quot;)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Iterations&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Epsilon&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/b39b15fef8bf74c808db94d6922495909bb03282cbd6e459628ed63245920029.png" src="_images/b39b15fef8bf74c808db94d6922495909bb03282cbd6e459628ed63245920029.png" />
+</div>
+</div>
+<p>The first thing to note is that using sequential composition under either zCDP or RDP is <em>much</em> better than using advanced composition with <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy. When building iterative algorithms with the Gaussian mechanism, these variants should always be used.</p>
+<p>The second thing to note is the difference between zCDP (in orange) and RDP (in green). The <span class="math notranslate nohighlight">\(\epsilon\)</span> for RDP grows linearly in <span class="math notranslate nohighlight">\(k\)</span>, because we have fixed a value for <span class="math notranslate nohighlight">\(\alpha\)</span>. The <span class="math notranslate nohighlight">\(\epsilon\)</span> for zCDP is sublinear in <span class="math notranslate nohighlight">\(k\)</span>, since zCDP effectively considers many <span class="math notranslate nohighlight">\(\alpha\)</span>s. The two lines touch at some value of <span class="math notranslate nohighlight">\(k\)</span>, depending on the <span class="math notranslate nohighlight">\(\alpha\)</span> chosen for RDP (for <span class="math notranslate nohighlight">\(\alpha = 20\)</span>, they touch at roughly <span class="math notranslate nohighlight">\(k=300\)</span>).</p>
+<p>The practical effect of this difference is that <span class="math notranslate nohighlight">\(\alpha\)</span> must be chosen carefully when using RDP in order to bound privacy cost as tightly as possible. This is usually easy to do, since algorithms are usually parameterized by <span class="math notranslate nohighlight">\(\alpha\)</span>; as a result, we can simply test multiple values of <span class="math notranslate nohighlight">\(\alpha\)</span> to see which one results in the smallest corresponding <span class="math notranslate nohighlight">\(\epsilon\)</span>. Since this test is <em>independent</em> of the data (it depends mainly on the privacy parameters we pick, and the number of iterations we want to run), we can test as many values of <span class="math notranslate nohighlight">\(\alpha\)</span> as we want without paying additional privacy cost. We only need to test a small range of values for <span class="math notranslate nohighlight">\(\alpha\)</span> - typically in the range between 2 and 100 - to find a minimum. This is the approach taken in most practical implementations, including Google’s differentially private version of <a class="reference external" href="https://github.com/tensorflow/tensorflow">Tensorflow</a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter7.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Local Sensitivity</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chapter9.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The Exponential Mechanism</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#max-divergence-and-renyi-divergence">Max Divergence and Rényi Divergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#renyi-differential-privacy">Rényi Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-concentrated-differential-privacy">Zero-Concentrated Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composition-under-variants-of-differential-privacy">Composition under Variants of Differential Privacy</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Joseph P. Near and Chiké Abuah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright © 2025 Joseph P. Near and Chiké Abuah.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
