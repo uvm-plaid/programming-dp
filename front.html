@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Introduction" href="intro.html" />
-    <link rel="prev" title="Programming Differential Privacy" href="cover.html" />
+    <link rel="prev" title="Cover" href="cover.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -164,7 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="cover.html">
-                    Programming Differential Privacy
+                    Cover
                 </a>
             </li>
         </ul>
@@ -432,6 +432,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstract">Abstract</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolution">Evolution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-resources-discrete-mathematics-and-probability">Background Resources: Discrete Mathematics and Probability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-mathematics">Discrete Mathematics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability">Probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-on-prerequisites">A Note on Prerequisites</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -463,6 +469,41 @@ document.write(`
 <section id="acknowledgements">
 <h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this heading">#</a></h2>
 <p>For pull requests big and small, and expert translation, we would like to thank all our <a class="reference external" href="https://github.com/uvm-plaid/programming-dp/graphs/contributors">contributors</a>!</p>
+</section>
+<section id="background-resources-discrete-mathematics-and-probability">
+<h2>Background Resources: Discrete Mathematics and Probability<a class="headerlink" href="#background-resources-discrete-mathematics-and-probability" title="Permalink to this heading">#</a></h2>
+<p>This book assumes some familiarity with basic concepts from <strong>discrete mathematics</strong> and <strong>probability theory</strong>. If it’s been a while since you’ve encountered these topics, or if you’re new to them, the following resources offer excellent introductions and refreshers. While not exhaustive, this list emphasizes texts and courses that are widely used, accessible to programmers, and well-aligned with the material in this book.</p>
+<section id="discrete-mathematics">
+<h3>Discrete Mathematics<a class="headerlink" href="#discrete-mathematics" title="Permalink to this heading">#</a></h3>
+<p>Many of the privacy techniques we’ll explore involve reasoning about sets, functions, relations, and graphs. You’ll also encounter formal logic and proofs, especially when we define privacy guarantees precisely. To build or reinforce your foundations, here are some options:</p>
+<ul class="simple">
+<li><p><strong>Discrete Mathematics and Its Applications</strong>, <em>Kenneth H. Rosen</em><br />
+A comprehensive and widely used textbook. Covers all the essentials: logic, proof techniques, set theory, combinatorics, and graph theory. Suitable for self-study or classroom use. <span id="id1">[<a class="reference internal" href="bibliography.html#id3" title="Kenneth H. Rosen. Discrete Mathematics and Its Applications. McGraw-Hill Education, 7th edition, 2011. ISBN 9780073383095.">1</a>]</span></p></li>
+<li><p><strong>Mathematics for Computer Science</strong>, <em>Eric Lehman, Tom Leighton, and Albert R. Meyer</em> (MIT)<br />
+A free textbook developed for MIT’s introductory discrete math course. It blends theoretical depth with clarity. Great for students with programming experience. <span id="id2">[<a class="reference internal" href="bibliography.html#id4" title="Eric Lehman, Tom Leighton, and Albert R. Meyer. Mathematics for computer science. 2017. URL: https://people.csail.mit.edu/meyer/mcs.pdf.">2</a>]</span>
+<a class="reference external" href="https://people.csail.mit.edu/meyer/mcs.pdf">Download PDF</a></p></li>
+<li><p><strong>Discrete Mathematics: An Open Introduction</strong>, <em>Oscar Levin</em><br />
+A free and open-source text that offers an intuitive and example-driven approach to logic, induction, and modular arithmetic. <span id="id3">[<a class="reference internal" href="bibliography.html#id5" title="Oscar Levin. Discrete mathematics: an open introduction. 2023. URL: https://discrete.openmathbooks.org/.">3</a>]</span>
+<a class="reference external" href="https://discrete.openmathbooks.org/">Online book</a></p></li>
+</ul>
+</section>
+<section id="probability">
+<h3>Probability<a class="headerlink" href="#probability" title="Permalink to this heading">#</a></h3>
+<p>Privacy techniques like the Laplace and Gaussian mechanisms rely on <strong>randomized algorithms</strong>, and a firm understanding of probability will help you make sense of how (and why) these methods work.</p>
+<ul class="simple">
+<li><p><strong>A First Course in Probability</strong>, <em>Sheldon Ross</em><br />
+A classic introduction. Covers the fundamentals with clear explanations and many examples. Particularly strong on discrete random variables and distributions. <span id="id4">[<a class="reference internal" href="bibliography.html#id6" title="Sheldon M. Ross. A First Course in Probability. Pearson, 10th edition, 2019. ISBN 9780134753119.">4</a>]</span></p></li>
+<li><p><strong>Introduction to Probability</strong>, <em>Dimitri P. Bertsekas and John N. Tsitsiklis</em><br />
+Used in MIT courses, this book emphasizes intuition alongside rigorous analysis. Excellent for learning both theory and applications. <span id="id5">[<a class="reference internal" href="bibliography.html#id7" title="Dimitri P. Bertsekas and John N. Tsitsiklis. Introduction to Probability. Athena Scientific, 2002. ISBN 9781886529236.">5</a>]</span></p></li>
+<li><p><strong>Introduction to Probability</strong>, <em>Charles Grinstead and J. Laurie Snell</em><br />
+A highly readable and freely available textbook. Especially good for beginners or those looking to brush up. <span id="id6">[<a class="reference internal" href="bibliography.html#id8" title="Charles M. Grinstead and J. Laurie Snell. Introduction to probability. 2003. URL: https://math.dartmouth.edu/~prob/prob/prob.pdf.">6</a>]</span>
+<a class="reference external" href="https://math.dartmouth.edu/~prob/prob/prob.pdf">Download PDF</a></p></li>
+</ul>
+</section>
+<section id="a-note-on-prerequisites">
+<h3>A Note on Prerequisites<a class="headerlink" href="#a-note-on-prerequisites" title="Permalink to this heading">#</a></h3>
+<p>You don’t need to be a mathematician to understand differential privacy — but a bit of mathematical thinking will go a long way. If you’re already comfortable with Python, NumPy, and pandas (as this book assumes), you’re more than capable of picking up any background math you need on the road!</p>
+</section>
 </section>
 </section>
 
@@ -502,7 +543,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Programming Differential Privacy</p>
+        <p class="prev-next-title">Cover</p>
       </div>
     </a>
     <a class="right-next"
@@ -532,6 +573,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstract">Abstract</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolution">Evolution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-resources-discrete-mathematics-and-probability">Background Resources: Discrete Mathematics and Probability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-mathematics">Discrete Mathematics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability">Probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-on-prerequisites">A Note on Prerequisites</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
