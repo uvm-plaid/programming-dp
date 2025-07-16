@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Local Differential Privacy &#8212; Programming Differential Privacy</title>
   
@@ -15,58 +14,52 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter13';</script>
-    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Synthetic Data" href="chapter14.html" />
@@ -80,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -123,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -143,9 +139,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="cover.html">
+  
   
   
   
@@ -155,12 +155,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Programming Differential Privacy - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Programming Differential Privacy - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -188,7 +199,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter14.html">Synthetic Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter15.html">Efficiency &amp; Limitations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further.html">Further Reading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -205,7 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -214,14 +225,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -246,14 +257,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/chapter13.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -391,26 +402,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -446,7 +459,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="local-differential-privacy">
 <h1>Local Differential Privacy<a class="headerlink" href="#local-differential-privacy" title="Permalink to this heading">#</a></h1>
@@ -467,7 +480,7 @@ document.write(`
 <p>In this section, we’ll see two mechanisms for local differential privacy. The first is called <em>randomized response</em>, and the second is called <em>unary encoding</em>.</p>
 <section id="randomized-response">
 <h2>Randomized Response<a class="headerlink" href="#randomized-response" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Randomized_response">Randomized response</a> <span id="id1">[<a class="reference internal" href="bibliography.html#id25" title="Stanley L. Warner. Randomized response: a survey technique for eliminating evasive answer bias. Journal of the American Statistical Association, 60(309):63-69, 1965. PMID: 12261830. URL: https://www.tandfonline.com/doi/abs/10.1080/01621459.1965.10480775, doi:10.1080/01621459.1965.10480775.">26</a>]</span> is a mechanism for local differential privacy which was first proposed in a 1965 <a class="reference external" href="https://www.jstor.org/stable/2283137?seq=1#metadata_info_tab_contents">paper by S. L. Warner</a>. At the time, the technique was intended to improve bias in survey responses about sensitive issues, and it was not originally proposed as a mechanism for differential privacy (which wouldn’t be invented for another 40 years). After differential privacy was developed, statisticians realized that this existing technique <em>already</em> satisfied the definition.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Randomized_response">Randomized response</a> <span id="id1">[<a class="reference internal" href="further.html#id60" title="Stanley L. Warner. Randomized response: a survey technique for eliminating evasive answer bias. Journal of the American Statistical Association, 60(309):63-69, 1965. PMID: 12261830. URL: https://www.tandfonline.com/doi/abs/10.1080/01621459.1965.10480775, doi:10.1080/01621459.1965.10480775.">26</a>]</span> is a mechanism for local differential privacy which was first proposed in a 1965 <a class="reference external" href="https://www.jstor.org/stable/2283137?seq=1#metadata_info_tab_contents">paper by S. L. Warner</a>. At the time, the technique was intended to improve bias in survey responses about sensitive issues, and it was not originally proposed as a mechanism for differential privacy (which wouldn’t be invented for another 40 years). After differential privacy was developed, statisticians realized that this existing technique <em>already</em> satisfied the definition.</p>
 <p>Dwork and Roth present a variant of randomized response, in which the data subject answers a “yes” or “no” question as follows:</p>
 <ol class="arabic simple">
 <li><p>Flip a coin</p></li>
@@ -480,7 +493,7 @@ document.write(`
 <p>Let’s implement the algorithm for a simple “yes” or “no” question: “is your occupation ‘Sales’?” We can flip a coin in Python using <code class="docutils literal notranslate"><span class="pre">np.random.randint(0,</span> <span class="pre">2)</span></code>; the result is either a 0 or a 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rand_resp_sales</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rand_resp_sales</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
     <span class="n">truthful_response</span> <span class="o">=</span> <span class="n">response</span> <span class="o">==</span> <span class="s1">&#39;Sales&#39;</span>
     
     <span class="c1"># first coin flip</span>
@@ -502,9 +515,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     155
-False     45
-dtype: int64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     149
+False     51
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -525,9 +538,9 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22633
-True      9928
-dtype: int64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22559
+True     10004
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -582,7 +595,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3721.5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(3864.5)
 </pre></div>
 </div>
 </div>
@@ -596,7 +609,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3650
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(3650)
 </pre></div>
 </div>
 </div>
@@ -608,7 +621,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.9589041095890412
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(5.876712328767123)
 </pre></div>
 </div>
 </div>
@@ -622,7 +635,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.011423124062500005
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.03978461982195805)
 </pre></div>
 </div>
 </div>
@@ -633,7 +646,7 @@ dtype: int64
 <section id="unary-encoding">
 <h2>Unary Encoding<a class="headerlink" href="#unary-encoding" title="Permalink to this heading">#</a></h2>
 <p>Randomized response allows us to ask a yes/no question with local differential privacy. What if we want to build a histogram?</p>
-<p>A number of different algorithms for solving this problem in the local model of differential privacy have been proposed. A <a class="reference external" href="https://arxiv.org/abs/1705.04421">2017 paper by Wang et al.</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id26" title="Tianhao Wang, Jeremiah Blocki, Ninghui Li, and Somesh Jha. Locally differentially private protocols for frequency estimation. In 26th USENIX Security Symposium (USENIX Security 17), 729–745. Vancouver, BC, August 2017. USENIX Association. URL: https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/wang-tianhao.">27</a>]</span> provides a good summary of some optimal approaches. Here, we’ll examine the simplest of these, called <em>unary encoding</em>. This approach is the basis for <a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42852.pdf">Google’s RAPPOR system</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id24" title="Úlfar Erlingsson, Vasyl Pihur, and Aleksandra Korolova. Rappor: randomized aggregatable privacy-preserving ordinal response. In Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security, CCS '14, 1054–1067. New York, NY, USA, 2014. Association for Computing Machinery. URL: https://doi.org/10.1145/2660267.2660348, doi:10.1145/2660267.2660348.">25</a>]</span> (with a number of modifications to make it work better for large domains and multiple responses over time).</p>
+<p>A number of different algorithms for solving this problem in the local model of differential privacy have been proposed. A <a class="reference external" href="https://arxiv.org/abs/1705.04421">2017 paper by Wang et al.</a> <span id="id2">[<a class="reference internal" href="further.html#id61" title="Tianhao Wang, Jeremiah Blocki, Ninghui Li, and Somesh Jha. Locally differentially private protocols for frequency estimation. In 26th USENIX Security Symposium (USENIX Security 17), 729–745. Vancouver, BC, August 2017. USENIX Association. URL: https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/wang-tianhao.">27</a>]</span> provides a good summary of some optimal approaches. Here, we’ll examine the simplest of these, called <em>unary encoding</em>. This approach is the basis for <a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42852.pdf">Google’s RAPPOR system</a> <span id="id3">[<a class="reference internal" href="further.html#id59" title="Úlfar Erlingsson, Vasyl Pihur, and Aleksandra Korolova. Rappor: randomized aggregatable privacy-preserving ordinal response. In Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security, CCS '14, 1054–1067. New York, NY, USA, 2014. Association for Computing Machinery. URL: https://doi.org/10.1145/2660267.2660348, doi:10.1145/2660267.2660348.">25</a>]</span> (with a number of modifications to make it work better for large domains and multiple responses over time).</p>
 <p>The first step is to define the domain for responses - the labels of the histogram bins we care about. For our example, we want to know how many participants are associated with each occupation, so our domain is the set of occupations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -646,7 +659,8 @@ dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Adm-clerical&#39;, &#39;Exec-managerial&#39;, &#39;Handlers-cleaners&#39;,
        &#39;Prof-specialty&#39;, &#39;Other-service&#39;, &#39;Sales&#39;, &#39;Craft-repair&#39;,
        &#39;Transport-moving&#39;, &#39;Farming-fishing&#39;, &#39;Machine-op-inspct&#39;,
-       &#39;Tech-support&#39;, &#39;Protective-serv&#39;, &#39;Armed-Forces&#39;, &#39;Priv-house-serv&#39;], dtype=object)
+       &#39;Tech-support&#39;, &#39;Protective-serv&#39;, &#39;Baby&#39;, &#39;Armed-Forces&#39;,
+       &#39;Priv-house-serv&#39;], dtype=object)
 </pre></div>
 </div>
 </div>
@@ -661,7 +675,7 @@ dtype: int64
 <p>For example, ‘Sales’ is the 6th element of the domain, so the ‘Sales’ occupation is encoded with a vector whose 6th element is a 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">encode</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="n">response</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">]</span>
 
 <span class="n">encode</span><span class="p">(</span><span class="s1">&#39;Sales&#39;</span><span class="p">)</span>
@@ -669,7 +683,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 </pre></div>
 </div>
 </div>
@@ -684,10 +698,10 @@ dtype: int64
 \right.  \end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">perturb</span><span class="p">(</span><span class="n">encoded_response</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">perturb</span><span class="p">(</span><span class="n">encoded_response</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">perturb_bit</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">encoded_response</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">perturb_bit</span><span class="p">(</span><span class="n">bit</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">perturb_bit</span><span class="p">(</span><span class="n">bit</span><span class="p">):</span>
     <span class="n">p</span> <span class="o">=</span> <span class="mf">.75</span>
     <span class="n">q</span> <span class="o">=</span> <span class="mf">.25</span>
 
@@ -708,19 +722,19 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1]
 </pre></div>
 </div>
 </div>
 </div>
 <p>Based on the values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, we can calculate the value of the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>. For <span class="math notranslate nohighlight">\(p=.75\)</span> and <span class="math notranslate nohighlight">\(q=.25\)</span>, we will see an <span class="math notranslate nohighlight">\(\epsilon\)</span> of slightly more than 2.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-215c682f-98dc-4be9-a7ce-2598688ab796">
-<span class="eqno">(27)<a class="headerlink" href="#equation-215c682f-98dc-4be9-a7ce-2598688ab796" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-00abd01b-480e-4479-a245-245fa206b944">
+<span class="eqno">(27)<a class="headerlink" href="#equation-00abd01b-480e-4479-a245-245fa206b944" title="Permalink to this equation">#</a></span>\[\begin{align}
 \epsilon = \log{\left(\frac{p (1-q)}{(1-p) q}\right)}
 \end{align}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unary_epsilon</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">unary_epsilon</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">p</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">q</span><span class="p">))</span> <span class="o">/</span> <span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">q</span><span class="p">))</span>
 
 <span class="n">unary_epsilon</span><span class="p">(</span><span class="mf">.75</span><span class="p">,</span> <span class="mf">.25</span><span class="p">)</span>
@@ -728,7 +742,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.1972245773362196
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.1972245773362196)
 </pre></div>
 </div>
 </div>
@@ -738,22 +752,22 @@ dtype: int64
 <p>You may be wondering at this point if <span class="math notranslate nohighlight">\( p + q = 1 \)</span> is a required constraint. The answer is <em>no</em>.</p>
 <p>Not necessarily! In general, <span class="math notranslate nohighlight">\(p + q \neq 1\)</span> unless the mechanism is specifically designed to enforce that relationship.</p>
 <p>In the <span class="math notranslate nohighlight">\(\textbf{binary randomized response}\)</span> setting, the true value is either 0 or 1, and the reported value may be flipped with some probability. We define:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-249c0ad2-5ff6-4d13-9528-8ec4b460b3f6">
-<span class="eqno">(28)<a class="headerlink" href="#equation-249c0ad2-5ff6-4d13-9528-8ec4b460b3f6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-689a45e7-d733-4125-a855-a98900dcedfd">
+<span class="eqno">(28)<a class="headerlink" href="#equation-689a45e7-d733-4125-a855-a98900dcedfd" title="Permalink to this equation">#</a></span>\[\begin{align}
 p &amp;= \Pr[\text{report } 1 \mid \text{true} = 1] \\
 q &amp;= \Pr[\text{report } 1 \mid \text{true} = 0]
 \end{align}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(p\)</span> is the probability of truthfully reporting a 1 when the true value is 1, and <span class="math notranslate nohighlight">\(q\)</span> is the probability of reporting a 1 even when the true value is 0 (i.e., the false positive rate).</p>
 <p>The sum <span class="math notranslate nohighlight">\(p + q\)</span> has no inherent constraint unless the mechanism is symmetric. For example, in the <span class="math notranslate nohighlight">\(\textbf{classic symmetric randomized response}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c2f0793b-d587-4d51-ab64-c1697944e587">
-<span class="eqno">(29)<a class="headerlink" href="#equation-c2f0793b-d587-4d51-ab64-c1697944e587" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ee182199-df7b-43e3-af53-26fd26f5884f">
+<span class="eqno">(29)<a class="headerlink" href="#equation-ee182199-df7b-43e3-af53-26fd26f5884f" title="Permalink to this equation">#</a></span>\[\begin{align}
 p &amp;= \frac{e^\epsilon}{e^\epsilon + 1} \\
 q &amp;= \frac{1}{e^\epsilon + 1}
 \end{align}\]</div>
 <p>In this case, we see that <span class="math notranslate nohighlight">\(p + q = 1\)</span>, because the mechanism flips or preserves the bit with complementary probabilities.</p>
 <p>In the <span class="math notranslate nohighlight">\(\textbf{general binary randomized response}\)</span>, however, <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span> can be chosen independently, subject to the constraints imposed by <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-62a0d9cb-3eb4-4916-ae70-ba83200f1b5d">
-<span class="eqno">(30)<a class="headerlink" href="#equation-62a0d9cb-3eb4-4916-ae70-ba83200f1b5d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-63942373-3bc4-45d1-8bff-3a4bec9ed9e5">
+<span class="eqno">(30)<a class="headerlink" href="#equation-63942373-3bc4-45d1-8bff-3a4bec9ed9e5" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{p}{q} &amp;\leq e^\epsilon \\
 \frac{1 - p}{1 - q} &amp;\leq e^\epsilon
 \end{align}\]</div>
@@ -768,20 +782,21 @@ q &amp;= \frac{1}{e^\epsilon + 1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3770),
- (&#39;Exec-managerial&#39;, 4066),
- (&#39;Handlers-cleaners&#39;, 1370),
- (&#39;Prof-specialty&#39;, 4140),
- (&#39;Other-service&#39;, 3295),
- (&#39;Sales&#39;, 3650),
- (&#39;Craft-repair&#39;, 4099),
- (&#39;Transport-moving&#39;, 1597),
- (&#39;Farming-fishing&#39;, 994),
- (&#39;Machine-op-inspct&#39;, 2002),
- (&#39;Tech-support&#39;, 928),
- (&#39;Protective-serv&#39;, 649),
- (&#39;Armed-Forces&#39;, 9),
- (&#39;Priv-house-serv&#39;, 149)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, np.int64(3770)),
+ (&#39;Exec-managerial&#39;, np.int64(4066)),
+ (&#39;Handlers-cleaners&#39;, np.int64(1370)),
+ (&#39;Prof-specialty&#39;, np.int64(4140)),
+ (&#39;Other-service&#39;, np.int64(3295)),
+ (&#39;Sales&#39;, np.int64(3650)),
+ (&#39;Craft-repair&#39;, np.int64(4100)),
+ (&#39;Transport-moving&#39;, np.int64(1597)),
+ (&#39;Farming-fishing&#39;, np.int64(994)),
+ (&#39;Machine-op-inspct&#39;, np.int64(2002)),
+ (&#39;Tech-support&#39;, np.int64(928)),
+ (&#39;Protective-serv&#39;, np.int64(649)),
+ (&#39;Baby&#39;, np.int64(1)),
+ (&#39;Armed-Forces&#39;, np.int64(9)),
+ (&#39;Priv-house-serv&#39;, np.int64(149))]
 </pre></div>
 </div>
 </div>
@@ -795,32 +810,33 @@ q &amp;= \frac{1}{e^\epsilon + 1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 10042),
- (&#39;Exec-managerial&#39;, 10204),
- (&#39;Handlers-cleaners&#39;, 9006),
- (&#39;Prof-specialty&#39;, 10238),
- (&#39;Other-service&#39;, 9635),
- (&#39;Sales&#39;, 9844),
- (&#39;Craft-repair&#39;, 10233),
- (&#39;Transport-moving&#39;, 8863),
- (&#39;Farming-fishing&#39;, 8721),
- (&#39;Machine-op-inspct&#39;, 9122),
- (&#39;Tech-support&#39;, 8753),
- (&#39;Protective-serv&#39;, 8523),
- (&#39;Armed-Forces&#39;, 8157),
- (&#39;Priv-house-serv&#39;, 8042)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, np.int64(10050)),
+ (&#39;Exec-managerial&#39;, np.int64(10216)),
+ (&#39;Handlers-cleaners&#39;, np.int64(8884)),
+ (&#39;Prof-specialty&#39;, np.int64(10246)),
+ (&#39;Other-service&#39;, np.int64(9712)),
+ (&#39;Sales&#39;, np.int64(9961)),
+ (&#39;Craft-repair&#39;, np.int64(10102)),
+ (&#39;Transport-moving&#39;, np.int64(8955)),
+ (&#39;Farming-fishing&#39;, np.int64(8481)),
+ (&#39;Machine-op-inspct&#39;, np.int64(9085)),
+ (&#39;Tech-support&#39;, np.int64(8500)),
+ (&#39;Protective-serv&#39;, np.int64(8371)),
+ (&#39;Baby&#39;, np.int64(8126)),
+ (&#39;Armed-Forces&#39;, np.int64(7983)),
+ (&#39;Priv-house-serv&#39;, np.int64(8199))]
 </pre></div>
 </div>
 </div>
 </div>
 <p>The aggregate step of the unary encoding algorithm takes into account the number of “fake” responses in each category, which is a function of both <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, and the number of responses <span class="math notranslate nohighlight">\(n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ef2a43a5-fe8c-49e1-a268-feaf75e86211">
-<span class="eqno">(31)<a class="headerlink" href="#equation-ef2a43a5-fe8c-49e1-a268-feaf75e86211" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-cd15d2e5-425a-4e16-a99d-4867bac2062f">
+<span class="eqno">(31)<a class="headerlink" href="#equation-cd15d2e5-425a-4e16-a99d-4867bac2062f" title="Permalink to this equation">#</a></span>\[\begin{align}
 A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 \end{align}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">responses</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="n">responses</span><span class="p">):</span>
     <span class="n">p</span> <span class="o">=</span> <span class="mf">.75</span>
     <span class="n">q</span> <span class="o">=</span> <span class="mf">.25</span>
     
@@ -841,20 +857,21 @@ A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, 3865.5),
- (&#39;Exec-managerial&#39;, 4047.5),
- (&#39;Handlers-cleaners&#39;, 989.5),
- (&#39;Prof-specialty&#39;, 4001.5),
- (&#39;Other-service&#39;, 2993.5),
- (&#39;Sales&#39;, 3699.5),
- (&#39;Craft-repair&#39;, 4093.5),
- (&#39;Transport-moving&#39;, 1613.5),
- (&#39;Farming-fishing&#39;, 715.5),
- (&#39;Machine-op-inspct&#39;, 2119.5),
- (&#39;Tech-support&#39;, 947.5),
- (&#39;Protective-serv&#39;, 821.5),
- (&#39;Armed-Forces&#39;, -92.5),
- (&#39;Priv-house-serv&#39;, 387.5)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, np.float64(3788.5)),
+ (&#39;Exec-managerial&#39;, np.float64(4272.5)),
+ (&#39;Handlers-cleaners&#39;, np.float64(1646.5)),
+ (&#39;Prof-specialty&#39;, np.float64(4106.5)),
+ (&#39;Other-service&#39;, np.float64(3310.5)),
+ (&#39;Sales&#39;, np.float64(3616.5)),
+ (&#39;Craft-repair&#39;, np.float64(4174.5)),
+ (&#39;Transport-moving&#39;, np.float64(1698.5)),
+ (&#39;Farming-fishing&#39;, np.float64(930.5)),
+ (&#39;Machine-op-inspct&#39;, np.float64(2026.5)),
+ (&#39;Tech-support&#39;, np.float64(906.5)),
+ (&#39;Protective-serv&#39;, np.float64(408.5)),
+ (&#39;Baby&#39;, np.float64(-277.5)),
+ (&#39;Armed-Forces&#39;, np.float64(-363.5)),
+ (&#39;Priv-house-serv&#39;, np.float64(246.5))]
 </pre></div>
 </div>
 </div>
@@ -917,8 +934,8 @@ A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="chapter12.html"
@@ -946,6 +963,7 @@ A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -980,6 +998,7 @@ By Joseph P. Near and Chiké Abuah
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright © 2025 Joseph P. Near and Chiké Abuah.
@@ -1006,8 +1025,8 @@ By Joseph P. Near and Chiké Abuah
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

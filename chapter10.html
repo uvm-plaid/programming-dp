@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>The Sparse Vector Technique &#8212; Programming Differential Privacy</title>
   
@@ -15,58 +14,52 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter10';</script>
-    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Design &amp; Deployment" href="chapter11.html" />
@@ -80,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -123,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -143,9 +139,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="cover.html">
+  
   
   
   
@@ -155,12 +155,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Programming Differential Privacy - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Programming Differential Privacy - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -188,7 +199,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="chapter13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter14.html">Synthetic Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter15.html">Efficiency &amp; Limitations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further.html">Further Reading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -205,7 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -214,14 +225,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -246,14 +257,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/chapter10.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -391,26 +402,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -444,7 +457,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-sparse-vector-technique">
 <h1>The Sparse Vector Technique<a class="headerlink" href="#the-sparse-vector-technique" title="Permalink to this heading">#</a></h1>
@@ -458,7 +471,7 @@ document.write(`
 </ul>
 </div>
 <p>We’ve already seen one example of a mechanism - the exponential mechanism - which achieves a lower-than-expected privacy cost by withholding some information. Are there others?</p>
-<p>There are, and one that turns out to be extremely useful in practical algorithms is the <em>sparse vector technique</em> (SVT) <span id="id1">[<a class="reference internal" href="bibliography.html#id23" title="Cynthia Dwork, Moni Naor, Omer Reingold, Guy N. Rothblum, and Salil Vadhan. On the complexity of differentially private data release: efficient algorithms and hardness results. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 381–390. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536467, doi:10.1145/1536414.1536467.">24</a>]</span>.</p>
+<p>There are, and one that turns out to be extremely useful in practical algorithms is the <em>sparse vector technique</em> (SVT) <span id="id1">[<a class="reference internal" href="further.html#id58" title="Cynthia Dwork, Moni Naor, Omer Reingold, Guy N. Rothblum, and Salil Vadhan. On the complexity of differentially private data release: efficient algorithms and hardness results. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 381–390. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536467, doi:10.1145/1536414.1536467.">24</a>]</span>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>The sparse vector technique operates on a stream of sensitivity-1 queries over a dataset; it releases the <em>identity</em> of the first query in the stream which passes a test, and nothing else.</p>
@@ -466,13 +479,13 @@ document.write(`
 <p>The advantage of SVT is that it incurs a fixed total privacy cost, no matter <em>how many queries it considers</em>.</p>
 <section id="above-threshold">
 <h2>Above Threshold<a class="headerlink" href="#above-threshold" title="Permalink to this heading">#</a></h2>
-<p>The most basic instantiation of the sparse vector technique is an algorithm called <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id17" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">23</a>]</span>, Algorithm 1). The inputs to the algorithm are a stream of sensitivity-1 queries, a dataset <span class="math notranslate nohighlight">\(D\)</span>, a <em>threshold</em> <span class="math notranslate nohighlight">\(T\)</span>, and the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>; the algorithm preserves <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. A Python implementation of the algorithm appears below.</p>
+<p>The most basic instantiation of the sparse vector technique is an algorithm called <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="further.html#id52" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">23</a>]</span>, Algorithm 1). The inputs to the algorithm are a stream of sensitivity-1 queries, a dataset <span class="math notranslate nohighlight">\(D\)</span>, a <em>threshold</em> <span class="math notranslate nohighlight">\(T\)</span>, and the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>; the algorithm preserves <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy. A Python implementation of the algorithm appears below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 
 <span class="c1"># preserves epsilon-differential privacy</span>
-<span class="k">def</span> <span class="nf">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span><span class="n">on_fail</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span><span class="n">on_fail</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">):</span>
     <span class="n">T_hat</span> <span class="o">=</span> <span class="n">T</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>   
     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
         <span class="n">nu_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
@@ -497,7 +510,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># preserves |queries|*epsilon-differential privacy</span>
-<span class="k">def</span> <span class="nf">naive_above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">naive_above_threshold</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
         <span class="n">nu_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">q</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="n">nu_i</span> <span class="o">&gt;=</span> <span class="n">T</span><span class="p">:</span>
@@ -517,7 +530,7 @@ document.write(`
 <p>We can do much better with the sparse vector technique. Consider a query which clips the ages of everyone in the dataset, then sums them up:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">age_sum_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">age_sum_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
 <span class="n">age_sum_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
@@ -533,7 +546,7 @@ document.write(`
 <p>The naive algorithm for selecting a good value for <code class="docutils literal notranslate"><span class="pre">b</span></code> is to obtain differentially private answers for many values of <code class="docutils literal notranslate"><span class="pre">b</span></code>, returning the smallest one where the value stops increasing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">naive_select_b</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">naive_select_b</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
     <span class="n">bs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
     <span class="n">best</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">threshold</span> <span class="o">=</span> <span class="mi">10</span>
@@ -564,10 +577,10 @@ document.write(`
 <p>Can we use SVT here? We only care about one thing: the value of <code class="docutils literal notranslate"><span class="pre">b</span></code> where the value of <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code> stops increasing. However, the sensitivity of <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code> is <code class="docutils literal notranslate"><span class="pre">b</span></code>, because adding or removing a row in <code class="docutils literal notranslate"><span class="pre">df</span></code> could change the sum by at most <code class="docutils literal notranslate"><span class="pre">b</span></code>; to use SVT, we need to build a stream of 1-sensitive queries.</p>
 <p>The value we actually care about, though, is whether or not the query’s answer is <em>changing</em> at a specific value of <span class="math notranslate nohighlight">\(b\)</span> (i.e. <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span> <span class="pre">-</span> <span class="pre">age_sum_query(df,</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">1)</span></code>). Consider what happens when we add a row to <code class="docutils literal notranslate"><span class="pre">df</span></code>: the answer to the first part of the query <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b)</span></code> goes up by <span class="math notranslate nohighlight">\(b\)</span>, but the answer to the second part of the query <code class="docutils literal notranslate"><span class="pre">age_sum_query(df,</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">1)</span></code> <em>also</em> goes up - by <span class="math notranslate nohighlight">\(b + 1\)</span>. The sensitivity is therefore <span class="math notranslate nohighlight">\(\vert b - (b + 1) \vert = 1\)</span> - so each query will be 1-sensitive, as desired! As the value of <span class="math notranslate nohighlight">\(b\)</span> approaches the optimal one, the value of the difference we defined above will approach 0:</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
@@ -586,7 +599,7 @@ document.write(`
 <p>Let’s define a stream of difference queries, and use <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> to determine the index of the best value of <code class="docutils literal notranslate"><span class="pre">b</span></code> using the sparse vector technique.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_query</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_query</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
     <span class="k">return</span> <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">age_sum_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">age_sum_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="n">bs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
@@ -598,17 +611,17 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>76
 </pre></div>
 </div>
 </div>
 </div>
 <p>Note that it <em>doesn’t matter</em> how long the list <code class="docutils literal notranslate"><span class="pre">bs</span></code> is - we’ll get accurate results (and pay the same privacy cost) no matter its length. The really powerful effect of SVT is to eliminate the dependence of privacy cost on the number of queries we perform. Try changing the range for <code class="docutils literal notranslate"><span class="pre">bs</span></code> above and re-running the plot below. You’ll see that the output doesn’t depend on the number of values for <code class="docutils literal notranslate"><span class="pre">b</span></code> we try - even if the list has <em>thousands</em> of elements!</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Chosen Value of &quot;b&quot;&#39;</span><span class="p">)</span>
@@ -619,14 +632,14 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/bf6d8bd37f8bb6ffd89ea0b9f253d9d5f74eececaa24a822b9cb527561c71bc6.png" src="_images/bf6d8bd37f8bb6ffd89ea0b9f253d9d5f74eececaa24a822b9cb527561c71bc6.png" />
+<img alt="_images/154a11b4a57737aa24a4f9520177abfea432bf12ffeab6b60f9a88585c7e2ba6.png" src="_images/154a11b4a57737aa24a4f9520177abfea432bf12ffeab6b60f9a88585c7e2ba6.png" />
 </div>
 </div>
 <p>We can use SVT to build an algorithm for summation queries (and using this, for average queries) that automatically computes the clipping parameter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">auto_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">create_query</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">auto_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_query</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
         <span class="k">return</span> <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
     <span class="c1"># Construct the stream of queries</span>
@@ -651,7 +664,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(41.76763109982805)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(41.78402327541991)
 </pre></div>
 </div>
 </div>
@@ -664,7 +677,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1090.459169221535)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1088.9177619288505)
 </pre></div>
 </div>
 </div>
@@ -674,7 +687,7 @@ document.write(`
 <section id="returning-multiple-values">
 <h2>Returning Multiple Values<a class="headerlink" href="#returning-multiple-values" title="Permalink to this heading">#</a></h2>
 <p>In the above application, we only needed the index of the <em>first</em> query which exceeded the threshold, but in many other applications we would like to find the indices of <em>all</em> such queries.</p>
-<p>We can use SVT to do this, but we’ll have to pay a higher privacy cost. We can implement an algorithm called <code class="docutils literal notranslate"><span class="pre">sparse</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id3">[<a class="reference internal" href="bibliography.html#id17" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">23</a>]</span>, Algorithm 2) to accomplish the task, using a very simple approach:</p>
+<p>We can use SVT to do this, but we’ll have to pay a higher privacy cost. We can implement an algorithm called <code class="docutils literal notranslate"><span class="pre">sparse</span></code> (see <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id3">[<a class="reference internal" href="further.html#id52" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">23</a>]</span>, Algorithm 2) to accomplish the task, using a very simple approach:</p>
 <ol class="arabic simple">
 <li><p>Start with a stream <span class="math notranslate nohighlight">\(qs = \{q_1, \dots, q_k\}\)</span> of queries</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> on <span class="math notranslate nohighlight">\(qs\)</span> to learn the index <span class="math notranslate nohighlight">\(i\)</span> of the first query which exceeds the threshold</p></li>
@@ -683,7 +696,7 @@ document.write(`
 <p>If the algorithm invokes <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> <span class="math notranslate nohighlight">\(k\)</span> times, with a privacy parameter of <span class="math notranslate nohighlight">\(\epsilon\)</span> for each invocation, then it satisfies <span class="math notranslate nohighlight">\(k\epsilon\)</span>-differential privacy by sequential composition. If we want to specify an upper bound on total privacy cost, we need to bound <span class="math notranslate nohighlight">\(k\)</span> - so the <code class="docutils literal notranslate"><span class="pre">sparse</span></code> algorithm asks the analyst to specify an upper bound <span class="math notranslate nohighlight">\(c\)</span> on the number of times <code class="docutils literal notranslate"><span class="pre">AboveThreshold</span></code> will be invoked.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sparse</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sparse</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
     <span class="n">idxs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">epsilon_i</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">/</span> <span class="n">c</span>
@@ -717,7 +730,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[15, 16, 17]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[15, 23, 24]
 </pre></div>
 </div>
 </div>
@@ -730,11 +743,11 @@ document.write(`
 <p>Consider a set of range queries over ages (i.e. queries of the form “how many people have ages between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>?”). We can generate many such queries at random:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">age_range_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">age_range_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">):</span>
     <span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">lower</span><span class="p">]</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">])</span>
 
-<span class="k">def</span> <span class="nf">create_age_range_query</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_age_range_query</span><span class="p">():</span>
     <span class="n">lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
     <span class="n">upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
     <span class="k">return</span> <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">age_range_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
@@ -747,7 +760,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[16899, 16908, 11091, 8033, 11330, 4553, 18240, 8132, 9053, 11372]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[533, 6828, 5795, 12624, 1060, 8406, 8489, 10977, 3738, 8431]
 </pre></div>
 </div>
 </div>
@@ -756,7 +769,7 @@ document.write(`
 <p>We can use the sparse vector technique to do this. First, we’ll determine the indices of the range queries in the stream which exceed a threshold for “goodness” that we decide on. Then, we’ll use the Laplace mechanism to find differentially private answers for <em>just</em> those queries. The total privacy cost will be proportional to the number of queries <em>above</em> the threshold - not the total number of queries. In cases where we expect just a few queries to be above the threshold, this can result in a much smaller privacy cost.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">range_query_svt</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">range_query_svt</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
     <span class="c1"># first, run Sparse to get the indices of the &quot;good&quot; queries</span>
     <span class="n">sparse_epsilon</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">/</span> <span class="mi">2</span>
     <span class="n">indices</span> <span class="o">=</span> <span class="n">sparse</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">adult</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">sparse_epsilon</span><span class="p">)</span>
@@ -776,11 +789,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[16917.45574425689,
- 16933.282003171324,
- 11093.27636133087,
- 11324.844036991903,
- 18243.71176080326]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12648.340422063706, 10973.619117361426]
 </pre></div>
 </div>
 </div>
@@ -822,8 +831,8 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="chapter9.html"
@@ -851,6 +860,7 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -883,6 +893,7 @@ By Joseph P. Near and Chiké Abuah
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright © 2025 Joseph P. Near and Chiké Abuah.
@@ -909,8 +920,8 @@ By Joseph P. Near and Chiké Abuah
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

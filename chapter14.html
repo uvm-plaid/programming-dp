@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Synthetic Data &#8212; Programming Differential Privacy</title>
   
@@ -15,58 +14,52 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter14';</script>
-    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Efficiency &amp; Limitations" href="chapter15.html" />
@@ -80,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -123,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -143,9 +139,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="cover.html">
+  
   
   
   
@@ -155,12 +155,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Programming Differential Privacy - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Programming Differential Privacy - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -188,7 +199,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="chapter13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Synthetic Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter15.html">Efficiency &amp; Limitations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further.html">Further Reading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -205,7 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -214,14 +225,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -246,14 +257,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/chapter14.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -391,26 +402,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -444,7 +457,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="synthetic-data">
 <h1>Synthetic Data<a class="headerlink" href="#synthetic-data" title="Permalink to this heading">#</a></h1>
@@ -468,7 +481,7 @@ document.write(`
 <p>A <em>range query</em> counts the number of rows in the dataset which have a value lying in a given range. For example, “how many participants are between the ages of 21 and 33?” is a range query.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">range_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">range_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)])</span>
 
 <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span>
@@ -476,7 +489,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9878
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6245
 </pre></div>
 </div>
 </div>
@@ -493,13 +506,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5d39ee6153cd213eac8bb8a64b787446fd3553e27b01d7a0c0956691452826f3.png" src="_images/5d39ee6153cd213eac8bb8a64b787446fd3553e27b01d7a0c0956691452826f3.png" />
+<img alt="_images/9991f8697a3d9c57f00dc9aacd636ef8597ad97b644341f7ece52d959de0c85e.png" src="_images/9991f8697a3d9c57f00dc9aacd636ef8597ad97b644341f7ece52d959de0c85e.png" />
 </div>
 </div>
 <p>We can use these histogram results as a synthetic representation for the original data! To answer a range query, we can add up all the counts of the bins which fall into the range.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">range_query_synth</span><span class="p">(</span><span class="n">syn_rep</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">range_query_synth</span><span class="p">(</span><span class="n">syn_rep</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
         <span class="n">total</span> <span class="o">+=</span> <span class="n">syn_rep</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -515,7 +528,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9878
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6245
 </pre></div>
 </div>
 </div>
@@ -541,17 +554,17 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9878.696926277811
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6251.240978950693
 </pre></div>
 </div>
 </div>
 </div>
 <p>How accurate are the results? For small ranges, the results we get from our synthetic representation have very similar accuracy to the results we could get by applying the Laplace mechanism directly to the result of the range query we want to answer. For example:</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
@@ -562,18 +575,18 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.05033210106064831
-Laplace mechanism error: 0.03268107616484561
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.06721868532017498
+Laplace mechanism error: 0.24129385463395525
 </pre></div>
 </div>
 </div>
 </div>
 <p>As the range gets bigger, the count gets larger, so we would expect relative error to decrease. We have seen this over and over again - larger groups means a stronger signal, which leads to lower relative error. With the Laplace mechanism, we see exactly this behavior. With our synthetic representation, however, we’re adding together noisy results from many <em>smaller</em> groups - so as the signal grows, so does the noise! As a result, we see roughly the same magnitude of relative error when using the synthetic representation, <em>regardless of the size of the range</em> - precisely the opposite of the Laplace mechanism!</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">71</span><span class="p">)</span>
@@ -584,8 +597,8 @@ Laplace mechanism error: 0.03268107616484561
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.06189186566492465
-Laplace mechanism error: 0.0011415878435028994
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.05330283355248608
+Laplace mechanism error: 0.0009919979451147936
 </pre></div>
 </div>
 </div>
@@ -605,17 +618,17 @@ Laplace mechanism error: 0.0011415878435028994
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.0)
 </pre></div>
 </div>
 </div>
 </div>
 <p>Notice that if we plot the normalized counts - which we can now treat as probabilities for each corresponding histogram bin, since they sum to 1 - we see a shape that looks very much like the original histogram (which, in turn, looks a lot like the shape of the original data). This is all to be expected - except for their scale, these probabilities <em>are</em> simply the counts.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
@@ -626,13 +639,13 @@ Laplace mechanism error: 0.0011415878435028994
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/bdd92e37c453c6d8c27f3f2b6878a287d361abfbce1350d73b3b4b12a79d9a11.png" src="_images/bdd92e37c453c6d8c27f3f2b6878a287d361abfbce1350d73b3b4b12a79d9a11.png" />
+<img alt="_images/12cbd77ce0bab0d110b679cacba8e5363e9befeb32a5f9e3126fa13ad0b1de48.png" src="_images/12cbd77ce0bab0d110b679cacba8e5363e9befeb32a5f9e3126fa13ad0b1de48.png" />
 </div>
 </div>
 <p>The final step is to generate new samples based on these probabilities. We can use <code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code>, which allows passing in a list of probabilities (in the <code class="docutils literal notranslate"><span class="pre">p</span></code> parameter) associated with the choices given in the first parameter. It implements exactly the weighted random selection that we need for our sampling task. We can generate as many samples as we want without additional privacy cost, since we’ve already made our counts differentially private.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_samples</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gen_samples</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">syn_normalized</span><span class="p">)</span>
 
 <span class="n">syn_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gen_samples</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])</span>
@@ -665,23 +678,23 @@ Laplace mechanism error: 0.0011415878435028994
   <tbody>
     <tr>
       <th>0</th>
-      <td>60</td>
+      <td>46</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>40</td>
+      <td>66</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>20</td>
+      <td>45</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>50</td>
+      <td>63</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>22</td>
+      <td>63</td>
     </tr>
   </tbody>
 </table>
@@ -689,10 +702,10 @@ Laplace mechanism error: 0.0011415878435028994
 </div>
 <p>The samples we generate this way will be roughly distributed - we hope - according to the same underlying distribution as the original data. That means we can use the generated synthetic data to answer the same queries we could answer using the original data. In particular, if we plot the histogram of ages in a large synthetic dataset, we’ll see the same shape as we did in the original data.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">syn_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gen_samples</span><span class="p">(</span><span class="mi">10000</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])</span>
@@ -704,15 +717,15 @@ Laplace mechanism error: 0.0011415878435028994
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/53a512fc9fa6f10b2d804d0633b1a5c855230e67e35d34f775f59f7ef67092d5.png" src="_images/53a512fc9fa6f10b2d804d0633b1a5c855230e67e35d34f775f59f7ef67092d5.png" />
+<img alt="_images/4b949ac077e88e789b9f3d0721b1676ba917937cb5da675585dac75a09d48b45.png" src="_images/4b949ac077e88e789b9f3d0721b1676ba917937cb5da675585dac75a09d48b45.png" />
 </div>
 </div>
 <p>We can also answer some queries we’ve seen in the past, like averages and range queries:</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean age, synthetic: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">syn_data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])))</span>
@@ -723,18 +736,18 @@ Laplace mechanism error: 0.0011415878435028994
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 38.6616
-Mean age, true answer: 38.58164675532078
-Percent error: 0.2068027310799787
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 41.7804
+Mean age, true answer: 41.77250253355035
+Percent error: 0.018902323696394732
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Range query for age, synthetic: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">syn_data</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">)))</span>
@@ -746,19 +759,19 @@ Percent error: 0.2068027310799787
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 9065
-Range query for age, true answer: 29568
-Percent error: 69.34185606060606
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 7168
+Range query for age, true answer: 23574
+Percent error: 69.59362008992959
 </pre></div>
 </div>
 </div>
 </div>
 <p>Our mean query has fairly low error (though still much larger than we would achieve by applying the Laplace mechanism directly). Our range query, however, has very large error! This is simply because we haven’t quite matched the shape of the original data - we only generated 10,000 samples, and the original dataset has more than 30,000 rows. We can perform an additional differentially private query to determine the number of rows in the original data, and then generate a new synthetic dataset with the same number of rows, and this will improve our range query results.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adult</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
@@ -773,9 +786,9 @@ Percent error: 69.34185606060606
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 29456
-Range query for age, true answer: 29568
-Percent error: 0.3787878787878788
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Range query for age, synthetic: 23548
+Range query for age, true answer: 23574
+Percent error: 0.1102909985577331
 </pre></div>
 </div>
 </div>
@@ -794,10 +807,10 @@ Percent error: 0.3787878787878788
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
@@ -820,6 +833,7 @@ Percent error: 0.3787878787878788
       <th>Occupation</th>
       <th>Adm-clerical</th>
       <th>Armed-Forces</th>
+      <th>Baby</th>
       <th>Craft-repair</th>
       <th>Exec-managerial</th>
       <th>Farming-fishing</th>
@@ -849,93 +863,99 @@ Percent error: 0.3787878787878788
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>17</th>
-      <td>23</td>
+      <th>1</th>
       <td>0</td>
-      <td>14</td>
+      <td>0</td>
       <td>1</td>
-      <td>9</td>
-      <td>40</td>
-      <td>2</td>
-      <td>129</td>
-      <td>8</td>
-      <td>10</td>
-      <td>3</td>
-      <td>87</td>
-      <td>1</td>
-      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>18</th>
-      <td>55</td>
-      <td>0</td>
-      <td>17</td>
-      <td>6</td>
-      <td>14</td>
-      <td>50</td>
-      <td>17</td>
-      <td>152</td>
-      <td>4</td>
-      <td>10</td>
-      <td>5</td>
-      <td>115</td>
-      <td>2</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>102</td>
-      <td>0</td>
-      <td>40</td>
-      <td>12</td>
-      <td>24</td>
-      <td>65</td>
-      <td>30</td>
-      <td>166</td>
-      <td>3</td>
-      <td>18</td>
-      <td>3</td>
-      <td>112</td>
-      <td>8</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>117</td>
-      <td>0</td>
+      <th>11</th>
       <td>35</td>
-      <td>15</td>
-      <td>23</td>
-      <td>81</td>
-      <td>41</td>
-      <td>139</td>
-      <td>3</td>
-      <td>28</td>
-      <td>9</td>
-      <td>108</td>
+      <td>0</td>
+      <td>0</td>
+      <td>43</td>
+      <td>55</td>
+      <td>12</td>
+      <td>21</td>
+      <td>22</td>
+      <td>48</td>
+      <td>1</td>
+      <td>43</td>
+      <td>6</td>
+      <td>38</td>
       <td>14</td>
-      <td>24</td>
+      <td>18</td>
     </tr>
     <tr>
-      <th>21</th>
-      <td>121</td>
+      <th>12</th>
+      <td>68</td>
+      <td>1</td>
       <td>0</td>
-      <td>59</td>
-      <td>18</td>
-      <td>25</td>
-      <td>51</td>
-      <td>51</td>
-      <td>142</td>
-      <td>4</td>
-      <td>30</td>
-      <td>7</td>
-      <td>93</td>
-      <td>16</td>
+      <td>70</td>
+      <td>60</td>
       <td>14</td>
+      <td>27</td>
+      <td>21</td>
+      <td>48</td>
+      <td>0</td>
+      <td>53</td>
+      <td>6</td>
+      <td>48</td>
+      <td>8</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>66</td>
+      <td>0</td>
+      <td>0</td>
+      <td>60</td>
+      <td>83</td>
+      <td>20</td>
+      <td>12</td>
+      <td>37</td>
+      <td>58</td>
+      <td>1</td>
+      <td>72</td>
+      <td>8</td>
+      <td>58</td>
+      <td>21</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>63</td>
+      <td>0</td>
+      <td>0</td>
+      <td>78</td>
+      <td>65</td>
+      <td>25</td>
+      <td>23</td>
+      <td>36</td>
+      <td>38</td>
+      <td>2</td>
+      <td>65</td>
+      <td>10</td>
+      <td>65</td>
+      <td>19</td>
+      <td>22</td>
     </tr>
   </tbody>
 </table>
@@ -955,7 +975,11 @@ Percent error: 0.3787878787878788
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.000776459023220336)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/mk/k3661ml57fngl_pfgq6w5_dh0000gn/T/ipykernel_53328/2621474860.py:1: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
+  dp_ct = ct.applymap(lambda x: max(laplace_mech(x, 1, 1), 0))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((1, &#39;Adm-clerical&#39;), np.float64(1.666034817327407e-05))
 </pre></div>
 </div>
 </div>
@@ -1000,28 +1024,28 @@ Percent error: 0.3787878787878788
   <tbody>
     <tr>
       <th>0</th>
-      <td>19</td>
-      <td>Other-service</td>
+      <td>17</td>
+      <td>Craft-repair</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>53</td>
-      <td>Other-service</td>
+      <td>62</td>
+      <td>Adm-clerical</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>28</td>
-      <td>Sales</td>
+      <td>19</td>
+      <td>Craft-repair</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>30</td>
+      <td>61</td>
       <td>Craft-repair</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>52</td>
-      <td>Prof-specialty</td>
+      <td>65</td>
+      <td>Machine-op-inspct</td>
     </tr>
   </tbody>
 </table>
@@ -1029,10 +1053,10 @@ Percent error: 0.3787878787878788
 </div>
 <p>The downside of considering two columns at once is that our accuracy will be lower. As we add more columns to the set we’re considering (i.e., build an <span class="math notranslate nohighlight">\(n\)</span>-way marginal, with increasing values of <span class="math notranslate nohighlight">\(n\)</span>), we see the same effect we did with contingency tables - each count gets smaller, so the signal gets smaller relative to the noise, and our results are not as accurate. We can see this effect by plotting the histogram of ages in our new synthetic dataset; notice that it has approximately the right shape, but it’s less smooth than either the original data or the differentially private counts we used for the age column by itself.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
@@ -1043,15 +1067,15 @@ Percent error: 0.3787878787878788
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/15f72141a38628605b1b2c690b742cd005f25eef49052bafd0ec80229203f5b6.png" src="_images/15f72141a38628605b1b2c690b742cd005f25eef49052bafd0ec80229203f5b6.png" />
+<img alt="_images/0ecb25bbd06364e949437836a0ae9e0d6da8990d993ed26cef9cd87c97376c8c.png" src="_images/0ecb25bbd06364e949437836a0ae9e0d6da8990d993ed26cef9cd87c97376c8c.png" />
 </div>
 </div>
 <p>We see the same loss in accuracy when we try specific queries on just the age column:</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">real_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
@@ -1062,18 +1086,14 @@ Percent error: 0.3787878787878788
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Percent error using synthetic data: 14.986342190216043
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jnear/anaconda3/envs/book/lib/python3.6/site-packages/ipykernel_launcher.py:2: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
-  
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Percent error using synthetic data: 0.7640878701050621
 </pre></div>
 </div>
 </div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p class="rubric">Higher-Order Correlations in Synthetic Data</p>
+<h3 class="rubric" id="higher-order-correlations-in-synthetic-data">Higher-Order Correlations in Synthetic Data</h3>
 <p>When generating synthetic data under differential privacy, preserving <strong>higher-order correlations</strong> among attributes is both a central goal and a major technical challenge. While it is relatively straightforward to match one-way (marginal) statistics—such as the distribution of individual variables—higher-order statistics, which capture interactions among multiple variables, are more difficult to preserve accurately under strict privacy constraints.</p>
 <p>Higher-order correlations refer to statistical dependencies among three or more attributes. For example, in a dataset with attributes like <code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">income</span></code>, and <code class="docutils literal notranslate"><span class="pre">education</span></code>, a third-order correlation might capture that younger individuals with college degrees tend to earn higher incomes. These multi-way interactions are often critical for downstream machine learning models, fairness analyses, or domain-specific insights.</p>
 <p>However, ensuring that these complex relationships are faithfully reflected in differentially private synthetic data is difficult because:</p>
@@ -1142,8 +1162,8 @@ Percent error: 0.3787878787878788
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="chapter13.html"
@@ -1171,6 +1191,7 @@ Percent error: 0.3787878787878788
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1203,6 +1224,7 @@ By Joseph P. Near and Chiké Abuah
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright © 2025 Joseph P. Near and Chiké Abuah.
@@ -1229,8 +1251,8 @@ By Joseph P. Near and Chiké Abuah
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

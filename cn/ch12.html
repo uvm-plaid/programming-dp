@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="zh-CN" >
+<html lang="zh-CN" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>机器学习 &#8212; 动手学差分隐私</title>
   
@@ -15,41 +14,39 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -57,16 +54,12 @@
     <script src="_static/translations.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch12';</script>
-    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="icon" href="_static/favicon.png"/>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
     <link rel="next" title="本地差分隐私" href="ch13.html" />
@@ -80,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -123,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -143,9 +139,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="cover.html">
+  
   
   
   
@@ -155,12 +155,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo_zh_cn.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo_zh_cn.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo_zh_cn.png" class="logo__image only-light" alt="动手学差分隐私 - Home"/>
+    <script>document.write(`<img src="_static/logo_zh_cn.png" class="logo__image only-dark" alt="动手学差分隐私 - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -202,7 +213,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -211,14 +222,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -357,26 +368,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -419,10 +432,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>机器学习<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<h1>机器学习<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
 <p>阅读本章后，您将能够：</p>
@@ -435,14 +448,14 @@ document.write(`
 </div>
 <p>本章我们将探索如何构建差分隐私学习分类器。我们将重点关注一类特定的<em>监督学习</em>问题：给定一组<em>带标签的训练样本</em><span class="math notranslate nohighlight">\(\{(x_1, y_1), \dots, (x_n, y_n)\}\)</span>，其中<span class="math notranslate nohighlight">\(x_i\)</span>称为<em>特征向量</em>，<span class="math notranslate nohighlight">\(y_i\)</span>称为<em>标签</em>，我们要训练一个<em>模型</em><span class="math notranslate nohighlight">\(\theta\)</span>。该模型可以<em>预测</em>没有在训练集中出现过的新特征向量所对应的标签。一般来说，每个<span class="math notranslate nohighlight">\(x_i\)</span>都是一个描述训练样本特征的实数向量，而<span class="math notranslate nohighlight">\(y_i\)</span>是从预先定义好的<em>类型</em>集合中选取的，每个类型一般用一个整数来表示。我们预先要从全部样本中提取出所有可能的类型，构成类型集合。一个二分类器的类型集合应包含两个类型（一般分别用1和0，或1和-1表示）。</p>
 <section id="scikit-learn">
-<h2>使用Scikit-Learn实现逻辑回归<a class="headerlink" href="#scikit-learn" title="Permalink to this heading">#</a></h2>
+<h2>使用Scikit-Learn实现逻辑回归<a class="headerlink" href="#scikit-learn" title="此标题的永久链接">#</a></h2>
 <p>当要训练一个模型时，我们从所有可用的数据中选择一些数据来构造一组<em>训练样本</em>（如前所述），但我们也会留出一些数据作为<em>测试样本</em>。一旦训练完模型，我们肯定想要知道该模型在<em>非</em>训练样本上的表现如何。如果一个模型在未知的新样本上表现很好，我们称其<em>泛化</em>能力很好。一个泛化能力<em>不足</em>的模型，我们称其在训练数据上发生了<em>过拟合</em>。</p>
 <p>我们使用测试样本来测试模型的泛化能力。由于我们事先已知测试样本的标签，我们可以让模型对每个测试样本进行分类，并比较预测标签和真实标签的结果，以测试模型的泛化能力。我们将把数据集切分为训练集和测试集。训练集包含80%的样本，而测试集包含其余20%的样本。</p>
 <div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">training_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
@@ -467,17 +480,14 @@ document.write(`
 <p>构建一个二分类器的简单方法是使用<em>逻辑回归（Logistic Regression）</em>。scikit-learn库包含了一个实现逻辑回归的内置模块，名为<code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>。通过调用此内置模块，很容易应用我们的数据构建二分类模型。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span><span class="n">y_train</span><span class="p">[:</span><span class="mi">1000</span><span class="p">])</span>
 <span class="n">model</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogisticRegression()
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression()</pre></div></div></div></div></div></div></div>
 </div>
 <p>接下来，我们可以使用模型的<code class="docutils literal notranslate"><span class="pre">predict</span></code>（预测）方法预测测试集的标签。</p>
 <div class="cell docutils container">
@@ -508,11 +518,11 @@ document.write(`
 <p>我们的模型对测试样本的标签预测准确率为82%。对该数据集来说，这是一个相当不错的预测准确率。</p>
 </section>
 <section id="id2">
-<h2>模型是什么？<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2>模型是什么？<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p>模型到底<em>是</em>什么？它是如何编码预测所用信息的？</p>
 <p>有很多种不同类型的模型。这里我们要探讨的是<em>线性模型（Linear Model）</em>。给定一个包含<span class="math notranslate nohighlight">\(k\)</span>-维特征向量<span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>的无标签样本，线性模型预测此样本的标签时，将计算下述值：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4d69c04a-2e22-4141-bece-5284a39dc08e">
-<span class="eqno">(33)<a class="headerlink" href="#equation-4d69c04a-2e22-4141-bece-5284a39dc08e" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-723ca08a-1ff1-4f0b-bcda-ceda821459af">
+<span class="eqno">(33)<a class="headerlink" href="#equation-723ca08a-1ff1-4f0b-bcda-ceda821459af" title="此公式的永久链接">#</a></span>\[\begin{align}
 w_1 x_1 + \dots + w_k x_k + bias
 \end{align}\]</div>
 <p>并用此值的符号作为预测标签（如果此值为负数，则预测结果为-1；如果此值为正数，则预测结果为1）。</p>
@@ -524,13 +534,13 @@ w_1 x_1 + \dots + w_k x_k + bias
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-5.346167750306461,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-5.346167750305752,
  array([ 3.76035057e-01, -2.55358856e-01, -3.21341426e-02,  3.74545737e-01,
         -6.85885223e-01,  3.91875239e-01, -1.69476241e-01, -7.41793527e-02,
         -5.76496538e-01,  3.94976503e-01, -3.41457312e-01, -6.24912317e-01,
@@ -567,7 +577,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 预测：以模型（theta）单一样本（xi）为输入，返回预测标签</span>
-<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="n">label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">xi</span> <span class="o">@</span> <span class="n">theta</span> <span class="o">+</span> <span class="n">bias</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">label</span>
 
@@ -584,7 +594,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>这里我们将偏差项设置为可选参数，因为在大多数情况下，无偏差项模型的预测效果也足够好了。为了简化模型训练的整个过程，后续我们先不考虑训练偏差项。</p>
 </section>
 <section id="id3">
-<h2>使用梯度下降训练模型<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h2>使用梯度下降训练模型<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
 <p>训练过程究竟是如何进行的呢？scikit-learn库实现了一些非常复杂的算法，但我们也可以通过实现一个简单算法来实现同等的效果。此算法称为<em>梯度下降</em>（Gradient Descent）。</p>
 <p>大多数机器学习训练算法要根据所选择的<em>损失函数</em>（Loss Function）来定义。损失函数是一种衡量模型预测结果有多”差”的方法。训练算法的目标是使损失函数达到最小值。换句话说，损失值低的模型具有<em>更好的</em>预测能力。</p>
 <p>机器学习社区已经提出了多种不同的常用损失函数。对于每个预测正确的样本，简单的损失函数直接返回0。对于每个预测错误的样本，损失函数直接返回1。损失值为0意味着模型可以正确预测出每个样本的标签。二分类器中较为常用的损失函数为<em>对率损失</em>（Logistic Loss）。对率损失帮助我们度量出模型”还有多远的距离”才能正确预测出标签（与简单地输出0和1相比，对率损失可以提供更多的信息）。</p>
@@ -593,7 +603,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 损失函数用于衡量我们的模型有多好。训练目标是最小化损失值。</span>
 <span class="c1"># 这是对率损失函数。</span>
-<span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">):</span>
     <span class="n">exponent</span> <span class="o">=</span> <span class="o">-</span> <span class="n">yi</span> <span class="o">*</span> <span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">exponent</span><span class="p">))</span>
 </pre></div>
@@ -634,7 +644,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 这是对率损失函数的梯度</span>
 <span class="c1"># 梯度是一个表示各个方向损失变化率的向量</span>
-<span class="k">def</span> <span class="nf">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">):</span>
     <span class="n">exponent</span> <span class="o">=</span> <span class="n">yi</span> <span class="o">*</span> <span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
     <span class="k">return</span> <span class="o">-</span> <span class="p">(</span><span class="n">yi</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">exponent</span><span class="p">))</span>
 </pre></div>
@@ -642,7 +652,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <section id="id4">
-<h3>单步梯度下降<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3>单步梯度下降<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
 <p>接下来，我们来单步执行一次梯度下降。我们将训练集中的一个样本都输入到<code class="docutils literal notranslate"><span class="pre">gradient</span></code>（梯度）函数中，得到此样本的梯度值。得到梯度值可以为我们提供足够信息来改善模型。我们在当前模型<code class="docutils literal notranslate"><span class="pre">theta</span></code>上减去得到的梯度，以实现梯度”下降”。</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -655,10 +665,10 @@ w_1 x_1 + \dots + w_k x_k + bias
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.        ,  0.        ,  0.        ,  0.        , -0.5       ,
@@ -703,7 +713,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>我们需要多次度量模型的准确性。为此，我们定义一个用于度量准确性的辅助函数。它的工作方式和sklearn模型的准确性度量方式相同。我们可以用这个函数度量经过单个样本梯度下降后所得到的模型<code class="docutils literal notranslate"><span class="pre">theta</span></code>，看看新模型在测试集的效果怎么样。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">accuracy</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
@@ -719,12 +729,12 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>我们改善后的模型现在可以正确预测测试集中75%的标签！这是一个很大的进步，我们大大改善了模型的预测效果。</p>
 </section>
 <section id="id5">
-<h3>梯度下降算法<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<h3>梯度下降算法<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
 <p>我们需要进一步对算法的两个部分进行改进，从而最终实现基础梯度下降算法。第一，我们前面的单步梯度下降仅使用了训练数据中的单个样本。我们希望用<em>整个</em>训练集来更新模型，从而改善模型在<em>所有</em>样本上的预测效果。第二，我们需要执行多次迭代，尽可能让损失值达到最小。</p>
 <p>对于第一个改进点，我们可以计算所有训练样本的<em>平均梯度</em>，以替代单步梯度下降中的单样本梯度。我们用下述实现的<code class="docutils literal notranslate"><span class="pre">avg_grad</span></code>（平均梯度）函数来计算所有训练样本和对应标签的平均梯度。</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">avg_grad</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">grads</span> <span class="o">=</span> <span class="p">[</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)]</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
@@ -732,10 +742,10 @@ w_1 x_1 + \dots + w_k x_k + bias
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-8.03202480e-03, -1.09365062e-02, -5.86649848e-02, -1.70297784e-02,
@@ -772,7 +782,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>对于第二个改进点，我们来定义一个可以多次执行梯度下降的迭代算法。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
     <span class="c1"># 我们用&quot;猜测&quot;的一个模型参数（权重全为0的模型）作为起始点</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
@@ -803,13 +813,13 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>经过100轮迭代，模型的准确率达到82%，更接近84%的准确率了。但是，如此多的迭代次数导致算法运行了非常长的时间。更糟糕的是，我们越接近最小损失值，模型的预测效果就越难得到进一步的改善了。100轮迭代后的模型可以达到82%的准确率，但达到84%的准确率可能需要1000轮迭代。这也体现出了机器学习的一个根本矛盾：一般来说，更多的训练轮数可以带来更高的准确率，但同时也需要更多的计算时间。在实际场景中使用大规模深度学习时，绝大多数实现”技巧”都是为梯度下降的每轮迭代加速，以便在相同时间内执行更多轮迭代。</p>
 <p>还有一个有趣的现象值得我们注意：损失函数的输出值确实会随着每轮梯度下降的迭代而下降。因此，随着执行轮数的增加，我们的模型的确在逐渐接近最小损失值。另外要注意的是，如果训练集和测试集的损失值非常接近，意味着我们的模型没有<em>过拟合</em>训练数据。</p>
 <div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent_log</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gradient_descent_log</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
@@ -824,24 +834,20 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.549109439168421
-测试集损失值: 0.5415350837580458
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.5224689105514977
-测试集损失值: 0.5162665121068426
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.5028090736020403
-测试集损失值: 0.49753785424732383
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.4878874803989895
-测试集损失值: 0.48335633696635527
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>训练集损失值: 0.47628573924997925
-测试集损失值: 0.4723742456095848
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training loss: 0.549109439168421
+Testing loss: 0.5415350837580458
+
+Training loss: 0.5224689105514977
+Testing loss: 0.5162665121068426
+
+Training loss: 0.5028090736020403
+Testing loss: 0.49753785424732383
+
+Training loss: 0.4878874803989895
+Testing loss: 0.48335633696635527
+
+Training loss: 0.47628573924997936
+Testing loss: 0.4723742456095848
 </pre></div>
 </div>
 </div>
@@ -850,13 +856,13 @@ w_1 x_1 + \dots + w_k x_k + bias
 </section>
 </section>
 <section id="id6">
-<h2>差分隐私梯度下降<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<h2>差分隐私梯度下降<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
 <p>我们如何使上述算法满足差分隐私呢？我们想要设计一种算法来为训练数据提供差分隐私保护，使最终训练得到的模型不会泄露与单个训练样本相关的任何信息。</p>
 <p>算法执行过程中唯一使用了训练数据的部分是梯度计算步骤。使该算法满足差分隐私的一种方法是，在每轮模型更新前在梯度上增加噪声。由于我们直接在梯度上增加噪声，因此该方法通常被称为<em>噪声梯度下降</em>（Noisy Gradient Descent）。</p>
 <p>我们的梯度函数是向量值函数，因此我们使用<code class="docutils literal notranslate"><span class="pre">gaussian_mech_vec</span></code>（向量高斯机制）在梯度函数的输出值上增加噪声：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">noisy_gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">noisy_gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">sensitivity</span> <span class="o">=</span> <span class="s1">&#39;???&#39;</span>
 
@@ -874,22 +880,22 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>这里我们主要面临两个挑战。第一，梯度是<em>均值问询</em>的结果，即梯度是每个样本梯度的均值。我们之前已经提到，最好将均值问询拆分为一个求和问询和一个计数问询。做到这一点并不难，我们可以不直接计算梯度均值，而是计算每个样本梯度噪声和，再除以噪声计数值。第二，我们需要限制每个样本梯度的敏感度。有两种基础方法可以做到这一点。我们可以（如之前讲解的其他问询那样）分析梯度函数，确定其在最差情况下的全局敏感度。我们也可以（如”采样-聚合”框架那样）裁剪梯度函数的输出值，从而<em>强制</em>限定敏感度上界。</p>
 <p>我们先介绍第二种方法。第二种方法从概念上看更简单，在实际应用中的普适性更好。此方法一般被称为<em>梯度裁剪</em>（Gradient Clipping）。</p>
 <section id="id7">
-<h3>梯度裁剪<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<h3>梯度裁剪<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
 <p>回想一下，在实现”采样-聚合”框架时，我们裁剪未知敏感度函数<span class="math notranslate nohighlight">\(f\)</span>的输出，强制限定<span class="math notranslate nohighlight">\(f\)</span>的敏感度上界。<span class="math notranslate nohighlight">\(f\)</span>的敏感度为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dd42dfc3-63b4-4be4-9a23-9ccd04e2acec">
-<span class="eqno">(34)<a class="headerlink" href="#equation-dd42dfc3-63b4-4be4-9a23-9ccd04e2acec" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b654b125-2335-4872-a341-a04040c753ad">
+<span class="eqno">(34)<a class="headerlink" href="#equation-b654b125-2335-4872-a341-a04040c753ad" title="此公式的永久链接">#</a></span>\[\begin{align}
 \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>使用参数<span class="math notranslate nohighlight">\(b\)</span>裁剪后，上述表达式变为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8c582803-cb89-402a-b975-f0a4c9b53f9b">
-<span class="eqno">(35)<a class="headerlink" href="#equation-8c582803-cb89-402a-b975-f0a4c9b53f9b" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5fc652a4-e241-4072-b7c4-21cc1543e222">
+<span class="eqno">(35)<a class="headerlink" href="#equation-5fc652a4-e241-4072-b7c4-21cc1543e222" title="此公式的永久链接">#</a></span>\[\begin{align}
 \lvert \mathsf{clip}(f(x), b) - \mathsf{clip}(f(x'),b) \rvert
 \end{align}\]</div>
 <p>最差情况下，<span class="math notranslate nohighlight">\(\mathsf{clip}(f(x), b) = b\)</span>，且<span class="math notranslate nohighlight">\(\mathsf{clip}(f(x'),b) = 0\)</span>，因此裁剪结果的敏感度为<span class="math notranslate nohighlight">\(b\)</span>（即敏感度等于裁剪参数）。</p>
 <p>我们可以使用相同的技巧来限定梯度函数的<span class="math notranslate nohighlight">\(L2\)</span>敏感度。我们需要定义一个用来”裁剪”向量的函数，使输出向量的<span class="math notranslate nohighlight">\(L2\)</span>范数落在期望的范围内。我们可以通过<em>缩放</em>向量来做到这一点：如果把向量中每个位置的元素都除以向量的<span class="math notranslate nohighlight">\(L2\)</span>范数，则所得向量的<span class="math notranslate nohighlight">\(L2\)</span>范数为1。如果想要使用裁剪参数<span class="math notranslate nohighlight">\(b\)</span>，我们可以在缩放后的向量上乘以<span class="math notranslate nohighlight">\(b\)</span>，将其放大回<span class="math notranslate nohighlight">\(L2\)</span>范数等于<span class="math notranslate nohighlight">\(b\)</span>的向量。我们还希望不对<span class="math notranslate nohighlight">\(L2\)</span>范数已经小于<span class="math notranslate nohighlight">\(b\)</span>的向量进行任何修改。因此，如果向量的<span class="math notranslate nohighlight">\(L2\)</span>范数已经小于<span class="math notranslate nohighlight">\(b\)</span>，我们直接返回此向量即可。我们可以使用<code class="docutils literal notranslate"><span class="pre">np.linalg.norm</span></code>函数，并以参数<code class="docutils literal notranslate"><span class="pre">ord=2</span></code>作为输入，以计算向量的<span class="math notranslate nohighlight">\(L2\)</span>范数。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">L2_clip</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">L2_clip</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     
     <span class="k">if</span> <span class="n">norm</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
@@ -901,15 +907,15 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <p>现在，我们可以开始分析裁剪梯度的敏感度了。我们将梯度表示为<span class="math notranslate nohighlight">\(\nabla(\theta; X, y)\)</span>（对应我们Python代码中的<code class="docutils literal notranslate"><span class="pre">gradient</span></code>）：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3ca40ddf-c11a-4677-94e5-481cb98a76e3">
-<span class="eqno">(36)<a class="headerlink" href="#equation-3ca40ddf-c11a-4677-94e5-481cb98a76e3" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ebb5f1f3-a25f-4899-9fe4-a3adf55bf94e">
+<span class="eqno">(36)<a class="headerlink" href="#equation-ebb5f1f3-a25f-4899-9fe4-a3adf55bf94e" title="此公式的永久链接">#</a></span>\[\begin{align}
 \lVert \mathsf{L2\_clip}( \nabla (\theta; X, y), b) - \mathsf{L2\_clip}( \nabla (\theta; X', y), 0) \rVert_2
 \end{align}\]</div>
 <p>最差情况下，<span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X, y), b)\)</span>的<span class="math notranslate nohighlight">\(L2\)</span>范数为<span class="math notranslate nohighlight">\(b\)</span>，且<span class="math notranslate nohighlight">\(\mathsf{L2\_clip}( \nabla (\theta; X', y))\)</span>全为0。此时，两者的<span class="math notranslate nohighlight">\(L2\)</span>范数差等于<span class="math notranslate nohighlight">\(b\)</span>。这样一来，我们成功用裁剪参数<span class="math notranslate nohighlight">\(b\)</span>限定了梯度的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界！</p>
 <p>现在，我们可以继续计算裁剪梯度之和，并根据我们通过裁剪技术得到的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界<span class="math notranslate nohighlight">\(b\)</span>来增加噪声。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="n">L2_clip</span><span class="p">(</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
         
     <span class="c1"># 求和问询</span>
@@ -927,7 +933,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">noisy_gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">noisy_gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">sensitivity</span> <span class="o">=</span> <span class="mf">5.0</span>
     
@@ -952,7 +958,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7797434763379035
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.777421494913755
 </pre></div>
 </div>
 </div>
@@ -960,10 +966,10 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>该算法的每轮迭代过程都满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私。我们还需额外执行一次噪声计数问询来得到满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私的噪声计数值。如果执行<span class="math notranslate nohighlight">\(k\)</span>轮迭代，则根据串行组合性，算法满足<span class="math notranslate nohighlight">\((k\epsilon + \epsilon, k\delta)\)</span>-差分隐私。我们也可以使用高级组合性来分析总隐私消耗量。更进一步，我们可以将算法转化为瑞丽差分隐私或零集中差分隐私，应用相应的组合定理得到更紧致的总隐私消耗量。</p>
 </section>
 <section id="id8">
-<h3>梯度的敏感度<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<h3>梯度的敏感度<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
 <p>前面所述方法的普适性很高，因为此方法不需要假设梯度函数满足什么特定的要求。但是，我们有时<em>的确</em>对梯度函数有所了解。特别地，一大类常用的梯度函数（包括本章用到的对率损失梯度）是<em>利普希茨连续</em>（Lipschitz Continuous）的。这意味着这些梯度函数的全局敏感度是有界的。用数学语言描述，我们可以证明：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a0cd1bde-ac44-4aab-b414-45829c156a8b">
-<span class="eqno">(37)<a class="headerlink" href="#equation-a0cd1bde-ac44-4aab-b414-45829c156a8b" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dac165a8-3888-4d48-b226-833fa1b1f8d0">
+<span class="eqno">(37)<a class="headerlink" href="#equation-dac165a8-3888-4d48-b226-833fa1b1f8d0" title="此公式的永久链接">#</a></span>\[\begin{align}
 \text{If}\; \lVert x_i \rVert_2 \leq b\; \text{then}\; \lVert \nabla(\theta; x_i, y_i) \rVert_2 \leq b
 \end{align}\]</div>
 <p>这一结论允许我们通过裁剪<em>训练样本</em>（即梯度函数的<em>输入</em>）来获得梯度函数的<span class="math notranslate nohighlight">\(L2\)</span>敏感度上界。这样，我们就不再需要裁剪梯度函数的<em>输出</em>了。</p>
@@ -972,7 +978,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 <p>我们只需对算法进行简单的修改，就可以把裁剪梯度替换为裁剪训练样本。在开始训练之前，我们需要先使用<code class="docutils literal notranslate"><span class="pre">L2_clip</span></code>（L2裁剪）函数来裁剪训练样本。随后，我们只需要直接把裁剪梯度的代码移除即可。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gradient_sum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="n">gradient</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
 
     <span class="c1"># 求和问询</span>
@@ -984,7 +990,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">noisy_gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">noisy_gradient_descent</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">sensitivity</span> <span class="o">=</span> <span class="mf">5.0</span>
     
@@ -1010,7 +1016,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7785272003538257
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7791906236178682
 </pre></div>
 </div>
 </div>
@@ -1027,15 +1033,15 @@ w_1 x_1 + \dots + w_k x_k + bias
 </section>
 </section>
 <section id="id9">
-<h2>噪声对训练的影响<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<h2>噪声对训练的影响<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h2>
 <p>我们已经知道，迭代次数会对模型的预测准确率带来很大的影响，因为更多的迭代次数可以使模型更接近最小损失值。我们的差分隐私算法需要在梯度上增加噪声，这会对准确率噪声带来很大的影响。噪声可能导致训练算法在训练过程中向<em>错误的方向</em>移动，使模型变得<em>更糟糕</em>。</p>
 <p>我们有理由相信更小的<span class="math notranslate nohighlight">\(\epsilon\)</span>会带来准确率更低的模型（我们已经学习的差分隐私算法都存在类似的关系）。这个结论确实是正确的，但由于在执行多轮迭代算法时要考虑组合定理，因此这里也存在一些微妙的平衡。更多的迭代次数意味着更大的隐私消耗量，而在标准梯度下降算法中，更多的迭代次数一般意味着产出更好的模型。在差分隐私保护下，当总隐私消耗量保持不变时，更多的迭代次数可能会导致模型变得更加糟糕，因为我们不得不使用更小的<span class="math notranslate nohighlight">\(\epsilon\)</span>来支持更多轮迭代，这会带来更大的噪声。在差分隐私机器学习中，适当平衡迭代轮数和单轮添加的噪声量是一个很重要的（有时也是一个非常有挑战性的）问题。</p>
 <p>让我们做一个小实验，看看不同的<span class="math notranslate nohighlight">\(\epsilon\)</span>会对模型的预测准确率带来何种影响。我们将使用不同的<span class="math notranslate nohighlight">\(\epsilon\)</span>来训练模型，每次训练迭代20轮。我们根据训练时使用的<span class="math notranslate nohighlight">\(\epsilon\)</span>作为横坐标来绘制每个模型的准确率变化图。</p>
 <div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-5</span>
@@ -1049,10 +1055,10 @@ w_1 x_1 + \dots + w_k x_k + bias
 </details>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;ε&#39;</span><span class="p">)</span>
@@ -1063,7 +1069,7 @@ w_1 x_1 + \dots + w_k x_k + bias
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/5780e89552c1f10e9c8f7763702c9beabaaaea0057a47af5c99389aa25cb0025.png" src="_images/5780e89552c1f10e9c8f7763702c9beabaaaea0057a47af5c99389aa25cb0025.png" />
+<img alt="_images/5dc084dbb5a8d16de402fd4959ab9c93f7a403d85197819c053c4732a9806425.png" src="_images/5dc084dbb5a8d16de402fd4959ab9c93f7a403d85197819c053c4732a9806425.png" />
 </div>
 </div>
 <p>从上图可以看出，<span class="math notranslate nohighlight">\(\epsilon\)</span>非常小时会产生准确率非常低的模型。请记住，我们在图中指定的<span class="math notranslate nohighlight">\(\epsilon\)</span>是每轮迭代时使用的<span class="math notranslate nohighlight">\(\epsilon\)</span>，因此组合后的总隐私消耗量还要大得多。</p>
@@ -1097,8 +1103,8 @@ w_1 x_1 + \dots + w_k x_k + bias
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="ch11.html"
@@ -1126,6 +1132,7 @@ w_1 x_1 + \dots + w_k x_k + bias
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1167,6 +1174,7 @@ w_1 x_1 + \dots + w_k x_k + bias
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2021.
@@ -1193,8 +1201,8 @@ w_1 x_1 + \dots + w_k x_k + bias
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

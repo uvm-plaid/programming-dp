@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Local Sensitivity &#8212; Programming Differential Privacy</title>
   
@@ -15,58 +14,52 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter7';</script>
-    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Variants of Differential Privacy" href="chapter8.html" />
@@ -80,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -123,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -143,9 +139,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="cover.html">
+  
   
   
   
@@ -155,12 +155,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Programming Differential Privacy - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Programming Differential Privacy - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -188,7 +199,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="chapter13.html">Local Differential Privacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter14.html">Synthetic Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter15.html">Efficiency &amp; Limitations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further.html">Further Reading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -205,7 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -214,14 +225,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -246,14 +257,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/chapter7.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -391,26 +402,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -445,7 +458,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="local-sensitivity">
 <h1>Local Sensitivity<a class="headerlink" href="#local-sensitivity" title="Permalink to this heading">#</a></h1>
@@ -461,7 +474,7 @@ document.write(`
 </ul>
 </div>
 <p>So far, we have seen only one measure of sensitivity: global sensitivity. Our definition for global sensitivity considers <em>any</em> two neighboring datasets. This seems pessimistic, since we’re going to run our differentially private mechanisms on an <em>actual</em> dataset - shouldn’t we consider neighbors of <em>that</em> dataset?</p>
-<p>This is the intuition behind <em>local sensitivity</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id15" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">18</a>]</span>: fix one of the two datasets to be the <em>actual</em> dataset being queried, and consider all of its neighbors. Formally, the local sensitivity of a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span> at <span class="math notranslate nohighlight">\(x : \mathcal{D}\)</span> is defined as:</p>
+<p>This is the intuition behind <em>local sensitivity</em> <span id="id1">[<a class="reference internal" href="further.html#id50" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">18</a>]</span>: fix one of the two datasets to be the <em>actual</em> dataset being queried, and consider all of its neighbors. Formally, the local sensitivity of a function <span class="math notranslate nohighlight">\(f : \mathcal{D} \rightarrow \mathbb{R}\)</span> at <span class="math notranslate nohighlight">\(x : \mathcal{D}\)</span> is defined as:</p>
 <div class="proof definition admonition" id="local-sensitivity-def">
 <p class="admonition-title"><span class="caption-number">Definition 15 </span> (Local Sensitivity)</p>
 <section class="definition-content" id="proof-content">
@@ -476,13 +489,13 @@ LS(f, x) = \max_{x': d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 <p>Local sensitivity allows us to place finite bounds on the sensitivity of some functions whose global sensitivity is difficult to bound. The mean function is one example. So far, we’ve calculated differentially private means by splitting the query into two queries: a differentially private sum (the numerator) and a differentially private count (the denominator). By sequential composition and post-processing, the quotient of these two results satisfies differential privacy.</p>
 <p>Why do we do it this way? Because the amount the output of a mean query might change when a row is added to or removed from the dataset <em>depends on the size of the dataset</em>. If we want to bound the global sensitivity of a mean query, we have to assume the worst: a dataset of size 1. In this case, if the data attribute values lie between upper and lower bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, the global sensitivity of the mean is just <span class="math notranslate nohighlight">\(\lvert u - l \lvert\)</span>. For large datasets, this is <em>extremely</em> pessimistic, and the “noisy sum over noisy count” approach is much better.</p>
 <p>The situation is different for local sensitivity. In the worst case, we can add a new row to the dataset which contains the maximum value (<span class="math notranslate nohighlight">\(u\)</span>). Let <span class="math notranslate nohighlight">\(n = \lvert x \rvert\)</span> (i.e. the size of the dataset). We start with the value of the mean:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d9b42b74-bdc5-499a-a630-a80970004ac2">
-<span class="eqno">(8)<a class="headerlink" href="#equation-d9b42b74-bdc5-499a-a630-a80970004ac2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d0d56c5e-8dcf-4ecb-83f8-88ae50e9ea99">
+<span class="eqno">(8)<a class="headerlink" href="#equation-d0d56c5e-8dcf-4ecb-83f8-88ae50e9ea99" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 \end{align}\]</div>
 <p>Now we consider what happens when we add a row:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-30bcdf94-5724-47f9-8e90-ee796706f54a">
-<span class="eqno">(9)<a class="headerlink" href="#equation-30bcdf94-5724-47f9-8e90-ee796706f54a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-99fa66ff-ebd4-4efe-bca7-9377a6a4f3e4">
+<span class="eqno">(9)<a class="headerlink" href="#equation-99fa66ff-ebd4-4efe-bca7-9377a6a4f3e4" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert f(x') - f(x) \rvert = &amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n} \bigg\rvert \\
 \leq&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u}{n+1} - \frac{\sum_{i=1}^{n} x_i}{n+1} \bigg\rvert \\
 =&amp; \bigg\lvert \frac{\sum_{i=1}^{n} x_i + u - \sum_{i=1}^{n} x_i}{n+1}\bigg\rvert \\
@@ -493,15 +506,15 @@ f(x) =&amp; \frac{\sum_{i=1}^{n} x_i}{n}
 <section id="achieving-differential-privacy-via-local-sensitivity">
 <h2>Achieving Differential Privacy via Local Sensitivity?<a class="headerlink" href="#achieving-differential-privacy-via-local-sensitivity" title="Permalink to this heading">#</a></h2>
 <p>We have defined an alternative measure of sensitivity - but how do we use it? Can we just use the Laplace mechanism, in the same way as we did with global sensitivity? Does the following definition of <span class="math notranslate nohighlight">\(F\)</span> satisfy <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy?</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d7831bd1-03a3-491c-8f2d-713411d38c10">
-<span class="eqno">(10)<a class="headerlink" href="#equation-d7831bd1-03a3-491c-8f2d-713411d38c10" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7c1d7b59-192a-42d1-8dca-ae7941dabef4">
+<span class="eqno">(10)<a class="headerlink" href="#equation-7c1d7b59-192a-42d1-8dca-ae7941dabef4" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(x) = f(x) + \mathsf{Lap}\left(\frac{LS(f,x)}{\epsilon}\right)
 \end{align}\]</div>
 <p>No! Unfortunately not. Since <span class="math notranslate nohighlight">\(LS(f, x)\)</span> itself depends on the dataset, if the analyst knows the local sensitivity of a query <em>at a particular dataset</em>, then the analyst may be able to infer some information about the dataset. It’s therefore <em>not possible</em> to use local sensitivity directly to achieve differential privacy.</p>
 <p>For example, consider the bound on local sensitivity for the mean, defined above. If we know the local sensitivity at a particular <span class="math notranslate nohighlight">\(x\)</span>, we can infer the exact size of <span class="math notranslate nohighlight">\(x\)</span> with <em>no noise</em>. Where the parameter
 <span class="math notranslate nohighlight">\(b\)</span> represents the scale of the Laplace distribution used in the Laplace mechanism:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fcf06b12-ae20-4649-a0ad-9a4c4357e5bb">
-<span class="eqno">(11)<a class="headerlink" href="#equation-fcf06b12-ae20-4649-a0ad-9a4c4357e5bb" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-059e8129-95bc-4a1d-a299-acd2550a6145">
+<span class="eqno">(11)<a class="headerlink" href="#equation-059e8129-95bc-4a1d-a299-acd2550a6145" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lvert x \rvert = \frac{b}{LS(f, x)} - 1
 \end{align}\]</div>
 <p>Moreover, keeping the local sensitivity secret from the analyst <em>doesn’t help either</em>. It’s possible to determine the scale of the noise from just a few query answers, and the analyst can use this value to infer the local sensitivity. Differential privacy is designed to protect the output of <span class="math notranslate nohighlight">\(f(x)\)</span> - <em>not</em> of the sensitivity measure used in its definition.</p>
@@ -511,7 +524,7 @@ F(x) = f(x) + \mathsf{Lap}\left(\frac{LS(f,x)}{\epsilon}\right)
 <section id="propose-test-release">
 <h2>Propose-Test-Release<a class="headerlink" href="#propose-test-release" title="Permalink to this heading">#</a></h2>
 <p>The primary problem with local sensitivity is that the sensitivity itself reveals something about the data. What if we make the <em>sensitivity itself</em> differentially private? This is challenging to do directly, as there’s often no finite bound on the global sensitivity of a function’s local sensitivity. However, we can ask a differentially private question that gets at this value indirectly.</p>
-<p>The <em>propose-test-release</em> framework <span id="id2">[<a class="reference internal" href="bibliography.html#id16" title="Cynthia Dwork and Jing Lei. Differential privacy and robust statistics. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 371–380. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536466, doi:10.1145/1536414.1536466.">19</a>]</span> takes this approach. The framework first asks the analyst to <em>propose</em> an upper bound on the local sensitivity of the function being applied. Then, the framework runs a differentially private <em>test</em> to check that the dataset being queried is “far from” a dataset where local sensitivity is higher than the proposed bound. If the test passes, the framework <em>releases</em> a noisy result, with the noise calibrated to the proposed bound.</p>
+<p>The <em>propose-test-release</em> framework <span id="id2">[<a class="reference internal" href="further.html#id51" title="Cynthia Dwork and Jing Lei. Differential privacy and robust statistics. In Proceedings of the Forty-First Annual ACM Symposium on Theory of Computing, STOC '09, 371–380. New York, NY, USA, 2009. Association for Computing Machinery. URL: https://doi.org/10.1145/1536414.1536466, doi:10.1145/1536414.1536466.">19</a>]</span> takes this approach. The framework first asks the analyst to <em>propose</em> an upper bound on the local sensitivity of the function being applied. Then, the framework runs a differentially private <em>test</em> to check that the dataset being queried is “far from” a dataset where local sensitivity is higher than the proposed bound. If the test passes, the framework <em>releases</em> a noisy result, with the noise calibrated to the proposed bound.</p>
 <p>In order to answer the question of whether a dataset is “far from” one with high local sensitivity, we define the notion of <em>local sensitivity at distance <span class="math notranslate nohighlight">\(k\)</span></em>. We write <span class="math notranslate nohighlight">\(A(f, x, k)\)</span> to denote the maximum local sensitivity achievable for <span class="math notranslate nohighlight">\(f\)</span> by taking <span class="math notranslate nohighlight">\(k\)</span> steps away from the dataset <span class="math notranslate nohighlight">\(x\)</span>. Formally:</p>
 <div class="proof definition admonition" id="maximum-local-sensitivity">
 <p class="admonition-title"><span class="caption-number">Definition 16 </span> (Maximum Local Sensitivity)</p>
@@ -546,16 +559,16 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <p>Also note that the privacy cost of the framework is <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span> <em>even if</em> it returns <span class="math notranslate nohighlight">\(\bot\)</span> (i.e. the privacy budget is consumed whether or not the analyst receives an answer).</p>
 <p>Let’s implement propose-test-release for our mean query. Recall that the local sensitivity for this query is <span class="math notranslate nohighlight">\(\big\lvert \frac{u}{n+1}\big\rvert\)</span>; the best way to increase this value is to make <span class="math notranslate nohighlight">\(n\)</span> smaller. If we take <span class="math notranslate nohighlight">\(k\)</span> steps from the dataset <span class="math notranslate nohighlight">\(x\)</span>, we can arrive at a local sensitivity of <span class="math notranslate nohighlight">\(\big\lvert \frac{u}{(n-k)+1}\big\rvert\)</span>. We can implement the framework in Python using the following code.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ls_at_distance</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ls_at_distance</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 
-<span class="k">def</span> <span class="nf">dist_to_high_ls</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dist_to_high_ls</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
     
     <span class="k">while</span> <span class="n">ls_at_distance</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
@@ -568,13 +581,13 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </details>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ptr_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ptr_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">df_clipped</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="n">u</span><span class="p">)</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">dist_to_high_ls</span><span class="p">(</span><span class="n">df_clipped</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
@@ -606,23 +619,23 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Noisy distance is 12561.213304487246 and threshold is 10.737505543744179
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Noisy distance is 12564.411314651807 and threshold is 10.737505543744179
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(41.77416999703702)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(41.769853322320785)
 </pre></div>
 </div>
 </div>
 </div>
 <p>Keep in mind that local sensitivity isn’t always better. For mean queries, our old strategy of splitting the query into two separate queries (a sum and a count), both with bounded global sensitivity, often works much better. We can implement the same mean query with global sensitivity:</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gs_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gs_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
     <span class="n">df_clipped</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="n">u</span><span class="p">)</span>
     
     <span class="n">noisy_sum</span> <span class="o">=</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="n">df_clipped</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">u</span><span class="p">,</span> <span class="mf">.5</span><span class="o">*</span><span class="n">epsilon</span><span class="p">)</span>
@@ -635,10 +648,10 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </details>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs_avg</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">],</span> <span class="n">u</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
@@ -647,16 +660,16 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(41.77216905214856)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(41.7752319913277)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs_results</span>  <span class="o">=</span> <span class="p">[</span><span class="n">pct_error</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]),</span> <span class="n">gs_avg</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
@@ -672,14 +685,14 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/7ea9b5cd6684f32a3fd9d1515dbe5bf6dc511034f2f7a3e3afa900c3f57d4f4f.png" src="_images/7ea9b5cd6684f32a3fd9d1515dbe5bf6dc511034f2f7a3e3afa900c3f57d4f4f.png" />
+<img alt="_images/c4181f5de67f894eab8550faa96e10824a0b93c89a2ec7989954bc2899bb1ba5.png" src="_images/c4181f5de67f894eab8550faa96e10824a0b93c89a2ec7989954bc2899bb1ba5.png" />
 </div>
 </div>
 <p>We might do slightly better with propose-test-release, but it’s not a huge difference. Moreover, to use propose-test-release, the analyst has to propose a bound on sensitivity - and we’ve cheated by “magically” picking a decent value (0.005). In practice, the analyst would need to perform several queries to explore which values work - which will consume additional privacy budget.</p>
 </section>
 <section id="smooth-sensitivity">
 <h2>Smooth Sensitivity<a class="headerlink" href="#smooth-sensitivity" title="Permalink to this heading">#</a></h2>
-<p>Our second approach for leveraging local sensitivity is called <em>smooth sensitivity</em> <span id="id3">[<a class="reference internal" href="bibliography.html#id15" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">18</a>]</span>. The <em>smooth sensitivity framework</em>, instantiated with Laplace noise, provides <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy:</p>
+<p>Our second approach for leveraging local sensitivity is called <em>smooth sensitivity</em> <span id="id3">[<a class="reference internal" href="further.html#id50" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">18</a>]</span>. The <em>smooth sensitivity framework</em>, instantiated with Laplace noise, provides <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy:</p>
 <div class="proof definition admonition" id="smooth-sensitivity-def">
 <p class="admonition-title"><span class="caption-number">Definition 19 </span> (Smooth Sensitivity Framework)</p>
 <section class="definition-content" id="proof-content">
@@ -693,10 +706,10 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <p>Smooth sensitivity has a significant advantage over propose-test-release: it doesn’t require the analyst to propose a bound on sensitivity. For the analyst, using smooth sensitivity is just as easy as using global sensitivity. However, smooth sensitivity has two major drawbacks. First, smooth sensitivity is always larger than local sensitivity (by at least a factor of 2 - see step 3), so it may require adding quite a bit more noise than alternative frameworks like propose-test-release (or even global sensitivity). Second, calculating smooth sensitivity requires finding the maximum smoothed-out sensitivity over <em>all</em> possible values for <span class="math notranslate nohighlight">\(k\)</span>, which can be extremely challenging computationally. In many cases, it’s possible to prove that considering a small number of values for <span class="math notranslate nohighlight">\(k\)</span> is sufficient (for many functions, the exponentially decaying <span class="math notranslate nohighlight">\(e^{-\beta k}\)</span> quickly overwhelms the growing value of <span class="math notranslate nohighlight">\(A(f, x, k)\)</span>), but such a property has to be proven for <em>each</em> function we want to use with smooth sensitivity.</p>
 <p>As an example, let’s consider the smooth sensitivity of the mean query we defined earlier.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span>
@@ -730,7 +743,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </section>
 <section id="sample-and-aggregate">
 <h2>Sample and Aggregate<a class="headerlink" href="#sample-and-aggregate" title="Permalink to this heading">#</a></h2>
-<p>We’ll consider one last framework related to local sensitivity, called <a class="reference external" href="https://cs-people.bu.edu/ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">sample and aggregate</a> <span id="id4">[<a class="reference internal" href="bibliography.html#id15" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">18</a>]</span>. For any function <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span> and upper and lower clipping bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, the following framework satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
+<p>We’ll consider one last framework related to local sensitivity, called <a class="reference external" href="https://cs-people.bu.edu/ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">sample and aggregate</a> <span id="id4">[<a class="reference internal" href="further.html#id50" title="Kobbi Nissim, Sofya Raskhodnikova, and Adam Smith. Smooth sensitivity and sampling in private data analysis. In Proceedings of the Thirty-Ninth Annual ACM Symposium on Theory of Computing, STOC '07, 75–84. New York, NY, USA, 2007. Association for Computing Machinery. URL: https://doi.org/10.1145/1250790.1250803, doi:10.1145/1250790.1250803.">18</a>]</span>. For any function <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span> and upper and lower clipping bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, the following framework satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
 <div class="proof definition admonition" id="sample-and-aggregate-def">
 <p class="admonition-title"><span class="caption-number">Definition 20 </span> (Sample And Aggregate Framework)</p>
 <section class="definition-content" id="proof-content">
@@ -746,16 +759,16 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <p>In this simple instantiation of the sample and aggregate framework, we ask the analyst to provide the upper and lower bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span> on the <em>output</em> of each <span class="math notranslate nohighlight">\(f(x_i)\)</span>. Depending on the definition of <span class="math notranslate nohighlight">\(f\)</span>, this might be <em>extremely</em> difficult to do well. In a counting query, for example, <span class="math notranslate nohighlight">\(f\)</span>’s output will depend directly on the dataset.</p>
 <p>More advanced instantiations have been <a class="reference external" href="https://cs-people.bu.edu/ads22/pubs/NRS07/NRS07-full-draft-v1.pdf">proposed</a> which leverage local sensitivity to avoid asking the analyst for <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>. For some functions, however, bounding <span class="math notranslate nohighlight">\(f\)</span>’s output is easy - so this framework suffices. We’ll consider our example from above - the mean of ages within a dataset - with this property. The mean age of a population is highly likely to fall between 20 and 80, so it’s reasonable to set <span class="math notranslate nohighlight">\(l=20\)</span> and <span class="math notranslate nohighlight">\(u=80\)</span>. As long as our chunks <span class="math notranslate nohighlight">\(x_i\)</span> are each representative of the population, we’re not likely to lose much information with this setting.</p>
 <div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">saa_avg_age</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">saa_avg_age</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span>
     
     <span class="c1"># Calculate the number of rows in each chunk</span>
@@ -786,7 +799,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chunk size: 55
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(41.68616754165475)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(41.57088566597352)
 </pre></div>
 </div>
 </div>
@@ -796,7 +809,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <p>How should we set <span class="math notranslate nohighlight">\(k\)</span>? It depends on <span class="math notranslate nohighlight">\(f\)</span> and on the dataset, which makes it tricky. Let’s try various values of <span class="math notranslate nohighlight">\(k\)</span> for our mean query over the <span class="math notranslate nohighlight">\(Age\)</span> feature.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_results</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_results</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span>
     <span class="n">true_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
@@ -827,7 +840,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4743c826dfe3d48ec73f63f9a5265c323bf778fcb57d19eb68a0ebe04be94f37.png" src="_images/4743c826dfe3d48ec73f63f9a5265c323bf778fcb57d19eb68a0ebe04be94f37.png" />
+<img alt="_images/aab5b752338070daa35f34c6c6d4c3ae5d52c154d2426e88882ca86b7ab5b15a.png" src="_images/aab5b752338070daa35f34c6c6d4c3ae5d52c154d2426e88882ca86b7ab5b15a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -838,7 +851,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3ddad70ac69076bac0a1bee50e1c9e8a7d16cc199be16dd0ed3c088794d6e02e.png" src="_images/3ddad70ac69076bac0a1bee50e1c9e8a7d16cc199be16dd0ed3c088794d6e02e.png" />
+<img alt="_images/84fbfc9323b09354f77a9e588b4493d50ac168779562d124845724f6f8be8f52.png" src="_images/84fbfc9323b09354f77a9e588b4493d50ac168779562d124845724f6f8be8f52.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -849,15 +862,15 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4f1b02a1ce0c2dae3318370030b0c22a6ad17220510462c7b65ba3c059f8fbbf.png" src="_images/4f1b02a1ce0c2dae3318370030b0c22a6ad17220510462c7b65ba3c059f8fbbf.png" />
+<img alt="_images/898e99b3a23012d6fdf15ec8dec2fa2842e350112df568e4e347c129caa58855.png" src="_images/898e99b3a23012d6fdf15ec8dec2fa2842e350112df568e4e347c129caa58855.png" />
 </div>
 </div>
 <p>So - sample and aggregate isn’t able to beat our global sensitivity-based approach, but it can get pretty close if you choose the right value for <span class="math notranslate nohighlight">\(k\)</span>. The big advantage is that sample and aggregate works for <em>any</em> function <span class="math notranslate nohighlight">\(f\)</span>, regardless of its sensitivity; if <span class="math notranslate nohighlight">\(f\)</span> is well-behaved, then it’s possible to obtain good accuracy from the framework. On the other hand, using sample and aggregate requires the analyst to set the clipping bounds <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span>, and the number of chunks <span class="math notranslate nohighlight">\(k\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p class="rubric">Choosing Between PTR, Smooth Sensitivity, and Sample-and-Aggregate</p>
+<h3 class="rubric" id="choosing-between-ptr-smooth-sensitivity-and-sample-and-aggregate">Choosing Between PTR, Smooth Sensitivity, and Sample-and-Aggregate</h3>
 <p>Several advanced techniques exist for releasing statistics under differential privacy when global sensitivity is too high or poorly behaved. These include <strong>Propose-Test-Release</strong>, <strong>Smooth Sensitivity</strong>, and <strong>Sample-and-Aggregate</strong>. Each method provides a way to adapt to local characteristics of the data, but they differ in applicability, complexity, and robustness. This section offers practical guidance on when to use each.</p>
-<p class="rubric">Propose-Test-Release (PTR)</p>
+<h4 class="rubric" id="propose-test-release-ptr">Propose-Test-Release (PTR)</h4>
 <p>Use PTR when:</p>
 <ul class="simple">
 <li><p>You are working with a <strong>bounded, well-behaved statistic</strong>, like a median or mode.</p></li>
@@ -866,7 +879,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <li><p>It’s acceptable to <strong>occasionally suppress output</strong> if the stability test fails.</p></li>
 </ul>
 <p>PTR is conceptually simple and efficient, but it <strong>may fail to release an output</strong> on unstable datasets. This makes it ideal for use cases like releasing a median salary from a large population, but less suitable in adversarial or highly variable data settings.</p>
-<p class="rubric">Smooth Sensitivity</p>
+<h4 class="rubric" id="id5">Smooth Sensitivity</h4>
 <p>Use Smooth Sensitivity when:</p>
 <ul class="simple">
 <li><p>You need to release a <strong>scalar statistic</strong>, like the median or interquartile range.</p></li>
@@ -875,7 +888,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 <li><p>You can <strong>compute or bound the smooth sensitivity efficiently</strong> (e.g., with closed-form expressions or approximations).</p></li>
 </ul>
 <p>Smooth sensitivity is powerful but can be <strong>mathematically and computationally involved</strong>, especially when estimating the maximum local sensitivity over nearby datasets. It is preferred when accuracy is critical and the statistic is inherently unstable (e.g., publishing the median of a skewed dataset).</p>
-<p class="rubric">Sample-and-Aggregate (SAA)</p>
+<h4 class="rubric" id="sample-and-aggregate-saa">Sample-and-Aggregate (SAA)</h4>
 <p>Use SAA when:</p>
 <ul class="simple">
 <li><p>You want to release an <strong>arbitrary statistic</strong>, including complex or non-numeric outputs (e.g., model parameters, clustering results).</p></li>
@@ -885,7 +898,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </ul>
 <p>SAA offers broad flexibility, but its accuracy depends on the <strong>number and size of partitions</strong>. It is particularly useful when applying non-differentially private procedures (like training a model) privately by aggregating across partitions. However, the method may degrade when sample sizes are small or outputs are highly variable across groups.</p>
 <hr class="docutils" />
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Method</p></th>
 <th class="head"><p>Use When…</p></th>
@@ -907,6 +920,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
 </tr>
 </tbody>
 </table>
+</div>
 <p>Each of these tools allows you to work beyond global sensitivity, which is often too conservative. Choosing the right method depends on the data distribution, your tolerance for failure or noise, and the type of statistic you’re trying to release.</p>
 </div>
 <div class="admonition-glossary admonition">
@@ -947,8 +961,8 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="chapter6.html"
@@ -976,6 +990,7 @@ D(f, x, b) = \text{argmin}_k A(f, x, k) &gt; b
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1009,6 +1024,7 @@ By Joseph P. Near and Chiké Abuah
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright © 2025 Joseph P. Near and Chiké Abuah.
@@ -1035,8 +1051,8 @@ By Joseph P. Near and Chiké Abuah
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

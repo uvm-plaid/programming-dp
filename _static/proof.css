@@ -194,3 +194,14 @@ div.proposition {
 div.proposition p.admonition-title {
 	background-color: var(--note-title-color);
 }
+/*********************************************
+* Assumption *
+*********************************************/
+div.assumption {
+	border-color: var(--hint-border-color);
+	background-color: var(--hint-title-color);
+}
+
+div.assumption p.admonition-title {
+	background-color: var(--hint-title-color);
+}

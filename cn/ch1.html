@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="zh-CN" >
+<html lang="zh-CN" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>去标识 &#8212; 动手学差分隐私</title>
   
@@ -15,41 +14,39 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -57,14 +54,10 @@
     <script src="_static/translations.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch1';</script>
-    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="icon" href="_static/favicon.png"/>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
     <link rel="next" title="k-匿名性" href="ch2.html" />
@@ -78,28 +71,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -121,12 +109,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,9 +137,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="cover.html">
+  
   
   
   
@@ -153,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo_zh_cn.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo_zh_cn.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo_zh_cn.png" class="logo__image only-light" alt="动手学差分隐私 - Home"/>
+    <script>document.write(`<img src="_static/logo_zh_cn.png" class="logo__image only-dark" alt="动手学差分隐私 - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -200,7 +211,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -209,14 +220,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -355,26 +366,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -416,10 +429,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>去标识<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<h1>去标识<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <p><em>去标识</em>（De-identification）是指从数据集中删除<em>标识信息</em>的过程。有的地方会把<em>去标识</em>这一术语与<em>匿名</em>（Anonymization）和<em>假名</em>（Pseudonymization）这两个术语看作同义词，表达相同的概念。</p>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
@@ -477,7 +490,7 @@ document.write(`
       <th>fnlwgt</th>
       <th>Education</th>
       <th>Education-Num</th>
-      <th>Marital Status</th>
+      <th>Martial Status</th>
       <th>Occupation</th>
       <th>Relationship</th>
       <th>Race</th>
@@ -516,7 +529,7 @@ document.write(`
 </div>
 <p>我们将数据中一部分个体的标识信息保留了下来。我们随后将把这些保留的标识信息作为<em>辅助数据</em>（Auxiliary Data）来实施一次<em>重标识</em>（Re-identification）攻击。</p>
 <section id="id2">
-<h2>关联攻击<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2>关联攻击<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p>假设我们想从刚刚得到的去标识数据中获取某个朋友的收入信息。去标识数据中的姓名一列已经被移除了，但我们碰巧知道能帮助我们标识出这位朋友的一些辅助信息。我们的这位朋友叫凯莉·特鲁斯洛夫（Karrie Trusslove），我们知道凯莉的出生日期和邮政编码。</p>
 <p>我们尝试攻击的数据集与我们知道的一些辅助信息之间包含一些重叠列，我们将应用这些重叠列来实施一次简单的<em>关联攻击</em>（Linkage Attack）。在本例中，两个数据集都包含出生日期和邮政编码列。我们在尝试攻击的数据集中查找出能与凯莉的出生日期和邮政编码匹配上的行。数据库领域将此类匹配操作称为<em>关联</em>（JOIN）两个数据表。我们可以使用Pandas的<code class="docutils literal notranslate"><span class="pre">merge</span></code>函数实现此操作。如果我们只能检索到唯一一行数据，我们就从尝试攻击的数据集中找到了凯莉所属的行。</p>
 <div class="cell docutils container">
@@ -554,7 +567,7 @@ document.write(`
       <th>fnlwgt</th>
       <th>Education</th>
       <th>Education-Num</th>
-      <th>Marital Status</th>
+      <th>Martial Status</th>
       <th>Occupation</th>
       <th>Relationship</th>
       <th>Race</th>
@@ -595,7 +608,7 @@ document.write(`
 </div>
 <p>我们确实只找到了一行匹配上的数据。通过使用辅助数据，我们在去标识数据集中重标识出了一个个体。我们可以根据重标识攻击结果进一步推断出凯莉的收入小于5万美元。</p>
 <section id="id3">
-<h3>重标识出凯莉有多难？<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3>重标识出凯莉有多难？<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
 <p>这是一个虚构的攻击场景，但在实际场景中实施关联攻击的难度也是出乎意料的低。有多低呢？事实证明，在绝大多数情况下，只需要一个数据点作为辅助信息就足以重标识出一行数据！</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -632,7 +645,7 @@ document.write(`
       <th>fnlwgt</th>
       <th>Education</th>
       <th>Education-Num</th>
-      <th>Marital Status</th>
+      <th>Martial Status</th>
       <th>Occupation</th>
       <th>Relationship</th>
       <th>Race</th>
@@ -708,7 +721,7 @@ document.write(`
       <th>fnlwgt</th>
       <th>Education</th>
       <th>Education-Num</th>
-      <th>Marital Status</th>
+      <th>Martial Status</th>
       <th>Occupation</th>
       <th>Relationship</th>
       <th>Race</th>
@@ -801,14 +814,14 @@ document.write(`
 </ul>
 </section>
 <section id="id4">
-<h3>凯莉很特别吗？<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3>凯莉很特别吗？<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
 <p>在数据集中重标识出其他某个个体的难度有多大？重标识出凯莉这一特定的个体相对更难还是相对更简单呢？衡量此类攻击有效性的一个好方法是查看特定数据是否有较好的”筛选效果”：特定数据能否帮助我们更好地缩小目标个体所属行的范围。举个例子，数据集中拥有相同出生日期的人数多吗？</p>
 <p>在执行攻击前，我们可以先评估一下出生日期这一辅助数据会给我们带来多大的帮助。为此，我们可以查看数据集中包含”唯一”出生日期的个体数量。下面的直方图显示，<em>绝大多数</em>出生日期在数据集中仅出现了1次、2次或3次，有8个个体的出生日期信息是缺失的。这意味着出生日期的”筛选效果”相当不错。出生日期可以有效缩小个体所属行的范围。</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult_pii</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span> <span class="o">.</span><span class="n">hist</span><span class="p">()</span>
@@ -819,15 +832,15 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/5535a2aa38fc11900a84f5f40dd3061f2bd2ad11950ccf4c72a3ff937fd8b879.png" src="_images/5535a2aa38fc11900a84f5f40dd3061f2bd2ad11950ccf4c72a3ff937fd8b879.png" />
+<img alt="_images/8a946525a006e313f757afa4c846565bed36ff91da27bdf2e08da061b1d2c6d1.png" src="_images/8a946525a006e313f757afa4c846565bed36ff91da27bdf2e08da061b1d2c6d1.png" />
 </div>
 </div>
 <p>我们可以利用相同的方法衡量邮政编码的筛选效果。这次的结果变得更夸张了：邮政编码在此数据集中的筛选效果<em>非常</em>好。几乎所有的邮政编码在此数据集中都只出现了一次。</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult_pii</span><span class="p">[</span><span class="s1">&#39;Zip&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
@@ -838,18 +851,18 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/696f0b0193b76c368b5964375ef431901d49e0e90510bac1c8d9610b5aa331d3.png" src="_images/696f0b0193b76c368b5964375ef431901d49e0e90510bac1c8d9610b5aa331d3.png" />
+<img alt="_images/aa92ee822c9af3ab88daf34f10831c94e3e1d6a834a6658e40c3903b8fdf72af.png" src="_images/aa92ee822c9af3ab88daf34f10831c94e3e1d6a834a6658e40c3903b8fdf72af.png" />
 </div>
 </div>
 </section>
 <section id="id5">
-<h3>我们可以重标识出多少个个体？<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<h3>我们可以重标识出多少个个体？<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
 <p>我们可以在此数据集中重标识出多少个个体呢？我们可以使用我们的辅助信息来找到这个问题的答案！首先，让我们看看只有出生日期会发生什么。我们想知道辅助数据中的每个出生日期能帮助我们重标识出数据集中多少<em>可能的身份</em>。下面的直方图显示了每个可能身份的数量。在大约32000行数据中，我们可以唯一标识出近7000行数据，并将约10000行数据缩小至两个可能的身份。</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attack</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">adult_pii</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">])</span>
@@ -859,15 +872,15 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/55654fb68c0190b542f1691aaed9bb2ba331f2e175b6fe65d2341dbd2923c159.png" src="_images/55654fb68c0190b542f1691aaed9bb2ba331f2e175b6fe65d2341dbd2923c159.png" />
+<img alt="_images/1f168c95383c8dcc9f7f5fda1bcf26858174265ec6b841312fbd83d6d554dce0.png" src="_images/1f168c95383c8dcc9f7f5fda1bcf26858174265ec6b841312fbd83d6d554dce0.png" />
 </div>
 </div>
 <p>因此，<em>仅</em>通过出生日期来重标识大多数个体是不太可行的。如果我们收集更多的信息，进一步缩小范围呢？如果我们同时使用出生日期和邮政编码作为辅助数据，则重标识效果会变得更好。实际上，我们基本能够对数据集中的全部数据成功实施重标识攻击。</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attack</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">adult_pii</span><span class="p">,</span> <span class="n">adult_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">])</span>
@@ -877,16 +890,16 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/77214ad343d0b838eed6228e05e29ef41b187052088b0c554c827455eee66f8d.png" src="_images/77214ad343d0b838eed6228e05e29ef41b187052088b0c554c827455eee66f8d.png" />
+<img alt="_images/cc7220bc2b48435c6b5ac0d112ab336552945ae578a6fe2433f9b2d90200f24d.png" src="_images/cc7220bc2b48435c6b5ac0d112ab336552945ae578a6fe2433f9b2d90200f24d.png" />
 </div>
 </div>
 <p>当我们同时使用两部分信息实施重标识攻击时，我们可以重标识出<strong>所有的个体</strong>。这是一个非常令人惊讶的实验结果，因为我们通常认为很多人的出生日期都相同，而很多人居住地所属的邮政编码也会相同。事实证明，<em>组合</em>使用这些信息会得到<strong>非常好</strong>的筛选效果。拉坦娅·斯威尼（Latanya Sweeney）的研究结果表明<span id="id6">[<a class="reference internal" href="bibliography.html#id3" title="Latanya Sweeney. Simple demographics often identify people uniquely. URL: https://dataprivacylab.org/projects/identifiability/.">1</a>]</span>，组合使用出生日期、性别、邮政编码，可以唯一重标识出87%的美国公民。</p>
 <p>我们来验证一下是否真的能重标识出<em>所有的个体</em>。我们打印出每个身份可能关联到的数据记录数量。</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attack</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -895,11 +908,11 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barnabe Haime        2
-Antonin Chittem      2
-Dame Davio           1
-Luisa Castellucci    1
-Sibyl Stanier        1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Barnabe Haime       2
+Antonin Chittem     2
+Penelope Fauning    1
+Sylvia Kenan        1
+Sadella Gutowski    1
 Name: Name, dtype: int64
 </pre></div>
 </div>
@@ -909,7 +922,7 @@ Name: Name, dtype: int64
 </section>
 </section>
 <section id="id7">
-<h2>聚合<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<h2>聚合<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h2>
 <p>另一种防止隐私信息泄露的方法是只发布<em>聚合</em>（Aggregate）数据。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -924,7 +937,7 @@ Name: Name, dtype: int64
 </div>
 </div>
 <section id="id8">
-<h3>小群组问题<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<h3>小群组问题<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
 <p>在很多情况下，我们需要将数据分组，并分别给出各个分组的聚合统计结果。举例来说，我们可能想知道取得不同学位个体的平均年龄。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1037,7 +1050,7 @@ Name: Name, dtype: int64
 <p>分组要达到多大，聚合统计结果才能隐藏个体信息呢？很难回答这个问题，因为只有当知道数据本身和具体的攻击方法时，才能回答这个问题。因此，很难确信聚合统计结果真的能达到隐私保护的目的。然而，我们接下来将会看到，即使分组足够大，也可以实施相应的攻击，从聚合结果中获得个体信息。</p>
 </section>
 <section id="id9">
-<h3>差分攻击<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<h3>差分攻击<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h3>
 <p>当对相同的数据发布多个聚合统计结果时，隐私泄露问题会变得棘手。例如，考虑对数据集中某个大分组执行两次求和问询（第一个是对整个数据集进行问询，第二个是对除一条记录外的所有记录进行问询）：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1084,7 +1097,7 @@ Name: Name, dtype: int64
 </section>
 </section>
 <section id="id10">
-<h2>总结<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h2>
+<h2>总结<a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h2>
 <ul class="simple">
 <li><p><em>关联攻击</em>指的是组合使用<em>辅助数据</em>和<em>去标识数据</em>来<em>重标识</em>个体。</p></li>
 <li><p>实施关联攻击最简单的方法是：将数据集中的两个数据表<em>关联</em>起来。</p></li>
@@ -1127,8 +1140,8 @@ Name: Name, dtype: int64
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="intro.html"
@@ -1156,6 +1169,7 @@ Name: Name, dtype: int64
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1196,6 +1210,7 @@ Name: Name, dtype: int64
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2021.
@@ -1222,8 +1237,8 @@ Name: Name, dtype: int64
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

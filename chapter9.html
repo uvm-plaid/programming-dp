@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>The Exponential Mechanism &#8212; Programming Differential Privacy</title>
   
@@ -15,58 +14,52 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter9';</script>
-    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="The Sparse Vector Technique" href="chapter10.html" />
@@ -80,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -123,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -143,9 +139,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="cover.html">
+  
   
   
   
@@ -155,12 +155,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Programming Differential Privacy - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Programming Differential Privacy - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -190,7 +201,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="chapter15.html">Efficiency &amp; Limitations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="further.html">Further Reading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
     </div>
@@ -206,7 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -215,14 +225,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -247,14 +257,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/uvm-plaid/programming-dp/master?urlpath=tree/notebooks/chapter9.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -392,26 +402,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -444,7 +456,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-exponential-mechanism">
 <h1>The Exponential Mechanism<a class="headerlink" href="#the-exponential-mechanism" title="Permalink to this heading">#</a></h1>
@@ -457,10 +469,10 @@ document.write(`
 <li><p>Describe the advantages of these mechanisms</p></li>
 </ul>
 </div>
-<p>The fundamental mechanisms we have seen so far (Laplace and Gaussian) are focused on numerical answers, and add noise directly to the answer itself. What if we want to return a precise answer (i.e. no added noise), but still preserve differential privacy? One solution is the exponential mechanism <span id="id1">[<a class="reference internal" href="bibliography.html#id39" title="Frank McSherry and Kunal Talwar. Mechanism design via differential privacy. In 48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07), volume, 94-103. 2007. doi:10.1109/FOCS.2007.66.">22</a>]</span>, which allows selecting the “best” element from a set while preserving differential privacy.</p>
+<p>The fundamental mechanisms we have seen so far (Laplace and Gaussian) are focused on numerical answers, and add noise directly to the answer itself. What if we want to return a precise answer (i.e. no added noise), but still preserve differential privacy? One solution is the exponential mechanism <span id="id1">[<a class="reference internal" href="further.html#id57" title="Frank McSherry and Kunal Talwar. Mechanism design via differential privacy. In 48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07), volume, 94-103. 2007. doi:10.1109/FOCS.2007.66.">22</a>]</span>, which allows selecting the “best” element from a set while preserving differential privacy.</p>
 <p>The analyst defines which element is the “best” by specifying a <em>scoring function</em> that outputs a score for each element in the set, and also defines the set of things to pick from. The mechanism provides differential privacy by <em>approximately</em> maximizing the score of the element it returns - in other words, to satisfy differential privacy, the exponential mechanism sometimes returns an element from the set which does <em>not</em> have the highest score.</p>
 <div class="proof theorem admonition" id="exponential-mechanism-def">
-<p class="admonition-title"><span class="caption-number">Theorem 9 </span> (Exponential Mechanism )</p>
+<p class="admonition-title"><span class="caption-number">Theorem 9 </span> (Exponential Mechanism)</p>
 <section class="theorem-content" id="proof-content">
 <p>The exponential mechanism satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
 <ol class="arabic simple">
@@ -468,8 +480,8 @@ document.write(`
 <li><p>The analyst specifies a scoring function <span class="math notranslate nohighlight">\(u : \mathcal{D} \times \mathcal{R} \rightarrow \mathbb{R}\)</span> with global sensitivity <span class="math notranslate nohighlight">\(\Delta u\)</span></p></li>
 <li><p>The exponential mechanism outputs <span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span> with probability proportional to:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-9541cfd8-93bc-4346-ae17-b4902c0429a1">
-<span class="eqno">(16)<a class="headerlink" href="#equation-9541cfd8-93bc-4346-ae17-b4902c0429a1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-99fec0b1-96c5-470d-acf8-8f089dfd69e5">
+<span class="eqno">(16)<a class="headerlink" href="#equation-99fec0b1-96c5-470d-acf8-8f089dfd69e5" title="Permalink to this equation">#</a></span>\[\begin{align}
 \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)
 \end{align}\]</div>
 </section>
@@ -489,7 +501,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">option</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">option</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="n">option</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span>
 
 <span class="n">score</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">],</span> <span class="s1">&#39;Never-married&#39;</span><span class="p">)</span>
@@ -504,7 +516,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">exponential</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">exponential</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
     <span class="c1"># Calculate the score for each element of R</span>
     <span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R</span><span class="p">]</span>
     
@@ -535,9 +547,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    165
-Never-married          34
-Widowed                 1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    177
+Never-married          22
+Separated               1
 Name: count, dtype: int64
 </pre></div>
 </div>
@@ -555,11 +567,11 @@ Name: count, dtype: int64
 <p>However, if we used the exponential mechanism, the total cost would be just <span class="math notranslate nohighlight">\(\epsilon\)</span> instead! Why is the exponential mechanism so much better? Because <em>it releases less information</em>.</p>
 <p>Our analysis of the Laplace-based approach defined above is very pessimistic. The whole set of noisy scores computed in step 1 actually satisfies <span class="math notranslate nohighlight">\(n\epsilon\)</span>-differential privacy, and we could release the whole thing. That the output in step 2 satisfies <span class="math notranslate nohighlight">\(n\epsilon\)</span>-differential privacy follows from the post-processing property.</p>
 <p>But the exponential mechanism releases <em>only</em> the identity of the element with the maximum noisy score - <em>not</em> the score itself, or the scores of any other element.</p>
-<p>The algorithm defined above is often called the <em>report noisy max</em> algorithm, and it actually satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, no matter how large the set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is - specifically because it releases <em>only</em> the identity of the element with the largest noisy count. The proof can be found in <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="bibliography.html#id34" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">23</a>]</span>, Claim 3.9.</p>
+<p>The algorithm defined above is often called the <em>report noisy max</em> algorithm, and it actually satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy, no matter how large the set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is - specifically because it releases <em>only</em> the identity of the element with the largest noisy count. The proof can be found in <a class="reference external" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">Dwork and Roth</a> <span id="id2">[<a class="reference internal" href="further.html#id52" title="Cynthia Dwork, Aaron Roth, and others. The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4):211–407, 2014.">23</a>]</span>, Claim 3.9.</p>
 <p>Report noisy max is easy to implement, and it’s easy to see that it produces very similar results to our earlier implementation of the exponential mechanism for finite sets.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">report_noisy_max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">report_noisy_max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
     <span class="c1"># Calculate the score for each element of R</span>
     <span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R</span><span class="p">]</span>
 
@@ -590,8 +602,8 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    192
-Never-married           8
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    198
+Never-married           2
 Name: count, dtype: int64
 </pre></div>
 </div>
@@ -604,14 +616,14 @@ Name: count, dtype: int64
 <h2>The Exponential Mechanism as Fundamental Mechanism for Differential Privacy<a class="headerlink" href="#the-exponential-mechanism-as-fundamental-mechanism-for-differential-privacy" title="Permalink to this heading">#</a></h2>
 <p>We’ve seen that it’s not possible to recover the exponential mechanism using the Laplace mechanism plus sequential composition, because we can’t capture the fact that the algorithm we designed doesn’t release all of the noisy scores. What about the reverse - can we recover the Laplace mechanism from the exponential mechanism? It turns out that we can!</p>
 <p>Consider a query <span class="math notranslate nohighlight">\(q(x) : \mathcal{D} \rightarrow \mathbb{R}\)</span> with sensitivity <span class="math notranslate nohighlight">\(\Delta q\)</span>. We can release an <span class="math notranslate nohighlight">\(\epsilon\)</span>-differentially private answer by adding Laplace noise: <span class="math notranslate nohighlight">\(F(x) = q(x) + \mathsf{Lap}(\Delta q / \epsilon)\)</span>. The probability density function for this differentially private version of <span class="math notranslate nohighlight">\(q\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b36aad6f-7756-4a20-a58c-873ec56c9a74">
-<span class="eqno">(17)<a class="headerlink" href="#equation-b36aad6f-7756-4a20-a58c-873ec56c9a74" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-87b7e8a9-cc87-4fb9-b328-62cca4bd2df7">
+<span class="eqno">(17)<a class="headerlink" href="#equation-87b7e8a9-cc87-4fb9-b328-62cca4bd2df7" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp; \frac{1}{2b} \exp\Big(- \frac{\lvert r - \mu \rvert}{b}\Big)\\
 =&amp; \frac{\epsilon}{2 \Delta q} \exp\Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q}\Big)
 \end{align}\]</div>
 <p>Consider what happens when we set the scoring function for the exponential mechanism to <span class="math notranslate nohighlight">\(u(x, r) = -2 \lvert q(x) - r \rvert\)</span>. The exponential mechanism says that we should sample from the probability distribution proportional to:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2532d214-eda5-4bf7-b2f8-9341affa94df">
-<span class="eqno">(18)<a class="headerlink" href="#equation-2532d214-eda5-4bf7-b2f8-9341affa94df" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ea26c46c-8082-4cc1-ac58-b082be7b916e">
+<span class="eqno">(18)<a class="headerlink" href="#equation-ea26c46c-8082-4cc1-ac58-b082be7b916e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp;\; \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)\\
 &amp;= \exp \Big(\frac{\epsilon (-2 \lvert q(x) - r \rvert)}{2 \Delta q} \Big)\\
 &amp;= \exp \Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q} \Big)\\
@@ -621,8 +633,8 @@ Name: count, dtype: int64
 <p>Thus, although the Exponential mechanism can simulate the Laplace mechanism in principle, it does so with worse utility guarantees—specifically, a <em>constant factor loss of 2</em> in the exponential decay rate of the tail probability.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Parameters</span>
 <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1.0</span>
@@ -693,8 +705,8 @@ Name: count, dtype: int64
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="chapter8.html"
@@ -722,6 +734,7 @@ Name: count, dtype: int64
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -753,6 +766,7 @@ By Joseph P. Near and Chiké Abuah
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright © 2025 Joseph P. Near and Chiké Abuah.
@@ -779,8 +793,8 @@ By Joseph P. Near and Chiké Abuah
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

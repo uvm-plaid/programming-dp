@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="zh-CN" >
+<html lang="zh-CN" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>近似差分隐私 &#8212; 动手学差分隐私</title>
   
@@ -15,41 +14,39 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -57,16 +54,12 @@
     <script src="_static/translations.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch6';</script>
-    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="icon" href="_static/favicon.png"/>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
     <link rel="next" title="局部敏感度" href="ch7.html" />
@@ -80,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -123,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -143,9 +139,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="cover.html">
+  
   
   
   
@@ -155,12 +155,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo_zh_cn.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo_zh_cn.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo_zh_cn.png" class="logo__image only-light" alt="动手学差分隐私 - Home"/>
+    <script>document.write(`<img src="_static/logo_zh_cn.png" class="logo__image only-dark" alt="动手学差分隐私 - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -202,7 +213,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -211,14 +222,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -357,26 +368,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -417,10 +430,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>近似差分隐私<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<h1>近似差分隐私<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
 <p>阅读本章后，您将能够：</p>
@@ -434,8 +447,8 @@ document.write(`
 </ul>
 </div>
 <p>近似差分隐私（Approximate Differential Privacy）<span id="id2">[<a class="reference internal" href="bibliography.html#id6" title="Cynthia Dwork, Krishnaram Kenthapadi, Frank McSherry, Ilya Mironov, and Moni Naor. Our data, ourselves: privacy via distributed noise generation. In Serge Vaudenay, editor, Advances in Cryptology - EUROCRYPT 2006, 486–503. Berlin, Heidelberg, 2006. Springer Berlin Heidelberg.">5</a>]</span>，也称<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私，其定义如下所述：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6c244819-d555-48f8-922f-52bdd2f60d68">
-<span class="eqno">(6)<a class="headerlink" href="#equation-6c244819-d555-48f8-922f-52bdd2f60d68" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c9b44ca4-db36-49b7-b5b2-12e94ac49230">
+<span class="eqno">(6)<a class="headerlink" href="#equation-c9b44ca4-db36-49b7-b5b2-12e94ac49230" title="此公式的永久链接">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = S] \leq e^\epsilon \mathsf{Pr}[F(x') = s] + \delta
 \end{align}\]</div>
 <p>新出现的隐私参数<span class="math notranslate nohighlight">\(\delta\)</span>表示不满足此近似差分隐私定义的”失败概率”。我们有<span class="math notranslate nohighlight">\(1-\delta\)</span>的概率获得等价于纯粹差分隐私的隐私保护程度。同时，我们有<span class="math notranslate nohighlight">\(\delta\)</span>的概率不满足隐私参数为<span class="math notranslate nohighlight">\(\epsilon\)</span>的纯粹差分隐私。换句话说：</p>
@@ -446,7 +459,7 @@ document.write(`
 <p>上述定义看起来有点吓人！我们有<span class="math notranslate nohighlight">\(\delta\)</span>的概率无法保证差分隐私，这意味着我们甚至可能有<span class="math notranslate nohighlight">\(\delta\)</span>的概率泄露整个敏感数据集！因此，我们通常要求<span class="math notranslate nohighlight">\(\delta\)</span>很小。一般来说，我们要求<span class="math notranslate nohighlight">\(\delta\)</span>的取值小于等于<span class="math notranslate nohighlight">\(\frac{1}{n^2}\)</span>，其中<span class="math notranslate nohighlight">\(n\)</span>表示数据集的总大小。此外，我们还将看到，实际使用的<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私机制不会像定义所描述的那样吓人，不会出现一旦失败就引发灾难性后果的情况。实际上，该机制会<em>温和地</em>失败，一般不会造成诸如泄露整个数据集之类的严重后果。</p>
 <p>确实<em>可以</em>构造出此类机制，并可以证明构造出的机制确实满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私。我们将在本章后续部分看到实际的机制构造方法。</p>
 <section id="id3">
-<h2>近似差分隐私的性质<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h2>近似差分隐私的性质<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
 <p>近似差分隐私拥有和纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私相似的特性。它同样满足<strong>串行组合性</strong>：</p>
 <ul class="simple">
 <li><p>如果<span class="math notranslate nohighlight">\(F_1(x)\)</span>满足<span class="math notranslate nohighlight">\((\epsilon_1, \delta_1)\)</span>-差分隐私</p></li>
@@ -456,20 +469,20 @@ document.write(`
 <p>与纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私相比，近似差分隐私串行组合性唯一的不同之处在于需要分别对<span class="math notranslate nohighlight">\(\delta\)</span>和<span class="math notranslate nohighlight">\(\epsilon\)</span>相加。近似差分隐私同样满足后处理性和并行组合性。</p>
 </section>
 <section id="id4">
-<h2>高斯机制<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<h2>高斯机制<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
 <p>可以用高斯机制替代拉普拉斯机制。高斯机制增加的不是拉普拉斯噪声，而是高斯噪声。高斯机制<em>无法</em>满足纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私，但可以满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私。对于一个返回数值的函数<span class="math notranslate nohighlight">\(f(x)\)</span>，应用下述定义的高斯机制，可以得到满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私的<span class="math notranslate nohighlight">\(F(x)\)</span>：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-25c34111-ea24-4d55-847d-f801e942ce90">
-<span class="eqno">(7)<a class="headerlink" href="#equation-25c34111-ea24-4d55-847d-f801e942ce90" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bfdaeb75-67ae-426f-be0b-2e76c4dbd9a3">
+<span class="eqno">(7)<a class="headerlink" href="#equation-bfdaeb75-67ae-426f-be0b-2e76c4dbd9a3" title="此公式的永久链接">#</a></span>\[\begin{align}
 F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 \text{where } \sigma^2 = \frac{2s^2 \log(1.25/\delta)}{\epsilon^2}
 \end{align}\]</div>
 <p>其中<span class="math notranslate nohighlight">\(s\)</span>是<span class="math notranslate nohighlight">\(f\)</span>的敏感度，<span class="math notranslate nohighlight">\(\mathcal{N}(\sigma^2)\)</span>表示均值为0，方差为<span class="math notranslate nohighlight">\(\sigma^2\)</span>的高斯（正态）分布采样结果。请注意，这里的<span class="math notranslate nohighlight">\(\log\)</span>表示自然对数（本书其他地方出现的<span class="math notranslate nohighlight">\(\log\)</span>同样表示自然对数）。</p>
 <p>对于实值函数<span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>，我们可以按照与拉普拉斯机制完全相同的方法使用高斯机制。在相同的<span class="math notranslate nohighlight">\(\epsilon\)</span>取值下，很容易对比两种机制的应用效果。</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>
@@ -487,7 +500,7 @@ F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/a3b0d76b183ce6eea9bf83687da9043a3975e992b4f49a7d3b3bddb5319adda9.png" src="_images/a3b0d76b183ce6eea9bf83687da9043a3975e992b4f49a7d3b3bddb5319adda9.png" />
+<img alt="_images/8669c74d00e9abc1ee76de836341bbfa5526f48d1bee2a4fce25aed5914c1a91.png" src="_images/8669c74d00e9abc1ee76de836341bbfa5526f48d1bee2a4fce25aed5914c1a91.png" />
 </div>
 </div>
 <p>这里我们画出了<span class="math notranslate nohighlight">\(\epsilon = 1\)</span>时，拉普拉斯机制和高斯机制的经验概率密度函数，我们这里令高斯机制的<span class="math notranslate nohighlight">\(\delta = 10^{-5}\)</span>。</p>
@@ -495,38 +508,38 @@ F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 <p>因此，高斯机制有两个严重的缺点：其一，该机制需要使用宽松的<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私定义；其二，该机制的准确性不如拉普拉斯机制。既然如此，为什么我们还需要高斯机制呢？</p>
 </section>
 <section id="id5">
-<h2>向量值函数及其敏感度<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<h2>向量值函数及其敏感度<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
 <p>截至目前，我们考虑的都是实值函数（即输出总为单一实数的函数）。此类函数的形式为：<span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>。拉普拉斯机制和高斯机制都可以扩展到形式为：<span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}^k\)</span>的<em>向量值</em>函数，即输出为实数向量的函数。我们可以将直方图看作向量值函数，其返回的向量表示直方图各个分箱的计数值。</p>
 <p>我们在前面提到，函数的<em>敏感度</em>定义为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-22f47889-7a17-4f63-a093-b830ed51e738">
-<span class="eqno">(8)<a class="headerlink" href="#equation-22f47889-7a17-4f63-a093-b830ed51e738" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8dd6928e-3b61-4bb1-a31d-8411b300be2b">
+<span class="eqno">(8)<a class="headerlink" href="#equation-8dd6928e-3b61-4bb1-a31d-8411b300be2b" title="此公式的永久链接">#</a></span>\[\begin{align}
 GS(f) = \max_{d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>我们如何定义向量值函数的敏感度呢？</p>
 <p>考虑表达式<span class="math notranslate nohighlight">\(f(x) - f(x')\)</span>。如果<span class="math notranslate nohighlight">\(f\)</span>是向量值函数，那么该表达式表示的是两个向量之间的差，可以通过计算对应位置元素之间的差来得到（两个长度为<span class="math notranslate nohighlight">\(k\)</span>的向量差是一个长度为<span class="math notranslate nohighlight">\(k\)</span>的新向量）。这个新向量就是<span class="math notranslate nohighlight">\(f(x)\)</span>和<span class="math notranslate nohighlight">\(f(x')\)</span>之间的距离。</p>
 <p>该向量的标量长度就是<span class="math notranslate nohighlight">\(f\)</span>的敏感度。有很多计算向量标量长度的方法。我们将使用两种方法：<span class="math notranslate nohighlight">\(L1\)</span>范数和<span class="math notranslate nohighlight">\(L2\)</span>范数。</p>
 <section id="l1l2">
-<h3>L1和L2范数<a class="headerlink" href="#l1l2" title="Permalink to this heading">#</a></h3>
+<h3>L1和L2范数<a class="headerlink" href="#l1l2" title="此标题的永久链接">#</a></h3>
 <p>给定长度为<span class="math notranslate nohighlight">\(k\)</span>的向量<span class="math notranslate nohighlight">\(V\)</span>，其<span class="math notranslate nohighlight">\(L1\)</span>范数定义为<span class="math notranslate nohighlight">\(\lVert V \rVert_1 = \sum_{i=1}^k \lvert V_i \rvert\)</span>（即向量各个元素的和）。在二维空间中，两个向量之差的<span class="math notranslate nohighlight">\(L1\)</span>范数就是它们的”曼哈顿距离”。</p>
 <p>给定长度为<span class="math notranslate nohighlight">\(k\)</span>的向量<span class="math notranslate nohighlight">\(V\)</span>，其<span class="math notranslate nohighlight">\(L2\)</span>范数定义为<span class="math notranslate nohighlight">\(\lVert V \rVert_2 = \sqrt{\sum_{i=1}^k V_i^2}\)</span>（即向量各个元素平方和再求平方根）。在二维空间中，两个向量之差的<span class="math notranslate nohighlight">\(L2\)</span>范数就是它们的”欧氏距离”。<span class="math notranslate nohighlight">\(L2\)</span>范数总是小于或等于<span class="math notranslate nohighlight">\(L1\)</span>范数。</p>
 </section>
 <section id="id6">
-<h3>L1和L2敏感度<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<h3>L1和L2敏感度<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
 <p>向量值函数<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L1\)</span>敏感度为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a7a70589-5ccb-4157-a2bc-3ca1ecaa41e8">
-<span class="eqno">(9)<a class="headerlink" href="#equation-a7a70589-5ccb-4157-a2bc-3ca1ecaa41e8" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2e845f12-e6a5-4e93-adcc-a566b0dbbee9">
+<span class="eqno">(9)<a class="headerlink" href="#equation-2e845f12-e6a5-4e93-adcc-a566b0dbbee9" title="此公式的永久链接">#</a></span>\[\begin{align}
 GS(f) = \max_{d(x,x') \leq 1} \lVert f(x) - f(x') \rVert_1
 \end{align}\]</div>
 <p>此敏感度等于向量各个元素敏感度的和。举例来说，如果我们定义了一个向量值函数<span class="math notranslate nohighlight">\(f\)</span>，其返回一个长度为<span class="math notranslate nohighlight">\(k\)</span>的向量，且向量中各个元素的敏感度均为1，则<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L1\)</span>敏感度为<span class="math notranslate nohighlight">\(k\)</span>。</p>
 <p>类似地，向量值函数<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L2\)</span>敏感度为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21116cc4-99ae-48aa-8454-2c81694a79dc">
-<span class="eqno">(10)<a class="headerlink" href="#equation-21116cc4-99ae-48aa-8454-2c81694a79dc" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-72d22911-2eff-4820-8737-71e89bce4df5">
+<span class="eqno">(10)<a class="headerlink" href="#equation-72d22911-2eff-4820-8737-71e89bce4df5" title="此公式的永久链接">#</a></span>\[\begin{align}
 GS_2(f) = \max_{d(x,x') \leq 1} \lVert f(x) - f(x') \rVert_2
 \end{align}\]</div>
 <p>同样是上述的例子，向量值函数<span class="math notranslate nohighlight">\(f\)</span>返回一个长度为<span class="math notranslate nohighlight">\(k\)</span>的向量，且向量中各个元素的敏感度均为1，则<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L2\)</span>敏感度为<span class="math notranslate nohighlight">\(\sqrt{k}\)</span>。对于长向量，<span class="math notranslate nohighlight">\(L2\)</span>敏感度显然比<span class="math notranslate nohighlight">\(L1\)</span>敏感度低得多！在机器学习算法（返回的向量有时包含成千上万个元素）等应用中，<span class="math notranslate nohighlight">\(L2\)</span>敏感度<em>显著</em>低于<span class="math notranslate nohighlight">\(L1\)</span>敏感度。</p>
 </section>
 <section id="id7">
-<h3>选择L1还是L2<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<h3>选择L1还是L2<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
 <p>如之前所述，拉普拉斯机制和高斯机制都可以扩展到向量值函数。然而，这两种机制的扩展结果间有一个关键差异点：向量值拉普拉斯机制<strong>需要</strong>使用<span class="math notranslate nohighlight">\(L1\)</span>敏感度，而向量值高斯机制既可以使用<span class="math notranslate nohighlight">\(L1\)</span>敏感度，也可以使用<span class="math notranslate nohighlight">\(L2\)</span>敏感度。这是高斯机制的一个重要优势。对于<span class="math notranslate nohighlight">\(L2\)</span>敏感度远低于<span class="math notranslate nohighlight">\(L1\)</span>敏感度的应用来说，高斯机制添加的噪声要<em>小</em>得多。</p>
 <ul class="simple">
 <li><p><strong>向量拉普拉斯机制</strong>发布的是<span class="math notranslate nohighlight">\(f(x) + (Y_1, \dots, Y_k)\)</span>，其中<span class="math notranslate nohighlight">\(Y_i\)</span>是采样自拉普拉斯分布的独立同分布噪声，噪声尺度为<span class="math notranslate nohighlight">\(\frac{s}{\epsilon}\)</span>，其中<span class="math notranslate nohighlight">\(s\)</span>是<span class="math notranslate nohighlight">\(f\)</span>的<span class="math notranslate nohighlight">\(L1\)</span>敏感度。</p></li>
@@ -535,11 +548,11 @@ GS_2(f) = \max_{d(x,x') \leq 1} \lVert f(x) - f(x') \rVert_2
 </section>
 </section>
 <section id="id8">
-<h2>灾难机制<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<h2>灾难机制<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h2>
 <p><span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私定义称，满足此差分隐私定义的机制必须以<span class="math notranslate nohighlight">\(1-\delta\)</span>的概率”表现良好”。但这也意味着此机制可以有<span class="math notranslate nohighlight">\(\delta\)</span>的概率执行任何操作。”失败概率”的存在令人无比担忧，因为满足宽松定义的差分隐私机制总可能（即使发生的概率很低）给出糟糕的输出结果。</p>
 <p>考虑如下机制，我们称之为<em>灾难机制</em>（Catastrophe Mechanism）：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-39b053f9-94f1-4ca7-84a3-103521896861">
-<span class="eqno">(11)<a class="headerlink" href="#equation-39b053f9-94f1-4ca7-84a3-103521896861" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-485169dd-8661-4d28-82e1-d1f7b63eada5">
+<span class="eqno">(11)<a class="headerlink" href="#equation-485169dd-8661-4d28-82e1-d1f7b63eada5" title="此公式的永久链接">#</a></span>\[\begin{align}
 F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
 &amp;\text{如果 } r &lt; \delta, \text{返回 } x\\
 &amp;\text{否则，返回 } q(x) + \text{Lap}(s/\epsilon), \text{其中$s$是$q$的敏感度}\\
@@ -549,7 +562,7 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
 <p>因此，高斯机制会很<em>温和地</em>失败，而不会灾难性地失败。因此，与灾难机制相比，我们有理由相信高斯机制可以为我们提供更好的隐私保护。我们后续还将看到差分隐私的另一种宽松定义方法。此定义可以区分温和性失败机制（如高斯机制）和灾难性失败机制（如灾难机制）。</p>
 </section>
 <section id="id9">
-<h2>高级组合性<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<h2>高级组合性<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h2>
 <p>我们已经学习了差分隐私机制的两种组合方式：串行组合性和并行组合性。事实证明，<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私引入了差分隐私机制串行组合性的一种新分析方法，此分析方法可以进一步降低隐私消耗量。</p>
 <p>高级组合定理<span id="id10">[<a class="reference internal" href="bibliography.html#id12" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">7</a>]</span>通常用<span class="math notranslate nohighlight">\(k\)</span>-<em>折叠适应性组合</em>（<span class="math notranslate nohighlight">\(k\)</span>-fold Adaptive Composition）机制来描述。<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合指的是将一系列机制<span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span>组合起来，这些机制满足下述条件：</p>
 <ul class="simple">
@@ -560,7 +573,7 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 此攻击针对的是敏感度为1的问询</span>
-<span class="k">def</span> <span class="nf">avg_attack</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">avg_attack</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">query</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 
@@ -569,7 +582,7 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.023934928209385
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.070538197421769
 </pre></div>
 </div>
 </div>
@@ -581,13 +594,13 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
 <li><p>如果<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合<span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span>中的每一个机制<span class="math notranslate nohighlight">\(m_i\)</span>都满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私</p></li>
 <li><p>则对于任意<span class="math notranslate nohighlight">\(\delta \geq 0\)</span>，整个<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合满足<span class="math notranslate nohighlight">\((\epsilon', \delta')\)</span>-差分隐私，其中：</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-9dc0a4b9-cd13-433a-90f6-a841c57ea1e6">
-<span class="eqno">(12)<a class="headerlink" href="#equation-9dc0a4b9-cd13-433a-90f6-a841c57ea1e6" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b3b8db87-d748-438a-b696-56ab13b69668">
+<span class="eqno">(12)<a class="headerlink" href="#equation-b3b8db87-d748-438a-b696-56ab13b69668" title="此公式的永久链接">#</a></span>\[\begin{align}
 \epsilon' = \epsilon \sqrt{2k \ln(1/\delta')} + k \epsilon (e^{\epsilon} - 1)
 \end{align}\]</div>
 <p>根据前面的例子，将<span class="math notranslate nohighlight">\(\epsilon = 1\)</span>代入到表达式中，并设置<span class="math notranslate nohighlight">\(\delta' = 10^{-5}\)</span>，我们有：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e8b50f8f-e1de-4444-b1df-20e7a7705921">
-<span class="eqno">(13)<a class="headerlink" href="#equation-e8b50f8f-e1de-4444-b1df-20e7a7705921" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-75497114-f488-4595-9612-ddf6866dacf6">
+<span class="eqno">(13)<a class="headerlink" href="#equation-75497114-f488-4595-9612-ddf6866dacf6" title="此公式的永久链接">#</a></span>\[\begin{align}
 \epsilon' =&amp; \sqrt{1000 \ln(100000)} + 500 \times (e - 1)\\
 \approx&amp; 966.44
 \end{align}\]</div>
@@ -595,19 +608,19 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
 <p>需要着重强调的是，得到的两种隐私消耗量上界在技术角度看不具有可比性，因为高级组合性引入了<span class="math notranslate nohighlight">\(\delta\)</span>。但当<span class="math notranslate nohighlight">\(\delta\)</span>很小时，我们通常可以比较两种方法给出的<span class="math notranslate nohighlight">\(\epsilon\)</span>。</p>
 <p>既然如此，我们应该<em>总是</em>使用高级组合性吗？<em>并非如此</em>。我们分别对于不同的<span class="math notranslate nohighlight">\(k\)</span>值计算隐私消耗量，绘制串行组合性和高级组合性的<em>总隐私消耗</em>图。</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">delta</span> <span class="o">=</span> <span class="mf">10e-5</span>
 
-<span class="k">def</span> <span class="nf">adv_comp</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">adv_comp</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">epsilon</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">delta</span><span class="p">))</span>
 
-<span class="k">def</span> <span class="nf">seq_comp</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">seq_comp</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">k</span><span class="o">*</span><span class="n">epsilon</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">seq_comp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;串行组合性&#39;</span><span class="p">)</span>
@@ -618,15 +631,15 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/b20c70f57e56a91f6b39bb1f033ce12b89e7cb3eddf57755f5574580f34f69e8.png" src="_images/b20c70f57e56a91f6b39bb1f033ce12b89e7cb3eddf57755f5574580f34f69e8.png" />
+<img alt="_images/18e0d878d140b5336ee955363290a5ba7d4c9197b8ddafb1acf39b0c11303692.png" src="_images/18e0d878d140b5336ee955363290a5ba7d4c9197b8ddafb1acf39b0c11303692.png" />
 </div>
 </div>
 <p>事实证明，当<span class="math notranslate nohighlight">\(k\)</span>小于70时，标准的串行组合性比高级组合性得到的总隐私消耗量更小。因此，仅当<span class="math notranslate nohighlight">\(k\)</span>比较大时（如大于100时），高级组合性才会有用武之地。不过，当<span class="math notranslate nohighlight">\(k\)</span>非常大时，高级组合性可以显露出<em>巨大</em>的优势。</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">seq_comp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;串行组合性&#39;</span><span class="p">)</span>
@@ -637,19 +650,19 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/c27c4321153dfd3b0dd93db70e13e09a85bada60ae5ad7863db1d03ee6da170a.png" src="_images/c27c4321153dfd3b0dd93db70e13e09a85bada60ae5ad7863db1d03ee6da170a.png" />
+<img alt="_images/a46fea77387532678c90ed826084f08cad90808e676184d76d65b756949a70fa.png" src="_images/a46fea77387532678c90ed826084f08cad90808e676184d76d65b756949a70fa.png" />
 </div>
 </div>
 </section>
 <section id="id11">
-<h2>近似差分隐私的高级组合性<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h2>
+<h2>近似差分隐私的高级组合性<a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h2>
 <p>当使用高级组合性时，前述要求各个机制均需满足纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。然而，如果各个机制满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私，高级组合定理同样适用。高级组合定理更一般的描述如下（<span id="id12">[<a class="reference internal" href="bibliography.html#id12" title="Cynthia Dwork, Guy N. Rothblum, and Salil Vadhan. Boosting and differential privacy. In 2010 IEEE 51st Annual Symposium on Foundations of Computer Science, volume, 51-60. 2010. doi:10.1109/FOCS.2010.12.">7</a>]</span>, 定理3.20）：</p>
 <ul class="simple">
 <li><p>如果<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合<span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span>中的每个机制<span class="math notranslate nohighlight">\(m_i\)</span>都满足<span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-差分隐私</p></li>
 <li><p>则对于任意<span class="math notranslate nohighlight">\(\delta' \geq 0\)</span>，整个<span class="math notranslate nohighlight">\(k\)</span>-折叠适应性组合都满足<span class="math notranslate nohighlight">\((\epsilon', k\delta + \delta')\)</span>-差分隐私，其中：</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-f0baedc2-9a62-497c-800b-ee2d6f09b231">
-<span class="eqno">(14)<a class="headerlink" href="#equation-f0baedc2-9a62-497c-800b-ee2d6f09b231" title="公式的永久链接">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f85e87ab-9387-439a-a1df-2f5a4a3752d4">
+<span class="eqno">(14)<a class="headerlink" href="#equation-f85e87ab-9387-439a-a1df-2f5a4a3752d4" title="此公式的永久链接">#</a></span>\[\begin{align}
 \epsilon' = \epsilon \sqrt{2k \ln(1/\delta')} + k \epsilon (e^{\epsilon} - 1)
 \end{align}\]</div>
 <p>与前面的描述相比，唯一的区别是组合机制的失败参数<span class="math notranslate nohighlight">\(\delta\)</span>，即这里的失败参数包含额外的<span class="math notranslate nohighlight">\(k\delta\)</span>项。当待组合的机制满足纯粹<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私时，我们有<span class="math notranslate nohighlight">\(\delta = k\delta = 0\)</span>。两种描述在纯粹差分隐私下得到的结果一致。</p>
@@ -683,8 +696,8 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="ch5.html"
@@ -712,6 +725,7 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -751,6 +765,7 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2021.
@@ -777,8 +792,8 @@ F(q, x) =\;&amp; \text{在0到1之间均匀随机地采样得到一个数$r$}\\
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

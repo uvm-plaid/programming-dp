@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="zh-CN" >
+<html lang="zh-CN" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>合成数据 &#8212; 动手学差分隐私</title>
   
@@ -15,41 +14,39 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -57,16 +54,12 @@
     <script src="_static/translations.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch14';</script>
-    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="icon" href="_static/favicon.png"/>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
     <link rel="next" title="参考文献" href="bibliography.html" />
@@ -80,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -123,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -143,9 +139,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="cover.html">
+  
   
   
   
@@ -155,12 +155,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo_zh_cn.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo_zh_cn.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo_zh_cn.png" class="logo__image only-light" alt="动手学差分隐私 - Home"/>
+    <script>document.write(`<img src="_static/logo_zh_cn.png" class="logo__image only-dark" alt="动手学差分隐私 - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -202,7 +213,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -211,14 +222,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -357,26 +368,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -411,10 +424,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>合成数据<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<h1>合成数据<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <div class="admonition- admonition">
 <p class="admonition-title">学习目标</p>
 <p>阅读本章后，您将能够：</p>
@@ -430,12 +443,12 @@ document.write(`
 <p>大多数合成数据生成算法都依赖于原始数据集的<em>合成表示</em>（Synthetic Representation）。合成表示和原始数据的维度不同，但可以用于回答原始数据的问询。例如，如果我们只关心年龄的范围问询，那么我们可以统计原始数据中每个年龄的人数，生成年龄直方图，并使用直方图回答问询。该直方图就是一个适合回答一些问询的数据集<em>合成表示</em>。但由于和原始数据集的维度不同，因此合成表示不是<em>合成数据</em>。</p>
 <p>部分算法简单地使用合成表示来回答问询。部分算法使用合成表示生成合成数据集。下面，我们将研究直方图合成表示，并介绍基于直方图生成合成数据集的几种方法。</p>
 <section id="id2">
-<h2>合成表示：直方图<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2>合成表示：直方图<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p>我们已经学习过很多差分隐私直方图问询算法了。由于可以直接使用并行组合性，直方图是一种适用于差分隐私的典型数据分析场景。我们也学习过<em>范围问询</em>的概念，虽然我们不常使用这个术语来表示范围问询。作为合成数据的第一步，我们先为原始数据集中的一列数据设计一个能够回答范围问询的合成表示。</p>
 <p><em>范围问询</em>统计数据集中落在给定范围内值的行数。例如，”有多少参与者的年龄在21到33岁之间？”是一个范围问询。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">range_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">range_query</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)])</span>
 
 <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span>
@@ -460,13 +473,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/743119251bce8226da77c20b0aa34edf9143207dcd8d898697953ad7725c1b5c.png" src="_images/743119251bce8226da77c20b0aa34edf9143207dcd8d898697953ad7725c1b5c.png" />
+<img alt="_images/0857fd70814b2ec6de12fa322cae7d4144d076989c809a3a3c55ab0e1c142e06.png" src="_images/0857fd70814b2ec6de12fa322cae7d4144d076989c809a3a3c55ab0e1c142e06.png" />
 </div>
 </div>
 <p>我们可以将直方图中的各个计数结果作为原始数据的合成表示！为了回答一个范围问询，我们可以将落在范围内所有年龄的计数结果相加，作为此问询的回复结果。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">range_query_synth</span><span class="p">(</span><span class="n">syn_rep</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">range_query_synth</span><span class="p">(</span><span class="n">syn_rep</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
         <span class="n">total</span> <span class="o">+=</span> <span class="n">syn_rep</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -490,7 +503,7 @@ document.write(`
 <p>注意，无论是在原始数据集还是在合成表示上执行范围问询，我们都得到了<em>完全</em>相同的结果。（至少在回答年龄范围问询时）我们没有丢失原始数据集中的任何信息。</p>
 </section>
 <section id="id3">
-<h2>增加差分隐私<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h2>增加差分隐私<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
 <p>我们可以很容易使合成表示满足差分隐私，只需要在直方图中的每个计数值上单独增加拉普拉斯噪声。根据并行组合性，这一机制满足<span class="math notranslate nohighlight">\(\epsilon\)</span>-差分隐私。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -508,17 +521,17 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9875.323088468622
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9874.173573484375
 </pre></div>
 </div>
 </div>
 </div>
 <p>问询结果的准确度怎么样呢？对于年龄范围比较小的问询，我们从合成表示得到的问询结果与直接应用拉普拉斯机制得到的问询结果有非常相似的准确度。例如：</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
@@ -529,18 +542,18 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>合成表示误差率：0.13856418899407297
-拉普拉斯机制误差率：0.19531531759608722
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.1843819197936098
+Laplace mechanism error: 0.31050813456829274
 </pre></div>
 </div>
 </div>
 </div>
 <p>计数值会随着年龄范围的增大而增大，我们认为相对误差应该会变小。我们已经多次印证过这个事实了：更大的分组意味着更强的信号，这会使统计结果的信噪比变低，相对误差也随之降低。如果直接使用拉普拉斯机制回复问询，我们能看到事实的确如此。然而，当使用合成表示回复问询时，我们会将很多小分组的噪声也加在一起。因此，信号虽然变强了，但噪声也变大了！当使用合成表示回复问询时，我们发现大年龄范围问询的相对误差与小年龄范围问询的相对误差几乎相同。相对误差与<em>问询范围无关</em>，这一现象恰恰与拉普拉斯机制相反！</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">71</span><span class="p">)</span>
@@ -551,8 +564,8 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>合成表示误差率：0.09360393133632365
-拉普拉斯机制误差率：0.000484186721211293
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Synthetic representation error: 0.04946493324009918
+Laplace mechanism error: 0.008957148504819611
 </pre></div>
 </div>
 </div>
@@ -560,7 +573,7 @@ document.write(`
 <p>这一差异体现出了合成表示的缺点：它可以回答所覆盖范围内的任何范围问询，但可能无法提供与拉普拉斯机制相同的准确度。合成表示的主要优势是可以在无需额外隐私预算的条件下支持回复无限多次问询。合成表示的主要劣势是精度损失。</p>
 </section>
 <section id="id4">
-<h2>生成列表数据<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<h2>生成列表数据<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
 <p>合成表示的下一步是基于合成表示来<em>合成数据</em>。为了实现这一点，我们希望将合成表示视为一个可以用于估计原始数据潜在分布的概率分布函数，进而可以根据此概率分布采样，得到合成数据集。这里我们忽略其他数据列，只考虑单列数据，单列数据的概率分布称为<a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_distribution"><em>边际分布</em></a>（Marginal Distribution）。确切地说，应该叫<em>单维边际分布</em>（1-way Marginal）。</p>
 <p>我们这里的策略很简单：先对直方图的每个属性值计数；随后归一化计数结果，使所有技术结果的和为1；最后将得到的归一化视为概率值。得到了这些概率值后，我们就可以基于这些概率值所表示的概率分布采样了。方法很简单，根据直方图属性值对应的概率值随机选择一个属性值即可。我们的第一步是获得计数值，保证结果中没有负数，并将这些计数值归一化，使他们的求和值等于1：</p>
 <div class="cell docutils container">
@@ -579,10 +592,10 @@ document.write(`
 </div>
 <p>注意，由于归一化直方图中的所有计数值的求和结果为1，因此现在我们可以把它们看作对应属性值的概率值了。如果画出归一化的直方图，我们可以看到此直方图和原始直方图非常相似（也就是说，概率分布图的形状看起来和原始数据集的形状非常相似）。这个结果没有超出我们的预估，这些概率值<em>仍然是</em>简单的计数值，我们只是对它们进行了缩放处理。</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;年龄&#39;</span><span class="p">)</span>
@@ -593,13 +606,13 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/6fed75175b555cafbe880a1333f6555520155333eebf91ea9ada9979e5585788.png" src="_images/6fed75175b555cafbe880a1333f6555520155333eebf91ea9ada9979e5585788.png" />
+<img alt="_images/84783ead6bf547c54cbb87d77ccba9e9aa6303c90570580042a7a0e4d8529dd9.png" src="_images/84783ead6bf547c54cbb87d77ccba9e9aa6303c90570580042a7a0e4d8529dd9.png" />
 </div>
 </div>
 <p>最后一步是基于这些概率值生成新的样本。我们可以使用<code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code>函数，其第一个输入参数（对应参数<code class="docutils literal notranslate"><span class="pre">p</span></code>）可以为表示各个属性值采样概率的概率列表。此函数实现的就是我们采样任务所需的加权采样功能。因为获得计数值的过程已经满足差分隐私，我们可以在无需额外隐私预算的条件下生成任意数量的样本。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_samples</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gen_samples</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">syn_normalized</span><span class="p">)</span>
 
 <span class="n">syn_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gen_samples</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])</span>
@@ -632,23 +645,23 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>52</td>
+      <td>50</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>25</td>
+      <td>38</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>28</td>
+      <td>62</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>65</td>
+      <td>20</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>41</td>
+      <td>27</td>
     </tr>
   </tbody>
 </table>
@@ -656,10 +669,10 @@ document.write(`
 </div>
 <p>该方法生成的样本分布与原始数据集的分布大体一致。这样一来，我们可以用生成的合成数据集替代原始数据集，基于合成数据集回复问询。特别地，如果我们画出一个超大规模合成数据集的年龄直方图，我们可以看到此图的形状与原始数据集的形状相同。</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">syn_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gen_samples</span><span class="p">(</span><span class="mi">10000</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])</span>
@@ -671,15 +684,15 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/2bc5858e5696098e565087a7af00f3c001538d546236692302ec76e157612c9d.png" src="_images/2bc5858e5696098e565087a7af00f3c001538d546236692302ec76e157612c9d.png" />
+<img alt="_images/60529d67cfcaf379ad57d05a33c31a715040443e6a62cb20eb08b0ad0167074a.png" src="_images/60529d67cfcaf379ad57d05a33c31a715040443e6a62cb20eb08b0ad0167074a.png" />
 </div>
 </div>
 <p>我们现在可以回答均值问询、范围问询等等之前看到的一些问询了：</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;年龄均值，合成结果：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">syn_data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">])))</span>
@@ -690,18 +703,18 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄均值，合成结果：38.5645
-年龄均值，真实结果：38.58164675532078
-误差率：0.04446253762081829
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 38.6697
+Mean age, true answer: 38.58164675532078
+Percent error: 0.22770604550647133
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;年龄范围问询，合成结果：</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_query</span><span class="p">(</span><span class="n">syn_data</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">)))</span>
@@ -712,19 +725,19 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄范围问询，合成结果：9114
-年龄范围问询，真实结果：29568
-误差率：69.17613636363636
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 9148
+Mean age, true answer: 29568
+Percent error: 69.06114718614718
 </pre></div>
 </div>
 </div>
 </div>
 <p>我们的均值问询的误差率相当低（尽管仍然高于直接应用拉普拉斯机制的误差率）。但是，范围问询的误差非常大！不过，这只是因为合成数据集的大小与原始数据集不一致。我们只生成了10,000个样本，而原始数据集超过30,000行。我们可以执行额外的差分隐私问询来确定原始数据集的行数，进而生成相同行数的新合成数据集。这样以来，范围问询的准确率就会得到提高。</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">laplace_mech</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adult</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
@@ -738,9 +751,9 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>年龄范围问询，合成结果：29561
-年龄范围问询，真实结果：29568
-误差率：0.023674242424242424
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean age, synthetic: 29597
+Mean age, true answer: 29568
+Percent error: 0.09807900432900432
 </pre></div>
 </div>
 </div>
@@ -748,7 +761,7 @@ document.write(`
 <p>可以看出，问询回复的误差率很低，这正是我们期望得到的结果。</p>
 </section>
 <section id="id5">
-<h2>生成更多数据列<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<h2>生成更多数据列<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
 <p>我们现在已经生成了与原始数据集行数相等的合成数据集。此合成数据集确实有助于回答有关原始数据集的问询。然而，这个合成数据集只包含一列数据！我们如何生成包含更多列数据的合成数据集呢？</p>
 <p>有两种基本实现方法。我们可以分别对<span class="math notranslate nohighlight">\(k\)</span>列数据重复上述过程（生成<span class="math notranslate nohighlight">\(k\)</span>个单维边际），得到<span class="math notranslate nohighlight">\(k\)</span>个相互独立、各包含一列数据的合成数据集。随后，我们将这些数据集合并在一起，构建出一个包含<span class="math notranslate nohighlight">\(k\)</span>列的合成数据集。这是一种很直接的实现方法，但由于我们会单独考虑各列数据，因此得到的合成数据集会丢失列<em>之间</em>的相关性信息。例如，原始数据集中的年龄和职业可能存在相关性（举例来说，职业为”经理”的人会更年长一些）。如果我们分别考虑各列数据，则合成数据集中年龄为18岁的<em>人数</em>和职位为经理的<em>人数</em>是正确的，但年龄为18岁的经理人数可能会错得离谱。</p>
 <p>另一种方法是在生成合成数据时考虑多个数据列。例如，我们可以同时考虑年龄和职业这两列数据，分别计算出有多少18岁的经理，有多少19岁的经理等等。这一改进方法所得到的结果称为两维边缘分布（2-way Marginal Distribution）。同时考虑所有可能的年龄和职业组合的这一做法正是我们之前构建列联表的方法！例如：</p>
@@ -759,10 +772,10 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
@@ -920,7 +933,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.0007598557617830011)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17, &#39;Adm-clerical&#39;), 0.000776459023220336)
 </pre></div>
 </div>
 </div>
@@ -964,28 +977,28 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>35</td>
-      <td>Exec-managerial</td>
+      <td>19</td>
+      <td>Other-service</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>23</td>
-      <td>Craft-repair</td>
+      <td>53</td>
+      <td>Other-service</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>27</td>
-      <td>Adm-clerical</td>
+      <td>28</td>
+      <td>Sales</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>29</td>
-      <td>Adm-clerical</td>
+      <td>30</td>
+      <td>Craft-repair</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>40</td>
-      <td>Adm-clerical</td>
+      <td>52</td>
+      <td>Prof-specialty</td>
     </tr>
   </tbody>
 </table>
@@ -993,10 +1006,10 @@ document.write(`
 </div>
 <p>同时考虑两个数据列的缺点是问询的准确度会降低。如果我们进一步同时考虑更多的数据列，即构建<span class="math notranslate nohighlight">\(n\)</span>逐渐增加的<span class="math notranslate nohighlight">\(n\)</span>维边际（<span class="math notranslate nohighlight">\(n\)</span>-way Marginal），我们会看到和列联表相同的效果：每个计数值会变得更小，因此相对于噪声来说数据体现出的信号会变小，准确度因此降低。我们可以通过绘制新合成数据集的年龄直方图，从视觉上进一步观察出这一效果。注意到，图像的形状基本正确，但与原始数据集或单独为年龄列加差分隐私的计数值相比，图像的平滑度变差了一些。</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;年龄&#39;</span><span class="p">)</span>
@@ -1007,15 +1020,15 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/8c9e3e184d6c04ebe4dd516620e22f836260c5599aafe2eedf006b8e4cf68bc9.png" src="_images/8c9e3e184d6c04ebe4dd516620e22f836260c5599aafe2eedf006b8e4cf68bc9.png" />
+<img alt="_images/15f72141a38628605b1b2c690b742cd005f25eef49052bafd0ec80229203f5b6.png" src="_images/15f72141a38628605b1b2c690b742cd005f25eef49052bafd0ec80229203f5b6.png" />
 </div>
 </div>
 <p>当我们只对年龄列进行问询时，会看到相同的准确度损失问题：</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">real_answer</span> <span class="o">=</span> <span class="n">range_query</span><span class="p">(</span><span class="n">adult</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
@@ -1026,14 +1039,18 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>使用合成数据的误差率： 1.9369257511795381
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Percent error using synthetic data: 14.986342190216043
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jnear/anaconda3/envs/book/lib/python3.6/site-packages/ipykernel_launcher.py:2: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
+  
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="id6">
-<h2>总结<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<h2>总结<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
 <ul class="simple">
 <li><p>数据集的<em>合成表示</em>可以回答有关原始数据集的问询</p></li>
 <li><p>一种常用的合成表示是直方图，可以通过在计数值上增加噪声来实现差分隐私</p></li>
@@ -1080,8 +1097,8 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="ch13.html"
@@ -1109,6 +1126,7 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1142,6 +1160,7 @@ document.write(`
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2021.
@@ -1168,8 +1187,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
