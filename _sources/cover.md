@@ -1,4 +1,4 @@
-# Programming Differential Privacy
+# Cover Page
 
 ```{image} logo.png
 :class: dark-light
