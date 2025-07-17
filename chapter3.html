@@ -476,8 +476,8 @@ document.write(`
 <p class="admonition-title"><span class="caption-number">Definition 3 </span> (Privacy Mechanism)</p>
 <section class="definition-content" id="proof-content">
 <p>A function which satisfies differential privacy is often called a <em>mechanism</em>. We say that a <em>mechanism</em> <span class="math notranslate nohighlight">\(F\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy if for all <em>neighboring datasets</em> <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>, and all possible sets of outputs <span class="math notranslate nohighlight">\(S\)</span> (where <span class="math notranslate nohighlight">\(S\)</span> refers to “sets <span class="math notranslate nohighlight">\(S\)</span> of outputs of the mechanism.”)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1d9a2926-7bf6-490a-a2e9-e816accdcf5d">
-<span class="eqno">(1)<a class="headerlink" href="#equation-1d9a2926-7bf6-490a-a2e9-e816accdcf5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0b1018be-38d5-4427-91e1-31b587161fa5">
+<span class="eqno">(1)<a class="headerlink" href="#equation-0b1018be-38d5-4427-91e1-31b587161fa5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) \in S]}{\mathsf{Pr}[F(x') \in S]} \leq e^\epsilon
 \end{equation}\]</div>
 <p>The <span class="math notranslate nohighlight">\(\epsilon\)</span> parameter in the definition is called the <em>privacy parameter</em> or the <em>privacy budget</em>. <span class="math notranslate nohighlight">\(\epsilon\)</span> provides a knob to tune the “amount of privacy” the definition provides. Small values of <span class="math notranslate nohighlight">\(\epsilon\)</span> require <span class="math notranslate nohighlight">\(F\)</span> to provide <em>very</em> similar outputs when given similar inputs, and therefore provide higher levels of privacy; large values of <span class="math notranslate nohighlight">\(\epsilon\)</span> allow less similarity in the outputs, and therefore provide less privacy.</p>
@@ -490,8 +490,8 @@ document.write(`
 <p class="admonition-title">Note</p>
 <p>Why is <span class="math notranslate nohighlight">\(S\)</span> a set, and why do we write <span class="math notranslate nohighlight">\(F(x) \in S\)</span>, instead of <span class="math notranslate nohighlight">\(F(x) = s\)</span> for a <em>single</em> output <span class="math notranslate nohighlight">\(s\)</span>? When <span class="math notranslate nohighlight">\(F\)</span> returns elements from a continuous domain (like the real numbers), then the probability <span class="math notranslate nohighlight">\(\mathsf{Pr}[F(x) = S] = 0\)</span> <em>for all <span class="math notranslate nohighlight">\(x\)</span></em> (this is a property of continuous probability distributions—<a class="reference external" href="https://www.probabilitycourse.com/chapter4/4_1_1_pdf.php">see here for a detailed explanation</a>). For the definition to make sense in the context of continuous distributions, it needs to instead consider <em>sets</em> of outputs <span class="math notranslate nohighlight">\(S\)</span>, and use set inclusion (<span class="math notranslate nohighlight">\(\in\)</span>) instead of equality.</p>
 <p>If <span class="math notranslate nohighlight">\(F\)</span> returns elements of a discrete set (e.g. 32-bit floating-point numbers), then the definition can instead consider <span class="math notranslate nohighlight">\(S\)</span> to be a single value, and use equality instead of set inclusion:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-005ff0ed-4f45-4d5f-96ef-7e80887eb2af">
-<span class="eqno">(2)<a class="headerlink" href="#equation-005ff0ed-4f45-4d5f-96ef-7e80887eb2af" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4e5000ed-145e-45f4-bebf-b9b1f23b6503">
+<span class="eqno">(2)<a class="headerlink" href="#equation-4e5000ed-145e-45f4-bebf-b9b1f23b6503" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\mathsf{Pr}[F(x) = S]}{\mathsf{Pr}[F(x') = S]} \leq e^\epsilon
 \end{equation}\]</div>
 <p>This definition might be more intuitive, especially if you have not studied probability theory.</p>
@@ -517,14 +517,14 @@ document.write(`
 <p class="admonition-title"><span class="caption-number">Definition 4 </span> (Laplace Mechanism)</p>
 <section class="definition-content" id="proof-content">
 <p>According to the Laplace mechanism, for a function <span class="math notranslate nohighlight">\(f(x)\)</span> which returns a number, the following definition of <span class="math notranslate nohighlight">\(F(x)\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-04c0639b-76f3-4ec6-8ef1-690e9e8f71f9">
-<span class="eqno">(3)<a class="headerlink" href="#equation-04c0639b-76f3-4ec6-8ef1-690e9e8f71f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8eca75a6-9394-4f22-b0dc-d4ba139ca243">
+<span class="eqno">(3)<a class="headerlink" href="#equation-8eca75a6-9394-4f22-b0dc-d4ba139ca243" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(s\)</span> is the <em>sensitivity</em> of <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(\textsf{Lap}(S)\)</span> denotes sampling from the Laplace distribution with center 0 and scale <span class="math notranslate nohighlight">\(S\)</span>.</p>
 <p>The probability density function (PDF) of the Laplace distribution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ab24136-a881-4a8e-8085-5bdea772e284">
-<span class="eqno">(4)<a class="headerlink" href="#equation-0ab24136-a881-4a8e-8085-5bdea772e284" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ac0296be-69de-413d-a534-30a4a7934268">
+<span class="eqno">(4)<a class="headerlink" href="#equation-ac0296be-69de-413d-a534-30a4a7934268" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \frac{1}{2S} \exp\left(-\frac{|x|}{S}\right)
 \end{equation}\]</div>
 </section>
@@ -544,7 +544,7 @@ f(x) = \frac{1}{2S} \exp\left(-\frac{|x|}{S}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17450.133225049634
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17447.534789422232
 </pre></div>
 </div>
 </div>
@@ -580,7 +580,7 @@ f(x) = \frac{1}{2S} \exp\left(-\frac{|x|}{S}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-11.030897373090196
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.966853035283157
 </pre></div>
 </div>
 </div>
