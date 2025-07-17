@@ -555,7 +555,7 @@ F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/9f1a2a562654daf5a353ec0c87b2c1a26473d94b024ea4e2168002997171e4c4.png" src="_images/9f1a2a562654daf5a353ec0c87b2c1a26473d94b024ea4e2168002997171e4c4.png" />
+<img alt="_images/a728a47c6b4f2ac11a8afd6c42711a2ab19b2e796635a605ca913c69f6cdcb44.png" src="_images/a728a47c6b4f2ac11a8afd6c42711a2ab19b2e796635a605ca913c69f6cdcb44.png" />
 </div>
 </div>
 <p>Here, we graph the empirical probability density function of the Laplace and Gaussian mechanisms for <span class="math notranslate nohighlight">\(\epsilon = 1\)</span>, with <span class="math notranslate nohighlight">\(\delta = 10^{-5}\)</span> for the Gaussian mechanism.</p>
@@ -566,8 +566,8 @@ F(x) = f(x) + \mathcal{N}(\sigma^2)\\
 <h2>Vector-Valued Functions and their Sensitivities<a class="headerlink" href="#vector-valued-functions-and-their-sensitivities" title="Permalink to this heading">#</a></h2>
 <p>So far, we have only considered real-valued functions (i.e. the function’s output is always a single real number). Such functions are of the form <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}\)</span>. Both the Laplace and Gaussian mechanism, however, can be extended to <em>vector-valued</em> functions of the form <span class="math notranslate nohighlight">\(f : D \rightarrow \mathbb{R}^k\)</span>, which return vectors of real numbers. We can think of histograms as vector-valued functions, which return a vector whose elements consist of histogram bin counts.</p>
 <p>We saw earlier that the <em>sensitivity</em> of a function is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5203c8c8-af36-4d5c-afe7-2370ec2dbbb4">
-<span class="eqno">(6)<a class="headerlink" href="#equation-5203c8c8-af36-4d5c-afe7-2370ec2dbbb4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-26e3a00e-c9af-44c2-8a1e-f3680e6a5cbc">
+<span class="eqno">(6)<a class="headerlink" href="#equation-26e3a00e-c9af-44c2-8a1e-f3680e6a5cbc" title="Permalink to this equation">#</a></span>\[\begin{align}
 GS(f) = \max_{d(x,x') \leq 1} \lvert f(x) - f(x') \rvert
 \end{align}\]</div>
 <p>How do we define sensitivity for vector-valued functions?</p>
@@ -654,7 +654,7 @@ F(q, x) =\;&amp; \text{Sample a number $r$ from the uniform distribution between
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(9.951993808350577)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(10.136255554709187)
 </pre></div>
 </div>
 </div>
@@ -746,8 +746,8 @@ This demonstrates how advanced composition can significantly improve privacy acc
 <li><p>If each mechanism <span class="math notranslate nohighlight">\(m_i\)</span> in a <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition <span class="math notranslate nohighlight">\(m_1, \dots, m_k\)</span> satisfies <span class="math notranslate nohighlight">\((\epsilon, \delta)\)</span>-differential privacy</p></li>
 <li><p>Then for any <span class="math notranslate nohighlight">\(\delta' \geq 0\)</span>, the entire <span class="math notranslate nohighlight">\(k\)</span>-fold adaptive composition satisfies <span class="math notranslate nohighlight">\((\epsilon', k\delta + \delta')\)</span>-differential privacy, where:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-2906b297-b97d-4868-b491-118eddcf8ff4">
-<span class="eqno">(7)<a class="headerlink" href="#equation-2906b297-b97d-4868-b491-118eddcf8ff4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-44740ac9-c740-4e8e-8aa3-b753ca4ab487">
+<span class="eqno">(7)<a class="headerlink" href="#equation-44740ac9-c740-4e8e-8aa3-b753ca4ab487" title="Permalink to this equation">#</a></span>\[\begin{align}
 \epsilon' = \epsilon \sqrt{2k \ln(1/\delta')} + k \epsilon (e^{\epsilon} - 1)
 \end{align}\]</div>
 </section>
