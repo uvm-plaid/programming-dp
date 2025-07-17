@@ -20,6 +20,7 @@ Under the following terms:
 
 All code in this book is released under the [MIT License](https://opensource.org/licenses/MIT). 
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.png)](https://opensource.org/licenses/MIT)
+
 
 
