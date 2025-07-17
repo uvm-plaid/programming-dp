@@ -515,8 +515,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     148
-False     52
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     143
+False     57
 Name: count, dtype: int64
 </pre></div>
 </div>
@@ -538,8 +538,8 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22468
-True     10095
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    22743
+True      9820
 Name: count, dtype: int64
 </pre></div>
 </div>
@@ -595,7 +595,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(3514.5)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(3606.5)
 </pre></div>
 </div>
 </div>
@@ -621,7 +621,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(3.712328767123288)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.1917808219178083)
 </pre></div>
 </div>
 </div>
@@ -635,7 +635,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.028695860710435575)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.00712734601912005)
 </pre></div>
 </div>
 </div>
@@ -722,14 +722,14 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 </pre></div>
 </div>
 </div>
 </div>
 <p>Based on the values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, we can calculate the value of the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>. For <span class="math notranslate nohighlight">\(p=.75\)</span> and <span class="math notranslate nohighlight">\(q=.25\)</span>, we will see an <span class="math notranslate nohighlight">\(\epsilon\)</span> of slightly more than 2.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ec428c80-b7eb-403c-9835-01c6505619b7">
-<span class="eqno">(27)<a class="headerlink" href="#equation-ec428c80-b7eb-403c-9835-01c6505619b7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a360869c-aa53-4378-8843-580227f6b2d9">
+<span class="eqno">(27)<a class="headerlink" href="#equation-a360869c-aa53-4378-8843-580227f6b2d9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \epsilon = \log{\left(\frac{p (1-q)}{(1-p) q}\right)}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -752,22 +752,22 @@ Name: count, dtype: int64
 <p>You may be wondering at this point if <span class="math notranslate nohighlight">\( p + q = 1 \)</span> is a required constraint. The answer is <em>no</em>.</p>
 <p>Not necessarily! In general, <span class="math notranslate nohighlight">\(p + q \neq 1\)</span> unless the mechanism is specifically designed to enforce that relationship.</p>
 <p>In the <span class="math notranslate nohighlight">\(\textbf{binary randomized response}\)</span> setting, the true value is either 0 or 1, and the reported value may be flipped with some probability. We define:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-979a3d34-0b6a-498d-b21f-6ef5a4152d92">
-<span class="eqno">(28)<a class="headerlink" href="#equation-979a3d34-0b6a-498d-b21f-6ef5a4152d92" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c6136551-0306-4789-a708-ccdf56e480ae">
+<span class="eqno">(28)<a class="headerlink" href="#equation-c6136551-0306-4789-a708-ccdf56e480ae" title="Permalink to this equation">#</a></span>\[\begin{align}
 p &amp;= \Pr[\text{report } 1 \mid \text{true} = 1] \\
 q &amp;= \Pr[\text{report } 1 \mid \text{true} = 0]
 \end{align}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(p\)</span> is the probability of truthfully reporting a 1 when the true value is 1, and <span class="math notranslate nohighlight">\(q\)</span> is the probability of reporting a 1 even when the true value is 0 (i.e., the false positive rate).</p>
 <p>The sum <span class="math notranslate nohighlight">\(p + q\)</span> has no inherent constraint unless the mechanism is symmetric. For example, in the <span class="math notranslate nohighlight">\(\textbf{classic symmetric randomized response}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d6401ac-1b33-497b-a9c9-a07dfb707e1a">
-<span class="eqno">(29)<a class="headerlink" href="#equation-7d6401ac-1b33-497b-a9c9-a07dfb707e1a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-40396c57-458a-4e57-87f3-63c54c30024b">
+<span class="eqno">(29)<a class="headerlink" href="#equation-40396c57-458a-4e57-87f3-63c54c30024b" title="Permalink to this equation">#</a></span>\[\begin{align}
 p &amp;= \frac{e^\epsilon}{e^\epsilon + 1} \\
 q &amp;= \frac{1}{e^\epsilon + 1}
 \end{align}\]</div>
 <p>In this case, we see that <span class="math notranslate nohighlight">\(p + q = 1\)</span>, because the mechanism flips or preserves the bit with complementary probabilities.</p>
 <p>In the <span class="math notranslate nohighlight">\(\textbf{general binary randomized response}\)</span>, however, <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span> can be chosen independently, subject to the constraints imposed by <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c2d7645d-f6fd-4a93-a3be-9ef270c927c2">
-<span class="eqno">(30)<a class="headerlink" href="#equation-c2d7645d-f6fd-4a93-a3be-9ef270c927c2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-30cd8ac3-e031-4a59-bae6-ae1637297a8b">
+<span class="eqno">(30)<a class="headerlink" href="#equation-30cd8ac3-e031-4a59-bae6-ae1637297a8b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{p}{q} &amp;\leq e^\epsilon \\
 \frac{1 - p}{1 - q} &amp;\leq e^\epsilon
 \end{align}\]</div>
@@ -810,28 +810,28 @@ q &amp;= \frac{1}{e^\epsilon + 1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, np.int64(10085)),
- (&#39;Exec-managerial&#39;, np.int64(10323)),
- (&#39;Handlers-cleaners&#39;, np.int64(8800)),
- (&#39;Prof-specialty&#39;, np.int64(10065)),
- (&#39;Other-service&#39;, np.int64(9741)),
- (&#39;Sales&#39;, np.int64(10011)),
- (&#39;Craft-repair&#39;, np.int64(10306)),
- (&#39;Transport-moving&#39;, np.int64(8834)),
- (&#39;Farming-fishing&#39;, np.int64(8675)),
- (&#39;Machine-op-inspct&#39;, np.int64(9159)),
- (&#39;Tech-support&#39;, np.int64(8598)),
- (&#39;Protective-serv&#39;, np.int64(8682)),
- (&#39;Baby&#39;, np.int64(8122)),
- (&#39;Armed-Forces&#39;, np.int64(7990)),
- (&#39;Priv-house-serv&#39;, np.int64(8193))]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, np.int64(9953)),
+ (&#39;Exec-managerial&#39;, np.int64(10197)),
+ (&#39;Handlers-cleaners&#39;, np.int64(8791)),
+ (&#39;Prof-specialty&#39;, np.int64(10371)),
+ (&#39;Other-service&#39;, np.int64(9724)),
+ (&#39;Sales&#39;, np.int64(10083)),
+ (&#39;Craft-repair&#39;, np.int64(10249)),
+ (&#39;Transport-moving&#39;, np.int64(9015)),
+ (&#39;Farming-fishing&#39;, np.int64(8653)),
+ (&#39;Machine-op-inspct&#39;, np.int64(9069)),
+ (&#39;Tech-support&#39;, np.int64(8574)),
+ (&#39;Protective-serv&#39;, np.int64(8675)),
+ (&#39;Baby&#39;, np.int64(8071)),
+ (&#39;Armed-Forces&#39;, np.int64(8278)),
+ (&#39;Priv-house-serv&#39;, np.int64(8227))]
 </pre></div>
 </div>
 </div>
 </div>
 <p>The aggregate step of the unary encoding algorithm takes into account the number of “fake” responses in each category, which is a function of both <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, and the number of responses <span class="math notranslate nohighlight">\(n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d98f20ab-e1d3-4077-a056-3975819205c5">
-<span class="eqno">(31)<a class="headerlink" href="#equation-d98f20ab-e1d3-4077-a056-3975819205c5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5c48abb4-e6bb-412e-bdc5-41b18b86a878">
+<span class="eqno">(31)<a class="headerlink" href="#equation-5c48abb4-e6bb-412e-bdc5-41b18b86a878" title="Permalink to this equation">#</a></span>\[\begin{align}
 A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -857,21 +857,21 @@ A[i] = \frac{\sum_j B'_j[i] - n q}{p - q}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, np.float64(3734.5)),
- (&#39;Exec-managerial&#39;, np.float64(4034.5)),
- (&#39;Handlers-cleaners&#39;, np.float64(1408.5)),
- (&#39;Prof-specialty&#39;, np.float64(4208.5)),
- (&#39;Other-service&#39;, np.float64(3176.5)),
- (&#39;Sales&#39;, np.float64(3446.5)),
- (&#39;Craft-repair&#39;, np.float64(3898.5)),
- (&#39;Transport-moving&#39;, np.float64(1638.5)),
- (&#39;Farming-fishing&#39;, np.float64(1038.5)),
- (&#39;Machine-op-inspct&#39;, np.float64(1922.5)),
- (&#39;Tech-support&#39;, np.float64(958.5)),
- (&#39;Protective-serv&#39;, np.float64(622.5)),
- (&#39;Baby&#39;, np.float64(-147.5)),
- (&#39;Armed-Forces&#39;, np.float64(368.5)),
- (&#39;Priv-house-serv&#39;, np.float64(102.5))]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Adm-clerical&#39;, np.float64(3500.5)),
+ (&#39;Exec-managerial&#39;, np.float64(4072.5)),
+ (&#39;Handlers-cleaners&#39;, np.float64(1612.5)),
+ (&#39;Prof-specialty&#39;, np.float64(4408.5)),
+ (&#39;Other-service&#39;, np.float64(3126.5)),
+ (&#39;Sales&#39;, np.float64(3654.5)),
+ (&#39;Craft-repair&#39;, np.float64(4010.5)),
+ (&#39;Transport-moving&#39;, np.float64(1574.5)),
+ (&#39;Farming-fishing&#39;, np.float64(1176.5)),
+ (&#39;Machine-op-inspct&#39;, np.float64(2076.5)),
+ (&#39;Tech-support&#39;, np.float64(960.5)),
+ (&#39;Protective-serv&#39;, np.float64(770.5)),
+ (&#39;Baby&#39;, np.float64(-77.5)),
+ (&#39;Armed-Forces&#39;, np.float64(28.5)),
+ (&#39;Priv-house-serv&#39;, np.float64(168.5))]
 </pre></div>
 </div>
 </div>
