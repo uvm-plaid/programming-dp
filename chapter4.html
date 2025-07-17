@@ -542,7 +542,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/e89813ec8b09ad4a040a28064d9228f749cb96068097f239710adc59f03eac57.png" src="_images/e89813ec8b09ad4a040a28064d9228f749cb96068097f239710adc59f03eac57.png" />
+<img alt="_images/164aeda861a3636fa3bd661a6ce02d4d73bb81ae65e474917485f08f1a06a090.png" src="_images/164aeda861a3636fa3bd661a6ce02d4d73bb81ae65e474917485f08f1a06a090.png" />
 </div>
 </div>
 <p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F3</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier” than that of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, because its higher <span class="math notranslate nohighlight">\(\epsilon\)</span> implies less privacy, and therefore a smaller likelihood of getting results far from the true answer.</p>
@@ -564,7 +564,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/9146c464380ddd1fd2d10fdafb4d28371f8d3ac6b22c667b5d190a59a0c16c64.png" src="_images/9146c464380ddd1fd2d10fdafb4d28371f8d3ac6b22c667b5d190a59a0c16c64.png" />
+<img alt="_images/8f0b146a8fee3665d6a5fdb44e896e2f4f0b39c7fc3302e14b8e8bbc914f8ece.png" src="_images/8f0b146a8fee3665d6a5fdb44e896e2f4f0b39c7fc3302e14b8e8bbc914f8ece.png" />
 </div>
 </div>
 <p>If we graph <code class="docutils literal notranslate"><span class="pre">F1</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>, we see that the distribution of outputs from <code class="docutils literal notranslate"><span class="pre">F_combined</span></code> is pointier. This means its answers are more accurate than those of <code class="docutils literal notranslate"><span class="pre">F1</span></code>, so it makes sense that its <span class="math notranslate nohighlight">\(\epsilon\)</span> must be higher (i.e. it yields less privacy than <code class="docutils literal notranslate"><span class="pre">F1</span></code>).</p>
@@ -586,7 +586,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/4fa06900d4c17e1007605792ade3b6c300baed97a71ca204dce254d97bb211ce.png" src="_images/4fa06900d4c17e1007605792ade3b6c300baed97a71ca204dce254d97bb211ce.png" />
+<img alt="_images/e2084a89927f07c77eb297a58e0ce46867631502120f7f37e840e0b10d72981b.png" src="_images/e2084a89927f07c77eb297a58e0ce46867631502120f7f37e840e0b10d72981b.png" />
 </div>
 </div>
 <p>What about <code class="docutils literal notranslate"><span class="pre">F3</span></code> and <code class="docutils literal notranslate"><span class="pre">F_combined</span></code>? Recall that the <span class="math notranslate nohighlight">\(\epsilon\)</span> values for these two mechanisms are the same - both have an <span class="math notranslate nohighlight">\(\epsilon\)</span> of 2. Their output distributions should look the same.</p>
@@ -608,7 +608,7 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/a181a51c69a44c7d5964242c93fe30ab4eb10195125ca75ca4d0ae941522d11a.png" src="_images/a181a51c69a44c7d5964242c93fe30ab4eb10195125ca75ca4d0ae941522d11a.png" />
+<img alt="_images/27707c9fe8d6c39a7b8ee1b2e84f9bbed12b40dfce3a0e582270939a0f5fc10b.png" src="_images/27707c9fe8d6c39a7b8ee1b2e84f9bbed12b40dfce3a0e582270939a0f5fc10b.png" />
 </div>
 </div>
 <p>In fact, <code class="docutils literal notranslate"><span class="pre">F3</span></code> looks “pointier”! Why does this happen? Remember that sequential composition yields an <em>upper</em> bound on the total <span class="math notranslate nohighlight">\(\epsilon\)</span> of several releases, the actual cumulative impact on privacy might be lower. That’s the case here - the actual privacy loss in this case appears to be somewhat lower than the upper bound <span class="math notranslate nohighlight">\(\epsilon\)</span> determined by sequential composition. Sequential composition is an extremely useful way to control total privacy cost, and we will see it used in many different ways, but keep in mind that it is not necessarily an exact bound.</p>
@@ -735,23 +735,23 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
   <tbody>
     <tr>
       <th>HS-grad</th>
-      <td>10500.882018</td>
+      <td>10499.258440</td>
     </tr>
     <tr>
       <th>Some-college</th>
-      <td>7290.315871</td>
+      <td>7291.737425</td>
     </tr>
     <tr>
       <th>Bachelors</th>
-      <td>5355.178697</td>
+      <td>5356.961698</td>
     </tr>
     <tr>
       <th>Masters</th>
-      <td>1719.177521</td>
+      <td>1723.788256</td>
     </tr>
     <tr>
       <th>Assoc-voc</th>
-      <td>1381.599729</td>
+      <td>1382.680479</td>
     </tr>
   </tbody>
 </table>
@@ -830,15 +830,11 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Education&#39;</span><span class="p">],</span> <span class="n">adult</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">])</span>
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
-<span class="n">ct</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ct</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/mk/k3661ml57fngl_pfgq6w5_dh0000gn/T/ipykernel_47924/797734013.py:3: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-  ct.applymap(f).head(5)
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -869,28 +865,28 @@ The bound on privacy cost given by sequential composition is an <em>upper</em> b
   <tbody>
     <tr>
       <th>10th</th>
-      <td>295.792708</td>
-      <td>638.578428</td>
+      <td>295.082913</td>
+      <td>638.173003</td>
     </tr>
     <tr>
       <th>11th</th>
-      <td>426.980622</td>
-      <td>742.496856</td>
+      <td>432.842055</td>
+      <td>743.065242</td>
     </tr>
     <tr>
       <th>12th</th>
-      <td>145.683858</td>
-      <td>285.581693</td>
+      <td>142.262979</td>
+      <td>293.867918</td>
     </tr>
     <tr>
       <th>1st-4th</th>
-      <td>47.001665</td>
-      <td>122.625183</td>
+      <td>42.142478</td>
+      <td>121.812697</td>
     </tr>
     <tr>
       <th>5th-6th</th>
-      <td>85.111853</td>
-      <td>249.598154</td>
+      <td>84.353429</td>
+      <td>249.841240</td>
     </tr>
   </tbody>
 </table>
