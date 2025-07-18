@@ -478,8 +478,8 @@ document.write(`
 </ul>
 </div>
 <p>As we mentioned when we discussed the Laplace mechanism, the amount of noise necessary to ensure differential privacy for a given query depends on the <em>sensitivity</em> of the query. Roughly speaking, the sensitivity of a function reflects the amount the function’s output will change when its input changes. Recall that the Laplace mechanism defines a mechanism <span class="math notranslate nohighlight">\(F(x)\)</span> as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-47469cb0-5a5f-49fa-a8af-04e74b66d9cf">
-<span class="eqno">(5)<a class="headerlink" href="#equation-47469cb0-5a5f-49fa-a8af-04e74b66d9cf" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bdc6fcd6-5734-4f1e-9115-0d411b7f0707">
+<span class="eqno">(5)<a class="headerlink" href="#equation-bdc6fcd6-5734-4f1e-9115-0d411b7f0707" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(x) = f(x) + \textsf{Lap}\left(\frac{s}{\epsilon}\right)
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(x)\)</span> is a deterministic function (the query), <span class="math notranslate nohighlight">\(\epsilon\)</span> is the privacy parameter, and <span class="math notranslate nohighlight">\(s\)</span> is the sensitivity of <span class="math notranslate nohighlight">\(f\)</span>.</p>
@@ -697,7 +697,7 @@ d(x, x') = | (x - x') \cup (x' - x) |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/5017be30913e2675a10a768aa3269ba8ab3b881e699882a35cab1c2e882ede3a.png" src="_images/5017be30913e2675a10a768aa3269ba8ab3b881e699882a35cab1c2e882ede3a.png" />
+<img alt="_images/62841f5c08dbd98096aa7966e13ad742db5c6babb3c4385c2cd9a71a27aa44e9.png" src="_images/62841f5c08dbd98096aa7966e13ad742db5c6babb3c4385c2cd9a71a27aa44e9.png" />
 </div>
 </div>
 <p>The total privacy cost for building this plot is <span class="math notranslate nohighlight">\(\epsilon = 1\)</span> by sequential composition, since we do 100 queries each with <span class="math notranslate nohighlight">\(\epsilon_i = 0.01\)</span>. It’s clear that the results level off around a value of <code class="docutils literal notranslate"><span class="pre">upper</span> <span class="pre">=</span> <span class="pre">80</span></code>, so this is a good choice for the clipping bound.</p>
@@ -720,7 +720,7 @@ d(x, x') = | (x - x') \cup (x' - x) |
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/4353f2d768c1bf995f439bdbf3b80afd9b9d8c27a085d56c7f6a63ade0b840af.png" src="_images/4353f2d768c1bf995f439bdbf3b80afd9b9d8c27a085d56c7f6a63ade0b840af.png" />
+<img alt="_images/d02f48b7d49717f58726b8074c2309142c2b5529f9f82931d9a657bc89ddff71.png" src="_images/d02f48b7d49717f58726b8074c2309142c2b5529f9f82931d9a657bc89ddff71.png" />
 </div>
 </div>
 <p>This approach allows us to test a huge range of possible bounds with a small number of queries, but at the expense of less precision in determining the perfect bound. As the upper bound gets really large, the noise will start to overwhelm the signal - notice how the sum fluctuates wildly for the largest clipping parameters! The key is to look for a region of the graph which is relatively smooth (meaning low noise) and also not increasing (meaning the clipping bound is sufficient). Here, this occurs at roughly <span class="math notranslate nohighlight">\(2^8 = 256\)</span>, which is a reasonable approximation of the upper bound we derived earlier.</p>
