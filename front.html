@@ -576,39 +576,35 @@ A highly readable and freely available textbook. Especially good for beginners o
 <p>The structure and executable nature of this book is enabled by the <a class="reference external" href="https://jupyter.org/">Jupyter</a> ecosystem.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>jupyter<span class="w"> </span>notebook<span class="w"> </span>--version
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>jupyter<span class="w"> </span>--version
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-  File <span class=" -Color -Color-Magenta">&quot;/Users/chike/Library/Python/3.13/bin/jupyter-notebook&quot;</span>, line <span class=" -Color -Color-Magenta">5</span>, in <span class=" -Color -Color-Magenta">&lt;module&gt;</span>
-    from notebook.app import main
-  File <span class=" -Color -Color-Magenta">&quot;/Users/chike/Library/Python/3.13/lib/python/site-packages/notebook/app.py&quot;</span>, line <span class=" -Color -Color-Magenta">21</span>, in <span class=" -Color -Color-Magenta">&lt;module&gt;</span>
-    from jupyterlab.commands import (  # type:ignore[import-untyped]
-    ...&lt;3 lines&gt;...
-    )
-  File <span class=" -Color -Color-Magenta">&quot;/Users/chike/Library/Python/3.13/lib/python/site-packages/jupyterlab/__init__.py&quot;</span>, line <span class=" -Color -Color-Magenta">8</span>, in <span class=" -Color -Color-Magenta">&lt;module&gt;</span>
-    from .handlers.announcements import (
-    ...&lt;3 lines&gt;...
-    )
-  File <span class=" -Color -Color-Magenta">&quot;/Users/chike/Library/Python/3.13/lib/python/site-packages/jupyterlab/handlers/announcements.py&quot;</span>, line <span class=" -Color -Color-Magenta">16</span>, in <span class=" -Color -Color-Magenta">&lt;module&gt;</span>
-    from jupyterlab_server.translation_utils import translator
-  File <span class=" -Color -Color-Magenta">&quot;/Users/chike/Library/Python/3.13/lib/python/site-packages/jupyterlab_server/__init__.py&quot;</span>, line <span class=" -Color -Color-Magenta">6</span>, in <span class=" -Color -Color-Magenta">&lt;module&gt;</span>
-    from .app import LabServerApp
-  File <span class=" -Color -Color-Magenta">&quot;/Users/chike/Library/Python/3.13/lib/python/site-packages/jupyterlab_server/app.py&quot;</span>, line <span class=" -Color -Color-Magenta">15</span>, in <span class=" -Color -Color-Magenta">&lt;module&gt;</span>
-    from .handlers import LabConfig, add_handlers
-  File <span class=" -Color -Color-Magenta">&quot;/Users/chike/Library/Python/3.13/lib/python/site-packages/jupyterlab_server/handlers.py&quot;</span>, line <span class=" -Color -Color-Magenta">21</span>, in <span class=" -Color -Color-Magenta">&lt;module&gt;</span>
-    from .listings_handler import ListingsHandler, fetch_listings
-  File <span class=" -Color -Color-Magenta">&quot;/Users/chike/Library/Python/3.13/lib/python/site-packages/jupyterlab_server/listings_handler.py&quot;</span>, line <span class=" -Color -Color-Magenta">10</span>, in <span class=" -Color -Color-Magenta">&lt;module&gt;</span>
-    import requests
-  File <span class=" -Color -Color-Magenta">&quot;/Users/chike/Library/Python/3.13/lib/python/site-packages/requests/__init__.py&quot;</span>, line <span class=" -Color -Color-Magenta">151</span>, in <span class=" -Color -Color-Magenta">&lt;module&gt;</span>
-    from . import packages, utils
-  File <span class=" -Color -Color-Magenta">&quot;/Users/chike/Library/Python/3.13/lib/python/site-packages/requests/utils.py&quot;</span>, line <span class=" -Color -Color-Magenta">24</span>, in <span class=" -Color -Color-Magenta">&lt;module&gt;</span>
-    from . import certs
-  File <span class=" -Color -Color-Magenta">&quot;/Users/chike/Library/Python/3.13/lib/python/site-packages/requests/certs.py&quot;</span>, line <span class=" -Color -Color-Magenta">14</span>, in <span class=" -Color -Color-Magenta">&lt;module&gt;</span>
-    from certifi import where
-<span class=" -Color -Color-Bold -Color-Bold-Magenta">ImportError</span>: <span class=" -Color -Color-Magenta">cannot import name &#39;where&#39; from &#39;certifi&#39; (unknown location)</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selected Jupyter core packages...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IPython          : 9.4.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ipykernel        : 6.29.5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ipywidgets       : 8.1.7
+jupyter_client   : 8.6.3
+jupyter_core     : 5.8.1
+jupyter_server   : 2.16.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jupyterlab       : not installed
+nbclient         : 0.10.2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nbconvert        : 7.16.6
+nbformat         : 5.10.4
+notebook         : 7.4.4
+qtconsole        : not installed
+traitlets        : 5.14.3
 </pre></div>
 </div>
 </div>
