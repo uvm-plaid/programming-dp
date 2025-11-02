@@ -1,5 +1,3 @@
-# Cover
-
 ```{image} logo.png
 :class: dark-light
 ```

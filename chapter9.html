@@ -177,7 +177,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="cover.html">
-                    Cover
+                    <no title>
                 </a>
             </li>
         </ul>
@@ -446,7 +446,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exponential-mechanism-for-finite-sets">The Exponential Mechanism for Finite Sets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#report-noisy-max">Report Noisy Max</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exponential-mechanism-as-fundamental-mechanism-for-differential-privacy">The Exponential Mechanism as Fundamental Mechanism for Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exponential-mechanism-as-a-fundamental-mechanism-for-differential-privacy">The Exponential Mechanism as a Fundamental Mechanism for Differential Privacy</a></li>
 </ul>
             </nav>
         </div>
@@ -480,8 +480,8 @@ document.write(`
 <li><p>The analyst specifies a scoring function <span class="math notranslate nohighlight">\(u : \mathcal{D} \times \mathcal{R} \rightarrow \mathbb{R}\)</span> with global sensitivity <span class="math notranslate nohighlight">\(\Delta u\)</span></p></li>
 <li><p>The exponential mechanism outputs <span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span> with probability proportional to:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-8796725a-5d05-4fe3-855b-db95067b9cb6">
-<span class="eqno">(16)<a class="headerlink" href="#equation-8796725a-5d05-4fe3-855b-db95067b9cb6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8f44772f-c47a-4aea-9e29-64690c131364">
+<span class="eqno">()<a class="headerlink" href="#equation-8f44772f-c47a-4aea-9e29-64690c131364" title="Permalink to this equation">#</a></span>\[\begin{align}
 \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)
 \end{align}\]</div>
 </section>
@@ -547,9 +547,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    177
-Never-married          22
-Divorced                1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    173
+Never-married          27
 Name: count, dtype: int64
 </pre></div>
 </div>
@@ -602,8 +601,8 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    194
-Never-married           6
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Married-civ-spouse    197
+Never-married           3
 Name: count, dtype: int64
 </pre></div>
 </div>
@@ -612,18 +611,18 @@ Name: count, dtype: int64
 <p>So the exponential mechanism can be replaced with report noisy max when the set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is finite, but what about when it’s infinite? We can’t easily add Laplace noise to an infinite set of scores. In this context, we have to use the actual exponential mechanism.</p>
 <p>In practice, however, using the exponential mechanism for infinite sets is often challenging or impossible. While it’s easy to write down the probability density function defined by the mechanism, it’s often the case that no efficient algorithm exists for sampling from it. As a result, numerous theoretical papers appeal to the exponential mechanism to show that a differentially private algorithm “exists” with certain desirable properties, but many of these algorithms are impossible to use in practice.</p>
 </section>
-<section id="the-exponential-mechanism-as-fundamental-mechanism-for-differential-privacy">
-<h2>The Exponential Mechanism as Fundamental Mechanism for Differential Privacy<a class="headerlink" href="#the-exponential-mechanism-as-fundamental-mechanism-for-differential-privacy" title="Permalink to this heading">#</a></h2>
+<section id="the-exponential-mechanism-as-a-fundamental-mechanism-for-differential-privacy">
+<h2>The Exponential Mechanism as a Fundamental Mechanism for Differential Privacy<a class="headerlink" href="#the-exponential-mechanism-as-a-fundamental-mechanism-for-differential-privacy" title="Permalink to this heading">#</a></h2>
 <p>We’ve seen that it’s not possible to recover the exponential mechanism using the Laplace mechanism plus sequential composition, because we can’t capture the fact that the algorithm we designed doesn’t release all of the noisy scores. What about the reverse - can we recover the Laplace mechanism from the exponential mechanism? It turns out that we can!</p>
 <p>Consider a query <span class="math notranslate nohighlight">\(q(x) : \mathcal{D} \rightarrow \mathbb{R}\)</span> with sensitivity <span class="math notranslate nohighlight">\(\Delta q\)</span>. We can release an <span class="math notranslate nohighlight">\(\epsilon\)</span>-differentially private answer by adding Laplace noise: <span class="math notranslate nohighlight">\(F(x) = q(x) + \mathsf{Lap}(\Delta q / \epsilon)\)</span>. The probability density function for this differentially private version of <span class="math notranslate nohighlight">\(q\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-128fcde7-463b-42b9-9806-c18853153c51">
-<span class="eqno">(17)<a class="headerlink" href="#equation-128fcde7-463b-42b9-9806-c18853153c51" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1e37e81d-e34a-49c5-b868-532b55e6e6a3">
+<span class="eqno">()<a class="headerlink" href="#equation-1e37e81d-e34a-49c5-b868-532b55e6e6a3" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp; \frac{1}{2b} \exp\Big(- \frac{\lvert r - \mu \rvert}{b}\Big)\\
 =&amp; \frac{\epsilon}{2 \Delta q} \exp\Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q}\Big)
 \end{align}\]</div>
 <p>Consider what happens when we set the scoring function for the exponential mechanism to <span class="math notranslate nohighlight">\(u(x, r) = -2 \lvert q(x) - r \rvert\)</span>. The exponential mechanism says that we should sample from the probability distribution proportional to:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-41e44af6-3a9a-43bf-9a6d-bd0f25ea9a96">
-<span class="eqno">(18)<a class="headerlink" href="#equation-41e44af6-3a9a-43bf-9a6d-bd0f25ea9a96" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-cf232d00-2e37-4d72-bb2f-75fbd3619cec">
+<span class="eqno">()<a class="headerlink" href="#equation-cf232d00-2e37-4d72-bb2f-75fbd3619cec" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathsf{Pr}[F(x) = r] =&amp;\; \exp \Big(\frac{\epsilon u(x, r)}{2 \Delta u} \Big)\\
 &amp;= \exp \Big(\frac{\epsilon (-2 \lvert q(x) - r \rvert)}{2 \Delta q} \Big)\\
 &amp;= \exp \Big(- \frac{\epsilon \lvert r - q(x) \rvert}{\Delta q} \Big)\\
@@ -744,7 +743,7 @@ Name: count, dtype: int64
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exponential-mechanism-for-finite-sets">The Exponential Mechanism for Finite Sets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#report-noisy-max">Report Noisy Max</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exponential-mechanism-as-fundamental-mechanism-for-differential-privacy">The Exponential Mechanism as Fundamental Mechanism for Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exponential-mechanism-as-a-fundamental-mechanism-for-differential-privacy">The Exponential Mechanism as a Fundamental Mechanism for Differential Privacy</a></li>
 </ul>
   </nav></div>
 
