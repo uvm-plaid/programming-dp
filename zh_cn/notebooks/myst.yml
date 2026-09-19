@@ -31,6 +31,8 @@ project:
       output: exports/cn_book.pdf
       # every page is a \chapter (the default makes them \section)
       articles:
+        - file: front.ipynb
+          level: 0
         - file: intro.ipynb
           level: 0
         - file: ch1.ipynb
@@ -61,8 +63,15 @@ project:
           level: 0
         - file: ch14.ipynb
           level: 0
+        - file: ch15.ipynb
+          level: 0
+        - file: further.ipynb
+          level: 0
+        - file: license.md
+          level: 0
   toc:
     - file: cover.md
+    - file: front.ipynb
     - file: intro.ipynb
     - file: ch1.ipynb
     - file: ch2.ipynb
@@ -78,7 +87,10 @@ project:
     - file: ch12.ipynb
     - file: ch13.ipynb
     - file: ch14.ipynb
+    - file: ch15.ipynb
+    - file: further.ipynb
     - file: bibliography.ipynb
+    - file: license.md
 site:
   template: book-theme
   options:
