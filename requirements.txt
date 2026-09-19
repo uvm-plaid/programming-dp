@@ -1,10 +1,12 @@
-jupyter-book==1.0.4
-matplotlib
-numpy
-pandas
-pydata-sphinx-theme>=0.13.3
-sphinx==7.0.1
-sphinxcontrib-bibtex==2.6.5
-sphinx-proof
-docutils~=0.20
+# book toolchain (also needs Node.js >= 20, and XeLaTeX with xeCJK for the pdfs)
+jupyter-book==2.1.6
+ghp-import
+# notebook kernel
+ipykernel
+jupyter-server
+# packages used by the notebooks (pinned so printed output is reproducible)
+matplotlib==3.10.3
+numpy==2.3.1
+pandas==2.3.1
+scikit-learn==1.7.1
 mplfonts

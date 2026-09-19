@@ -1,0 +1,57 @@
+name: deploy
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: write  # push to gh-pages
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install LaTeX (pdf exports) and CJK fonts (chinese pdf)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-xetex \
+            texlive-latex-extra texlive-fonts-recommended texlive-lang-chinese lmodern fonts-noto-cjk
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # executed notebook outputs; only notebooks that changed are re-run
+      - uses: actions/cache@v4
+        with:
+          path: |
+            notebooks/_build/execute
+            zh_cn/notebooks/_build/execute
+          key: execute-${{ hashFiles('requirements.txt', 'notebooks/*.ipynb', 'zh_cn/notebooks/*.ipynb') }}
+          restore-keys: execute-
+
+      - name: Build
+        run: ./build.sh
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          publish_branch: gh-pages
+          cname: programming-dp.com

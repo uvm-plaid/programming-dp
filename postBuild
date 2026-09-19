@@ -1,0 +1,3 @@
+#!/bin/bash
+# Binder: install the CJK fonts used by the Chinese notebooks
+mplfonts init
