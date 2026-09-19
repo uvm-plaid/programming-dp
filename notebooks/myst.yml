@@ -1,0 +1,89 @@
+version: 1
+project:
+  id: programming-dp-en
+  title: Programming Differential Privacy
+  description: A practical introduction to programming differential privacy, with a focus on the Python programming language.
+  authors:
+    - name: Joseph P. Near
+    - name: Chiké Abuah
+  copyright: © 2025 Joseph P. Near and Chiké Abuah
+  license:
+    content: CC-BY-NC-SA-4.0
+    code: MIT
+  github: https://github.com/uvm-plaid/programming-dp
+  bibliography:
+    - references.bib
+  jupyter:
+    binder:
+      repo: uvm-plaid/programming-dp
+  exports:
+    - id: book-pdf
+      format: pdf
+      template: plain_latex_book
+      output: exports/book.pdf
+      # every page is a \chapter (the default makes them \section)
+      articles:
+        - file: front.ipynb
+          level: 0
+        - file: intro.ipynb
+          level: 0
+        - file: chapter1.ipynb
+          level: 0
+        - file: chapter2.ipynb
+          level: 0
+        - file: chapter3.ipynb
+          level: 0
+        - file: chapter4.ipynb
+          level: 0
+        - file: chapter5.ipynb
+          level: 0
+        - file: chapter6.ipynb
+          level: 0
+        - file: chapter7.ipynb
+          level: 0
+        - file: chapter8.ipynb
+          level: 0
+        - file: chapter9.ipynb
+          level: 0
+        - file: chapter10.ipynb
+          level: 0
+        - file: chapter11.ipynb
+          level: 0
+        - file: chapter12.ipynb
+          level: 0
+        - file: chapter13.ipynb
+          level: 0
+        - file: chapter14.ipynb
+          level: 0
+        - file: chapter15.ipynb
+          level: 0
+        - file: further.ipynb
+          level: 0
+        - file: license.md
+          level: 0
+  toc:
+    - file: cover.md
+    - file: front.ipynb
+    - file: intro.ipynb
+    - file: chapter1.ipynb
+    - file: chapter2.ipynb
+    - file: chapter3.ipynb
+    - file: chapter4.ipynb
+    - file: chapter5.ipynb
+    - file: chapter6.ipynb
+    - file: chapter7.ipynb
+    - file: chapter8.ipynb
+    - file: chapter9.ipynb
+    - file: chapter10.ipynb
+    - file: chapter11.ipynb
+    - file: chapter12.ipynb
+    - file: chapter13.ipynb
+    - file: chapter14.ipynb
+    - file: chapter15.ipynb
+    - file: further.ipynb
+    - file: license.md
+site:
+  template: book-theme
+  options:
+    logo: logo.png
+    favicon: favicon.png

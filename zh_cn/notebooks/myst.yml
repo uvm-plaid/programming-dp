@@ -1,0 +1,86 @@
+version: 1
+project:
+  id: programming-dp-cn
+  title: 动手学差分隐私
+  subtitle: 刘巍然、李双（译）
+  description: 一本面向开发者的差分隐私书籍（A book about differential privacy, for programmers）
+  authors:
+    - name: Joseph P. Near
+    - name: Chiké Abuah
+  # translators
+  contributors:
+    - name: {literal: 刘巍然（Weiran Liu）, family: 刘, given: 巍然}
+      github: liuweiran900217
+    - name: {literal: 李双（Shuang Li）, family: 李, given: 双}
+      github: little12
+  copyright: © 2025 Joseph P. Near and Chiké Abuah
+  license:
+    content: CC-BY-NC-SA-4.0
+    code: MIT
+  github: https://github.com/uvm-plaid/programming-dp
+  bibliography:
+    - references.bib
+  jupyter:
+    binder:
+      repo: uvm-plaid/programming-dp
+  exports:
+    - id: cn-book-pdf
+      format: pdf
+      # plain_latex_book + ctex for chinese text
+      template: _templates/latex_book_cjk
+      output: exports/cn_book.pdf
+      # every page is a \chapter (the default makes them \section)
+      articles:
+        - file: intro.ipynb
+          level: 0
+        - file: ch1.ipynb
+          level: 0
+        - file: ch2.ipynb
+          level: 0
+        - file: ch3.ipynb
+          level: 0
+        - file: ch4.ipynb
+          level: 0
+        - file: ch5.ipynb
+          level: 0
+        - file: ch6.ipynb
+          level: 0
+        - file: ch7.ipynb
+          level: 0
+        - file: ch8.ipynb
+          level: 0
+        - file: ch9.ipynb
+          level: 0
+        - file: ch10.ipynb
+          level: 0
+        - file: ch11.ipynb
+          level: 0
+        - file: ch12.ipynb
+          level: 0
+        - file: ch13.ipynb
+          level: 0
+        - file: ch14.ipynb
+          level: 0
+  toc:
+    - file: cover.md
+    - file: intro.ipynb
+    - file: ch1.ipynb
+    - file: ch2.ipynb
+    - file: ch3.ipynb
+    - file: ch4.ipynb
+    - file: ch5.ipynb
+    - file: ch6.ipynb
+    - file: ch7.ipynb
+    - file: ch8.ipynb
+    - file: ch9.ipynb
+    - file: ch10.ipynb
+    - file: ch11.ipynb
+    - file: ch12.ipynb
+    - file: ch13.ipynb
+    - file: ch14.ipynb
+    - file: bibliography.ipynb
+site:
+  template: book-theme
+  options:
+    logo: logo_zh_cn.png
+    favicon: favicon.png

@@ -1,15 +1,10 @@
-# build
-echo "# build en book"
-jupyter-book build notebooks
-jupyter-book build --builder pdflatex notebooks
-
-# copy static files
-echo "# cp en assets"
-cp static/index.html _build/html/
-cp static/book-logo.png _build/html/
-cp static/CNAME _build/html/
-cp _build/latex/book.pdf _build/html/ 2>/dev/null || :
-
-# deploy book
+#!/usr/bin/env bash
+# Manual deploy from a local machine. Normally not needed: pushing to master
+# deploys via .github/workflows/deploy.yml.
+# Setup: uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -r requirements.txt
+set -euo pipefail
+cd "$(dirname "$0")"
+./build.sh
+[ -d .venv ] && export PATH="$PWD/.venv/bin:$PATH"
 echo "# deploy book"
-ghp-import -n -p -f _build/html
+ghp-import -n -p -f _site
