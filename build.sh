@@ -50,6 +50,9 @@ for dir in "$SITE" "$SITE/cn"; do
   for old in genindex search prf-prf; do redirect "$dir/$old.html" "./"; done
 done
 redirect "$SITE/cover.html" "front/"
-redirect "$SITE/cn/cover.html" "intro/"
+# pre-2025 english urls (/ch3.html, /bibliography.html)
+for i in $(seq 1 15); do redirect "$SITE/ch$i.html" "chapter$i/"; done
+redirect "$SITE/bibliography.html" "further/"
+redirect "$SITE/cn/cover.html" "front/"
 
 echo "# site ready in _site/"
