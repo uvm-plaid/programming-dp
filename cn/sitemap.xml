@@ -5,6 +5,9 @@
     <loc>http://localhost:3000</loc>
   </url>
   <url>
+    <loc>http://localhost:3000/front</loc>
+  </url>
+  <url>
     <loc>http://localhost:3000/intro</loc>
   </url>
   <url>
@@ -50,6 +53,15 @@
     <loc>http://localhost:3000/ch14</loc>
   </url>
   <url>
+    <loc>http://localhost:3000/ch15</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/further</loc>
+  </url>
+  <url>
     <loc>http://localhost:3000/bibliography</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/license</loc>
   </url>
 </urlset>
