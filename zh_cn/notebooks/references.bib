@@ -287,3 +287,247 @@ series = {CCS '12}
   url = 	 {https://proceedings.mlr.press/v80/balle18a.html},
   abstract = 	 {The Gaussian mechanism is an essential building block used in multitude of differentially private data analysis algorithms. In this paper we revisit the Gaussian mechanism and show that the original analysis has several important limitations. Our analysis reveals that the variance formula for the original mechanism is far from tight in the high privacy regime ($\varepsilon \to 0$) and it cannot be extended to the low privacy regime ($\varepsilon \to \infty$). We address these limitations by developing an optimal Gaussian mechanism whose variance is calibrated directly using the Gaussian cumulative density function instead of a tail bound approximation. We also propose to equip the Gaussian mechanism with a post-processing step based on adaptive estimation techniques by leveraging that the distribution of the perturbation is known. Our experiments show that analytical calibration removes at least a third of the variance of the noise compared to the classical Gaussian mechanism, and that denoising dramatically improves the accuracy of the Gaussian mechanism in the high-dimensional regime.}
 }
+
+@article{dwork2008survey,
+  title={Differential privacy: A survey of results},
+  author={Dwork, Cynthia},
+  journal={Theory and Applications of Models of Computation},
+  pages={1--19},
+  year={2008},
+  publisher={Springer}
+}
+
+@inproceedings{mcsherry2007mechanism,
+  title={Mechanism design via differential privacy},
+  author={McSherry, Frank and Talwar, Kunal},
+  booktitle={Foundations of Computer Science (FOCS)},
+  year={2007},
+  organization={IEEE}
+}
+
+@book{dwork2014algorithmic,
+  title={The algorithmic foundations of differential privacy},
+  author={Dwork, Cynthia and Roth, Aaron},
+  year={2014},
+  publisher={Foundations and Trends in Theoretical Computer Science}
+}
+
+@inproceedings{abadi2016deep,
+  title={Deep learning with differential privacy},
+  author={Abadi, Martin and Chu, Andy and Goodfellow, Ian and McMahan, H Brendan and Mironov, Ilya and Talwar, Kunal and Zhang, Li},
+  booktitle={Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security},
+  pages={308--318},
+  year={2016}
+}
+
+@inproceedings{bu2022deep,
+  title={Deep learning with gaussian differential privacy},
+  author={Bu, Zhiqi and Feldman, Vitaly and Hoory, Shuang and Talwar, Kunal and Thakurta, Abhradeep},
+  booktitle={International Conference on Machine Learning},
+  year={2022},
+  organization={PMLR}
+}
+
+@inproceedings{shokri2017membership,
+  title={Membership inference attacks against machine learning models},
+  author={Shokri, Reza and Stronati, Marco and Song, Congzheng and Shmatikov, Vitaly},
+  booktitle={IEEE Symposium on Security and Privacy},
+  year={2017}
+}
+
+@inproceedings{carlini2019secret,
+  title={The secret sharer: Measuring unintended neural memorization},
+  author={Carlini, Nicholas and Liu, Chang and Erlingsson, Úlfar and Kos, Jernej and Song, Dawn},
+  booktitle={USENIX Security Symposium},
+  year={2019}
+}
+
+@article{kasiviswanathan2011learnprivately,
+  author    = {Shiva P. Kasiviswanathan and Homin K. Lee and Kobbi Nissim and Sofya Raskhodnikova and Adam Smith},
+  title     = {What Can We Learn Privately?},
+  journal   = {SIAM Journal on Computing},
+  volume    = {40},
+  number    = {3},
+  pages     = {793--826},
+  year      = {2011},
+  doi       = {10.1137/090756090},
+  url       = {https://doi.org/10.1137/090756090}
+}
+
+@inproceedings{sheffet2017dpols,
+  author    = {Sheffet, Or},
+  title     = {Differentially Private Ordinary Least Squares},
+  booktitle = {Proceedings of the 34th International Conference on Machine Learning (ICML)},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {70},
+  pages     = {3105--3114},
+  year      = {2017},
+  editor    = {Precup, Doina and Teh, Yee Whye},
+  month     = {Aug},
+  publisher = {PMLR},
+  url       = {https://proceedings.mlr.press/v70/sheffet17a.html},
+  doi       = {10.5555/3305890.3306002}
+}
+
+@article{karwa2016noisydegrees,
+  author    = {Vishesh Karwa and Aleksandra B. Slavkovi\'{c}},
+  title     = {Inference using Noisy Degrees: Differentially Private $\beta$-Model and Synthetic Graphs},
+  journal   = {The Annals of Statistics},
+  volume    = {44},
+  number    = {1},
+  pages     = {87--112},
+  year      = {2016},
+  doi       = {10.1214/15-AOS1374},
+  url       = {https://doi.org/10.1214/15-AOS1374}
+}
+
+@inproceedings{smith2011privacyestimation,
+  author    = {Smith, Adam},
+  title     = {Privacy‑Preserving Statistical Estimation with Optimal Convergence Rates},
+  booktitle = {Proceedings of the 43rd ACM Symposium on Theory of Computing (STOC)},
+  pages     = {813--822},
+  year      = {2011},
+  organization = {ACM},
+  doi       = {10.1145/1993636.1993743},
+  url       = {https://doi.org/10.1145/1993636.1993743}
+}
+
+@inproceedings{kairouz2015composition,
+  author       = {Kairouz, Peter and Oh, Sewoong and Viswanath, Pramod},
+  title        = {The Composition Theorem for Differential Privacy},
+  booktitle    = {Proceedings of the 32nd International Conference on Machine Learning},
+  series       = {Proceedings of Machine Learning Research},
+  volume       = {37},
+  pages        = {1376--1385},
+  year         = {2015},
+  editor       = {Francis Bach and David Blei},
+  address      = {Lille, France},
+  month        = jul,
+  publisher    = {PMLR},
+  url          = {https://proceedings.mlr.press/v37/kairouz15.html}
+}
+
+@techreport{uscensus2021das,
+  author       = {{U.S. Census Bureau}},
+  title        = {Disclosure Avoidance for the 2020 Census: An Introduction},
+  institution  = {U.S.\ Government Publishing Office},
+  address      = {Washington, DC},
+  type         = {Handbook},
+  month        = nov,
+  year         = {2021},
+  url          = {https://www2.census.gov/library/publications/decennial/2020/2020-census-disclosure-avoidance-handbook.pdf}
+}
+
+@techreport{abowd2022topdown,
+  author       = {Abowd, John M. and Ashmead, Robert and Cumings-Menon, Ryan and Garfinkel, Simson and Heineck, Micah and Heiss, Christine and Johns, Robert and Kifer, Daniel and Leclerc, Philip and Machanavajjhala, Ashwin and Moran, Brett and Sexton, William and Spence, Matthew and Zhuravlev, Pavel},
+  title        = {The 2020 Census Disclosure Avoidance System TopDown Algorithm},
+  institution  = {U.S. Census Bureau},
+  type         = {Working Paper},
+  number       = {CED-WP-2022-002},
+  month        = apr,
+  year         = {2022},
+  url          = {https://arxiv.org/abs/2204.08986}
+}
+
+@inproceedings{pierce2010distance,
+author = {Reed, Jason and Pierce, Benjamin C.},
+title = {Distance makes the types grow stronger: a calculus for differential privacy},
+year = {2010},
+isbn = {9781605587943},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1863543.1863568},
+doi = {10.1145/1863543.1863568},
+abstract = {We want assurances that sensitive information will not be disclosed when aggregate data derived from a database is published. Differential privacy offers a strong statistical guarantee that the effect of the presence of any individual in a database will be negligible, even when an adversary has auxiliary knowledge. Much of the prior work in this area consists of proving algorithms to be differentially private one at a time; we propose to streamline this process with a functional language whose type system automatically guarantees differential privacy, allowing the programmer to write complex privacy-safe query programs in a flexible and compositional way.The key novelty is the way our type system captures function sensitivity, a measure of how much a function can magnify the distance between similar inputs: well-typed programs not only can't go wrong, they can't go too far on nearby inputs. Moreover, by introducing a monad for random computations, we can show that the established definition of differential privacy falls out naturally as a special case of this soundness principle. We develop examples including known differentially private algorithms, privacy-aware variants of standard functional programming idioms, and compositionality principles for differential privacy.},
+booktitle = {Proceedings of the 15th ACM SIGPLAN International Conference on Functional Programming},
+pages = {157–168},
+numpages = {12},
+keywords = {type systems, differential privacy},
+location = {Baltimore, Maryland, USA},
+series = {ICFP '10}
+}
+
+@article{abuah2022solo,
+author = {Abuah, Chik\'{e} and Darais, David and Near, Joseph P.},
+title = {Solo: a lightweight static analysis for differential privacy},
+year = {2022},
+issue_date = {October 2022},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {6},
+number = {OOPSLA2},
+url = {https://doi.org/10.1145/3563313},
+doi = {10.1145/3563313},
+abstract = {Existing approaches for statically enforcing differential privacy in higher order languages use either linear or relational refinement types. A barrier to adoption for these approaches is the lack of support for expressing these “fancy types” in mainstream programming languages. For example, no mainstream language supports relational refinement types, and although Rust and modern versions of Haskell both employ some linear typing techniques, they are inadequate for embedding enforcement of differential privacy, which requires “full” linear types. We propose a new type system that enforces differential privacy, avoids the use of linear and relational refinement types, and can be easily embedded in richly typed programming languages like Haskell. We demonstrate such an embedding in Haskell, demonstrate its expressiveness on case studies, and prove soundness of our type-based enforcement of differential privacy.},
+journal = {Proc. ACM Program. Lang.},
+month = oct,
+articleno = {150},
+numpages = {30},
+keywords = {Differential privacy, typechecking, verification}
+}
+
+@article{ullman2020overview,
+  title={Privacy and data analysis: a research overview},
+  author={Ullman, Jonathan},
+  journal={ACM SIGACT News},
+  year={2020}
+}
+
+@inproceedings{meyerson2004complexity,
+  author    = {Adam Meyerson and Ryan Williams},
+  title     = {On the Complexity of Optimal K-Anonymity},
+  booktitle = {Proceedings of the 23rd ACM SIGMOD-SIGACT-SIGART Symposium on Principles of Database Systems (PODS)},
+  year      = {2004},
+  pages     = {223--228},
+  publisher = {ACM},
+  doi       = {10.1145/1055558.1055591},
+  url       = {https://doi.org/10.1145/1055558.1055591}
+}
+
+@book{rosenDiscreteMath,
+  title     = {Discrete Mathematics and Its Applications},
+  author    = {Rosen, Kenneth H.},
+  publisher = {McGraw-Hill Education},
+  year      = {2011},
+  edition   = {7th},
+  isbn      = {9780073383095}
+}
+
+@misc{lehmanMCS,
+  title     = {Mathematics for Computer Science},
+  author    = {Lehman, Eric and Leighton, Tom and Meyer, Albert R.},
+  year      = {2017},
+  url       = {https://people.csail.mit.edu/meyer/mcs.pdf}
+}
+
+@misc{levinDiscreteOpenIntro,
+  title     = {Discrete Mathematics: An Open Introduction},
+  author    = {Levin, Oscar},
+  year      = {2023},
+  edition   = {3rd},
+  url       = {https://discrete.openmathbooks.org/}
+}
+
+@book{rossProbability,
+  title     = {A First Course in Probability},
+  author    = {Ross, Sheldon M.},
+  publisher = {Pearson},
+  year      = {2019},
+  edition   = {10th},
+  isbn      = {9780134753119}
+}
+
+@book{bertsekasProbability,
+  title     = {Introduction to Probability},
+  author    = {Bertsekas, Dimitri P. and Tsitsiklis, John N.},
+  publisher = {Athena Scientific},
+  year      = {2002},
+  isbn      = {9781886529236}
+}
+
+@misc{grinsteadSnellProbability,
+  title     = {Introduction to Probability},
+  author    = {Grinstead, Charles M. and Snell, J. Laurie},
+  year      = {2003},
+  url       = {https://math.dartmouth.edu/~prob/prob/prob.pdf}
+}
